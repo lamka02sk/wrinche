@@ -55,8 +55,8 @@ app/Controllers/
 app/Data/Gameplay/
 app/Helpers/
 app/Models/
-app/Templates/Game/
-app/Templates/Society/
+app/Layouts/Game/
+app/Layouts/Society/
 app/Views/
 assets/
 templates/silencer/assets/
