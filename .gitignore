@@ -50,17 +50,3 @@ fabric.properties
 # modules.xml
 # .idea/misc.xml
 # *.ipr
-app/Config/
-app/Controllers/
-app/Data/Gameplay/
-app/Helpers/
-app/Models/
-app/Layouts/Game/
-app/Layouts/Society/
-app/Views/
-assets/
-templates/silencer/assets/
-templates/silencer/fonts/
-templates/silencer/layouts/
-templates/silencer/scripts/
-templates/silencer/styles/
