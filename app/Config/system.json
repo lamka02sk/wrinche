@@ -1,0 +1,42 @@
+{
+
+  "name":"wrinche",
+  "description":"Modern, powerful and user friendly CMS.",
+  "version":"1.0.0",
+  "domain":"/",
+  "charset":"UTF-8",
+
+  "requirements": {
+    "php-version":7.0
+  },
+
+  "env": {
+    "production":false,
+    "development":true
+  },
+
+  "locale": {
+    "timezone":"Europe/Prague",
+    "language":"en"
+  },
+
+  "paths": {
+    "assets":"assets/",
+    "styles":"styles/",
+    "scripts":"scripts/",
+    "fonts":"fonts/",
+    "vendor":"vendor/"
+  },
+
+  "vendor": {
+    "scripts": {
+      "jquery":"jquery.min.js"
+    },
+    "styles": {
+
+    }
+  },
+
+  "installed":false
+
+}
