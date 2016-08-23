@@ -10,11 +10,11 @@ class Installation extends MainView {
 
     public function __construct($page = '') {
 
-        global $LANG;
+        global $LANG, $TIMEZONES;
 
         $this->page = $page;
 
-        $this->setVendorAssets('jquery');
+        $this->setVendorAssets(['jquery', 'formstone-core', 'formstone-dropdown']);
         $this->setAssets('installation');
         $this->setFavicon();
 

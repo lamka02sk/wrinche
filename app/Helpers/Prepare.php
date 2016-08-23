@@ -37,6 +37,8 @@ class Prepare {
 
         global $LANG;
 
+        require_once 'app/Config/timezones.php';
+
         $env = $_SESSION['CONFIG']['system']['locale']['language'];
 
         if(empty($env)) {

@@ -1,3 +1,19 @@
 {
-  "PHP_VERSION":"Your PHP version is too old. Please use newer version."
+
+  "PHP_VERSION":"Your PHP version is too old. Please use newer version.",
+
+  "INSTALL":"Install",
+  "INSTALLATION":"Installation",
+
+  "INSTALL_LOOK":"Look & Feel",
+  "INSTALL_ACCOUNT":"My Account",
+  "INSTALL_DATABASE":"Database",
+  "INSTALL_WEBSITE":"Website",
+
+  "NEXT":"Next",
+
+  "LANGUAGE":"Language",
+  "TIMEZONE":"Timezone",
+  "THEME":"Theme"
+
 }

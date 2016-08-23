@@ -16,7 +16,7 @@
   },
 
   "locale": {
-    "timezone":"Europe/Prague",
+    "timezone":"UTC",
     "language":"en"
   },
 
@@ -29,11 +29,13 @@
   },
 
   "vendor": {
-    "scripts": {
-      "jquery":"jquery.min.js"
-    },
     "styles": {
-
+      "formstone-dropdown":"dropdown.min.css"
+    },
+    "scripts": {
+      "jquery":"jquery.min.js",
+      "formstone-core":"core.min.js",
+      "formstone-dropdown":"dropdown.min.js"
     }
   },
 
