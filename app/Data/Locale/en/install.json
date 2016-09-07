@@ -1,6 +1,5 @@
 {
-
-  "PHP_VERSION":"Your PHP version is too old. Please use newer version.",
+  "LOCALE":"en",
 
   "INSTALL":"Install",
   "INSTALLATION":"Installation",
@@ -14,6 +13,12 @@
 
   "LANGUAGE":"Language",
   "TIMEZONE":"Timezone",
-  "THEME":"Theme"
+  "THEME":"Theme",
+
+  "ENGLISH":"English",
+  "SLOVAK":"Slovak",
+
+  "LIGHT":"Light",
+  "DARK":"Dark"
 
 }

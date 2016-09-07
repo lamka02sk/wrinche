@@ -2,9 +2,7 @@
 
 /* wrinche. Modern, powerful and user friendly CMS. */
 
-global $TIMEZONES;
-
-$TIMEZONES = array (
+$timezones = [
     0 => 'Africa/Abidjan',
     1 => 'Africa/Accra',
     2 => 'Africa/Addis_Ababa',
@@ -588,5 +586,5 @@ $TIMEZONES = array (
     580 => 'UTC',
     581 => 'W-SU',
     582 => 'WET',
-    583 => 'Zulu',
-);
+    583 => 'Zulu'
+];

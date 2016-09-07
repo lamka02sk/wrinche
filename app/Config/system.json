@@ -11,8 +11,7 @@
   },
 
   "env": {
-    "production":false,
-    "development":true
+    "debug":true
   },
 
   "locale": {
@@ -36,6 +35,23 @@
       "jquery":"jquery.min.js",
       "formstone-core":"core.min.js",
       "formstone-dropdown":"dropdown.min.js"
+    }
+  },
+
+  "tracking": {
+    "client":true,
+    "stats":true,
+    "location":true
+  },
+
+  "support": {
+    "languages": {
+      "en":"ENGLISH",
+      "sk":"SLOVAK"
+    },
+    "themes": {
+      "light":"LIGHT",
+      "dark":"DARK"
     }
   },
 

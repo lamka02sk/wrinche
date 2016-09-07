@@ -1,28 +1,36 @@
-// Colors: "Black&White"
+// Colors: "Black & White"
 $black: black;
-$darkGrey: #373737;
 $grey: #808080;
-$lightGrey: #b9b9b9;
-$whiteGrey: #f0f0f0;
+$darkGrey: darken($grey, 25%);
+$lightGrey: lighten($grey, 25%);
 $white: white;
+$themeGrey: #bdd9bf;
+$themeGreyMedium: darken($themeGrey, 10%);
+$themeGreyDark: darken($themeGrey, 25%);
 
 // Colors: "Red"
-$lightRed: indianred;
-$logoRed: #9A2100;
-$error: #f0002b;
+$themeRed: #412234;
+$themeRedLight: lighten($themeRed, 5%);
+$errorRed: #f0002b;
 
 // Colors: "Blue"
-$lightBlue: #aa85ff;
-$blue: #8000ff;
-$info: #006ef0;
+$themeBlue: #2e4052;
+$themeBlueLight: lighten($themeBlue, 5%);
+$infoBlue: #006ef0;
 
 // Colors: "Green"
-$lightGreen: #5db96c;
 $green: #009b3a;
-$success: #238051;
+$lightGreen: lighten($green, 10%);
+$darkGreen: darken($green, 10%);
+$successGreen: #238051;
+
+// Colors: "Yellow"
+$themeYellow: #ffc857;
+$themeYellowLight: lighten($themeYellow, 5%);
+$themeYellowDark: darken($themeYellow, 5%);
+$warningYellow: #ffe000;
 
 // Colors: "Other"
-$yellow: #ffe000;
 $orange: #ff9400;
 $pink: #ff53a4;
 $purple: #7b3580;
@@ -47,7 +55,7 @@ $text-black: black;
 // Text sizes
 $h1: 3em;
 $h2: 2.5em;
-$h3: 2em;
+$h3: 2.06em;
 $h4: 1.5em;
 $text-large: 1.2em;
 $text-normal: 1em;

@@ -45,7 +45,7 @@ class Main {
     public function setFavicon($type = '') {
 
         if(empty($type)) {
-            $this->ASSETS[] = '<link rel="icon" href="assets/icons/favicon.png">';
+            $this->ASSETS[] = '<link rel="icon" href="assets/system/wrinche-favicon.png">';
         }
 
     }

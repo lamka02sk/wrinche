@@ -10,28 +10,28 @@ class Config {
         'system'
     ];
 
-    public static function load($file = 'ALL') {
+    public function __construct($file = 'ALL') {
 
         switch($file) {
             case 'ALL':
-                return self::loadAll();
+                $this->loadConfigs();
                 break;
             default:
-                return self::loadFile($file);
+                $this->loadConfig($file);
                 break;
         }
 
     }
 
-    private static function loadAll() {
+    private function loadConfigs() {
 
         foreach(self::$files as $file) {
-            self::loadFile($file);
+            $this->loadConfig($file);
         }
 
     }
 
-    private static function loadFile($file) {
+    private function loadConfig($file) {
 
         $json = file_get_contents('app/Config/' . $file . '.json');
         $array = json_decode($json, true);

@@ -8,9 +8,7 @@ use App\Views\Main as MainView;
 
 class Installation extends MainView {
 
-    public function __construct($page = '') {
-
-        global $LANG, $TIMEZONES;
+    public function __construct($LANG, $page = '') {
 
         $this->page = $page;
 
@@ -26,6 +24,8 @@ class Installation extends MainView {
         } else {
             $page = 'Done';
         }
+
+        require_once 'app/Config/timezones.php';
 
         require_once 'app/Layouts/Layout/Main.php';
 

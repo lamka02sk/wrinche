@@ -2,8 +2,8 @@
 
 /* wrinche. Modern, powerful and user friendly CMS. */
 
-// Start time
-define('APP_START', $_SERVER['REQUEST_TIME']);
+// Document root
+define('ROOT', __DIR__);
 
 // Start session
 session_start();

@@ -4,23 +4,37 @@
         <div class="form-input">
             <label for="language"><?= $LANG['LANGUAGE'] ?></label>
             <select id="language">
-                <option value="en">English</option>
-                <option value="sk">Slovak</option>
+                <?php foreach($_SESSION['CONFIG']['system']['support']['languages'] as $code => $language): ?>
+                    <option value="<?= $code ?>"
+                        <?php if($language === $LANG['LOCALE']): ?>
+                            selected
+                        <?php endif ?>
+                    ><?= $LANG[$language] ?></option>
+                <?php endforeach ?>
             </select>
         </div>
         <div class="form-input">
             <label for="timezone"><?= $LANG['TIMEZONE'] ?></label>
             <select id="timezone">
-                <?php foreach($TIMEZONES as $key => $timezone) : ?>
-                    <option value="<?= $key ?>"><?= $timezone ?></option>
+                <?php foreach($timezones as $key => $timezone) : ?>
+                    <option value="<?= $key ?>"
+                        <?php if($timezone === $_SESSION['CONFIG']['system']['locale']['timezone']): ?>
+                            selected
+                        <?php endif ?>
+                    ><?= $timezone ?></option>
                 <?php endforeach ?>
             </select>
         </div>
         <div class="form-input">
             <label for="theme"><?= $LANG['THEME'] ?></label>
             <select id="theme">
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
+                <?php foreach($_SESSION['CONFIG']['system']['support']['themes'] as $code => $theme): ?>
+                    <option value="<?= $code ?>"
+                        <?php if($code === 'light'): ?>
+                            selected
+                        <?php endif ?>
+                    ><?= $LANG[$theme] ?></option>
+                <?php endforeach ?>
             </select>
         </div>
         <button class="next-step"><?= $LANG['NEXT'] ?></button>

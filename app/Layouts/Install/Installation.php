@@ -2,7 +2,7 @@
     <div class="table-wrapper">
         <div class="logo-wrapper">
             <img
-                src="<?= $_SESSION['CONFIG']['system']['paths']['assets'] ?>/icons/logo small.png"
+                src="<?= $_SESSION['CONFIG']['system']['paths']['assets'] ?>/system/wrinche-logo-charcoal-small.png"
                 alt="<?= $_SESSION['CONFIG']['system']['name'] ?>">
             <button class="proceed-install"><?= $LANG['INSTALL'] ?></button>
         </div>
@@ -14,7 +14,7 @@
             <aside class="menu-panel">
                 <div class="logo-box">
                     <img
-                        src="<?= $_SESSION['CONFIG']['system']['paths']['assets'] ?>/icons/logo small.png"
+                        src="<?= $_SESSION['CONFIG']['system']['paths']['assets'] ?>/system/wrinche-logo-charcoal-small.png"
                         alt="<?= $_SESSION['CONFIG']['system']['name'] ?>">
                     <h2><?= $LANG['INSTALLATION'] ?></h2>
                 </div>

@@ -8,24 +8,31 @@ require_once 'autoload.php';
 // Use...
 use App\Helpers\Config;
 use App\Helpers\Prepare;
-use App\Controllers\Install;
+use App\Controllers\StatsController as Stats;
+use App\Controllers\InstallController as Install;
 
-// Load Config Values
-Config::load();
+// Load Main Config and Save Instance
+$config = new Config('system');
 
-// Language and Timezone
-Prepare::lang();
+// Create StatsController Instance for user tracking
+$stats = new Stats();
 
-// Check requirements
-Prepare::req();
+// Prepare system, Check Dependencies and Save Instance
+$prepare = new Prepare($stats);
 
-// Setup env
-Prepare::env();
+// Check installation or Initialize router
+if(!$prepare->checkInstall()) {
 
-// Check installation
-if(!Prepare::install()) {
-    new Install();
-    exit;
+    // Call installer
+    $install = new Install();
+    $install->setLanguage($stats->parsedData['client']['language']);
+    $install->start();
+} else {
+    // Call router
+
 }
 
-// Initialize Router
+// Tracking
+$stats->start();
+
+// END.

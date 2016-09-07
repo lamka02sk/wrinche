@@ -1,0 +1,24 @@
+{
+  "LOCALE":"sk",
+
+  "INSTALL":"Inštalovať",
+  "INSTALLATION":"Inštalácia",
+
+  "INSTALL_LOOK":"Jazyk a prispôsobenie",
+  "INSTALL_ACCOUNT":"Môj účet",
+  "INSTALL_DATABASE":"Databáza",
+  "INSTALL_WEBSITE":"Webová stránka",
+
+  "NEXT":"Ďalej",
+
+  "LANGUAGE":"Jazyk",
+  "TIMEZONE":"Časové pásmo",
+  "THEME":"Téma",
+
+  "ENGLISH":"Anglicky",
+  "SLOVAK":"Slovensky",
+
+  "LIGHT":"Svetlá",
+  "DARK":"Tmavá"
+
+}
