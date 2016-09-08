@@ -1,6 +1,7 @@
-<div class="install-form">
+<div class="install-form active" data-id="1">
     <h3><?= $LANG['INSTALL_LOOK'] ?></h3>
     <div class="form">
+        <form id="look">
         <div class="form-input">
             <label for="language"><?= $LANG['LANGUAGE'] ?></label>
             <select id="language">
@@ -37,6 +38,7 @@
                 <?php endforeach ?>
             </select>
         </div>
+        </form>
         <button class="next-step"><?= $LANG['NEXT'] ?></button>
     </div>
 </div>

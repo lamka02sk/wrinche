@@ -7,6 +7,14 @@
   outline: none;
 }
 
+// Dropdown
+.fs-dropdown-selected {
+  transition: .15s ease-in-out;
+  &:hover {
+    background-color: $text-lightGrey !important;
+  }
+}
+
 .fs-dropdown-selected, .fs-dropdown-item {
   font-family: $font-lato;
   height: 32px !important;
@@ -23,7 +31,7 @@
 .fs-dropdown-item {
   padding: 0 0 0 10px !important;
   border-top: none !important;
-  transition: .2s ease-in-out;
+  transition: .1s ease-in-out;
   &:hover {
     background-color: $themeGrey !important;
   }
@@ -259,10 +267,19 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms {
 
 div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form {
   display: block;
-  height: auto;
   position: relative;
   width: 100%;
   text-align: left;
+  transition: top 1s cubic-bezier(.28,1,.19,1), opacity .1s ease-out, height 1s ease-out;
+  opacity: 0;
+  top: -1500px;
+  height: 0;
+  &.active {
+    opacity: 1;
+    transition: top 1s cubic-bezier(.28,1,.19,1), opacity .8s .5s ease-out, height 1s ease-out;
+    top: 0;
+    height: auto;
+  }
 }
 
 div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form h3 {
@@ -307,6 +324,29 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
   }
 }
 
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form button.test-connection {
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  margin-top: 12px;
+  margin-right: 12px;
+  float: right;
+  border-radius: 16px;
+  position: relative;
+  outline: none;
+  border: none;
+  background: $themeYellow;
+  color: $text-lightBlack;
+  font-family: $font-lato;
+  cursor: pointer;
+  transition: .2s ease-in-out;
+  &:hover {
+    background: $themeYellowLight;
+  }
+}
+
 div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input {
   display: inline-block;
   width: 100%;
@@ -330,4 +370,19 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
   font-weight: 500;
   outline: none !important;
   margin-bottom: 6px;
+}
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input input {
+  display: inline-block;
+  width: 100%;
+  height: 32px;
+  position: relative;
+  padding: 0 48px 0 12px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid silver;
+  outline: none;
+  font-family: $font-lato;
+  font-size: .9em;
 }

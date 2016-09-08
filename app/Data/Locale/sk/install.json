@@ -19,6 +19,25 @@
   "SLOVAK":"Slovensky",
 
   "LIGHT":"Svetlá",
-  "DARK":"Tmavá"
+  "DARK":"Tmavá",
+
+  "USERNAME":"Meno používateľa",
+  "EMAIL":"E-mail",
+  "PASSWORD":"Heslo",
+  "REPEAT":"Zopakujte",
+
+  "USERNAME_SHORT":"Meno používateľa je príliš krátke",
+  "USERNAME_LONG":"Meno používateľa je príliš dlhé",
+  "USERNAME_SPACES":"Meno používateľa nesmie obsahovať medzery",
+
+  "EMAIL_SPACES":"E-mail nesmie obsahovať medzery",
+  "EMAIL_INVALID":"E-mail je neplatný",
+
+  "PASSWORD_SHORT":"Heslo je príliš krátke",
+  "PASSWORD_LONG":"Heslo je príliš dlhé",
+  "PASSWORD_SPACES":"Heslo nesmie obsahovať medzery",
+  "PASSWORD_NUMBER":"Heslo musí obsahovať minimálne 1 číslo",
+
+  "PASSWORD_MATCH":"Heslá sa nezhodujú"
 
 }

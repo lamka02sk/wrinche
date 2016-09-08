@@ -19,6 +19,41 @@
   "SLOVAK":"Slovak",
 
   "LIGHT":"Light",
-  "DARK":"Dark"
+  "DARK":"Dark",
+
+  "USERNAME":"Username",
+  "EMAIL":"E-mail",
+  "PASSWORD":"Password",
+  "REPEAT":"Repeat",
+
+  "USERNAME_SHORT":"Username is too short",
+  "USERNAME_LONG":"Username is too long",
+  "USERNAME_SPACES":"Username should not contain spaces",
+
+  "EMAIL_SPACES":"E-mail should not contain spaces",
+  "EMAIL_INVALID":"E-mail is invalid",
+
+  "PASSWORD_SHORT":"Password is too short",
+  "PASSWORD_LONG":"Password is too long",
+  "PASSWORD_SPACES":"Password should not contain spaces",
+  "PASSWORD_NUMBER":"Password must contain at least 1 number",
+
+  "PASSWORD_MATCH":"Passwords does not match",
+
+  "DATABASE_HOST":"Database host",
+  "DATABASE_NAME":"Database name",
+  "ADMIN_USERNAME":"Admin username",
+  "ADMIN_PASSWORD":"Admin password",
+
+  "TEST_CONNECTION":"Test connection",
+  "CONNECTION_SUCCESS":"Success!",
+  "CONNECTION_ERROR":"Error!",
+
+  "WEBSITE_NAME":"Website name",
+  "WEBSITE_DESCRIPTION":"Website description",
+  "WEBSITE_CATEGORY":"Website category",
+
+  "EULA_AGREE":"I agree with %s",
+  "SEND_STATS":"Send usage statistics and bug reports"
 
 }
