@@ -20,10 +20,10 @@
                 </div>
                 <div class="menu-box">
                     <ol>
-                        <li class="active"><?= $LANG['INSTALL_LOOK'] ?></li>
-                        <li><?= $LANG['INSTALL_ACCOUNT'] ?></li>
-                        <li><?= $LANG['INSTALL_DATABASE'] ?></li>
-                        <li><?= $LANG['INSTALL_WEBSITE'] ?></li>
+                        <li data-id="1" class="active"><?= $LANG['INSTALL_LOOK'] ?></li>
+                        <li data-id="2"><?= $LANG['INSTALL_ACCOUNT'] ?></li>
+                        <li data-id="3"><?= $LANG['INSTALL_DATABASE'] ?></li>
+                        <li data-id="4"><?= $LANG['INSTALL_WEBSITE'] ?></li>
                     </ol>
                 </div>
             </aside>

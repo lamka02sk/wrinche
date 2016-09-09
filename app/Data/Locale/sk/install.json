@@ -38,6 +38,41 @@
   "PASSWORD_SPACES":"Heslo nesmie obsahovať medzery",
   "PASSWORD_NUMBER":"Heslo musí obsahovať minimálne 1 číslo",
 
-  "PASSWORD_MATCH":"Heslá sa nezhodujú"
+  "PASSWORD_MATCH":"Heslá sa nezhodujú",
+
+  "DATABASE_HOST":"Host databázy",
+  "DATABASE_NAME":"Názov databázy",
+  "ADMIN_USERNAME":"Meno admina",
+  "ADMIN_PASSWORD":"Heslo admina",
+
+  "TEST_CONNECTION":"Testovať pripojenie",
+  "CONNECTION_SUCCESS":"V poriadku!",
+  "CONNECTION_ERROR":"Chyba!",
+
+  "WEBSITE_NAME":"Názov webstránky",
+  "WEBSITE_DESCRIPTION":"Popis webstránky",
+  "WEBSITE_CATEGORY":"Kategória webstránky",
+
+  "EULA_AGREE":"Súhlasím s licenciou %s",
+  "SEND_STATS":"Odosielať anonymné dáta o používaní",
+
+  "ART":"Umenie a Kultúra",
+  "ANIMALS":"Zvieratá",
+  "DESIGN":"Dizajn a Fotografovanie",
+  "ELECTRONICS":"Elektronika",
+  "HOLIDAYS":"Prázdniny a Darčeky",
+  "EDUCATION":"Vzdelanie a Knihy",
+  "BUSINESS":"Biznis a Služby",
+  "CARS":"Autá a Motorky",
+  "SPORT":"Šport a Cestovanie",
+  "FASHION":"Móda a Krása",
+  "COMPUTERS":"Počítače a Internet",
+  "FOOD":"Jedlo a Reštaurácie",
+  "SOCIETY":"Spoločnosť a Ľudia",
+  "HOME":"Domov a Rodina",
+  "ENTERTAINMENT":"Zábava a Hry",
+  "ESTATE":"Nehnuteľnosti",
+  "MEDICAL":"Zdravotníctvo a Zdravie",
+  "GARDEN":"Záhrada a Hobby"
 
 }

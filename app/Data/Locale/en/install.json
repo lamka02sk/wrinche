@@ -54,6 +54,25 @@
   "WEBSITE_CATEGORY":"Website category",
 
   "EULA_AGREE":"I agree with %s",
-  "SEND_STATS":"Send usage statistics and bug reports"
+  "SEND_STATS":"Send anonymous usage data",
+
+  "ART":"Art & Culture",
+  "ANIMALS":"Animals & Pets",
+  "DESIGN":"Design & Photography",
+  "ELECTRONICS":"Electronics",
+  "HOLIDAYS":"Holidays & Gifts",
+  "EDUCATION":"Education & Books",
+  "BUSINESS":"Business & Services",
+  "CARS":"Cars & Motocycles",
+  "SPORT":"Sport, Outdoor & Travel",
+  "FASHION":"Fashion & Beauty",
+  "COMPUTERS":"Computers & Internet",
+  "FOOD":"Food & Restaurants",
+  "SOCIETY":"Society & People",
+  "HOME":"Home & Family",
+  "ENTERTAINMENT":"Entertainment & Games",
+  "ESTATE":"Real Estate",
+  "MEDICAL":"Medical & Healthcare",
+  "GARDEN":"Garden & Hobby"
 
 }

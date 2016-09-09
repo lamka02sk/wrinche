@@ -1,13 +1,13 @@
 <div class="install-form active" data-id="1">
     <h3><?= $LANG['INSTALL_LOOK'] ?></h3>
     <div class="form">
-        <form id="look">
+        <form id="look" method="post">
         <div class="form-input">
             <label for="language"><?= $LANG['LANGUAGE'] ?></label>
             <select id="language">
                 <?php foreach($_SESSION['CONFIG']['system']['support']['languages'] as $code => $language): ?>
                     <option value="<?= $code ?>"
-                        <?php if($language === $LANG['LOCALE']): ?>
+                        <?php if($code === $LANG['LOCALE']): ?>
                             selected
                         <?php endif ?>
                     ><?= $LANG[$language] ?></option>

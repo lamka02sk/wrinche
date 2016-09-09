@@ -16,7 +16,7 @@
 }
 
 .fs-dropdown-selected, .fs-dropdown-item {
-  font-family: $font-lato;
+  font-family: $font-default;
   height: 32px !important;
   line-height: 30px !important;
   border: 1px solid $lightGrey !important;
@@ -116,7 +116,7 @@ div.intro div.table-wrapper div.logo-wrapper button.proceed-install {
   cursor: pointer;
   outline: none !important;
   border: none;
-  font-family: $font-lato;
+  font-family: $font-default;
   font-size: $text-normal;
   // Animation preparation
   opacity: 0;
@@ -204,7 +204,7 @@ div.installer div.installer-wrapper div.content-wrapper aside.menu-panel div.log
   position: relative;
   text-align: center;
   color: $darkGrey;
-  font-family: $font-lato;
+  font-family: $font-default;
   font-size: $text-normal;
   font-weight: 500;
   clear: both;
@@ -240,10 +240,11 @@ div.installer div.installer-wrapper div.content-wrapper aside.menu-panel div.men
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0;
-  font-family: $font-lato;
+  font-family: $font-default;
   font-size: $text-normal;
   font-weight: 400;
   color: $themeGrey;
+  transition: 1s ease-in-out;
   &.active {
     color: $themeBlueLight;
   }
@@ -288,7 +289,7 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
   width: 100%;
   height: auto;
   margin: -4px 0 10px -2px;
-  font-family: $font-lato;
+  font-family: $font-default;
   font-size: $h3;
   font-weight: 400;
   color: $themeBlueLight;
@@ -316,7 +317,7 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
   border: none;
   background: $themeBlue;
   color: $white;
-  font-family: $font-lato;
+  font-family: $font-default;
   cursor: pointer;
   transition: .2s ease-in-out;
   &:hover {
@@ -339,7 +340,7 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
   border: none;
   background: $themeYellow;
   color: $text-lightBlack;
-  font-family: $font-lato;
+  font-family: $font-default;
   cursor: pointer;
   transition: .2s ease-in-out;
   &:hover {
@@ -356,6 +357,9 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
   &:last-of-type {
     margin-bottom: 0;
   }
+  &.checkbox-first {
+    margin-top: 6px;
+  }
 }
 
 div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input label {
@@ -364,12 +368,29 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
   height: auto;
   position: relative;
   color: $text-lightBlack;
-  font-family: $font-lato;
+  font-family: $font-default;
   font-size: $text-mini;
   text-transform: uppercase;
   font-weight: 500;
   outline: none !important;
   margin-bottom: 6px;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 31px;
+    right: 18px;
+    width: 14px;
+    height: 14px;
+    background: center no-repeat;
+    background-size: 14px;
+    z-index: 1;
+  }
+  &.valid:after {
+    background-image: url('../assets/icons/valid.png');
+  }
+  &.error:after {
+    background-image: url('../assets/icons/error.png');
+  }
 }
 
 div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input input {
@@ -383,6 +404,118 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
   box-sizing: border-box;
   border: 1px solid silver;
   outline: none;
-  font-family: $font-lato;
+  font-family: $font-default;
   font-size: .9em;
+}
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input p {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  &.message {
+    display: block;
+    width: 100%;
+    background: $errorRed;
+    color: $white;
+    height: auto;
+    line-height: 26px;
+    font-size: $text-mini;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 13px;
+    font-family: $font-default;
+  }
+}
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input p label a {
+  color: $themeBlueLight;
+  text-decoration: none;
+  margin: 0 2px;
+  &:hover {
+    color: $themeBlue;
+    border-bottom: 1px solid $themeBlue;
+  }
+}
+
+// Checkboxes
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+  position: absolute !important;
+  left: -9999px;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 62px;
+  cursor: pointer;
+  font-weight: 500 !important;
+  text-transform: none !important;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before,
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  content: '';
+  position: absolute;
+}
+
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  left:0; top: -3px;
+  width: 48px; height: 26px;
+  background: #DDDDDD;
+  border-radius: 13px;
+  transition: background-color .2s;
+}
+
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  width: 18px; height: 18px;
+  transition: all .2s;
+  border-radius: 50%;
+  background: $white;
+  top: 1px; left: 5px;
+}
+
+// Checked
+[type="checkbox"]:checked + label:before {
+  background: $themeYellow;
+}
+[type="checkbox"]:checked + label:after {
+  background: $themeBlue;
+  top: 1px; left: 26px;
+}
+
+[type="checkbox"]:checked + label .ui,
+[type="checkbox"]:not(:checked) + label .ui:before,
+[type="checkbox"]:checked + label .ui:after {
+  position: absolute;
+  left: 6px;
+  width: 65px;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 26px;
+  transition: all .2s;
+  text-transform: none;
+}
+[type="checkbox"]:not(:checked) + label .ui:before {
+  content: "";
+  left: 32px
+}
+[type="checkbox"]:checked + label .ui:after {
+  content: "";
+  color: #39D2B4;
+}
+[type="checkbox"]:focus + label:before {
+  box-sizing: border-box;
+  margin-top: 0;
 }

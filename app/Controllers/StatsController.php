@@ -107,11 +107,11 @@ class StatsController extends MainController {
         // Track all stats and save data
 
         // Temporary
-        echo '<br>';
+        /*echo '<br>';
         echo "Execution time: " . round((- $this->rawData['REQUEST_TIME_FLOAT'] + microtime(true)) * 1000, 4) . ' ms';
 
         echo '<br>';
-        echo 'Memory in use: ' . round(((memory_get_usage() / 1024) / 1024), 4) .'MB';
+        echo 'Memory in use: ' . round(((memory_get_usage() / 1024) / 1024), 4) .'MB';*/
 
     }
 

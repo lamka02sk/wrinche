@@ -1,7 +1,7 @@
 <div class="install-form" data-id="3">
     <h3><?= $LANG['INSTALL_DATABASE'] ?></h3>
     <div class="form">
-        <form id="database">
+        <form id="database" method="post">
             <div class="form-input">
                 <label for="dbhost"><?= $LANG['DATABASE_HOST'] ?></label>
                 <input id="dbhost" type="text" name="dbhost" placeholder="<?= $LANG['DATABASE_HOST'] ?>" required>

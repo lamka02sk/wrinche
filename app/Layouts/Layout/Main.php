@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?= $_SESSION['CONFIG']['system']['locale']['language'] ?>">
+<html lang="<?= $LANG['LOCALE'] ?>">
 <head>
     <?php require_once 'app/Layouts/Layout/Head.php' ?>
 </head>
