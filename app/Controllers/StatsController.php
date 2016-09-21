@@ -1,6 +1,11 @@
 <?php
 
-/* wrinche. Modern, powerful and user friendly CMS. */
+/*
+ * wrinche. Modern, powerful and user friendly CMS.
+ * Statistics module for tracking user and system.
+ * Version: 0.1
+ * Authors: lamka02sk
+ */
 
 namespace App\Controllers;
 
@@ -100,19 +105,17 @@ class StatsController extends MainController {
     }
 
     /**
-     * Execute actual tracking and save tracking data.
+     * TEMP: Show Execution time and Memory used by current script.
      */
     public function start() {
 
-        // Track all stats and save data
-
-        // Temporary
+        // TEMP
         /*echo '<br>';
         echo "Execution time: " . round((- $this->rawData['REQUEST_TIME_FLOAT'] + microtime(true)) * 1000, 4) . ' ms';
 
         echo '<br>';
-        echo 'Memory in use: ' . round(((memory_get_usage() / 1024) / 1024), 4) .'MB';*/
-
+        echo 'Memory in use: ' . round(((memory_get_usage() / 1024) / 1024), 4) .'MB';
+*/
     }
 
 }

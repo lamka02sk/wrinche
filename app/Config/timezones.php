@@ -1,6 +1,11 @@
 <?php
 
-/* wrinche. Modern, powerful and user friendly CMS. */
+/*
+ * wrinche. Modern, powerful and user friendly CMS.
+ * List of all timezones supported by PHP across the world.
+ * Version: 1.0
+ * Authors: lamka02sk
+ */
 
 $timezones = [
     0 => 'Africa/Abidjan',

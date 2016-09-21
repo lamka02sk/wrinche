@@ -8,6 +8,7 @@ require_once 'autoload.php';
 // Use...
 use App\Helpers\Config;
 use App\Helpers\Prepare;
+use App\Auth\Csrf;
 use App\Controllers\StatsController as Stats;
 use App\Controllers\InstallController as Install;
 
@@ -20,9 +21,11 @@ $stats = new Stats();
 // Prepare system, Check Dependencies and Save Instance
 $prepare = new Prepare($stats);
 
+// Verify and update CSRF Token if AJAX Request or update if not AJAX
+$csrf = new Csrf();
+
 // Check installation or Initialize router
 if(!$prepare->checkInstall()) {
-
     // Call installer
     $install = new Install();
     $install->setLanguage($stats->parsedData['client']['language']);

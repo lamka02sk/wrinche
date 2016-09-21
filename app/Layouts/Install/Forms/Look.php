@@ -3,8 +3,8 @@
     <div class="form">
         <form id="look" method="post">
         <div class="form-input">
-            <label for="language"><?= $LANG['LANGUAGE'] ?></label>
-            <select id="language">
+            <label class="input" for="language"><?= $LANG['LANGUAGE'] ?></label>
+            <select id="language" name="language">
                 <?php foreach($_SESSION['CONFIG']['system']['support']['languages'] as $code => $language): ?>
                     <option value="<?= $code ?>"
                         <?php if($code === $LANG['LOCALE']): ?>
@@ -15,8 +15,8 @@
             </select>
         </div>
         <div class="form-input">
-            <label for="timezone"><?= $LANG['TIMEZONE'] ?></label>
-            <select id="timezone">
+            <label class="input" for="timezone"><?= $LANG['TIMEZONE'] ?></label>
+            <select id="timezone" name="timezone">
                 <?php foreach($timezones as $key => $timezone) : ?>
                     <option value="<?= $key ?>"
                         <?php if($timezone === $_SESSION['CONFIG']['system']['locale']['timezone']): ?>
@@ -27,8 +27,8 @@
             </select>
         </div>
         <div class="form-input">
-            <label for="theme"><?= $LANG['THEME'] ?></label>
-            <select id="theme">
+            <label class="input" for="theme"><?= $LANG['THEME'] ?></label>
+            <select id="theme" name="theme">
                 <?php foreach($_SESSION['CONFIG']['system']['support']['themes'] as $code => $theme): ?>
                     <option value="<?= $code ?>"
                         <?php if($code === 'light'): ?>

@@ -1,6 +1,8 @@
 {
   "LOCALE":"sk",
 
+  "SERVER_ERROR":"Server nenájdený",
+
   "INSTALL":"Inštalovať",
   "INSTALLATION":"Inštalácia",
 
@@ -26,6 +28,7 @@
   "PASSWORD":"Heslo",
   "REPEAT":"Zopakujte",
 
+  "USERNAME_REGEX":"Meno používateľa obsahuje neplatné znaky",
   "USERNAME_SHORT":"Meno používateľa je príliš krátke",
   "USERNAME_LONG":"Meno používateľa je príliš dlhé",
   "USERNAME_SPACES":"Meno používateľa nesmie obsahovať medzery",
@@ -53,7 +56,15 @@
   "WEBSITE_DESCRIPTION":"Popis webstránky",
   "WEBSITE_CATEGORY":"Kategória webstránky",
 
+  "NAME_SHORT":"Názov webstránky je príliš krátky",
+  "NAME_LONG":"Názov webstránky je príliš dlhý",
+  "DESC_SHORT":"Popis webstránky je príliš krátky",
+  "DESC_LONG":"Popis webstránky je príliš dlhý",
+
+  "INPUT_EMPTY":"Pole nesmie zostať prázdne",
+
   "EULA_AGREE":"Súhlasím s licenciou %s",
+  "EULA_CHECK":"Potvrďte súhlas s licenciou",
   "SEND_STATS":"Odosielať anonymné dáta o používaní",
 
   "ART":"Umenie a Kultúra",
