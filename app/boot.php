@@ -1,6 +1,11 @@
 <?php
 
-/* wrinche. Modern, powerful and user friendly CMS. */
+/*
+ * wrinche. Modern, powerful and user friendly CMS.
+ * Boot script, place where all the magic happens.
+ * Version: 0.8
+ * Authors: lamka02sk
+ */
 
 // Initialize Autoloader
 require_once 'autoload.php';
@@ -26,11 +31,14 @@ $csrf = new Csrf();
 
 // Check installation or Initialize router
 if(!$prepare->checkInstall()) {
+
     // Call installer
     $install = new Install();
     $install->setLanguage($stats->parsedData['client']['language']);
     $install->start();
+
 } else {
+
     // Call router
 
 }

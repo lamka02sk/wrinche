@@ -1,28 +1,48 @@
 <div class="install-form" data-id="2">
-    <h3><?= $LANG['INSTALL_ACCOUNT'] ?></h3>
+
+    <h3 data-locale="INSTALL_ACCOUNT"></h3>
+
     <div class="form">
+
         <form id="account" method="post">
+
             <div class="form-input">
-                <label class="input" for="username"><?= $LANG['USERNAME'] ?></label>
-                <input id="username" type="text" name="username" placeholder="<?= $LANG['USERNAME'] ?>" required>
+
+                <label class="input" for="username" data-locale="USERNAME"></label>
+                <input id="username" type="text" data-placeholder="USERNAME" name="username" placeholder="" required>
                 <p class="message"></p>
+
             </div>
+
             <div class="form-input">
-                <label class="input" for="e-mail"><?= $LANG['EMAIL'] ?></label>
-                <input id="e-mail" type="email" name="mail" placeholder="<?= $LANG['EMAIL'] ?>" required>
+
+                <label class="input" for="e-mail" data-locale="EMAIL"></label>
+                <input id="e-mail" type="email" name="mail" data-placeholder="EMAIL" placeholder="" required>
                 <p class="message"></p>
+
             </div>
+
             <div class="form-input">
-                <label class="input" for="password"><?= $LANG['PASSWORD'] ?></label>
-                <input id="password" type="password" name="password" placeholder="<?= $LANG['PASSWORD'] ?>" required>
+
+                <label class="input" for="password" data-locale="PASSWORD"></label>
+                <input id="password" type="password" name="password" data-placeholder="PASSWORD" placeholder="" required>
                 <p class="message"></p>
+
+
             </div>
+
             <div class="form-input">
-                <label class="input" for="match"><?= $LANG['REPEAT'] . ' ' . $LANG['PASSWORD'] ?></label>
-                <input id="match" type="password" name="match" placeholder="<?= $LANG['REPEAT'] . ' ' . $LANG['PASSWORD'] ?>" required>
+
+                <label class="input" for="match" data-locale="PASSWORD_REPEAT"></label>
+                <input id="match" type="password" name="match" data-placeholder="PASSWORD_REPEAT" placeholder="" required>
                 <p class="message"></p>
+
             </div>
+
         </form>
-        <button class="next-step"><?= $LANG['NEXT'] ?></button>
+
+        <button class="next-step" data-locale="NEXT"></button>
+
     </div>
+
 </div>

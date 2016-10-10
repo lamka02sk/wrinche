@@ -1,0 +1,162 @@
+// Extensions
+@import "../../variables";
+
+:root {
+  background-color: $white !important;
+}
+
+// Color styles
+div.installing div.table-wrapper div.status-wrapper h2,
+div.installed div.table-wrapper div.status-wrapper h2,
+div.install-error div.table-wrapper div.status-wrapper h2 {
+  color: $text-lightBlack !important;
+}
+
+div.installing div.table-wrapper div.status-wrapper p.done-message,
+div.installed div.table-wrapper div.status-wrapper p.done-message,
+div.install-error div.table-wrapper div.status-wrapper p.done-message {
+  color: $text-lightBlack !important;
+}
+
+div.installing div.table-wrapper div.status-wrapper button.try-again,
+div.installed div.table-wrapper div.status-wrapper button.try-again,
+div.install-error div.table-wrapper div.status-wrapper button.try-again {
+  color: $white !important;
+  background: $themeBlue !important;
+  &:hover {
+    background: $themeBlueLight !important;
+  }
+}
+
+div.intro {
+  background: $white !important;
+}
+
+div.intro div.table-wrapper div.logo-wrapper button.proceed-install {
+  color: $white !important;
+  background: $themeBlue !important;
+  &:hover {
+    background: $themeBlueLight !important;
+  }
+}
+
+div.installer div.installer-wrapper div.content-wrapper aside.menu-panel {
+  border-right-color: $themeGrey !important;
+}
+
+div.installer div.installer-wrapper div.content-wrapper aside.menu-panel div.logo-box h2 {
+  color: $darkGrey !important;
+}
+
+div.installer div.installer-wrapper div.content-wrapper aside.menu-panel div.menu-box ol li {
+  color: $themeGrey !important;
+  &.active {
+    color: $themeBlueLight !important;
+  }
+  &.done {
+    color: $themeYellow !important;
+  }
+}
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form h3 {
+  color: $themeBlueLight !important;
+}
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form button.next-step {
+  background: $themeBlue !important;
+  color: $white !important;
+  &:hover {
+    background: $themeBlueLight !important;
+  }
+}
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form button.test-connection {
+  background: $themeYellow !important;
+  color: $text-lightBlack !important;
+  &:hover {
+    background: $themeYellowLight !important;
+  }
+}
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form p.connection-message {
+  color: $text-lightBlack !important;
+  &.success {
+    color: $successGreen !important;
+  }
+  &.fail {
+    color: $errorRed !important;
+  }
+}
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input label.input {
+  color: $text-lightBlack !important;
+}
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input p {
+  &.message {
+    background: $errorRed !important;
+    color: $white !important;
+  }
+  &.checkbox-message {
+    color: $errorRed !important;
+  }
+}
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input label a {
+  color: $themeBlueLight !important;
+  &:hover {
+    color: $themeBlue !important;
+    border-bottom-color: $themeBlue !important;
+  }
+}
+
+// Checkboxes
+[type="checkbox"]:not(:checked) + label.checkbox:before,
+[type="checkbox"]:checked + label.checkbox:before {
+  background: #DDDDDD !important;
+}
+
+[type="checkbox"]:not(:checked) + label.checkbox:after,
+[type="checkbox"]:checked + label.checkbox:after {
+  background: $white !important;
+}
+
+// Checked
+[type="checkbox"]:checked + label.checkbox:before {
+  background: $themeYellow !important;
+}
+[type="checkbox"]:checked + label.checkbox:after {
+  background: $themeBlue !important;
+}
+
+[type="checkbox"]:checked + label.checkbox .ui:after {
+  color: #39D2B4 !important;
+}
+
+// Selector overrides
+button.selector-selected {
+  border-color: $grey !important;
+  &:after {
+    border-top-color: silver !important;
+  }
+}
+
+div.selector-options {
+  border-color: grey !important;
+}
+
+button.selector-option {
+  border-bottom-color: silver !important;
+  &:last-of-type {
+    border-color: transparent !important;
+  }
+}
+
+// Show the correct logo
+img.logo-heading-charcoal {
+  display: inline-block !important;
+}
+
+img.logo-heading-mustard {
+  display: none !important;
+}

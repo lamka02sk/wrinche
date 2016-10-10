@@ -1,9 +1,20 @@
 <!DOCTYPE html>
-<html lang="<?= $LANG['LOCALE'] ?>">
+<html id="html" lang="<?= $LANG ?>" data-lang="LOCALE">
+
 <head>
-    <?php require_once 'app/Layouts/Layout/Head.php' ?>
+    <?php
+
+    require_once ROOT . '/app/Layouts/Layout/Head.php';
+
+    ?>
 </head>
+
 <body>
-    <?php require_once 'app/Layouts/Layout/Body.php' ?>
+    <?php
+
+    require_once ROOT . '/app/Layouts/Layout/Body.php';
+
+    ?>
 </body>
+
 </html>

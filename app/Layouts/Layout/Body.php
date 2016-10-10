@@ -1,1 +1,3 @@
-<?php require_once 'app/Layouts/' . $layout . '/' . $page . '.php' ?>
+<?php
+
+require_once ROOT . '/app/Layouts/' . $layout . '/' . $page . '.php';

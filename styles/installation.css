@@ -247,42 +247,100 @@
   border: none;
   outline: none; }
 
-.fs-dropdown-selected {
-  transition: .15s ease-in-out; }
-  .fs-dropdown-selected:hover {
-    background-color: #f7f7f7 !important; }
-
-.fs-dropdown-selected, .fs-dropdown-item {
-  font-family: "Roboto", sans-serif;
-  height: 32px !important;
-  line-height: 30px !important;
-  border: 1px solid silver !important;
-  border-radius: 0 !important;
-  padding-left: 10px !important;
-  background-color: white !important; }
-  .fs-dropdown-selected:after, .fs-dropdown-item:after {
-    border-top-color: silver !important; }
-
-.fs-dropdown-item {
-  padding: 0 0 0 10px !important;
-  border-top: none !important;
-  transition: .1s ease-in-out; }
-  .fs-dropdown-item:hover {
-    background-color: #bdd9bf !important; }
-
-.fs-dropdown-options {
-  border: none !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
-
 :root {
   width: 100%;
   position: relative;
-  display: block; }
+  display: block;
+  transition: .5s ease-in-out; }
 
 body {
   margin: 0;
   height: 100%;
   width: 100%; }
+
+div.installing,
+div.installed,
+div.install-error {
+  position: fixed;
+  margin: 100% 0 0 0;
+  display: table;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 12; }
+  div.installing.hide,
+  div.installed.hide,
+  div.install-error.hide {
+    margin-top: -100%;
+    height: 0;
+    opacity: 0;
+    transition: margin 1s cubic-bezier(0.58, 0.01, 0, 0.99), opacity 0.5s ease-in-out, height 1s ease-in-out; }
+  div.installing.show,
+  div.installed.show,
+  div.install-error.show {
+    margin-top: 0;
+    opacity: 1;
+    height: 100%;
+    transition: margin 1s cubic-bezier(0.58, 0.01, 0, 0.99), opacity 0.5s ease-in-out; }
+
+div.installing div.table-wrapper div.status-wrapper,
+div.installed div.table-wrapper div.status-wrapper,
+div.install-error div.table-wrapper div.status-wrapper {
+  max-width: 480px;
+  min-width: 320px;
+  width: 100%;
+  text-align: center;
+  display: inline-block; }
+
+div.installing div.table-wrapper div.status-wrapper h2,
+div.installed div.table-wrapper div.status-wrapper h2,
+div.install-error div.table-wrapper div.status-wrapper h2 {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  position: relative;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5em;
+  font-weight: 300;
+  margin: 0; }
+
+div.installing div.table-wrapper div.status-wrapper p.done-message,
+div.installed div.table-wrapper div.status-wrapper p.done-message,
+div.install-error div.table-wrapper div.status-wrapper p.done-message {
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  position: relative;
+  font-weight: 300;
+  margin: 8px 0 0 0; }
+
+div.installing div.table-wrapper div.status-wrapper button.try-again,
+div.installed div.table-wrapper div.status-wrapper button.try-again,
+div.install-error div.table-wrapper div.status-wrapper button.try-again {
+  display: inline-block;
+  position: relative;
+  width: 80%;
+  min-width: 250px;
+  max-width: 170px;
+  height: 36px;
+  clear: both;
+  text-align: center;
+  border-radius: 18px;
+  cursor: pointer;
+  outline: none !important;
+  border: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  margin-top: 12px;
+  transition: top 1.5s cubic-bezier(0.28, 1, 0.19, 1), opacity 2s ease-in-out, background 0.2s ease-in-out; }
+  div.installing div.table-wrapper div.status-wrapper button.try-again:hover,
+  div.installed div.table-wrapper div.status-wrapper button.try-again:hover,
+  div.install-error div.table-wrapper div.status-wrapper button.try-again:hover {
+    transition: .2s ease-in-out; }
 
 div.intro {
   display: table;
@@ -293,7 +351,6 @@ div.intro {
   width: 100%;
   text-align: center;
   z-index: 10;
-  background: white;
   opacity: 0;
   margin-top: 400px;
   transition: margin 2s cubic-bezier(0.28, 1, 0.19, 1), opacity 2s ease-in-out; }
@@ -308,14 +365,21 @@ div.intro {
       div.intro.hide {
         margin-top: -200%; } }
 
-div.intro div.table-wrapper {
+div.intro div.table-wrapper,
+div.installing div.table-wrapper,
+div.installed div.table-wrapper,
+div.install-error div.table-wrapper {
   display: table-cell;
   position: relative;
   vertical-align: middle;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  text-align: center; }
 
-div.intro div.table-wrapper div.logo-wrapper {
+div.intro div.table-wrapper div.logo-wrapper,
+div.installing div.table-wrapper div.status-wrapper
+div.installed div.table-wrapper div.status-wrapper
+div.install-error div.table-wrapper div.status-wrapper {
   display: inline-block;
   position: relative;
   width: 100%;
@@ -336,8 +400,6 @@ div.intro div.table-wrapper div.logo-wrapper button.proceed-install {
   height: 36px;
   clear: both;
   text-align: center;
-  color: white;
-  background: #2e4052;
   border-radius: 18px;
   cursor: pointer;
   outline: none !important;
@@ -352,7 +414,6 @@ div.intro div.table-wrapper div.logo-wrapper button.proceed-install {
     opacity: 1;
     top: 12px; }
   div.intro div.table-wrapper div.logo-wrapper button.proceed-install:hover {
-    background: #374d62;
     transition: .2s ease-in-out; }
 
 div.installer {
@@ -407,7 +468,7 @@ div.installer div.installer-wrapper div.content-wrapper aside.menu-panel {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  border-right: 1px solid #bdd9bf; }
+  border-right: 1px solid; }
   @media (max-width: 720px) {
     div.installer div.installer-wrapper div.content-wrapper aside.menu-panel {
       width: 100%;
@@ -435,7 +496,6 @@ div.installer div.installer-wrapper div.content-wrapper aside.menu-panel div.log
   display: inline-block;
   position: relative;
   text-align: center;
-  color: #404040;
   font-family: "Roboto", sans-serif;
   font-size: 1em;
   font-weight: 500;
@@ -475,12 +535,7 @@ div.installer div.installer-wrapper div.content-wrapper aside.menu-panel div.men
   font-family: "Roboto", sans-serif;
   font-size: 1em;
   font-weight: 400;
-  color: #bdd9bf;
   transition: 1s ease-in-out; }
-  div.installer div.installer-wrapper div.content-wrapper aside.menu-panel div.menu-box ol li.active {
-    color: #374d62; }
-  div.installer div.installer-wrapper div.content-wrapper aside.menu-panel div.menu-box ol li.done {
-    color: #ffc857; }
 
 div.installer div.installer-wrapper div.content-wrapper div.install-forms {
   display: block;
@@ -521,8 +576,7 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
   margin: -3px 0 10px -2px;
   font-family: "Roboto", sans-serif;
   font-size: 2.06em;
-  font-weight: 400;
-  color: #374d62; }
+  font-weight: 400; }
   @media (max-width: 720px) {
     div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form h3 {
       text-align: center;
@@ -547,13 +601,9 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
   position: relative;
   outline: none;
   border: none;
-  background: #2e4052;
-  color: white;
   font-family: "Roboto", sans-serif;
   cursor: pointer;
   transition: .2s ease-in-out; }
-  div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form button.next-step:hover {
-    background: #374d62; }
 
 div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form button.test-connection {
   display: inline-block;
@@ -568,13 +618,9 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
   position: relative;
   outline: none;
   border: none;
-  background: #ffc857;
-  color: #323232;
   font-family: "Roboto", sans-serif;
   cursor: pointer;
   transition: .2s ease-in-out; }
-  div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form button.test-connection:hover {
-    background: #ffd071; }
 
 div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form p.connection-message {
   display: inline-block;
@@ -587,14 +633,9 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
   float: right;
   border-radius: 16px;
   position: relative;
-  color: #323232;
   font-family: "Roboto", sans-serif;
   font-size: .77em;
   transition: .2s ease-in-out; }
-  div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form p.connection-message.success {
-    color: #238051; }
-  div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form p.connection-message.fail {
-    color: #f0002b; }
 
 div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input {
   display: inline-block;
@@ -612,7 +653,6 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
   width: 100%;
   height: auto;
   position: relative;
-  color: #323232;
   font-family: "Roboto", sans-serif;
   font-size: 0.82em;
   text-transform: uppercase;
@@ -658,8 +698,6 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
   div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input p.message {
     display: block;
     width: 100%;
-    background: #f0002b;
-    color: white;
     height: auto;
     line-height: 26px;
     font-size: 0.82em;
@@ -672,17 +710,14 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
     top: 4px;
     clear: both;
     background: none;
-    color: #f0002b;
     font-weight: 500;
     padding: 0 2px; }
 
 div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input label a {
-  color: #374d62;
   text-decoration: none;
   margin: 0 2px; }
   div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input label a:hover {
-    color: #2e4052;
-    border-bottom: 1px solid #2e4052; }
+    border-bottom: 1px solid; }
 
 [type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
@@ -718,7 +753,6 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
   top: -3px;
   width: 48px;
   height: 26px;
-  background: #DDDDDD;
   border-radius: 13px;
   transition: background-color .2s; }
 
@@ -728,15 +762,10 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
   height: 18px;
   transition: all .2s;
   border-radius: 50%;
-  background: white;
   top: 1px;
   left: 5px; }
 
-[type="checkbox"]:checked + label.checkbox:before {
-  background: #ffc857; }
-
 [type="checkbox"]:checked + label.checkbox:after {
-  background: #2e4052;
   top: 1px;
   left: 26px; }
 
@@ -758,11 +787,18 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
   left: 32px; }
 
 [type="checkbox"]:checked + label.checkbox .ui:after {
-  content: "";
-  color: #39D2B4; }
+  content: ""; }
 
 [type="checkbox"]:focus + label.checkbox:before {
   box-sizing: border-box;
   margin-top: 0; }
+
+button.selector-selected {
+  font-family: "Roboto", sans-serif !important; }
+  button.selector-selected:after {
+    right: 22px !important; }
+
+button.selector-option {
+  font-family: "Roboto", sans-serif !important; }
 
 /*# sourceMappingURL=installation.css.map */

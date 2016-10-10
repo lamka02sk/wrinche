@@ -1,5 +1,6 @@
 {
   "LOCALE":"en",
+  "TITLE":"wrinche. Modern, powerful and user friendly CMS.",
 
   "SERVER_ERROR":"Server lost",
 
@@ -42,6 +43,7 @@
   "PASSWORD_NUMBER":"Password must contain at least 1 number",
 
   "PASSWORD_MATCH":"Passwords does not match",
+  "PASSWORD_REPEAT":"Repeat password",
 
   "DATABASE_HOST":"Database host",
   "DATABASE_NAME":"Database name",
@@ -63,7 +65,7 @@
 
   "INPUT_EMPTY":"Field should not be empty",
 
-  "EULA_AGREE":"I agree with %s",
+  "EULA_AGREE":"I agree with <a href=\"https://raw.githubusercontent.com/lamka02sk/wrinche/dev/LICENSE\" target=\"_blank\">MIT LICENSE</a>",
   "EULA_CHECK":"Accept license before Install",
   "SEND_STATS":"Send anonymous usage data",
 
@@ -84,6 +86,16 @@
   "ENTERTAINMENT":"Entertainment & Games",
   "ESTATE":"Real Estate",
   "MEDICAL":"Medical & Healthcare",
-  "GARDEN":"Garden & Hobby"
+  "GARDEN":"Garden & Hobby",
+
+  "INSTALLING":"Installing",
+  "INSTALL_WAIT":"Just a second, please",
+
+  "INSTALL_DONE":"Successfully installed<br>Make something beautiful!",
+  "DONE_ADMIN":"Link to administration",
+
+  "INSTALL_ERROR":"Sorry, an error occurred<br>while installing",
+  "ERROR_SOLVE":"Please, check entered data and try again",
+  "BUTTON_AGAIN":"Try again"
 
 }

@@ -359,6 +359,7 @@ function checkConnection(locale) {
         },
         contentType: "application/x-www-form-urlencoded; charset=utf-8",
         cache: false,
+        async: false,
         success: function(result) {
 
             // Check if success or fail
@@ -366,13 +367,11 @@ function checkConnection(locale) {
 
                 // Show success message
                 $('p.connection-message').removeClass('fail').addClass('success').text(locale['CONNECTION_SUCCESS']);
-                return true;
 
             } else {
 
                 // Show fail message
                 $('p.connection-message').removeClass('success').addClass('fail').text(locale['CONNECTION_ERROR']);
-                return false;
 
             }
 
@@ -381,24 +380,76 @@ function checkConnection(locale) {
 
             // Show fail message
             $('p.connection-message').removeClass('success').addClass('fail').text(locale['SERVER_ERROR']);
-            return false;
 
         }
     });
 
 }
 
+/**
+ * Initialize dropdown select plugin
+ */
+function initializeDropdown() {
+
+    $('select').dropdown();
+
+}
+
+/**
+ * Translate website to another language
+ * @param language
+ * @param locale
+ */
+function changeLanguage(language, locale) {
+
+    if(typeof locale === 'undefined') {
+
+        // Load translation file
+        locale = getJson("app/Data/Locale/" + language + "/install.json");
+
+    }
+
+    // Change html element lang
+    $('html').attr('lang', locale['LOCALE']);
+
+    // Translate website
+    $('[data-locale]').each(function() {
+
+        // Get phrase name
+        var phrase = $(this).data('locale');
+
+        // Translate
+        $('[data-locale="' + phrase + '"]').html(locale[phrase]);
+
+    });
+
+    $('[data-placeholder]').each(function() {
+
+        // Get phrase name
+        var phrase = $(this).data('placeholder');
+
+        // Translate
+        $('[data-placeholder="' + phrase + '"]').attr('placeholder', locale[phrase]);
+
+    });
+
+    return locale;
+
+}
+
 /*
  * When Document Ready
  */
+var locale;
+
 $(document).ready(function() {
 
     // Get and set locale
     var language = $('html').attr('lang');
-    var locale = getJson("app/Data/Locale/" + language + "/install.json");
+    locale = getJson("app/Data/Locale/" + language + "/install.json");
 
-    // Initialize select plugin
-    $('select').dropdown();
+    // Translate website
+    changeLanguage(language, locale);
 
     // Intro animation
     $('div.intro').addClass('animate');
@@ -443,18 +494,20 @@ $(document).ready(function() {
 
         /* Only if form is valid */
 
+        // Check database connection if DB form
+        if(formId === 3) {
+
+            checkConnection(locale);
+
+            // Stop function if connection failed
+            if($('p.connection-message').hasClass('fail')) {
+                return false;
+            }
+
+        }
+
         // Show next form or run installation
         if(formId !== 4) {
-
-            // Check database connection if DB form
-            if(formId === 3) {
-
-                // Stop function if connection failed
-                if(!checkConnection(locale)) {
-                    return false;
-                }
-
-            }
 
             // Show next form
             $('div.install-form').removeClass('active');
@@ -467,7 +520,55 @@ $(document).ready(function() {
 
         } else {
 
-            // Run installation
+            // Hide last form
+            $('div.installer').removeClass('animate');
+
+            // Show installing element
+            $('div.installing').addClass('show');
+
+            // Send data to server for install
+            $.ajax({
+                type: 'POST',
+                url: 'index.php',
+                data: {
+                    'install': formsData,
+                    'csrf_token': $('meta[name=csrf_token]').attr('content')
+                },
+                contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                cache: false,
+                async: true,
+                success: function(result) {
+
+                    // Hide installation message
+                    $('div.installing').removeClass('show').addClass('hide');
+
+                    // Check installation
+                    if(result !== true) {
+
+                        // Show install-error message
+                        $('div.install-error').addClass('show');
+
+                    } else {
+
+                        // Show success message
+                        $('div.installed').addClass('show');
+
+                    }
+
+                },
+                error: function() {
+
+                    // Hide installation message
+                    $('div.installing').removeClass('show').addClass('hide');
+
+                    // Show install-error message
+                    $('div.install-error').addClass('show');
+
+                }
+            });
+
+            // Purge user form inputs
+            formsData = [];
 
         }
 
@@ -475,6 +576,10 @@ $(document).ready(function() {
 
     // Real-time form validation
     $('input').on('change keydown keypress keyup mousedown click mouseup focusout', function() {
+
+        if($(this).is('checkbox')) {
+            return;
+        }
 
         // Initialize input validation
         var element = $(this);
@@ -487,6 +592,80 @@ $(document).ready(function() {
 
         // Check DB connection
         checkConnection(locale);
+
+    });
+
+    // Click checkboxes
+    $('label.checkbox').click(function() {
+
+        // Save the clicked input element
+        var input = $(this).parent().find("input");
+
+        // Toggle checkbox :checked property
+        if(input.is(":checked")) {
+            input.prop("checked", false);
+        } else {
+            input.prop("checked", true);
+        }
+
+    });
+
+    // Change language on selector click
+    $('#selector_language .selector-options .selector-option').click(function() {
+
+        var currentLanguage = $('html').attr("lang");
+        var language = $(this).data('value');
+
+        if(currentLanguage === language) {
+            return;
+        }
+
+        var lc ="ENGLISH";
+        if(language === 'sk') {
+            lc = "SLOVAK";
+        }
+
+        $(this).parent().parent().find('.selector-selected').attr('data-locale', lc);
+        locale = changeLanguage(language);
+
+    });
+
+    // Change theme on selector click
+    var currentTheme = 'light';
+    $('#selector_theme .selector-options .selector-option').click(function() {
+
+        var theme = $(this).data('value');
+
+        if(currentTheme === theme) {
+            return;
+        }
+
+        // Change stylesheet link
+        var link = "styles/themes/" + theme + "/installation.min.css";
+        $('#theme').attr("href", link);
+
+        currentTheme = theme;
+
+    });
+
+    // Try again button
+    $('button.try-again').click(function() {
+
+        // Remove all post installation overlays
+        $('div.installing, div.installed, div.install-error').removeClass('show');
+
+        // Reset all forms
+        $('div.install-form').removeClass('active');
+
+        // Show first form
+        $('div.install-form[data-id=1]').addClass('active');
+
+        // Show welcome overlay
+        $('div.intro').removeClass('hide').addClass('animate');
+
+        // Reset menu
+        $('div.menu-box ol li').removeClass();
+        $('div.menu-box ol li[data-id=1]').addClass('active');
 
     });
 

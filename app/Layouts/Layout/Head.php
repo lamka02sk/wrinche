@@ -3,7 +3,11 @@
 <meta name="author" content="<?= $_SESSION['CONFIG']['system']['name'] ?>">
 <meta name="description" content="<?= $_SESSION['CONFIG']['system']['description'] ?>">
 <meta name="csrf_token" content="<?= $_SESSION['auth']['csrf_token'] ?>">
-<?php foreach($this->ASSETS as $asset) {
+
+<?php
+
+foreach($this->ASSETS as $asset) {
     echo $asset;
-} ?>
-<?php require_once 'app/Layouts/Layout/Title.php' ?>
+}
+
+require_once ROOT . '/app/Layouts/Layout/Title.php';

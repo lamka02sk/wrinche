@@ -1,1 +1,1 @@
-<title><?= $title ?></title>
+<title data-locale="TITLE"></title>

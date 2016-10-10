@@ -85,6 +85,7 @@ class Main {
 
         $path = $_SESSION['CONFIG']['system']['paths']['styles'];
         $this->ASSETS[] = '<link rel="stylesheet" type="text/css" href="' . $path . $style . '.min.css">';
+        $this->ASSETS[] = '<link id="theme" rel="stylesheet" type="text/css" href="' . $path . 'themes/light/' . $style . '.min.css">';
 
     }
 

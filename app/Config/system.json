@@ -10,6 +10,10 @@
     "php-version":7.0
   },
 
+  "default": {
+    "theme":"light"
+  },
+
   "env": {
     "debug":true
   },
@@ -29,12 +33,11 @@
 
   "vendor": {
     "styles": {
-      "formstone-dropdown":"dropdown.min.css"
+      "selector":"selector.min.css"
     },
     "scripts": {
       "jquery":"jquery.min.js",
-      "formstone-core":"core.min.js",
-      "formstone-dropdown":"dropdown.min.js"
+      "selector":"selector.min.js"
     }
   },
 

@@ -10,8 +10,8 @@ class LocaleModel extends MainModel {
 
     public function start() {
 
-        $this->getLocale();
-        return $this->locale;
+        //$this->getLocale();
+        return $this->language;
 
     }
 
@@ -23,7 +23,12 @@ class LocaleModel extends MainModel {
         }
 
         if(!in_array($language, $supportedLanguages)) {
-            $language = $_SESSION['CONFIG']['system']['locale']['language'];
+
+            if($language === 'cs') {
+                $language = 'sk';
+            } else {
+                $language = $_SESSION['CONFIG']['system']['locale']['language'];
+            }
         }
 
         $this->language = $language;

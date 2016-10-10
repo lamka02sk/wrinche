@@ -12,11 +12,10 @@ class Installation extends MainView {
 
         $this->page = $page;
 
-        $this->setVendorAssets(['jquery', 'formstone-core', 'formstone-dropdown']);
+        $this->setVendorAssets(['jquery']);
         $this->setAssets('installation');
         $this->setFavicon();
 
-        $title = $_SESSION['CONFIG']['system']['name'] . '. ' . $_SESSION['CONFIG']['system']['description'];
         $layout = 'Install';
 
         if(empty($page)) {
