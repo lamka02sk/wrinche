@@ -1,0 +1,131 @@
+:root {
+  background-color: #2e4052 !important; }
+
+div.installing div.table-wrapper div.status-wrapper h2,
+div.installed div.table-wrapper div.status-wrapper h2,
+div.install-error div.table-wrapper div.status-wrapper h2 {
+  color: #ffffff !important; }
+
+div.installing div.table-wrapper div.status-wrapper p.done-message,
+div.installed div.table-wrapper div.status-wrapper p.done-message,
+div.install-error div.table-wrapper div.status-wrapper p.done-message {
+  color: #ffffff !important; }
+
+div.installing div.table-wrapper div.status-wrapper button.try-again,
+div.installed div.table-wrapper div.status-wrapper button.try-again,
+div.install-error div.table-wrapper div.status-wrapper button.try-again {
+  color: #191919 !important;
+  background: #ffc857 !important; }
+  div.installing div.table-wrapper div.status-wrapper button.try-again:hover,
+  div.installed div.table-wrapper div.status-wrapper button.try-again:hover,
+  div.install-error div.table-wrapper div.status-wrapper button.try-again:hover {
+    background: #ffc03e !important; }
+
+div.intro {
+  background: #2e4052 !important; }
+
+div.intro div.table-wrapper div.logo-wrapper button.proceed-install {
+  color: #191919 !important;
+  background: #ffc857 !important; }
+  div.intro div.table-wrapper div.logo-wrapper button.proceed-install:hover {
+    background: #ffc03e !important; }
+
+div.installer div.installer-wrapper div.content-wrapper aside.menu-panel {
+  border-right-color: #bdd9bf !important; }
+
+div.installer div.installer-wrapper div.content-wrapper aside.menu-panel div.logo-box h2 {
+  color: #ffc857 !important; }
+
+div.installer div.installer-wrapper div.content-wrapper aside.menu-panel div.menu-box ol li {
+  color: #374d62 !important; }
+  div.installer div.installer-wrapper div.content-wrapper aside.menu-panel div.menu-box ol li.active {
+    color: #f3f3f3 !important; }
+  div.installer div.installer-wrapper div.content-wrapper aside.menu-panel div.menu-box ol li.done {
+    color: #6caa71 !important; }
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form h3 {
+  color: #f3f3f3 !important; }
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form button.next-step {
+  background: #ffc857 !important;
+  color: #191919 !important; }
+  div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form button.next-step:hover {
+    background: #ffc03e !important; }
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form button.test-connection {
+  background: #9dc6a0 !important;
+  color: #323232 !important; }
+  div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form button.test-connection:hover {
+    background: #6caa71 !important; }
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form p.connection-message {
+  color: #f3f3f3 !important; }
+  div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form p.connection-message.success {
+    color: #009b3a !important; }
+  div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form p.connection-message.fail {
+    color: #ff53a4 !important; }
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input label.input {
+  color: #f3f3f3 !important; }
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input input {
+  color: #f3f3f3 !important;
+  background: #374d62 !important;
+  border-color: #374d62 !important; }
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input p.message {
+  background: #522b41 !important;
+  color: #f3f3f3 !important; }
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input p.checkbox-message {
+  color: #ff53a4 !important; }
+
+div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input label a {
+  color: #f3f3f3 !important; }
+  div.installer div.installer-wrapper div.content-wrapper div.install-forms div.install-form div.form div.form-input label a:hover {
+    color: #ffd071 !important;
+    border-bottom-color: #ffd071 !important; }
+
+label.checkbox {
+  color: #f3f3f3 !important; }
+
+[type="checkbox"]:not(:checked) + label.checkbox:before,
+[type="checkbox"]:checked + label.checkbox:before {
+  background: #858585 !important; }
+
+[type="checkbox"]:not(:checked) + label.checkbox:after,
+[type="checkbox"]:checked + label.checkbox:after {
+  background: #e5e5e5 !important; }
+
+[type="checkbox"]:checked + label.checkbox:before {
+  background: #ffc857 !important; }
+
+[type="checkbox"]:checked + label.checkbox:after {
+  background: #2e4052 !important; }
+
+[type="checkbox"]:checked + label.checkbox .ui:after {
+  color: #39D2B4 !important; }
+
+button.selector-selected {
+  color: #f3f3f3 !important;
+  background-color: #374d62 !important;
+  border-color: #374d62 !important; }
+  button.selector-selected:after {
+    border-top-color: #f3f3f3 !important; }
+
+div.selector-options {
+  border-color: #374d62 !important; }
+
+button.selector-option {
+  color: #f3f3f3 !important;
+  background-color: #374d62 !important;
+  border-bottom-color: #2e4052 !important; }
+  button.selector-option:last-of-type {
+    border-color: transparent !important; }
+
+img.logo-heading-charcoal {
+  display: none !important; }
+
+img.logo-heading-mustard {
+  display: inline-block !important; }
+
+/*# sourceMappingURL=installation.css.map */
