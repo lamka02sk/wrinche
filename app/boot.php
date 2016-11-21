@@ -15,6 +15,7 @@ use App\Helpers\Config;
 use App\Helpers\Prepare;
 use App\Auth\Csrf;
 use App\Controllers\StatsController as Stats;
+use App\Controllers\LogsController as Logs;
 use App\Controllers\InstallController as Install;
 
 // Load Main Config and Save Instance
@@ -22,6 +23,7 @@ $config = new Config('system');
 
 // Create StatsController Instance for user tracking
 $stats = new Stats();
+$logs = new Logs();
 
 // Prepare system, Check Dependencies and Save Instance
 $prepare = new Prepare($stats);
@@ -39,11 +41,17 @@ if(!$prepare->checkInstall()) {
 
 } else {
 
+    // SHOW WEBSITE OR ADMIN
     // Call router
+    echo 'Welcome.';
 
 }
 
+// Save loaded configs
+$config->saveChanges('system');
+
 // Tracking
-$stats->start();
+//$stats->start();
+//$logs->start();
 
 // END.

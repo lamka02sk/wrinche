@@ -12,7 +12,7 @@ class Installation extends MainView {
 
         $this->page = $page;
 
-        $this->setVendorAssets(['jquery']);
+        $this->setVendorAssets(['jquery', 'selector', 'translate', 'theme']);
         $this->setAssets('installation');
         $this->setFavicon();
 

@@ -5,6 +5,10 @@ document.querySelector("html").addEventListener("click", turnOffSelector);
 
 function turnOffSelector(event) {
 
+    if(event.target.tagName == "A") {
+        return;
+    }
+
     if(event.target.classList.contains("selector-options") || event.target.classList.contains("selector-selected")) {
         return false;
     }

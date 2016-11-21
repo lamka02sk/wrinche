@@ -11,6 +11,7 @@ namespace App\Controllers;
 
 use App\Views\Installation;
 use App\Models\LocaleModel;
+use App\Models\InstallModel;
 
 class InstallController extends MainController {
 
@@ -23,11 +24,16 @@ class InstallController extends MainController {
         if(isset($_POST['installer'])) {
 
             // Send data to process to InstallModel
+            $model = new InstallModel;
+            $output = $model->start();
+
+            // Output for the clients JS
+            echo $output;
 
         } else {
 
             // Localization
-            $model = new LocaleModel();
+            $model = new LocaleModel;
             $model->setLanguage($this->language, 'install');
             $LOCALE = $model->start();
 

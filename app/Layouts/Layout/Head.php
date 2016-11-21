@@ -6,7 +6,7 @@
 
 <?php
 
-foreach($this->ASSETS as $asset) {
+foreach($this->ASSETS['styles'] as $asset) {
     echo $asset;
 }
 

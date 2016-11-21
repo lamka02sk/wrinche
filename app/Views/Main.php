@@ -7,7 +7,10 @@ namespace App\Views;
 class Main {
 
     public $page;
-    public $ASSETS = [];
+    public $ASSETS = [
+        'styles' => [],
+        'scripts' => []
+    ];
 
     public function __construct() {
 
@@ -32,9 +35,9 @@ class Main {
                 }
 
                 if($type === 'scripts') {
-                    $this->ASSETS[] = '<script type="application/javascript" src="' . $path . $resource . '"></script>';
+                    $this->ASSETS['scripts'][] = '<script type="application/javascript" src="' . $path . $resource . '"></script>';
                 } else {
-                    $this->ASSETS[] = '<link rel="stylesheet" type="text/css" href="' . $path . $resource . '">';
+                    $this->ASSETS['styles'][] = '<link rel="stylesheet" type="text/css" href="' . $path . $resource . '">';
                 }
 
             }
@@ -45,7 +48,7 @@ class Main {
     public function setFavicon($type = '') {
 
         if(empty($type)) {
-            $this->ASSETS[] = '<link rel="icon" href="assets/system/wrinche-favicon.png">';
+            $this->ASSETS['styles'][] = '<link rel="icon" href="assets/system/wrinche-favicon.png">';
         }
 
     }
@@ -84,15 +87,15 @@ class Main {
     private function setStyle($style) {
 
         $path = $_SESSION['CONFIG']['system']['paths']['styles'];
-        $this->ASSETS[] = '<link rel="stylesheet" type="text/css" href="' . $path . $style . '.min.css">';
-        $this->ASSETS[] = '<link id="theme" rel="stylesheet" type="text/css" href="' . $path . 'themes/light/' . $style . '.min.css">';
+        $this->ASSETS['styles'][] = '<link rel="stylesheet" type="text/css" href="' . $path . $style . '.min.css">';
+        $this->ASSETS['styles'][] = '<link id="theme" rel="stylesheet" type="text/css" href="' . $path . 'themes/light/' . $style . '.min.css">';
 
     }
 
     private function setScript($script) {
 
         $path = $_SESSION['CONFIG']['system']['paths']['scripts'];
-        $this->ASSETS[] = '<script type="application/javascript" src="' . $path . $script . '.min.js"></script>';
+        $this->ASSETS['scripts'][] = '<script type="application/javascript" src="' . $path . $script . '.min.js"></script>';
 
     }
 

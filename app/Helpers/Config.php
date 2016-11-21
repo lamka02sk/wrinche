@@ -56,11 +56,23 @@ class Config {
     private function loadConfig($file) {
 
         // Get config
-        $json = file_get_contents('app/Config/' . $file . '.json');
+        $json = file_get_contents(ROOT . '/app/Config/' . $file . '.json');
         $array = json_decode($json, true);
 
         // Save config into session variable
         $_SESSION['CONFIG'][$file] = $array;
+
+    }
+
+    /**
+     * @param $config
+     * Save config file with changed data
+     */
+    public function saveChanges($config) {
+
+        $data = $_SESSION['CONFIG'][$config];
+        $data = json_encode($data);
+        file_put_contents(ROOT . '/app/Config/' . $config . '.json', $data, LOCK_EX);
 
     }
 

@@ -35,6 +35,14 @@ class Generator {
 
     }
 
+    public function generateAdministrationURI() {
+
+        $length = 8;
+        $token = $this->generateToken($length);
+        return $token;
+
+    }
+
     /**
      * @return string
      * Generate token for authenticate password reset

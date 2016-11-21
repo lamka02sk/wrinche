@@ -386,57 +386,6 @@ function checkConnection(locale) {
 
 }
 
-/**
- * Initialize dropdown select plugin
- */
-function initializeDropdown() {
-
-    $('select').dropdown();
-
-}
-
-/**
- * Translate website to another language
- * @param language
- * @param locale
- */
-function changeLanguage(language, locale) {
-
-    if(typeof locale === 'undefined') {
-
-        // Load translation file
-        locale = getJson("app/Data/Locale/" + language + "/install.json");
-
-    }
-
-    // Change html element lang
-    $('html').attr('lang', locale['LOCALE']);
-
-    // Translate website
-    $('[data-locale]').each(function() {
-
-        // Get phrase name
-        var phrase = $(this).data('locale');
-
-        // Translate
-        $('[data-locale="' + phrase + '"]').html(locale[phrase]);
-
-    });
-
-    $('[data-placeholder]').each(function() {
-
-        // Get phrase name
-        var phrase = $(this).data('placeholder');
-
-        // Translate
-        $('[data-placeholder="' + phrase + '"]').attr('placeholder', locale[phrase]);
-
-    });
-
-    return locale;
-
-}
-
 /*
  * When Document Ready
  */
@@ -449,7 +398,7 @@ $(document).ready(function() {
     locale = getJson("app/Data/Locale/" + language + "/install.json");
 
     // Translate website
-    changeLanguage(language, locale);
+    changeLanguage(language, 'install', locale);
 
     // Intro animation
     $('div.intro').addClass('animate');
@@ -531,7 +480,7 @@ $(document).ready(function() {
                 type: 'POST',
                 url: 'index.php',
                 data: {
-                    'install': formsData,
+                    'installer': formsData,
                     'csrf_token': $('meta[name=csrf_token]').attr('content')
                 },
                 contentType: "application/x-www-form-urlencoded; charset=utf-8",
@@ -539,11 +488,13 @@ $(document).ready(function() {
                 async: true,
                 success: function(result) {
 
+                    result = JSON.parse(result);
+
                     // Hide installation message
                     $('div.installing').removeClass('show').addClass('hide');
 
                     // Check installation
-                    if(result !== true) {
+                    if(result['success'] !== true) {
 
                         // Show install-error message
                         $('div.install-error').addClass('show');
@@ -552,6 +503,7 @@ $(document).ready(function() {
 
                         // Show success message
                         $('div.installed').addClass('show');
+                        $('p[data-locale=DONE_ADMIN]').append(': ' + result['admin']);
 
                     }
 
@@ -626,12 +578,11 @@ $(document).ready(function() {
         }
 
         $(this).parent().parent().find('.selector-selected').attr('data-locale', lc);
-        locale = changeLanguage(language);
+        locale = changeLanguage(language, 'install');
 
     });
 
     // Change theme on selector click
-    var currentTheme = 'light';
     $('#selector_theme .selector-options .selector-option').click(function() {
 
         var theme = $(this).data('value');
@@ -640,9 +591,7 @@ $(document).ready(function() {
             return;
         }
 
-        // Change stylesheet link
-        var link = "styles/themes/" + theme + "/installation.min.css";
-        $('#theme').attr("href", link);
+        changeTheme(theme, 'installation');
 
         currentTheme = theme;
 
@@ -668,5 +617,19 @@ $(document).ready(function() {
         $('div.menu-box ol li[data-id=1]').addClass('active');
 
     });
+
+    // Day / Night Theme Auto Switch
+    var currentTheme = 'light';
+    var date = new Date();
+    if((date.getHours() >= 18) || (date.getHours() < 8)) {
+
+        // Switch theme to Dark
+        changeTheme('dark', 'installation');
+        currentTheme = 'dark';
+
+        // Toggle selector value
+        document.querySelector("button[data-value=dark]").click();
+
+    }
 
 });

@@ -203,15 +203,18 @@ div.installer {
   box-sizing: border-box;
   // Animation preparation
   opacity: 0;
-  transform: scale(.8);
-  transition: 1s .5s ease-in-out;
+  // transform: scale(.8);
+  transform: scale(1);
+  margin-top: 50px;
+  transition: margin-top 1.5s .5s cubic-bezier(.58,.01,0,.99), opacity 1s 1s ease-in-out;
   @media(max-height: 580px) {
     display: block;
     overflow: auto;
   }
   &.animate {
     opacity: 1;
-    transform: scale(1);
+    // transform: scale(1);
+    margin-top: 0;
   }
 }
 
@@ -469,10 +472,10 @@ div.installer div.installer-wrapper div.content-wrapper div.install-forms div.in
     z-index: 1;
   }
   &.valid:after {
-    background-image: url('../assets/icons/valid.png');
+    background-image: url('../assets/icons/valid_light.png');
   }
   &.error:after {
-    background-image: url('../assets/icons/error.png');
+    background-image: url('../assets/icons/error_light.png');
   }
 }
 

@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Database connection module.
- * Version: 0.2
+ * Version: 0.5
  * Authors: lamka02sk
  */
 
@@ -11,8 +11,49 @@ namespace App\Database;
 
 use PDO;
 use PDOException;
+use App\Models\ConnectionsModel;
 
 class Connection {
+
+    public $connection;
+    private $connections = [];
+
+    private $type = "";
+    private $query = "";
+    private $binds = [];
+
+    /**
+     * @var array Settings for new connection
+     */
+    private static $settings = array(
+        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
+    );
+
+    /**
+     * @param string $connection
+     * Acts like a constructor, but it's not.
+     */
+    public function connect($connection = "default") {
+
+        $model = new ConnectionsModel;
+        $this->connections = $model->start()->connections;
+        $connection = $this->connections[$connection];
+        $host = $connection["host"];
+        $database = $connection["database"];
+        $user = $connection["user"];
+        $pass = $connection["pass"];
+
+        try {
+
+            $this->connection = new PDO("mysql:host=$host;dbname=$database", $user, $pass, self::$settings);
+
+        } catch(PDOException $e) {
+
+            // Create Error
+
+        }
+
+    }
 
     /**
      * @param $host
@@ -40,6 +81,84 @@ class Connection {
             return null;
 
         }
+
+    }
+
+    /**
+     * Return the last inserted ID
+     */
+    public function insertGetID() {
+
+        return $this->connection->lastInsertId();
+
+    }
+
+    public function executeRaw($query) {
+
+        $this->connection->query($query);
+
+    }
+
+    /**
+     * @param $queryType string Query Type
+     * @param $query string SQL Query
+     * @param $binds array  Parameter binds
+     * Execute any given query. Primarily made for database migrations or some custom queries.
+     * @return mixed
+     */
+    public function executeQuery(string $queryType, string $query, array $binds = []) {
+
+        if(empty($this->connection)) {
+            $this->connect();
+        }
+
+        $this->type = $queryType;
+        $this->query = $query;
+        $this->binds = $binds;
+
+        switch($this->type) {
+            case "select":
+                return $this->executeSelectQuery();
+                break;
+            case "insert":
+                $this->executeOtherQuery();
+                break;
+            case "update":
+                $this->executeOtherQuery();
+                break;
+            case "delete":
+                $this->executeOtherQuery();
+                break;
+            case "truncate":
+                $this->executeOtherQuery();
+                break;
+        }
+
+        return true;
+
+    }
+
+    /**
+     * @return mixed
+     * Execute select queries
+     */
+    private function executeSelectQuery() {
+
+        $instance = $this->connection->prepare($this->query);
+        $instance->execute($this->binds);
+        $output = $instance->fetchAll(PDO::FETCH_ASSOC);
+
+        return $output;
+
+    }
+
+    /**
+     * Execute any query except select
+     */
+    private function executeOtherQuery() {
+
+        $instance = $this->connection->prepare($this->query);
+        $instance->execute($this->binds);
 
     }
 

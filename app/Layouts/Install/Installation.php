@@ -12,7 +12,7 @@
                  src="<?= $_SESSION['CONFIG']['system']['paths']['assets'] ?>/system/wrinche-logo-mustard-small.png"
                  alt="<?= $_SESSION['CONFIG']['system']['name'] ?>">
 
-            <button class="proceed-install" data-locale="INSTALL"><?= $LANG['INSTALL'] ?></button>
+            <button class="proceed-install" data-locale="INSTALL"></button>
 
         </div>
 
@@ -46,7 +46,7 @@ require_once ROOT . '/app/Layouts/Install/Done.php';
                          src="<?= $_SESSION['CONFIG']['system']['paths']['assets'] ?>/system/wrinche-logo-mustard-small.png"
                          alt="<?= $_SESSION['CONFIG']['system']['name'] ?>">
 
-                    <h2 data-locale="INSTALLATION"><?= $LANG['INSTALLATION'] ?></h2>
+                    <h2 data-locale="INSTALLATION"></h2>
 
                 </div>
 
@@ -70,5 +70,3 @@ require_once ROOT . '/app/Layouts/Install/Done.php';
     </div>
 
 </div>
-
-<script src="vendor/selector.min.js" type="text/javascript"></script>
