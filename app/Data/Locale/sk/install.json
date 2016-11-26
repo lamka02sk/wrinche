@@ -1,14 +1,14 @@
 {
   "LOCALE":"sk",
-  "TITLE":"wrinche. Moderný, výkonný a prívetivý CMS.",
+  "TITLE":"wrinche. Moderný, výkonný a priateľský CMS.",
 
   "SERVER_ERROR":"Server nenájdený",
 
   "INSTALL":"Inštalovať",
   "INSTALLATION":"Inštalácia",
 
-  "INSTALL_LOOK":"Jazyk a prispôsobenie",
-  "INSTALL_ACCOUNT":"Môj účet",
+  "INSTALL_LOOK":"Prispôsobenie",
+  "INSTALL_ACCOUNT":"Účet",
   "INSTALL_DATABASE":"Databáza",
   "INSTALL_WEBSITE":"Webová stránka",
 

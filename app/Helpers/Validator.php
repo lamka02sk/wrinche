@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Validate user inputs to protect system from attackers.
- * Version: 0.9
+ * Version: 0.9.1
  * Authors: lamka02sk
  */
 
@@ -162,7 +162,7 @@ class Validator {
     /**
      * @param $float
      * @return bool
-     * Validate boolean.
+     * Validate flaot.
      */
     public function validateFloat($float) {
 
@@ -173,7 +173,7 @@ class Validator {
     /**
      * @param $integer
      * @return bool
-     * Validate boolean.
+     * Validate integer.
      */
     public function validateInteger($integer) {
 
@@ -184,7 +184,7 @@ class Validator {
     /**
      * @param $ip
      * @return bool
-     * Validate boolean.
+     * Validate IP address.
      */
     public function validateIP($ip) {
 
@@ -195,7 +195,7 @@ class Validator {
     /**
      * @param $mac
      * @return bool
-     * Validate boolean.
+     * Validate MAC address.
      */
     public function validateMAC($mac) {
 
@@ -206,7 +206,7 @@ class Validator {
     /**
      * @param $regexp
      * @return bool
-     * Validate boolean.
+     * Validate regular expression.
      */
     public function validateRegexp($regexp) {
 
@@ -217,11 +217,39 @@ class Validator {
     /**
      * @param $url
      * @return bool
-     * Validate boolean.
+     * Validate URL.
      */
     public function validateUrl($url) {
 
         return $this->filterValidate($url, FILTER_VALIDATE_URL);
+
+    }
+
+    /**
+     * @param string $string
+     * Validate alphabetic string, without diacritic.
+     * @return bool
+     */
+    public function validateAlpha(string $string) {
+
+        if(preg_match('/([a-zA-Z])\w+/g', $string)) {
+            return true;
+        }
+        return false;
+
+    }
+
+    /**
+     * @param mixed $string
+     * Validate alphanumeric string, without diacritic.
+     * @return bool
+     */
+    public function validateANum($string) {
+
+        if(preg_match('/([a-zA-Z0-9])\w+/g', $string)) {
+            return true;
+        }
+        return false;
 
     }
 

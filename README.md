@@ -3,3 +3,5 @@ Modern, powerful and user friendly CMS.
 
 **Join us today and help us to create the most advanced and user friendly CMS in the world.
 Contact us: lamka02sk@samuelillo.com**
+
+**Current version:** 0.0.2 alpha

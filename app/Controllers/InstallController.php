@@ -9,6 +9,7 @@
 
 namespace App\Controllers;
 
+use App\Requests\Request;
 use App\Views\Installation;
 use App\Models\LocaleModel;
 use App\Models\InstallModel;
@@ -49,8 +50,9 @@ class InstallController extends MainController {
      * Get language code and save it
      *
      */
-    public function setLanguage($language) {
+    public function setLanguage() {
 
+        $language = Request::$server['client']['language'];
         $this->language = substr($language, 0, 2);
 
     }

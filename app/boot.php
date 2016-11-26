@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Boot script, place where all the magic happens.
- * Version: 0.8
+ * Version: 0.8.1
  * Authors: lamka02sk
  */
 
@@ -11,22 +11,26 @@
 require_once 'autoload.php';
 
 // Use...
+use App\Requests\Request;
 use App\Helpers\Config;
 use App\Helpers\Prepare;
 use App\Auth\Csrf;
-use App\Controllers\StatsController as Stats;
-use App\Controllers\LogsController as Logs;
-use App\Controllers\InstallController as Install;
+use App\Controllers\StatsController;
+use App\Controllers\LogsController;
+use App\Controllers\InstallController;
 
-// Load Main Config and Save Instance
-$config = new Config('system');
+// Save Requests
+Request::init();
+
+// Load Configs
+$config = new Config();
 
 // Create StatsController Instance for user tracking
-$stats = new Stats();
-$logs = new Logs();
+$stats = new StatsController();
+$logs = new LogsController();
 
 // Prepare system, Check Dependencies and Save Instance
-$prepare = new Prepare($stats);
+$prepare = new Prepare();
 
 // Verify and update CSRF Token if AJAX Request or update if not AJAX
 $csrf = new Csrf();
@@ -35,15 +39,14 @@ $csrf = new Csrf();
 if(!$prepare->checkInstall()) {
 
     // Call installer
-    $install = new Install();
-    $install->setLanguage($stats->parsedData['client']['language']);
+    $install = new InstallController();
+    $install->setLanguage();
     $install->start();
 
 } else {
 
-    // SHOW WEBSITE OR ADMIN
-    // Call router
-    echo 'Welcome.';
+    // Route Request
+    require_once 'router.php';
 
 }
 

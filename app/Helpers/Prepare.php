@@ -9,22 +9,18 @@
 
 namespace App\Helpers;
 
-use App\Controllers\StatsController;
+use App\Requests\Request;
 
 class Prepare {
 
-    private $stats;
     public $LANG;
 
     /**
      * Prepare constructor.
      * Prepare system for boot.
      * Load system necessary components.
-     * @param StatsController $stats
      */
-    public function __construct(StatsController $stats) {
-
-        $this->stats = $stats;
+    public function __construct() {
 
         $this->systemLocalize();
         $this->setLocales();
@@ -41,7 +37,7 @@ class Prepare {
         if(!isset($_SESSION['auth']['ip'])) {
 
             // Set IP
-            $_SESSION['auth']['ip'] = $this->stats->parsedData['client']['ip'];
+            $_SESSION['auth']['ip'] = Request::$server['client']['ip'];
 
         }
 
@@ -53,7 +49,7 @@ class Prepare {
     public function systemLocalize() {
 
         // Parse language string
-        $language = $this->stats->parsedData['client']['language'];
+        $language = Request::$server['client']['language'];
         $language = substr($language, 0, 2);
 
         // Get supported languages

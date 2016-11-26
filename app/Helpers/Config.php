@@ -12,9 +12,11 @@ namespace App\Helpers;
 class Config {
 
     // List of system config files
-    private static $files = [
+    private $files = [
         'system'
     ];
+
+    public static $file = [];
 
     /**
      * Config constructor. Load all system config files, optionally load selected configs
@@ -43,7 +45,7 @@ class Config {
     private function loadConfigs() {
 
         // Load every config from array
-        foreach(self::$files as $file) {
+        foreach($this->files as $file) {
             $this->loadConfig($file);
         }
 
@@ -60,6 +62,9 @@ class Config {
         $array = json_decode($json, true);
 
         // Save config into session variable
+        self::$file[$file] = $array;
+
+        // Deprecated - removed as soon as possible
         $_SESSION['CONFIG'][$file] = $array;
 
     }

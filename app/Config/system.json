@@ -1,94 +1,87 @@
 {
-
-  "name":"wrinche",
-  "description":"Modern, powerful and user friendly CMS.",
-  "version":"1.0.0",
-  "domain":"/",
-  "charset":"UTF-8",
-
+  "name": "wrinche",
+  "description": "Modern, powerful and user friendly CMS.",
+  "version": "0.0.2 alpha",
+  "domain": "\/",
+  "charset": "UTF-8",
   "requirements": {
-    "php-version":7.0,
-    "mysql-version":5.6
+    "php-version": 7,
+    "mysql-version": 5.6
   },
-
   "default": {
-    "theme":"light"
+    "theme": "light"
   },
-
   "env": {
-    "debug":true
+    "debug": true,
+    "maintenance": false
   },
-
   "locale": {
-    "timezone":"UTC",
-    "language":"en"
+    "timezone": "UTC",
+    "language": "en"
   },
-
   "paths": {
-    "assets":"assets/",
-    "styles":"styles/",
-    "scripts":"scripts/",
-    "fonts":"fonts/",
-    "vendor":"vendor/"
+    "assets": "assets\/",
+    "styles": "styles\/",
+    "scripts": "scripts\/",
+    "fonts": "fonts\/",
+    "vendor": "vendor\/",
+    "admin": ""
   },
-
   "vendor": {
     "styles": {
-      "selector":"selector.min.css"
+      "selector": "selector.min.css"
     },
     "scripts": {
-      "jquery":"jquery.min.js",
-      "selector":"selector.min.js",
-      "translate":"translate.min.js",
-      "theme":"theme.min.js"
+      "jquery": "jquery.min.js",
+      "selector": "selector.min.js",
+      "translate": "translate.min.js",
+      "theme": "theme.min.js"
     }
   },
-
   "tracking": {
-    "client":true,
-    "stats":true,
-    "location":true
+    "client": true,
+    "stats": true,
+    "location": true,
+    "performance": true,
+    "errors": true,
+    "operations": true
   },
-
   "support": {
     "languages": {
-      "en":"ENGLISH",
-      "sk":"SLOVAK"
+      "en": "ENGLISH",
+      "sk": "SLOVAK"
     },
     "themes": {
-      "light":"LIGHT",
-      "dark":"DARK"
+      "light": "LIGHT",
+      "dark": "DARK"
     },
-    "categories": {
-      "0":"ART",
-      "1":"ANIMALS",
-      "2":"DESIGN",
-      "3":"ELECTRONICS",
-      "4":"HOLIDAYS",
-      "5":"EDUCATION",
-      "6":"BUSINESS",
-      "7":"CARS",
-      "8":"SPORT",
-      "9":"FASHION",
-      "10":"COMPUTERS",
-      "11":"FOOD",
-      "12":"SOCIETY",
-      "13":"HOME",
-      "14":"ENTERTAINMENT",
-      "15":"ESTATE",
-      "16":"MEDICAL",
-      "17":"GARDEN"
-    }
+    "categories": [
+      "ART",
+      "ANIMALS",
+      "DESIGN",
+      "ELECTRONICS",
+      "HOLIDAYS",
+      "EDUCATION",
+      "BUSINESS",
+      "CARS",
+      "SPORT",
+      "FASHION",
+      "COMPUTERS",
+      "FOOD",
+      "SOCIETY",
+      "HOME",
+      "ENTERTAINMENT",
+      "ESTATE",
+      "MEDICAL",
+      "GARDEN"
+    ]
   },
-
-  "installed":false,
-  "administration":"",
-
-  "installation_migrations": {
-    "0":"users",
-    "1":"tokens",
-    "2":"settings",
-    "3":"website"
-  }
-
+  "installed": false,
+  "administration": "",
+  "installation_migrations": [
+    "users",
+    "tokens",
+    "settings",
+    "website"
+  ]
 }
