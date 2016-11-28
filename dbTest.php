@@ -1,13 +1,13 @@
 <?php
 
-// Initialize Autoloader
-require_once 'app/autoload.php';
-
 // Define ROOT
 define('ROOT', __DIR__);
 
+// Initialize Autoloader
+require_once ROOT . '/app/autoload.php';
+
 // Start session
-session_start();
+session_start();``
 
 // Use...
 use App\Auth\Csrf;
