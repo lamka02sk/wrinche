@@ -9,4 +9,4 @@ define('ROOT', __DIR__);
 session_start();
 
 // Boot wrinche system
-require_once 'app/boot.php';
+require_once ROOT . '/app/boot.php';

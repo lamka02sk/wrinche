@@ -64,9 +64,6 @@ class Config {
         // Save config into session variable
         self::$file[$file] = $array;
 
-        // Deprecated - removed as soon as possible
-        $_SESSION['CONFIG'][$file] = $array;
-
     }
 
     /**
@@ -75,7 +72,7 @@ class Config {
      */
     public function saveChanges($config) {
 
-        $data = $_SESSION['CONFIG'][$config];
+        $data = Config::$file[$config];
         $data = json_encode($data);
         file_put_contents(ROOT . '/app/Config/' . $config . '.json', $data, LOCK_EX);
 

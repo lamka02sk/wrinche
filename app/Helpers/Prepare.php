@@ -54,13 +54,13 @@ class Prepare {
 
         // Get supported languages
         $supportedLanguages = [];
-        foreach($_SESSION['CONFIG']['system']['support']['languages'] as $code => $nothing) {
+        foreach(Config::$file['system']['support']['languages'] as $code => $nothing) {
             array_push($supportedLanguages, $code);
         }
 
         // Check if users language is supported
         if(!in_array($language, $supportedLanguages)) {
-            $language = $_SESSION['CONFIG']['system']['locale']['language'];
+            $language = Config::$file['system']['locale']['language'];
         }
 
         // Load and save system localization
@@ -75,7 +75,7 @@ class Prepare {
     public function setEnviroment() {
 
         // Get enviroment information
-        $env = $_SESSION['CONFIG']['system']['env'];
+        $env = Config::$file['system']['env'];
 
         // Setup enviroment
         if($env['debug']) {
@@ -100,7 +100,7 @@ class Prepare {
     public function checkRequirements() {
 
         // Get system requirements
-        $env = $_SESSION['CONFIG']['system']['requirements'];
+        $env = Config::$file['system']['requirements'];
 
         // Check system requirement
         if(version_compare(PHP_VERSION, $env['php-version'], '<')) {
@@ -116,7 +116,7 @@ class Prepare {
     public function setLocales() {
 
         // Get and set timezone
-        $env = $_SESSION['CONFIG']['system']['locale']['timezone'];
+        $env = Config::$file['system']['locale']['timezone'];
         date_default_timezone_set($env);
 
     }
@@ -128,7 +128,7 @@ class Prepare {
     public function checkInstall() {
 
         // Check system installation
-        $env = $_SESSION['CONFIG']['system']['installed'];
+        $env = Config::$file['system']['installed'];
 
         // If is installed return true
         if($env) {

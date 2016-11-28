@@ -3,16 +3,18 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Installation model. Manages all user input.
- * Version: 0.3
+ * Version: 0.4
  * Authors: lamka02sk
  */
 
 namespace App\Models;
 
 use App\Helpers\Checker;
+use App\Helpers\Config;
 use App\Helpers\Generator;
 use App\Helpers\Validator;
-use App\Database\Connection; // Used in migrations
+use App\Database\Connection;
+use App\Requests\Request; // Used in migrations
 
 class InstallModel extends MainModel {
 
@@ -32,14 +34,14 @@ class InstallModel extends MainModel {
     public function start() {
 
         // Check installation data sent through $_POST array
-        if(!isset($_POST['installer'])) {
+        if(!isset(Request::$forms['installer'])) {
 
             // TODO: Create error
 
         }
 
         // Save installer data
-        $this->installationData = $_POST['installer'];
+        $this->installationData = Request::$forms['installer'];
 
         // Start validator
         $this->validateInput();
@@ -150,7 +152,7 @@ class InstallModel extends MainModel {
         // Create administration URL and save
         $generator = new Generator;
         $link = $generator->generateAdministrationURI();
-        $_SESSION['CONFIG']['system']['administration'] = $link;
+        Config::$file['system']['paths']['admin'] = $link;
 
         // Save website info
         $telemetry = 0;
@@ -167,12 +169,12 @@ class InstallModel extends MainModel {
         );
 
         // Change system status to installed
-        $_SESSION['CONFIG']['system']['installed'] = true;
+        Config::$file['system']['installed'] = true;
 
         // Return data for installer
         $return = [
             'success' => true,
-            'admin' => $_SESSION['CONFIG']['system']['administration']
+            'admin' => $link
         ];
 
         $this->output = $return;

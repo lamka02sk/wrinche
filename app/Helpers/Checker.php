@@ -19,7 +19,7 @@ class Checker {
      */
     public function systemTheme($input) {
 
-        $themes = $_SESSION['CONFIG']['system']['support']['themes'];
+        $themes = Config::$file['system']['support']['themes'];
         if(!array_key_exists($input, $themes)) {
             return false;
         }
@@ -34,7 +34,7 @@ class Checker {
      */
     public function systemLanguage($input) {
 
-        $languages = $_SESSION['CONFIG']['system']['support']['languages'];
+        $languages = Config::$file['system']['support']['languages'];
         if(!array_key_exists($input, $languages)) {
             return false;
         }
@@ -81,7 +81,7 @@ class Checker {
 
     public function systemWebsiteCategory($input) {
 
-        $categories = $_SESSION['CONFIG']['system']['support']['categories'];
+        $categories = Config::$file['system']['support']['categories'];
         if(!array_key_exists($input, $categories)) {
             return false;
         }

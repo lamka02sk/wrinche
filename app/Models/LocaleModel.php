@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Helpers\Config;
+use App\Requests\Request;
+
 class LocaleModel extends MainModel {
 
     public $language;
@@ -15,10 +18,11 @@ class LocaleModel extends MainModel {
 
     }
 
-    public function setLanguage($language, $domain) {
+    public function setLanguage($domain) {
 
+        $language = $this->getLanguage();
         $supportedLanguages = [];
-        foreach($_SESSION['CONFIG']['system']['support']['languages'] as $code => $nothing) {
+        foreach(Config::$file['system']['support']['languages'] as $code => $nothing) {
             array_push($supportedLanguages, $code);
         }
 
@@ -27,12 +31,19 @@ class LocaleModel extends MainModel {
             if($language === 'cs') {
                 $language = 'sk';
             } else {
-                $language = $_SESSION['CONFIG']['system']['locale']['language'];
+                $language = Config::$file['system']['locale']['language'];
             }
         }
 
         $this->language = $language;
         $this->domain = $domain;
+
+    }
+
+    public function getLanguage() {
+
+        $language = Request::$server['client']['language'];
+        return substr($language, 0, 2);
 
     }
 

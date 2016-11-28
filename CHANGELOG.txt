@@ -1,0 +1,7 @@
+--- wrinche v0.0.2 alpha build 02 ---
+ Release date: 2016-11-28
+- Changed overall data structure
+- Using static methods to hold user inputs and client info
+- Decreased installer memory consumption about 100kB
+- Code is now simplified and refactored with better structure
+------------------------------------------------------------------------------------------------------------------------

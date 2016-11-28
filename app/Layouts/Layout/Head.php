@@ -1,7 +1,7 @@
-<meta charset="<?= $_SESSION['CONFIG']['system']['charset'] ?>">
+<meta charset="<?= $this->CONFIG['system']['charset'] ?>">
 <meta name="viewport" content="width=device-width, user-scalable=none, initial-scale=1, maximum-scale=1">
-<meta name="author" content="<?= $_SESSION['CONFIG']['system']['name'] ?>">
-<meta name="description" content="<?= $_SESSION['CONFIG']['system']['description'] ?>">
+<meta name="author" content="<?= $this->CONFIG['system']['name'] ?>">
+<meta name="description" content="<?= $this->CONFIG['system']['description'] ?>">
 <meta name="csrf_token" content="<?= $_SESSION['auth']['csrf_token'] ?>">
 
 <?php

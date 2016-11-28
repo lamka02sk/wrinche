@@ -5,6 +5,7 @@
 namespace App\Views;
 
 use App\Views\Main as MainView;
+use App\Helpers\Config;
 
 class Installation extends MainView {
 
@@ -24,9 +25,10 @@ class Installation extends MainView {
             $page = 'Done';
         }
 
-        require_once 'app/Config/timezones.php';
+        $this->CONFIG = Config::$file;
 
-        require_once 'app/Layouts/Layout/Main.php';
+        require_once ROOT . '/app/Config/timezones.php';
+        require_once ROOT . '/app/Layouts/Layout/Main.php';
 
     }
 

@@ -14,7 +14,7 @@
 
                 <?php
 
-                foreach($_SESSION['CONFIG']['system']['support']['languages'] as $code => $language): ?>
+                foreach($this->CONFIG['system']['support']['languages'] as $code => $language): ?>
 
                     <option value="<?= $code ?>" data-locale="<?= $language ?>"
                         <?php if($code === $LANG): ?>
@@ -34,7 +34,7 @@
 
                 <?php
 
-                foreach($_SESSION['CONFIG']['system']['support']['languages'] as $code => $language):
+                foreach($this->CONFIG['system']['support']['languages'] as $code => $language):
 
                     if($code === $LANG): ?>
 
@@ -50,7 +50,7 @@
 
                 <div class="selector-options">
 
-                    <?php foreach($_SESSION['CONFIG']['system']['support']['languages'] as $code => $language): ?>
+                    <?php foreach($this->CONFIG['system']['support']['languages'] as $code => $language): ?>
 
                         <button data-value="<?= $code ?>" data-locale="<?= $language ?>" class="selector-option
                             <?php if($code === $LANG): ?>
@@ -142,7 +142,7 @@
 
                 <?php
 
-                foreach($_SESSION['CONFIG']['system']['support']['themes'] as $code => $theme): ?>
+                foreach($this->CONFIG['system']['support']['themes'] as $code => $theme): ?>
 
                     <option value="<?= $code ?>" data-locale="<?= $theme ?>"
                         <?php if($code === 'light'): ?>
@@ -162,7 +162,7 @@
 
                 <?php
 
-                foreach($_SESSION['CONFIG']['system']['support']['themes'] as $code => $theme):
+                foreach($this->CONFIG['system']['support']['themes'] as $code => $theme):
 
                     if($code === 'light'): ?>
 
@@ -180,7 +180,7 @@
 
                     <?php
 
-                    foreach($_SESSION['CONFIG']['system']['support']['themes'] as $code => $theme): ?>
+                    foreach($this->CONFIG['system']['support']['themes'] as $code => $theme): ?>
 
                         <button data-value="<?= $code ?>" data-locale="<?= $theme ?>" class="selector-option
                             <?php if($code === 'light'): ?>

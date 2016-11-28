@@ -5,12 +5,12 @@
         <div class="logo-wrapper">
 
             <img class="logo-heading-charcoal"
-                src="<?= $_SESSION['CONFIG']['system']['paths']['assets'] ?>/system/wrinche-logo-charcoal-small.png"
-                alt="<?= $_SESSION['CONFIG']['system']['name'] ?>">
+                src="<?= $this->CONFIG['system']['paths']['assets'] ?>/system/wrinche-logo-charcoal-small.png"
+                alt="<?= $this->CONFIG['system']['name'] ?>">
 
             <img class="logo-heading-mustard"
-                 src="<?= $_SESSION['CONFIG']['system']['paths']['assets'] ?>/system/wrinche-logo-mustard-small.png"
-                 alt="<?= $_SESSION['CONFIG']['system']['name'] ?>">
+                 src="<?= $this->CONFIG['system']['paths']['assets'] ?>/system/wrinche-logo-mustard-small.png"
+                 alt="<?= $this->CONFIG['system']['name'] ?>">
 
             <button class="proceed-install" data-locale="INSTALL"></button>
 
@@ -39,12 +39,12 @@ require_once ROOT . '/app/Layouts/Install/Done.php';
                 <div class="logo-box">
 
                     <img class="logo-heading-charcoal"
-                         src="<?= $_SESSION['CONFIG']['system']['paths']['assets'] ?>/system/wrinche-logo-charcoal-small.png"
-                         alt="<?= $_SESSION['CONFIG']['system']['name'] ?>">
+                         src="<?= $this->CONFIG['system']['paths']['assets'] ?>/system/wrinche-logo-charcoal-small.png"
+                         alt="<?= $this->CONFIG['system']['name'] ?>">
 
                     <img class="logo-heading-mustard"
-                         src="<?= $_SESSION['CONFIG']['system']['paths']['assets'] ?>/system/wrinche-logo-mustard-small.png"
-                         alt="<?= $_SESSION['CONFIG']['system']['name'] ?>">
+                         src="<?= $this->CONFIG['system']['paths']['assets'] ?>/system/wrinche-logo-mustard-small.png"
+                         alt="<?= $this->CONFIG['system']['name'] ?>">
 
                     <h2 data-locale="INSTALLATION"></h2>
 

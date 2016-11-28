@@ -77,7 +77,6 @@
     ]
   },
   "installed": false,
-  "administration": "",
   "installation_migrations": [
     "users",
     "tokens",

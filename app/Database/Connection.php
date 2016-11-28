@@ -121,14 +121,8 @@ class Connection {
                 return $this->executeSelectQuery();
                 break;
             case "insert":
-                $this->executeOtherQuery();
-                break;
             case "update":
-                $this->executeOtherQuery();
-                break;
             case "delete":
-                $this->executeOtherQuery();
-                break;
             case "truncate":
                 $this->executeOtherQuery();
                 break;

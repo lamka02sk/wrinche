@@ -4,9 +4,12 @@
 
 namespace App\Views;
 
+use App\Helpers\Config;
+
 class Main {
 
     public $page;
+    public $CONFIG;
     public $ASSETS = [
         'styles' => [],
         'scripts' => []
@@ -20,8 +23,8 @@ class Main {
 
     public function setVendorAssets($assets) {
 
-        $vendor = $_SESSION['CONFIG']['system']['vendor'];
-        $path = $_SESSION['CONFIG']['system']['paths']['vendor'];
+        $vendor = Config::$file['system']['vendor'];
+        $path = Config::$file['system']['paths']['vendor'];
 
         if(!is_array($assets)) {
             $assets = [$assets];
@@ -86,7 +89,7 @@ class Main {
 
     private function setStyle($style) {
 
-        $path = $_SESSION['CONFIG']['system']['paths']['styles'];
+        $path = Config::$file['system']['paths']['styles'];
         $this->ASSETS['styles'][] = '<link rel="stylesheet" type="text/css" href="' . $path . $style . '.min.css">';
         $this->ASSETS['styles'][] = '<link id="theme" rel="stylesheet" type="text/css" href="' . $path . 'themes/light/' . $style . '.min.css">';
 
@@ -94,7 +97,7 @@ class Main {
 
     private function setScript($script) {
 
-        $path = $_SESSION['CONFIG']['system']['paths']['scripts'];
+        $path = Config::$file['system']['paths']['scripts'];
         $this->ASSETS['scripts'][] = '<script type="application/javascript" src="' . $path . $script . '.min.js"></script>';
 
     }

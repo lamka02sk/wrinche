@@ -2,7 +2,7 @@
 
 /*
  * wrinche. Modern, powerful and user friendly CMS.
- * List of all timezones supported by PHP across the world.
+ * List of all timezones supported by PHP.
  * Version: 1.0
  * Authors: lamka02sk
  */

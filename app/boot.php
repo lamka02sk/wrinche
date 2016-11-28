@@ -40,7 +40,6 @@ if(!$prepare->checkInstall()) {
 
     // Call installer
     $install = new InstallController();
-    $install->setLanguage();
     $install->start();
 
 } else {

@@ -30,7 +30,7 @@
 
                     <?php
 
-                    foreach($_SESSION['CONFIG']['system']['support']['categories'] as $code => $category): ?>
+                    foreach($this->CONFIG['system']['support']['categories'] as $code => $category): ?>
 
                         <option value="<?= $code ?>" data-locale="<?= $category ?>"></option>
 
@@ -47,7 +47,7 @@
                     <?php
 
                     $i = 0;
-                    foreach($_SESSION['CONFIG']['system']['support']['categories'] as $code => $category):
+                    foreach($this->CONFIG['system']['support']['categories'] as $code => $category):
 
                         if($i === 0): ?>
 
@@ -72,7 +72,7 @@
                         <?php
 
                         $i = 0;
-                        foreach($_SESSION['CONFIG']['system']['support']['categories'] as $code => $category): ?>
+                        foreach($this->CONFIG['system']['support']['categories'] as $code => $category): ?>
 
                             <button data-value="<?= $code ?>" data-locale="<?= $category ?>" class="selector-option
                             <?php if($i === 0): ?>

@@ -10,6 +10,7 @@
 namespace App\Models;
 
 use App\Database\QueryBuilder;
+use App\Helpers\Config;
 
 class UserSettingsModel extends MainModel {
 
@@ -29,7 +30,7 @@ class UserSettingsModel extends MainModel {
         $userID = $user->user['id'];
 
         // Parse theme
-        $themes = $_SESSION['CONFIG']['system']['support']['themes'];
+        $themes = Config::$file['system']['support']['themes'];
 
         $i = 0;
         foreach($themes as $themeName => $nothing) {
@@ -41,7 +42,7 @@ class UserSettingsModel extends MainModel {
         }
 
         // Parse language
-        $languages = $_SESSION['CONFIG']['system']['support']['languages'];
+        $languages = Config::$file['system']['support']['languages'];
 
         $i = 0;
         foreach($languages as $langName => $nothing) {
