@@ -77,7 +77,7 @@
                 foreach($timezones as $key => $timezone) : ?>
 
                     <option value="<?= $key ?>"
-                        <?php if($timezone === $_SESSION['CONFIG']['system']['locale']['timezone']): ?>
+                        <?php if($timezone === $this->CONFIG['system']['locale']['timezone']): ?>
                             selected
                         <?php endif ?>
                     ><?= $timezone ?></option>
@@ -96,7 +96,7 @@
 
                 foreach($timezones as $key => $timezone):
 
-                    if($timezone === $_SESSION['CONFIG']['system']['locale']['timezone']): ?>
+                    if($timezone === $this->CONFIG['system']['locale']['timezone']): ?>
 
                         <button data-value="<?= $key ?>" data-locale="<?= $timezone ?>" class="selector-selected">
                             <?= $timezone ?>
@@ -117,7 +117,7 @@
                     foreach($timezones as $key => $timezone): ?>
 
                         <button data-value="<?= $key ?>" class="selector-option
-                            <?php if($timezone === $_SESSION['CONFIG']['system']['locale']['timezone']): ?>
+                            <?php if($timezone === $this->CONFIG['system']['locale']['timezone']): ?>
                                 selector-option-selected
                             <?php endif ?>
                         "><?= $timezone ?></button>

@@ -1,7 +1,7 @@
 <?php
 
 // Get list of installation migrations
-$migrations = $_SESSION['CONFIG']['system']['installation_migrations'];
+$migrations = \App\Helpers\Config::$file['system']['installation_migrations'];
 
 // Prepare database connection
 $connection = new \App\Database\Connection();
