@@ -168,7 +168,11 @@ class InstallModel extends MainModel {
             $telemetry
         );
 
-        // Change system status to installed
+        // Change system status to installed and set timezone
+        require ROOT . '/app/Config/timezones.php';
+        $timezone = $timezones[$this->installationData[1][1]['value']];
+        Config::$file['system']['locale']['timezone'] = $timezone;
+
         Config::$file['system']['installed'] = true;
 
         // Return data for installer

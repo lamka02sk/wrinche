@@ -17,6 +17,7 @@ class Connection {
 
     public $connection;
     private $connections = [];
+    private $host;
 
     private $type = "";
     private $query = "";
@@ -29,6 +30,37 @@ class Connection {
         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
     );
 
+
+    private function determineHost() {
+
+        if(strpos($this->host, '.sock') !== false) {
+            return $this->createSocket();
+        } else {
+            return $this->createHost();
+        }
+
+    }
+
+    private function createHost() {
+
+        $host = 'host=';
+        $parsed = parse_url($this->host);
+        if(isset($parsed['path'])) {
+            return $host . $parsed['path'];
+        } else if(isset($parsed['host']) && isset($parsed['port'])) {
+            return $host . $parsed['host'] . ';port=' . $parsed['port'];
+        } else {
+            return $this->host;
+        }
+
+    }
+
+    private function createSocket() {
+
+        return 'unix_socket=' . $this->host;
+
+    }
+
     /**
      * @param string $connection
      * Acts like a constructor, but it's not.
@@ -38,14 +70,15 @@ class Connection {
         $model = new ConnectionsModel;
         $this->connections = $model->start()->connections;
         $connection = $this->connections[$connection];
-        $host = $connection["host"];
+        $this->host = $connection["host"];
+        $host = $this->determineHost();
         $database = $connection["database"];
         $user = $connection["user"];
         $pass = $connection["pass"];
 
         try {
 
-            $this->connection = new PDO("mysql:host=$host;dbname=$database", $user, $pass, self::$settings);
+            $this->connection = new PDO("mysql:$host;dbname=$database", $user, $pass, self::$settings);
 
         } catch(PDOException $e) {
 
@@ -63,13 +96,16 @@ class Connection {
      * Test DB connection with given parameters
      * @return null|PDO
      */
-    public static function checkConnection($host, $database, $username, $password) {
+    public function checkConnection($host, $database, $username, $password) {
+
+        $this->host = $host;
+        $host = $this->determineHost();
 
         // Try to connect to the DB with given parameters
         try {
 
             // Create PDO connection instance
-            $connection = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+            $connection = new PDO("mysql:$host;dbname=$database", $username, $password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // Return connection if successfully connected

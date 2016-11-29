@@ -48,7 +48,8 @@ $dbuser = $sanitizer->sanitizeMagicQuotes($_POST['dbuser']);
 $dbpass = $sanitizer->sanitizeMagicQuotes($_POST['dbpass']);
 
 // Check connection
-$connection = Database\Connection::checkConnection($dbhost, $dbname, $dbuser, $dbpass);
+$connection = new Database\Connection;
+$connection = $connection->checkConnection($dbhost, $dbname, $dbuser, $dbpass);
 
 // Return result
 if($connection === null) {

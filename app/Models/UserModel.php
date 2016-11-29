@@ -33,15 +33,21 @@ class UserModel extends MainModel {
             $validator = new Validator;
 
             $results[] = $validator->validateUsername($username);
-            $results[] = $validator->validateUsername($email);
-            $results[] = $validator->validateUsername($password);
+            $results[] = $validator->validateEmail($email);
+            $results[] = $validator->validatePassword($password);
+
+            foreach($results as $result) {
+                if(!$result) {
+                    // Create Error > Invalid Input
+                }
+            }
 
         }
 
         // Sanitize data
         $sanitizer = new Sanitizer;
         $username = $sanitizer->sanitizeMagicQuotes($username);
-        $email = $sanitizer->sanitizeEmail($sanitizer->sanitizeMagicQuotes($password));
+        $email = $sanitizer->sanitizeEmail($email);
 
         // Create password hash
         $crypto = new Crypto;

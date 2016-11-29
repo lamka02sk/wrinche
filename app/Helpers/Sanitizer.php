@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Sanitize all user input to protect system from attackers.
- * Version: 0.9
+ * Version: 0.9.1
  * Authors: lamka02sk
  */
 
@@ -41,12 +41,7 @@ class Sanitizer {
      */
     private function filterSanitize($string, $filter) {
 
-        $valid = true;
-        if(!filter_var($string, $filter)) {
-            $valid = false;
-        }
-
-        return $valid;
+        return filter_var($string, $filter);
 
     }
 
