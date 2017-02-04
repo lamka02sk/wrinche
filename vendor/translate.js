@@ -40,3 +40,15 @@ function changeLanguage(language, domain, locale) {
     return locale;
 
 }
+
+/**
+ * Translates website
+ * @param domain
+ */
+function translate(domain) {
+
+    var language = $('html').attr('lang');
+    locale = getJson("app/Data/Locale/" + language + "/" + domain + ".json");
+    changeLanguage(language, domain, locale);
+
+}

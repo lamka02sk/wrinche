@@ -3,13 +3,24 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Sanitize all user input to protect system from attackers.
- * Version: 0.9.1
+ * Version: 0.9.5
  * Authors: lamka02sk
  */
 
 namespace App\Helpers;
 
 class Sanitizer {
+
+    /**
+     * @param array $array
+     * Sanitize each string in given array
+     * @return mixed
+     */
+    public function sanitizeInput(array $array) {
+
+        return filter_var_array($array, FILTER_SANITIZE_STRING);
+
+    }
 
     /**
      * @param $string
@@ -64,7 +75,6 @@ class Sanitizer {
     public function sanitizeMagicQuotes($string) {
 
         $this->filterSanitize($string, FILTER_SANITIZE_MAGIC_QUOTES);
-
         return $string;
 
     }

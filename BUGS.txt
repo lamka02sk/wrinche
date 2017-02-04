@@ -1,0 +1,2 @@
+QueryBuilder - addWhere() not working properly
+QueryBuilder - last ID not working properly

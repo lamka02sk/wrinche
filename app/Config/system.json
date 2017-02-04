@@ -35,11 +35,13 @@
       "jquery": "jquery.min.js",
       "selector": "selector.min.js",
       "translate": "translate.min.js",
-      "theme": "theme.min.js"
+      "theme": "theme.min.js",
+      "jsonLoader": "jsonLoader.min.js"
     }
   },
   "tracking": {
     "client": true,
+    "events": true,
     "stats": true,
     "location": true,
     "performance": true,
@@ -79,8 +81,9 @@
   "installed": false,
   "installation_migrations": [
     "users",
-    "tokens",
     "settings",
-    "website"
+    "website",
+    "logins",
+    "login_attempts"
   ]
 }

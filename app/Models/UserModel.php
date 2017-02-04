@@ -3,12 +3,13 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * User Model. Holds and manages users data.
- * Version: 0.2
+ * Version: 0.2.5
  * Authors: lamka02sk
  */
 
 namespace App\Models;
 
+use App\Errors\UserEvents;
 use App\Helpers\Crypto;
 use App\Helpers\Validator;
 use App\Helpers\Sanitizer;
@@ -16,11 +17,57 @@ use App\Database\QueryBuilder;
 
 class UserModel extends MainModel {
 
-    public $user = [];
+    public $table = 'users';
+
+    public static $user = [];
 
     public function start() {
 
-        // TODO: If someone's logged in, create users model.
+        if(!isset(LoginModel::$login['user_id']))
+            return false;
+
+        $userID = LoginModel::$login['user_id'];
+        $this->prepareUserByID($userID);
+
+        $userSettings = new UserSettingsModel;
+        $userSettings->start();
+
+    }
+
+    public function getUserBy($column, $value) {
+
+        // Query DB
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table($this->table)
+            ->select()
+            ->selectValues()
+            ->where($column, $value)
+            ->exec();
+
+        return $builder->output[0] ?? [];
+
+    }
+
+    public function addUser($username, $email, $password, $admin) {
+
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table($this->table)
+            ->insert()
+            ->insertRow([[
+                'username' => $username,
+                'email' => $email,
+                'password' => $password,
+                'admin' => $admin
+            ]])
+            ->exec();
+
+    }
+
+    public function updateUser() {
+
+        // TODO: Update user with user model data
 
     }
 
@@ -37,9 +84,8 @@ class UserModel extends MainModel {
             $results[] = $validator->validatePassword($password);
 
             foreach($results as $result) {
-                if(!$result) {
-                    // Create Error > Invalid Input
-                }
+                if(!$result)
+                    new UserEvents(4); // Invalid Input
             }
 
         }
@@ -54,36 +100,40 @@ class UserModel extends MainModel {
         $password = $crypto->encryptPassword($password);
 
         // Create user in database
-        $query = new QueryBuilder;
-        $query->queryCommands
-            ->table('users')
-            ->insert()
-            ->insertRow([[
-                'username' => $username,
-                'email' => $email,
-                'password' => $password,
-                'admin' => $admin
-            ]])
-            ->exec();
+        $this->addUser($username, $email, $password, $admin);
+
+    }
+
+    public function prepareUserByID($userID) {
+
+        $this->prepareUser('id', $userID);
 
     }
 
     public function prepareUserByUsername($username) {
 
-        // Sanitize username
-        $sanitizer = new Sanitizer;
-        $username = $sanitizer->sanitizeMagicQuotes($username);
+        $this->prepareUser('username', $username);
+
+    }
+
+    public function prepareUserByEmail($email) {
+
+        $this->prepareUser('email', $email);
+
+    }
+
+    public function prepareUser($type, $value) {
 
         // Query DB
-        $query = new QueryBuilder;
-        $query->queryCommands
-            ->table('users')
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table($this->table)
             ->select()
             ->selectValues()
-            ->where('username', $username)
+            ->where($type, $value)
             ->exec();
 
-        $this->user = $query->output[0];
+        UserModel::$user = $builder->output[0];
 
     }
 

@@ -3,9 +3,12 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Boot script, place where all the magic happens.
- * Version: 0.8.1
+ * Version: 0.8.2
  * Authors: lamka02sk
  */
+
+error_reporting(E_ALL);
+ini_set('display_errors', true);
 
 // Initialize Autoloader
 require_once 'autoload.php';
@@ -15,9 +18,13 @@ use App\Requests\Request;
 use App\Helpers\Config;
 use App\Helpers\Prepare;
 use App\Auth\Csrf;
+use App\Auth\DDoS;
 use App\Controllers\StatsController;
 use App\Controllers\LogsController;
 use App\Controllers\InstallController;
+
+// Call anti-flood DDoS protection
+//new DDoS;
 
 // Save Requests
 Request::init();
@@ -45,7 +52,7 @@ if(!$prepare->checkInstall()) {
 } else {
 
     // Route Request
-    require_once 'router.php';
+    require 'router.php';
 
 }
 

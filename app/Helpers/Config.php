@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * System config loader helper.
- * Version: 0.6
+ * Version: 0.6.2
  * Authors: lamka02sk
  */
 
@@ -26,15 +26,12 @@ class Config {
 
         // Detect current case: all or selected configs
         switch($file) {
-
             case 'ALL':
                 $this->loadConfigs();
                 break;
-
             default:
                 $this->loadConfig($file);
                 break;
-
         }
 
     }
@@ -45,9 +42,8 @@ class Config {
     private function loadConfigs() {
 
         // Load every config from array
-        foreach($this->files as $file) {
+        foreach($this->files as $file)
             $this->loadConfig($file);
-        }
 
     }
 

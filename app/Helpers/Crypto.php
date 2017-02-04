@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * All cryptographic function here.
- * Version: 0.1
+ * Version: 0.1.2
  * Authors: lamka02sk
  */
 
@@ -36,11 +36,9 @@ class Crypto {
     public function verifyPassword($password, $hash) {
 
         // Check if password hashes are equivalent
-        if(!password_verify($password, $hash)) {
+        if(!password_verify($password, $hash))
             return false;
-        }
 
-        // Password is incorrect
         return true;
 
     }

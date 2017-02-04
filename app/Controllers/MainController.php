@@ -12,6 +12,8 @@ namespace App\Controllers;
 abstract class MainController {
 
     public $language;
+    public $category;
+    public $subcategory;
 
     /**
      * @all controllers must contain this function

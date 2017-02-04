@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Generator for creating tokens and hashes
- * Version: 0.8
+ * Version: 0.9.2
  * Authors: lamka02sk
  */
 
@@ -35,9 +35,35 @@ class Generator {
 
     }
 
+    /**
+     * @return string
+     * Generate URL for administration
+     */
     public function generateAdministrationURI() {
 
         $length = 8;
+        $token = $this->generateToken($length);
+        return $token;
+
+    }
+
+    /**
+     * @return string
+     * Generate Login Hash Token
+     */
+    public function generateLoginHash() {
+
+        return $this->generateCsrfToken();
+
+    }
+
+    /**
+     * @return string
+     * Generate Login Key Token
+     */
+    public function generateLoginKey() {
+
+        $length = 128;
         $token = $this->generateToken($length);
         return $token;
 
@@ -64,9 +90,8 @@ class Generator {
     public function generateHash($algorithm, $string) {
 
         // Protection for generating hash from empty string
-        if(empty($string)) {
+        if(empty($string))
             $string = $this->generateToken(8);
-        }
 
         // Generate hash from given string
         return hash($algorithm, $string);

@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * File Request Module. Manage HTTP request data from user.
- * Version: 0.1
+ * Version: 0.1.2
  * Authors: lamka02sk
  */
 
@@ -30,12 +30,10 @@ class FileRequest {
         $result = [];
         foreach($file as $property => $values) {
             if($ord === 'ALL') {
-                foreach($values as $key => $value) {
+                foreach($values as $key => $value)
                     $result[$property][$key] = $value ?? "";
-                }
-            } else {
+            } else
                 $result[$property] = $values[$ord] ?? "";
-            }
         }
 
         return $result;
@@ -45,9 +43,8 @@ class FileRequest {
     public function getFiles(array $names, array $ord = ['ALL']) {
 
         $result = [];
-        foreach($names as $key => $name) {
+        foreach($names as $key => $name)
             $result[] = $this->getFile($name, $ord[$key]);
-        }
 
         return $result;
 

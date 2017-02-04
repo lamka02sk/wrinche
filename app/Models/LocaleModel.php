@@ -22,17 +22,14 @@ class LocaleModel extends MainModel {
 
         $language = $this->getLanguage();
         $supportedLanguages = [];
-        foreach(Config::$file['system']['support']['languages'] as $code => $nothing) {
+        foreach(Config::$file['system']['support']['languages'] as $code => $nothing)
             array_push($supportedLanguages, $code);
-        }
 
         if(!in_array($language, $supportedLanguages)) {
-
-            if($language === 'cs') {
+            if($language === 'cs')
                 $language = 'sk';
-            } else {
+            else
                 $language = Config::$file['system']['locale']['language'];
-            }
         }
 
         $this->language = $language;

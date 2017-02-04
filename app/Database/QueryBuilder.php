@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Database query builder module.
- * Version: 0.3
+ * Version: 0.3.9
  * Authors: lamka02sk
  */
 
@@ -37,9 +37,8 @@ class QueryBuilder extends Connection {
      */
     public function __construct() {
 
-        // Create query
+        // Create query and return instance
         $this->queryCommands = new QueryCommands($this);
-
         return $this;
 
     }
@@ -58,16 +57,9 @@ class QueryBuilder extends Connection {
         // Parse user input to the SQL Query
         $this->createQuery();
 
-        // echo $this->resultQuery;
-
         // Execute
         $launcher = new QueryLauncher;
-        $this->output = $launcher->launch($this);
-
-        // Get insert ID
-        if($this->queryCommands->getID) {
-            $this->insertID = $this->insertGetID();
-        }
+        $this->output = $launcher->launch($this, $this->insertID);
 
     }
 
@@ -123,19 +115,17 @@ class QueryBuilder extends Connection {
          */
         $query = "SELECT ";
 
-        if($this->queryCommands->distinct) {
+        if($this->queryCommands->distinct)
             $query .= "DISTINCT ";
-        }
 
         $columns = implode(", ", $this->queryCommands->values);
 
         $separator = ", ";
-        if(empty($columns)) {
+        if(empty($columns))
             $separator = "";
-        }
 
         if(!empty($this->queryCommands->count)) {
-            $columns .= $separator . "COUNT(" . $this->queryCommands->count . ")";
+            $columns .= $separator . "COUNT(" . $this->queryCommands->count . ") AS count";
             $separator = ", ";
         }
 
@@ -154,9 +144,8 @@ class QueryBuilder extends Connection {
             $separator = ", ";
         }
 
-        if(!empty($this->queryCommands->sum)) {
+        if(!empty($this->queryCommands->sum))
             $columns .= $separator . "SUM(" . $this->queryCommands->sum . ")";
-        }
 
         $query .= $columns . " ";
 
@@ -166,9 +155,8 @@ class QueryBuilder extends Connection {
         $query .= $this->createJoins();
 
         $whereQuery = $this->createWhere();
-        if($whereQuery !== "WHERE ") {
+        if($whereQuery !== "WHERE ")
             $query .= $whereQuery;
-        }
 
         $orderBy = $this->queryCommands->orderBy;
         $orderRandom = $this->queryCommands->orderRandom;
@@ -177,9 +165,8 @@ class QueryBuilder extends Connection {
         if(!empty($orderBy["column"]) && !$orderRandom) {
 
             $asc = "DESC ";
-            if($orderBy['asc']) {
+            if($orderBy['asc'])
                 $asc = "ASC ";
-            }
 
             $orderQuery .= "ORDER BY " . $orderBy["column"] . " " . $asc;
 
@@ -206,18 +193,16 @@ class QueryBuilder extends Connection {
 
         $limit = $this->queryCommands->limit;
         $first = $this->queryCommands->first;
-        if($first) {
-            $limit = 1;
-        }
-
-        if($limit > 0) {
-            $query .= "LIMIT(" . $limit . ") ";
-        }
-
         $offset = $this->queryCommands->offset;
-        if($offset > 0) {
+
+        if($first)
+            $limit = 1;
+
+        if($limit > 0)
+            $query .= "LIMIT " . $limit . " ";
+
+        if($offset > 0)
             $query .= "OFFSET(" . $offset . ") ";
-        }
 
         // SELECT QUERY PREPARED
         $this->resultQuery = trim($query);
@@ -248,7 +233,7 @@ class QueryBuilder extends Connection {
             }
         }
 
-        $columns = "(" . implode(", ", $columns) . ") ";
+        $columns = "(`" . implode("`, `", $columns) . "`) ";
         $i = 0;
         $binds = [];
         foreach($values as $value) {
@@ -256,6 +241,7 @@ class QueryBuilder extends Connection {
             $this->queryBinds[":insert" . $i] = $value;
             $i++;
         }
+
         $values = "(" . implode(", ", $binds) . ") ";
 
         $query .= $columns;
@@ -350,9 +336,8 @@ class QueryBuilder extends Connection {
 
         if(!empty($innerJoin["tables"])) {
 
-            foreach($innerJoin["tables"] as $key => $table) {
+            foreach($innerJoin["tables"] as $key => $table)
                 $joins .= "INNER JOIN " . $table . " ON " . $innerJoin["columns"][$key] . " = " . $innerJoin["keys"][$key] . " ";
-            }
 
         }
 
@@ -361,9 +346,8 @@ class QueryBuilder extends Connection {
             foreach($leftJoin["tables"] as $key => $table) {
 
                 $outer = "";
-                if($leftJoin["outer"][0]) {
+                if($leftJoin["outer"][0])
                     $outer = "OUTER ";
-                }
 
                 $joins .= "LEFT " . $outer . "JOIN " . $table . " ON " . $leftJoin["columns"][$key] . " = " . $leftJoin["keys"][$key] . " ";
 
@@ -376,9 +360,8 @@ class QueryBuilder extends Connection {
             foreach($rightJoin["tables"] as $key => $table) {
 
                 $outer = "";
-                if($rightJoin["outer"][0]) {
+                if($rightJoin["outer"][0])
                     $outer = "OUTER ";
-                }
 
                 $joins .= "RIGHT " . $outer . "JOIN " . $table . " ON " . $rightJoin["columns"][$key] . " = " . $rightJoin["keys"][$key] . " ";
 
@@ -409,11 +392,10 @@ class QueryBuilder extends Connection {
             foreach($where["columns"] as $key => $column) {
 
                 $separator = "";
-                if($and) {
+                if($and)
                     $separator = "AND ";
-                }
 
-                $whereQuery .= $separator . "(" . $column . " " . $where["operators"][0][$key] . " :where" . $key . ") ";
+                $whereQuery .= $separator . "(`" . $column . "` " . $where["operators"][0][$key] . " :where" . $key . ") ";
                 $this->queryBinds[":where" . $key] = $where["values"][$key];
                 $and = true;
 
@@ -424,19 +406,18 @@ class QueryBuilder extends Connection {
         if(!empty($whereBetween["column"])) {
 
             $separator = "";
-            if($and) {
+            if($and)
                 $separator = "AND ";
-            }
 
             if(!$whereBetween["invert"]) {
 
-                $whereQuery .= $separator . "(" . $whereBetween["column"] . " BETWEEN :whereBetweenMin AND :whereBetweenMax) ";
+                $whereQuery .= $separator . "(`" . $whereBetween["column"] . "` BETWEEN :whereBetweenMin AND :whereBetweenMax) ";
                 $this->queryBinds[":whereBetweenMin"] = $whereBetween["min"];
                 $this->queryBinds[":whereBetweenMax"] = $whereBetween["max"];
 
             } else {
 
-                $whereQuery .= $separator . "(" . $whereBetween["column"] . " < :whereBetweenMin OR " . $whereBetween["column"] . " > :whereBetweenMax) ";
+                $whereQuery .= $separator . "(`" . $whereBetween["column"] . "` < :whereBetweenMin OR " . $whereBetween["column"] . " > :whereBetweenMax) ";
                 $this->queryBinds[":whereBetweenMin"] = $whereBetween["min"];
                 $this->queryBinds[":whereBetweenMax"] = $whereBetween["max"];
 
@@ -449,14 +430,12 @@ class QueryBuilder extends Connection {
         if(!empty($whereIn["column"])) {
 
             $separator = "";
-            if($and) {
+            if($and)
                 $separator = "AND ";
-            }
 
             $invert = "";
-            if($whereIn["invert"]) {
+            if($whereIn["invert"])
                 $invert = " NOT";
-            }
 
             $values = "('" . implode("', '", $whereIn["values"]) . "') ";
             $whereQuery .= $separator . $whereIn["column"] . $invert . " IN " . $values;
@@ -467,16 +446,14 @@ class QueryBuilder extends Connection {
         if(!empty($whereNull["column"])) {
 
             $separator = "";
-            if($and) {
+            if($and)
                 $separator = "AND ";
-            }
 
             $invert = "";
-            if($whereNull["invert"]) {
+            if($whereNull["invert"])
                 $invert = "NOT ";
-            }
 
-            $whereQuery .= $separator . "(" . $whereNull["column"] . " IS " . $invert . "NULL) ";
+            $whereQuery .= $separator . "(`" . $whereNull["column"] . "` IS " . $invert . "NULL) ";
             $and = true;
 
         }
@@ -484,11 +461,10 @@ class QueryBuilder extends Connection {
         if(!empty($whereDate["type"])) {
 
             $separator = "";
-            if($and) {
+            if($and)
                 $separator = "AND ";
-            }
 
-            $whereQuery .= $separator . strtoupper($whereDate["type"]) . "(" . $whereDate["column"] . ") = :whereDate ";
+            $whereQuery .= $separator . strtoupper($whereDate["type"]) . "(`" . $whereDate["column"] . "` = :whereDate) ";
 
             $this->queryBinds[":whereDate"] = $whereDate["value"];
             $and = true;
@@ -500,11 +476,10 @@ class QueryBuilder extends Connection {
             foreach($whereColumns["columns"] as $key => $column) {
 
                 $separator = "";
-                if($and) {
+                if($and)
                     $separator = "AND ";
-                }
 
-                $whereQuery .= $separator . "(" . $column . " " . $whereColumns["operators"][$key] . " :whereColumns" . $key . ") ";
+                $whereQuery .= $separator . "(`" . $column . "` " . $whereColumns["operators"][$key] . " :whereColumns" . $key . ") ";
                 $this->queryBinds[":whereColumns" . $key] = $orWhere["values"][$key];
                 $and = true;
 
@@ -519,11 +494,10 @@ class QueryBuilder extends Connection {
 
             foreach($orWhere["columns"] as $key => $column) {
 
-                if(empty($separator)) {
+                if(empty($separator))
                     $separator = "AND ";
-                }
 
-                $whereQuery .= $separator . "(" . $column . " " . $orWhere["operators"][$key] . " :orWhere" . $key . ") ";
+                $whereQuery .= $separator . "(`" . $column . "` " . $orWhere["operators"][$key] . " :orWhere" . $key . ") ";
                 $this->queryBinds[":orWhere" . $key] = $orWhere["values"][$key];
 
                 $separator = "AND ";

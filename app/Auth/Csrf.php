@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Cross-site request forgery protection authenticator.
- * Version: 1.0
+ * Version: 1.0.1
  * Authors: lamka02sk
  */
 
@@ -29,12 +29,8 @@ class Csrf {
             $token = $_POST['csrf_token'];
             $this->verifyToken($token);
 
-        } else {
-
-            // Update token
+        } else
             $this->updateToken();
-
-        }
 
     }
 
@@ -63,17 +59,13 @@ class Csrf {
     /**
      * @param $token
      * Verify existing token and expiration time
-     * @return bool
+     * @return mixed
      */
     public function verifyToken($token) {
 
         // Check if token exist
-        if(!isset($_SESSION['auth']['csrf_token'])) {
-
-            // Redirect to error page
+        if(!isset($_SESSION['auth']['csrf_token']))
             Redirect::error500();
-
-        }
 
         // Verify Time and Token
         if($token === $_SESSION['auth']['csrf_token']) {
@@ -99,12 +91,8 @@ class Csrf {
 
             }
 
-        } else {
-
-            // Redirect to error page
+        } else
             Redirect::error500();
-
-        }
 
     }
 

@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Checks if user input selection exists.
- * Version: 0.2
+ * Version: 0.2.2
  * Authors: lamka02sk
  */
 
@@ -20,9 +20,8 @@ class Checker {
     public function systemTheme($input) {
 
         $themes = Config::$file['system']['support']['themes'];
-        if(!array_key_exists($input, $themes)) {
+        if(!array_key_exists($input, $themes))
             return false;
-        }
 
         return true;
 
@@ -35,9 +34,8 @@ class Checker {
     public function systemLanguage($input) {
 
         $languages = Config::$file['system']['support']['languages'];
-        if(!array_key_exists($input, $languages)) {
+        if(!array_key_exists($input, $languages))
             return false;
-        }
 
         return true;
 
@@ -50,10 +48,8 @@ class Checker {
     public function systemTimezone($input) {
 
         require_once ROOT . "/app/Config/timezones.php";
-
-        if(!array_key_exists($input, $timezones)) {
+        if(!array_key_exists($input, $timezones))
             return false;
-        }
 
         return true;
 
@@ -71,20 +67,22 @@ class Checker {
         $connection = new Connection;
         $connection = $connection->checkConnection($host, $dbname, $dbuser, $dbpass);
 
-        if($connection !== null) {
+        if($connection !== null)
             return true;
-        }
 
         return false;
 
     }
 
+    /**+
+     * @param $input
+     * @return bool
+     */
     public function systemWebsiteCategory($input) {
 
         $categories = Config::$file['system']['support']['categories'];
-        if(!array_key_exists($input, $categories)) {
+        if(!array_key_exists($input, $categories))
             return false;
-        }
 
         return true;
 

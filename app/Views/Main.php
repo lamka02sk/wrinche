@@ -26,22 +26,18 @@ class Main {
         $vendor = Config::$file['system']['vendor'];
         $path = Config::$file['system']['paths']['vendor'];
 
-        if(!is_array($assets)) {
+        if(!is_array($assets))
             $assets = [$assets];
-        }
 
         foreach($vendor as $type => $resources) {
             foreach($resources as $name => $resource) {
 
-                if(!in_array($name, $assets)) {
-                    continue;
-                }
+                if(!in_array($name, $assets)) continue;
 
-                if($type === 'scripts') {
+                if($type === 'scripts')
                     $this->ASSETS['scripts'][] = '<script type="application/javascript" src="' . $path . $resource . '"></script>';
-                } else {
+                else
                     $this->ASSETS['styles'][] = '<link rel="stylesheet" type="text/css" href="' . $path . $resource . '">';
-                }
 
             }
         }
@@ -50,33 +46,28 @@ class Main {
 
     public function setFavicon($type = '') {
 
-        if(empty($type)) {
+        if(empty($type))
             $this->ASSETS['styles'][] = '<link rel="icon" href="assets/system/wrinche-favicon.png">';
-        }
 
     }
 
     public function setAssets($assets) {
 
         if(is_array($assets)) {
-            foreach($assets as $asset) {
+            foreach($assets as $asset)
                 $this->addAsset($asset);
-            }
-        } else {
+        } else
             $this->addAsset($assets);
-        }
 
     }
 
     public function setStyles($styles) {
 
         if(is_array($styles)) {
-            foreach($styles as $style) {
+            foreach($styles as $style)
                 $this->setStyle($style);
-            }
-        } else {
+        } else
             $this->setStyle($styles);
-        }
 
     }
 

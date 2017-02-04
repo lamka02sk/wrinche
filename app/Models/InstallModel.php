@@ -3,12 +3,13 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Installation model. Manages all user input.
- * Version: 0.4
+ * Version: 0.4.2
  * Authors: lamka02sk
  */
 
 namespace App\Models;
 
+use App\Errors\UserEvents;
 use App\Helpers\Checker;
 use App\Helpers\Config;
 use App\Helpers\Generator;
@@ -35,9 +36,7 @@ class InstallModel extends MainModel {
 
         // Check installation data sent through $_POST array
         if(!isset(Request::$forms['installer'])) {
-
-            // TODO: Create error
-
+            new UserEvents(5);
         }
 
         // Save installer data
@@ -102,9 +101,7 @@ class InstallModel extends MainModel {
         foreach($results as $result) {
 
             if(!$result) {
-
-                // TODO: Create Error
-
+                new UserEvents(4);
             }
 
         }
@@ -156,9 +153,8 @@ class InstallModel extends MainModel {
 
         // Save website info
         $telemetry = 0;
-        if(isset($this->installationData[4][4])) {
+        if(isset($this->installationData[4][4]))
             $telemetry = 1;
-        }
 
         $website = new WebsiteModel;
         $website->createWebsite(

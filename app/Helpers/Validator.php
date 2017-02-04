@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Validate user inputs to protect system from attackers.
- * Version: 0.9.1
+ * Version: 0.9.3
  * Authors: lamka02sk
  */
 
@@ -19,12 +19,10 @@ class Validator {
      */
     private function filterValidate($string, $filter) {
 
-        $valid = true;
-        if(!filter_var($string, $filter)) {
-            $valid = false;
-        }
+        if(!filter_var($string, $filter))
+            return false;
 
-        return $valid;
+        return true;
 
     }
 
@@ -37,13 +35,11 @@ class Validator {
      */
     public function validateStringLength($string, $min, $max) {
 
-        $valid = true;
         $length = strlen(trim($string));
-        if($length < $min || $length > $max) {
-            $valid = false;
-        }
+        if($length < $min || $length > $max)
+            return false;
 
-        return $valid;
+        return true;
 
     }
 
@@ -58,17 +54,14 @@ class Validator {
      */
     public function validateUsername($username) {
 
-        $valid = true;
-        if(!$this->validateStringLength($username, 4, 25)) {
-            $valid = false;
-        }
+        if(!$this->validateStringLength($username, 4, 25))
+            return false;
 
         $regex = '/^([a-zA-Z0-9]+)$/';
-        if(!preg_match($regex, $username)) {
-            $valid = false;
-        }
+        if(!preg_match($regex, $username))
+            return false;
 
-        return $valid;
+        return true;
 
     }
 
@@ -91,12 +84,10 @@ class Validator {
      */
     public function validatePassword($password) {
 
-        $valid = true;
-        if(!$this->validateStringLength($password, 8, 45) || !preg_match('/[0-9]/', $password)) {
-            $valid = false;
-        }
+        if(!$this->validateStringLength($password, 8, 45) || !preg_match('/[0-9]/', $password))
+            return false;
 
-        return $valid;
+        return true;
 
     }
 
@@ -107,12 +98,10 @@ class Validator {
      */
     public function validateEmpty($string) {
 
-        $valid = true;
-        if(empty($string) || empty(trim($string))) {
-            $valid = false;
-        }
+        if(empty($string) || empty(trim($string)))
+            return false;
 
-        return $valid;
+        return true;
 
     }
 
@@ -232,9 +221,9 @@ class Validator {
      */
     public function validateAlpha(string $string) {
 
-        if(preg_match('/([a-zA-Z])\w+/g', $string)) {
+        if(preg_match('/([a-zA-Z])\w+/g', $string))
             return true;
-        }
+
         return false;
 
     }
@@ -246,10 +235,26 @@ class Validator {
      */
     public function validateANum($string) {
 
-        if(preg_match('/([a-zA-Z0-9])\w+/g', $string)) {
+        if(preg_match('/([a-zA-Z0-9])\w+/g', $string))
             return true;
-        }
+
         return false;
+
+    }
+
+    /**
+     * @param string $primary
+     * @param string $password
+     * Validate login data
+     * @param string $primaryType
+     * @return bool
+     */
+    public function validateLogin(string $primary, string $password, string $primaryType = 'Username') {
+
+        if(!$this->{'validate' . $primaryType}($primary) || !$this->validatePassword($password))
+            return false;
+
+        return true;
 
     }
 

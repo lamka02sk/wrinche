@@ -28,7 +28,7 @@ class InstallController extends MainController {
             $model = new InstallModel;
             $output = $model->start();
 
-            // Output for the clients JS
+            // Output for the clients' JS
             echo $output;
 
         } else {

@@ -13,17 +13,15 @@ class Installation extends MainView {
 
         $this->page = $page;
 
-        $this->setVendorAssets(['jquery', 'selector', 'translate', 'theme']);
+        $this->setVendorAssets(['jquery', 'jsonLoader', 'selector', 'translate', 'theme']);
         $this->setAssets('installation');
         $this->setFavicon();
 
         $layout = 'Install';
-
-        if(empty($page)) {
+        if(empty($page))
             $page = 'Installation';
-        } else {
+        else
             $page = 'Done';
-        }
 
         $this->CONFIG = Config::$file;
 

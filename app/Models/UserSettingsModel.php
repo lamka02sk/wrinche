@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Settings Model. Holds and Manages User Settings.
- * Version: 0.1
+ * Version: 0.1.1
  * Authors: lamka02sk
  */
 
@@ -14,11 +14,33 @@ use App\Helpers\Config;
 
 class UserSettingsModel extends MainModel {
 
-    public $settings = [];
+    public $table = 'user_settings';
+
+    public static $settings = [];
 
     public function start() {
 
-        // Load user's settings if logged in
+        $this->prepareUserSettings();
+
+    }
+
+    public function updateUserSettings() {
+
+        // TODO: Update users' settings with user model data
+
+    }
+
+    public function prepareUserSettings() {
+
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table($this->table)
+            ->select()
+            ->selectValues()
+            ->where('user_id', UserModel::$user['id'])
+            ->exec();
+
+        UserSettingsModel::$settings = $builder->output[0];
 
     }
 
@@ -27,7 +49,6 @@ class UserSettingsModel extends MainModel {
         // Users ID
         $user = new UserModel;
         $user->prepareUserByUsername($username);
-        $userID = $user->user['id'];
 
         // Parse theme
         $themes = Config::$file['system']['support']['themes'];
@@ -56,10 +77,10 @@ class UserSettingsModel extends MainModel {
         // Save the settings
         $query = new QueryBuilder;
         $query->queryCommands
-            ->table('user_settings')
+            ->table($this->table)
             ->insert()
             ->insertRow([[
-                'user_id' => $userID,
+                'user_id' => UserModel::$user['id'],
                 'language' => $language,
                 'theme' => $theme
             ]])

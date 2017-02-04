@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Server Request Module. Manage HTTP request data from user.
- * Version: 0.1.1
+ * Version: 0.1.3
  * Authors: lamka02sk
  */
 
@@ -63,18 +63,18 @@ class ServerRequest {
 
     public function getClient(string $item = "") {
 
-        if(empty($item)) {
+        if(empty($item))
             return Request::$server['client'] ?? '';
-        }
+
         return Request::$server['client'][$item] ?? '';
 
     }
 
     public function getServer(string $item = "") {
 
-        if(empty($item)) {
+        if(empty($item))
             return Request::$server['server'] ?? '';
-        }
+
         return Request::$server['server'][$item] ?? '';
 
     }

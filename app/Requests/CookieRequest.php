@@ -3,11 +3,13 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Cookie Request Module. Manage HTTP request data from user.
- * Version: 0.1
+ * Version: 0.1.4
  * Authors: lamka02sk
  */
 
 namespace App\Requests;
+
+use App\Helpers\Config;
 
 class CookieRequest {
 
@@ -30,27 +32,24 @@ class CookieRequest {
 
     }
 
-    public function setCookie(string $name, string $value = "", int $expire = 0, string $path = "", string $domain = "", bool $secure = false, bool $httpOnly = false) {
+    public function setCookie(string $name, string $value = "", int $expire = 60, string $path = "", string $domain = "", bool $secure = false, bool $httpOnly = false) {
 
-        if(isset(Request::$cookie[$name])) {
+        if(isset(Request::$cookie[$name]))
             return false;
-        }
 
         setcookie($name, $value, $expire, $path, $domain, $secure, $httpOnly);
-        Request::$cookie[$name] = $_COOKIE[$name];
+        Request::$cookie[$name] = $value;
         return true;
 
     }
 
     public function deleteCookie(string $name) {
 
-        if(!isset(Request::$cookie[$name])) {
+        if(!isset(Request::$cookie[$name]))
             return false;
-        }
 
         unset($_COOKIE[$name]);
         unset(Request::$cookie[$name]);
-        return true;
 
     }
 

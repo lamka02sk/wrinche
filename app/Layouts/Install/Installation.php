@@ -5,8 +5,8 @@
         <div class="logo-wrapper">
 
             <img class="logo-heading-charcoal"
-                src="<?= $this->CONFIG['system']['paths']['assets'] ?>/system/wrinche-logo-charcoal-small.png"
-                alt="<?= $this->CONFIG['system']['name'] ?>">
+                 src="<?= $this->CONFIG['system']['paths']['assets'] ?>/system/wrinche-logo-charcoal-small.png"
+                 alt="<?= $this->CONFIG['system']['name'] ?>">
 
             <img class="logo-heading-mustard"
                  src="<?= $this->CONFIG['system']['paths']['assets'] ?>/system/wrinche-logo-mustard-small.png"

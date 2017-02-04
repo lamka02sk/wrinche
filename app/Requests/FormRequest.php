@@ -3,17 +3,21 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Form Request Module. Manage HTTP request data from user.
- * Version: 0.1
+ * Version: 0.1.2
  * Authors: lamka02sk
  */
 
 namespace App\Requests;
 
+use App\Helpers\Sanitizer;
+
 class FormRequest {
 
     public static function init() {
 
+        $sanitizer = new Sanitizer;
         $data = $_POST ?? [];
+        $data = $sanitizer->sanitizeInput($data);
         Request::$forms = $data;
 
     }
@@ -28,9 +32,8 @@ class FormRequest {
 
         $array = Request::$forms;
         $keys = explode(".", $name);
-        foreach($keys as $key) {
+        foreach($keys as $key)
             $array = $array[$key] ?? $default;
-        }
 
         return $array;
 
@@ -39,9 +42,8 @@ class FormRequest {
     public function getInputs(array $inputs, string $default = "") {
 
         $array = [];
-        foreach($inputs as $input) {
+        foreach($inputs as $input)
             $array[] = $this->getInput($input, $default);
-        }
 
         return $array;
 
@@ -65,9 +67,8 @@ class FormRequest {
     public function saveInputs(array $inputs, string $default = "") {
 
         $array = [];
-        foreach($inputs as $input) {
+        foreach($inputs as $input)
             $array[] = $this->saveInput($input, $default);
-        }
 
         return true;
 
@@ -77,9 +78,8 @@ class FormRequest {
 
         $result = $_SESSION['forms'];
         $keys = explode(".", $name);
-        foreach($keys as $key) {
+        foreach($keys as $key)
             $result = $result[$key] ?? $default;
-        }
 
         return $result;
 

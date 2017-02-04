@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Database connection module.
- * Version: 0.5
+ * Version: 0.5.1
  * Authors: lamka02sk
  */
 
@@ -27,7 +27,8 @@ class Connection {
      * @var array Settings for new connection
      */
     private static $settings = array(
-        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
+        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+        PDO::ATTR_ERRMODE => 1
     );
 
 
@@ -120,15 +121,6 @@ class Connection {
 
     }
 
-    /**
-     * Return the last inserted ID
-     */
-    public function insertGetID() {
-
-        return $this->connection->lastInsertId();
-
-    }
-
     public function executeRaw($query) {
 
         $this->connection->query($query);
@@ -139,10 +131,11 @@ class Connection {
      * @param $queryType string Query Type
      * @param $query string SQL Query
      * @param $binds array  Parameter binds
+     * @param $getID bool
      * Execute any given query. Primarily made for database migrations or some custom queries.
      * @return mixed
      */
-    public function executeQuery(string $queryType, string $query, array $binds = []) {
+    public function executeQuery(string $queryType, string $query, array $binds = [], bool $getID = false) {
 
         if(empty($this->connection)) {
             $this->connect();
@@ -160,7 +153,7 @@ class Connection {
             case "update":
             case "delete":
             case "truncate":
-                $this->executeOtherQuery();
+                $this->executeOtherQuery($getID);
                 break;
         }
 
@@ -183,12 +176,20 @@ class Connection {
     }
 
     /**
+     * @param $getID bool
      * Execute any query except select
+     * @return array
      */
-    private function executeOtherQuery() {
+    private function executeOtherQuery(bool $getID = false) {
 
         $instance = $this->connection->prepare($this->query);
         $instance->execute($this->binds);
+        $output = [];
+        if($getID) {
+            $output = $instance->lastInsertId();
+        }
+
+        return $output;
 
     }
 

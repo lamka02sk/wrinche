@@ -313,26 +313,6 @@ function validateForm(formId, locale) {
 }
 
 /**
- * Get files from server through AJAX
- * @param url
- */
-function getJson(url) {
-
-    return JSON.parse(
-        $.ajax({
-            type: 'GET',
-            url: url,
-            dataType: 'json',
-            global: false,
-            async: false,
-            success: function(data) {
-                return data;
-            }
-        }).responseText);
-    
-}
-
-/**
  * Check DB connection and show message
  * @param locale
  */
@@ -393,12 +373,7 @@ var locale;
 
 $(document).ready(function() {
 
-    // Get and set locale
-    var language = $('html').attr('lang');
-    locale = getJson("app/Data/Locale/" + language + "/install.json");
-
-    // Translate website
-    changeLanguage(language, 'install', locale);
+    translate('install');
 
     // Intro animation
     $('div.intro').addClass('animate');
@@ -503,7 +478,7 @@ $(document).ready(function() {
 
                         // Show success message
                         $('div.installed').addClass('show');
-                        $('p[data-locale=DONE_ADMIN]').append(': ' + result['admin']);
+                        $('p[data-locale=DONE_ADMIN]').append(' ' + result['admin']);
 
                     }
 

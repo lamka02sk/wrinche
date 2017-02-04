@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Prepare system for use. Load all needed libraries and data.
- * Version: 0.9
+ * Version: 0.9.2
  * Authors: lamka02sk
  */
 
@@ -34,12 +34,8 @@ class Prepare {
      */
     public function setIP() {
 
-        if(!isset($_SESSION['auth']['ip'])) {
-
-            // Set IP
+        if(!isset($_SESSION['auth']['ip']))
             $_SESSION['auth']['ip'] = Request::$server['client']['ip'];
-
-        }
 
     }
 
@@ -54,14 +50,12 @@ class Prepare {
 
         // Get supported languages
         $supportedLanguages = [];
-        foreach(Config::$file['system']['support']['languages'] as $code => $nothing) {
+        foreach(Config::$file['system']['support']['languages'] as $code => $nothing)
             array_push($supportedLanguages, $code);
-        }
 
         // Check if users language is supported
-        if(!in_array($language, $supportedLanguages)) {
+        if(!in_array($language, $supportedLanguages))
             $language = Config::$file['system']['locale']['language'];
-        }
 
         // Load and save system localization
         $file = file_get_contents(ROOT . '/app/Data/Locale/' . $language . '/system.json');
@@ -131,9 +125,7 @@ class Prepare {
         $env = Config::$file['system']['installed'];
 
         // If is installed return true
-        if($env) {
-            return true;
-        }
+        if($env) return true;
 
         return false;
 

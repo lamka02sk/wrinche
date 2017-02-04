@@ -1,14 +1,14 @@
-CREATE TABLE IF NOT EXISTS tokens (
+CREATE TABLE IF NOT EXISTS logins (
 
   id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id INT(11) NOT NULL,
-  remember_token VARCHAR(1024) DEFAULT NULL,
-  forgot_token VARCHAR(1024) DEFAULT NULL,
-  action_token VARCHAR(512) DEFAULT NULL,
-  control_token VARCHAR(512) DEFAULT NULL,
+  hash VARCHAR(128) NOT NULL,
+  `key` VARCHAR(256) NOT NULL,
+  ip VARCHAR(32) NOT NULL,
+  ua VARCHAR(128) NOT NULL,
   created TIMESTAMP DEFAULT current_timestamp,
   updated TIMESTAMP DEFAULT current_timestamp ON UPDATE current_timestamp,
-  expiration INT(1) DEFAULT 0,
+  inc INT(11) NOT NULL DEFAULT 0,
 
   FOREIGN KEY (user_id) REFERENCES users(id)
 
