@@ -11,11 +11,18 @@ namespace App\Helpers;
 
 class Config {
 
-    // List of system config files
+    /**
+     * @var array
+     * List of system config files
+     */
     private $files = [
         'system'
     ];
 
+    /**
+     * @var array
+     * Stores config files content
+     */
     public static $file = [];
 
     /**

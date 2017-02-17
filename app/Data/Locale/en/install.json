@@ -13,37 +13,11 @@
   "INSTALL_WEBSITE":"Website",
 
   "NEXT":"Next",
-
-  "LANGUAGE":"Language",
   "TIMEZONE":"Timezone",
-  "THEME":"Theme",
-
-  "ENGLISH":"English",
-  "SLOVAK":"Slovak",
-
-  "LIGHT":"Light",
-  "DARK":"Dark",
 
   "USERNAME":"Username",
   "EMAIL":"E-mail",
   "PASSWORD":"Password",
-  "REPEAT":"Repeat",
-
-  "USERNAME_REGEX":"Username contains invalid characters",
-  "USERNAME_SHORT":"Username is too short",
-  "USERNAME_LONG":"Username is too long",
-  "USERNAME_SPACES":"Username should not contain spaces",
-
-  "EMAIL_SPACES":"E-mail should not contain spaces",
-  "EMAIL_INVALID":"E-mail is invalid",
-
-  "PASSWORD_SHORT":"Password is too short",
-  "PASSWORD_LONG":"Password is too long",
-  "PASSWORD_SPACES":"Password should not contain spaces",
-  "PASSWORD_NUMBER":"Password must contain at least 1 number",
-
-  "PASSWORD_MATCH":"Passwords does not match",
-  "PASSWORD_REPEAT":"Repeat password",
 
   "DATABASE_HOST":"Database host",
   "DATABASE_NAME":"Database name",
@@ -58,15 +32,7 @@
   "WEBSITE_DESCRIPTION":"Website description",
   "WEBSITE_CATEGORY":"Website category",
 
-  "NAME_SHORT":"Website name is too short",
-  "NAME_LONG":"Website name is too long",
-  "DESC_SHORT":"Website description is too short",
-  "DESC_LONG":"Website description is too long",
-
-  "INPUT_EMPTY":"Field should not be empty",
-
   "EULA_AGREE":"I agree with <a href=\"https://raw.githubusercontent.com/lamka02sk/wrinche/dev/LICENSE\" target=\"_blank\">MIT LICENSE</a>",
-  "EULA_CHECK":"Accept license before Install",
   "SEND_STATS":"Send anonymous usage data",
 
   "ART":"Art & Culture",

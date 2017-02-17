@@ -1,0 +1,13 @@
+{
+
+  "LOCALE":"sk",
+  "TITLE":"Registrácia | wrinche ADMIN",
+
+  "REGISTER":"Registrácia",
+  "USERNAME":"Meno používateľa",
+  "EMAIL":"E-mail",
+  "PASSWORD":"Heslo",
+  "PASSWORD_REPEAT":"Zopakujte heslo",
+  "LOGIN":"Prihlásenie"
+
+}

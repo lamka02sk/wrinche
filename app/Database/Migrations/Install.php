@@ -9,13 +9,9 @@ $connection->connect();
 
 // Load all migration queries
 $migrationQueries = [];
-foreach($migrations as $key => $migration) {
+foreach($migrations as $key => $migration)
     $migrationQueries[$key] = file_get_contents(ROOT . '/app/Database/Migrations/' . $migration . '.sql');
-}
 
 // Execute migrations queries
-foreach($migrationQueries as $query) {
-
+foreach($migrationQueries as $query)
     $connection->executeRaw($query);
-
-}

@@ -1,8 +1,12 @@
 {
 
+  "LOCALE":"sk",
+  "TITLE":"Prihlásenie | wrinche ADMIN",
+
   "LOGIN":"Prihlásenie",
-  "USERNAME":"Meno používateľa alebo e-mail",
+  "USERNAME":"Meno používateľa alebo email",
   "PASSWORD":"*****",
-  "REGISTER":"Vytvoriť účet"
+  "REGISTER":"Vytvoriť účet",
+  "FORGOT_PASSWORD*":"Zabudli ste heslo?"
 
 }

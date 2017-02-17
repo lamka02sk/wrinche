@@ -1,8 +1,12 @@
 {
 
+  "LOCALE":"en",
+  "TITLE":"Login | wrinche ADMIN",
+
   "LOGIN":"Login",
   "USERNAME":"Username or e-mail",
   "PASSWORD":"********",
-  "REGISTER":"Create Account"
+  "REGISTER":"Create Account",
+  "FORGOT_PASSWORD*":"Lost your password?"
 
 }

@@ -65,7 +65,7 @@ class Csrf {
 
         // Check if token exist
         if(!isset($_SESSION['auth']['csrf_token']))
-            Redirect::error500();
+            Redirect::response(500);
 
         // Verify Time and Token
         if($token === $_SESSION['auth']['csrf_token']) {
@@ -87,12 +87,12 @@ class Csrf {
                 unset($_SESSION['auth']['csrf_exp']);
 
                 // Redirect to error page
-                Redirect::error500();
+                Redirect::response(500);
 
             }
 
         } else
-            Redirect::error500();
+            Redirect::response(500);
 
     }
 

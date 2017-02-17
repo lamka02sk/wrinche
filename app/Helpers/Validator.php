@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Validate user inputs to protect system from attackers.
- * Version: 0.9.3
+ * Version: 1.0.0
  * Authors: lamka02sk
  */
 
@@ -235,7 +235,7 @@ class Validator {
      */
     public function validateANum($string) {
 
-        if(preg_match('/([a-zA-Z0-9])\w+/g', $string))
+        if(preg_match('/([a-zA-Z0-9])\w+/', $string))
             return true;
 
         return false;
@@ -252,6 +252,29 @@ class Validator {
     public function validateLogin(string $primary, string $password, string $primaryType = 'Username') {
 
         if(!$this->{'validate' . $primaryType}($primary) || !$this->validatePassword($password))
+            return false;
+
+        return true;
+
+    }
+
+    /**
+     * @param string $username
+     * @param string $email
+     * @param string $password
+     * @param string $passwordRepeat
+     * Validate registration data
+     * @return bool
+     */
+    public function validateRegister(string $username, string $email, string $password, string $passwordRepeat) {
+
+        if(!$this->validateUsername($username) || !$this->validateEmail($email))
+            return false;
+
+        if(!$this->validatePassword($password) || !$this->validatePassword($passwordRepeat))
+            return false;
+
+        if($password !== $passwordRepeat)
             return false;
 
         return true;

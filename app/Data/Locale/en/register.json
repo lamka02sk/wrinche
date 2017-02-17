@@ -1,0 +1,13 @@
+{
+
+  "LOCALE":"en",
+  "TITLE":"Register | wrinche ADMIN",
+
+  "REGISTER":"Register",
+  "USERNAME":"Username",
+  "EMAIL":"E-mail",
+  "PASSWORD":"Password",
+  "PASSWORD_REPEAT":"Repeat password",
+  "LOGIN":"Login"
+
+}

@@ -13,37 +13,11 @@
   "INSTALL_WEBSITE":"Webová stránka",
 
   "NEXT":"Ďalej",
-
-  "LANGUAGE":"Jazyk",
   "TIMEZONE":"Časové pásmo",
-  "THEME":"Téma",
-
-  "ENGLISH":"Anglicky",
-  "SLOVAK":"Slovensky",
-
-  "LIGHT":"Svetlá",
-  "DARK":"Tmavá",
 
   "USERNAME":"Meno používateľa",
   "EMAIL":"E-mail",
   "PASSWORD":"Heslo",
-  "REPEAT":"Zopakujte",
-
-  "USERNAME_REGEX":"Meno používateľa obsahuje neplatné znaky",
-  "USERNAME_SHORT":"Meno používateľa je príliš krátke",
-  "USERNAME_LONG":"Meno používateľa je príliš dlhé",
-  "USERNAME_SPACES":"Meno používateľa nesmie obsahovať medzery",
-
-  "EMAIL_SPACES":"E-mail nesmie obsahovať medzery",
-  "EMAIL_INVALID":"E-mail je neplatný",
-
-  "PASSWORD_SHORT":"Heslo je príliš krátke",
-  "PASSWORD_LONG":"Heslo je príliš dlhé",
-  "PASSWORD_SPACES":"Heslo nesmie obsahovať medzery",
-  "PASSWORD_NUMBER":"Heslo musí obsahovať minimálne 1 číslo",
-
-  "PASSWORD_MATCH":"Heslá sa nezhodujú",
-  "PASSWORD_REPEAT":"Zopakujte heslo",
 
   "DATABASE_HOST":"Host databázy",
   "DATABASE_NAME":"Názov databázy",
@@ -58,15 +32,7 @@
   "WEBSITE_DESCRIPTION":"Popis webstránky",
   "WEBSITE_CATEGORY":"Kategória webstránky",
 
-  "NAME_SHORT":"Názov webstránky je príliš krátky",
-  "NAME_LONG":"Názov webstránky je príliš dlhý",
-  "DESC_SHORT":"Popis webstránky je príliš krátky",
-  "DESC_LONG":"Popis webstránky je príliš dlhý",
-
-  "INPUT_EMPTY":"Pole nesmie zostať prázdne",
-
   "EULA_AGREE":"Súhlasím s licenciou <a href=\"https://raw.githubusercontent.com/lamka02sk/wrinche/dev/LICENSE\" target=\"_blank\">MIT LICENSE</a>",
-  "EULA_CHECK":"Potvrďte súhlas s licenciou",
   "SEND_STATS":"Odosielať anonymné dáta o používaní",
 
   "ART":"Umenie a Kultúra",

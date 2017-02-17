@@ -15,7 +15,6 @@ class StatsController extends MainController {
 
     /**
      * StatsController constructor.
-     * ??
      */
     public function __construct() {
 

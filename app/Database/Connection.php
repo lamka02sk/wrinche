@@ -15,12 +15,40 @@ use App\Models\ConnectionsModel;
 
 class Connection {
 
+    /**
+     * @var mixed
+     * Current DB connection
+     */
     public $connection;
+
+    /**
+     * @var array
+     * List of present connections
+     */
     private $connections = [];
+
+    /**
+     * @var string
+     * DB host name
+     */
     private $host;
 
+    /**
+     * @var string
+     * Query type
+     */
     private $type = "";
+
+    /**
+     * @var string
+     * Query string
+     */
     private $query = "";
+
+    /**
+     * @var array
+     * Value binds array
+     */
     private $binds = [];
 
     /**
@@ -31,31 +59,40 @@ class Connection {
         PDO::ATTR_ERRMODE => 1
     );
 
-
+    /**
+     * @return string
+     * Determine host type
+     */
     private function determineHost() {
 
-        if(strpos($this->host, '.sock') !== false) {
+        if(strpos($this->host, '.sock') !== false)
             return $this->createSocket();
-        } else {
+        else
             return $this->createHost();
-        }
 
     }
 
+    /**
+     * @return string
+     * Create host string
+     */
     private function createHost() {
 
         $host = 'host=';
         $parsed = parse_url($this->host);
-        if(isset($parsed['path'])) {
+        if(isset($parsed['path']))
             return $host . $parsed['path'];
-        } else if(isset($parsed['host']) && isset($parsed['port'])) {
+        else if(isset($parsed['host']) && isset($parsed['port']))
             return $host . $parsed['host'] . ';port=' . $parsed['port'];
-        } else {
+        else
             return $this->host;
-        }
 
     }
 
+    /**
+     * @return string
+     * Create socket type host string
+     */
     private function createSocket() {
 
         return 'unix_socket=' . $this->host;
@@ -68,6 +105,7 @@ class Connection {
      */
     public function connect($connection = "default") {
 
+        // Create connection information
         $model = new ConnectionsModel;
         $this->connections = $model->start()->connections;
         $connection = $this->connections[$connection];
@@ -78,13 +116,9 @@ class Connection {
         $pass = $connection["pass"];
 
         try {
-
             $this->connection = new PDO("mysql:$host;dbname=$database", $user, $pass, self::$settings);
-
         } catch(PDOException $e) {
-
             // Create Error
-
         }
 
     }
@@ -121,6 +155,10 @@ class Connection {
 
     }
 
+    /**
+     * @param $query
+     * Execute RAW query
+     */
     public function executeRaw($query) {
 
         $this->connection->query($query);
@@ -137,9 +175,9 @@ class Connection {
      */
     public function executeQuery(string $queryType, string $query, array $binds = [], bool $getID = false) {
 
-        if(empty($this->connection)) {
+        // Detect query type, save data and execute
+        if(empty($this->connection))
             $this->connect();
-        }
 
         $this->type = $queryType;
         $this->query = $query;
@@ -185,9 +223,8 @@ class Connection {
         $instance = $this->connection->prepare($this->query);
         $instance->execute($this->binds);
         $output = [];
-        if($getID) {
+        if($getID)
             $output = $instance->lastInsertId();
-        }
 
         return $output;
 

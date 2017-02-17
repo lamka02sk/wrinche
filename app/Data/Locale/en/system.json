@@ -1,5 +1,14 @@
 {
 
-  "PHP_VERSION":"Your PHP version is too old. Please use newer version."
+  "PHP_VERSION":"Your PHP version is too old. Please use newer version.",
+
+  "LANGUAGE":"Language",
+  "THEME":"Theme",
+
+  "ENGLISH":"English",
+  "SLOVAK":"Slovak",
+
+  "LIGHT":"Light",
+  "DARK":"Dark"
 
 }

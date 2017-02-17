@@ -1,3 +1,12 @@
+--- wrinche v0.0.2 alpha build 04 Pre-Final ---
+ Release date: 2017-02-17
+- Increased security and performance
+- Added administration login, register, lost password and reset password
+- Frontend and translation remade for better code extensibility
+- Added 404 Error page and Error page handler
+- Remade Redirection logic
+- Many minor improvements and security fixes
+------------------------------------------------------------------------------------------------------------------------
 --- wrinche v0.0.2 alpha build 03 ---
  Release date: 2016-11-29
 - Increased security of config directory

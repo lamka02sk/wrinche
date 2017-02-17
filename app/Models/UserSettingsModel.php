@@ -44,7 +44,7 @@ class UserSettingsModel extends MainModel {
 
     }
 
-    public function createSettings($username, $language, $theme) {
+    public function createSettings($username, $language = 0, $theme = 0) {
 
         // Users ID
         $user = new UserModel;

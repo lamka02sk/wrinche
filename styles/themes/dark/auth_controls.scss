@@ -1,0 +1,67 @@
+// Extensions
+@import "../../variables";
+
+div.control-panel p.controls-title {
+  color: $themeYellow !important;
+}
+
+div.control-panel div.panel-content {
+  &.active {
+    background: $themeBlue !important;
+  }
+}
+
+div.theme-controls p.group-title, div.language-controls p.group-title {
+  color: $text-lightGrey !important;
+}
+
+div.theme-controls span.theme-option {
+  &[data-value=light] {
+    color: $themeBlue !important;
+    background: white !important;
+    border-color: $text-lightGrey !important;
+    &:hover {
+      background: $text-lightGrey !important;
+    }
+  }
+  &[data-value=dark] {
+    color: $themeYellow !important;
+    background: $themeBlue !important;
+    border-color: $text-lightGrey !important;
+    &:hover {
+      background: $themeBlueLight !important;
+    }
+  }
+}
+
+span.response-box {
+  &.error {
+    color: $pink;
+  }
+  &.success {
+    color: $green;
+  }
+}
+
+// Selector overrides
+button.selector-selected {
+  color: $whiteSmoke !important;
+  background-color: $themeBlueLight !important;
+  border-color: $themeBlueLight !important;
+  &:after {
+    border-top-color: $whiteSmoke !important;
+  }
+}
+
+div.selector-options {
+  border-color: $themeBlueLight !important;
+}
+
+button.selector-option {
+  color: $whiteSmoke !important;
+  background-color: $themeBlueLight !important;
+  border-bottom-color: $themeBlue !important;
+  &:last-of-type {
+    border-color: transparent !important;
+  }
+}

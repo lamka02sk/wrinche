@@ -16,6 +16,9 @@ use App\Helpers\Redirect;
 
 class AdminController extends MainController {
 
+    /**
+     * ... TODO
+     */
     public function start() {
 
         // TODO

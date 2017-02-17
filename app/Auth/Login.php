@@ -22,20 +22,56 @@ use App\Views\Login as LoginView;
 
 class Login {
 
+    /**
+     * @var string
+     * Login domain: admin or client
+     */
     public $domain;
+
+    /**
+     * @var string
+     * Login Cookie hash
+     */
     private $hash;
+
+    /**
+     * @var string
+     * Login Cookie key
+     */
     private $key;
+
+    /**
+     * @var string
+     * Primary login input type: username or email
+     */
     private $keyType;
+
+    /**
+     * @var string
+     * Login Password
+     */
     private $pass;
 
+    /**
+     * @var int
+     * Maximum login time in hours
+     */
     private $maxLoginTime = 24; // Hours
 
+    /**
+     * Login constructor.
+     * @param $domain
+     */
     public function __construct($domain) {
 
         $this->domain = $domain;
 
     }
 
+    /**
+     * @return bool
+     * Check if user is logged in
+     */
     public function checkLogin() {
 
         // Check SESSION
@@ -59,12 +95,17 @@ class Login {
 
     }
 
+    /**
+     * Update login information
+     */
     public function updateLogin() {
 
+        // Get cookie data
         $cookie = explode('|', Request::$cookie['login']);
         $this->hash = $cookie[0];
         $this->key = $cookie[1];
 
+        // Update cookie value and expiration time
         $cookieRequest = new CookieRequest;
         $cookieRequest->updateCookie(
             'login',
@@ -72,12 +113,16 @@ class Login {
             time() + 60 * 60 * $this->maxLoginTime
         );
 
+        // Update login model
         $loginModel = new LoginModel;
         $loginModel->updateLogin();
         $_SESSION['user'] = UserModel::$user;
 
     }
 
+    /**
+     * Determine primary key type
+     */
     public function keyType() {
 
         $key = $this->key;
@@ -89,8 +134,12 @@ class Login {
 
     }
 
+    /**
+     * Login function, create new login and/or redirect
+     */
     public function login() {
 
+        // Save login data from forms
         $loginData = Request::$forms['login'];
         $this->key = $loginData['username'];
         $this->pass = $loginData['password'];
@@ -99,18 +148,20 @@ class Login {
         $generator = new Generator;
         $this->keyType();
 
+        // Check if user exists
         $user = UserModel::$user;
         if(!isset($user['id'])) {
             $userModel = new UserModel;
             $user = $userModel->getUserBy($this->keyType, $this->key);
         }
 
+        // Check login attempts limit
         $loginAttempts = new LoginAttemptsModel;
         $loginAttempts->start();
-
         if(!$loginAttempts->checkAttempts())
             new UserEvents(2); // Login Attempts
 
+        // Check user and password
         if(empty($user))
             new UserEvents(3); // Invalid Login (username)
 
@@ -119,10 +170,12 @@ class Login {
             new UserEvents(3); // Invalid Login (password)
         }
 
+        // Create login indentifier
         $_SESSION['user'] = $user;
         $loginHash = $generator->generateLoginHash();
         $loginKey = $generator->generateLoginKey();
 
+        // Create Login cookie
         $cookieRequest = new CookieRequest;
         $cookieRequest->updateCookie(
             'login',
@@ -130,6 +183,7 @@ class Login {
             time() + 60 * 60 * $this->maxLoginTime
         );
 
+        // Save login and start user model
         $loginModel = new LoginModel;
         $loginModel->addLogin($loginKey, $loginHash);
 

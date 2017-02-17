@@ -1,0 +1,18 @@
+{
+
+  "LOCALE":"en",
+
+  "EMPTY_INPUT":"Fill the form correctly!",
+
+  "0":"Undefined error",
+  "1":"Invalid login",
+  "2":"Wait a few minutes, please...",
+  "3":"Invalid login",
+  "4":"Invalid input",
+  "5":"Fill out the form correctly",
+  "6":"User does not exist",
+  "7":"User already exists",
+
+  "200":"Success!"
+
+}

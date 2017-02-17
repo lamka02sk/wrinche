@@ -16,7 +16,7 @@
     "maintenance": false
   },
   "locale": {
-    "timezone": "UTC",
+    "timezone": "Europe\/Bratislava",
     "language": "en"
   },
   "paths": {
@@ -36,7 +36,10 @@
       "selector": "selector.min.js",
       "translate": "translate.min.js",
       "theme": "theme.min.js",
-      "jsonLoader": "jsonLoader.min.js"
+      "jsonLoader": "jsonLoader.min.js",
+      "validator": "validator.min.js",
+      "aes": "aes.min.js",
+      "bcrypt": "bcrypt.min.js"
     }
   },
   "tracking": {
@@ -84,6 +87,8 @@
     "settings",
     "website",
     "logins",
-    "login_attempts"
+    "login_attempts",
+    "tokens",
+    "passwords_old"
   ]
 }

@@ -4,7 +4,7 @@
 
 <div class="content-wrapper">
 
-    <span class="response-box">Error Message Test</span>
+    <span class="response-box"></span>
 
     <div class="logo-box">
 
@@ -22,11 +22,19 @@
 
         <h1 data-locale="LOGIN"></h1>
 
-        <input type="text" name="username" placeholder="" data-placeholder="USERNAME">
+        <div class="form-input">
+            <input type="text" name="username" placeholder="" data-placeholder="USERNAME">
+        </div>
 
-        <input type="password" name="password" placeholder="" data-placeholder="PASSWORD">
+        <div class="form-input">
+            <input type="password" name="password" placeholder="" data-placeholder="PASSWORD">
+        </div>
 
-        <a href="" class="register" data-locale="REGISTER"></a>
+        <div class="password-question">
+            <span class="question-content reset-password" data-locale="FORGOT_PASSWORD*"></span>
+        </div>
+
+        <a class="register" data-locale="REGISTER"></a>
 
         <button class="login" data-locale="LOGIN"></button>
 
@@ -38,58 +46,6 @@
 
 </div>
 
-<div class="more-actions">
-
-    <span class="more-trigger">
-
-        <svg version="1.1" id="plus-sign" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-             viewBox="0 0 42 42" xml:space="preserve">
-            <polygon points="42,18 24,18 24,0 18,0 18,18 0,18 0,24 18,24 18,42 24,42 24,24 42,24">
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-        </svg>
-
-    </span>
-
-    <div class="more-content">
-
-        <span class="more-item password"><a href="/reset-password" data-locale="RESET_PASSWORD"></a></span>
-
-        <span class="more-item wiki"><a href="http://wrinche.samuelillo.com/wiki" data-locale="SYSTEM_WIKI"></a></span>
-
-        <span class="more-item credits">&copy; wrinche, <?= date('Y') ?>, v<?= $this->CONFIG['system']['version'] ?></span>
-
-    </div>
-
-</div>
-
 <?php
+require_once ROOT . '/app/Layouts/Auth/BottomActions.php';
 require_once ROOT . '/app/Layouts/Auth/Controls.php';

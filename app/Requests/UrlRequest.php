@@ -36,7 +36,6 @@ class UrlRequest {
         $data = explode('/', rtrim(trim($route), '/'));
         Request::$url = $data;
 
-
     }
 
     public function getUrl() {
@@ -84,6 +83,7 @@ class UrlRequest {
 
         foreach($current as $key => $part) {
 
+            //echo $part . '<br>';
             if(!$this->matchAll($part, $pattern, $key))
                 return false;
 
@@ -109,9 +109,9 @@ class UrlRequest {
             if($patternPart === $part)
                 return true;
 
-            return false;
+        }
 
-        } else if($this->matchAlias($patternPart)) {
+        if($this->matchAlias($patternPart)) {
             // Example: {administration} - is translated to the administration route
             // Check route by alias
 
@@ -121,7 +121,7 @@ class UrlRequest {
             $interval = explode(",", str_replace(["[", "]"], "", $patternPart));
             $min = $interval[0];
             $max = $interval[1];
-            $this->inInterval($min, $max, $part);
+            return $this->inInterval($min, $max, $part);
 
         } else if($this->matchNum($patternPart)) {
             // Example: [num] - if parameter is number
@@ -196,7 +196,7 @@ class UrlRequest {
 
     public function matchANum(string $string) {
 
-        if($this->matchAlpha($string) && $this->matchNum($string))
+        if(preg_match('/(\[[anum]+\])/', $string))
             return true;
 
         return false;

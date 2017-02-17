@@ -3,12 +3,13 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Redirect user to error, information or external website.
- * Version: 1.0.0
+ * Version: 1.0.3
  * Authors: lamka02sk
  */
 
 namespace App\Helpers;
 
+use App\Layouts\Errors\Error;
 use App\Requests\Request;
 use App\Requests\UrlRequest;
 
@@ -90,6 +91,7 @@ class Redirect {
     /**
      * @param string $route
      * Redirect to custom route
+     * @param string $method
      * @return bool
      */
     public static function route($route = '', $method = 'GET') {
@@ -124,7 +126,7 @@ class Redirect {
             $code = 404;
 
         header('HTTP/1.1 ' . $code . ' ' . self::$codes[$code]);
-        require ROOT . '/app/Layouts/Errors/' . $code . '.php';
+        new Error($code);
         exit;
 
     }

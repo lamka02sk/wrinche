@@ -13,6 +13,10 @@ use App\Requests\Request;
 
 class Prepare {
 
+    /**
+     * @var string
+     * Current client language code
+     */
     public $LANG;
 
     /**

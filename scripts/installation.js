@@ -1,141 +1,3 @@
-/*
- * Functions to validate form fields.
- */
-var validate = {
-
-    /**
-     * Validate username
-     * Username: 4-25 characters, no spaces, only letters and numbers
-     * @param inputValue
-     */
-    'username': function(inputValue) {
-
-        if(inputValue.trim().length < 4) {
-            return 'USERNAME_SHORT';
-        }
-
-        if(inputValue.trim().length > 25) {
-            return 'USERNAME_LONG';
-        }
-
-        if(/\s/g.test(inputValue)) {
-            return 'USERNAME_SPACES';
-        }
-
-        var regex = /^([a-zA-Z0-9]+)$/;
-
-        if(!regex.test(inputValue)) {
-            return 'USERNAME_REGEX';
-        }
-
-        return true;
-
-    },
-
-    /**
-     * Validate e-mail
-     * Email: email@example.com, no spaces
-     * @param inputValue
-     */
-    'mail': function(inputValue) {
-
-        if(/\s/g.test(inputValue)) {
-            return 'EMAIL_SPACES';
-        }
-
-        var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-        if(!regex.test(inputValue)) {
-            return 'EMAIL_INVALID';
-        }
-
-        return true;
-
-    },
-
-    /**
-     * Validate password strength
-     * Password: 6-45 characters, at least 1 number, no spaces
-     * @param inputValue
-     */
-    'password': function(inputValue) {
-
-        if(inputValue.trim().length < 8) {
-            return 'PASSWORD_SHORT';
-        }
-
-        if(inputValue.trim().length > 45) {
-            return 'PASSWORD_LONG';
-        }
-
-        if(/\s/g.test(inputValue)) {
-            return 'PASSWORD_SPACES';
-        }
-
-        if(inputValue.match(/\d/g) === null) {
-            return 'PASSWORD_NUMBER';
-        }
-
-        return true;
-
-    },
-
-    /**
-     * Check if both passwords match
-     * @param inputValue
-     */
-    'match': function(inputValue) {
-
-        var pass = $('input[name=password]').val();
-
-        if(pass !== inputValue) {
-            return 'PASSWORD_MATCH';
-        }
-
-        return true;
-
-    },
-
-    /**
-     * Validate website name
-     * Website name: 1-45 characters
-     * @param inputValue
-     */
-    'name': function(inputValue) {
-
-        if(inputValue.trim().length < 1) {
-            return 'NAME_SHORT';
-        }
-
-        if(inputValue.trim().length > 45) {
-            return 'NAME_LONG';
-        }
-
-        return true;
-
-    },
-
-    /**
-     * Validate website description
-     * Website description: 6-120 characters
-     * @param inputValue
-     */
-    'description': function(inputValue) {
-
-        if(inputValue.trim().length < 6) {
-            return 'DESC_SHORT';
-        }
-
-        if(inputValue.trim().length > 120) {
-            return 'DESC_LONG';
-        }
-
-        return true;
-
-    }
-
-};
-
 /**
  * Push error message inside form to indicate invalid field content
  * @param element
@@ -155,7 +17,7 @@ function pushMessage(element, content) {
  * Remove error message from form and clear message content
  * @param element
  */
-function removeMessage(element) {
+function popMessage(element) {
 
     // Remove "Error" identifier from label element and add "Valid" identifier
     element.parent().find('label').removeClass('error').addClass('valid');
@@ -173,33 +35,35 @@ function removeMessage(element) {
  */
 function processValidation(element, locale) {
 
-    var formId = element.parent().parent().parent().parent().data('id');
-    var inputName = element.attr('name');
-    var inputValue = element.val();
+    let formId = element.parent().parent().parent().parent().data('id');
+    let inputName = element.attr('name');
+    let inputValue = element.val();
+    let validationResult;
+    let validate = new Validator;
 
     // If it's Account form
     if(formId === 2) {
 
         // Call the right function
-        var validationResult = validate[inputName](inputValue);
+        validationResult = validate[inputName](inputValue);
 
         if(typeof(validationResult) === 'string') {
 
             // Push error message and return validation result
-            pushMessage(element, locale[validationResult]);
+            pushMessage(element, locale['validate'][validationResult]);
             return false;
 
         } else {
 
             // Remove error message and return validation result
-            removeMessage(element);
+            popMessage(element);
             return true;
 
         }
 
     } else {
 
-        var inputType = element.attr('type');
+        let inputType = element.attr('type');
 
         // If it's checkbox input
         if(inputType === 'checkbox' && element.attr('name') === 'eula') {
@@ -207,13 +71,13 @@ function processValidation(element, locale) {
             if(!element.prop('checked')) {
 
                 // Push error message and return validation result
-                pushMessage(element, locale['EULA_CHECK']);
+                pushMessage(element, locale['validate']['EULA_CHECK']);
                 return false;
 
             } else {
 
                 // Remove error message and return validation result
-                removeMessage(element);
+                popMessage(element);
                 return true;
 
             }
@@ -228,13 +92,13 @@ function processValidation(element, locale) {
             if(typeof(validationResult) === 'string') {
 
                 // Push error message and return validation result
-                pushMessage(element, locale[validationResult]);
+                pushMessage(element, locale['validate'][validationResult]);
                 return false;
 
             } else {
 
                 // Remove error message and return validation result
-                removeMessage(element);
+                popMessage(element);
                 return true;
 
             }
@@ -249,13 +113,13 @@ function processValidation(element, locale) {
             if(typeof(validationResult) === 'string') {
 
                 // Push error message and return validation result
-                pushMessage(element, locale[validationResult]);
+                pushMessage(element, locale['validate'][validationResult]);
                 return false;
 
             } else {
 
                 // Remove error message and return validation result
-                removeMessage(element);
+                popMessage(element);
                 return true;
 
             }
@@ -266,13 +130,13 @@ function processValidation(element, locale) {
         if(inputValue && inputValue.trim()) {
 
             // Remove error message and return validation result
-            removeMessage(element);
+            popMessage(element);
             return true;
 
         } else {
 
             // Push error message and return validation result
-            pushMessage(element, locale['INPUT_EMPTY']);
+            pushMessage(element, locale['validate']['INPUT_EMPTY']);
             return false;
 
         }
@@ -289,7 +153,7 @@ function processValidation(element, locale) {
  */
 function validateForm(formId, locale) {
 
-    var valid = true;
+    let valid = true;
 
     // Validate each form input
     $('div.install-form[data-id=' + formId + '] div.form-input').each(function() {
@@ -297,12 +161,11 @@ function validateForm(formId, locale) {
         // Check if it isn't select
         if(!$(this).hasClass('form-select')) {
 
-            var element = $(this).find('input');
+            let element = $(this).find('input');
 
             // Process validation
-            if(!processValidation(element, locale)) {
+            if(!processValidation(element, locale))
                 valid = false;
-            }
 
         }
 
@@ -319,7 +182,7 @@ function validateForm(formId, locale) {
 function checkConnection(locale) {
 
     // Define form variables
-    var host, name, user, pass;
+    let host, name, user, pass;
 
     // Serialize form data
     host = $('input[name=dbhost]').val();
@@ -346,12 +209,12 @@ function checkConnection(locale) {
             if(result === 'true') {
 
                 // Show success message
-                $('p.connection-message').removeClass('fail').addClass('success').text(locale['CONNECTION_SUCCESS']);
+                $('p.connection-message').removeClass('fail').addClass('success').text(locale['install']['CONNECTION_SUCCESS']);
 
             } else {
 
                 // Show fail message
-                $('p.connection-message').removeClass('success').addClass('fail').text(locale['CONNECTION_ERROR']);
+                $('p.connection-message').removeClass('success').addClass('fail').text(locale['install']['CONNECTION_ERROR']);
 
             }
 
@@ -359,7 +222,7 @@ function checkConnection(locale) {
         error: function() {
 
             // Show fail message
-            $('p.connection-message').removeClass('success').addClass('fail').text(locale['SERVER_ERROR']);
+            $('p.connection-message').removeClass('success').addClass('fail').text(locale['install']['SERVER_ERROR']);
 
         }
     });
@@ -369,11 +232,17 @@ function checkConnection(locale) {
 /*
  * When Document Ready
  */
-var locale;
+let locale;
 
 $(document).ready(function() {
 
-    translate('install');
+    // Translate website
+    let translate = new Translate(['controls', 'system', 'validate', 'install'], 'install');
+    locale = translate.getLocale();
+
+    // Change language option to match reality
+    let language = translate.getLanguage();
+    $('button.selector-option[data-value=' + language + ']').click();
 
     // Intro animation
     $('div.intro').addClass('animate');
@@ -394,14 +263,14 @@ $(document).ready(function() {
     });
 
     // Make the "Next" buttons work
-    var formsData = [];
+    let formsData = [];
 
     $('button.next-step').click(function() {
 
-        var formsToValidate = [2,3,4];                      // First form doesn't need JS validation
-        var formElement = $(this).parent().parent();
-        var formId = formElement.data('id');
-        var nextForm = +formId + 1;
+        let formsToValidate = [2,3,4];                      // First form doesn't need JS validation
+        let formElement = $(this).parent().parent();
+        let formId = formElement.data('id');
+        let nextForm = +formId + 1;
 
         // Serialize and save form data
         formsData[formId] = $(this).prev().serializeArray();
@@ -410,9 +279,8 @@ $(document).ready(function() {
         if(jQuery.inArray(formId, formsToValidate) !== -1) {
 
             // Run validation and die if not valid
-            if(!validateForm(formId, locale)) {
+            if(!validateForm(formId, locale))
                 return false;
-            }
 
         }
 
@@ -424,9 +292,8 @@ $(document).ready(function() {
             checkConnection(locale);
 
             // Stop function if connection failed
-            if($('p.connection-message').hasClass('fail')) {
+            if($('p.connection-message').hasClass('fail'))
                 return false;
-            }
 
         }
 
@@ -504,12 +371,11 @@ $(document).ready(function() {
     // Real-time form validation
     $('input').on('change keydown keypress keyup mousedown click mouseup focusout', function() {
 
-        if($(this).is('checkbox')) {
-            return;
-        }
+        if($(this).is('checkbox'))
+            return false;
 
         // Initialize input validation
-        var element = $(this);
+        let element = $(this);
         processValidation(element, locale);
 
     });
@@ -526,45 +392,45 @@ $(document).ready(function() {
     $('label.checkbox').click(function() {
 
         // Save the clicked input element
-        var input = $(this).parent().find("input");
+        let input = $(this).parent().find("input");
 
         // Toggle checkbox :checked property
-        if(input.is(":checked")) {
+        if(input.is(":checked"))
             input.prop("checked", false);
-        } else {
+        else
             input.prop("checked", true);
-        }
 
     });
 
     // Change language on selector click
     $('#selector_language .selector-options .selector-option').click(function() {
 
-        var currentLanguage = $('html').attr("lang");
-        var language = $(this).data('value');
+        let currentLanguage = $('html').attr("lang");
+        let language = $(this).data('value');
 
-        if(currentLanguage === language) {
-            return;
-        }
+        if(currentLanguage === language)
+            return false;
 
-        var lc ="ENGLISH";
-        if(language === 'sk') {
+        let lc ="ENGLISH";
+        if(language === 'sk')
             lc = "SLOVAK";
-        }
 
         $(this).parent().parent().find('.selector-selected').attr('data-locale', lc);
-        locale = changeLanguage(language, 'install');
+
+        // Translate website
+        localStorage.setItem('locale_install', language);
+        let translate = new Translate(['controls', 'system', 'install', 'validate'], 'install');
+        locale = translate.getLocale();
 
     });
 
     // Change theme on selector click
     $('#selector_theme .selector-options .selector-option').click(function() {
 
-        var theme = $(this).data('value');
+        let theme = $(this).data('value');
 
-        if(currentTheme === theme) {
-            return;
-        }
+        if(currentTheme === theme)
+            return false;
 
         changeTheme(theme, 'installation');
 
@@ -594,8 +460,8 @@ $(document).ready(function() {
     });
 
     // Day / Night Theme Auto Switch
-    var currentTheme = 'light';
-    var date = new Date();
+    let currentTheme = 'light';
+    let date = new Date();
     if((date.getHours() >= 18) || (date.getHours() < 8)) {
 
         // Switch theme to Dark

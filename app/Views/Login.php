@@ -4,21 +4,26 @@
 
 namespace App\Views;
 
-use App\Helpers\Redirect;
 use App\Views\Main as MainView;
 use App\Helpers\Config;
 use App\Models\LocaleModel;
 
 class Login extends MainView {
 
-    public function __construct() {
+    public function __construct(string $page = 'Login') {
 
         $this->setVendorAssets(['jquery', 'jsonLoader', 'translate', 'theme', 'selector']);
-        $this->setAssets('login');
-        $this->setFavicon();
 
+        if($page === 'Login')
+            $this->setAssets('login');
+        else {
+            $this->setVendorAssets('validator');
+            $this->setStyles('login');
+            $this->setScripts(strtolower($page));
+        }
+
+        $this->setFavicon();
         $layout = 'Auth';
-        $page = 'Login';
 
         $this->CONFIG = Config::$file;
 

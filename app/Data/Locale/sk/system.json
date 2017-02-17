@@ -1,5 +1,14 @@
 {
 
-  "PHP_VERSION":"Vaša verzia PHP je príliš zastaralá. Skúste zvoliť novšiu verziu."
+  "PHP_VERSION":"Vaša verzia PHP je príliš zastaralá. Skúste zvoliť novšiu verziu.",
+
+  "LANGUAGE":"Jazyk",
+  "THEME":"Téma",
+
+  "ENGLISH":"Anglicky",
+  "SLOVAK":"Slovensky",
+
+  "LIGHT":"Svetlá",
+  "DARK":"Tmavá"
 
 }

@@ -1,0 +1,18 @@
+{
+
+  "LOCALE":"sk",
+
+  "EMPTY_INPUT":"Vyplňte formulár správne!",
+
+  "0":"Neznáma chyba",
+  "1":"Neplatné príhlásenie",
+  "2":"Počkajte chvíľu, prosím...",
+  "3":"Neplatné údaje",
+  "4":"Neplatný vstup",
+  "5":"Vyplňte formulár správne",
+  "6":"Používateľ neexistuje",
+  "7":"Používateľ už existuje",
+
+  "200":"V poriadku!"
+
+}

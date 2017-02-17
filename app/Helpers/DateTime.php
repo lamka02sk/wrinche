@@ -11,14 +11,28 @@ namespace App\Helpers;
 
 class DateTime {
 
+    /**
+     * @var string
+     * Default datetime format
+     */
     public $format = 'Y-m-d H:i:s';
 
+    /**
+     * @return false|string
+     * Return current datetime
+     */
     public function now() {
 
         return date($this->format);
 
     }
 
+    /**
+     * @param        $interval
+     * @param string $datetime
+     * Subtract interval from current datetime
+     * @return false|string
+     */
     public function sub($interval, $datetime = '') {
 
         if(empty($datetime))
@@ -29,6 +43,12 @@ class DateTime {
 
     }
 
+    /**
+     * @param        $interval
+     * @param string $datetime
+     * Add interval to current time
+     * @return false|string
+     */
     public function add($interval, $datetime = '') {
 
         if(empty($datetime))

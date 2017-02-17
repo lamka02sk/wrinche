@@ -1,0 +1,76 @@
+// Extensions
+@import "../../variables";
+
+body {
+  background: $themeBlue;
+}
+
+div.logo-box img.logo-heading-charcoal {
+  display: none !important;
+}
+
+div.logo-box img.logo-heading-mustard {
+  display: inline-block !important;
+}
+
+form.register-form label {
+  color: $whiteSmoke !important;
+}
+
+form.login-form h1 {
+  color: $themeYellow !important;
+}
+
+form.login-form input {
+  background: $themeBlueLight !important;
+  border-color: $themeBlueLight !important;
+  color: $text-lightGrey;
+}
+
+form.register-form p.message {
+  color: $whiteSmoke !important;
+  background: $themeRedLight !important;
+}
+
+form.login-form a.register {
+  color: $themeYellow !important;
+  &:hover {
+    color: $themeYellowDark !important;
+  }
+}
+
+form.login-form button.login {
+  background: $themeYellow !important;
+  color: $text-darkBlack !important;
+  &:hover {
+    background: $themeYellowDark !important;
+  }
+}
+
+div.more-actions span.more-trigger svg {
+  fill: white !important;
+}
+
+div.more-content span.more-item {
+  color: $text-lightGrey !important;
+}
+
+div.more-content span.more-item a {
+  color: $text-lightGrey !important;
+  &:hover {
+    color: $text-grey !important;
+  }
+}
+
+div.password-question {
+  background-color: $themeGreyMedium !important;
+  &:hover {
+    background-color: $themeGrey !important;
+  }
+}
+
+div.password-question span.question-content {
+  color: $text-lightBlack !important;
+}
+
+@import "auth_controls";

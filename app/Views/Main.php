@@ -15,12 +15,6 @@ class Main {
         'scripts' => []
     ];
 
-    public function __construct() {
-
-        //
-
-    }
-
     public function setVendorAssets($assets) {
 
         $vendor = Config::$file['system']['vendor'];
@@ -68,6 +62,16 @@ class Main {
                 $this->setStyle($style);
         } else
             $this->setStyle($styles);
+
+    }
+
+    public function setScripts($styles) {
+
+        if(is_array($styles)) {
+            foreach($styles as $style)
+                $this->setScript($style);
+        } else
+            $this->setScript($styles);
 
     }
 

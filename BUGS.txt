@@ -1,2 +1,4 @@
-QueryBuilder - addWhere() not working properly
-QueryBuilder - last ID not working properly
+- Remake mailer to support custom connections
+- Send confirmation e-mail after registration
+- User settings are saved two times, not once
+- User can not login if account not confirmed

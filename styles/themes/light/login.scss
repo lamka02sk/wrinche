@@ -1,0 +1,70 @@
+// Extensions
+@import "../../variables";
+
+div.logo-box img.logo-heading-charcoal {
+  display: inline-block !important;
+}
+
+div.logo-box img.logo-heading-mustard {
+  display: none !important;
+}
+
+form.register-form label {
+  color: $text-lightBlack !important;
+}
+
+form.login-form h1 {
+  color: $themeBlueLight !important;
+}
+
+form.login-form input {
+  border-color: silver !important;
+}
+
+form.register-form p.message {
+  color: $text-white !important;
+  background: $errorRed !important;
+}
+
+form.login-form a.register {
+  color: $themeBlueLight !important;
+  &:hover {
+    color: $themeBlue !important;
+  }
+}
+
+form.login-form button.login {
+  background: $themeBlue !important;
+  color: $white !important;
+  &:hover {
+    background: $themeBlueLight !important;
+  }
+}
+
+div.more-actions span.more-trigger svg {
+  fill: $themeBlue !important;
+}
+
+div.more-content span.more-item {
+  color: $text-lightBlack !important;
+}
+
+div.more-content span.more-item a {
+  color: $themeBlue !important;
+  &:hover {
+    color: $themeBlueLight !important;
+  }
+}
+
+div.password-question {
+  background-color: $themeYellowDark !important;
+  &:hover {
+    background-color: $themeYellow !important;
+  }
+}
+
+div.password-question span.question-content {
+  color: $text-lightBlack !important;
+}
+
+@import "auth_controls";

@@ -1,0 +1,31 @@
+{
+
+  "LOCALE":"en",
+
+  "EMPTY_INPUT":"Fill the form correctly!",
+  "INPUT_EMPTY":"Field should not be empty",
+
+  "USERNAME_REGEX":"Username contains invalid characters",
+  "USERNAME_SHORT":"Username is too short",
+  "USERNAME_LONG":"Username is too long",
+  "USERNAME_SPACES":"Username should not contain spaces",
+
+  "EMAIL_SPACES":"E-mail should not contain spaces",
+  "EMAIL_INVALID":"E-mail is invalid",
+
+  "PASSWORD_SHORT":"Password is too short",
+  "PASSWORD_LONG":"Password is too long",
+  "PASSWORD_SPACES":"Password should not contain spaces",
+  "PASSWORD_NUMBER":"Password must contain at least 1 number",
+
+  "PASSWORD_MATCH":"Passwords does not match",
+  "PASSWORD_REPEAT":"Repeat password",
+
+  "NAME_SHORT":"Website name is too short",
+  "NAME_LONG":"Website name is too long",
+  "DESC_SHORT":"Website description is too short",
+  "DESC_LONG":"Website description is too long",
+
+  "EULA_CHECK":"Accept license before Install"
+
+}

@@ -14,6 +14,10 @@ use App\Requests\Request;
 
 class UserEvents {
 
+    /**
+     * @var array
+     * List of error/event codes
+     */
     public $errCodes = [
 
         // Errors
@@ -22,16 +26,54 @@ class UserEvents {
         2 => 'Login Attempts',
         3 => 'Invalid Login',
         4 => 'Invalid Input',
-        5 => 'Empty data'
+        5 => 'Empty data',
+        6 => 'User does not exist',
+        7 => 'User with given email or username already exists',
+        8 => 'Hash does not exists',
+        9 => 'New password equals to old password'
 
     ];
 
+    /**
+     * @var int
+     * Current code
+     */
     public $code;
+
+    /**
+     * @var string
+     * Current code message
+     */
     public $message;
+
+    /**
+     * @var string
+     * Response string (JSON if AJAX or redirect if not)
+     */
     public $response;
+
+    /**
+     * @var bool
+     * Request success: false
+     */
     public $success;
+
+    /**
+     * @var int
+     * Information about logging
+     */
     public $log;
+
+    /**
+     * @var string
+     * Message to write to log file
+     */
     public $logMessage;
+
+    /**
+     * @var bool
+     * Terminate script after event
+     */
     public $terminate;
 
     /**
@@ -52,6 +94,9 @@ class UserEvents {
 
     }
 
+    /**
+     * Create event response
+     */
     public function createResponse() {
 
         $this->message = $this->errCodes[$this->code];
@@ -62,6 +107,9 @@ class UserEvents {
 
     }
 
+    /**
+     * Create log message
+     */
     public function createLogMessage() {
 
         $time = date('Y-m-d H:m:s') . " --------------------------------------------------\n";
@@ -72,6 +120,9 @@ class UserEvents {
 
     }
 
+    /**
+     * Call response
+     */
     public function createReturn() {
 
         $this->response = [
@@ -83,19 +134,25 @@ class UserEvents {
 
     }
 
+    /**
+     * @return bool
+     * Send the event response
+     */
     public function sendResponse() {
 
-        header("HTTP/1.1 520 Unknown Error");
-
+        header("HTTP/1.1 200 OK");
         if(Request::$ajax) {
             echo json_encode($this->response);
             return true;
         }
 
-        echo '520 Unknown Error (Error Event)<br>' . $this->message;
+        echo '200 OK (Error Event)<br>' . $this->message;
 
     }
 
+    /**
+     * Log event in log file
+     */
     public function logEvent() {
 
         new LogEvents($this->logMessage, $this->log);

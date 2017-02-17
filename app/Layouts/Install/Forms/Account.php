@@ -17,7 +17,7 @@
             <div class="form-input">
 
                 <label class="input" for="e-mail" data-locale="EMAIL"></label>
-                <input id="e-mail" type="email" name="mail" data-placeholder="EMAIL" placeholder="" required>
+                <input id="e-mail" type="email" name="email" data-placeholder="EMAIL" placeholder="" required>
                 <p class="message"></p>
 
             </div>
@@ -34,7 +34,7 @@
             <div class="form-input">
 
                 <label class="input" for="match" data-locale="PASSWORD_REPEAT"></label>
-                <input id="match" type="password" name="match" data-placeholder="PASSWORD_REPEAT" placeholder="" required>
+                <input id="match" type="password" name="password_repeat" data-placeholder="PASSWORD_REPEAT" placeholder="" required>
                 <p class="message"></p>
 
             </div>

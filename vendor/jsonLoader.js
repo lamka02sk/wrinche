@@ -11,6 +11,7 @@ function getJson(url) {
             dataType: 'json',
             global: false,
             async: false,
+            cache: true,
             success: function(data) {
                 return data;
             }

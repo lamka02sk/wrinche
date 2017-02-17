@@ -11,11 +11,12 @@ namespace App\Controllers;
 
 class LogsController extends MainController {
 
+    /**
+     * Starts logging engine
+     */
     public function start() {
 
-        /*
-         * Temporary
-         */
+        // Temporary
         $append = "[" . date("Y-m-d h:i:s") . "]\n";
         $append .= "Execution time: " . round((- $_SERVER['REQUEST_TIME_FLOAT'] + microtime(true)) * 1000, 4)  . " ms\n";
         $append .= "Memory used: " . round(memory_get_peak_usage(false)/1024/1024, 4) . " MiB\n";

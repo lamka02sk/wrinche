@@ -11,25 +11,55 @@ namespace App\Database;
 
 class QueryBuilder extends Connection {
 
+    /**
+     * @var array
+     * Possible query types
+     */
     protected $queryTypes = [
         "select", "insert", "update", "delete", "truncate"
     ];
 
+    /**
+     * @var QueryCommands
+     * QueryCommands instance
+     */
     public $queryCommands;
 
+    /**
+     * @var string
+     * Type of the query
+     */
     public $queryType = "";
 
+    /**
+     * @var string
+     * Final generated query to execution
+     */
     public $resultQuery = "";
 
+    /**
+     * @var array
+     * Query value bindings
+     */
     public $queryBinds = [];
 
+    /**
+     * @var bool
+     * First where
+     */
     public $firstWhere = true;
 
+    /**
+     * @var mixed
+     * Query output
+     */
     public $output = "";
 
+    /**
+     * @var string
+     * Get insert ID response
+     */
     public $insertID = "";
-
-    // -----------------------------------------------------------------------------------------------------------------
 
     /**
      * QueryBuilder constructor.
@@ -97,6 +127,9 @@ class QueryBuilder extends Connection {
 
     }
 
+    /**
+     * Create Select type query
+     */
     public function createSelectQuery() {
 
         /*
@@ -209,6 +242,9 @@ class QueryBuilder extends Connection {
 
     }
 
+    /**
+     * Create Insert type query
+     */
     public function createInsertQuery() {
 
         /*
@@ -254,6 +290,9 @@ class QueryBuilder extends Connection {
 
     }
 
+    /**
+     * Create Update type query
+     */
     public function createUpdateQuery() {
 
         /*
@@ -293,6 +332,9 @@ class QueryBuilder extends Connection {
 
     }
 
+    /**
+     * Create Delete type query
+     */
     public function createDeleteQuery() {
 
         /*
@@ -314,6 +356,9 @@ class QueryBuilder extends Connection {
 
     }
 
+    /**
+     * Create Truncate type query
+     */
     public function createTruncateQuery() {
 
         /*
@@ -326,6 +371,10 @@ class QueryBuilder extends Connection {
 
     }
 
+    /**
+     * @return string
+     * Create join clauses
+     */
     public function createJoins() {
 
         $innerJoin = $this->queryCommands->innerJoin;
@@ -373,6 +422,10 @@ class QueryBuilder extends Connection {
 
     }
 
+    /**
+     * @return string
+     * Create where clauses
+     */
     public function createWhere() {
 
         $whereQuery = "WHERE ";

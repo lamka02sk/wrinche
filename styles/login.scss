@@ -94,6 +94,10 @@ div.logo-box img.logo-heading-charcoal, div.logo-box img.logo-heading-mustard {
   }
 }
 
+div.form-input {
+  margin-bottom: 8px;
+}
+
 form.login-form {
   display: inline-block;
   width: 100%;
@@ -127,6 +131,56 @@ form.login-form h1 {
   transition: .2s ease-in-out;
 }
 
+form.register-form label {
+  display: inline-block;
+  margin-bottom: 6px;
+  position: relative;
+  outline: none !important;
+  text-align: left;
+  width: 100%;
+  height: auto;
+  font-family: $font-default;
+  font-size: .82em;
+  text-transform: uppercase;
+  font-weight: 500;
+  &.readonly {
+    opacity: .5;
+  }
+  &.error::after {
+    background-image: url('../assets/icons/error_light.png');
+  }
+  &.valid::after {
+    background-image: url('../assets/icons/valid_light.png');
+  }
+}
+
+form.register-form label::after {
+  content: '';
+  position: absolute;
+  top: 31px;
+  right: 18px;
+  width: 14px;
+  height: 14px;
+  background: center no-repeat;
+  background-size: 14px;
+  z-index: 1;
+}
+
+form.register-form p.message {
+  display: block;
+  width: 100%;
+  height: auto;
+  line-height: 26px;
+  font-size: .82em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 13px;
+  font-family: $font-default;
+  text-align: left;
+  margin: 0;
+}
+
 form.login-form input {
   display: inline-block;
   width: 100%;
@@ -140,8 +194,10 @@ form.login-form input {
   outline: none;
   font-family: $font-default;
   font-size: .9em;
-  margin-bottom: 8px;
   transition: .2s ease-in-out;
+  &[readonly] {
+    opacity: .5;
+  }
 }
 
 form.login-form a.register {
@@ -264,5 +320,37 @@ div.more-content span.more-item {
 div.more-content span.more-item a {
   text-decoration: none;
   transition: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+div.password-question {
+  display: block;
+  width: 100%;
+  height: 0;
+  padding: 0 12px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: .2s ease-in-out;
+  &.show {
+    opacity: 1;
+    height: 32px;
+    margin-bottom: 8px;
+  }
+}
+
+div.password-question span.question-content {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  line-height: 32px;
+  font-family: $font-default;
+  font-size: .82em;
   font-weight: 600;
 }
