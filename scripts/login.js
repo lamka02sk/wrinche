@@ -5,11 +5,16 @@ let locale;
 
 function showResponseMessage(content, type) {
 
+    let code = content;
+
+    if(content === 200)
+        content = locale['login'][content];
+    else
+        content = locale['response'][content];
+
     let responseBox = $('span.response-box');
-    responseBox.attr('data-locale', content);
-    responseBox.html(locale['response'][content]).addClass('active').addClass(type).delay(3000).queue(function() {
-        $(this).removeClass('active').removeClass(type).attr('data-locale', '').dequeue();
-    });
+    responseBox.attr('data-locale', code);
+    responseBox.html(content).removeClass('success', 'error').addClass('active').addClass(type);
 
 }
 
@@ -61,6 +66,8 @@ $('#language .selector-options .selector-option').click(function() {
 
 // Login Button
 $('button.login').click(function() {
+
+    showResponseMessage('LOADING', 'success');
 
     let url = URI;
     let formsData = {

@@ -135,7 +135,8 @@ class InstallModel extends MainModel {
             $this->installationData[2][1]['value'],
             $this->installationData[2][2]['value'],
             1, // First user is admin unconditionally
-            true // Data are valid
+            true,  // Data are valid
+            1  // Account needs to be active
         );
 
         // Save user settings

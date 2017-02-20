@@ -49,6 +49,9 @@ div.password-question span.question-content {
 
 div.control-panel p.controls-title {
   color: #2e4052 !important; }
+  @media (max-width: 360px) {
+    div.control-panel p.controls-title {
+      color: white !important; } }
 
 div.control-panel div.panel-content.active {
   background: white !important; }

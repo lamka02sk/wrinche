@@ -11,6 +11,7 @@ namespace App\Auth;
 
 use App\Errors\UserEvents;
 use App\Models\UserModel;
+use App\Models\UserSettingsModel;
 use App\Requests\Request;
 
 class Register extends Login {
@@ -45,9 +46,14 @@ class Register extends Login {
         // Create new user
         $userModel->createUser($username, $email, $password, 0, true);
 
+        // Create user settings
+        $settingModel = new UserSettingsModel;
+        $settingModel->createSettings(UserModel::$user['id']);
+
         // Create response
         echo json_encode([
-            'success' => true
+            'success' => true,
+            'code' => 200
         ]);
 
         return true;

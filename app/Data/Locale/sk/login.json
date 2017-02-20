@@ -7,6 +7,8 @@
   "USERNAME":"Meno používateľa alebo email",
   "PASSWORD":"*****",
   "REGISTER":"Vytvoriť účet",
-  "FORGOT_PASSWORD*":"Zabudli ste heslo?"
+  "FORGOT_PASSWORD*":"Zabudli ste heslo?",
+
+  "200":"Úspešné prihlásenie"
 
 }

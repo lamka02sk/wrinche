@@ -10,6 +10,7 @@
 namespace App\Controllers\Admin;
 
 use App\Auth\Login;
+use App\Auth\Logout;
 use App\Auth\Register;
 use App\Auth\ResetPassword;
 use App\Errors\UserEvents;
@@ -142,6 +143,9 @@ class AuthController extends AdminController {
      */
     public function getRegister() {
 
+        // Load e-mail config
+        new Config('e-mail');
+
         // Check if registration is allowed
         if(!Config::$file['admin']['register'])
             Redirect::route('');
@@ -257,6 +261,16 @@ class AuthController extends AdminController {
         // Reset Password
         $reset = new ResetPassword('admin');
         $reset->resetPassword();
+
+    }
+
+    public function getLogout() {
+
+        // Proceed logout
+        new Logout('admin');
+
+        // Redirect to login page (in browser redirect)
+        Redirect::redirect('login');
 
     }
 

@@ -3,6 +3,7 @@
   "LOCALE":"en",
 
   "EMPTY_INPUT":"Fill the form correctly!",
+  "LOADING":"Loading...",
 
   "0":"Undefined error",
   "1":"Invalid login",
@@ -12,7 +13,8 @@
   "5":"Fill out the form correctly",
   "6":"User does not exist",
   "7":"User already exists",
-
-  "200":"Success!"
+  "8":"Invalid hash",
+  "9":"New password is the same as any old password",
+  "10":"Account is not active"
 
 }

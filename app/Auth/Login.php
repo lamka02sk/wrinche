@@ -170,6 +170,10 @@ class Login {
             new UserEvents(3); // Invalid Login (password)
         }
 
+        // Check if user has active account
+        if(!(bool)$user['active'])
+            new UserEvents(10);  // Inactive account
+
         // Create login indentifier
         $_SESSION['user'] = $user;
         $loginHash = $generator->generateLoginHash();

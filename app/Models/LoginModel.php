@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Logins Model. Holds and Manages User Sessions.
- * Version: 0.1.5
+ * Version: 0.2.1
  * Authors: lamka02sk
  */
 
@@ -60,9 +60,9 @@ class LoginModel extends MainModel {
             ->select()
             ->selectValues()
             ->where(
-                ['hash', 'key', 'updated'],
-                ['=', '=', '>='],
-                [$login['hash'], $login['key'], $maxTime]
+                ['hash', 'key', 'active', 'updated'],
+                ['=', '=', '=', '>='],
+                [$login['hash'], $login['key'], 1, $maxTime]
             )
             ->first()
             ->exec();
@@ -80,7 +80,6 @@ class LoginModel extends MainModel {
         $loginData = $this->getLogin();
         if($loginData === false)
             return false;
-
 
         if($loginData['ip'] !== Request::$server['client']['ip'] || $loginData['ua'] !== Request::$server['client']['ua'])
             return false;
@@ -139,9 +138,22 @@ class LoginModel extends MainModel {
 
     }
 
-    public function removeLogin() {
+    public function deactivateLogin() {
 
-
+        // Update login token row to active FALSE
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table($this->table)
+            ->update()
+            ->updateRow([
+                'active' => 0
+            ])
+            ->where(
+                ['hash', 'key'],
+                ['=', '='],
+                [LoginModel::$login['hash'], LoginModel::$login['key']]
+            )
+            ->exec();
 
     }
 

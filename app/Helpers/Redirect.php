@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Redirect user to error, information or external website.
- * Version: 1.0.3
+ * Version: 1.1.2
  * Authors: lamka02sk
  */
 
@@ -130,4 +130,22 @@ class Redirect {
         exit;
 
     }
+
+    public static function redirect(string $route) {
+
+        // Change URL request
+        $urlRequest = new UrlRequest;
+        $urlRequest->changeRoute($route, 'GET');
+
+        // Get route
+        $route = $urlRequest->retrieveRoute();
+
+        // Redirect headers
+        header('HTTP/1.1 200 OK');
+        header('Location: ?route=' . $route);
+
+        return true;
+
+    }
+
 }

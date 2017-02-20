@@ -70,13 +70,14 @@ class UserModel extends MainModel {
     }
 
     /**
-     * @param $username
-     * @param $email
-     * @param $password
-     * @param $admin
+     * @param     $username
+     * @param     $email
+     * @param     $password
+     * @param     $admin
      * Creates new user row in DB
+     * @param int $active
      */
-    public function addUser($username, $email, $password, $admin) {
+    public function addUser($username, $email, $password, $admin, $active = 0) {
 
         $builder = new QueryBuilder;
         $builder->queryCommands
@@ -86,7 +87,8 @@ class UserModel extends MainModel {
                 'username' => $username,
                 'email' => $email,
                 'password' => $password,
-                'admin' => $admin
+                'admin' => $admin,
+                'active' => $active
             ]])
             ->exec();
 
@@ -119,8 +121,9 @@ class UserModel extends MainModel {
      * @param int  $admin
      * @param bool $valid
      * Prepares needed data for creating new user
+     * @param int $active
      */
-    public function createUser($username, $email, $password, $admin = 0, $valid = false) {
+    public function createUser($username, $email, $password, $admin = 0, $valid = false, $active = 0) {
 
         // Validate data if they are not
         if(!$valid) {
@@ -149,11 +152,7 @@ class UserModel extends MainModel {
         $password = $crypto->encryptPassword($password);
 
         // Create user in database
-        $this->addUser($username, $email, $password, $admin);
-
-        // Create user settings
-        $settings = new UserSettingsModel;
-        $settings->createSettings($username);
+        $this->addUser($username, $email, $password, $admin, $active);
 
     }
 

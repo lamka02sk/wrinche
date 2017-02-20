@@ -30,7 +30,8 @@ class UserEvents {
         6 => 'User does not exist',
         7 => 'User with given email or username already exists',
         8 => 'Hash does not exists',
-        9 => 'New password equals to old password'
+        9 => 'New password equals to old password',
+        10 => 'Inactive account'
 
     ];
 

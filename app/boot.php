@@ -3,12 +3,9 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Boot script, place where all the magic happens.
- * Version: 0.8.2
+ * Version: 0.8.7
  * Authors: lamka02sk
  */
-
-error_reporting(E_ALL);
-ini_set('display_errors', true);
 
 // Initialize Autoloader
 require_once 'autoload.php';
@@ -24,29 +21,29 @@ use App\Controllers\LogsController;
 use App\Controllers\InstallController;
 
 // Call anti-flood DDoS protection
-//new DDoS;
+new DDoS;
 
 // Save Requests
 Request::init();
 
 // Load Configs
-$config = new Config();
+$config = new Config;
 
 // Create StatsController Instance for user tracking
-$stats = new StatsController();
-$logs = new LogsController();
+$stats = new StatsController;
+$logs = new LogsController;
 
 // Prepare system, Check Dependencies and Save Instance
-$prepare = new Prepare();
+$prepare = new Prepare;
 
 // Verify and update CSRF Token if AJAX Request or update if not AJAX
-$csrf = new Csrf();
+$csrf = new Csrf;
 
 // Check installation or Initialize router
 if(!$prepare->checkInstall()) {
 
     // Call installer
-    $install = new InstallController();
+    $install = new InstallController;
     $install->start();
 
 } else {

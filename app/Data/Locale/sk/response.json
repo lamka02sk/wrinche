@@ -3,6 +3,7 @@
   "LOCALE":"sk",
 
   "EMPTY_INPUT":"Vyplňte formulár správne!",
+  "LOADING":"Načítavanie...",
 
   "0":"Neznáma chyba",
   "1":"Neplatné príhlásenie",
@@ -12,7 +13,8 @@
   "5":"Vyplňte formulár správne",
   "6":"Používateľ neexistuje",
   "7":"Používateľ už existuje",
-
-  "200":"V poriadku!"
+  "8":"Neplatný rozlišovač",
+  "9":"Nové heslo je totožné s niektorým starým",
+  "10":"Účet nie je aktívny"
 
 }

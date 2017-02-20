@@ -69,7 +69,7 @@ class UrlRequest {
 
     public function retrieveRoute() {
 
-        return $_SESSION['route'];
+        return implode('/', Request::$url);
 
     }
 

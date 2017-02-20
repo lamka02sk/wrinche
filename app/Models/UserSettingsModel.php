@@ -44,11 +44,15 @@ class UserSettingsModel extends MainModel {
 
     }
 
-    public function createSettings($username, $language = 0, $theme = 0) {
+    public function createSettings($username = '', $language = 0, $theme = 0) {
 
-        // Users ID
-        $user = new UserModel;
-        $user->prepareUserByUsername($username);
+        if(!empty($username)) {
+
+            // Users ID
+            $user = new UserModel;
+            $user->prepareUserByUsername($username);
+
+        }
 
         // Parse theme
         $themes = Config::$file['system']['support']['themes'];

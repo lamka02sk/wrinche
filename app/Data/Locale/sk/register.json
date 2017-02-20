@@ -8,6 +8,9 @@
   "EMAIL":"E-mail",
   "PASSWORD":"Heslo",
   "PASSWORD_REPEAT":"Zopakujte heslo",
-  "LOGIN":"Prihlásenie"
+  "LOGIN":"Prihlásenie",
+  "REGISTER_SETMAIL":"Prosím, nastavte e-mailové spojenie",
+
+  "200":"Skontrolujte e-mailovú schránku"
 
 }

@@ -55,8 +55,10 @@ div.password-question span.question-content {
 div.control-panel p.controls-title {
   color: #ffc857 !important; }
 
-div.control-panel div.panel-content.active {
+div.control-panel div.panel-content {
   background: #2e4052 !important; }
+  div.control-panel div.panel-content.active {
+    background: #2e4052 !important; }
 
 div.theme-controls p.group-title, div.language-controls p.group-title {
   color: #f7f7f7 !important; }

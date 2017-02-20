@@ -3,6 +3,9 @@
 
 div.control-panel p.controls-title {
   color: $themeBlue !important;
+  @media(max-width: 360px) {
+    color: $text-white !important;
+  }
 }
 
 div.control-panel div.panel-content {

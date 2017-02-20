@@ -5,11 +5,16 @@ let locale;
 
 function showResponseMessage(content, type) {
 
+    let code = content;
+
+    if(content === 200)
+        content = locale['register'][content];
+    else
+        content = locale['response'][content];
+
     let responseBox = $('span.response-box');
-    responseBox.attr('data-locale', content);
-    responseBox.html(locale['response'][content]).addClass('active').addClass(type).delay(3000).queue(function() {
-        $(this).removeClass('active').removeClass(type).attr('data-locale', '').dequeue();
-    });
+    responseBox.attr('data-locale', code);
+    responseBox.html(content).removeClass('success', 'error').addClass('active').addClass(type);
 
 }
 
@@ -120,6 +125,8 @@ $('button.login').click(function() {
     if(!valid)
         return false;
 
+    showResponseMessage("LOADING", 'success');
+
     $.ajax({
         type: 'POST',
         url: url + 'register',
@@ -132,10 +139,9 @@ $('button.login').click(function() {
         success: function(result) {
 
             result = JSON.parse(result);
-            if(result.success) {
+            if(result.success)
                 showResponseMessage(result.code, 'success');
-                window.location.href = url;
-            } else
+            else
                 showResponseMessage(result.code, 'error');
 
         },

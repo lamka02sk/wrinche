@@ -8,6 +8,9 @@
   "EMAIL":"E-mail",
   "PASSWORD":"Password",
   "PASSWORD_REPEAT":"Repeat password",
-  "LOGIN":"Login"
+  "LOGIN":"Login",
+  "REGISTER_SETMAIL":"Please, set up e-mail connection first",
+
+  "200":"Check you mailbox"
 
 }

@@ -14,6 +14,10 @@ class Login extends MainView {
 
         $this->setVendorAssets(['jquery', 'jsonLoader', 'translate', 'theme', 'selector']);
 
+        $register = false;
+        if($page === 'Register' && isset(Config::$file['e-mail']['default']))
+            $register = true;
+
         if($page === 'Login')
             $this->setAssets('login');
         else {

@@ -9,6 +9,9 @@
 
 namespace App\Controllers;
 
+use App\Helpers\Config;
+use App\Requests\Request;
+
 class StatsController extends MainController {
 
 
@@ -27,12 +30,11 @@ class StatsController extends MainController {
     public function start() {
 
         // TEMP
-        /*echo '<br>';
-        echo "Execution time: " . round((- self::$rawData['REQUEST_TIME_FLOAT'] + microtime(true)) * 1000, 4) . ' ms';
+        echo '<br>';
+        echo "Execution time: " . round((microtime(true) - Request::$server['client']['time']) * 1000, 4) . ' ms';
 
         echo '<br>';
         echo 'Memory in use: ' . round(((memory_get_usage() / 1024) / 1024), 4) .'MB';
-*/
     }
 
 }

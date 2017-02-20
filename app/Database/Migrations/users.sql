@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS users (
   email VARCHAR(256) NOT NULL,
   password VARCHAR(512) NOT NULL,
   admin INT(1) NOT NULL DEFAULT 0,
+  active BOOLEAN DEFAULT FALSE,
   created TIMESTAMP DEFAULT current_timestamp,
   updated TIMESTAMP DEFAULT current_timestamp ON UPDATE current_timestamp
 

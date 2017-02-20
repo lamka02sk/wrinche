@@ -22,6 +22,12 @@
 
                 <h1 data-locale="REGISTER"></h1>
 
+                <?php
+
+                if($register):
+
+                ?>
+
                 <div class="form-input">
                     <label for="username" data-locale="USERNAME"></label>
                     <input id="username" type="text" name="username" placeholder="" data-placeholder="USERNAME">
@@ -49,6 +55,22 @@
                 <a class="register login-button" data-locale="LOGIN"></a>
 
                 <button class="login register-button" data-locale="REGISTER"></button>
+
+                <?php
+
+                else:
+
+                ?>
+
+                <p class="message" style="margin-bottom: 12px;" data-locale="REGISTER_SETMAIL"></p>
+
+                <a class="register login-button" data-locale="LOGIN"></a>
+
+                <?php
+
+                endif;
+
+                ?>
 
             </form>
 

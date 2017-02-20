@@ -16,6 +16,7 @@ if($urlRequest->isAdmin()) {
            ->get('register')
            ->get('lost-password')
            ->get('reset-password/[anum]')
+           ->get('logout')
            ->get('home')
            ->get('dashboard');
 

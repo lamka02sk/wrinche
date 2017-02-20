@@ -6,6 +6,7 @@ div.control-panel p.controls-title {
 }
 
 div.control-panel div.panel-content {
+  background: $themeBlue !important;
   &.active {
     background: $themeBlue !important;
   }
