@@ -1,0 +1,28 @@
+{
+
+  "LOCALE":"sk",
+
+  "HEADER_SEARCH":"Zadajte výraz na vyhľadanie alebo príkaz",
+  "HEADER_QUICK":"Skratky",
+  "HEADER_WRITE":"Písať",
+  "HEADER_ACCOUNT":"Môj účet",
+
+  "HEADER_PROFILE":"Môj profil",
+  "HEADER_SETTINGS":"Nastavenia účtu",
+  "HEADER_LOGOUT":"Odhlásenie",
+
+  "WRITE_NEW":"Napísať nový článok",
+  "WRITE_ARTICLE":"Článok",
+  "WRITE_NOTE":"Poznámka",
+  "WRITE_QUICK":"Rýchla správa",
+  "WRITE_IMAGE":"Obrázok",
+  "WRITE_GALLERY":"Galéria",
+  "WRITE_VIDEO":"Video",
+  "WRITE_AUDIO":"Audio",
+  "WRITE_LINK":"Odkaz",
+  "WRITE_QUOTE":"Citát",
+  "WRITE_LIST":"Zoznam",
+
+  "HEADER_LOADING":"Načítavanie"
+
+}

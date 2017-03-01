@@ -26,8 +26,11 @@ class Csrf {
         if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
 
             // Save users token and verify
-            $token = $_POST['csrf_token'];
+            $token = $_POST['csrf_token'] ?? $_GET['csrf_token'];
             $this->verifyToken($token);
+
+            if(isset($_GET['csrf_token']))
+                unset($_GET['csrf_token']);
 
         } else
             $this->updateToken();

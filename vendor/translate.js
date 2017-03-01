@@ -6,7 +6,10 @@
  */
 function Translate(domains, local) {
 
-    this.local = local;
+    this.domains = domains;
+
+    if(local !== false)
+        this.local = local;
     this.locale = {};
 
     for(let i in domains) {
@@ -14,7 +17,7 @@ function Translate(domains, local) {
         let domain = domains[i];
         let language;
 
-        if(localStorage.getItem('locale_' + this.local))
+        if(localStorage.getItem('locale_' + this.local) && local !== false)
             language = localStorage.getItem('locale_' + this.local);
         else
             language = $('html').attr('lang');
@@ -52,7 +55,8 @@ Translate.prototype.getLocale = function() {
 Translate.prototype.changeLanguage = function(language, locale) {
 
     // Change local storage
-    localStorage.setItem('locale_' + this.local, language);
+    if(this.local)
+        localStorage.setItem('locale_' + this.local, language);
 
     // Change html element lang
     $('html').attr('lang', locale['LOCALE']);
@@ -72,5 +76,20 @@ Translate.prototype.changeLanguage = function(language, locale) {
         $('[data-placeholder="' + phrase + '"]').attr('placeholder', locale[phrase]);
 
     });
+
+};
+
+/**
+ * Detect new content and translate it
+ */
+Translate.prototype.addTranslation = function(translation) {
+
+    if(this.locale[translation]) {
+        this.changeLanguage(this.language, this.locale[translation]);
+        return true;
+    }
+
+    this.locale[translation] = getJson("app/Data/Locale/" + this.language + "/" + translation + ".json");
+    this.changeLanguage(this.language, this.locale[translation]);
 
 };

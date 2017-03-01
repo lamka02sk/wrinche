@@ -1,0 +1,199 @@
+{
+
+  "title": {
+    "label": {
+      "attr": {
+        "for":"write_title",
+        "data-locale":"TITLE_LABEL"
+      },
+      "info":"TITLE_INFO"
+    },
+    "parts": {
+      "input": {
+        "attr": {
+          "id":"write_title",
+          "type":"text",
+          "name":"write_title",
+          "data-placeholder":"TITLE_LABEL"
+        },
+        "maxLength":"120"
+      }
+    }
+  },
+
+  "excerpt": {
+    "label": {
+      "attr": {
+        "for":"write_excerpt",
+        "data-locale":"EXCERPT_LABEL"
+      },
+      "info":"EXCERPT_INFO"
+    },
+    "parts": {
+      "textarea": {
+        "attr": {
+          "id":"write_excerpt",
+          "name":"write_excerpt",
+          "data-placeholder":"EXCERPT_PLACEHOLDER"
+        },
+        "maxLength":"360"
+      }
+    }
+  },
+
+  "url": {
+    "label": {
+      "attr": {
+        "for":"write_url",
+        "data-locale":"URL_LABEL"
+      },
+      "info":"URL_INFO"
+    },
+    "parts": {
+      "input": {
+        "attr": {
+          "id":"write_url",
+          "type":"text",
+          "name":"write_url",
+          "data-placeholder":"URL_PLACEHOLDER"
+        },
+        "maxLength":"90"
+      }
+    }
+  },
+
+  "pin": {
+    "icon":"quote.svg",
+    "label": {
+      "attr": {
+        "for":"write_pin",
+        "data-locale":"PIN_LABEL"
+      },
+      "info":"PIN_INFO"
+    },
+    "parts": {
+      "input": {
+        "attr": {
+          "id":"write_pin",
+          "type":"checkbox",
+          "name":"write_pin",
+          "data-placeholder":"PIN_PLACEHOLDER"
+        }
+      }
+    }
+  },
+
+  "perex": {
+    "icon":"location.svg",
+    "label": {
+      "attr": {
+        "for":"write_perex",
+        "data-locale":"PEREX_LABEL"
+      },
+      "info":"PEREX_INFO"
+    },
+    "parts": {
+      "label": {
+        "attr": {
+          "for":"write_perex_date",
+          "data-locale":"PEREX_DATE_LABEL"
+        }
+      },
+      "input": {
+        "attr": {
+          "id":"write_perex_date",
+          "type":"date",
+          "name":"write_perex_date"
+        }
+      },
+      "label#0": {
+        "attr": {
+          "for":"write_perex_location",
+          "data-locale":"PEREX_LOCATION_LABEL"
+        }
+      },
+      "input#0": {
+        "attr": {
+          "id":"write_perex_location",
+          "type":"text",
+          "name":"write_perex_location"
+        },
+        "maxLength":"120"
+      }
+    },
+    "note":"PEREX_NOTE"
+  },
+
+  "thumbnail": {
+    "icon":"image.svg",
+    "label": {
+      "attr": {
+        "for":"write_thumbnail",
+        "data-locale":"THUMBNAIL_LABEL"
+      },
+      "info":"THUMBNAIL_INFO"
+    },
+    "parts": {
+      "span": {
+        "attr": {
+          "class":"thumbnail-name"
+        }
+      },
+      "span#0": {
+        "action":"thumbnail_remove",
+        "attr": {
+          "class":"thumbnail-remove"
+        }
+      },
+      "div": {
+        "attr": {
+          "class":"thumbnail-preview"
+        }
+      },
+      "button": {
+        "action":"image_manager",
+        "attr": {
+          "class":"thumbnail-select",
+          "data-locale":"THUMBNAIL_SELECT"
+        }
+      }
+    }
+  },
+
+  "header_image": {
+    "icon":"image.svg",
+    "label": {
+      "attr": {
+        "for":"write_header_image",
+        "data-locale":"HEADER_IMAGE_LABEL"
+      },
+      "info":"HEADER_IMAGE_INFO"
+    },
+    "parts": {
+      "span": {
+        "attr": {
+          "class":"header_image-name"
+        }
+      },
+      "span#0": {
+        "action":"header_image_remove",
+        "attr": {
+          "class":"header_image-remove"
+        }
+      },
+      "div": {
+        "attr": {
+          "class":"header_image-preview"
+        }
+      },
+      "button": {
+        "action":"image_manager",
+        "attr": {
+          "class":"header_image-select",
+          "data-locale":"HEADER_IMAGE_SELECT"
+        }
+      }
+    }
+  }
+
+}

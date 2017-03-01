@@ -15,6 +15,8 @@
   "7":"User already exists",
   "8":"Invalid hash",
   "9":"New password is the same as any old password",
-  "10":"Account is not active"
+  "10":"Account is not active",
+
+  "404":"Error 404. Page Not Found"
 
 }

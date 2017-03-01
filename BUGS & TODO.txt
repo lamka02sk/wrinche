@@ -12,3 +12,5 @@
 - When logging in with e-mail = error           FIXED (+ other register mistake)
 - Activate admin account when installing        FIXED
 - Fix DDoS view from showing bunch of errors    CONFIRMED / DELAYED
+- DB Login Update is soooo slow!                CONFIRMED / DELAYED / MYSTERIOUS
+- Pass CSRF token along GET Ajax query          FIXED

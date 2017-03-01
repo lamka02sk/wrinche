@@ -10,6 +10,7 @@
 namespace App\Helpers;
 
 use App\Database\Connection;
+use App\Models\TemplateModel;
 
 class Checker {
 
@@ -85,6 +86,27 @@ class Checker {
             return false;
 
         return true;
+
+    }
+
+    /**+
+     * @param $layout string
+     * @return bool
+     */
+    public function templateLayout(string $layout) {
+
+        // Load template data if not loaded
+        $model = new TemplateModel;
+        $model->start();
+
+        // Get template components
+        $layouts = TemplateModel::$template['layouts'];
+        foreach($layouts as $templateLayout) {
+            if(strtolower($layout) === strtolower($templateLayout['name']))
+                return true;
+        }
+
+        return false;
 
     }
 

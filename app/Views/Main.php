@@ -9,6 +9,7 @@ use App\Helpers\Config;
 class Main {
 
     public $page;
+    public $theme = 'light';
     public $CONFIG;
     public $ASSETS = [
         'styles' => [],
@@ -86,7 +87,7 @@ class Main {
 
         $path = Config::$file['system']['paths']['styles'];
         $this->ASSETS['styles'][] = '<link rel="stylesheet" type="text/css" href="' . $path . $style . '.min.css">';
-        $this->ASSETS['styles'][] = '<link id="theme" rel="stylesheet" type="text/css" href="' . $path . 'themes/light/' . $style . '.min.css">';
+        $this->ASSETS['styles'][] = '<link id="theme" rel="stylesheet" type="text/css" href="' . $path . 'themes/' . $this->theme . '/' . $style . '.min.css">';
 
     }
 

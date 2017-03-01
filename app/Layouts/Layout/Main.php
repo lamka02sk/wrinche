@@ -1,20 +1,36 @@
-<!DOCTYPE html>
-<html id="html" lang="<?= $LANG ?>" data-lang="LOCALE">
+<?php
 
-<head>
-    <?php
+if(!App\Requests\Request::$ajax):
 
-    require_once ROOT . '/app/Layouts/Layout/Head.php';
+?>
 
-    ?>
-</head>
+    <!DOCTYPE html>
+    <html id="html" lang="<?= $LANG ?>" data-lang="LOCALE">
 
-<body>
-    <?php
+    <head>
+        <?php
+
+        require_once ROOT . '/app/Layouts/Layout/Head.php';
+
+        ?>
+    </head>
+
+    <body>
+        <?php
+
+        require_once ROOT . '/app/Layouts/Layout/Body.php';
+
+        ?>
+    </body>
+
+    </html>
+
+<?php
+
+else:
 
     require_once ROOT . '/app/Layouts/Layout/Body.php';
 
-    ?>
-</body>
+endif;
 
-</html>
+?>

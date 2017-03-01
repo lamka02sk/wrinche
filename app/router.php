@@ -12,13 +12,32 @@ if($urlRequest->isAdmin()) {
 
     // GET Routes
     $router->get('')
+
+           // Authentication
            ->get('login')
            ->get('register')
            ->get('lost-password')
            ->get('reset-password/[anum]')
            ->get('logout')
-           ->get('home')
-           ->get('dashboard');
+
+           // Menu
+           ->get('dashboard')
+           ->get('articles')
+           ->get('sections')
+           ->get('comments')
+           ->get('mistakes')
+           ->get('multimedia')
+           ->get('sorting')
+           ->get('calendar')
+           ->get('components')
+           ->get('analytics')
+           ->get('websites')
+           ->get('settings')
+
+           // Write
+           ->get('write/{layout}')
+
+    ;
 
     // POST Routes
     $router->post('login')

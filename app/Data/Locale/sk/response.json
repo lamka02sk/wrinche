@@ -15,6 +15,8 @@
   "7":"Používateľ už existuje",
   "8":"Neplatný rozlišovač",
   "9":"Nové heslo je totožné s niektorým starým",
-  "10":"Účet nie je aktívny"
+  "10":"Účet nie je aktívny",
+
+  "404":"Chyba 404. Stránka nenájdená"
 
 }

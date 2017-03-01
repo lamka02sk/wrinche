@@ -18,6 +18,18 @@ class DateTime {
     public $format = 'Y-m-d H:i:s';
 
     /**
+     * @param string $format
+     * Change the result datetime format
+     * @return bool
+     */
+    public function setFormat(string $format) {
+
+        $this->format = $format;
+        return true;
+
+    }
+
+    /**
      * @return false|string
      * Return current datetime
      */

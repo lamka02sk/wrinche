@@ -20,9 +20,9 @@ $themeBlueLight: lighten($themeBlue, 5%);
 $infoBlue: #006ef0;
 
 // Colors: "Green"
-$green: #009b3a;
-$lightGreen: lighten($green, 10%);
-$darkGreen: darken($green, 10%);
+$green: #02c75c;
+$lightGreen: lighten($green, 5%);
+$darkGreen: darken($green, 5%);
 $successGreen: #238051;
 
 // Colors: "Yellow"
@@ -49,6 +49,7 @@ $font-default: $font-roboto;
 // Text colors
 $text-white: white;
 $text-lightGrey: #f7f7f7;
+$text-darkGrey: #505050;
 $text-grey: #9b9b9b;
 $text-lightBlack: #323232;
 $text-darkBlack: #191919;

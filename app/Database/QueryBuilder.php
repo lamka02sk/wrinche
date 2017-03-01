@@ -9,6 +9,8 @@
 
 namespace App\Database;
 
+use App\Controllers\StatsController;
+
 class QueryBuilder extends Connection {
 
     /**

@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Main Router. Handle every request except installation.
- * Version: 0.1.8
+ * Version: 0.2.0
  * Authors: lamka02sk
  */
 
@@ -14,6 +14,9 @@ use App\Requests\Request;
 use App\Requests\UrlRequest;
 
 class Router {
+
+    public $changeAlias = '';
+    public $aliasName = '';
 
     public $category;
     public $subcategory;
@@ -86,7 +89,19 @@ class Router {
     public function validateRoute($key, $method) {
 
         $route = $this->routePrefix . $this->routes[$key]['route'];
-        if($this->request->isMethod($method) && $this->urlRequest->is($route)) {
+        if($this->request->isMethod($method) && $this->urlRequest->is($this, $route)) {
+
+            if(!empty($this->changeAlias)) {
+
+                $path = str_replace($this->aliasName, $this->changeAlias, $this->routes[$key]['route']);
+                $this->route = [
+                    'method' => $this->routes[$key]['method'],
+                    'path' => $path
+                ];
+
+                return true;
+
+            }
 
             $this->route = [
                 'method' => $this->routes[$key]['method'],

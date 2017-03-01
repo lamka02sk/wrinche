@@ -1,0 +1,18 @@
+{
+
+  "LOCALE":"en",
+
+  "MENU_DASHBOARD":"Dashboard",
+  "MENU_ARTICLES":"Articles",
+  "MENU_SECTIONS":"Sections",
+  "MENU_COMMENTS":"Comments",
+  "MENU_MISTAKES":"Mistakes",
+  "MENU_MULTIMEDIA":"Multimedia",
+  "MENU_SORTING":"Sorting",
+  "MENU_CALENDAR":"Calendar",
+  "MENU_COMPONENTS":"Components",
+  "MENU_ANALYTICS":"Analytics",
+  "MENU_WEBSITES":"Websites",
+  "MENU_SETTINGS":"Settings"
+
+}
