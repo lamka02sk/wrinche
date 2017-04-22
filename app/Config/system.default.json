@@ -146,6 +146,8 @@
     "articles",
     "articles_content",
     "attachments",
-    "revisions"
+    "revisions",
+    "categories",
+    "tags"
   ]
 }

@@ -25,6 +25,22 @@
 
   "HEADER_LOADING":"Loading",
 
-  "MEDIA_MANAGER_TITLE":"Media Manager"
+  "MEDIA_MANAGER_TITLE":"Media Manager",
+  "MEDIA_MANAGER_DASHBOARD":"Dashboard",
+  "MEDIA_MANAGER_UPLOAD_IMAGE_BUTTON":"Upload image",
+  "MEDIA_MANAGER_UPLOAD_VIDEO_BUTTON":"Upload video",
+  "MEDIA_MANAGER_UPLOAD_AUDIO_BUTTON":"Upload audio",
+  "MEDIA_MANAGER_UPLOAD_FILE_BUTTON":"Upload file",
+  "MEDIA_MANAGER_QUEUE_TITLE":"Upload queue",
+
+  "UPLOAD":"Upload",
+
+  "IMAGES":"Images",
+  "VIDEOS":"Videos",
+  "AUDIOS":"Sounds",
+  "FILES":"Files",
+
+  "VALIDATION_URL_INVALID":"Invalid URL",
+  "VALIDATION_URL_UNRESOLVED":"URL unresolved"
 
 }

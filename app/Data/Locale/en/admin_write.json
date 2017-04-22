@@ -85,6 +85,7 @@
   "WRITE_THUMBNAIL_INFO":"Thumbnail is a small picture showing next to the content link",
   "WRITE_THUMBNAIL_BUTTON":"Choose picture",
   "WRITE_THUMBNAIL_INPUT":"Insert picture link",
+  "WRITE_THUMBNAIL_INPUT_INFO":"Press Enter to add URL",
 
   "WRITE_HEADER-IMAGE_LABEL":"Header image",
   "WRITE_HEADER-IMAGE_INFO":"Header image is a picture showing next to the heading",
@@ -93,11 +94,14 @@
 
   "WRITE_LANGUAGES_LABEL":"Languages",
   "WRITE_LANGUAGES_INFO":"Allows you to write different content for different languages",
-  "WRITE_LANGUAGES_ADD":"Add language",
+  "WRITE_LANGUAGES_SEARCH":"Find language",
 
   "WRITE_ATTACHMENTS_LABEL":"Attachments",
   "WRITE_ATTACHMENTS_INFO":"Attach files, image or whatever you want to the content",
-  "WRITE_ATTACHMENTS_BUTTON":"Add attachment",
+  "WRITE_ATTACHMENTS_ADD_IMAGE":"Add image",
+  "WRITE_ATTACHMENTS_ADD_VIDEO":"Add video",
+  "WRITE_ATTACHMENTS_ADD_AUDIO":"Add audio",
+  "WRITE_ATTACHMENTS_ADD_FILE":"Add file",
 
   "WRITE_MENU-LINK_LABEL":"Add menu link",
   "WRITE_MENU-LINK_INFO":"Adds direct link to content into selected menu",
@@ -106,10 +110,11 @@
   "WRITE_MENU-LINK_ADD_PLACEHOLDER":"Enter item name",
 
   "WRITE_CUSTOM-FIELDS_LABEL":"Custom fields",
+  "WRITE_CUSTOM-FIELDS_ADD_HEADING":"Create new field",
   "WRITE_CUSTOM-FIELDS_INFO":"Custom fields contain extra metadata of content",
-  "WRITE_CUSTOM-FIELDS_ADD_ROW":"Add entry",
-  "WRITE_CUSTOM-FIELDS_COLUMN_NAME":"Identifier",
-  "WRITE_CUSTOM-FIELDS_COLUMN_VALUE":"Value",
+  "WRITE_CUSTOM-FIELDS_ADD_ROW":"Add field",
+  "WRITE_CUSTOM-FIELDS_NAME":"Identifier",
+  "WRITE_CUSTOM-FIELDS_VALUE":"Value",
 
   "WRITE_TAGS_LABEL":"Tags",
   "WRITE_TAGS_INFO":"Tags are used to sort content by subject",
@@ -117,8 +122,75 @@
   "WRITE_TAGS_INPUT_INFO":"When entering more tags, use comma as a separator",
   "WRITE_TAGS_MANAGE":"Manage tags",
 
+  "WRITE_REVISIONS_LABEL":"Revisions",
+  "WRITE_REVISIONS_INFO":"Keeps all the changes at a glance",
+  "WRITE_REVISIONS_NEW_PLACEHOLDER":"Current revision description",
+
+  "WRITE_CATEGORIES_LABEL":"Categories",
+  "WRITE_CATEGORIES_ADD":"Add category",
+  "WRITE_CATEGORIES_MANAGE":"Manage categories",
+
+  "WRITE_META_LABEL":"Meta information",
+  "WRITE_META_INFO":"Allow attaching more information about content to improve SEO",
+  "WRITE_META_MANUALLY":"Custom meta",
+
+  "WRITE_PLANNER_LABEL":"Planner",
+  "WRITE_PLANNER_INFO":"Planner can automatize content publishing process",
+  "WRITE_PLANNER_PUBLISH_LABEL":"Publishing",
+  "WRITE_PLANNER_PUBLISH_AUTO_LABEL":"Automatically",
+  "WRITE_PLANNER_PUBLISH_DATE_PLACEHOLDER":"Date",
+  "WRITE_PLANNER_PUBLISH_TIME_PLACEHOLDER":"Time",
+  "WRITE_PLANNER_EXPIRY_LABEL":"Expiration",
+  "WRITE_PLANNER_EXPIRY_DATE_PLACEHOLDER":"Date",
+  "WRITE_PLANNER_EXPIRY_TIME_PLACEHOLDER":"Time",
+  "WRITE_PLANNER_NOTIFY_ENABLE":"Enable notifications",
+  "WRITE_PLANNER_NOTIFY_E-MAIL":"E-mail notifications",
+
+  "WRITE_STATUS_LABEL":"Status",
+  "WRITE_STATUS_INFO":"Current content status",
+
+  "WRITE_AUTHOR_LABEL":"Authors",
+  "WRITE_AUTHOR_INFO":"Feature to manage content authors",
+  "WRITE_AUTHOR_ADD":"Add author",
+
+  "WRITE_CREATED-AT_LABEL":"Created at",
+  "WRITE_CREATED-AT_INFO":"Used to change creation date in some situations",
+  "WRITE_CREATED_LABEL":"Change date",
+
+  "WRITE_LAST-UPDATE_LABEL":"Last updated",
+  "WRITE_LAST-UPDATE_INFO":"Used to change date of last modification in some situations",
+  "WRITE_LAST-UPDATE_CUSTOM_LABEL":"Change date",
+
+  "WRITE_COPYRIGHT_LABEL":"Copyright",
+  "WRITE_COPYRIGHT_INFO":"Informs the reader about reproduction options",
+
+  "WRITE_ACCESSIBILITY_LABEL":"Accessibility",
+  "WRITE_ACCESSIBILITY_INFO":"Defines the group of people who can access this content",
+  "WRITE_ACCESSIBILITY_OPTION_PUBLIC":"Public",
+  "WRITE_ACCESSIBILITY_OPTION_PASSWORD":"Password protected",
+  "WRITE_ACCESSIBILITY_OPTION_PRIVATE":"Private",
+
+  "WRITE_COMMENTS_LABEL":"Comments",
+  "WRITE_COMMENTS_INFO":"Comments settings and actions",
+  "WRITE_COMMENTS_ENABLE_LABEL":"Enable comments",
+  "WRITE_COMMENTS_APPROVE_LABEL":"Allow only approved",
+
+  "WRITE_SOURCES_LABEL":"Sources",
+  "WRITE_SOURCES_INFO":"List of material and fact sources used in the content",
+  "WRITE_SOURCES_ADD_LABEL":"Add source",
+  "WRITE_SOURCES_ADD_NAME_PLACEHOLDER":"Source name",
+  "WRITE_SOURCES_ADD_SOURCE_PLACEHOLDER":"Link to source",
+  "WRITE_SOURCES_ADD_BUTTON":"Add source",
+
+  "WRITE_MISTAKES_LABEL":"Mistakes",
+  "WRITE_MISTAKES_ENABLE_LABEL":"Enable reporting",
+  "WRITE_MISTAKES_NOTIFY_LABEL":"Enable notifications",
+  "WRITE_MISTAKES_E-MAIL_LABEL":"E-mail notifications",
+
   "BUTTON_COLLAPSE_OPEN":"Show all",
   "BUTTON_COLLAPSE_CLOSE":"Collapse",
+  "BUTTON_ADD":"Add",
+  "BUTTON_ADDED":"Added",
 
   "ADD_HEADING":"Heading",
   "ADD_RICH_TEXT":"Paragraph",

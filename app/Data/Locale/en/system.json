@@ -7,6 +7,7 @@
   "LANGUAGE":"Language",
   "THEME":"Theme",
 
+  "LANGUAGES_ALL":"All languages",
   "ENGLISH":"English",
   "SLOVAK":"Slovak",
   "CZECH":"Czech",
@@ -20,6 +21,10 @@
   "THURSDAY":"Thursday",
   "FRIDAY":"Friday",
   "SATURDAY":"Saturday",
-  "SUNDAY":"Sunday"
+  "SUNDAY":"Sunday",
+
+  "LANGUAGE_SLOVAK":"Slovak",
+  "LANGUAGE_ENGLISH":"English",
+  "LANGUAGE_CZECH":"Czech"
 
 }
