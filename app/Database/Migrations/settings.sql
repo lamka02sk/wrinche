@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS user_settings (
   time_format INT(2) DEFAULT 0 NULL,
   number_format INT(2) DEFAULT 0 NULL,
   timezone INT(6) DEFAULT 0 NOT NULL,
-  custom_settings JSON NOT NULL,
+  custom_settings JSON DEFAULT NULL,
 
   FOREIGN KEY (user_id) REFERENCES users(id)
 

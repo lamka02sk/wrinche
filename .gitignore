@@ -10,5 +10,5 @@ app/Config/system.json
 app/Config/e-mail.json
 
 ### Other files ###
-app/Components/Files/*.php
 app/Data/Files/*/*
+!app/Data/Files/*/.gitkeep
