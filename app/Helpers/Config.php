@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * System config loader helper.
- * Version: 0.6.2
+ * Version: 0.7.5
  * Authors: lamka02sk
  */
 
@@ -64,7 +64,13 @@ class Config {
     private function loadConfig($file) {
 
         // Get config
-        $json = file_get_contents(ROOT . '/app/Config/' . $file . '.json');
+        if(file_exists(ROOT . '/app/Config/' . $file . '.json'))
+            $json = file_get_contents(ROOT . '/app/Config/' . $file . '.json');
+        else if(file_exists(ROOT . '/app/Config/' . $file . '.default.json'))
+            $json = file_get_contents(ROOT . '/app/Config/' . $file . '.default.json');
+        else
+            $json = '{}';
+
         $array = json_decode($json, true);
 
         // Save config into session variable
