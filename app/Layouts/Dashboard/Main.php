@@ -9,7 +9,7 @@ if(!App\Requests\Request::$ajax) {
 
 ?>
 
-<div class="content-wrapper">
+<div class="content-wrapper" data-locales="admin_dashboard">
 
     <div class="content-header">
 

@@ -77,6 +77,24 @@ Translate.prototype.changeLanguage = function(language, locale) {
 
     });
 
+    $('[data-sublocale]').each(function() {
+
+        let phrase = $(this).data('sublocale');
+        $('[data-sublocale="' + phrase + '"]').html(locale[phrase]);/*.find('.option-text').text(locale[phrase]);*/
+
+    });
+
+};
+
+/**
+ * Translate or load given locales
+ * @param locales
+ */
+Translate.prototype.translateLocales = function(locales) {
+
+    for(let i = 0; i < locales.length; ++i)
+        this.addTranslation(locales[i]);
+
 };
 
 /**

@@ -1,0 +1,1 @@
+body:before{white-space:pre;font-family:monospace;content:"Error: Undefined variable: \"$whiteSmoke\".\A         on line 4 of admin_content_write.scss\A \A 1: div.content-content {\A 2:   div.content-component, div.content-content-component {\A 3:     &.content-box {\A 4:       background: $whiteSmoke !important;\A 5:     }\A 6:   }\A 7: }\A 8: \A 9: div.content-content label {"}

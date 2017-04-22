@@ -1,0 +1,1 @@
+body:before{white-space:pre;font-family:monospace;content:"Error: Undefined variable: \"$white\".\A         on line 2 of header.scss\A \A 1: div.splash {\A 2:   background: $white !important;\A 3:   \A 4: }"}

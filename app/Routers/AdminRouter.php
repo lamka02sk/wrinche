@@ -74,8 +74,8 @@ class AdminRouter extends Router {
 
         // Call Category Controller
         $name = 'App\\Controllers\\Admin\\' . ucfirst($this->category) . 'Controller';
-        /*$controller = */new $name($this->subcategory);
-        //$controller->{$method}();
+        new $name($this->subcategory);
+        return true;
 
     }
 

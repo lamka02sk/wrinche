@@ -1,0 +1,118 @@
+{
+
+  "name":"attachments",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"builder-tools"
+      },
+      "children": [
+
+        {
+          "element":"button",
+          "attributes": {
+            "class":"button add-attachment icon-image",
+            "data-content":"images",
+            "data-locale":"WRITE_ATTACHMENTS_ADD_IMAGE"
+          }
+        },
+
+        {
+          "element":"button",
+          "attributes": {
+            "class":"button add-attachment icon-video",
+            "data-content":"videos",
+            "data-locale":"WRITE_ATTACHMENTS_ADD_VIDEO"
+          }
+        },
+
+        {
+          "element":"button",
+          "attributes": {
+            "class":"button add-attachment icon-audio",
+            "data-content":"sounds",
+            "data-locale":"WRITE_ATTACHMENTS_ADD_AUDIO"
+          }
+        },
+
+        {
+          "element":"button",
+          "attributes": {
+            "class":"button add-attachment icon-file",
+            "data-content":"files",
+            "data-locale":"WRITE_ATTACHMENTS_ADD_FILE"
+          }
+        }
+
+      ]
+    },
+
+    {
+      "element": "div",
+      "attributes": {
+        "class": "attachments-list"
+      }
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_attachments_added"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"attachment-list-item",
+            "data-path":""
+          },
+          "children": [
+
+            {
+              "element":"div",
+              "attributes": {
+                "class":"attachment-image"
+              },
+              "children": [
+
+                {
+                  "element":"img>",
+                  "attributes": {
+                    "src":"",
+                    "alt":"",
+                    "class":"attachment-image-content"
+                  }
+                }
+
+              ]
+            },
+
+            {
+              "element":"p",
+              "attributes": {
+                "class":"attachment-name"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"attachment-remove"
+              }
+            }
+
+          ]
+        }
+
+      ]
+    }
+
+  ]
+
+}

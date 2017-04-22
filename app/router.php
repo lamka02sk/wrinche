@@ -27,15 +27,34 @@ if($urlRequest->isAdmin()) {
            ->get('comments')
            ->get('mistakes')
            ->get('multimedia')
+
            ->get('sorting')
+           ->get('sorting/categories')
+           ->get('sorting/tags')
+
            ->get('calendar')
            ->get('components')
            ->get('analytics')
            ->get('websites')
-           ->get('settings')
+           ->get('settings')        // Redirected to 'settings/appearance'
+
+           // Settings
+           ->get('settings/appearance')
+           ->get('settings/account')
+           ->get('settings/writing')
+           ->get('settings/privacy')
+           ->get('settings/notifications')
+           ->get('settings/multimedia')
+           ->get('settings/system')
+           ->get('settings/keyboard')
+           ->get('settings/users')
+           ->get('settings/website')        // Redirected to 'website'
 
            // Write
            ->get('write/{layout}')
+
+           // Media Manager
+           ->get('mediamanager')
 
     ;
 
@@ -43,7 +62,29 @@ if($urlRequest->isAdmin()) {
     $router->post('login')
            ->post('lost-password')
            ->post('reset-password')
-           ->post('register');
+           ->post('register')
+
+           // Save article
+           ->post('write')
+
+           // Settings
+           ->post('settings/appearance')
+           ->post('settings/account')
+           ->post('settings/writing')
+           ->post('settings/privacy')
+           ->post('settings/notifications')
+           ->post('settings/multimedia')
+           ->post('settings/system')
+           ->post('settings/keyboard')
+           ->post('settings/users')
+           ->post('settings/website')
+
+           // Media manager
+           ->post('mediamanager')
+           ->post('mediamanager/filelist')
+           ->post('mediamanager/upload')
+
+    ;
 
     // Navigate app
     $route = $router->done();

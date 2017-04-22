@@ -1,1 +1,151 @@
-{"name":"wrinche","description":"Modern, powerful and user friendly CMS.","version":"0.0.3 alpha","domain":"\/","charset":"UTF-8","requirements":{"php-version":7,"mysql-version":5.6},"default":{"theme":"light"},"env":{"debug":true,"maintenance":false},"locale":{"timezone":"Europe\/Bratislava","language":"en"},"paths":{"assets":"assets\/","styles":"styles\/","scripts":"scripts\/","fonts":"fonts\/","vendor":"vendor\/","admin":""},"vendor":{"styles":{"selector":"selector.min.css"},"scripts":{"jquery":"jquery.min.js","selector":"selector.min.js","translate":"translate.min.js","theme":"theme.min.js","jsonLoader":"jsonLoader.min.js","validator":"validator.min.js","aes":"aes.min.js","bcrypt":"bcrypt.min.js","closer":"closer.min.js","loader":"loader.min.js"}},"tracking":{"client":true,"events":true,"stats":true,"location":true,"performance":true,"errors":true,"operations":true},"support":{"languages":{"en":"ENGLISH","sk":"SLOVAK"},"themes":{"light":"LIGHT","dark":"DARK"},"categories":["ART","ANIMALS","DESIGN","ELECTRONICS","HOLIDAYS","EDUCATION","BUSINESS","CARS","SPORT","FASHION","COMPUTERS","FOOD","SOCIETY","HOME","ENTERTAINMENT","ESTATE","MEDICAL","GARDEN"],"templates":["silencer"]},"installed":false,"installation_migrations":["users","settings","website","logins","login_attempts","tokens","passwords_old"]}
+{
+  "name": "wrinche",
+  "description": "Modern, powerful and user friendly CMS.",
+  "version": "0.0.3 alpha",
+  "domain": "\/",
+  "charset": "UTF-8",
+  "requirements": {
+    "php-version": 7,
+    "mysql-version": 5.6
+  },
+  "default": {
+    "theme": "light"
+  },
+  "env": {
+    "debug": true,
+    "maintenance": false
+  },
+  "locale": {
+    "timezone": "Europe\/Bratislava",
+    "language": "en"
+  },
+  "paths": {
+    "assets": "assets\/",
+    "styles": "styles\/",
+    "scripts": "scripts\/",
+    "fonts": "fonts\/",
+    "vendor": "vendor\/",
+    "admin": "41cd1337934e86b4"
+  },
+  "vendor": {
+    "styles": {
+      "selector": "selector.min.css",
+      "selector2": "selector2.min.css",
+      "flatpickr": "flatpickr.min.css"
+    },
+    "scripts": {
+      "jquery": "jquery.min.js",
+      "selector": "selector.min.js",
+      "selector2": "selector2.min.js",
+      "translate": "translate.min.js",
+      "theme": "theme.min.js",
+      "jsonLoader": "jsonLoader.min.js",
+      "validator": "validator.min.js",
+      "aes": "aes.min.js",
+      "bcrypt": "bcrypt.min.js",
+      "closer": "closer.min.js",
+      "loader": "loader.min.js",
+      "loader2": "loader2.min.js",
+      "packery": "packery.min.js",
+      "draggabilly": "draggabilly.min.js",
+      "ckeditor": "ckeditor\/ckeditor.js",
+      "mediaManager": "mediaManager.min.js",
+      "flatpickr": "flatpickr.min.js"
+    }
+  },
+  "tracking": {
+    "client": true,
+    "events": true,
+    "stats": true,
+    "location": true,
+    "performance": true,
+    "errors": true,
+    "operations": true
+  },
+  "support": {
+    "languages": {
+      "en": "ENGLISH",
+      "sk": "SLOVAK",
+      "cs": "CZECH"
+    },
+    "themes": {
+      "light": "LIGHT",
+      "dark": "DARK"
+    },
+    "categories": [
+      "ART",
+      "ANIMALS",
+      "DESIGN",
+      "ELECTRONICS",
+      "HOLIDAYS",
+      "EDUCATION",
+      "BUSINESS",
+      "CARS",
+      "SPORT",
+      "FASHION",
+      "COMPUTERS",
+      "FOOD",
+      "SOCIETY",
+      "HOME",
+      "ENTERTAINMENT",
+      "ESTATE",
+      "MEDICAL",
+      "GARDEN"
+    ],
+    "templates": [
+      "silencer"
+    ],
+    "date_formats": [
+      "d.m.Y",
+      "j.n.Y",
+      "j. M Y",
+      "d\/m\/Y",
+      "m\/d\/Y",
+      "Y-m-d",
+      "F j, Y"
+    ],
+    "time_formats": [
+      "H:i",
+      "H:i:s",
+      "g:i a",
+      "g:i A",
+      "U"
+    ],
+    "number_formats": [
+      [
+        2,
+        ",",
+        "."
+      ],
+      [
+        2,
+        ",",
+        " "
+      ],
+      [
+        2,
+        ".",
+        ","
+      ],
+      [
+        2,
+        ".",
+        " "
+      ]
+    ]
+  },
+  "installed": true,
+  "installation_migrations": [
+    "users",
+    "settings",
+    "website",
+    "logins",
+    "login_attempts",
+    "tokens",
+    "passwords_old",
+    "articles",
+    "articles_content",
+    "attachments",
+    "revisions"
+  ]
+}

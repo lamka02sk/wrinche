@@ -1,0 +1,72 @@
+{
+
+  "name":"gallery",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"span",
+      "attributes": {
+        "class":"gallery-add-image"
+      }
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_gallery_item"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"gallery-item",
+            "data-path":""
+          },
+          "children": [
+
+            {
+              "element":"div",
+              "attributes": {
+                "class":"item-image"
+              },
+              "children": [
+
+                {
+                  "element":"img",
+                  "attributes": {
+                    "class":"item-image-content",
+                    "alt":"",
+                    "src":""
+                  }
+                }
+
+              ]
+            },
+
+            {
+              "element":"p",
+              "attributes": {
+                "class":"gallery-item-name"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"remove-gallery-item"
+              }
+            }
+
+          ]
+        }
+
+      ]
+    }
+
+  ]
+
+}

@@ -1,0 +1,31 @@
+{
+
+  "name":"status",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"select",
+      "label":"status",
+      "attributes": {
+        "class":"selector-instance",
+        "name":"write_status"
+      },
+      "children_template": [
+
+        {
+          "element":"option",
+          "attributes": {
+            "value":"",
+            "data-locale":"WRITE_STATUS_"
+          }
+        }
+
+      ]
+    }
+
+  ]
+
+}

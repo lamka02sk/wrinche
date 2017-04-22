@@ -1,0 +1,31 @@
+{
+
+  "name":"rating",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"label checkbox-click",
+        "for":"write-rating",
+        "data-locale":"WRITE_RATING_ENABLE_LABEL"
+      }
+    },
+
+    {
+      "element":"input>",
+      "label":"write-rating",
+      "attributes": {
+        "class":"input",
+        "type":"checkbox",
+        "name":"write_rating_enable",
+        "value":"write-rating-enable"
+      }
+    }
+
+  ]
+
+}

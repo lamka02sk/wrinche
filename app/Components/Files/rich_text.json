@@ -1,0 +1,20 @@
+{
+
+  "name":"rich_text",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"textarea",
+      "label":"content-rich_text",
+      "attributes": {
+        "class":"textarea-editor",
+        "name":"write_content_rich-text"
+      }
+    }
+
+  ]
+
+}

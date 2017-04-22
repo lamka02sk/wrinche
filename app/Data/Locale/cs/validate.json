@@ -1,0 +1,31 @@
+{
+
+  "LOCALE":"cs",
+
+  "EMPTY_INPUT":"Vyplňte formulář správně!",
+  "INPUT_EMPTY":"Nejsou vyplněna všechna povinná políčka!",
+
+  "USERNAME_REGEX":"Uživatelské jméno obsahuje neplatné znaky",
+  "USERNAME_SHORT":"Uživatelské jméno je příliš krátké",
+  "USERNAME_LONG":"Uživatelské jméno je příliš dlouhé",
+  "USERNAME_SPACES":"Uživatelské jméno nesmí obsahovat mezery",
+
+  "EMAIL_SPACES":"E-mail nesmí obsahovat mezery",
+  "EMAIL_INVALID":"E-mail je neplatný",
+
+  "PASSWORD_SHORT":"Heslo je příliš krátké",
+  "PASSWORD_LONG":"Heslo je příliš dlouhé",
+  "PASSWORD_SPACES":"Heslo nesmí obsahovat mezery",
+  "PASSWORD_NUMBER":"Heslo musí obsahovat minimálně 1 číslo",
+
+  "PASSWORD_MATCH":"Hesla se neshodují",
+  "PASSWORD_REPEAT":"Zopakujte heslo",
+
+  "NAME_SHORT":"Název webstránky je příliš krátký",
+  "NAME_LONG":"Název webstránky je příliš dlouhý",
+  "DESC_SHORT":"Popis webstránky je příliš krátký",
+  "DESC_LONG":"Popis webstránky je příliš dlouhý",
+
+  "EULA_CHECK":"Potvrďte souhlas s licencí"
+
+}

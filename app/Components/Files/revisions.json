@@ -1,0 +1,55 @@
+{
+
+  "name":"revisions",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"textarea",
+      "label":"revisions",
+      "attributes": {
+        "class":"small-textarea",
+        "name":"write_revisions_new",
+        "data-placeholder":"WRITE_REVISIONS_NEW_PLACEHOLDER"
+      }
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_revisions_item"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"revisions-revision"
+          },
+          "children": [
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"revision-datetime"
+              }
+            },
+
+            {
+              "element":"p",
+              "attributes": {
+                "class":"revision-content"
+              }
+            }
+
+          ]
+        }
+
+      ]
+    }
+
+  ]
+
+}

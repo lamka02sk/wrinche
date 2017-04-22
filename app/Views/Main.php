@@ -5,6 +5,7 @@
 namespace App\Views;
 
 use App\Helpers\Config;
+use App\Render\Html;
 
 class Main {
 
@@ -15,6 +16,8 @@ class Main {
         'styles' => [],
         'scripts' => []
     ];
+
+    private $template;
 
     public function setVendorAssets($assets) {
 

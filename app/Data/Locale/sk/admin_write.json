@@ -1,0 +1,211 @@
+{
+
+  "LOCALE":"sk",
+
+  "WRITE_SEARCH":"Vyhľadať funkciu",
+  "WRITE_EDIT":"Upraviť",
+  "WRITE_DESCRIPTION":"Buďťe kreatívny",
+  "WRITE_OR":"alebo",
+  "WRITE_CONTENT_BOX_HEADING":"Obsah",
+
+  "WRITE_TITLE_LABEL":"Titulok",
+  "WRITE_TITLE_INFO":"Titulok slúži na zaradenie textu, ktorý je pod ním",
+  "WRITE_TITLE_PLACEHOLDER":"Vložte titulok",
+
+  "WRITE_EXCERPT_LABEL":"Zhrnutie",
+  "WRITE_EXCERPT_INFO":"Stručné zhrnutie obsahu alebo text perexu. Vynechajte aj nechcete zadávať zhrnutie",
+  "WRITE_EXCERPT_PLACEHOLDER":"Napíšte zhrnutie",
+
+  "WRITE_URL_LABEL":"URL",
+  "WRITE_URL_INFO":"URL (Uniform Resource Locator) sa používa ako odkaz na stránku obsahu a zobrazuje sa v adresovom paneli prehliadača",
+  "WRITE_URL_PLACEHOLDER":"Zadajte URL",
+
+  "WRITE_PIN_LABEL":"Pripnúť na vrch",
+  "WRITE_PIN_INFO":"Ak je pripnutie zapnuté, Váš obsah sa zobrazí vždy na vrchu stránky",
+
+  "WRITE_PEREX_LABEL":"Perex",
+  "WRITE_PEREX_INFO":"Perex obsahuje zhrnutie obsahu, dátum a miesto udalosti",
+  "WRITE_PEREX_DATE_LABEL":"Dátum",
+  "WRITE_PEREX_DATE_PLACEHOLDER":"DD/MM/YYYY",
+  "WRITE_PEREX_LOCATION_LABEL":"Miesto",
+  "WRITE_PEREX_LOCATION_PLACEHOLDER":"Mesto, štát alebo adresa",
+
+  "WRITE_CONTENT_HEADING_LABEL":"Nadpis",
+  "WRITE_CONTENT_HEADING_INFO":"Nadpis slúži na rozdelenie obsahu na kratšie časti",
+  "WRITE_CONTENT_HEADING_PLACEHOLDER":"Zadajte nadpis",
+
+  "WRITE_CONTENT_RICH-TEXT_LABEL":"Odstavec",
+  "WRITE_CONTENT_RICH-TEXT_INFO":"Odstavec obsahuje časť Vášho obsahu",
+
+  "WRITE_CONTENT_PICTURE_LABEL":"Obrázok",
+  "WRITE_CONTENT_PICTURE_INFO":"Pridá obrázok medzi obsah",
+  "WRITE_CONTENT_PICTURE_BUTTON":"Vybrať obrázok",
+  "WRITE_CONTENT_PICTURE_INPUT":"Vložte odkaz na obrázok",
+
+  "WRITE_CONTENT_VIDEO_LABEL":"Video",
+  "WRITE_CONTENT_VIDEO_INFO":"Pridá video medzi obsah",
+  "WRITE_CONTENT_VIDEO_BUTTON":"Vybrať video",
+  "WRITE_CONTENT_VIDEO_INPUT":"Vložte odkaz na video",
+
+  "WRITE_CONTENT_AUDIO_LABEL":"Audio",
+  "WRITE_CONTENT_AUDIO_INFO":"Pridá audio medzi obsah",
+  "WRITE_CONTENT_AUDIO_BUTTON":"Vybrať audio",
+  "WRITE_CONTENT_AUDIO_INPUT":"Vložte odkaz na audio",
+
+  "WRITE_CONTENT_CODE_LABEL":"Kód",
+  "WRITE_CONTENT_CODE_INFO":"Vloží útržok kódu do obsahu",
+  "WRITE_CONTENT_CODE_PLACEHOLDER":"Napíšte kód",
+
+  "WRITE_CONTENT_LINK_LABEL":"Odkaz",
+  "WRITE_CONTENT_LINK_INFO":"Vloží odkaz do obsahu",
+  "WRITE_CONTENT_LINK_PLACEHOLDER":"Zadajte adresu URL",
+
+  "WRITE_CONTENT_QUOTE_LABEL":"Citát",
+  "WRITE_CONTENT_QUOTE_INFO":"Vloží citát do obsahu",
+  "WRITE_CONTENT_QUOTE_PLACEHOLDER":"Napíšte citát",
+
+  "WRITE_CONTENT_GALLERY_LABEL":"Galéria",
+  "WRITE_CONTENT_GALLERY_INFO":"Vloží galériu obrázkov do obsahu",
+  "WRITE_CONTENT_GALLERY_BUTTON":"Pridať obrázok",
+
+  "WRITE_CONTENT_NOTE_LABEL":"Poznámka",
+  "WRITE_CONTENT_NOTE_INFO":"Vloží poznámku do obsahu",
+  "WRITE_CONTENT_NOTE_PLACEHOLDER":"Napíšte poznámku",
+
+  "WRITE_CONTENT_TABLE_LABEL":"Tabuľka",
+  "WRITE_CONTENT_TABLE_INFO":"Vloží tabuľku do obsahu",
+  "WRITE_CONTENT_TABLE_ADD_COLUMN":"Vložiť stĺpec",
+  "WRITE_CONTENT_TABLE_ADD_ROW":"Vložiť riadok",
+
+  "WRITE_CONTENT_LIST_LABEL":"Zoznam",
+  "WRITE_CONTENT_LIST_INFO":"Vloží zoznam do obsahu",
+  "WRITE_CONTENT_LIST_ADD":"Vložiť novú položku",
+
+  "WRITE_THUMBNAIL_LABEL":"Miniatúra",
+  "WRITE_THUMBNAIL_INFO":"Miniatúra je malý obrázok, zobrazujúci sa vedľa odkazu na obsah",
+  "WRITE_THUMBNAIL_BUTTON":"Vybrať obrázok",
+  "WRITE_THUMBNAIL_INPUT":"Vložiť odkaz na obrázok",
+  "WRITE_THUMBNAIL_INPUT_INFO":"Pre pridanie odkazu stlačte Enter",
+
+  "WRITE_HEADER-IMAGE_LABEL":"Titulný obrázok",
+  "WRITE_HEADER-IMAGE_INFO":"Titulný obrázok sa zobrazuje vedľa titulku",
+  "WRITE_HEADER-IMAGE_BUTTON":"Vybrať obrázok",
+  "WRITE_HEADER-IMAGE_INPUT":"Vložiť odkaz na obrázok",
+
+  "WRITE_LANGUAGES_LABEL":"Jazyky",
+  "WRITE_LANGUAGES_INFO":"Umožňuje prekladať obsah do rôznych jazykov",
+  "WRITE_LANGUAGES_SEARCH":"Nájsť jazyk",
+
+  "WRITE_ATTACHMENTS_LABEL":"Prílohy",
+  "WRITE_ATTACHMENTS_INFO":"Pridať prílohy, obrázky alebo hocičo k obsahu",
+  "WRITE_ATTACHMENTS_ADD_IMAGE":"Pridať obrázok",
+  "WRITE_ATTACHMENTS_ADD_VIDEO":"Pridať video",
+  "WRITE_ATTACHMENTS_ADD_AUDIO":"Pridať zvuk",
+  "WRITE_ATTACHMENTS_ADD_FILE":"Pridať súbor",
+
+  "WRITE_MENU-LINK_LABEL":"Vložiť odkaz do menu",
+  "WRITE_MENU-LINK_INFO":"Vloží priamy odkaz na článok do zvoleného menu",
+  "WRITE_MENU-LINK_SELECT":"Vybrať menu",
+  "WRITE_MENU-LINK_ADD":"Názov odkazu",
+  "WRITE_MENU-LINK_ADD_PLACEHOLDER":"Zadajte názov odkazu",
+
+  "WRITE_CUSTOM-FIELDS_LABEL":"Vlastné polia",
+  "WRITE_CUSTOM-FIELDS_ADD_HEADING":"Vytvoriť nové pole",
+  "WRITE_CUSTOM-FIELDS_INFO":"Vlastné polia slúžia na uloženie vlastných metadát o obsahu",
+  "WRITE_CUSTOM-FIELDS_ADD_ROW":"Pridať pole",
+  "WRITE_CUSTOM-FIELDS_NAME":"Identifikátor",
+  "WRITE_CUSTOM-FIELDS_VALUE":"Hodnota",
+
+  "WRITE_TAGS_LABEL":"Značky",
+  "WRITE_TAGS_INFO":"Značky triedia obsah podľa obsahu článku",
+  "WRITE_TAGS_ADD_PLACEHOLDER":"Pridať značku",
+  "WRITE_TAGS_INPUT_INFO":"Pri zadávaní viacerých značiek použite čiarku ako oddeľovač",
+  "WRITE_TAGS_MANAGE":"Spravovať značky",
+
+  "WRITE_REVISIONS_LABEL":"Revízie",
+  "WRITE_REVISIONS_INFO":"Pomáha udržať prehľad o zmenách v obsahu",
+  "WRITE_REVISIONS_NEW_PLACEHOLDER":"Popis tejto revízie",
+
+  "WRITE_CATEGORIES_LABEL":"Kategórie",
+  "WRITE_CATEGORIES_ADD":"Pridať kategóriu",
+  "WRITE_CATEGORIES_MANAGE":"Spravovať kategórie",
+
+  "WRITE_META_LABEL":"Meta informácie",
+  "WRITE_META_INFO":"Umožňuje pridať doplňujúce informácie k článku na optimalizáciu SEO",
+  "WRITE_META_MANUALLY":"Vlastné informácie",
+
+  "WRITE_PLANNER_LABEL":"Plánovač",
+  "WRITE_PLANNER_INFO":"Slúži na zautomatizovanie procesu publikácie",
+  "WRITE_PLANNER_PUBLISH_LABEL":"Publikácia",
+  "WRITE_PLANNER_PUBLISH_AUTO_LABEL":"Automaticky",
+  "WRITE_PLANNER_PUBLISH_DATE_PLACEHOLDER":"Dátum",
+  "WRITE_PLANNER_PUBLISH_TIME_PLACEHOLDER":"Čas",
+  "WRITE_PLANNER_EXPIRY_LABEL":"Expirácia",
+  "WRITE_PLANNER_EXPIRY_DATE_PLACEHOLDER":"Dátum",
+  "WRITE_PLANNER_EXPIRY_TIME_PLACEHOLDER":"Čas",
+  "WRITE_PLANNER_NOTIFY_ENABLE":"Zapnúť oznámenia",
+  "WRITE_PLANNER_NOTIFY_E-MAIL":"Zasielať oznámenia",
+
+  "WRITE_STATUS_LABEL":"Stav",
+  "WRITE_STATUS_INFO":"Súčasný stav obsahu",
+
+  "WRITE_AUTHOR_LABEL":"Autori",
+  "WRITE_AUTHOR_INFO":"Umožňuje pridávať a spravovať autorov obsahu",
+  "WRITE_AUTHOR_ADD":"Pridať autora",
+
+  "WRITE_CREATED-AT_LABEL":"Dátum vytvorenia",
+  "WRITE_CREATED-AT_INFO":"Slúži na zmenu dátumu vytvorenia obsahu v niektorých situáciách",
+  "WRITE_CREATED_LABEL":"Zmeniť dátum",
+
+  "WRITE_LAST-UPDATE_LABEL":"Dátum poslednej zmeny",
+  "WRITE_LAST-UPDATE_INFO":"Slúži na zmenu dátumu poslednej zmeny obsahu v niektorých situáciách",
+  "WRITE_LAST-UPDATE_CUSTOM_LABEL":"Zmeniť dátum",
+
+  "WRITE_COPYRIGHT_LABEL":"Autorské práva",
+  "WRITE_COPYRIGHT_INFO":"Informuje čitateľa o možnostiach reprodukcie obsahu",
+
+  "WRITE_ACCESSIBILITY_LABEL":"Dostupnosť obsahu",
+  "WRITE_ACCESSIBILITY_INFO":"Umožňuje spravovať okruh ľudí, ktorí majú prístup k obsahu",
+  "WRITE_ACCESSIBILITY_OPTION_PUBLIC":"Verejný",
+  "WRITE_ACCESSIBILITY_OPTION_PASSWORD":"Chránený heslom",
+  "WRITE_ACCESSIBILITY_OPTION_PRIVATE":"Súkromný",
+
+  "WRITE_COMMENTS_LABEL":"Komentáre",
+  "WRITE_COMMENTS_INFO":"Nastavenia komentárov a ich obsahu",
+  "WRITE_COMMENTS_ENABLE_LABEL":"Povoliť komentáre",
+  "WRITE_COMMENTS_APPROVE_LABEL":"Schvaľovať komentáre",
+
+  "WRITE_SOURCES_LABEL":"Zdroje",
+  "WRITE_SOURCES_INFO":"Slúži na definíciu zdrojov informácií použitých v obsahu",
+  "WRITE_SOURCES_ADD_LABEL":"Pridať zdroj",
+  "WRITE_SOURCES_ADD_NAME_PLACEHOLDER":"Názov zdroja",
+  "WRITE_SOURCES_ADD_SOURCE_PLACEHOLDER":"URL alebo umiestnenie zdroja",
+  "WRITE_SOURCES_ADD_BUTTON":"Add source",
+
+  "WRITE_MISTAKES_LABEL":"Správa chýb",
+  "WRITE_MISTAKES_ENABLE_LABEL":"Povoliť nahlasovanie",
+  "WRITE_MISTAKES_NOTIFY_LABEL":"Zapnúť oznámenia",
+  "WRITE_MISTAKES_E-MAIL_LABEL":"Zasielať oznámenia",
+
+  "BUTTON_COLLAPSE_OPEN":"Ukázať všetko",
+  "BUTTON_COLLAPSE_CLOSE":"Skryť",
+  "BUTTON_ADD":"Pridať",
+  "BUTTON_ADDED":"Pridané",
+
+  "ADD_HEADING":"Nadpis",
+  "ADD_RICH_TEXT":"Odsek",
+  "ADD_PICTURE":"Obrázok",
+  "ADD_VIDEO":"Video",
+  "ADD_AUDIO":"Zvuk",
+  "ADD_CODE":"Kód",
+  "ADD_LINK":"Odkaz",
+  "ADD_QUOTE":"Citát",
+  "ADD_GALLERY":"Galéria",
+  "ADD_NOTE":"Poznámka",
+  "ADD_TABLE":"Tabuľka",
+  "ADD_LIST":"Zoznam",
+
+  "CONTENT_BUILDER_HEADING":"Editor obsahu",
+  "EMPTY_CONTENT":"Pridajte komponentu"
+
+}

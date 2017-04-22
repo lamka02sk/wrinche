@@ -1,0 +1,23 @@
+{
+
+  "LOCALE":"cs",
+
+  "EMPTY_INPUT":"Vyplňte formulář správně!",
+  "LOADING":"Načítání...",
+
+  "0":"Neznámá chyba",
+  "1":"Neplatné přihlášení",
+  "2":"Počkejte chvíli, prosím...",
+  "3":"Neplatné údaje",
+  "4":"Neplatný přístup",
+  "5":"Vyplňte formulář správně",
+  "6":"Uživatel neexistuje",
+  "7":"Uživatel už existuje",
+  "8":"Neplatný rozlišovač",
+  "9":"Nové heslo je totožné s některým z předešlých",
+  "10":"Účet není aktivní",
+
+  "404":"Chyba 404. Stránka nenalezena",
+  "500":"Chyba 500. Vnitřní chyba serveru"
+
+}

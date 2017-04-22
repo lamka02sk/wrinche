@@ -1,0 +1,87 @@
+{
+
+  "name":"quote",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"small-label",
+        "for":"content-quote-text",
+        "data-locale":"WRITE_CONTENT_QUOTE_TEXT_LABEL"
+      }
+    },
+
+    {
+      "element":"textarea",
+      "label":"content-quote-text",
+      "attributes": {
+        "class":"small-textarea",
+        "name":"write_content_quote_text",
+        "data-placeholder":"WRITE_CONTENT_QUOTE_TEXT_PLACEHOLDER"
+      }
+    },
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"small-label",
+        "for":"content-quote-author",
+        "data-locale":"WRITE_CONTENT_QUOTE_AUTHOR_LABEL"
+      }
+    },
+
+    {
+      "element":"input>",
+      "label":"content-quote-author",
+      "attributes": {
+        "class":"input",
+        "name":"write_content_quote_author",
+        "data-placeholder":"WRITE_CONTENT_QUOTE_AUTHOR_PLACEHOLDER",
+        "type":"text"
+      }
+    },
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"quote-position"
+      },
+      "children": [
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"position-item left-position",
+            "data-position":"0",
+            "data-locale":"WRITE_CONTENT_POSITION_LEFT"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"position-item right-position",
+            "data-position":"1",
+            "data-locale":"WRITE_CONTENT_POSITION_RIGHT"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"position-item full-position",
+            "data-position":"2",
+            "data-locale":"WRITE_CONTENT_POSITION_FULL"
+          }
+        }
+
+      ]
+    }
+
+  ]
+
+}

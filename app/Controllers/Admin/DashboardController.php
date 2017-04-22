@@ -36,15 +36,15 @@ class DashboardController extends AdminController {
     public function renderDashboard() {
 
         // Create View
-        $this->createView();
+        $this->createView('Dashboard');
 
     }
 
-    public function createView() {
+    /*public function createView() {
 
         // Call View constructor
         new DashboardView($this, 'Dashboard');
 
-    }
+    }*/
 
 }

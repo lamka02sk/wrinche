@@ -4,6 +4,36 @@ require_once ROOT . '/app/Layouts/Admin/Splash.php';
 
 ?>
 
+<div class="fullscreen-wrapper confirmation-menu">
+    <div class="va-wrapper">
+
+        <div class="fullscreen-popup confirmation-box">
+
+            <div class="popup-header">
+
+                <span class="header-icon"></span>
+                <p class="header-text" data-locale="ACTION_CONFIRM"></p>
+
+            </div>
+
+            <div class="popup-content">
+
+                <p class="confirmation-action-message"></p>
+
+                <div class="popup-content-actions">
+
+                    <span class="confirmation-action-proceed" data-locale="ACTION_CONFIRM_PROCEED"></span>
+                    <span class="confirmation-action-dismiss" data-locale="ACTION_CONFIRM_DISMISS"></span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
 <div class="fullscreen-wrapper write-menu">
     <div class="va-wrapper">
 
@@ -26,7 +56,7 @@ require_once ROOT . '/app/Layouts/Admin/Splash.php';
                     $layouts = App\Models\TemplateModel::$template['layouts'];
                     $i = 0;
                     $length = sizeof($layouts);
-                    foreach($layouts as $layout):
+                    foreach($layouts as $item):
 
                         $noBorderBottom = '';
 
@@ -44,9 +74,9 @@ require_once ROOT . '/app/Layouts/Admin/Splash.php';
 
                         <div class="tails-tail<?= $noBorderBottom ?>"
                              data-target="content"
-                             data-link="write/<?= strtolower($layout['name']) ?>">
-                            <span class="tail-icon <?= strtolower($layout['name']) ?>"></span>
-                            <p class="tail-text" data-locale="WRITE_<?= strtoupper($layout['name']) ?>"></p>
+                             data-link="write/<?= strtolower($item['name']) ?>">
+                            <span class="tail-icon <?= strtolower($item['name']) ?>"></span>
+                            <p class="tail-text" data-locale="WRITE_<?= strtoupper($item['name']) ?>"></p>
                         </div>
 
                     <?php
@@ -66,9 +96,9 @@ require_once ROOT . '/app/Layouts/Admin/Splash.php';
 
 <header>
 
-    <div class="header-logo">
+    <div class="header-logo" data-link="dashboard" data-target="content">
 
-        <img class="logo-light" src="assets/system/wrinche-logo-white-mini.png" alt="wrinche. Logo">
+        <img class="logo-light" src="assets/system/wrinche-logo-charcoal-mini.png" alt="wrinche. Logo">
         <img class="logo-dark" src="assets/system/wrinche-logo-mustard-mini.png" alt="wrinche. Logo">
 
     </div>
@@ -108,7 +138,7 @@ require_once ROOT . '/app/Layouts/Admin/Splash.php';
         <div class="account-dropdown">
 
             <span class="dropdown-item" data-locale="HEADER_PROFILE"></span>
-            <span class="dropdown-item" data-locale="HEADER_SETTINGS"></span>
+            <span class="dropdown-item" data-locale="HEADER_SETTINGS" data-link="settings/account" data-target="content"></span>
             <span class="dropdown-item logout" data-locale="HEADER_LOGOUT"></span>
 
         </div>

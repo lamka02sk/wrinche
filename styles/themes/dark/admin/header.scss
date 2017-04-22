@@ -1,0 +1,177 @@
+:root {
+  background-color: $themeBlueLight !important;
+}
+
+div.splash {
+  /* Add dark background support - no white logo */
+  background: $white !important;
+}
+
+header {
+  background: $themeBlue !important;
+  box-shadow: 0 0 4px rgba(0,0,0,.15) !important;
+}
+
+header div.header-logo img.logo-light {
+  display: none !important;
+}
+
+header div.header-logo img.logo-dark {
+  display: inline-block !important;
+}
+
+header div.header-logo {
+  &:hover {
+    background: rgba(255,255,255,.05) !important;
+  }
+}
+
+header div.header-search input[type=search] {
+  background: $themeBlueLight !important;
+  color: $white !important;
+}
+
+header div.header-quick p.quick-heading {
+  color: $themeYellow  !important;
+}
+
+header div.header-quick span.quick-item {
+  &:hover {
+    background-color: rgba(255,255,255,.05) !important;
+  }
+  &.empty {
+    background-image: url('../../../assets/icons/empty_white.svg') !important;
+  }
+}
+
+header div.header-team {
+  background-color: rgba(255,255,255,.05) !important;
+background-image: url('../../../assets/icons/team_white.svg') !important;
+  &:hover {
+    background-color: transparent !important;
+  }
+  @media(max-width: 920px) {
+    &:hover {
+      background-color: transparent !important;
+    }
+  }
+}
+
+header div.header-write {
+  background: $darkGreen !important;
+  &:hover {
+    background: $green !important;
+  }
+}
+
+header div.header-write span.write-text {
+  color: $white !important;
+}
+
+header div.header-account {
+  color: $text-lightGrey !important;
+  &:hover {
+    background-color: rgba(255,255,255,.05) !important;
+  }
+  &:before {
+    border-top-color: $text-lightGrey !important;
+  }
+}
+
+header div.header-account div.account-dropdown {
+  background: $themeBlueLight !important;
+  color: $white !important;
+  box-shadow: 0 2px 3px rgba(0,0,0,.2) !important;
+  border-color: $themeBlue !important;
+}
+
+div.account-dropdown span.dropdown-item {
+  &:hover {
+    background-color: $themeBlue !important;
+  }
+  &.logout {
+    background-image: url("../../../assets/icons/logout_white.svg") !important;
+  }
+}
+
+div.fullscreen-wrapper {
+  background-color: rgba(0,0,0,.35) !important;
+}
+
+div.fullscreen-wrapper div.va-wrapper div.fullscreen-popup {
+  box-shadow: 0 4px 24px rgba(0,0,0,.2) !important;
+}
+
+div.fullscreen-popup.write-actions {
+  background: $themeBlueLight !important;
+}
+
+div.fullscreen-popup div.popup-header {
+  background: $themeBlue !important;
+  border-bottom-color: $themeYellowDark !important;
+}
+
+div.fullscreen-popup div.popup-header p.header-text {
+  color: $text-lightGrey !important;
+}
+
+div.fullscreen-popup div.popup-header span.header-close {
+  background-image: url("../../../assets/icons/arrow-bottom_white.svg") !important;
+  &:hover {
+    background-color: rgba(255,255,255,.05) !important;
+  }
+}
+
+div.write-actions div.popup-header span.header-icon {
+  background-image: url('../../../assets/icons/compose.svg') !important;
+}
+
+div.popup-content div.popup-tails.two-width div.tails-tail {
+  border-bottom-color: $lightGrey !important;
+  border-right-color: $lightGrey !important;
+  &:hover {
+    background: $themeBlue !important;
+  }
+  @media(max-width: 480px) {
+    &.no-bottom {
+      border-bottom-color: $lightGrey !important;
+    }
+  }
+}
+
+div.tails-tail span.tail-icon {
+  &.article {
+    background-image: url("../../../assets/icons/articles_white.svg") !important;
+  }
+  &.quick {
+    background-image: url("../../../assets/icons/quick_message_white.svg") !important;
+  }
+  &.gallery {
+    background-image: url("../../../assets/icons/gallery_white.svg") !important;
+  }
+  &.link {
+    background-image: url("../../../assets/icons/link_white.svg") !important;
+  }
+  &.quote {
+    background-image: url("../../../assets/icons/quote_white.svg") !important;
+  }
+  &.note {
+    background-image: url("../../../assets/icons/note_white.svg") !important;
+  }
+  &.image {
+    background-image: url("../../../assets/icons/image_white.svg") !important;
+  }
+  &.video {
+    background-image: url("../../../assets/icons/video_white.svg") !important;
+  }
+  &.audio {
+    background-image: url("../../../assets/icons/audio_white.svg") !important;
+  }
+  &.list {
+    background-image: url("../../../assets/icons/list_white.svg") !important;
+  }
+}
+
+div.tails-tail p.tail-text {
+  color: $text-lightGrey !important;
+}

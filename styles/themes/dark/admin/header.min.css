@@ -1,0 +1,1 @@
+body:before{white-space:pre;font-family:monospace;content:"Error: Undefined variable: \"$themeBlue\".\A         on line 2 of header.scss\A \A 1: div.splash {\A 2:   background: $themeBlue !important;\A 3: }\A 4: \A 5: header {\A 6:   background: $white !important;\A 7:   box-shadow: 0 0 4px rgba(0,0,0,.1) !important;"}

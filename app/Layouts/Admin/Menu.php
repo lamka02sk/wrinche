@@ -16,7 +16,7 @@
             <span class="item-icon icon-articles"></span>
             <span class="item-text" data-locale="MENU_ARTICLES"></span>
             <span class="item-active"></span>
-            <span class="item-value item-value-count nothing">0</span>
+            <!--<span class="item-value item-value-count nothing">0</span>-->
 
         </li>
 
@@ -33,7 +33,7 @@
             <span class="item-icon icon-comments"></span>
             <span class="item-text" data-locale="MENU_COMMENTS"></span>
             <span class="item-active"></span>
-            <span class="item-value item-value-count">18</span>
+            <!--<span class="item-value item-value-count">18</span>-->
 
         </li>
 
@@ -42,7 +42,7 @@
             <span class="item-icon icon-mistakes"></span>
             <span class="item-text" data-locale="MENU_MISTAKES"></span>
             <span class="item-active"></span>
-            <span class="item-value item-value-check item-value-checked"></span>
+            <!--<span class="item-value item-value-check item-value-checked"></span>-->
 
         </li>
 
@@ -51,7 +51,7 @@
             <span class="item-icon icon-multimedia"></span>
             <span class="item-text" data-locale="MENU_MULTIMEDIA"></span>
             <span class="item-active"></span>
-            <span class="item-value item-value-count nothing">0</span>
+            <!--<span class="item-value item-value-count nothing">0</span>-->
 
         </li>
 
@@ -68,7 +68,7 @@
             <span class="item-icon icon-calendar"></span>
             <span class="item-text" data-locale="MENU_CALENDAR"></span>
             <span class="item-active"></span>
-            <span class="item-value item-value-count">2</span>
+            <!--<span class="item-value item-value-count">2</span>-->
 
         </li>
 
@@ -85,7 +85,7 @@
             <span class="item-icon icon-analytics"></span>
             <span class="item-text" data-locale="MENU_ANALYTICS"></span>
             <span class="item-active"></span>
-            <span class="item-value item-value-plus"></span>
+            <!--<span class="item-value item-value-plus"></span>-->
 
         </li>
 
@@ -97,7 +97,7 @@
 
         </li>
 
-        <li <?php if($layout === 'Settings'): ?>class="active"<?php endif; ?> data-link="settings" data-target="content">
+        <li <?php if($layout === 'Settings'): ?>class="active"<?php endif; ?> data-link="settings/appearance" data-target="content">
 
             <span class="item-icon icon-settings"></span>
             <span class="item-text" data-locale="MENU_SETTINGS"></span>
@@ -111,14 +111,14 @@
 
 <footer>
 
-    <span class="footer-credits">&copy; wrinche, <?= date('Y') ?>, v<?= $this->CONFIG['system']['version'] ?></span>
+    <span class="footer-credits">&copy; <?= $this->CONFIG['system']['name'] ?>, <?= date('Y') ?>, v<?= $this->CONFIG['system']['version'] ?></span>
 
     <span class="footer-more"></span>
 
     <div class="more-content">
 
         <span class="content-item help"></span>
-        <span class="content-item settings"></span>
+        <span class="content-item settings" data-link="settings" data-target="content"></span>
         <span class="content-item eula"></span>
         <span class="content-item pro"></span>
         <span class="content-item update"></span>

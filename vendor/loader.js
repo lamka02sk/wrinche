@@ -3,12 +3,15 @@ function Loader(domain) {
     this.link = '';
     this.prevTranslation = '';
     this.prevContent = '';
-    this.historyCounter = 0;
+    this.historyCounter = 0
     this.domain = domain;
 
 }
 
 Loader.prototype.redirect = function(link, type) {
+
+    if(link == '' && this.domain == 'admin')
+        link = 'dashboard';
 
     // Show loading message
     let responseMessage = $('div.response-message');
@@ -86,6 +89,7 @@ Loader.prototype.getContent = function() {
             // Show some error message
             result = JSON.parse(result)['responseText'];
             showMessage(result.code, 'error');
+            showMessage(result.code, 'error');
 
         }
     });
@@ -135,7 +139,7 @@ Loader.prototype.changeAddress = function() {
 
 Loader.prototype.manageTranslations = function() {
 
-    let oldTranslation = this.domain + '_' + this.prevTranslation;
+    let oldTranslation = this.domain  + '_' + this.prevTranslation;
 
     // Find old translation position in list
     let position = 0;
@@ -152,10 +156,59 @@ Loader.prototype.manageTranslations = function() {
     // Create new translation name
     let newTranslation = this.domain + '_' + this.link;
 
-    // Add new translation to the translations list
-    translations.push(newTranslation);
+    let substr = this.link.substring(0, 6);
+    if(substr == 'write/') {
+        translations.push(this.domain + '_write');
+        translate.addTranslation(this.domain + '_write');
+    }
+
+    // Add new translation to the translations list if not exist
+    let isTranslation = false;
+    for(let i in translations) {
+        if(translations[i] == newTranslation)
+            isTranslation = true;
+    }
+
+    if(!isTranslation)
+        translations.push(newTranslation);
 
     // Trigger translation of the new content
     translate.addTranslation(newTranslation);
 
 };
+
+// Window popstate
+// TODO: Sometimes add content caching support
+$(window).ready(function() {
+window.onpopstate = function() {
+
+    // Create URL link
+    let link = window.location.href;
+    link = link.split('/');
+
+    // Clean array from empty last item
+    if(link[(link.length - 1)] == "")
+        link.splice((link.length - 1), 1);
+
+    // Find admin route position
+    let routePosition = 0;
+    for(let i = 0; i < link.length; ++i) {
+        let substr = link[i].substring(0, 7);
+        if(substr == "index.p" || substr == baseURI) {
+            routePosition = i;
+            break;
+        }
+    }
+
+    let newLink = [];
+    for(let i = +routePosition + 1; i < link.length; ++i) {
+        newLink.push(link[i]);
+    }
+
+    link = newLink.join("/");
+
+    // Update content
+    loader.redirect(link, 'content');
+
+};
+});

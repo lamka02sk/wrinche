@@ -1,0 +1,128 @@
+{
+
+  "name":"planner",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"small-label",
+        "data-locale":"WRITE_PLANNER_PUBLISH_LABEL"
+      }
+    },
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"label checkbox-click",
+        "data-locale":"WRITE_PLANNER_PUBLISH_AUTO_LABEL",
+        "for":"planner-publish-auto"
+      }
+    },
+
+    {
+      "element":"input>",
+      "label":"planner-publish-auto",
+      "attributes": {
+        "class":"input",
+        "type":"checkbox",
+        "value":"planner-publish-auto",
+        "name":"write_planner_publish_auto",
+        "checked":"true"
+      }
+    },
+
+    {
+      "element":"input>",
+      "attributes": {
+        "class":"input hide",
+        "name":"write_planner_publish_date",
+        "type":"date",
+        "data-placeholder":"WRITE_PLANNER_PUBLISH_DATE_PLACEHOLDER"
+      }
+    },
+
+    {
+      "element":"input>",
+      "attributes": {
+        "class":"input hide",
+        "name":"write_planner_publish_time",
+        "type":"time",
+        "data-placeholder":"WRITE_PLANNER_PUBLISH_TIME_PLACEHOLDER"
+      }
+    },
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"small-label",
+        "data-locale":"WRITE_PLANNER_EXPIRY_LABEL"
+      }
+    },
+
+    {
+      "element":"input>",
+      "attributes": {
+        "class":"input",
+        "name":"write_planner_expiry_date",
+        "type":"date",
+        "data-placeholder":"WRITE_PLANNER_EXPIRY_DATE_PLACEHOLDER"
+      }
+    },
+
+    {
+      "element":"input>",
+      "attributes": {
+        "class":"input",
+        "name":"write_planner_expiry_time",
+        "type":"time",
+        "data-placeholder":"WRITE_PLANNER_EXPIRY_TIME_PLACEHOLDER"
+      }
+    },
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"label checkbox-click",
+        "for":"planner-notify",
+        "data-locale":"WRITE_PLANNER_NOTIFY_ENABLE"
+      }
+    },
+
+    {
+      "element":"input>",
+      "label":"planner-notify",
+      "attributes": {
+        "class":"input",
+        "type":"checkbox",
+        "name":"write_planner_notify",
+        "value":"planner-notify"
+      }
+    },
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"label checkbox-click hide",
+        "for":"planner-notify-e_mail",
+        "data-locale":"WRITE_PLANNER_NOTIFY_E-MAIL"
+      }
+    },
+
+    {
+      "element":"input>",
+      "label":"planner-notify-e_mail",
+      "attributes": {
+        "class":"input hide",
+        "type":"checkbox",
+        "name":"write_planner_notify_e-mail",
+        "value":"planner-notify-e_mail"
+      }
+    }
+
+  ]
+
+}

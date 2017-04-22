@@ -41,6 +41,27 @@ class LoginModel extends MainModel {
 
     }
 
+    public function returnSessions() {
+
+        $dateTime = new DateTime;
+        $maxTime = $dateTime->sub($this->max);
+
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table($this->table)
+            ->select()
+            ->selectValues()
+            ->where(
+                ['active', 'user_id', 'updated'],
+                ['=', '=', '>='],
+                [1, UserModel::$user['id'], $maxTime]
+            )
+            ->exec();
+
+        return $builder->output;
+
+    }
+
     public function getLogin() {
 
         $login = $this->loginData();

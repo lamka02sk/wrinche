@@ -1,40 +1,38 @@
 {
-
-  "name":"silencer",
-  "version":"0.1.1",
-  "author":"lamka02sk",
-  "license":"MIT",
-
-  "layouts": [
-    {
-      "name":"ARTICLE",
+  "name": "silencer",
+  "version": "0.1.1",
+  "author": "lamka02sk",
+  "license": "MIT",
+  "layouts": {
+    "article": {
+      "name": "ARTICLE",
       "components": [
         "title",
         "excerpt",
         "url",
         "pin",
         "perex",
-        "_content_",
         "thumbnail",
         "header_image",
         "languages",
         "attachments",
-        "menu_link",
         "custom_fields",
-        "revisions",
         "tags",
-        "categories",
-        "planner",
-        "notifications",
-        "meta",
-        "status",
-        "author",
-        "created_at",
-        "last_update",
-        "copyright",
-        "comments",
-        "accessibility",
-        "sources"
+        "revisions",
+        "*menu_link",
+        "*categories",
+        "*planner",
+        "*meta",
+        "*status",
+        "*author",
+        "*created_at",
+        "*last_update",
+        "*copyright",
+        "*comments",
+        "*accessibility",
+        "*sources",
+        "*mistakes",
+        "*analytics"
       ],
       "_content_": [
         "heading",
@@ -42,7 +40,6 @@
         "picture",
         "video",
         "audio",
-        "text_file",
         "code",
         "link",
         "quote",
@@ -52,13 +49,12 @@
         "list"
       ]
     },
-    {
-      "name":"NOTE",
+    "note": {
+      "name": "NOTE",
       "components": [
         "title",
         "url",
         "pin",
-        "_content_",
         "thumbnail",
         "languages",
         "attachments",
@@ -77,7 +73,9 @@
         "copyright",
         "comments",
         "accessibility",
-        "sources"
+        "sources",
+        "mistakes",
+        "analytics"
       ],
       "_content_": [
         "text",
@@ -86,14 +84,13 @@
         "note"
       ]
     },
-    {
-      "name":"QUICK",
+    "quick": {
+      "name": "QUICK",
       "components": [
         "title",
         "url",
         "pin",
         "perex",
-        "_content_",
         "thumbnail",
         "languages",
         "menu_link",
@@ -111,7 +108,9 @@
         "copyright",
         "comments",
         "accessibility",
-        "sources"
+        "sources",
+        "mistakes",
+        "analytics"
       ],
       "_content_": [
         "heading",
@@ -125,14 +124,14 @@
         "list"
       ]
     },
-    {
-      "name":"IMAGE",
+    "image": {
+      "name": "IMAGE",
       "components": [
         "title",
         "url",
         "pin",
         "perex",
-        "picture",
+        "picture_inline",
         "languages",
         "menu_link",
         "custom_fields",
@@ -147,18 +146,20 @@
         "copyright",
         "comments",
         "accessibility",
-        "sources"
+        "sources",
+        "mistakes",
+        "analytics"
       ]
     },
-    {
-      "name":"GALLERY",
+    "gallery": {
+      "name": "GALLERY",
       "components": [
         "title",
         "url",
         "pin",
         "perex",
         "rich_text",
-        "gallery",
+        "gallery_inline",
         "languages",
         "attachments",
         "menu_link",
@@ -176,18 +177,20 @@
         "copyright",
         "comments",
         "accessibility",
-        "sources"
+        "sources",
+        "mistakes",
+        "analytics"
       ]
     },
-    {
-      "name":"VIDEO",
+    "video": {
+      "name": "VIDEO",
       "components": [
         "title",
         "url",
         "pin",
         "perex",
         "thumbnail",
-        "video",
+        "video_inline",
         "languages",
         "menu_link",
         "custom_fields",
@@ -202,17 +205,19 @@
         "copyright",
         "comments",
         "accessibility",
-        "sources"
+        "sources",
+        "mistakes",
+        "analytics"
       ]
     },
-    {
-      "name":"LINK",
+    "link": {
+      "name": "LINK",
       "components": [
         "title",
         "url",
         "pin",
         "perex",
-        "video",
+        "link_inline",
         "languages",
         "menu_link",
         "tags",
@@ -220,18 +225,19 @@
         "planner",
         "status",
         "author",
-        "accessibility"
+        "accessibility",
+        "analytics"
       ]
     },
-    {
-      "name":"AUDIO",
+    "audio": {
+      "name": "AUDIO",
       "components": [
         "title",
         "url",
         "pin",
         "perex",
         "thumbnail",
-        "audio",
+        "audio_inline",
         "languages",
         "menu_link",
         "custom_fields",
@@ -246,17 +252,18 @@
         "copyright",
         "comments",
         "accessibility",
-        "sources"
+        "sources",
+        "mistakes",
+        "analytics"
       ]
     },
-    {
-      "name":"QUOTE",
+    "quote": {
+      "name": "QUOTE",
       "components": [
         "title",
         "excerpt",
         "url",
         "pin",
-        "_content_",
         "thumbnail",
         "languages",
         "attachments",
@@ -275,7 +282,9 @@
         "copyright",
         "comments",
         "accessibility",
-        "sources"
+        "sources",
+        "mistakes",
+        "analytics"
       ],
       "_content_": [
         "rich_text",
@@ -289,14 +298,13 @@
         "list"
       ]
     },
-    {
-      "name":"LIST",
+    "list": {
+      "name": "LIST",
       "components": [
         "title",
         "excerpt",
         "url",
         "pin",
-        "_content_",
         "thumbnail",
         "languages",
         "attachments",
@@ -326,6 +334,5 @@
         "list"
       ]
     }
-  ]
-
+  }
 }

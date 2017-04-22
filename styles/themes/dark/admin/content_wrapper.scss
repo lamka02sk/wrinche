@@ -1,0 +1,47 @@
+div.content-wrapper p.header-description {
+  color: $themeYellowLight !important;
+}
+
+div.content-header div.header-mainline h2 {
+  color: $themeYellow !important;
+}
+
+div.header-mainline div.mainline-search span.mainline-edit {
+  color: $text-lightGrey !important;
+  &:before {
+    background-image: url("../../../assets/icons/edit_white.svg") !important;
+  }
+}
+
+div.header-mainline div.mainline-search div.input-box {
+  &:before {
+    background: url("../../../assets/icons/search_white.svg") !important;
+  }
+}
+
+div.header-mainline div.mainline-search input {
+  background: lighten($themeBlueLight, 6%) !important;
+  color: $text-white !important;
+}
+
+div.menu-tabs {
+  background: lighten($themeBlueLight, 6%) !important;
+  color: $text-white !important;
+  border-bottom-color: $themeGreyDark !important;
+}
+
+div.menu-tabs span.tabs-tab {
+  border-right-color: $themeGrey !important;
+  &:hover {
+    background-color: $themeBlue !important;
+  }
+  &.active {
+    background-color: $themeBlue !important;
+    color: $text-lightGrey !important;
+    &:hover {
+      background-color: lighten($themeBlue, 2%) !important;
+    }
+  }
+}
+
+@import "../../../variables", "admin_content";

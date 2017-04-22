@@ -23,6 +23,8 @@
   "WRITE_QUOTE":"Quote",
   "WRITE_LIST":"List",
 
-  "HEADER_LOADING":"Loading"
+  "HEADER_LOADING":"Loading",
+
+  "MEDIA_MANAGER_TITLE":"Media Manager"
 
 }

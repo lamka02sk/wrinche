@@ -1,0 +1,30 @@
+{
+
+  "name":"excerpt",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"counter fuck-chrome excerpt-counter",
+        "data-input":"textarea",
+        "data-maxLength":"360"
+      }
+    },
+
+    {
+      "element":"textarea",
+      "label":"excerpt",
+      "attributes": {
+        "class":"small-textarea",
+        "name":"write_excerpt",
+        "data-placeholder":"WRITE_EXCERPT_PLACEHOLDER"
+      }
+    }
+
+  ]
+
+}

@@ -1,0 +1,130 @@
+{
+
+  "name":"author",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"authors-list"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"author-item author-creator",
+            "data-author":""
+          },
+          "children": [
+
+            {
+              "element":"div",
+              "attributes": {
+                "class":"author-image"
+              },
+              "children": [
+
+                {
+                  "element":"img>",
+                  "attributes": {
+                    "class":"author-image-content",
+                    "src":"",
+                    "alt":""
+                  }
+                }
+
+              ]
+            },
+
+            {
+              "element":"p",
+              "attributes": {
+                "class":"author-username"
+              }
+            }
+
+          ]
+        }
+
+      ]
+    },
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"input-box add-author"
+      },
+      "children": [
+
+        {
+          "element":"input>",
+          "attributes": {
+            "class":"input add-item add-author-input",
+            "data-placeholder":"WRITE_AUTHOR_ADD"
+          }
+        }
+
+      ]
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_author_item"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"author-item",
+            "data-author":""
+          },
+          "children": [
+
+            {
+              "element":"div",
+              "attributes": {
+                "class":"author-image"
+              },
+              "children": [
+
+                {
+                  "element":"img>",
+                  "attributes": {
+                    "class":"author-image-content",
+                    "src":"",
+                    "alt":""
+                  }
+                }
+
+              ]
+            },
+
+            {
+              "element":"p",
+              "attributes": {
+                "class":"author-username"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"remove-author"
+              }
+            }
+
+          ]
+        }
+
+      ]
+    }
+
+  ]
+
+}

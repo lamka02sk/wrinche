@@ -1,0 +1,18 @@
+{
+
+  "LOCALE":"cs",
+
+  "MENU_DASHBOARD":"Nástěnka",
+  "MENU_ARTICLES":"Články",
+  "MENU_SECTIONS":"Sekce",
+  "MENU_COMMENTS":"Komentáře",
+  "MENU_MISTAKES":"Překlepy",
+  "MENU_MULTIMEDIA":"Multimédia",
+  "MENU_SORTING":"Seskupení",
+  "MENU_CALENDAR":"Kalendář",
+  "MENU_COMPONENTS":"Komponenty",
+  "MENU_ANALYTICS":"Statistiky",
+  "MENU_WEBSITES":"Webstránka",
+  "MENU_SETTINGS":"Nastavení"
+
+}

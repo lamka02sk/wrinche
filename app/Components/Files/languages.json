@@ -1,0 +1,72 @@
+{
+
+  "name":"languages",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"input>",
+      "attributes": {
+        "class":"input search-input",
+        "name":"write_language_search",
+        "data-placeholder":"WRITE_LANGUAGES_SEARCH"
+      }
+    },
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"languages-list"
+      }
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_languages_item"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"language-item",
+            "data-language":""
+          },
+          "children": [
+
+            {
+              "element":"p",
+              "attributes": {
+                "class":"language-name",
+                "data-locale":""
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"add-language",
+                "data-locale":"BUTTON_ADD"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"remove-language hide",
+                "data-locale":"BUTTON_ADDED"
+              }
+            }
+
+          ]
+        }
+
+      ]
+    }
+
+  ]
+
+}

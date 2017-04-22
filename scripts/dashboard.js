@@ -1,6 +1,5 @@
-translations.push('admin_dashboard');
-let translate = new Translate(translations, false);
-locale = translate.getLocale();
+// Add current script
+previousScripts.push('dashboard');
 
 // Remove Splash screen
 $('div.splash').addClass('done');

@@ -1,0 +1,32 @@
+{
+
+  "name":"title",
+  "active":true,
+  "defaultElements":true,
+  "header":"big",
+
+  "template": [
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"counter title-counter big-counter",
+        "data-input":"input",
+        "data-maxLength":"100"
+      }
+    },
+
+    {
+      "element":"input>",
+      "label":"title",
+      "attributes": {
+        "class":"big-input",
+        "type":"text",
+        "data-placeholder":"WRITE_TITLE_PLACEHOLDER",
+        "name":"write_title"
+      }
+    }
+
+  ]
+
+}

@@ -1,0 +1,79 @@
+{
+
+  "component_header": [
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"label",
+        "for":"%component%",
+        "data-locale":"WRITE_%COMPONENT%_LABEL"
+      }
+    },
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"info-box"
+      },
+      "children": [
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"info-hover"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"info-text",
+            "data-locale":"WRITE_%COMPONENT%_INFO"
+          }
+        }
+
+      ]
+    }
+
+  ],
+
+  "component_header_big": [
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"big-label",
+        "for":"%component%",
+        "data-locale":"WRITE_%COMPONENT%_LABEL"
+      }
+    },
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"info-box tall-info"
+      },
+      "children": [
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"info-hover"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"info-text",
+            "data-locale":"WRITE_%COMPONENT%_INFO"
+          }
+        }
+
+      ]
+    }
+
+  ]
+
+}

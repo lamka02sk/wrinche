@@ -31,7 +31,17 @@ class UserEvents {
         7 => 'User with given email or username already exists',
         8 => 'Hash does not exists',
         9 => 'New password equals to old password',
-        10 => 'Inactive account'
+        10 => 'Inactive account',
+        11 => 'Function undefined',
+
+        20 => 'Unsupported image format',
+        21 => 'Invalid image',
+
+        30 => 'Unsupported video format',
+
+        40 => 'Unsupported audio format',
+
+        50 => 'Unsupported file format'
 
     ];
 

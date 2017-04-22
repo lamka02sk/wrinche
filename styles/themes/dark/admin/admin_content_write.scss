@@ -1,0 +1,79 @@
+div.content-content {
+  div.content-component, div.content-content-component {
+    &.content-box {
+      background: lighten($themeBlueLight, 6%) !important;
+    }
+  }
+}
+
+div.content-content label {
+  color: $text-white !important;
+  &.big-label {
+    color: $text-lightGrey !important;
+  }
+}
+
+div.content-content div.info-box {
+  &:hover {
+    span.info-hover {
+      background-image: url("../../../assets/icons/info_white.svg") !important;
+    }
+  }
+}
+
+div.content-content span.info-text-outside {
+  color: $text-lightGrey !important;
+}
+
+div.content-content div.info-box span.info-hover {
+  background-image: url("../../../assets/icons/info_white.svg") !important;
+}
+
+div.content-content div.info-box span.info-text {
+  background: $text-lightBlack !important;
+  color: $text-lightGrey !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,.33) !important;
+}
+
+div.content-content input {
+  border-color: transparent !important;
+  background: lighten($themeBlueLight, 6%) !important;
+  color: $text-lightGrey !important;
+  &.add-item {
+    background-image: url('../../../assets/icons/add_white.svg') !important;
+    &:hover, &:focus {
+      border-bottom-color: $white !important;
+    }
+  }
+}
+
+div.content-content h3 {
+  color: $text-lightGrey !important;
+}
+
+div.content-content textarea {
+  border-color: transparent !important;
+  background: lighten($themeBlueLight, 6%) !important;
+  color: $text-lightGrey !important;
+}
+
+div.content-content button.image_manager {
+  border-color: transparent !important;
+  color: $text-lightGrey !important;
+  background: lighten($themeBlueLight, 6%) !important;
+  &:hover {
+    background: lighten($themeBlueLight, 2%) !important;
+  }
+  &:before {
+    background-image: url('../../../assets/icons/image_white  .svg') !important;
+  }
+}
+
+div.content-content span.or {
+  color: $text-lightGrey !important;
+}
+
+div.counter {
+  background: $infoBlue !important;
+  color: $white !important;
+}

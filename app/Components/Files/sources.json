@@ -1,0 +1,95 @@
+{
+
+  "name":"sources",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"small-label",
+        "data-locale":"WRITE_SOURCES_ADD_LABEL"
+      }
+    },
+
+    {
+      "element":"input>",
+      "attributes": {
+        "class":"input",
+        "name":"write_sources_add_name",
+        "data-placeholder":"WRITE_SOURCES_ADD_NAME_PLACEHOLDER",
+        "type":"text"
+      }
+    },
+
+    {
+      "element":"input>",
+      "attributes": {
+        "class":"input",
+        "name":"write_sources_add_source",
+        "data-placeholder":"WRITE_SOURCES_ADD_SOURCE_PLACEHOLDER",
+        "type":"text"
+      }
+    },
+
+    {
+      "element":"span",
+      "attributes": {
+        "class":"sources-add",
+        "data-locale":"WRITE_SOURCES_ADD_BUTTON"
+      }
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_sources_item"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"sources-source"
+          },
+          "children": [
+
+            {
+              "element":"p",
+              "attributes": {
+                "class":"source-name"
+              }
+            },
+
+            {
+              "element":"p",
+              "attributes": {
+                "class":"source-reference"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"source-edit"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"source-remove"
+              }
+            }
+
+          ]
+        }
+
+      ]
+    }
+
+  ]
+
+}

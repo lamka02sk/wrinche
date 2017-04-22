@@ -2,8 +2,8 @@
 
 /*
  * wrinche. Modern, powerful and user friendly CMS.
- * Tokens Model. Manages users' tokens list.
- * Version: 0.1.1
+ * Template Model. Manages all installed themes.
+ * Version: 0.1.3
  * Authors: lamka02sk
  */
 
