@@ -18,6 +18,11 @@
   "10":"Účet není aktivní",
 
   "404":"Chyba 404. Stránka nenalezena",
-  "500":"Chyba 500. Vnitřní chyba serveru"
+  "500":"Chyba 500. Vnitřní chyba serveru",
+
+  "ACTION_CONFIRM":"Potvrdit akci",
+  "ACTION_CONFIRM_REMOVE_LANGUAGE":"Opravdu si přejete odstranit obsah v jazyce %language%? Tuto akci nelze vrátit!",
+  "ACTION_CONFIRM_DISMISS":"Vrátit zpět",
+  "ACTION_CONFIRM_PROCEED":"Pokračovat"
 
 }
