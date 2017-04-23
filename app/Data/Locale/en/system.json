@@ -2,13 +2,29 @@
 
   "PHP_VERSION":"Your PHP version is too old. Please use newer version.",
 
+  "TIMEZONE":"Timezone",
+
   "LANGUAGE":"Language",
   "THEME":"Theme",
 
+  "LANGUAGES_ALL":"All languages",
   "ENGLISH":"English",
   "SLOVAK":"Slovak",
+  "CZECH":"Czech",
 
   "LIGHT":"Light",
-  "DARK":"Dark"
+  "DARK":"Dark",
+
+  "MONDAY":"Monday",
+  "TUESDAY":"Tuesday",
+  "WEDNESDAY":"Wednesday",
+  "THURSDAY":"Thursday",
+  "FRIDAY":"Friday",
+  "SATURDAY":"Saturday",
+  "SUNDAY":"Sunday",
+
+  "LANGUAGE_SLOVAK":"Slovak",
+  "LANGUAGE_ENGLISH":"English",
+  "LANGUAGE_CZECH":"Czech"
 
 }

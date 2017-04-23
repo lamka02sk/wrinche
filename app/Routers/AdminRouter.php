@@ -38,11 +38,11 @@ class AdminRouter extends Router {
         // Subcategory: Contains SubController Name and SubTemplate Name
 
         $components = explode('/', $this->route);
-        $this->category = $components[0] ?? 'home';
+        $this->category = $components[0] ?? 'dashboard';
         $this->subcategory = $components[1] ?? '';
 
         if(empty($this->category))
-            $this->category = 'home';
+            $this->category = 'dashboard';
 
     }
 
@@ -59,7 +59,7 @@ class AdminRouter extends Router {
         if(in_array($this->category, $this->authRoutes)) {
 
             if($checkLogin && $this->route === 'login')
-                Redirect::route('home');
+                Redirect::route('dashboard');
 
             $urlRequest = new UrlRequest;
             $urlRequest->changeRoute((Request::$url[1] ?? '') . '/' . (Request::$url[2] ?? ''));
@@ -74,8 +74,8 @@ class AdminRouter extends Router {
 
         // Call Category Controller
         $name = 'App\\Controllers\\Admin\\' . ucfirst($this->category) . 'Controller';
-        $controller = new $name($this->subcategory);
-        $controller->{$method}();
+        new $name($this->subcategory);
+        return true;
 
     }
 

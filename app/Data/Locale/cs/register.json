@@ -1,0 +1,16 @@
+{
+
+  "LOCALE":"cs",
+  "TITLE":"Registrace | wrinche ADMIN",
+
+  "REGISTER":"Registrace",
+  "USERNAME":"Uživatelské jméno",
+  "EMAIL":"E-mail",
+  "PASSWORD":"Heslo",
+  "PASSWORD_REPEAT":"Zopakujte heslo",
+  "LOGIN":"Přihlášení",
+  "REGISTER_SETMAIL":"Prosím, nastavte e-mailové spojení",
+
+  "200":"Zkontrolujte e-mailovou schránku"
+
+}

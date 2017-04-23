@@ -3,12 +3,13 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * User login authenticator.
- * Version: 0.2.6
+ * Version: 0.2.8
  * Authors: lamka02sk
  */
 
 namespace App\Auth;
 
+use App\Controllers\StatsController;
 use App\Errors\UserEvents;
 use App\Helpers\Crypto;
 use App\Helpers\Generator;
@@ -74,9 +75,9 @@ class Login {
      */
     public function checkLogin() {
 
-        // Check SESSION
-        if(!isset($_SESSION['user']['id']))
-            return false;
+        // Check SESSION - this limits login only for limited time of Session
+        /*if(!isset($_SESSION['user']['id']))
+            return false;*/
 
         // If cookie does not exist, redirect to Login View
         if((!isset(Request::$cookie['login']) || empty(Request::$cookie['login'])))

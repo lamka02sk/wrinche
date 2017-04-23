@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS logins (
   hash VARCHAR(128) NOT NULL,
   `key` VARCHAR(256) NOT NULL,
   ip VARCHAR(32) NOT NULL,
-  ua VARCHAR(128) NOT NULL,
+  ua VARCHAR(256) NOT NULL,
   active BOOLEAN DEFAULT TRUE,
   created TIMESTAMP DEFAULT current_timestamp,
   updated TIMESTAMP DEFAULT current_timestamp ON UPDATE current_timestamp,

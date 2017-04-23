@@ -1,0 +1,71 @@
+{
+
+  "name":"mistakes",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"label checkbox-click",
+        "for":"mistakes-enable",
+        "data-locale":"WRITE_MISTAKES_ENABLE_LABEL"
+      }
+    },
+
+    {
+      "element":"input>",
+      "label":"mistakes-enable",
+      "attributes": {
+        "class":"input",
+        "type":"checkbox",
+        "name":"write_mistakes_enable",
+        "value":"mistakes-enable"
+      }
+    },
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"label checkbox-click",
+        "for":"mistakes-notify",
+        "data-locale":"WRITE_MISTAKES_NOTIFY_LABEL"
+      }
+    },
+
+    {
+      "element":"input>",
+      "label":"mistakes-notify",
+      "attributes": {
+        "class":"input",
+        "type":"checkbox",
+        "name":"write_mistakes_notify",
+        "value":"mistakes-notify"
+      }
+    },
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"label checkbox-click",
+        "for":"mistakes-e_mail",
+        "data-locale":"WRITE_MISTAKES_E-MAIL_LABEL"
+      }
+    },
+
+    {
+      "element":"input>",
+      "label":"mistakes-e_mail",
+      "attributes": {
+        "class":"input",
+        "type":"checkbox",
+        "name":"write_mistakes_e-mail",
+        "value":"mistakes-e_mail"
+      }
+    }
+
+  ]
+
+}

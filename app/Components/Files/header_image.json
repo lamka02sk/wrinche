@@ -1,0 +1,102 @@
+{
+
+  "name":"header_image",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+    {
+      "element": "div",
+      "attributes": {
+        "class": "input-box"
+      },
+      "children": [
+        {
+          "element": "button",
+          "attributes": {
+            "class": "button image_manager",
+            "data-locale": "WRITE_HEADER-IMAGE_BUTTON",
+            "data-manager": "images"
+          }
+        },
+        {
+          "element": "span",
+          "attributes": {
+            "class": "or",
+            "data-locale": "WRITE_OR"
+          }
+        },
+        {
+          "element": "input>",
+          "attributes": {
+            "type": "url",
+            "data-placeholder": "WRITE_HEADER-IMAGE_INPUT",
+            "class": "input",
+            "name": "write_header-image"
+          }
+        },
+        {
+          "element":"span",
+          "attributes": {
+            "class":"validate-message",
+            "data-locale":""
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"info-text-outside",
+            "data-locale":"WRITE_HEADER-IMAGE_INPUT_INFO"
+          }
+        }
+      ]
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_header-image_image"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"header_image-image",
+            "data-path":""
+          },
+          "children": [
+
+            {
+              "element":"img",
+              "attributes": {
+                "class":"header_image-image-content",
+                "src":"",
+                "alt":""
+              }
+            },
+
+            {
+              "element":"p",
+              "attributes": {
+                "class":"header_image-name"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"header_image-remove"
+              }
+            }
+
+          ]
+        }
+
+      ]
+    }
+
+  ]
+
+}

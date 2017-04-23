@@ -1,0 +1,67 @@
+{
+  "LOCALE":"cs",
+  "TITLE":"wrinche. Moderní, výkonný a přátelské CMS.",
+
+  "SERVER_ERROR":"Server nenalezen",
+
+  "INSTALL":"Instalovat",
+  "INSTALLATION":"Instalace",
+
+  "INSTALL_LOOK":"Přizpůsobení",
+  "INSTALL_ACCOUNT":"Účet",
+  "INSTALL_DATABASE":"Databáze",
+  "INSTALL_WEBSITE":"Webová stránka",
+
+  "NEXT":"Další",
+  "TIMEZONE":"Časové pásmo",
+
+  "USERNAME":"Uživatelské jméno",
+  "EMAIL":"E-mail",
+  "PASSWORD":"Heslo",
+
+  "DATABASE_HOST":"Host databáze",
+  "DATABASE_NAME":"Název databáze",
+  "ADMIN_USERNAME":"Jméno admina",
+  "ADMIN_PASSWORD":"Heslo admina",
+
+  "TEST_CONNECTION":"Otestovat připojení",
+  "CONNECTION_SUCCESS":"V pořádku!",
+  "CONNECTION_ERROR":"Chyba!",
+
+  "WEBSITE_NAME":"Název webstránky",
+  "WEBSITE_DESCRIPTION":"Popis webstránky",
+  "WEBSITE_CATEGORY":"Kategorie webstránky",
+
+  "EULA_AGREE":"Souhlasím s licencí <a href=\"https://raw.githubusercontent.com/lamka02sk/wrinche/dev/LICENSE\" target=\"_blank\">MIT LICENSE</a>",
+  "SEND_STATS":"Odesílat anonymní data o používání",
+
+  "ART":"Umění a Kultura",
+  "ANIMALS":"Zvířata",
+  "DESIGN":"Design a Fotografování",
+  "ELECTRONICS":"Elektronika",
+  "HOLIDAYS":"Prázdniny a Dárky",
+  "EDUCATION":"Vzdělání a Knihy",
+  "BUSINESS":"Byznis a Služby",
+  "CARS":"Auta a Motorky",
+  "SPORT":"Sport a Cestování",
+  "FASHION":"Móda a Krása",
+  "COMPUTERS":"Počítače a Internet",
+  "FOOD":"Jídlo a Restaurace",
+  "SOCIETY":"Společnost a Lidi",
+  "HOME":"Domov a Rodina",
+  "ENTERTAINMENT":"Zábava a Hry",
+  "ESTATE":"Nemovitosti",
+  "MEDICAL":"Zdravotnictví a Zdraví",
+  "GARDEN":"Zahrada a Hobby",
+
+  "INSTALLING":"Instaluje se",
+  "INSTALL_WAIT":"Vydržte chvíli, prosím",
+
+  "INSTALL_DONE":"Instalace proběhla úspěšně<br>Vytvořte něco nádherného!",
+  "DONE_ADMIN":"Odkaz na administraci:",
+
+  "INSTALL_ERROR":"Omlouváme se, ale během instalace<br>nastala chyba",
+  "ERROR_SOLVE":"Prosím, zkotrolujte si zadané údaje a zkuste to znovu",
+  "BUTTON_AGAIN":"Zkusit znovu"
+
+}

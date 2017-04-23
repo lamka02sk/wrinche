@@ -1,0 +1,31 @@
+{
+
+  "name":"copyright",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"select",
+      "label":"copyright",
+      "attributes": {
+        "class":"selector-instance",
+        "name":"write_copyright_selector"
+      },
+      "children_template": [
+
+        {
+          "element":"option",
+          "attributes": {
+            "value":"",
+            "data-locale":"WRITE_ACCESSIBILITY_OPTION_"
+          }
+        }
+
+      ]
+    }
+
+  ]
+
+}

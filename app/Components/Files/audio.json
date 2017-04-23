@@ -1,0 +1,78 @@
+{
+
+  "name":"audio",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"button",
+      "attributes": {
+        "class":"button add-attachment icon-audio",
+        "data-content":"audio",
+        "data-locale":"WRITE_CONTENT_AUDIO_ADD"
+      }
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_content_audio_item"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"audio-item",
+            "data-path":""
+          },
+          "children": [
+
+            {
+              "element":"p",
+              "attributes": {
+                "class":"item-name"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"item-remove"
+              }
+            },
+
+            {
+              "element":"audio",
+              "attributes": {
+                "class":"item-player hidden",
+                "src":""
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"button button-play"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"player-time"
+              },
+              "text":"--:--/--:--"
+            }
+
+          ]
+        }
+
+      ]
+    }
+
+  ]
+
+}

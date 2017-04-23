@@ -1,0 +1,134 @@
+{
+
+  "name":"meta",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"label",
+      "attributes": {
+        "for":"meta-manually",
+        "class":"label checkbox-click",
+        "data-locale":"WRITE_META_MANUALLY"
+      }
+    },
+
+    {
+      "element":"input>",
+      "label":"meta-manually",
+      "attributes": {
+        "class":"input",
+        "type":"checkbox",
+        "value":"meta_manually"
+      }
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_meta_content"
+      },
+      "children": [
+
+        {
+          "element":"label",
+          "attributes": {
+            "class":"small-label",
+            "for":"meta-keywords",
+            "data-locale":"WRITE_META_KEYWORDS_LABEL"
+          }
+        },
+
+        {
+          "element":"input>",
+          "label":"meta-keywords",
+          "attributes": {
+            "class":"input",
+            "type":"text",
+            "name":"write_meta_keywords",
+            "data-placeholder":"WRITE_META_KEYWORDS_PLACEHOLDER"
+          }
+        },
+
+        {
+          "element":"label",
+          "attributes": {
+            "class":"small-label",
+            "for":"meta-description",
+            "data-locale":"WRITE_META_DESCRIPTION_LABEL"
+          }
+        },
+
+        {
+          "element":"input>",
+          "label":"meta-description",
+          "attributes": {
+            "class":"input",
+            "type":"text",
+            "name":"write_meta_description",
+            "data-placeholder":"WRITE_META_DESCRIPTION_PLACEHOLDER"
+          }
+        },
+
+        {
+          "element":"label",
+          "attributes": {
+            "class":"small-label",
+            "for":"meta-robots",
+            "data-locale":"WRITE_META_ROBOTS_LABEL"
+          }
+        },
+
+        {
+          "element":"select",
+          "label":"meta-robots",
+          "attributes": {
+            "class":"selector-instance",
+            "name":"write_meta_robots"
+          },
+          "children": [
+
+            {
+              "element":"option",
+              "attributes": {
+                "value":"0",
+                "selected":"true"
+              },
+              "text":"Index, Follow"
+            },
+
+            {
+              "element":"option",
+              "attributes": {
+                "value":"1"
+              },
+              "text":"No index, Follow"
+            },
+
+            {
+              "element":"option",
+              "attributes": {
+                "value":"2"
+              },
+              "text":"Index, No follow"
+            },
+
+            {
+              "element":"option",
+              "attributes": {
+                "value":"3"
+              },
+              "text":"No index, No follow"
+            }
+
+          ]
+        }
+
+      ]
+    }
+
+  ]
+
+}

@@ -1,0 +1,141 @@
+nav {
+  background: darken($themeBlue, 3%) !important;
+  @media(max-width: 540px) {
+    background: transparent !important;
+  }
+}
+
+nav ul li {
+  border-bottom-color: rgba(255,255,255,.3) !important;
+  &.active {
+    background: darken($themeBlueLight, 1%) !important;
+  }
+  &:hover {
+    background: $themeBlue !important;
+  }
+}
+
+nav ul li span.item-icon {
+  &.icon-dashboard {
+    background-image: url('../../../assets/icons/dashboard_white.svg') !important;
+  }
+  &.icon-articles {
+    background-image: url('../../../assets/icons/articles_white.svg') !important;
+  }
+  &.icon-sections {
+    background-image: url('../../../assets/icons/sections_white.svg') !important;
+  }
+  &.icon-comments {
+    background-image: url('../../../assets/icons/comments_white.svg') !important;
+  }
+  &.icon-mistakes {
+    background-image: url('../../../assets/icons/mistakes_white.svg') !important;
+  }
+  &.icon-multimedia {
+    background-image: url('../../../assets/icons/multimedia_white.svg') !important;
+  }
+  &.icon-sorting {
+    background-image: url('../../../assets/icons/sorting_white.svg') !important;
+  }
+  &.icon-calendar {
+    background-image: url('../../../assets/icons/calendar_white.svg') !important;
+  }
+  &.icon-components {
+    background-image: url('../../../assets/icons/components_white.svg') !important;
+  }
+  &.icon-analytics {
+    background-image: url('../../../assets/icons/analytics_white.svg') !important;
+  }
+  &.icon-websites {
+    background-image: url('../../../assets/icons/websites_white.svg') !important;
+  }
+  &.icon-settings {
+    background-image: url('../../../assets/icons/settings_white.svg') !important;
+  }
+}
+
+nav ul li span.item-text {
+  color: $text-lightGrey !important;
+}
+
+nav ul li.active span.item-active {
+  background: $white !important;
+}
+
+nav ul li span.item-value.item-value-count {
+  color: $white !important;
+  background: $errorRed !important;
+  &.nothing {
+    background: transparent !important;
+    color: $grey !important;
+  }
+}
+
+nav ul li span.item-value.item-value-check {
+  background-image: url('../../../assets/icons/tick.svg') !important;
+
+  &.cross {
+    background-image: url('../../../assets/icons/cross.svg') !important;
+  }
+}
+
+nav ul li span.item-value.item-value-plus {
+  background-image: url('../../../assets/icons/rising.svg') !important;
+  &.minus {
+    background-image: url('../../../assets/icons/falling.svg') !important;
+  }
+}
+
+footer {
+  background: $darkGrey !important;
+  &.open {
+    @media(max-width: 920px) {
+      box-shadow: 0 -2px 24px rgba(0,0,0,.2) !important;
+    }
+  }
+}
+
+footer span.footer-credits {
+  color: $text-lightGrey !important;
+  @media(max-width: 920px) {
+    background: $text-darkGrey !important;
+  }
+}
+
+footer span.footer-more {
+  background-image: url('../../../assets/icons/arrow-top_white.svg') !important;
+}
+
+footer div.more-content {
+  background: lighten($darkGrey, 2%) !important;
+}
+
+footer div.more-content span.content-item {
+  border-right-color: $lightGrey !important;
+  &:hover {
+    background-color: rgba(0,0,0,.05) !important;
+  }
+  &:last-of-type {
+    @media(max-width: 920px) {
+      border-right-color: $lightGrey !important;
+    }
+  }
+  &.help {
+    background-image: url("../../../assets/icons/help_white.svg") !important;
+  }
+  &.settings {
+    background-image: url("../../../assets/icons/settings_white.svg") !important;
+  }
+  &.eula {
+    background-image: url("../../../assets/icons/eula_white.svg") !important;
+  }
+  &.pro {
+    background-image: url("../../../assets/icons/pro_white.svg") !important;
+  }
+  &.update {
+    background-image: url("../../../assets/icons/update_white.svg") !important;
+  }
+  &.logout {
+    background-image: url("../../../assets/icons/logout_white.svg") !important;
+  }
+}

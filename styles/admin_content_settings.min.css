@@ -1,0 +1,1 @@
+body:before{white-space:pre;font-family:monospace;content:"Error: Undefined variable: \"$text-lightGrey\".\A         on line 2 of admin_content_settings.scss\A \A 1: div.subcontent-box.input-box {\A 2:   border-bottom: 1px solid $text-lightGrey;\A 3: }"}

@@ -15,6 +15,14 @@
   "7":"User already exists",
   "8":"Invalid hash",
   "9":"New password is the same as any old password",
-  "10":"Account is not active"
+  "10":"Account is not active",
+
+  "404":"Error 404. Page Not Found",
+  "500":"Error 500. Internal Server Error",
+
+  "ACTION_CONFIRM":"Confirm action",
+  "ACTION_CONFIRM_REMOVE_LANGUAGE":"Are you sure you want to delete translation in %language% language? This action can not be undone.",
+  "ACTION_CONFIRM_DISMISS":"Go back",
+  "ACTION_CONFIRM_PROCEED":"Continue"
 
 }

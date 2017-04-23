@@ -1,0 +1,28 @@
+{
+
+  "LOCALE":"en",
+
+  "SETTINGS_TITLE":"Settings",
+  "SETTINGS_SEARCH":"Search in settings",
+  "SETTINGS_DESCRIPTION":"Make things your own",
+
+  "SETTINGS_USERNAME":"Username",
+  "SETTINGS_FULLNAME":"Full name",
+  "SETTINGS_FIRST-NAME":"First name",
+  "SETTINGS_LAST-NAME":"Last name",
+  "SETTINGS_EMAIL":"E-mail",
+  "SETTINGS_NICKNAME":"Nickname",
+  "SETTINGS_PUBLIC-NAME":"Public name",
+  "SETTINGS_WEBSITE":"Website",
+  "SETTINGS_WEBSITE_PLACEHOLDER":"http://www.example.com",
+  "SETTINGS_BIO":"Biography",
+  "SETTINGS_SESSIONS":"Sessions",
+
+  "SETTINGS_APPEARANCE":"Interface",
+  "SETTINGS_ACCOUNT":"My account",
+
+  "BUTTON_SAVE-MANUAL":"Enforce save",
+  "BUTTON_RESET-DEFAULTS":"Reset defaults",
+  "ACTIONS_INFO":"All changes will be saved automatically"
+
+}

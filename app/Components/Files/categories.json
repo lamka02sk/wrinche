@@ -1,0 +1,109 @@
+{
+
+  "name":"categories",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"categories-list"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"category-item",
+            "data-category":""
+          },
+          "children": [
+
+            {
+              "element":"p",
+              "attributes": {
+                "class":"category-name"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"category-remove"
+              }
+            }
+
+          ]
+        }
+
+      ]
+    },
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"input-box add-category"
+      },
+      "children": [
+
+        {
+          "element":"input>",
+          "attributes": {
+            "class":"input add-item add-category-input",
+            "data-placeholder":"WRITE_CATEGORIES_ADD"
+          }
+        }
+
+      ]
+    },
+
+    {
+      "element":"span",
+      "attributes": {
+        "data-link":"sorting/categories",
+        "data-locale":"WRITE_CATEGORIES_MANAGE",
+        "data-target":"blank",
+        "class":"categories-manage"
+      }
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_categories_item"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"category-item",
+            "data-category":""
+          },
+          "children": [
+
+            {
+              "element":"p",
+              "attributes": {
+                "class":"category-name"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"category-remove"
+              }
+            }
+
+          ]
+        }
+
+      ]
+    }
+
+  ]
+
+}

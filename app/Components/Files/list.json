@@ -1,0 +1,92 @@
+{
+
+  "name":"list",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"label",
+      "attributes": {
+        "for":"list-name",
+        "class":"small-label",
+        "data-locale":"WRITE_CONTENT_LIST_NAME_PLACEHOLDER"
+      }
+    },
+
+    {
+      "element":"input>",
+      "label":"list-name",
+      "attributes": {
+        "class":"input",
+        "type":"text",
+        "name":"write_content_list_name",
+        "data-placeholder":"WRITE_CONTENT_LIST_NAME_PLACEHOLDER"
+      }
+    },
+
+    {
+      "element":"input>",
+      "attributes": {
+        "class":"input add-item",
+        "name":"write_content_list_add",
+        "type":"text",
+        "data-placeholder":"WRITE_CONTENT_LIST_ADD"
+      }
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_content_list_item"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"list-item"
+          },
+          "children": [
+
+            {
+              "element":"input>",
+              "attributes": {
+                "class":"input",
+                "name":"write_content_list_item",
+                "type":"checkbox",
+                "value":"list-item-checked"
+              }
+            },
+
+            {
+              "element":"p",
+              "attributes": {
+                "class":"item-name"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"list-item-edit"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"list-item-remove"
+              }
+            }
+
+          ]
+        }
+
+      ]
+    }
+
+  ]
+
+}

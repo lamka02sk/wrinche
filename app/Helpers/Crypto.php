@@ -19,7 +19,7 @@ class Crypto {
     public function encryptPassword($password) {
 
         // Generate hash from given password
-        $cost = 10;
+        $cost = 12;
         $hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => $cost]);
 
         // Return created hash

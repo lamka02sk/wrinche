@@ -1,0 +1,12 @@
+{
+
+  "LOCALE":"en",
+  "TITLE":"My account | wrinche ADMIN",
+
+  "SETTINGS_ACCOUNT_PLATFORM":"Platform",
+  "SETTINGS_ACCOUNT_BROWSER":"Browser",
+  "SETTINGS_ACCOUNT_IP":"IP Address",
+  "SETTINGS_ACCOUNT_LAST":"Last operation",
+  "SETTINGS_ACCOUNT_VIEWS":"# of operations"
+
+}

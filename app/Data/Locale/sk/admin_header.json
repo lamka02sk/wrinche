@@ -1,0 +1,46 @@
+{
+
+  "LOCALE":"sk",
+
+  "HEADER_SEARCH":"Zadajte výraz na vyhľadanie alebo príkaz",
+  "HEADER_QUICK":"Skratky",
+  "HEADER_WRITE":"Písať",
+  "HEADER_ACCOUNT":"Môj účet",
+
+  "HEADER_PROFILE":"Môj profil",
+  "HEADER_SETTINGS":"Nastavenia účtu",
+  "HEADER_LOGOUT":"Odhlásenie",
+
+  "WRITE_NEW":"Napísať nový článok",
+  "WRITE_ARTICLE":"Článok",
+  "WRITE_NOTE":"Poznámka",
+  "WRITE_QUICK":"Rýchla správa",
+  "WRITE_IMAGE":"Obrázok",
+  "WRITE_GALLERY":"Galéria",
+  "WRITE_VIDEO":"Video",
+  "WRITE_AUDIO":"Audio",
+  "WRITE_LINK":"Odkaz",
+  "WRITE_QUOTE":"Citát",
+  "WRITE_LIST":"Zoznam",
+
+  "HEADER_LOADING":"Načítavanie",
+
+  "MEDIA_MANAGER_TITLE":"Správca médií",
+  "MEDIA_MANAGER_DASHBOARD":"Nástenka",
+  "MEDIA_MANAGER_UPLOAD_IMAGE_BUTTON":"Nahrať obrázok",
+  "MEDIA_MANAGER_UPLOAD_VIDEO_BUTTON":"Nahrať video",
+  "MEDIA_MANAGER_UPLOAD_AUDIO_BUTTON":"Nahrať zvuk",
+  "MEDIA_MANAGER_UPLOAD_FILE_BUTTON":"Nahrať súbor",
+  "MEDIA_MANAGER_QUEUE_TITLE":"Súbory pripravené na nahratie",
+
+  "UPLOAD":"Nahrať",
+
+  "IMAGES":"Obrázky",
+  "VIDEOS":"Videá",
+  "AUDIOS":"Zvuky",
+  "FILES":"Súbory",
+
+  "VALIDATION_URL_INVALID":"Neplatná adresa",
+  "VALIDATION_URL_UNRESOLVED":"Adresa nenájdená"
+
+}

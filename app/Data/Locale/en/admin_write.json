@@ -1,0 +1,211 @@
+{
+
+  "LOCALE":"en",
+
+  "WRITE_SEARCH":"Search fields",
+  "WRITE_EDIT":"Edit",
+  "WRITE_DESCRIPTION":"Stay creative",
+  "WRITE_OR":"or",
+  "WRITE_CONTENT_BOX_HEADING":"Content",
+
+  "WRITE_TITLE_LABEL":"Headline",
+  "WRITE_TITLE_INFO":"The headline is the text indicating the nature of the article below it",
+  "WRITE_TITLE_PLACEHOLDER":"Enter headline here",
+
+  "WRITE_EXCERPT_LABEL":"Excerpt",
+  "WRITE_EXCERPT_INFO":"The excerpt is a summary of the content or text of the perex. Leave out if you decide to not use excerpt",
+  "WRITE_EXCERPT_PLACEHOLDER":"Write your summary here",
+
+  "WRITE_URL_LABEL":"URL",
+  "WRITE_URL_INFO":"URL (Uniform Resource Locator) is used to reference web pages and it shows in the browser address bar",
+  "WRITE_URL_PLACEHOLDER":"Enter content URL here",
+
+  "WRITE_PIN_LABEL":"Pin / Feature",
+  "WRITE_PIN_INFO":"When turned on, your content will show always show on the first place",
+
+  "WRITE_PEREX_LABEL":"Perex",
+  "WRITE_PEREX_INFO":"Perex contains summary of the content (excerpt) and date and location",
+  "WRITE_PEREX_DATE_LABEL":"Date",
+  "WRITE_PEREX_DATE_PLACEHOLDER":"DD/MM/YYYY",
+  "WRITE_PEREX_LOCATION_LABEL":"Location",
+  "WRITE_PEREX_LOCATION_PLACEHOLDER":"City, state or address",
+
+  "WRITE_CONTENT_HEADING_LABEL":"Heading",
+  "WRITE_CONTENT_HEADING_INFO":"Heading divides content into smaller sections",
+  "WRITE_CONTENT_HEADING_PLACEHOLDER":"Enter heading here",
+
+  "WRITE_CONTENT_RICH-TEXT_LABEL":"Paragraph",
+  "WRITE_CONTENT_RICH-TEXT_INFO":"Paragraph contains part of your text content",
+
+  "WRITE_CONTENT_PICTURE_LABEL":"Picture",
+  "WRITE_CONTENT_PICTURE_INFO":"Adds your picture between the content",
+  "WRITE_CONTENT_PICTURE_BUTTON":"Choose picture",
+  "WRITE_CONTENT_PICTURE_INPUT":"Insert image link",
+
+  "WRITE_CONTENT_VIDEO_LABEL":"Video",
+  "WRITE_CONTENT_VIDEO_INFO":"Adds your video between the content",
+  "WRITE_CONTENT_VIDEO_BUTTON":"Choose video",
+  "WRITE_CONTENT_VIDEO_INPUT":"Insert video link",
+
+  "WRITE_CONTENT_AUDIO_LABEL":"Audio",
+  "WRITE_CONTENT_AUDIO_INFO":"Adds your audio between the content",
+  "WRITE_CONTENT_AUDIO_BUTTON":"Choose audio",
+  "WRITE_CONTENT_AUDIO_INPUT":"Insert audio link",
+
+  "WRITE_CONTENT_CODE_LABEL":"Code",
+  "WRITE_CONTENT_CODE_INFO":"Adds your code snippet between the code",
+  "WRITE_CONTENT_CODE_PLACEHOLDER":"Write code here",
+
+  "WRITE_CONTENT_LINK_LABEL":"Link",
+  "WRITE_CONTENT_LINK_INFO":"Adds link box into the content",
+  "WRITE_CONTENT_LINK_PLACEHOLDER":"Insert URL here",
+
+  "WRITE_CONTENT_QUOTE_LABEL":"Quote",
+  "WRITE_CONTENT_QUOTE_INFO":"Adds quote between the content",
+  "WRITE_CONTENT_QUOTE_PLACEHOLDER":"Write quote here",
+
+  "WRITE_CONTENT_GALLERY_LABEL":"Gallery",
+  "WRITE_CONTENT_GALLERY_INFO":"Adds gallery of pictures between the content",
+  "WRITE_CONTENT_GALLERY_BUTTON":"Add picture",
+
+  "WRITE_CONTENT_NOTE_LABEL":"Note",
+  "WRITE_CONTENT_NOTE_INFO":"Adds note between the content",
+  "WRITE_CONTENT_NOTE_PLACEHOLDER":"Write note here",
+
+  "WRITE_CONTENT_TABLE_LABEL":"Table",
+  "WRITE_CONTENT_TABLE_INFO":"Adds table between the content",
+  "WRITE_CONTENT_TABLE_ADD_COLUMN":"Add column",
+  "WRITE_CONTENT_TABLE_ADD_ROW":"Add row",
+
+  "WRITE_CONTENT_LIST_LABEL":"List",
+  "WRITE_CONTENT_LIST_INFO":"Adds list to the content",
+  "WRITE_CONTENT_LIST_ADD":"Enter new list item",
+
+  "WRITE_THUMBNAIL_LABEL":"Thumbnail",
+  "WRITE_THUMBNAIL_INFO":"Thumbnail is a small picture showing next to the content link",
+  "WRITE_THUMBNAIL_BUTTON":"Choose picture",
+  "WRITE_THUMBNAIL_INPUT":"Insert picture link",
+  "WRITE_THUMBNAIL_INPUT_INFO":"Press Enter to add URL",
+
+  "WRITE_HEADER-IMAGE_LABEL":"Header image",
+  "WRITE_HEADER-IMAGE_INFO":"Header image is a picture showing next to the heading",
+  "WRITE_HEADER-IMAGE_BUTTON":"Choose picture",
+  "WRITE_HEADER-IMAGE_INPUT":"Insert picture link",
+
+  "WRITE_LANGUAGES_LABEL":"Languages",
+  "WRITE_LANGUAGES_INFO":"Allows you to write different content for different languages",
+  "WRITE_LANGUAGES_SEARCH":"Find language",
+
+  "WRITE_ATTACHMENTS_LABEL":"Attachments",
+  "WRITE_ATTACHMENTS_INFO":"Attach files, image or whatever you want to the content",
+  "WRITE_ATTACHMENTS_ADD_IMAGE":"Add image",
+  "WRITE_ATTACHMENTS_ADD_VIDEO":"Add video",
+  "WRITE_ATTACHMENTS_ADD_AUDIO":"Add audio",
+  "WRITE_ATTACHMENTS_ADD_FILE":"Add file",
+
+  "WRITE_MENU-LINK_LABEL":"Add menu link",
+  "WRITE_MENU-LINK_INFO":"Adds direct link to content into selected menu",
+  "WRITE_MENU-LINK_SELECT":"Select menu",
+  "WRITE_MENU-LINK_ADD":"Item name",
+  "WRITE_MENU-LINK_ADD_PLACEHOLDER":"Enter item name",
+
+  "WRITE_CUSTOM-FIELDS_LABEL":"Custom fields",
+  "WRITE_CUSTOM-FIELDS_ADD_HEADING":"Create new field",
+  "WRITE_CUSTOM-FIELDS_INFO":"Custom fields contain extra metadata of content",
+  "WRITE_CUSTOM-FIELDS_ADD_ROW":"Add field",
+  "WRITE_CUSTOM-FIELDS_NAME":"Identifier",
+  "WRITE_CUSTOM-FIELDS_VALUE":"Value",
+
+  "WRITE_TAGS_LABEL":"Tags",
+  "WRITE_TAGS_INFO":"Tags are used to sort content by subject",
+  "WRITE_TAGS_PLACEHOLDER":"Enter tags",
+  "WRITE_TAGS_INPUT_INFO":"When entering more tags, use comma as a separator",
+  "WRITE_TAGS_MANAGE":"Manage tags",
+
+  "WRITE_REVISIONS_LABEL":"Revisions",
+  "WRITE_REVISIONS_INFO":"Keeps all the changes at a glance",
+  "WRITE_REVISIONS_NEW_PLACEHOLDER":"Current revision description",
+
+  "WRITE_CATEGORIES_LABEL":"Categories",
+  "WRITE_CATEGORIES_ADD":"Add category",
+  "WRITE_CATEGORIES_MANAGE":"Manage categories",
+
+  "WRITE_META_LABEL":"Meta information",
+  "WRITE_META_INFO":"Allow attaching more information about content to improve SEO",
+  "WRITE_META_MANUALLY":"Custom meta",
+
+  "WRITE_PLANNER_LABEL":"Planner",
+  "WRITE_PLANNER_INFO":"Planner can automatize content publishing process",
+  "WRITE_PLANNER_PUBLISH_LABEL":"Publishing",
+  "WRITE_PLANNER_PUBLISH_AUTO_LABEL":"Automatically",
+  "WRITE_PLANNER_PUBLISH_DATE_PLACEHOLDER":"Date",
+  "WRITE_PLANNER_PUBLISH_TIME_PLACEHOLDER":"Time",
+  "WRITE_PLANNER_EXPIRY_LABEL":"Expiration",
+  "WRITE_PLANNER_EXPIRY_DATE_PLACEHOLDER":"Date",
+  "WRITE_PLANNER_EXPIRY_TIME_PLACEHOLDER":"Time",
+  "WRITE_PLANNER_NOTIFY_ENABLE":"Enable notifications",
+  "WRITE_PLANNER_NOTIFY_E-MAIL":"E-mail notifications",
+
+  "WRITE_STATUS_LABEL":"Status",
+  "WRITE_STATUS_INFO":"Current content status",
+
+  "WRITE_AUTHOR_LABEL":"Authors",
+  "WRITE_AUTHOR_INFO":"Feature to manage content authors",
+  "WRITE_AUTHOR_ADD":"Add author",
+
+  "WRITE_CREATED-AT_LABEL":"Created at",
+  "WRITE_CREATED-AT_INFO":"Used to change creation date in some situations",
+  "WRITE_CREATED_LABEL":"Change date",
+
+  "WRITE_LAST-UPDATE_LABEL":"Last updated",
+  "WRITE_LAST-UPDATE_INFO":"Used to change date of last modification in some situations",
+  "WRITE_LAST-UPDATE_CUSTOM_LABEL":"Change date",
+
+  "WRITE_COPYRIGHT_LABEL":"Copyright",
+  "WRITE_COPYRIGHT_INFO":"Informs the reader about reproduction options",
+
+  "WRITE_ACCESSIBILITY_LABEL":"Accessibility",
+  "WRITE_ACCESSIBILITY_INFO":"Defines the group of people who can access this content",
+  "WRITE_ACCESSIBILITY_OPTION_PUBLIC":"Public",
+  "WRITE_ACCESSIBILITY_OPTION_PASSWORD":"Password protected",
+  "WRITE_ACCESSIBILITY_OPTION_PRIVATE":"Private",
+
+  "WRITE_COMMENTS_LABEL":"Comments",
+  "WRITE_COMMENTS_INFO":"Comments settings and actions",
+  "WRITE_COMMENTS_ENABLE_LABEL":"Enable comments",
+  "WRITE_COMMENTS_APPROVE_LABEL":"Allow only approved",
+
+  "WRITE_SOURCES_LABEL":"Sources",
+  "WRITE_SOURCES_INFO":"List of material and fact sources used in the content",
+  "WRITE_SOURCES_ADD_LABEL":"Add source",
+  "WRITE_SOURCES_ADD_NAME_PLACEHOLDER":"Source name",
+  "WRITE_SOURCES_ADD_SOURCE_PLACEHOLDER":"Link to source",
+  "WRITE_SOURCES_ADD_BUTTON":"Add source",
+
+  "WRITE_MISTAKES_LABEL":"Mistakes",
+  "WRITE_MISTAKES_ENABLE_LABEL":"Enable reporting",
+  "WRITE_MISTAKES_NOTIFY_LABEL":"Enable notifications",
+  "WRITE_MISTAKES_E-MAIL_LABEL":"E-mail notifications",
+
+  "BUTTON_COLLAPSE_OPEN":"Show all",
+  "BUTTON_COLLAPSE_CLOSE":"Collapse",
+  "BUTTON_ADD":"Add",
+  "BUTTON_ADDED":"Added",
+
+  "ADD_HEADING":"Heading",
+  "ADD_RICH_TEXT":"Paragraph",
+  "ADD_PICTURE":"Picture",
+  "ADD_VIDEO":"Video",
+  "ADD_AUDIO":"Audio",
+  "ADD_CODE":"Code",
+  "ADD_LINK":"Link",
+  "ADD_QUOTE":"Quote",
+  "ADD_GALLERY":"Gallery",
+  "ADD_NOTE":"Note",
+  "ADD_TABLE":"Table",
+  "ADD_LIST":"List",
+
+  "CONTENT_BUILDER_HEADING":"Content builder",
+  "EMPTY_CONTENT":"Insert component"
+
+}

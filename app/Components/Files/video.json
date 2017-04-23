@@ -1,0 +1,63 @@
+{
+
+  "name":"video",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"button",
+      "attributes": {
+        "class":"button add-attachment icon-video",
+        "data-content":"video",
+        "data-locale":"WRITE_CONTENT_VIDEO_ADD"
+      }
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_content_video_item"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"video-item",
+            "data-path":""
+          },
+          "children": [
+
+            {
+              "element":"p",
+              "attributes": {
+                "class":"item-name"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"item-remove"
+              }
+            },
+
+            {
+              "element":"video",
+              "attributes": {
+                "class":"item-player",
+                "src":""
+              }
+            }
+
+          ]
+        }
+
+      ]
+    }
+
+  ]
+
+}

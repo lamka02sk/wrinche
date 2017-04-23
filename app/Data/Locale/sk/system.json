@@ -2,13 +2,29 @@
 
   "PHP_VERSION":"Vaša verzia PHP je príliš zastaralá. Skúste zvoliť novšiu verziu.",
 
+  "TIMEZONE":"Časové pásmo",
+
   "LANGUAGE":"Jazyk",
   "THEME":"Téma",
 
+  "LANGUAGES_ALL":"Všetky jazyky",
   "ENGLISH":"Anglicky",
   "SLOVAK":"Slovensky",
+  "CZECH":"Česky",
 
   "LIGHT":"Svetlá",
-  "DARK":"Tmavá"
+  "DARK":"Tmavá",
+
+  "MONDAY":"Pondelok",
+  "TUESDAY":"Utorok",
+  "WEDNESDAY":"Streda",
+  "THURSDAY":"Štvrtok",
+  "FRIDAY":"Piatok",
+  "SATURDAY":"Sobota",
+  "SUNDAY":"Nedeľa",
+
+  "LANGUAGE_SLOVAK":"Slovenčina",
+  "LANGUAGE_ENGLISH":"Angličtina",
+  "LANGUAGE_CZECH":"Čeština"
 
 }

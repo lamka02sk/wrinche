@@ -1,5 +1,4 @@
 <?php
 
-foreach($this->ASSETS['scripts'] as $asset) {
+foreach($this->ASSETS['scripts'] as $asset)
     echo $asset;
-}

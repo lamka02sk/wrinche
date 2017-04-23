@@ -1,0 +1,25 @@
+{
+
+  "PHP_VERSION":"Vaše PHP verze je příliš zastaralá. Zkuste zvolit novější verzi.",
+
+  "TIMEZONE":"Časové pásmo",
+
+  "LANGUAGE":"Jazyk",
+  "THEME":"Téma",
+
+  "ENGLISH":"Anglicky",
+  "SLOVAK":"Slovensky",
+  "CZECH":"Česky",
+
+  "LIGHT":"Světlá",
+  "DARK":"Tmavá",
+
+  "MONDAY":"Pondělí",
+  "TUESDAY":"Úterý",
+  "WEDNESDAY":"Středa",
+  "THURSDAY":"Čtvrtek",
+  "FRIDAY":"Pátek",
+  "SATURDAY":"Sobota",
+  "SUNDAY":"Neděle"
+
+}

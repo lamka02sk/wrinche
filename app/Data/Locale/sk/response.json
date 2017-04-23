@@ -15,6 +15,14 @@
   "7":"Používateľ už existuje",
   "8":"Neplatný rozlišovač",
   "9":"Nové heslo je totožné s niektorým starým",
-  "10":"Účet nie je aktívny"
+  "10":"Účet nie je aktívny",
+
+  "404":"Chyba 404. Stránka nenájdená",
+  "500":"Chyba 500. Vnútorná chyba serveru",
+
+  "ACTION_CONFIRM":"Potvrdiť akciu",
+  "ACTION_CONFIRM_REMOVE_LANGUAGE":"Naozaj si prajete odstrániť obsah v jazyku %language%? Táto akcia sa nedá vrátiť.",
+  "ACTION_CONFIRM_DISMISS":"Vrátiť spať",
+  "ACTION_CONFIRM_PROCEED":"Pokračovať"
 
 }

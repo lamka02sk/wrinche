@@ -9,6 +9,7 @@
 
 namespace App\Models;
 
+use App\Database\Connection;
 use App\Database\QueryBuilder;
 use App\Helpers\DateTime;
 use App\Requests\Request;
@@ -17,14 +18,7 @@ class LoginModel extends MainModel {
 
     public $table = 'logins';
 
-    public static $login = [
-        'hash' => '',
-        'key' => '',
-        'ip' => '',
-        'ua' => '',
-        'created' => '',
-        'updated' => ''
-    ];
+    public static $login;
 
     public $max = '24 hour'; // Hours
 
@@ -44,6 +38,27 @@ class LoginModel extends MainModel {
         $result['key'] = $cookie[1] ?? '';
 
         return $result;
+
+    }
+
+    public function returnSessions() {
+
+        $dateTime = new DateTime;
+        $maxTime = $dateTime->sub($this->max);
+
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table($this->table)
+            ->select()
+            ->selectValues()
+            ->where(
+                ['active', 'user_id', 'updated'],
+                ['=', '=', '>='],
+                [1, UserModel::$user['id'], $maxTime]
+            )
+            ->exec();
+
+        return $builder->output;
 
     }
 
@@ -127,12 +142,11 @@ class LoginModel extends MainModel {
             ->table($this->table)
             ->update()
             ->updateRow([
-                'inc' => self::$inc + 1
+                'inc' => LoginModel::$login['inc'] + 1
             ])
             ->where(
-                ['hash', 'key'],
-                ['=', '='],
-                [LoginModel::$login['hash'], LoginModel::$login['key']]
+                ['id'],
+                [LoginModel::$login['id']]
             )
             ->exec();
 

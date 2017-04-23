@@ -1,0 +1,80 @@
+{
+
+  "name":"perex",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element": "div",
+      "attributes": {
+        "class": "input-box"
+      },
+      "children": [
+
+        {
+          "element": "label",
+          "attributes": {
+            "class": "small-label",
+            "for": "perex-date",
+            "data-locale": "WRITE_PEREX_DATE_LABEL"
+          }
+        },
+
+        {
+          "element": "input>",
+          "label": "perex-date",
+          "attributes": {
+            "type": "date",
+            "class": "input date-picker-max",
+            "data-placeholder": "WRITE_PEREX_DATE_PLACEHOLDER",
+            "name": "write_perex_date"
+          }
+        }
+
+      ]
+    },
+
+    {
+      "element": "div",
+      "attributes": {
+        "class": "input-box"
+      },
+      "children": [
+
+        {
+          "element": "label",
+          "attributes": {
+            "class": "small-label",
+            "for": "perex-location",
+            "data-locale": "WRITE_PEREX_LOCATION_LABEL"
+          }
+        },
+
+        {
+          "element": "div",
+          "attributes": {
+            "class": "counter perex_location-counter",
+            "data-input": "input",
+            "data-maxLength": "120"
+          }
+        },
+
+        {
+          "element": "input>",
+          "label": "perex-location",
+          "attributes": {
+            "type": "text",
+            "class": "input",
+            "data-placeholder": "WRITE_PEREX_LOCATION_PLACEHOLDER",
+            "name": "write_perex_location"
+          }
+        }
+
+      ]
+    }
+
+  ]
+
+}

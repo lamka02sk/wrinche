@@ -13,6 +13,9 @@ use App\Auth\Login;
 use App\Controllers\Admin\AuthController;
 use App\Helpers\Config;
 use App\Helpers\Redirect;
+use App\Models\TemplateModel;
+use App\Requests\Request;
+use App\Views\Admin;
 
 class AdminController extends MainController {
 
@@ -21,7 +24,18 @@ class AdminController extends MainController {
      */
     public function start() {
 
-        // TODO
+        // Load template config if not AJAX
+        if(!Request::$ajax) {
+            $model = new TemplateModel;
+            $model->start();
+        }
+
+    }
+
+    public function createView($layout) {
+
+        // Call view instance
+        new Admin($this, $layout);
 
     }
 

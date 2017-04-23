@@ -1,0 +1,28 @@
+{
+
+  "LOCALE":"sk",
+
+  "SETTINGS_TITLE":"Nastavenia",
+  "SETTINGS_SEARCH":"Vyhľadať v nastaveniach",
+  "SETTINGS_DESCRIPTION":"Prispôsobte si všetko podľa seba",
+
+  "SETTINGS_USERNAME":"Meno používateľa",
+  "SETTINGS_FULLNAME":"Celé meno",
+  "SETTINGS_FIRST-NAME":"Meno",
+  "SETTINGS_LAST-NAME":"Priezvisko",
+  "SETTINGS_EMAIL":"E-mail",
+  "SETTINGS_NICKNAME":"Prezývka",
+  "SETTINGS_PUBLIC-NAME":"Verejné meno",
+  "SETTINGS_WEBSITE":"Webová stránka",
+  "SETTINGS_WEBSITE_PLACEHOLDER":"http://www.example.com",
+  "SETTINGS_BIO":"Biografia",
+  "SETTINGS_SESSIONS":"Relácie",
+
+  "SETTINGS_APPEARANCE":"Prostredie",
+  "SETTINGS_ACCOUNT":"Môj účet",
+
+  "BUTTON_SAVE-MANUAL":"Vynútiť uloženie",
+  "BUTTON_RESET-DEFAULTS":"Obnoviť predvolené",
+  "ACTIONS_INFO":"Všetky zmeny sa automaticky ukladajú"
+
+}

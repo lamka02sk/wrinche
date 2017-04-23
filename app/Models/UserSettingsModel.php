@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Settings Model. Holds and Manages User Settings.
- * Version: 0.1.1
+ * Version: 0.1.4
  * Authors: lamka02sk
  */
 
@@ -26,7 +26,13 @@ class UserSettingsModel extends MainModel {
 
     public function updateUserSettings() {
 
-        // TODO: Update users' settings with user model data
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table($this->table)
+            ->update()
+            ->updateRow(UserSettingsModel::$settings)
+            ->where('id', UserModel::$user['id'])
+            ->exec();
 
     }
 

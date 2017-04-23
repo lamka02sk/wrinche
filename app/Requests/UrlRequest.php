@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * URL Request Module. Manage HTTP request data from user.
- * Version: 0.3.4
+ * Version: 0.4.0
  * Authors: lamka02sk
  */
 
@@ -11,8 +11,12 @@ namespace App\Requests;
 
 use App\Helpers\Config;
 use App\Helpers\Validator;
+use App\Routers\AliasRouter;
+use App\Routers\Router;
 
 class UrlRequest {
+
+    public $router;
 
     public static function init() {
 
@@ -73,7 +77,10 @@ class UrlRequest {
 
     }
 
-    public function is(string $pattern) {
+    public function is(Router $router, string $pattern) {
+
+        // Save router instance
+        $this->router = $router;
 
         $pattern = explode('/', rtrim(trim($pattern), '/'));
         $current = Request::$url;
@@ -114,6 +121,8 @@ class UrlRequest {
         if($this->matchAlias($patternPart)) {
             // Example: {administration} - is translated to the administration route
             // Check route by alias
+            $alias = new AliasRouter;
+            return $alias->start($this->router, $patternPart, $part);
 
         } else if($this->matchInterval($patternPart)) {
             // Example: [0,500] - if parameter number is in this interval

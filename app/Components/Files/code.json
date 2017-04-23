@@ -1,0 +1,21 @@
+{
+
+  "name":"code",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"textarea",
+      "label":"content_code",
+      "attributes": {
+        "class":"pre-textarea",
+        "name":"write_content_code",
+        "data-placeholder":"WRITE_CONTENT_CODE_PLACEHOLDER"
+      }
+    }
+
+  ]
+
+}

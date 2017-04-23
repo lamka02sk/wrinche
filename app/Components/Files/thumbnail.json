@@ -1,0 +1,108 @@
+{
+
+  "name":"thumbnail",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"input-box"
+      },
+      "children": [
+
+        {
+          "element":"button",
+          "attributes": {
+            "class":"button image_manager",
+            "data-locale":"WRITE_THUMBNAIL_BUTTON",
+            "data-manager":"images"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"or",
+            "data-locale":"WRITE_OR"
+          }
+        },
+
+        {
+          "element":"input>",
+          "attributes": {
+            "type":"url",
+            "data-placeholder":"WRITE_THUMBNAIL_INPUT",
+            "class":"input",
+            "name":"write_thumbnail"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"validate-message",
+            "data-locale":""
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"info-text-outside",
+            "data-locale":"WRITE_THUMBNAIL_INPUT_INFO"
+          }
+        }
+
+      ]
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_thumbnail_image"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"thumbnail-image",
+            "data-path":""
+          },
+          "children": [
+
+            {
+              "element":"img",
+              "attributes": {
+                "class":"thumbnail-image-content",
+                "src":"",
+                "alt":""
+              }
+            },
+
+            {
+              "element":"p",
+              "attributes": {
+                "class":"thumbnail-name"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"thumbnail-remove"
+              }
+            }
+
+          ]
+        }
+
+      ]
+    }
+
+  ]
+
+}

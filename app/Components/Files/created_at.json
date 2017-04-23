@@ -1,0 +1,60 @@
+{
+
+  "name":"created_at",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"label checkbox-click",
+        "for":"created",
+        "data-locale":"WRITE_CREATED_LABEL"
+      }
+    },
+
+    {
+      "element":"input>",
+      "label":"created",
+      "attributes": {
+        "type":"checkbox",
+        "class":"input",
+        "value":"created",
+        "name":"write_created"
+      }
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_created_custom"
+      },
+      "children": [
+
+        {
+          "element":"label",
+          "attributes": {
+            "class":"small-label",
+            "for":"created_custom",
+            "data-locale":"WRITE_CREATED_CUSTOM_LABEL"
+          }
+        },
+
+        {
+          "element":"input>",
+          "label":"created_custom",
+          "attributes": {
+            "class":"input date-picker",
+            "name":"write_created_custom",
+            "data-placeholder":"WRITE_CREATED_CUSTOM_PLACEHOLDER"
+          }
+        }
+
+      ]
+    }
+
+  ]
+
+}

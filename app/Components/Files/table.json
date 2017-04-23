@@ -1,0 +1,203 @@
+{
+
+  "name":"table",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"table-header"
+      },
+      "children": [
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"table-header-column"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"table-header-column"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"table-header-add_column"
+          }
+        }
+
+      ]
+    },
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"table-row"
+      },
+      "children": [
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"table-column"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"table-column"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"table-remove_row"
+          }
+        }
+
+      ]
+    },
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"table-row"
+      },
+      "children": [
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"table-column"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"table-column"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"table-remove_row"
+          }
+        }
+
+      ]
+    },
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"table-footer"
+      },
+      "children": [
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"table-footer-remove_column"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"table-footer-remove_column"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"table-footer-add_row"
+          }
+        }
+
+      ]
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_content_table_add-row"
+      },
+      "children": [
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"table-footer-add_row"
+          }
+        }
+
+      ]
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_content_table_remove-row"
+      },
+      "children": [
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"table-remove_row"
+          }
+        }
+
+      ]
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_content_table_remove-column"
+      },
+      "children": [
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"table-footer-remove_column"
+          }
+        }
+
+      ]
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_content_table_remove-row"
+      },
+      "children": [
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"table-remove_row"
+          }
+        }
+
+      ]
+    }
+
+  ]
+
+}

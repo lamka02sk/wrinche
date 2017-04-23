@@ -13,11 +13,14 @@ use App\Database\QueryBuilder;
 
 class WebsiteModel extends MainModel {
 
-    public $website = [];
+    public static $website = [];
+
+    public $table = 'website';
 
     public function start() {
 
-        // Load website settings if needed
+        if(empty(self::$website))
+            $this->prepareWebsite();
 
     }
 
@@ -34,6 +37,19 @@ class WebsiteModel extends MainModel {
                 'send_stats' => $telemetry
             ]])
             ->exec();
+
+    }
+
+    public function prepareWebsite() {
+
+        $query = new QueryBuilder;
+        $query->queryCommands
+            ->table($this->table)
+            ->select()
+            ->selectValues()
+            ->exec();
+
+        self::$website = $query->output[0];
 
     }
 

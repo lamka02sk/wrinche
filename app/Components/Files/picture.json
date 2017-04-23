@@ -1,0 +1,85 @@
+{
+
+  "name":"picture",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"button",
+      "attributes": {
+        "class":"button image_manager",
+        "data-locale":"WRITE_CONTENT_PICTURE_BUTTON",
+        "data-manager":"images"
+      }
+    },
+
+    {
+      "element":"span",
+      "attributes": {
+        "class":"or",
+        "data-locale":"WRITE_OR"
+      }
+    },
+
+    {
+      "element":"input>",
+      "attributes": {
+        "type":"url",
+        "data-placeholder":"WRITE_CONTENT_PICTURE_INPUT",
+        "class":"input",
+        "name":"write_content_picture"
+      }
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_content_picture_image"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"picture-image",
+            "data-path":""
+          },
+          "children": [
+
+            {
+              "element":"img",
+              "attributes": {
+                "class":"picture-image-content",
+                "src":"",
+                "alt":""
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"picture-remove"
+              }
+            },
+
+            {
+              "element":"input>",
+              "attributes": {
+                "class":"input no-border-top",
+                "name":"write_content_picture_description",
+                "data-placeholder":"WRITE_CONTENT_PICTURE_DESCRIPTION",
+                "type":"text"
+              }
+            }
+
+          ]
+        }
+
+      ]
+    }
+
+  ]
+
+}

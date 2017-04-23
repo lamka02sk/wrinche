@@ -1,0 +1,61 @@
+@import "variables", "fonts", "admin_header", "admin_menu", "content_wrapper", "media_manager";
+
+:root, html {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: $font-default;
+  transition: .25s ease-in-out;
+}
+
+.icon-image {
+  background-image: url('../assets/icons/image.svg') !important;
+}
+
+.icon-video {
+  background-image: url('../assets/icons/video.svg') !important;
+}
+
+.icon-audio {
+  background-image: url('../assets/icons/audio.svg') !important;
+}
+
+.icon-file {
+  background-image: url('../assets/icons/file.svg') !important;
+}
+
+.icon-image_white {
+  background-image: url('../assets/icons/image_white.svg') !important;
+}
+
+.icon-video_white {
+  background-image: url('../assets/icons/video_white.svg') !important;
+}
+
+.icon-audio_white {
+  background-image: url('../assets/icons/audio_white.svg') !important;
+}
+
+.icon-file_white, .icon-application_white {
+  background-image: url('../assets/icons/file_white.svg') !important;
+}
+
+.icon-trash_white {
+  background-image: url('../assets/icons/trash_white.svg') !important;
+}
+
+.icon-close_white {
+  background-image: url('../assets/icons/close_white.svg') !important;
+}
+
+.icon-upload_white {
+  background-image: url('../assets/icons/update_white.svg') !important;
+}
+
+*::-moz-focus-inner {
+  border: 0;
+}
+

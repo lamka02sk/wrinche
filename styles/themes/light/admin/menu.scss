@@ -1,0 +1,141 @@
+nav {
+  background: rgba(0,0,0,.01) !important;
+  @media(max-width: 540px) {
+    background: transparent !important;
+  }
+}
+
+nav ul li {
+  border-bottom-color: $themeGrey !important;
+  &.active {
+    background: rgba(0,0,0,.03) !important;
+  }
+  &:hover {
+    background: rgba(0,0,0,.02) !important;
+  }
+}
+
+nav ul li span.item-icon {
+  &.icon-dashboard {
+    background-image: url('../../../assets/icons/dashboard.svg') !important;
+  }
+  &.icon-articles {
+    background-image: url('../../../assets/icons/articles.svg') !important;
+  }
+  &.icon-sections {
+    background-image: url('../../../assets/icons/sections.svg') !important;
+  }
+  &.icon-comments {
+    background-image: url('../../../assets/icons/comments.svg') !important;
+  }
+  &.icon-mistakes {
+    background-image: url('../../../assets/icons/mistakes.svg') !important;
+  }
+  &.icon-multimedia {
+    background-image: url('../../../assets/icons/multimedia.svg') !important;
+  }
+  &.icon-sorting {
+    background-image: url('../../../assets/icons/sorting.svg') !important;
+  }
+  &.icon-calendar {
+    background-image: url('../../../assets/icons/calendar.svg') !important;
+  }
+  &.icon-components {
+    background-image: url('../../../assets/icons/components.svg') !important;
+  }
+  &.icon-analytics {
+    background-image: url('../../../assets/icons/analytics.svg') !important;
+  }
+  &.icon-websites {
+    background-image: url('../../../assets/icons/websites.svg') !important;
+  }
+  &.icon-settings {
+    background-image: url('../../../assets/icons/settings.svg') !important;
+  }
+}
+
+nav ul li span.item-text {
+  color: $text-lightBlack !important;
+}
+
+nav ul li.active span.item-active {
+  background: $white !important;
+}
+
+nav ul li span.item-value.item-value-count {
+  color: $white !important;
+  background: $errorRed !important;
+  &.nothing {
+    background: transparent !important;
+    color: $grey !important;
+  }
+}
+
+nav ul li span.item-value.item-value-check {
+  background-image: url('../../../assets/icons/tick.svg') !important;
+
+  &.cross {
+    background-image: url('../../../assets/icons/cross.svg') !important;
+  }
+}
+
+nav ul li span.item-value.item-value-plus {
+  background-image: url('../../../assets/icons/rising.svg') !important;
+  &.minus {
+    background-image: url('../../../assets/icons/falling.svg') !important;
+  }
+}
+
+footer {
+  background: $whiteSmoke !important;
+  &.open {
+    @media(max-width: 920px) {
+      box-shadow: 0 -2px 24px rgba(0,0,0,.2) !important;
+    }
+  }
+}
+
+footer span.footer-credits {
+  color: $text-darkGrey !important;
+  @media(max-width: 920px) {
+    background: $whiteSmoke !important;
+  }
+}
+
+footer span.footer-more {
+  background-image: url('../../../assets/icons/arrow-top.svg') !important;
+}
+
+footer div.more-content {
+  background: $text-lightGrey !important;
+}
+
+footer div.more-content span.content-item {
+  border-right-color: $lightGrey !important;
+  &:hover {
+    background-color: rgba(0,0,0,.05) !important;
+  }
+  &:last-of-type {
+    @media(max-width: 920px) {
+      border-right-color: $lightGrey !important;
+    }
+  }
+  &.help {
+    background-image: url("../../../assets/icons/help.svg") !important;
+  }
+  &.settings {
+    background-image: url("../../../assets/icons/settings.svg") !important;
+  }
+  &.eula {
+    background-image: url("../../../assets/icons/eula.svg") !important;
+  }
+  &.pro {
+    background-image: url("../../../assets/icons/pro.svg") !important;
+  }
+  &.update {
+    background-image: url("../../../assets/icons/update.svg") !important;
+  }
+  &.logout {
+    background-image: url("../../../assets/icons/logout.svg") !important;
+  }
+}

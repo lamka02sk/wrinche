@@ -5,15 +5,19 @@
 namespace App\Views;
 
 use App\Helpers\Config;
+use App\Render\Html;
 
 class Main {
 
     public $page;
+    public $theme = 'light';
     public $CONFIG;
     public $ASSETS = [
         'styles' => [],
         'scripts' => []
     ];
+
+    private $template;
 
     public function setVendorAssets($assets) {
 
@@ -86,7 +90,7 @@ class Main {
 
         $path = Config::$file['system']['paths']['styles'];
         $this->ASSETS['styles'][] = '<link rel="stylesheet" type="text/css" href="' . $path . $style . '.min.css">';
-        $this->ASSETS['styles'][] = '<link id="theme" rel="stylesheet" type="text/css" href="' . $path . 'themes/light/' . $style . '.min.css">';
+        $this->ASSETS['styles'][] = '<link id="theme" rel="stylesheet" type="text/css" href="' . $path . 'themes/' . $this->theme . '/' . $style . '.min.css">';
 
     }
 

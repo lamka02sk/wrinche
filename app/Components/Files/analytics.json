@@ -1,0 +1,61 @@
+{
+
+  "name":"analytics",
+  "active":true,
+  "defaultElements":false,
+
+  "template": [
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"label checkbox-click",
+        "for":"analytics",
+        "data-locale":"WRITE_ANALYTICS_LABEL"
+      }
+    },
+
+    {
+      "element":"input>",
+      "label":"analytics",
+      "attributes": {
+        "type":"checkbox",
+        "class":"input",
+        "value":"analytics",
+        "name":"write_analytics"
+      }
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_analytics_enable"
+      },
+      "children": [
+
+        {
+          "element":"label",
+          "attributes": {
+            "class":"label checkbox-click",
+            "for":"analytics_detailed",
+            "data-locale":"WRITE_ANALYTICS_DETAILED_LABEL"
+          }
+        },
+
+        {
+          "element":"input>",
+          "label":"analytics_detailed",
+          "attributes": {
+            "type":"checkbox",
+            "class":"input",
+            "value":"analytics_detailed",
+            "name":"write_analytics_detailed"
+          }
+        }
+
+      ]
+    }
+
+  ]
+
+}

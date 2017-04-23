@@ -1,0 +1,74 @@
+{
+
+  "name":"tags",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"tags-list"
+      }
+    },
+
+    {
+      "element":"input>",
+      "label":"tags",
+      "attributes": {
+        "class":"input add-item",
+        "name":"write_tags_add",
+        "data-placeholder":"WRITE_TAGS_ADD_PLACEHOLDER",
+        "type":"text"
+      }
+    },
+
+    {
+      "element":"span",
+      "attributes": {
+        "class":"info-text-outside",
+        "data-locale":"WRITE_TAGS_INPUT_INFO"
+      }
+    },
+
+    {
+      "element":"span",
+      "attributes": {
+        "class":"tags-manage",
+        "data-link":"sorting/tags",
+        "data-target":"content",
+        "data-locale":"WRITE_TAGS_MANAGE"
+      }
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_tags_item"
+      },
+      "children": [
+
+        {
+          "element":"p",
+          "attributes": {
+            "class":"tags-item"
+          },
+          "children": [
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"tag-remove"
+              }
+            }
+
+          ]
+        }
+
+      ]
+    }
+
+  ]
+
+}

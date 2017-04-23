@@ -1,0 +1,60 @@
+{
+
+  "name":"last_update",
+  "active":true,
+  "defaultElements":true,
+
+  "template": [
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"label checkbox-click",
+        "for":"last-update",
+        "data-locale":"WRITE_LAST-UPDATE_CUSTOM_LABEL"
+      }
+    },
+
+    {
+      "element":"input>",
+      "label":"last-update",
+      "attributes": {
+        "type":"checkbox",
+        "class":"input",
+        "value":"last_update",
+        "name":"write_last-update"
+      }
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_write_last-update_custom"
+      },
+      "children": [
+
+        {
+          "element":"label",
+          "attributes": {
+            "class":"small-label",
+            "for":"last-update_custom",
+            "data-locale":"WRITE_LAST-UPDATE_CUSTOM_LABEL"
+          }
+        },
+
+        {
+          "element":"input>",
+          "label":"last-update_custom",
+          "attributes": {
+            "class":"input date-picker",
+            "name":"write_last-update_custom",
+            "data-placeholder":"WRITE_LAST-UPDATE_CUSTOM_PLACEHOLDER"
+          }
+        }
+
+      ]
+    }
+
+  ]
+
+}

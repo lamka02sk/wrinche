@@ -1,0 +1,14 @@
+{
+
+  "LOCALE":"cs",
+  "TITLE":"Přihlášení | wrinche ADMIN",
+
+  "LOGIN":"Přihlášení",
+  "USERNAME":"Uživatelské jméno nebo e-mail",
+  "PASSWORD":"*****",
+  "REGISTER":"Vytvořit účet",
+  "FORGOT_PASSWORD*":"Zapomněli jste heslo?",
+
+  "200":"Úspěšné přihlášení"
+
+}

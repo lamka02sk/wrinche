@@ -3,11 +3,13 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Connection model. Manages database connections.
- * Version: 0.1
+ * Version: 0.1.5
  * Authors: lamka02sk
  */
 
 namespace App\Models;
+
+use App\Helpers\Config;
 
 class ConnectionsModel extends MainModel {
 
@@ -29,8 +31,8 @@ class ConnectionsModel extends MainModel {
 
     private function loadConnections() {
 
-        $file = file_get_contents(ROOT . '/app/Config/database.json');
-        $this->connections = json_decode($file, true);
+        new Config('database');
+        $this->connections = Config::$file['database'];
 
     }
 

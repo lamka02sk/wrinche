@@ -1,0 +1,28 @@
+{
+
+  "LOCALE":"cs",
+
+  "SETTINGS_TITLE":"Nastavení",
+  "SETTINGS_SEARCH":"Vyhledat v nastavení",
+  "SETTINGS_DESCRIPTION":"Přizpůsobte si všechno podle sebe",
+
+  "SETTINGS_USERNAME":"Uživatelské jméno",
+  "SETTINGS_FULLNAME":"Celé jméno",
+  "SETTINGS_FIRST-NAME":"Křestní jméno",
+  "SETTINGS_LAST-NAME":"Příjmení",
+  "SETTINGS_EMAIL":"E-mail",
+  "SETTINGS_NICKNAME":"Přezdívka",
+  "SETTINGS_PUBLIC-NAME":"Veřejné jméno",
+  "SETTINGS_WEBSITE":"Webová stránka",
+  "SETTINGS_WEBSITE_PLACEHOLDER":"http://www.example.com",
+  "SETTINGS_BIO":"Bio",
+  "SETTINGS_SESSIONS":"Relace",
+
+  "SETTINGS_APPEARANCE":"Prostředí",
+  "SETTINGS_ACCOUNT":"Můj účet",
+
+  "BUTTON_SAVE-MANUAL":"Vynutit uložení",
+  "BUTTON_RESET-DEFAULTS":"Obnovit výchozí",
+  "ACTIONS_INFO":"Všechny změny se automaticky ukládají"
+
+}

@@ -1,0 +1,46 @@
+{
+
+  "LOCALE":"en",
+
+  "HEADER_SEARCH":"Enter search phrase or command",
+  "HEADER_QUICK":"Quick Actions",
+  "HEADER_WRITE":"Write",
+  "HEADER_ACCOUNT":"My Account",
+
+  "HEADER_PROFILE":"My Profile",
+  "HEADER_SETTINGS":"Profile Settings",
+  "HEADER_LOGOUT":"Logout",
+
+  "WRITE_NEW":"Write New Article",
+  "WRITE_ARTICLE":"Default",
+  "WRITE_NOTE":"Note",
+  "WRITE_QUICK":"Quick News",
+  "WRITE_IMAGE":"Image",
+  "WRITE_GALLERY":"Gallery",
+  "WRITE_VIDEO":"Video",
+  "WRITE_AUDIO":"Audio",
+  "WRITE_LINK":"Link",
+  "WRITE_QUOTE":"Quote",
+  "WRITE_LIST":"List",
+
+  "HEADER_LOADING":"Loading",
+
+  "MEDIA_MANAGER_TITLE":"Media Manager",
+  "MEDIA_MANAGER_DASHBOARD":"Dashboard",
+  "MEDIA_MANAGER_UPLOAD_IMAGE_BUTTON":"Upload image",
+  "MEDIA_MANAGER_UPLOAD_VIDEO_BUTTON":"Upload video",
+  "MEDIA_MANAGER_UPLOAD_AUDIO_BUTTON":"Upload audio",
+  "MEDIA_MANAGER_UPLOAD_FILE_BUTTON":"Upload file",
+  "MEDIA_MANAGER_QUEUE_TITLE":"Upload queue",
+
+  "UPLOAD":"Upload",
+
+  "IMAGES":"Images",
+  "VIDEOS":"Videos",
+  "AUDIOS":"Sounds",
+  "FILES":"Files",
+
+  "VALIDATION_URL_INVALID":"Invalid URL",
+  "VALIDATION_URL_UNRESOLVED":"URL unresolved"
+
+}
