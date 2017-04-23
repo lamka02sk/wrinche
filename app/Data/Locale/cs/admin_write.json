@@ -110,6 +110,7 @@
   "WRITE_MENU-LINK_ADD_PLACEHOLDER":"Zadejte název odkazu",
 
   "WRITE_CUSTOM-FIELDS_LABEL":"Vlastní pole",
+  "WRITE_CUSTOM-FIELDS_ADD_HEADING":"Vytvořit nové pole",
   "WRITE_CUSTOM-FIELDS_INFO":"Vlastní pole slouží na uložení vlastních metadat o obsahu",
   "WRITE_CUSTOM-FIELDS_ADD_ROW":"Přidat pole",
   "WRITE_CUSTOM-FIELDS_NAME":"Identifikátor",
@@ -188,6 +189,8 @@
 
   "BUTTON_COLLAPSE_OPEN":"Zobrazit vše",
   "BUTTON_COLLAPSE_CLOSE":"Skrýt",
+  "BUTTON_ADD":"Přidat",
+  "BUTTON_ADDED":"Přidané",
 
   "ADD_HEADING":"Nadpis",
   "ADD_RICH_TEXT":"Odstavec",
