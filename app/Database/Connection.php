@@ -3,12 +3,13 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Database connection module.
- * Version: 0.5.1
+ * Version: 0.6.2
  * Authors: lamka02sk
  */
 
 namespace App\Database;
 
+use App\Helpers\Config;
 use PDO;
 use PDOException;
 use App\Models\ConnectionsModel;
@@ -143,6 +144,15 @@ class Connection {
             $connection = new PDO("mysql:$host;dbname=$database", $username, $password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+            // Load Configs
+            new Config;
+
+            // Check database version
+            $version = substr($connection->query('select version()')->fetchColumn(), 0, 6);
+            if(!version_compare($version, Config::$file['system']['requirements']['mysql-version'], '<')
+                && !version_compare($version, Config::$file['system']['requirements']['mariadb-version'], '<'))
+                return null;
+
             // Return connection if successfully connected
             return $connection;
 
@@ -227,6 +237,12 @@ class Connection {
             $output = $instance->lastInsertId();
 
         return $output;
+
+    }
+
+    public function checkVersion() {
+
+
 
     }
 
