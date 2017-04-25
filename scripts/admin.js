@@ -184,8 +184,9 @@ function LoaderDone(content, link) {
     $('body').append('<script type="application/javascript" src="scripts/' + newScript + '.min.js"></script>');
 
     // Change menu selected item
+    let menuLink = link.split('/')[0];
     $('nav li').removeClass('active');
-        $('li[data-link="' + link + '"]').addClass('active');
+        $('li[data-link="' + menuLink + '"]').addClass('active');
 
     // Remove loading message
     setTimeout(function() {
@@ -193,40 +194,6 @@ function LoaderDone(content, link) {
         responseBox.classList.remove('open');
         responseBox.querySelector('span.message-content').innerText = '';
     }, 400);
-
-    // Remove current script
-    /*let scriptName = previousScripts.pop();
-    $('script[src="scripts/' + scriptName + '.min.js"]').remove();
-
-    // Add new script
-    let newScript = 'scripts/' + link.split('/')[0] + '.min.js';
-    let scriptElement = document.createElement('script');
-    scriptElement.onload = function() {
-
-        // Get translations
-        let addTranslations = document.querySelector('div.content-wrapper').getAttribute('data-locales');
-        addTranslations = addTranslations.split(' ');
-        for(let i = 0; i < addTranslations.length; ++i) {
-        if(translations.indexOf(addTranslations[i]) !== -1) continue;
-            translations.push(addTranslations[i]);
-        }
-        translate.translateLocales(addTranslations);
-
-        // Change menu selected item
-        $('nav li').removeClass('active');
-        $('li[data-link="' + link + '"]').addClass('active');
-
-        // Remove loading message
-        setTimeout(function() {
-            responseBox.classList.remove('loading');
-            responseBox.classList.remove('open');
-            responseBox.querySelector('span.message-content').innerText = '';
-        }, 400);
-
-    };
-
-    scriptElement.src = newScript;
-    body.appendChild(scriptElement);*/
 
 }
 

@@ -94,7 +94,7 @@ Loader.prototype.createEvents = function() {
 Loader.prototype.executeEvent = function(link, target) {
 
     // Save first state
-    if(this.eventCounter == 0)
+    if(this.eventCounter === 0)
         this.saveCurrentState('', 'content');
 
     // Save event details

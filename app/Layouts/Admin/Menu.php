@@ -97,7 +97,7 @@
 
         </li>
 
-        <li <?php if($layout === 'Settings'): ?>class="active"<?php endif; ?> data-link="settings/appearance" data-target="content">
+        <li <?php if($layout === 'Settings'): ?>class="active"<?php endif; ?> data-link="settings" data-target="content">
 
             <span class="item-icon icon-settings"></span>
             <span class="item-text" data-locale="MENU_SETTINGS"></span>
