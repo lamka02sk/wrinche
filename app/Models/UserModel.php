@@ -45,6 +45,7 @@ class UserModel extends MainModel {
 
         $userSettings = new UserSettingsModel;
         $userSettings->start();
+        return true;
 
     }
 

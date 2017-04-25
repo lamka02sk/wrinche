@@ -1,6 +1,8 @@
 {
 
   "LOCALE":"sk",
-  "TITLE":"Kategórie obsahu | wrinche ADMIN"
+  "TITLE":"Kategórie obsahu | wrinche ADMIN",
+
+  "NO_CATEGORIES":"Nenájdené žiadne kategórie"
 
 }

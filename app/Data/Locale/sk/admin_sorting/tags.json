@@ -1,6 +1,8 @@
 {
 
   "LOCALE":"sk",
-  "TITLE":"Značky | wrinche ADMIN"
+  "TITLE":"Značky | wrinche ADMIN",
+
+  "NO_TAGS":"Nenájdené žiadne tagy"
 
 }

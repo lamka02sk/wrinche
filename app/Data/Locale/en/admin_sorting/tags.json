@@ -1,6 +1,8 @@
 {
 
   "LOCALE":"en",
-  "TITLE":"Tags | wrinche ADMIN"
+  "TITLE":"Tags | wrinche ADMIN",
+
+  "NO_TAGS":"No tags found"
 
 }

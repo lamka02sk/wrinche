@@ -8,6 +8,16 @@
   "SORTING_DESCRIPTION":"Keep an eye on your content",
 
   "SORTING_CATEGORIES":"Categories",
-  "SORTING_TAGS":"Tags"
+  "SORTING_TAGS":"Tags",
+
+  "0_POST":"Articles",
+  "1_POST":"Article",
+  "2-4_POST":"Articles",
+  "X_POST":"Articles",
+
+  "VISIBILITY_HIDDEN":"Hidden",
+  "VISIBILITY_VISIBLE":"Visible",
+
+  "BUTTON_EDIT":"Edit"
 
 }

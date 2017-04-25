@@ -1,0 +1,134 @@
+div.category-tail {
+  height: 200px;
+  cursor: pointer;
+}
+
+div.category-tail img {
+  display: inline-block;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  filter: blur(4px);
+  width: 105%;
+  min-height: 100%;
+  height: auto;
+  opacity: .3;
+  transition: .2s ease-in-out;
+}
+
+div.category-tail:hover img {
+  opacity: .4;
+}
+
+div.category-tail span.category-tail-parent {
+  display: inline-block;
+  position: relative;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  font-size: .88em;
+  font-weight: 500;
+  color: $text-lightBlack;
+  text-align: left;
+  text-transform: uppercase;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 32px 0 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    height: 12px;
+    width: 12px;
+    right: 18px;
+    background: url('../assets/icons/arrow-right.svg') center no-repeat;
+    background-size: 9px;
+  }
+}
+
+div.category-tail p.category-tail-name {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  font-size: 1.6em;
+  font-weight: 400;
+  color: $text-lightBlack;
+  text-align: left;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-right: 32px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: -4px 0 0 0;
+  &.subcategory {
+    margin-top: 2px;
+  }
+}
+
+div.category-tail span.category-tail-posts {
+  display: inline-block;
+  left: 0;
+  bottom: 42px;
+  font-weight: 500;
+  color: $text-lightBlack;
+  width: 100%;
+  height: auto;
+  text-transform: lowercase;
+  position: absolute;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 13px;
+  font-size: .92em;
+}
+
+div.category-tail span.category-tail-visibility {
+  display: inline-block;
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 13px;
+  text-transform: uppercase;
+  color: $text-darkGrey;
+  text-align: left;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+div.category-tail button.category-tail-edit {
+  display: inline-block;
+  width: auto;
+  position: absolute;
+  bottom: 13px;
+  right: 12px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 16px;
+  background: $themeBlue;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 12px;
+  font-size: .92em;
+  font-family: $font-default;
+  color: $white;
+  transition: .2s ease-in-out;
+  &:hover {
+    background: $themeBlueLight;
+
+  }
+}

@@ -8,6 +8,16 @@
   "SORTING_DESCRIPTION":"Majte prehľad o Vašom obsahu",
 
   "SORTING_CATEGORIES":"Kategórie",
-  "SORTING_TAGS":"Značky"
+  "SORTING_TAGS":"Značky",
+
+  "0_POST":"Článkov",
+  "1_POST":"Článok",
+  "2-4_POST":"Články",
+  "X_POST":"Článkov",
+
+  "VISIBILITY_HIDDEN":"Skryté",
+  "VISIBILITY_VISIBLE":"Viditeľné",
+
+  "BUTTON_EDIT":"Upraviť"
 
 }

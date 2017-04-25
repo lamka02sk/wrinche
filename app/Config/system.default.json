@@ -66,8 +66,7 @@
   "support": {
     "languages": {
       "en": "ENGLISH",
-      "sk": "SLOVAK",
-      "cs": "CZECH"
+      "sk": "SLOVAK"
     },
     "themes": {
       "light": "LIGHT",

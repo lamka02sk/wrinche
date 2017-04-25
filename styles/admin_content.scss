@@ -1,4 +1,4 @@
-@import "admin_content_write", "admin_content_settings";
+@import "admin_content_write", "admin_content_settings", "admin_sorting";
 
 span.validate-message {
   display: inline-block;
@@ -15,4 +15,24 @@ span.validate-message {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0 13px;
+}
+
+div.content-tail {
+  display: inline-block;
+  position: relative;
+  border: 1px solid silver;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 14px 12px;
+  overflow: hidden;
+  transition: .2s ease-in-out;
+  &.third-tail {
+    float: left;
+    width: 33%;
+    margin-right: .5%;
+    &:nth-of-type(3n) {
+      margin-right: 0;
+    }
+  }
 }

@@ -1,6 +1,8 @@
 {
 
   "LOCALE":"en",
-  "TITLE":"Content categories | wrinche ADMIN"
+  "TITLE":"Content categories | wrinche ADMIN",
+
+  "NO_CATEGORIES":"No categories found"
 
 }
