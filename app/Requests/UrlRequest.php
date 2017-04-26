@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * URL Request Module. Manage HTTP request data from user.
- * Version: 0.4.0
+ * Version: 0.5.1
  * Authors: lamka02sk
  */
 
@@ -90,7 +90,6 @@ class UrlRequest {
 
         foreach($current as $key => $part) {
 
-            //echo $part . '<br>';
             if(!$this->matchAll($part, $pattern, $key))
                 return false;
 
@@ -118,7 +117,12 @@ class UrlRequest {
 
         }
 
-        if($this->matchAlias($patternPart)) {
+        if($this->matchSimpleUrl($patternPart)) {
+            // Example: [simple-url] - is simple url
+            // Check route url
+            return $validator->validateSimpleUrl($part);
+
+        }  else if($this->matchAlias($patternPart)) {
             // Example: {administration} - is translated to the administration route
             // Check route by alias
             $alias = new AliasRouter;
@@ -161,6 +165,15 @@ class UrlRequest {
     public function matchUrl(string $string) {
 
         if(preg_match('/([-a-zA-Z0-9@:%._+~#=])\w+/', $string))
+            return true;
+
+        return false;
+
+    }
+
+    public function matchSimpleUrl(string $string) {
+
+        if(preg_match('/(\[[simple-url]+\])/', $string))
             return true;
 
         return false;

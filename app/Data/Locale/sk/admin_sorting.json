@@ -2,13 +2,15 @@
 
   "LOCALE":"sk",
 
-  "SORTING_TITLE":"Zoskupenia",
-  "SORTING_EDIT":"Upraviť",
-  "SORTING_SEARCH":"Prehľadať zoskupenia",
+  "SORTING_TITLE":"Triedenie",
+  "SORTING_EDIT":"Nastavenia",
   "SORTING_DESCRIPTION":"Majte prehľad o Vašom obsahu",
 
   "SORTING_CATEGORIES":"Kategórie",
   "SORTING_TAGS":"Značky",
+
+  "SORTING_NEW_CATEGORY":"Nová kategória",
+  "SORTING_NEW_TAG":"Nový tag",
 
   "0_POST":"Článkov",
   "1_POST":"Článok",

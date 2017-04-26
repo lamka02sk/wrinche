@@ -19,11 +19,10 @@ if(!App\Requests\Request::$ajax) {
 
             <div class="mainline-search">
 
-                <!--<span class="mainline-edit" data-locale="SORTING_EDIT"></span>-->
+                <button class="new-tag mainline-button icon-add" data-locale="SORTING_NEW_TAG" data-link="new/tag" data-target="content"></button>
+                <button class="new-category mainline-button icon-add" data-locale="SORTING_NEW_CATEGORY" data-link="new/category" data-target="content"></button>
 
-                <div class="input-box">
-                    <input type="search" name="dashboard-search" data-placeholder="SORTING_SEARCH">
-                </div>
+                <span class="mainline-edit" data-link="settings/sorting" data-target="content"></span>
 
             </div>
 

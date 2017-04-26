@@ -19,11 +19,11 @@ if(!App\Requests\Request::$ajax) {
 
             <div class="mainline-search">
 
-                <span class="mainline-edit" data-locale="ARTICLES_EDIT"></span>
-
                 <div class="input-box">
                     <input type="search" name="articles-search" data-placeholder="ARTICLES_SEARCH">
                 </div>
+
+                <span class="mainline-edit"></span>
 
             </div>
 

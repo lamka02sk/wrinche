@@ -3,9 +3,12 @@
   "LOCALE":"en",
 
   "SORTING_TITLE":"Sorting",
-  "SORTING_EDIT":"Edit",
+  "SORTING_EDIT":"Settings",
   "SORTING_SEARCH":"Search sortings",
   "SORTING_DESCRIPTION":"Keep an eye on your content",
+
+  "SORTING_NEW_CATEGORY":"New category",
+  "SORTING_NEW_TAG":"New tag",
 
   "SORTING_CATEGORIES":"Categories",
   "SORTING_TAGS":"Tags",

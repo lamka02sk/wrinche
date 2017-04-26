@@ -1,8 +1,3 @@
-// Tabs number
-tabsCount = 0;
-$('div.menu-tabs span.tabs-tab').each(function() { ++tabsCount });
-$('div.menu-tabs').addClass('tabs_' + tabsCount);
-
 // Save selector setting
 function saveSelectorSetting(instance, option) {
 

@@ -4,6 +4,8 @@ require_once ROOT . '/app/Layouts/Admin/Splash.php';
 
 ?>
 
+<div class="anchor-hover"></div>
+
 <div class="fullscreen-wrapper confirmation-menu">
     <div class="va-wrapper">
 

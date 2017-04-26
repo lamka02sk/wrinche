@@ -22,7 +22,7 @@ else:
 
     ?>
 
-            <div class="content-tail third-tail category-tail" data-link="category/<?= $category['name'] ?>" data-content="content">
+            <div class="content-tail fourth-tail category-tail">
 
                 <?php
 
@@ -58,7 +58,7 @@ else:
                 <span class="category-tail-posts"><?= $category['count'] ?> <span class="post-text" data-locale="<?= $locale->decline($category['count'], 'POST') ?>"></span></span>
 
                 <span class="category-tail-visibility" data-locale="<?= $visibility ?>"></span>
-                <button class="category-tail-edit" data-locale="BUTTON_EDIT"></button>
+                <button data-link="category/<?= $category['url'] ?>" data-target="content" class="category-tail-edit" data-locale="BUTTON_EDIT"></button>
 
             </div>
 

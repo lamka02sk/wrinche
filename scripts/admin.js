@@ -127,6 +127,16 @@ for(let i = 0; i < addTranslations.length; ++i) {
 }
 let translate = new Translate(translations, false);
 
+// Show anchor-tooltip
+let html = $('html');
+html.on('mouseover', '[data-link]', function() {
+    let link = URI + this.getAttribute('data-link');
+    $('div.anchor-hover').addClass('show').text(link);
+});
+html.on('mouseleave', '[data-link]', function() {
+    $('div.anchor-hover').removeClass('show').text('');
+});
+
 // Show response message or action message
 function showMessage(content, type) {
 
@@ -215,7 +225,6 @@ new Loader({
 // Close opened elements on click outside
 let closer = new Closer;
 let doc = $(document);
-let html = $('html');
 doc.click(function(e) {
     closer.closeElements(e.target);
 });

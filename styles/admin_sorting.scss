@@ -1,6 +1,9 @@
 div.category-tail {
   height: 200px;
-  cursor: pointer;
+}
+
+div.tag-tail {
+  height: 170px;
 }
 
 div.category-tail img {
@@ -9,7 +12,7 @@ div.category-tail img {
   z-index: -1;
   top: 50%;
   left: 50%;
-  transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%) !important;
   filter: blur(4px);
   width: 105%;
   min-height: 100%;
@@ -52,8 +55,9 @@ div.category-tail span.category-tail-parent {
   }
 }
 
-div.category-tail p.category-tail-name {
+div.category-tail p.category-tail-name, div.tag-tail p.tag-tail-name {
   display: inline-block;
+  position: relative;
   width: 100%;
   height: auto;
   font-size: 1.6em;
@@ -73,10 +77,24 @@ div.category-tail p.category-tail-name {
   }
 }
 
-div.category-tail span.category-tail-posts {
+div.tag-tail p.tag-tail-name {
+  background: $whiteSmoke;
+  width: auto;
+  max-width: 90%;
+  padding: 8px 10px 8px 10px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  transition: .2s ease-in-out;
+}
+
+div.tag-tail:hover p.tag-tail-name {
+  border: 1px solid silver;
+}
+
+div.category-tail span.category-tail-posts, div.tag-tail span.tag-tail-posts {
   display: inline-block;
   left: 0;
-  bottom: 42px;
+  bottom: 52px;
   font-weight: 500;
   color: $text-lightBlack;
   width: 100%;
@@ -90,10 +108,18 @@ div.category-tail span.category-tail-posts {
   font-size: .92em;
 }
 
-div.category-tail span.category-tail-visibility {
+div.tag-tail span.tag-tail-posts {
+  padding: 8px 2px;
+  position: relative;
+  clear: both;
+  float: left;
+  bottom: 0;
+}
+
+div.category-tail span.category-tail-visibility, div.tag-tail span.tag-tail-visibility {
   display: inline-block;
   position: absolute;
-  bottom: 14px;
+  bottom: 13px;
   left: 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -102,11 +128,28 @@ div.category-tail span.category-tail-visibility {
   text-transform: uppercase;
   color: $text-darkGrey;
   text-align: left;
-  font-size: 1em;
+  font-size: .82em;
   font-weight: 500;
+  line-height: 32px;
 }
 
-div.category-tail button.category-tail-edit {
+div.category-tail span.category-tail-remove, div.tag-tail span.tag-tail-remove {
+  display: block;
+  position: absolute;
+  top: 14px;
+  right: 13px;
+  width: 18px;
+  height: 18px;
+  background: url('../assets/icons/trash.svg') center no-repeat;
+  background-size: 16px;
+  opacity: .7;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+div.category-tail button.category-tail-edit, div.tag-tail button.tag-tail-edit {
   display: inline-block;
   width: auto;
   position: absolute;

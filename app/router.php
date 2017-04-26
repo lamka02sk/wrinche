@@ -56,6 +56,14 @@ if($urlRequest->isAdmin()) {
            // Media Manager
            ->get('mediamanager')
 
+           // New
+           ->get('new/category')
+           ->get('new/tag')
+
+           // Edit ??????????????????????
+           ->get('category/[simple-url]')
+           ->get('tag/[simple-url]')
+
     ;
 
     // POST Routes

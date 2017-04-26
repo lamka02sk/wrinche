@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * Validate user inputs to protect system from attackers.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Authors: lamka02sk
  */
 
@@ -211,6 +211,20 @@ class Validator {
     public function validateUrl($url) {
 
         return $this->filterValidate($url, FILTER_VALIDATE_URL);
+
+    }
+
+    /**
+     * @param $url
+     * @return bool
+     * Validate simple URL.
+     */
+    public function validateSimpleUrl($url) {
+
+        if(preg_match('/([-a-z0-9])\w+/', $url))
+            return true;
+
+        return false;
 
     }
 

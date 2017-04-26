@@ -229,7 +229,7 @@ div.content-header div.header-mainline h2 {
 div.header-mainline div.mainline-search span.mainline-edit {
   color: #505050 !important; }
   div.header-mainline div.mainline-search span.mainline-edit:before {
-    background-image: url("../../../assets/icons/edit.svg") !important; }
+    background-image: url("../../../assets/icons/settings.svg") !important; }
 
 div.header-mainline div.mainline-search div.input-box:before {
   background: url("../../../assets/icons/search.svg") !important; }

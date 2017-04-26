@@ -43,7 +43,7 @@ if(!App\Requests\Request::$ajax) {
 
         ?>
 
-        <div class="menu-tabs">
+        <div class="menu-tabs tabs_2">
             <span class="tabs-tab tab-appearance<?= isActive('appearance', $controller) ?>" data-target="content" data-link="settings/appearance" data-locale="SETTINGS_APPEARANCE"></span>
             <span class="tabs-tab tab-account<?= isActive('account', $controller) ?>" data-target="content" data-link="settings/account" data-locale="SETTINGS_ACCOUNT"></span>
         </div>
