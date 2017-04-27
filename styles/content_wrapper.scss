@@ -236,6 +236,9 @@ div.content-wrapper div.content-content {
   float: left;
   clear: both;
   margin-bottom: 48px;
+  &.small-margin-bottom {
+    margin-bottom: 24px;
+  }
 }
 
 div.cke {

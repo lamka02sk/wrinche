@@ -238,6 +238,21 @@ div.content-content input {
   }
 }
 
+div.content-content div.selector-element {
+  clear: both;
+  float: left;
+  position: relative;
+  max-width: none;
+  input {
+    margin: 0;
+    background-position: left 13px center !important;
+    background-size: 13px !important;
+  }
+  div.selector-options {
+    z-index: 101;
+  }
+}
+
 div.content-content h3 {
   margin: 0 0 8px 0;
   display: inline-block;

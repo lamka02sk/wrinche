@@ -1394,6 +1394,8 @@ div.content-wrapper div.content-content {
   float: left;
   clear: both;
   margin-bottom: 48px; }
+  div.content-wrapper div.content-content.small-margin-bottom {
+    margin-bottom: 24px; }
 
 div.cke {
   clear: both;
@@ -1717,6 +1719,18 @@ div.content-content input {
     background-size: 13px !important;
     padding-left: 32px;
     transition: .2s ease-in-out; }
+
+div.content-content div.selector-element {
+  clear: both;
+  float: left;
+  position: relative;
+  max-width: none; }
+  div.content-content div.selector-element input {
+    margin: 0;
+    background-position: left 13px center !important;
+    background-size: 13px !important; }
+  div.content-content div.selector-element div.selector-options {
+    z-index: 101; }
 
 div.content-content h3 {
   margin: 0 0 8px 0;
@@ -2632,6 +2646,10 @@ div.category-tail button.category-tail-edit, div.tag-tail button.tag-tail-edit {
   transition: .2s ease-in-out; }
   div.category-tail button.category-tail-edit:hover, div.tag-tail button.tag-tail-edit:hover {
     background: #374d62; }
+
+div.action-bar-new {
+  border-top: 1px dotted #bdd9bf;
+  margin-top: 0; }
 
 span.validate-message {
   display: inline-block;

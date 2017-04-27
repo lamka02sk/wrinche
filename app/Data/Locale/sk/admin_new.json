@@ -1,4 +1,49 @@
 {
 
+  "LOCALE":"sk",
+
+  "NEW_OR":"alebo",
+
+  "NEW_CATEGORY_TITLE":"Nová kategória",
+  "NEW_CATEGORY_SEARCH":"Prehľadať novú kategóriu",
+  "NEW_CATEGORY_DESCRIPTION":"Vytvorte kategóriu na zaradenie obsahu",
+
+  "NEW_TAG_TITLE":"Nová značka",
+  "NEW_TAG_SEARCH":"Prehľadať novú značku",
+  "NEW_TAG_DESCRIPTION":"Vytvorte značku na zaradenie obsahu",
+
+  "NEW_CATEGORY_NAME_LABEL":"Názov",
+  "NEW_CATEGORY_NAME_INFO":"Pod týmto názvom sa kategória zobrazuje na webe",
+  "NEW_TAG_NAME_INFO":"Pod týmto názvom sa značka zobrazuje na webe",
+  "NEW_CATEGORY_NAME_PLACEHOLDER":"Napíšte názov",
+
+  "NEW_CATEGORY_URL_LABEL":"URL",
+  "NEW_CATEGORY_URL_INFO":"Adresa pod ktorou bude kategória dostupná",
+  "NEW_TAG_URL_INFO":"Adresa pod ktorou bude značka dostupná",
+  "NEW_CATEGORY_URL_PLACEHOLDER":"Zadajte URL",
+
+  "NEW_CATEGORY_PARENT_LABEL":"Nadradená kategória",
+  "NEW_CATEGORY_PARENT_INFO":"Ak zaradíte obsah do kategórie, ktorá má nadradenú kategóriu, obsah bude súčasťou oboch kategórií",
+  "NEW_CATEGORY_PARENT_NONE":"Žiadna kategória",
+
+  "NEW_CATEGORY_DESCRIPTION_LABEL":"Popis kategórie",
+  "NEW_TAG_DESCRIPTION_LABEL":"Popis značky",
+  "NEW_CATEGORY_DESCRIPTION_INFO":"Stručný popis obsahu kategórie",
+  "NEW_TAG_DESCRIPTION_INFO":"Stručný popis významu značky",
+  "NEW_CATEGORY_DESCRIPTION_PLACEHOLDER":"Popíšte kategóriu",
+  "NEW_TAG_DESCRIPTION_PLACEHOLDER":"Popíšte značku",
+
+  "NEW_CATEGORY_THUMBNAIL_LABEL":"Miniatúra",
+  "NEW_CATEGORY_THUMBNAIL_INFO":"Miniatúra je obrázok, ktorý sa zobrazí vedľa kategórie pri niektorých šablónach",
+  "NEW_CATEGORY_THUMBNAIL_MANAGER":"Vybrať obrázok",
+  "NEW_CATEGORY_THUMBNAIL_INPUT":"Vložiť odkaz na obrázok",
+  "NEW_CATEGORY_THUMBNAIL_URL_INFO":"Pre pridanie odkazu stlačte Enter",
+
+  "NEW_CATEGORY_VISIBILITY_LABEL":"Viditeľnosť",
+  "NEW_CATEGORY_VISIBILITY_INFO":"Určuje, či bude kategória viditeľná pre návštevníkov",
+  "NEW_TAG_VISIBILITY_INFO":"Určuje, či bude značka viditeľná pre návštevníkov",
+
+  "NEW_CATEGORY_CREATE":"Vytvoriť kategóriu",
+  "NEW_TAG_CREATE":"Vytvoriť značku"
 
 }

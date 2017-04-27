@@ -1,4 +1,13 @@
 {
 
+  "LOCALE":"en",
+
+  "NEW_CATEGORY_TITLE":"New category",
+  "NEW_CATEGORY_SEARCH":"Search new category",
+  "NEW_CATEGORY_DESCRIPTION":"Create category and sort your content",
+
+  "NEW_TAG_TITLE":"New tag",
+  "NEW_TAG_SEARCH":"Search new tag",
+  "NEW_TAG_DESCRIPTION":"Create tag and sort your content"
 
 }
