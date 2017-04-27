@@ -61,8 +61,8 @@ if($urlRequest->isAdmin()) {
            ->get('new/tag')
 
            // Edit ??????????????????????
-           ->get('category/[simple-url]')
-           ->get('tag/[simple-url]')
+           /*->get('category/[simple-url]')
+           ->get('tag/[simple-url]')*/
 
     ;
 
@@ -76,6 +76,7 @@ if($urlRequest->isAdmin()) {
            ->post('write')
 
            // Settings
+           ->post('settings')
            ->post('settings/appearance')
            ->post('settings/account')
            ->post('settings/writing')

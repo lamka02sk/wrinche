@@ -2,12 +2,48 @@
 
   "LOCALE":"en",
 
+  "NEW_OR":"or",
+
   "NEW_CATEGORY_TITLE":"New category",
   "NEW_CATEGORY_SEARCH":"Search new category",
   "NEW_CATEGORY_DESCRIPTION":"Create category and sort your content",
 
   "NEW_TAG_TITLE":"New tag",
   "NEW_TAG_SEARCH":"Search new tag",
-  "NEW_TAG_DESCRIPTION":"Create tag and sort your content"
+  "NEW_TAG_DESCRIPTION":"Create tag and sort your content",
+
+  "NEW_CATEGORY_NAME_LABEL":"Name",
+  "NEW_CATEGORY_NAME_INFO":"Unique name of the category",
+  "NEW_TAG_NAME_INFO":"Unique name of the tag",
+  "NEW_CATEGORY_NAME_PLACEHOLDER":"Type name",
+
+  "NEW_CATEGORY_URL_LABEL":"URL",
+  "NEW_CATEGORY_URL_INFO":"Category URL address",
+  "NEW_TAG_URL_INFO":"Tag URL address",
+  "NEW_CATEGORY_URL_PLACEHOLDER":"Enter URL",
+
+  "NEW_CATEGORY_PARENT_LABEL":"Parent category",
+  "NEW_CATEGORY_PARENT_INFO":"If parent category selected, the content added to this category will be also the content of parent category",
+  "NEW_CATEGORY_PARENT_NONE":"No category",
+
+  "NEW_CATEGORY_DESCRIPTION_LABEL":"Category description",
+  "NEW_TAG_DESCRIPTION_LABEL":"Tag description",
+  "NEW_CATEGORY_DESCRIPTION_INFO":"Brief category description",
+  "NEW_TAG_DESCRIPTION_INFO":"Brief tag description",
+  "NEW_CATEGORY_DESCRIPTION_PLACEHOLDER":"Describe this category",
+  "NEW_TAG_DESCRIPTION_PLACEHOLDER":"Describe this tag",
+
+  "NEW_CATEGORY_THUMBNAIL_LABEL":"Thumbnail",
+  "NEW_CATEGORY_THUMBNAIL_INFO":"Thumbnail is category picture showed next to category name on the web",
+  "NEW_CATEGORY_THUMBNAIL_MANAGER":"Choose picture",
+  "NEW_CATEGORY_THUMBNAIL_INPUT":"Insert picture link",
+  "NEW_CATEGORY_THUMBNAIL_URL_INFO":"Press Enter to add URL",
+
+  "NEW_CATEGORY_VISIBILITY_LABEL":"Visibility",
+  "NEW_CATEGORY_VISIBILITY_INFO":"Category visibility for visitors",
+  "NEW_TAG_VISIBILITY_INFO":"Tag visibility for visitors",
+
+  "NEW_CATEGORY_CREATE":"Create category",
+  "NEW_TAG_CREATE":"Create tag"
 
 }

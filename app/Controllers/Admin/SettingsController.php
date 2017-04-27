@@ -57,7 +57,7 @@ class SettingsController extends AdminController {
 
         // Redirect if no subcategory
         if(empty($subcategory))
-            Redirect::route('settings/appearance');
+            Redirect::route('settings/appearance', Request::$method);
 
         // Detect get or post
         if(Request::$method === 'POST')

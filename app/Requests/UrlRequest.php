@@ -117,12 +117,12 @@ class UrlRequest {
 
         }
 
-        if($this->matchSimpleUrl($patternPart)) {
+        /*if($this->matchSimpleUrl($patternPart)) {
             // Example: [simple-url] - is simple url
             // Check route url
             return $validator->validateSimpleUrl($part);
 
-        }  else if($this->matchAlias($patternPart)) {
+        }  else */if($this->matchAlias($patternPart)) {
             // Example: {administration} - is translated to the administration route
             // Check route by alias
             $alias = new AliasRouter;

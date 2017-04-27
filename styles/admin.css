@@ -2387,7 +2387,9 @@ div.subcontent-box.input-box {
     border-top: 1px dotted #bdd9bf; }
 
 div.subcontent-box.input-box div.selector-element {
-  float: right; }
+  float: right;
+  max-width: 320px;
+  clear: none; }
 
 div.subcontent-box.input-box label {
   display: inline-block;

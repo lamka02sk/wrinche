@@ -12,6 +12,8 @@ div.subcontent-box.input-box {
 
 div.subcontent-box.input-box div.selector-element {
   float: right;
+  max-width: 320px;
+  clear: none;
 }
 
 div.subcontent-box.input-box label {

@@ -7,7 +7,7 @@ if(!App\Requests\Request::$ajax) {
 
 }
 
-$SUBCATEORY = strtoupper($controller->subcategory);
+$SUBCATEGORY = strtoupper($controller->subcategory);
 
 ?>
 
@@ -17,19 +17,19 @@ $SUBCATEORY = strtoupper($controller->subcategory);
 
         <div class="header-mainline">
 
-            <h2 class="mainline-heading" data-locale="NEW_<?= $SUBCATEORY ?>_TITLE"></h2>
+            <h2 class="mainline-heading" data-locale="NEW_<?= $SUBCATEGORY ?>_TITLE"></h2>
 
             <div class="mainline-search">
 
                 <div class="input-box">
-                    <input type="search" name="settings-search" data-placeholder="NEW_<?= $SUBCATEORY ?>_SEARCH">
+                    <input type="search" name="settings-search" data-placeholder="NEW_<?= $SUBCATEGORY ?>_SEARCH">
                 </div>
 
             </div>
 
         </div>
 
-        <p class="header-description" data-locale="NEW_<?= $SUBCATEORY ?>_DESCRIPTION"></p>
+        <p class="header-description" data-locale="NEW_<?= $SUBCATEGORY ?>_DESCRIPTION"></p>
 
     </div>
 
@@ -45,7 +45,7 @@ $SUBCATEORY = strtoupper($controller->subcategory);
 
     <div class="action-bar action-bar-new">
 
-        <button class="action-button save-button" data-locale="NEW_<?= $SUBCATEORY ?>_CREATE"></button>
+        <button class="action-button save-button" data-locale="NEW_<?= $SUBCATEGORY ?>_CREATE"></button>
 
     </div>
 
