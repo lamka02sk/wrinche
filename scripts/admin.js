@@ -13,6 +13,10 @@ function reloadStylesheets() {
 
 // ---------------------------------------------------------------------------------------------------------------------
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
+
 function showValidationResult(element, locale, hide, callback) {
 
     let messageBox = element.parentNode.querySelector('span.validate-message');
@@ -108,7 +112,7 @@ let adminRoute = document.querySelector('meta[name=route]').getAttribute('conten
 let baseURI = '?route='; // While pretty URL does not work
 let route = $('meta[name=route]').attr('content');
 let URI = baseURI + route + '/';
-let locale, tabsCount, packery, selector, languages;
+let locale, packery, selector, languages, type, typeName, componentList, components;
 let previousScripts = [];
 let responseBox = document.querySelector('div.response-message');
 let body = document.querySelector('body');

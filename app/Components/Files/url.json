@@ -20,7 +20,7 @@
       "label":"url",
       "attributes": {
         "class":"input",
-        "type":"url",
+        "type":"text",
         "data-placeholder":"WRITE_URL_PLACEHOLDER",
         "name":"write_url"
       }

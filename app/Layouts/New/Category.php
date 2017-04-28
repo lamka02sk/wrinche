@@ -5,8 +5,7 @@
         <span class="info-text" data-locale="NEW_CATEGORY_NAME_INFO"></span>
     </div>
     <div class="counter name-counter big-counter" data-input="input" data-maxlength="100"></div>
-    <input class="big-input" data-placeholder="NEW_CATEGORY_NAME_PLACEHOLDER" name="new_category_name"
-           id="category-name" type="text">
+    <input class="big-input" data-placeholder="NEW_CATEGORY_NAME_PLACEHOLDER" name="new_category_name" id="category-name" type="text">
 </div>
 
 <div class="settings-component">
@@ -16,7 +15,8 @@
         <span class="info-text" data-locale="NEW_CATEGORY_URL_INFO"></span>
     </div>
     <div class="counter url-counter" data-input="input" data-maxlength="120"></div>
-    <input class="input" data-placeholder="NEW_CATEGORY_URL_PLACEHOLDER" name="new_category_url" id="category-url" type="url">
+    <input class="input" data-placeholder="NEW_CATEGORY_URL_PLACEHOLDER" name="new_category_url" id="category-url" type="text">
+    <span class="validate-message" data-locale=""></span>
 </div>
 
 <?php
