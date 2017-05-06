@@ -45,6 +45,8 @@ $SUBCATEGORY = strtoupper($controller->subcategory);
 
     <div class="action-bar action-bar-new">
 
+        <span class="result-message" data-locale=""></span>
+
         <button class="action-button save-button" data-locale="NEW_<?= $SUBCATEGORY ?>_CREATE"></button>
 
     </div>

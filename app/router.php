@@ -93,6 +93,10 @@ if($urlRequest->isAdmin()) {
            ->post('mediamanager/filelist')
            ->post('mediamanager/upload')
 
+           // New
+           ->post('new/category')
+           ->post('new/tag')
+
     ;
 
     // Navigate app

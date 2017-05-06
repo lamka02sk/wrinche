@@ -1,4 +1,4 @@
-    /**
+/**
  * Loader constructor
  * @param parameters
  * @constructor

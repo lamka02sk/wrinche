@@ -33,6 +33,7 @@ class UserEvents {
         9 => 'New password equals to old password',
         10 => 'Inactive account',
         11 => 'Function undefined',
+        12 => 'Input with the same values already exists.',
 
         20 => 'Unsupported image format',
         21 => 'Invalid image',

@@ -61,7 +61,7 @@
 
             echo '<b>' . $dirname . '</b><br>';
 
-            $filelist = scandir(ROOT . '/app/Data/Files/' . $dirname);
+            $filelist = preg_grep('/^([^.])/', scandir(ROOT . '/app/Data/Files/' . $dirname));
             unset($filelist[0], $filelist[1]);
             $filelist = array_values($filelist);
 

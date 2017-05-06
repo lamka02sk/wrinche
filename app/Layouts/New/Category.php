@@ -82,7 +82,8 @@ $categories->prepareAllCategories();
         <div class="header_image-image" data-path="">
             <img class="header_image-image-content" src="" alt="">
             <p class="header_image-name"></p>
-            <span class="header_image-remove"></span></div>
+            <span class="header_image-remove"></span>
+        </div>
     </component-template>
 </div>
 

@@ -44,6 +44,9 @@
   "NEW_TAG_VISIBILITY_INFO":"Určuje, či bude značka viditeľná pre návštevníkov",
 
   "NEW_CATEGORY_CREATE":"Vytvoriť kategóriu",
-  "NEW_TAG_CREATE":"Vytvoriť značku"
+  "NEW_TAG_CREATE":"Vytvoriť značku",
+
+  "NEW_CREATED_SUCCESS":"Akcia prebehla úspešne. Presmerovávanie...",
+  "NEW_CREATED_ERROR":"Počas spracovávania došlo k chybe. Skontrolujte zadanie a skúste znova."
 
 }

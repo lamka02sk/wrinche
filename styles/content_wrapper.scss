@@ -329,6 +329,23 @@ div.action-bar {
   margin-top: 8px;
 }
 
+div.action-bar span.result-message {
+  display: inline-block;
+  position: relative;
+  float: left;
+  width: auto;
+  line-height: 32px;
+  font-size: .92em;
+  font-weight: 500;
+  font-style: italic;
+  &.error {
+    color: $errorRed;
+  }
+  &.success {
+    color: $successGreen;
+  }
+}
+
 div.action-bar button.action-button {
   display: inline-block;
   width: auto;
