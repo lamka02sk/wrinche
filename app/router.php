@@ -60,9 +60,9 @@ if($urlRequest->isAdmin()) {
            ->get('new/category')
            ->get('new/tag')
 
-           // Edit ??????????????????????
-           /*->get('category/[simple-url]')
-           ->get('tag/[simple-url]')*/
+           // Edit category / tag
+           ->get('category/[simple-url]')
+           ->get('tag/[simple-url]')
 
     ;
 
@@ -98,6 +98,10 @@ if($urlRequest->isAdmin()) {
            // New
            ->post('new/category')
            ->post('new/tag')
+
+           // Edit category / tag
+           ->post('category')
+           ->get('tag')
 
     ;
 

@@ -33,7 +33,7 @@ class Error extends MainView {
         $LANG = $model->start();
 
         // Show layout
-        require_once ROOT . '/app/Layouts/Layout/Main.php';
+        require ROOT . '/app/Layouts/Layout/Main.php';
 
     }
 

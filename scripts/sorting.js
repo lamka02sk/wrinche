@@ -38,6 +38,10 @@ if(typeName === 'Categories')
     selectors = document.querySelectorAll('span.category-tail-remove');
 else if(typeName === 'Tags')
     selectors = document.querySelectorAll('span.tag-tail-remove');
+else {
+    typeName = 'Categories';
+    selectors = document.querySelectorAll('span.category-tail-remove');
+}
 
 for(let i = 0; i < selectors.length; ++i)
     selectors[i].addEventListener('click', removeItem);

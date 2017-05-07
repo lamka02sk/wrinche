@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * URL Request Module. Manage HTTP request data from user.
- * Version: 0.5.1
+ * Version: 0.7.4
  * Authors: lamka02sk
  */
 
@@ -117,12 +117,14 @@ class UrlRequest {
 
         }
 
-        /*if($this->matchSimpleUrl($patternPart)) {
+        if($this->matchSimpleUrl($patternPart)) {
             // Example: [simple-url] - is simple url
             // Check route url
+            $this->router->changeAlias = $part;
+            $this->router->aliasName = $patternPart;
             return $validator->validateSimpleUrl($part);
 
-        }  else */if($this->matchAlias($patternPart)) {
+        }  else if($this->matchAlias($patternPart)) {
             // Example: {administration} - is translated to the administration route
             // Check route by alias
             $alias = new AliasRouter;
@@ -134,26 +136,36 @@ class UrlRequest {
             $interval = explode(",", str_replace(["[", "]"], "", $patternPart));
             $min = $interval[0];
             $max = $interval[1];
+            $this->router->changeAlias = $part;
+            $this->router->aliasName = $patternPart;
             return $this->inInterval($min, $max, $part);
 
         } else if($this->matchNum($patternPart)) {
             // Example: [num] - if parameter is number
             // Is numeric
+            $this->router->changeAlias = $part;
+            $this->router->aliasName = $patternPart;
             return $validator->validateInteger($part);
 
         } else if($this->matchAlpha($patternPart)) {
             // Example: [alpha] - if parameter contains only letters
             // Is alpha
+            $this->router->changeAlias = $part;
+            $this->router->aliasName = $patternPart;
             return $validator->validateAlpha($part);
 
         } else if($this->matchANum($patternPart)) {
             // Example: [anum] - if parameter contains letters and numbers only
             // Is alphanumeric
+            $this->router->changeAlias = $part;
+            $this->router->aliasName = $patternPart;
             return $validator->validateANum($part);
 
         } else if($this->matchEmpty($patternPart)) {
             // Example: *** - if parameter contains anything = not empty
             // Is not empty
+            $this->router->changeAlias = $part;
+            $this->router->aliasName = $patternPart;
             return $validator->validateEmpty($part);
 
         }
@@ -173,7 +185,7 @@ class UrlRequest {
 
     public function matchSimpleUrl(string $string) {
 
-        if(preg_match('/(\[[simple-url]+\])/', $string))
+        if(preg_match('/\[(simple-url)\]/', $string))
             return true;
 
         return false;

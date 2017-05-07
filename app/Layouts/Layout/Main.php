@@ -10,7 +10,7 @@ if(!App\Requests\Request::$ajax):
     <head>
         <?php
 
-        require_once ROOT . '/app/Layouts/Layout/Head.php';
+        require ROOT . '/app/Layouts/Layout/Head.php';
 
         ?>
     </head>
@@ -18,7 +18,7 @@ if(!App\Requests\Request::$ajax):
     <body>
         <?php
 
-        require_once ROOT . '/app/Layouts/Layout/Body.php';
+        require ROOT . '/app/Layouts/Layout/Body.php';
 
         ?>
     </body>
@@ -29,7 +29,7 @@ if(!App\Requests\Request::$ajax):
 
 else:
 
-    require_once ROOT . '/app/Layouts/Layout/Body.php';
+    require ROOT . '/app/Layouts/Layout/Body.php';
 
 endif;
 

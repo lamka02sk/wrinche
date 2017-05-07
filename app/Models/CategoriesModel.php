@@ -76,10 +76,15 @@ class CategoriesModel extends MainModel {
 
     }
 
-    public function prepareCategory($category, string $column = 'id') {
+    public function prepareCategory($category, string $column = 'id', bool $return = false) {
 
         if($column === 'id')
-            if(isset(self::$categories[$category])) return true;
+            if(isset(self::$categories[$category])) {
+                if($return)
+                    return self::$categories[$category];
+                else
+                    return true;
+            }
 
         // Get category from the DB
         $builder = new QueryBuilder;
@@ -94,6 +99,8 @@ class CategoriesModel extends MainModel {
         if(isset($builder->output[0])) {
             $result = $builder->output[0];
             self::$categories[$result['id']] = $result;
+            if($return)
+                return $result;
         }
 
         return true;

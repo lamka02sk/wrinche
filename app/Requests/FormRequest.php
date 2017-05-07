@@ -18,7 +18,22 @@ class FormRequest {
         $sanitizer = new Sanitizer;
         $data = $_POST ?? [];
         $data = $sanitizer->sanitizeInput($data);
+        $data = self::trimAll($data);
         Request::$forms = $data;
+
+    }
+
+    public static function trimAll(array $data) {
+
+        $result = [];
+        foreach($data as $key => $item) {
+            if(is_array($item))
+                $result[$key] = self::trimAll($item);
+            else
+                $result[$key] = trim($item);
+        }
+
+        return $data;
 
     }
 
