@@ -22,12 +22,12 @@ else:
 
         ?>
 
-        <div class="content-tail tag-tail fourth-tail">
+        <div class="content-tail tag-tail fourth-tail" data-id="<?= $tag['id'] ?>">
 
             <?php
 
             $visibility = 'VISIBILITY_VISIBLE';
-            if($tag['visibility'] === 0)
+            if((int)$tag['visibility'] === 0)
                 $visibility = 'VISIBILITY_HIDDEN';
 
             ?>

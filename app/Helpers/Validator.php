@@ -295,4 +295,32 @@ class Validator {
 
     }
 
+    /**
+     * @param string $tag
+     * Validate tag name
+     * @return bool
+     */
+    public function validateTagName(string $tag) {
+
+        if(!preg_match('/^[a-zA-Z][a-zA-Z0-9_]+[a-zA-Z0-9]$/', $tag))
+            return false;
+
+        return true;
+
+    }
+
+    /**
+     * @param string $hashtag
+     * Validate hashtag name
+     * @return bool
+     */
+    public function validateHashtagName(string $hashtag) {
+
+        if(!preg_match('/^[#][a-zA-Z][a-zA-Z0-9_]+[a-zA-Z0-9]$/', $hashtag))
+            return false;
+
+        return true;
+
+    }
+
 }

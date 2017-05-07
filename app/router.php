@@ -93,6 +93,8 @@ if($urlRequest->isAdmin()) {
            ->post('mediamanager/filelist')
            ->post('mediamanager/upload')
 
+           ->post('sorting')
+
            // New
            ->post('new/category')
            ->post('new/tag')

@@ -197,4 +197,45 @@ class CategoriesModel extends MainModel {
 
     }
 
+    public function getChildren(int $id) {
+
+        if(empty(self::$categories))
+            $this->prepareAllCategories();
+
+        $children = [];
+        foreach(self::$categories as $category) {
+            if((int)$category['parent'] === $id)
+                $children[] = $category['id'];
+        }
+
+        return $children;
+
+    }
+
+    public function removeCategory(int $id) {
+
+        $children = $this->getChildren($id);
+
+        // Update children
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table(self::TABLE)
+            ->update()
+            ->updateRow([
+                'parent' => null
+            ])
+            ->whereIn('id', $children)
+            ->exec();
+
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table(self::TABLE)
+            ->delete()
+            ->where('id', $id)
+            ->exec();
+
+        return true;
+
+    }
+
 }

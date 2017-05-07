@@ -608,6 +608,11 @@ document.querySelector('button.action-button.save-button').addEventListener('cli
             }
         }
 
+        // Hide loading message
+        responseBox.classList.remove('loading');
+        responseBox.classList.remove('open');
+        responseBox.querySelector('span.message-content').innerHTML = '';
+
     });
 });
 

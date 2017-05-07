@@ -22,7 +22,7 @@ else:
 
     ?>
 
-            <div class="content-tail fourth-tail category-tail">
+            <div class="content-tail fourth-tail category-tail" data-id="<?= $category['id'] ?>">
 
                 <?php
 
@@ -36,7 +36,7 @@ else:
                 <?php
 
                 $visibility = 'VISIBILITY_VISIBLE';
-                if($category['visibility'] == 0)
+                if((int)$category['visibility'] === 0)
                     $visibility = 'VISIBILITY_HIDDEN';
 
                 $parent = '';

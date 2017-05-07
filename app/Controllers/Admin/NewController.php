@@ -3,7 +3,7 @@
 /*
  * wrinche. Modern, powerful and user friendly CMS.
  * New controller.
- * Version: 0.2.2
+ * Version: 0.2.6
  * Authors: lamka02sk
  */
 
@@ -11,6 +11,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\AdminController;
 use App\Models\CategoriesModel;
+use App\Models\TagsModel;
 use App\Requests\FormRequest;
 use App\Requests\Request;
 
@@ -66,7 +67,13 @@ class NewController extends AdminController {
 
     public function postTag() {
 
-        // ...
+        $name = Request::$forms['title'] ?? '';
+        $url = Request::$forms['url'] ?? '';
+        $description = Request::$forms['description'] ?? '';
+        $visibility = (Request::$forms['visibility'] === 'true' ? true : false) ?? true;
+
+        $model = new TagsModel;
+        $model->createTag($name, $url, $description, $visibility);
 
     }
 
