@@ -3,6 +3,7 @@
   "name":"categories",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
 
   "template": [
 
@@ -52,7 +53,7 @@
           "element":"input>",
           "attributes": {
             "class":"input add-item add-category-input",
-            "data-placeholder":"WRITE_CATEGORIES_ADD"
+            "data-placeholder":"COMPONENT_CATEGORIES_ADD"
           }
         }
 
@@ -63,7 +64,7 @@
       "element":"span",
       "attributes": {
         "data-link":"sorting/categories",
-        "data-locale":"WRITE_CATEGORIES_MANAGE",
+        "data-locale":"COMPONENT_CATEGORIES_MANAGE",
         "data-target":"blank",
         "class":"categories-manage"
       }
@@ -72,7 +73,7 @@
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_categories_item"
+        "id":"template_component_categories_item"
       },
       "children": [
 

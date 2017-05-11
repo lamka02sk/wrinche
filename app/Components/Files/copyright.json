@@ -3,15 +3,16 @@
   "name":"copyright",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
 
   "template": [
 
     {
       "element":"select",
-      "label":"copyright",
+      "label":"component_copyright",
       "attributes": {
         "class":"selector-instance",
-        "name":"write_copyright_selector"
+        "name":"component_copyright_selector"
       },
       "children_template": [
 
@@ -19,7 +20,7 @@
           "element":"option",
           "attributes": {
             "value":"",
-            "data-locale":"WRITE_ACCESSIBILITY_OPTION_"
+            "data-locale":"COMPONENT_COPYRIGHT_OPTION_"
           }
         }
 

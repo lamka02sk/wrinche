@@ -3,6 +3,7 @@
   "name":"audio",
   "active":true,
   "defaultElements":true,
+  "header":"component_inline_header",
 
   "template": [
 
@@ -11,14 +12,14 @@
       "attributes": {
         "class":"button add-attachment icon-audio",
         "data-content":"audio",
-        "data-locale":"WRITE_CONTENT_AUDIO_ADD"
+        "data-locale":"COMPONENT_CONTENT_AUDIO_ADD"
       }
     },
 
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_content_audio_item"
+        "id":"template_component_content_audio_item"
       },
       "children": [
 
@@ -64,7 +65,7 @@
               "attributes": {
                 "class":"player-time"
               },
-              "text":"--:--/--:--"
+              "text":""
             }
 
           ]

@@ -11,7 +11,7 @@ $data = $controller->currentCategory();
 
 ?>
 
-<div class="content-wrapper" data-locales="system admin_edit admin_edit/category admin_new admin_new/category">
+<div class="content-wrapper" data-locales="system admin_edit admin_edit/category admin_new admin_new/category" data-id="<?= $data['id'] ?>">
 
     <div class="content-header">
 
@@ -123,7 +123,7 @@ $data = $controller->currentCategory();
 
                     ?>
 
-                    <div class="header_image-image" data-path="<?= $data['thumbnail'] ?>">
+                    <div class="header_image-image category-image-instance" data-path="<?= $data['thumbnail'] ?>">
                         <img class="header_image-image-content" src="<?= $data['thumbnail'] ?>" alt="<?= $data['name'] ?> Thumbnail">
                         <p class="header_image-name"><?= basename($data['thumbnail']) ?></p>
                         <span class="header_image-remove"></span>

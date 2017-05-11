@@ -41,7 +41,8 @@
     "list",
     "text",
     "analytics",
-    "rating"
+    "rating",
+    "poll"
   ]
 
 }

@@ -3,16 +3,17 @@
   "name":"code",
   "active":true,
   "defaultElements":true,
+  "header":"component_inline_header",
 
   "template": [
 
     {
       "element":"textarea",
-      "label":"content_code",
+      "label":"component_inline_code",
       "attributes": {
         "class":"pre-textarea",
-        "name":"write_content_code",
-        "data-placeholder":"WRITE_CONTENT_CODE_PLACEHOLDER"
+        "name":"component_inline_code",
+        "data-placeholder":"COMPONENT_CONTENT_CODE_PLACEHOLDER"
       }
     }
 

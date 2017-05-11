@@ -3,6 +3,7 @@
   "name":"attachments",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
 
   "template": [
 
@@ -18,7 +19,7 @@
           "attributes": {
             "class":"button add-attachment icon-image",
             "data-content":"images",
-            "data-locale":"WRITE_ATTACHMENTS_ADD_IMAGE"
+            "data-locale":"COMPONENT_ATTACHMENTS_ADD_IMAGE"
           }
         },
 
@@ -27,7 +28,7 @@
           "attributes": {
             "class":"button add-attachment icon-video",
             "data-content":"videos",
-            "data-locale":"WRITE_ATTACHMENTS_ADD_VIDEO"
+            "data-locale":"COMPONENT_ATTACHMENTS_ADD_VIDEO"
           }
         },
 
@@ -36,7 +37,7 @@
           "attributes": {
             "class":"button add-attachment icon-audio",
             "data-content":"sounds",
-            "data-locale":"WRITE_ATTACHMENTS_ADD_AUDIO"
+            "data-locale":"COMPONENT_ATTACHMENTS_ADD_AUDIO"
           }
         },
 
@@ -45,7 +46,7 @@
           "attributes": {
             "class":"button add-attachment icon-file",
             "data-content":"files",
-            "data-locale":"WRITE_ATTACHMENTS_ADD_FILE"
+            "data-locale":"COMPONENT_ATTACHMENTS_ADD_FILE"
           }
         }
 
@@ -62,7 +63,7 @@
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_attachments_added"
+        "id":"template_component_attachments_added"
       },
       "children": [
 

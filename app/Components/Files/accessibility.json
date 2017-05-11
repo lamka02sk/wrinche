@@ -3,15 +3,16 @@
   "name":"accessibility",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
 
   "template": [
 
     {
       "element":"select",
-      "label":"accessibility",
+      "label":"component_accessibility",
       "attributes": {
         "class":"selector-instance",
-        "name":"write_accessibility_selector"
+        "name":"component_accessibility_selector"
       },
       "children": [
 
@@ -19,7 +20,7 @@
             "element":"option",
             "attributes": {
               "value":"0",
-              "data-locale":"WRITE_ACCESSIBILITY_OPTION_PUBLIC"
+              "data-locale":"COMPONENT_ACCESSIBILITY_OPTION_PUBLIC"
             }
           },
 
@@ -27,7 +28,7 @@
           "element":"option",
           "attributes": {
             "value":"1",
-            "data-locale":"WRITE_ACCESSIBILITY_OPTION_PASSWORD"
+            "data-locale":"COMPONENT_ACCESSIBILITY_OPTION_PASSWORD"
           }
         },
 
@@ -35,7 +36,7 @@
           "element":"option",
           "attributes": {
             "value":"2",
-            "data-locale":"WRITE_ACCESSIBILITY_OPTION_PRIVATE"
+            "data-locale":"COMPONENT_ACCESSIBILITY_OPTION_PRIVATE"
           }
         }
 
@@ -45,35 +46,35 @@
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_accessibility_password"
+        "id":"template_component_accessibility_password"
       },
       "children": [
 
         {
           "element":"label",
           "attributes": {
-            "for":"accessibility-password-input",
+            "for":"component_accessibility_password",
             "class":"small-label",
-            "data-locale":"WRITE_ACCESSIBILITY_PASSWORD_LABEL"
+            "data-locale":"COMPONENT_ACCESSIBILITY_PASSWORD_LABEL"
           }
         },
 
         {
           "element":"input>",
-          "label":"accessibility-password-input",
+          "label":"component_accessibility_password",
           "attributes": {
             "class":"input",
             "type":"password",
-            "name":"write_accessibility_password",
-            "data-placeholder":"WRITE_ACCESSIBILITY_PASSWORD_PLACEHOLDER"
+            "name":"component_accessibility_password",
+            "data-placeholder":"COMPONENT_ACCESSIBILITY_PASSWORD_PLACEHOLDER"
           }
         },
 
         {
           "element":"span",
           "attributes": {
-            "class":"password-show-trigger",
-            "data-action":"accessibility-password-input"
+            "class":"password-show",
+            "data-action":"component_accessibility_password_show"
           }
         }
 

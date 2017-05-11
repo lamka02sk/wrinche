@@ -10,8 +10,6 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\AdminController;
 use App\Errors\UserEvents;
-use App\Helpers\Redirect;
-use App\Layouts\Errors\Error;
 use App\Models\CategoriesModel;
 use App\Requests\Request;
 

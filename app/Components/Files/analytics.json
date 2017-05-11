@@ -10,26 +10,26 @@
       "element":"label",
       "attributes": {
         "class":"label checkbox-click",
-        "for":"analytics",
-        "data-locale":"WRITE_ANALYTICS_LABEL"
+        "for":"component_analytics",
+        "data-locale":"COMPONENT_ANALYTICS_LABEL"
       }
     },
 
     {
       "element":"input>",
-      "label":"analytics",
+      "label":"component_analytics",
       "attributes": {
         "type":"checkbox",
         "class":"input",
         "value":"analytics",
-        "name":"write_analytics"
+        "name":"component_analytics"
       }
     },
 
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_analytics_enable"
+        "id":"template_component_analytics_enable"
       },
       "children": [
 
@@ -37,19 +37,19 @@
           "element":"label",
           "attributes": {
             "class":"label checkbox-click",
-            "for":"analytics_detailed",
-            "data-locale":"WRITE_ANALYTICS_DETAILED_LABEL"
+            "for":"component_analytics_details",
+            "data-locale":"COMPONENT_ANALYTICS_DETAILS_LABEL"
           }
         },
 
         {
           "element":"input>",
-          "label":"analytics_detailed",
+          "label":"component_analytics_details",
           "attributes": {
             "type":"checkbox",
             "class":"input",
-            "value":"analytics_detailed",
-            "name":"write_analytics_detailed"
+            "value":"component_analytics_details",
+            "name":"component_analytics_details"
           }
         }
 

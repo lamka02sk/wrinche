@@ -3,6 +3,7 @@
   "name":"author",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
 
   "template": [
 
@@ -64,7 +65,7 @@
           "element":"input>",
           "attributes": {
             "class":"input add-item add-author-input",
-            "data-placeholder":"WRITE_AUTHOR_ADD"
+            "data-placeholder":"COMPONENT_AUTHOR_ADD"
           }
         }
 
@@ -74,7 +75,7 @@
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_author_item"
+        "id":"template_component_author_item"
       },
       "children": [
 

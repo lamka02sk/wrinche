@@ -3,6 +3,7 @@
   "name":"comments",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
 
   "template": [
 
@@ -10,19 +11,19 @@
       "element":"label",
       "attributes": {
         "class":"label checkbox-click",
-        "for":"comments",
-        "data-locale":"WRITE_COMMENTS_ENABLE_LABEL"
+        "for":"component_comments",
+        "data-locale":"COMPONENT_COMMENTS_ENABLE_LABEL"
       }
     },
 
     {
       "element":"input>",
-      "label":"comments",
+      "label":"component_comments",
       "attributes": {
         "type":"checkbox",
         "class":"input",
         "value":"comments",
-        "name":"write_comments"
+        "name":"component_comments"
       }
     },
 
@@ -30,19 +31,19 @@
       "element":"label",
       "attributes": {
         "class":"label checkbox-click",
-        "for":"comments_approve",
-        "data-locale":"WRITE_COMMENTS_APPROVE_LABEL"
+        "for":"component_comments_approve",
+        "data-locale":"COMPONENT_COMMENTS_APPROVE_LABEL"
       }
     },
 
     {
       "element":"input>",
-      "label":"comments_approve",
+      "label":"component_comments_approve",
       "attributes": {
         "type":"checkbox",
         "class":"input",
-        "value":"comments_approve",
-        "name":"write_comments_approve"
+        "value":"component_comments_approve",
+        "name":"component_comments_approve"
       }
     }
 

@@ -6,8 +6,8 @@
       "element":"label",
       "attributes": {
         "class":"label",
-        "for":"%component%",
-        "data-locale":"WRITE_%COMPONENT%_LABEL"
+        "for":"component_%component%",
+        "data-locale":"COMPONENT_%COMPONENT%_LABEL"
       }
     },
 
@@ -29,7 +29,7 @@
           "element":"span",
           "attributes": {
             "class":"info-text",
-            "data-locale":"WRITE_%COMPONENT%_INFO"
+            "data-locale":"COMPONENT_%COMPONENT%_INFO"
           }
         }
 
@@ -44,8 +44,8 @@
       "element":"label",
       "attributes": {
         "class":"big-label",
-        "for":"%component%",
-        "data-locale":"WRITE_%COMPONENT%_LABEL"
+        "for":"component_%component%",
+        "data-locale":"COMPONENT_%COMPONENT%_LABEL"
       }
     },
 
@@ -67,7 +67,7 @@
           "element":"span",
           "attributes": {
             "class":"info-text",
-            "data-locale":"WRITE_%COMPONENT%_INFO"
+            "data-locale":"COMPONENT_%COMPONENT%_INFO"
           }
         }
 

@@ -3,6 +3,7 @@
   "name":"created_at",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
 
   "template": [
 
@@ -10,26 +11,26 @@
       "element":"label",
       "attributes": {
         "class":"label checkbox-click",
-        "for":"created",
-        "data-locale":"WRITE_CREATED_LABEL"
+        "for":"component_created",
+        "data-locale":"COMPONENT_CREATED_LABEL"
       }
     },
 
     {
       "element":"input>",
-      "label":"created",
+      "label":"component_created",
       "attributes": {
         "type":"checkbox",
         "class":"input",
         "value":"created",
-        "name":"write_created"
+        "name":"component_created"
       }
     },
 
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_created_custom"
+        "id":"template_component_created_custom"
       },
       "children": [
 
@@ -37,18 +38,18 @@
           "element":"label",
           "attributes": {
             "class":"small-label",
-            "for":"created_custom",
-            "data-locale":"WRITE_CREATED_CUSTOM_LABEL"
+            "for":"component_created_custom",
+            "data-locale":"COMPONENT_CREATED_CUSTOM_LABEL"
           }
         },
 
         {
           "element":"input>",
-          "label":"created_custom",
+          "label":"component_created_custom",
           "attributes": {
             "class":"input date-picker",
-            "name":"write_created_custom",
-            "data-placeholder":"WRITE_CREATED_CUSTOM_PLACEHOLDER"
+            "name":"component_created_custom",
+            "data-placeholder":"COMPONENT_CREATED_CUSTOM_PLACEHOLDER"
           }
         }
 
