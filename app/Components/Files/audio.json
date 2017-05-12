@@ -5,6 +5,19 @@
   "defaultElements":true,
   "header":"component_inline_header",
 
+  "prototype": {
+
+    "inline_audio": {
+      "type":"string",
+
+      "validate": {
+        "source":"validator",
+        "method":"isAudio"
+      }
+    }
+
+  },
+
   "template": [
 
     {

@@ -5,6 +5,23 @@
   "defaultElements":true,
   "header":"component_header",
 
+  "prototype": {
+
+    "attachments": {
+      "type":"array",
+
+      "each": {
+        "type":"string",
+
+        "validate": {
+          "source":"validator",
+          "method":"isFile"
+        }
+      }
+    }
+
+  },
+
   "template": [
 
     {

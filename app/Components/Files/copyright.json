@@ -5,6 +5,15 @@
   "defaultElements":true,
   "header":"component_header",
 
+  "prototype": {
+
+    "copyright": {
+      "type":"integer",
+      "check":"systemCopyright"
+    }
+
+  },
+
   "template": [
 
     {

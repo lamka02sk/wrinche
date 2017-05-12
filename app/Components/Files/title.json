@@ -3,7 +3,7 @@
   "name":"title",
   "active":true,
   "defaultElements":true,
-  "header":"big",
+  "header":"component_header_big",
 
   "template": [
 

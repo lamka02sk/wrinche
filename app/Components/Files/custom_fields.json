@@ -3,12 +3,30 @@
   "name":"custom_fields",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
+
+  "prototype": {
+
+    "custom_fields": {
+      "type":"array",
+
+      "each": {
+        "type":"array",
+        "duplicate":"remove",
+
+        "each": {
+          "type": "string"
+        }
+      }
+    }
+
+  },
 
   "template": [
     {
       "element": "div",
       "attributes": {
-        "class": "custom_fields-add-box"
+        "class":"custom_fields-add-box"
       },
       "children": [
 
@@ -16,45 +34,45 @@
           "element": "p",
           "attributes": {
             "class":"custom_fields-add-heading",
-            "data-locale":"WRITE_CUSTOM-FIELDS_ADD_HEADING"
+            "data-locale":"COMPONENT_CUSTOM-FIELDS_ADD_HEADING"
           }
         },
 
         {
           "element": "label",
           "attributes": {
-            "for": "custom_fields-add-name",
+            "for": "component_custom-fields_add_name",
             "class": "label-custom_fields small-label",
-            "data-locale": "WRITE_CUSTOM-FIELDS_NAME"
+            "data-locale": "COMPONENT_CUSTOM-FIELDS_NAME"
           }
         },
 
         {
           "element": "label",
           "attributes": {
-            "for": "custom_fields-add-value",
+            "for": "component_custom-fields_add_value",
             "class": "label-custom_fields small-label",
-            "data-locale": "WRITE_CUSTOM-FIELDS_VALUE"
+            "data-locale": "COMPONENT_CUSTOM-FIELDS_VALUE"
           }
         },
 
         {
           "element": "input>",
-          "label": "custom_fields-add-name",
+          "label": "component_custom-fields_add_name",
           "attributes": {
             "class": "input-custom_fields",
-            "data-placeholder": "WRITE_CUSTOM-FIELDS_NAME",
-            "name": "write_custom-fields_name"
+            "data-placeholder": "COMPONENT_CUSTOM-FIELDS_NAME",
+            "name": "component_custom-fields_name"
           }
         },
 
         {
           "element": "input>",
-          "label": "custom_fields-add-value",
+          "label": "component_custom-fields_add_value",
           "attributes": {
             "class": "input-custom_fields",
-            "data-placeholder": "WRITE_CUSTOM-FIELDS_VALUE",
-            "name": "write_custom-fields_value"
+            "data-placeholder": "COMPONENT_CUSTOM-FIELDS_VALUE",
+            "name": "component_custom-fields_value"
           }
         },
 
@@ -79,7 +97,7 @@
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_custom-fields_field"
+        "id":"template_component_custom-fields_field"
       },
       "children": [
 

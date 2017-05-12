@@ -5,6 +5,25 @@
   "defaultElements":true,
   "header":"component_header",
 
+  "prototype": {
+
+    "authors": {
+      "type":"array",
+
+      "each": {
+        "type":"integer",
+
+        "validate": {
+          "source":"database",
+          "method":"boolean",
+          "table":"users",
+          "column":"id"
+        }
+      }
+    }
+
+  },
+
   "template": [
 
     {

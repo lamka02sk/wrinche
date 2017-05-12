@@ -3,6 +3,21 @@
   "name":"languages",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
+
+  "prototype": {
+
+    "languages": {
+      "type":"array",
+
+      "each": {
+        "type":"string",
+        "length":"2",
+        "check":"allLanguages"
+      }
+    }
+
+  },
 
   "template": [
 
@@ -10,8 +25,8 @@
       "element":"input>",
       "attributes": {
         "class":"input search-input",
-        "name":"write_language_search",
-        "data-placeholder":"WRITE_LANGUAGES_SEARCH"
+        "name":"component_language_search",
+        "data-placeholder":"COMPONENT_LANGUAGES_SEARCH"
       }
     },
 
@@ -25,7 +40,7 @@
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_languages_item"
+        "id":"template_component_languages_item"
       },
       "children": [
 

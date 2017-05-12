@@ -3,6 +3,24 @@
   "name":"gallery",
   "active":true,
   "defaultElements":true,
+  "header":"component_inline_header",
+
+  "prototype": {
+
+    "gallery": {
+      "type":"array",
+
+      "each": {
+        "type":"string",
+
+        "validate": {
+          "source":"validator",
+          "method":"isImage"
+        }
+      }
+    }
+
+  },
 
   "template": [
 
@@ -16,7 +34,7 @@
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_gallery_item"
+        "id":"template_component_gallery_item"
       },
       "children": [
 

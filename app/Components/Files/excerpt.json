@@ -3,6 +3,16 @@
   "name":"excerpt",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
+
+  "prototype": {
+
+    "excerpt": {
+      "type":"string",
+      "length":"0,360"
+    }
+
+  },
 
   "template": [
 
@@ -11,17 +21,17 @@
       "attributes": {
         "class":"counter fuck-chrome excerpt-counter",
         "data-input":"textarea",
-        "data-maxLength":"360"
+        "data-length":"360"
       }
     },
 
     {
       "element":"textarea",
-      "label":"excerpt",
+      "label":"component_excerpt",
       "attributes": {
         "class":"small-textarea",
-        "name":"write_excerpt",
-        "data-placeholder":"WRITE_EXCERPT_PLACEHOLDER"
+        "name":"component_excerpt",
+        "data-placeholder":"COMPONENT_EXCERPT_PLACEHOLDER"
       }
     }
 

@@ -5,6 +5,27 @@
   "defaultElements":true,
   "header":"component_header",
 
+  "prototype": {
+
+    "comments": {
+      "type":"boolean",
+
+      "if": [
+        {
+          "equals":true,
+          "prototype": {
+
+            "comments_approve": {
+              "type":"boolean"
+            }
+
+          }
+        }
+      ]
+    }
+
+  },
+
   "template": [
 
     {

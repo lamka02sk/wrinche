@@ -3,6 +3,20 @@
   "name":"header_image",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
+
+  "prototype": {
+
+    "header_image": {
+      "type":"string",
+
+      "validate": {
+        "source":"validator",
+        "method":"isImage"
+      }
+    }
+
+  },
 
   "template": [
     {
@@ -15,7 +29,7 @@
           "element": "button",
           "attributes": {
             "class": "button image_manager",
-            "data-locale": "WRITE_HEADER-IMAGE_BUTTON",
+            "data-locale": "COMPONENT_HEADER-IMAGE_BUTTON",
             "data-manager": "images"
           }
         },
@@ -23,16 +37,16 @@
           "element": "span",
           "attributes": {
             "class": "or",
-            "data-locale": "WRITE_OR"
+            "data-locale": "OR"
           }
         },
         {
           "element": "input>",
           "attributes": {
             "type": "url",
-            "data-placeholder": "WRITE_HEADER-IMAGE_INPUT",
+            "data-placeholder": "COMPONENT_HEADER-IMAGE_INPUT",
             "class": "input",
-            "name": "write_header-image"
+            "name": "component_header-image"
           }
         },
         {
@@ -47,7 +61,7 @@
           "element":"span",
           "attributes": {
             "class":"info-text-outside",
-            "data-locale":"WRITE_HEADER-IMAGE_INPUT_INFO"
+            "data-locale":"COMPONENT_HEADER-IMAGE_INPUT_INFO"
           }
         }
       ]
@@ -56,7 +70,7 @@
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_header-image_image"
+        "id":"template_component_header-image_image"
       },
       "children": [
 

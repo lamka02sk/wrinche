@@ -3,15 +3,34 @@
   "name":"heading",
   "active":true,
   "defaultElements":true,
+  "header":"component_inline_header",
+
+  "prototype": {
+
+    "heading": {
+      "type":"array",
+
+      "children": {
+        "type": {
+          "type":"integer",
+          "range":"1,7"
+        },
+        "value": {
+          "type":"string"
+        }
+      }
+    }
+
+  },
 
   "template": [
 
     {
       "element":"label",
       "attributes": {
-        "for":"write-content-heading",
+        "for":"component_inline_heading",
         "class":"small-label",
-        "data-locale":"WRITE_CONTENT_HEADING_TYPE"
+        "data-locale":"COMPONENT_CONTENT_HEADING_TYPE"
       }
     },
 
@@ -81,11 +100,11 @@
 
     {
       "element":"input>",
-      "label":"content-heading",
+      "label":"component_inline_heading",
       "attributes": {
         "class":"input h1",
-        "name":"write_content_heading",
-        "data-placeholder":"WRITE_CONTENT_HEADING_PLACEHOLDER"
+        "name":"component_inline_heading",
+        "data-placeholder":"COMPONENT_CONTENT_HEADING_PLACEHOLDER"
       }
     }
 

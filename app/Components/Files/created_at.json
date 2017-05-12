@@ -5,6 +5,19 @@
   "defaultElements":true,
   "header":"component_header",
 
+  "prototype": {
+
+    "created_at": {
+      "type":"string",
+
+      "validate": {
+        "source":"validator",
+        "method":"isPastTimestamp"
+      }
+    }
+
+  },
+
   "template": [
 
     {
