@@ -25,6 +25,8 @@
 
   "LANGUAGE_SLOVAK":"Slovak",
   "LANGUAGE_ENGLISH":"English",
-  "LANGUAGE_CZECH":"Czech"
+  "LANGUAGE_CZECH":"Czech",
+
+  "OR":"or"
 
 }

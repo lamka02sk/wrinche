@@ -1,7 +1,4 @@
-/**
- * DEFAULT COMPONENTS SCRIPTS
- */
-function ComponentController(components) {
+/*function ComponentController(components) {
 
     this.components = components;
 
@@ -710,10 +707,10 @@ function ComponentController(components) {
         }
     }
 
-}
+}*/
 
 componentList = ['title', 'excerpt', 'url', 'pin', 'thumbnail', 'perex', 'header_image', 'languages', 'attachments', 'custom_fields', 'tags', 'revisions'];
-components = new ComponentController(componentList);
+//components = new ComponentController(componentList);
 
 // Add current script
 previousScripts.push('write');
@@ -748,10 +745,10 @@ $('div.counter').each(function() {
 });
 
 // Init packery
-packery = $('div.content-settings').packery({
-    itemSelector: 'div.settings-component',
+/*packery = $('div.content-settings').packery({
+    itemSelector: 'div.component-element',
     gutter: 22
-});
+});*/
 
 // Init CKEditor
 /*ckedit = CKEDITOR.replace('content-rich_text', {
@@ -788,12 +785,12 @@ $('span.collapse-trigger').click(function() {
 });
 
 // Init Selector
-selector = new Selector({
+/*selector = new Selector({
     selector: 'select.selector-search-select'
 });
 
 // Init date picker
-initDatePicker();
+initDatePicker();*/
 
 // Remove Splash screen
 $('div.splash').addClass('done');

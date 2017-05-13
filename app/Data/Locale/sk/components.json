@@ -1,0 +1,184 @@
+{
+
+  "LOCALE":"sk",
+
+  "COMPONENT_TITLE_LABEL":"Titulok",
+  "COMPONENT_TITLE_INFO":"Titulok slúži na zaradenie obsahu, ktorý je pod ním",
+  "COMPONENT_TITLE_PLACEHOLDER":"Napíšte titulok",
+
+  "COMPONENT_EXCERPT_LABEL":"Zhrnutie",
+  "COMPONENT_EXCERPT_INFO":"Stručné zhrnutie obsahu alebo text perexu. Vynechajte aj nechcete zadávať zhrnutie",
+  "COMPONENT_EXCERPT_PLACEHOLDER":"Napíšte zhrnutie",
+
+  "COMPONENT_URL_LABEL":"URL",
+  "COMPONENT_URL_INFO":"URL (Uniform Resource Locator) sa používa ako odkaz na stránku obsahu a zobrazuje sa v adresovom paneli prehliadača",
+  "COMPONENT_URL_PLACEHOLDER":"Zadajte URL",
+
+  "COMPONENT_PIN_LABEL":"Pripnúť na vrch",
+  "COMPONENT_PIN_INFO":"Ak je pripnutie zapnuté, Váš obsah sa zobrazí vždy na vrchu stránky",
+
+  "COMPONENT_PEREX_LABEL":"Perex",
+  "COMPONENT_PEREX_INFO":"Perex obsahuje zhrnutie obsahu, dátum a miesto udalosti",
+  "COMPONENT_PEREX_DATE_LABEL":"Dátum",
+  "COMPONENT_PEREX_DATE_PLACEHOLDER":"DD/MM/YYYY",
+  "COMPONENT_PEREX_LOCATION_LABEL":"Miesto",
+  "COMPONENT_PEREX_LOCATION_PLACEHOLDER":"Mesto, štát alebo adresa",
+
+  "COMPONENT_CONTENT_HEADING_LABEL":"Nadpis",
+  "COMPONENT_CONTENT_HEADING_INFO":"Nadpis slúži na rozdelenie obsahu na kratšie časti",
+  "COMPONENT_CONTENT_HEADING_PLACEHOLDER":"Zadajte nadpis",
+
+  "COMPONENT_CONTENT_RICH-TEXT_LABEL":"Odstavec",
+  "COMPONENT_CONTENT_RICH-TEXT_INFO":"Odstavec obsahuje časť Vášho obsahu",
+
+  "COMPONENT_CONTENT_PICTURE_LABEL":"Obrázok",
+  "COMPONENT_CONTENT_PICTURE_INFO":"Pridá obrázok medzi obsah",
+  "COMPONENT_CONTENT_PICTURE_BUTTON":"Vybrať obrázok",
+  "COMPONENT_CONTENT_PICTURE_INPUT":"Vložte odkaz na obrázok",
+
+  "COMPONENT_CONTENT_VIDEO_LABEL":"Video",
+  "COMPONENT_CONTENT_VIDEO_INFO":"Pridá video medzi obsah",
+  "COMPONENT_CONTENT_VIDEO_BUTTON":"Vybrať video",
+  "COMPONENT_CONTENT_VIDEO_INPUT":"Vložte odkaz na video",
+
+  "COMPONENT_CONTENT_AUDIO_LABEL":"Audio",
+  "COMPONENT_CONTENT_AUDIO_INFO":"Pridá audio medzi obsah",
+  "COMPONENT_CONTENT_AUDIO_BUTTON":"Vybrať audio",
+  "COMPONENT_CONTENT_AUDIO_INPUT":"Vložte odkaz na audio",
+
+  "COMPONENT_CONTENT_CODE_LABEL":"Kód",
+  "COMPONENT_CONTENT_CODE_INFO":"Vloží útržok kódu do obsahu",
+  "COMPONENT_CONTENT_CODE_PLACEHOLDER":"Napíšte kód",
+
+  "COMPONENT_CONTENT_LINK_LABEL":"Odkaz",
+  "COMPONENT_CONTENT_LINK_INFO":"Vloží odkaz do obsahu",
+  "COMPONENT_CONTENT_LINK_PLACEHOLDER":"Zadajte adresu URL",
+
+  "COMPONENT_CONTENT_QUOTE_LABEL":"Citát",
+  "COMPONENT_CONTENT_QUOTE_INFO":"Vloží citát do obsahu",
+  "COMPONENT_CONTENT_QUOTE_PLACEHOLDER":"Napíšte citát",
+
+  "COMPONENT_CONTENT_GALLERY_LABEL":"Galéria",
+  "COMPONENT_CONTENT_GALLERY_INFO":"Vloží galériu obrázkov do obsahu",
+  "COMPONENT_CONTENT_GALLERY_BUTTON":"Pridať obrázok",
+
+  "COMPONENT_CONTENT_NOTE_LABEL":"Poznámka",
+  "COMPONENT_CONTENT_NOTE_INFO":"Vloží poznámku do obsahu",
+  "COMPONENT_CONTENT_NOTE_PLACEHOLDER":"Napíšte poznámku",
+
+  "COMPONENT_CONTENT_TABLE_LABEL":"Tabuľka",
+  "COMPONENT_CONTENT_TABLE_INFO":"Vloží tabuľku do obsahu",
+  "COMPONENT_CONTENT_TABLE_ADD_COLUMN":"Vložiť stĺpec",
+  "COMPONENT_CONTENT_TABLE_ADD_ROW":"Vložiť riadok",
+
+  "COMPONENT_CONTENT_LIST_LABEL":"Zoznam",
+  "COMPONENT_CONTENT_LIST_INFO":"Vloží zoznam do obsahu",
+  "COMPONENT_CONTENT_LIST_ADD":"Vložiť novú položku",
+
+  "COMPONENT_THUMBNAIL_LABEL":"Miniatúra",
+  "COMPONENT_THUMBNAIL_INFO":"Miniatúra je malý obrázok, zobrazujúci sa vedľa odkazu na obsah",
+  "COMPONENT_THUMBNAIL_BUTTON":"Vybrať obrázok",
+  "COMPONENT_THUMBNAIL_INPUT":"Vložiť odkaz na obrázok",
+  "COMPONENT_THUMBNAIL_INPUT_INFO":"Pre pridanie odkazu stlačte Enter",
+
+  "COMPONENT_HEADER-IMAGE_LABEL":"Titulný obrázok",
+  "COMPONENT_HEADER-IMAGE_INFO":"Titulný obrázok sa zobrazuje vedľa titulku",
+  "COMPONENT_HEADER-IMAGE_BUTTON":"Vybrať obrázok",
+  "COMPONENT_HEADER-IMAGE_INPUT":"Vložiť odkaz na obrázok",
+
+  "COMPONENT_LANGUAGES_LABEL":"Jazyky",
+  "COMPONENT_LANGUAGES_INFO":"Umožňuje prekladať obsah do rôznych jazykov",
+  "COMPONENT_LANGUAGES_SEARCH":"Nájsť jazyk",
+
+  "COMPONENT_ATTACHMENTS_LABEL":"Prílohy",
+  "COMPONENT_ATTACHMENTS_INFO":"Pridať prílohy, obrázky alebo hocičo k obsahu",
+  "COMPONENT_ATTACHMENTS_ADD_IMAGE":"Pridať obrázok",
+  "COMPONENT_ATTACHMENTS_ADD_VIDEO":"Pridať video",
+  "COMPONENT_ATTACHMENTS_ADD_AUDIO":"Pridať zvuk",
+  "COMPONENT_ATTACHMENTS_ADD_FILE":"Pridať súbor",
+
+  "COMPONENT_MENU-LINK_LABEL":"Vložiť odkaz do menu",
+  "COMPONENT_MENU-LINK_INFO":"Vloží priamy odkaz na článok do zvoleného menu",
+  "COMPONENT_MENU-LINK_SELECT":"Vybrať menu",
+  "COMPONENT_MENU-LINK_ADD":"Názov odkazu",
+  "COMPONENT_MENU-LINK_ADD_PLACEHOLDER":"Zadajte názov odkazu",
+
+  "COMPONENT_CUSTOM-FIELDS_LABEL":"Vlastné polia",
+  "COMPONENT_CUSTOM-FIELDS_ADD_HEADING":"Vytvoriť nové pole",
+  "COMPONENT_CUSTOM-FIELDS_INFO":"Vlastné polia slúžia na uloženie vlastných metadát o obsahu",
+  "COMPONENT_CUSTOM-FIELDS_ADD_ROW":"Pridať pole",
+  "COMPONENT_CUSTOM-FIELDS_NAME":"Identifikátor",
+  "COMPONENT_CUSTOM-FIELDS_VALUE":"Hodnota",
+
+  "COMPONENT_TAGS_LABEL":"Značky",
+  "COMPONENT_TAGS_INFO":"Značky triedia obsah podľa obsahu článku",
+  "COMPONENT_TAGS_ADD_PLACEHOLDER":"Pridať značku",
+  "COMPONENT_TAGS_INPUT_INFO":"Pri zadávaní viacerých značiek použite čiarku ako oddeľovač",
+  "COMPONENT_TAGS_MANAGE":"Spravovať značky",
+
+  "COMPONENT_REVISIONS_LABEL":"Revízie",
+  "COMPONENT_REVISIONS_INFO":"Pomáha udržať prehľad o zmenách v obsahu",
+  "COMPONENT_REVISIONS_NEW_PLACEHOLDER":"Popis tejto revízie",
+
+  "COMPONENT_CATEGORIES_LABEL":"Kategórie",
+  "COMPONENT_CATEGORIES_ADD":"Pridať kategóriu",
+  "COMPONENT_CATEGORIES_MANAGE":"Spravovať kategórie",
+
+  "COMPONENT_META_LABEL":"Meta informácie",
+  "COMPONENT_META_INFO":"Umožňuje pridať doplňujúce informácie k článku na optimalizáciu SEO",
+  "COMPONENT_META_MANUALLY":"Vlastné informácie",
+
+  "COMPONENT_PLANNER_LABEL":"Plánovač",
+  "COMPONENT_PLANNER_INFO":"Slúži na zautomatizovanie procesu publikácie",
+  "COMPONENT_PLANNER_PUBLISH_LABEL":"Publikácia",
+  "COMPONENT_PLANNER_PUBLISH_AUTO_LABEL":"Automaticky",
+  "COMPONENT_PLANNER_PUBLISH_DATE_PLACEHOLDER":"Dátum",
+  "COMPONENT_PLANNER_PUBLISH_TIME_PLACEHOLDER":"Čas",
+  "COMPONENT_PLANNER_EXPIRY_LABEL":"Expirácia",
+  "COMPONENT_PLANNER_EXPIRY_DATE_PLACEHOLDER":"Dátum",
+  "COMPONENT_PLANNER_EXPIRY_TIME_PLACEHOLDER":"Čas",
+  "COMPONENT_PLANNER_NOTIFY_ENABLE":"Zapnúť oznámenia",
+  "COMPONENT_PLANNER_NOTIFY_E-MAIL":"Zasielať oznámenia",
+
+  "COMPONENT_STATUS_LABEL":"Stav",
+  "COMPONENT_STATUS_INFO":"Súčasný stav obsahu",
+
+  "COMPONENT_AUTHOR_LABEL":"Autori",
+  "COMPONENT_AUTHOR_INFO":"Umožňuje pridávať a spravovať autorov obsahu",
+  "COMPONENT_AUTHOR_ADD":"Pridať autora",
+
+  "COMPONENT_CREATED-AT_LABEL":"Dátum vytvorenia",
+  "COMPONENT_CREATED-AT_INFO":"Slúži na zmenu dátumu vytvorenia obsahu v niektorých situáciách",
+  "COMPONENT_CREATED_LABEL":"Zmeniť dátum",
+
+  "COMPONENT_LAST-UPDATE_LABEL":"Dátum poslednej zmeny",
+  "COMPONENT_LAST-UPDATE_INFO":"Slúži na zmenu dátumu poslednej zmeny obsahu v niektorých situáciách",
+  "COMPONENT_LAST-UPDATE_CUSTOM_LABEL":"Zmeniť dátum",
+
+  "COMPONENT_COPYRIGHT_LABEL":"Autorské práva",
+  "COMPONENT_COPYRIGHT_INFO":"Informuje čitateľa o možnostiach reprodukcie obsahu",
+
+  "COMPONENT_ACCESSIBILITY_LABEL":"Dostupnosť obsahu",
+  "COMPONENT_ACCESSIBILITY_INFO":"Umožňuje spravovať okruh ľudí, ktorí majú prístup k obsahu",
+  "COMPONENT_ACCESSIBILITY_OPTION_PUBLIC":"Verejný",
+  "COMPONENT_ACCESSIBILITY_OPTION_PASSWORD":"Chránený heslom",
+  "COMPONENT_ACCESSIBILITY_OPTION_PRIVATE":"Súkromný",
+
+  "COMPONENT_COMMENTS_LABEL":"Komentáre",
+  "COMPONENT_COMMENTS_INFO":"Nastavenia komentárov a ich obsahu",
+  "COMPONENT_COMMENTS_ENABLE_LABEL":"Povoliť komentáre",
+  "COMPONENT_COMMENTS_APPROVE_LABEL":"Schvaľovať komentáre",
+
+  "COMPONENT_SOURCES_LABEL":"Zdroje",
+  "COMPONENT_SOURCES_INFO":"Slúži na definíciu zdrojov informácií použitých v obsahu",
+  "COMPONENT_SOURCES_ADD_LABEL":"Pridať zdroj",
+  "COMPONENT_SOURCES_ADD_NAME_PLACEHOLDER":"Názov zdroja",
+  "COMPONENT_SOURCES_ADD_SOURCE_PLACEHOLDER":"URL alebo umiestnenie zdroja",
+  "COMPONENT_SOURCES_ADD_BUTTON":"Pridať zdroj",
+
+  "COMPONENT_MISTAKES_LABEL":"Správa chýb",
+  "COMPONENT_MISTAKES_ENABLE_LABEL":"Povoliť nahlasovanie",
+  "COMPONENT_MISTAKES_NOTIFY_LABEL":"Zapnúť oznámenia",
+  "COMPONENT_MISTAKES_E-MAIL_LABEL":"Zasielať oznámenia"
+
+}

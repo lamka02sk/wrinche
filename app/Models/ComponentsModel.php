@@ -1,85 +1,164 @@
 <?php
 
-/*
- * wrinche. Modern, powerful and user friendly CMS.
- * Components Model. Manages all the installed layout components
- * Version: 0.1.1
- * Authors: lamka02sk
- */
-
 namespace App\Models;
 
-use App\Helpers\Config;
 use App\Render\Html;
 
 class ComponentsModel extends MainModel {
 
+    public static $templates = [];
+    public static $templatesRenders = [];
+    public static $componentsList = [];
     public static $components = [];
-    public static $componentsContent = [];
+    public static $renders = [];
+
     public $currentComponent;
-    public $bindController;
 
-    /**
-     * Main function. Starts the model
-     */
-    public function start() {
+    public function start(bool $preload = false) {
 
-        // Load components list
-        if(empty(self::$components))
-            $this->prepareComponents();
+        $this->preloadTemplates();
+        $this->preloadComponentsList();
+        if($preload)
+            $this->preloadComponents();
 
-    }
-
-    public function prepareComponents() {
-
-        $config = new Config('');
-        $components = $config->getConfig('app/Components/components.json');
-        self::$components = $components;
-
-    }
-
-    public function loadDefaultComponent($component = '') {
-
-        if(empty($component))
-            $component = $this->currentComponent;
-
-        if(isset(self::$componentsContent[$component]))
-            return true;
-
-        $json = file_get_contents(ROOT . '/app/Components/Files/' . $component . '.json');
-        self::$componentsContent[$component] = json_decode($json, true);
         return true;
 
     }
 
-    public function renderComponent($componentName) {
+    public function __construct(string $component) {
 
-        $this->currentComponent = $componentName;
+        if(empty($component))
+            return false;
 
-        // Detect component type
-        if(in_array($componentName, self::$components['default']))
+        if(empty(self::$templates))
+            $this->preloadTemplates();
+
+        return true;
+
+    }
+
+    public function preloadComponentsList() {
+
+        $json = file_get_contents(ROOT . '/app/Components/components.json');
+        self::$componentsList = json_decode($json, true);
+
+    }
+
+    public function preloadTemplates() {
+
+        $json = file_get_contents(ROOT . '/app/Components/templates.json');
+        self::$templates = json_decode($json, true);
+
+    }
+
+    public function preloadComponent(string $component) {
+
+        if(isset(self::$components[$component]))
+            return false;
+
+        $json = file_get_contents(ROOT . '/app/Components/Files/' . $component . '.json');
+        self::$components[$component] = json_decode($json, true);
+        return true;
+
+    }
+
+    public function preloadComponents() {
+
+        if(empty(self::$componentsList))
+            $this->preloadComponentsList();
+
+        foreach(self::$componentsList['default'] as $component)
+            $this->preloadComponent($component);
+
+    }
+
+    public function setCurrentComponent(string $component) {
+
+        if(empty(self::$componentsList))
+            $this->preloadComponentsList();
+
+        $this->currentComponent = $component;
+        return true;
+
+    }
+
+    public function getCurrentComponent() {
+
+        if(empty($this->currentComponent))
+            return false;
+
+        return $this->currentComponent;
+
+    }
+
+    public function renderComponent() {
+
+        if(!isset(self::$components[$this->currentComponent]))
+            return false;
+
+        if(in_array($this->currentComponent, self::$componentsList['default']))
             $this->renderDefaultComponent();
+        return true;
 
     }
 
     public function renderDefaultComponent() {
 
-        // Clear previous output
-        $this->bindController->componentHtml = null;
+        // Check if is rendered
+        if(isset(self::$renders[$this->currentComponent]))
+            return false;
 
-        // Load component content and templates
-        $this->loadDefaultComponent();
+        // Prepare component
+        $component = self::$components[$this->currentComponent];
 
         // Check template
-        $component = self::$componentsContent[$this->currentComponent];
-        $template = $component['template'];
+        $template = $component['template'] ?? [];
+        if(empty($template))
+            return false;
+
+        // Check if component is activated
         if(!$component['active'])
             return false;
 
+        // Render component header
+        $this->renderComponentHeader($component);
+
         // Render HTML from component template
         $render = new Html($template, []);
-        $this->bindController->componentHtml = $render->output;
+        self::$renders[$this->currentComponent] = $render->output;
         return true;
+
+    }
+
+    public function renderComponentHeader($component) {
+
+        $firstElement = '<div class="component-element" data-component="' . $this->currentComponent . '">';
+        $lastElement = '</div>';
+
+        if(!isset($component['defaultElements']) || !$component['defaultElements']) {
+            if(!isset($component['header']) || !isset(self::$templates[$component['header']])) {
+                self::$templatesRenders[$this->currentComponent] = $firstElement . '%content%' . $lastElement;
+                return true;
+            }
+        }
+
+        $headerName = self::$components[$this->currentComponent]['header'];
+        $headerTemplate = self::$templates[$headerName];
+        $render = new Html($headerTemplate, [
+            "component" => $this->currentComponent
+        ]);
+
+        $headerElement = $render->output;
+        self::$templatesRenders[$this->currentComponent] = $firstElement . $headerElement . '%content%' . $lastElement;
+        return true;
+
+    }
+
+    public function composeComponentHTML() {
+
+        $wrapper = self::$templatesRenders[$this->currentComponent];
+        $content = self::$renders[$this->currentComponent];
+        return str_replace('%content%', $content, $wrapper);
 
     }
 

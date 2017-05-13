@@ -31,7 +31,6 @@
     "picture",
     "video",
     "audio",
-    "text_file",
     "code",
     "link",
     "quote",
@@ -39,7 +38,6 @@
     "note",
     "table",
     "list",
-    "text",
     "analytics",
     "rating",
     "poll"

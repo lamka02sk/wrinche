@@ -25,6 +25,8 @@
 
   "LANGUAGE_SLOVAK":"Slovenčina",
   "LANGUAGE_ENGLISH":"Angličtina",
-  "LANGUAGE_CZECH":"Čeština"
+  "LANGUAGE_CZECH":"Čeština",
+
+  "OR":"alebo"
 
 }

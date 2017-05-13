@@ -9,7 +9,7 @@ if(!App\Requests\Request::$ajax) {
 
 ?>
 
-<div class="content-wrapper" data-locales="system admin_write admin_write/<?= strtolower($controller->subcategory) ?>">
+<div class="content-wrapper" data-locales="system admin_write admin_write/<?= strtolower($controller->subcategory) ?> components">
 
     <div class="content-header">
 
@@ -18,8 +18,6 @@ if(!App\Requests\Request::$ajax) {
             <h2 class="mainline-heading" data-locale="WRITE_TITLE"></h2>
 
             <div class="mainline-search">
-
-                 <!--<span class="mainline-edit" data-locale="WRITE_EDIT"></span>-->
 
                 <div class="input-box">
                     <input type="search" name="dashboard-search" data-placeholder="WRITE_SEARCH">
