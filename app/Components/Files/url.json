@@ -25,7 +25,7 @@
       "attributes": {
         "class":"counter url-counter",
         "data-input":"input",
-        "data-maxLength":"120"
+        "data-length":"120"
       }
     },
 

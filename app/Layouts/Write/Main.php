@@ -11,6 +11,8 @@ if(!App\Requests\Request::$ajax) {
 
 <div class="content-wrapper" data-locales="system admin_write admin_write/<?= strtolower($controller->subcategory) ?> components">
 
+    <script type="text/javascript" src="app/Components/Components.min.js"></script>
+
     <div class="content-header">
 
         <div class="header-mainline">
@@ -42,7 +44,7 @@ if(!App\Requests\Request::$ajax) {
 
             ?>
 
-                <?php $controller->getComponent($layout) ?>
+                <?= $controller->componentsModel->displayComponent($layout) ?>
 
             <?php
 
@@ -89,7 +91,11 @@ if(!App\Requests\Request::$ajax) {
 
             </div>
 
-            <p class="empty" data-locale="EMPTY_CONTENT"></p>
+            <div class="content-builder-content" data-language="-1">
+
+                <p class="empty" data-locale="EMPTY_CONTENT"></p>
+
+            </div>
 
             <div class="builder-tools">
 

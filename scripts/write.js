@@ -709,49 +709,27 @@
 
 }*/
 
-componentList = ['title', 'excerpt', 'url', 'pin', 'thumbnail', 'perex', 'header_image', 'languages', 'attachments', 'custom_fields', 'tags', 'revisions'];
-//components = new ComponentController(componentList);
+// Create componentsList
+componentList = [];
+selectors  = document.querySelectorAll('div.component-element');
+for(let i = 0; i < selectors.length; ++i)
+    componentList.push(selectors[i].getAttribute('data-component'));
+componentsModule.start(componentList);
 
 // Add current script
 previousScripts.push('write');
 
 // Init counters
-$('div.counter').each(function() {
-    let maxLen = $(this).attr('data-maxLength');
-    $(this).text(maxLen);
-    let current = $(this);
-    let type = $(this).attr('data-input');
-    if(type === 'input') {
-        let element = $(this).parent().find('input');
-        element.on('change keydown keyup click focusout focusin', function() {
-            let left = maxLen - element.val().trim().length;
-            if(left < 0)
-                current.addClass('minus');
-            else if(current.hasClass('minus'))
-                current.removeClass('minus');
-            current.text(left);
-        });
-    } else {
-        let element = $(this).parent().find('textarea');
-        element.on('change keydown keyup click focusout focusin', function() {
-            let left = maxLen - element.val().trim().length;
-            if(left < 0)
-                current.addClass('minus');
-            else if(current.hasClass('minus'))
-                current.removeClass('minus');
-            current.text(left);
-        });
-    }
-});
+initializeCounters();
 
 // Init packery
-/*packery = $('div.content-settings').packery({
+packery = $('div.content-settings').packery({
     itemSelector: 'div.component-element',
     gutter: 22
-});*/
+});
 
-// Init CKEditor
-/*ckedit = CKEDITOR.replace('content-rich_text', {
+/* Init CKEditor
+ckedit = CKEDITOR.replace('content-rich_text', {
     language: html.attr('lang'),
     uiColor: '#ffffff'
 });
@@ -760,10 +738,7 @@ ckedit.on('instanceReady', function() {
     packery.packery().reloadItems();
 });
 
-packery.find('div.content-component').each(function(i, gridItem) {
-    let draggie = new Draggabilly(gridItem);
-    packery.packery('bindDraggabillyEvents', draggie);
-});*/
+*/
 
 // Collapse / Show All Settings
 $('span.collapse-trigger').click(function() {
@@ -785,12 +760,12 @@ $('span.collapse-trigger').click(function() {
 });
 
 // Init Selector
-/*selector = new Selector({
+selector = new Selector({
     selector: 'select.selector-search-select'
 });
 
 // Init date picker
-initDatePicker();*/
+initDatePicker();
 
 // Remove Splash screen
 $('div.splash').addClass('done');

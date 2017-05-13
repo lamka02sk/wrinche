@@ -56,24 +56,6 @@ class WriteController extends AdminController {
 
     }
 
-    public function getComponent($name) {
-
-        // Check if component is commented out
-        if($name[0] === '*')
-            return false;
-
-        // Set current component
-        $this->componentsModel->setCurrentComponent($name);
-
-        // Render component content
-        $this->componentsModel->renderComponent();
-
-        // Display component
-        echo $this->componentsModel->composeComponentHTML();
-        return true;
-
-    }
-
     public function post() {
 
         // TODO

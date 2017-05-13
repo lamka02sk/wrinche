@@ -21,7 +21,7 @@
       "attributes": {
         "class":"counter title-counter big-counter",
         "data-input":"input",
-        "data-maxLength":"100"
+        "data-length":"100"
       }
     },
 

@@ -1540,14 +1540,14 @@ div.content-content {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0 0 0 2px; }
-  div.content-content div.settings-component {
+  div.content-content div.component-element, div.content-content div.settings-component {
     display: inline-block;
     position: relative;
     float: left;
     width: calc(50% - 12px);
     height: auto; }
     @media (max-width: 1000px) {
-      div.content-content div.settings-component {
+      div.content-content div.component-element, div.content-content div.settings-component {
         width: 100% !important; } }
 
 div.content-settings {

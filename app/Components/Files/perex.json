@@ -75,7 +75,7 @@
           "attributes": {
             "class": "counter perex_location-counter",
             "data-input": "input",
-            "data-maxLength": "120"
+            "data-length": "120"
           }
         },
 

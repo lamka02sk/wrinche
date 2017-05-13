@@ -1,17 +1,36 @@
-/**
- * Forces a reload of all stylesheets by appending a unique query string
- * to each stylesheet URL.
- */
-function reloadStylesheets() {
+/*function reloadStylesheets() {
     let queryString = '?reload=' + new Date().getTime();
     $('link[rel="stylesheet"]').each(function () {
         this.href = this.href.replace(/\?.*|$/, queryString);
     });
 }
 
-//setInterval(reloadStylesheets, 4000);
+setInterval(reloadStylesheets, 4000);*/
 
 // ---------------------------------------------------------------------------------------------------------------------
+
+function initializeCounters() {
+
+    let events = ['change', 'keydown', 'keyup'];
+    let elements = document.querySelectorAll('div.counter');
+    for(let i = 0; i < elements.length; ++i) {
+        function inner() {
+            let left = length - element.value.trim().length;
+            current.innerText = left;
+            if(left < 0) current.classList.add('minus');
+            else current.classList.remove('minus');
+        }
+
+        let current = elements[i];
+        let length = current.getAttribute('data-length');
+        current.innerText = length;
+        let type = current.getAttribute('data-input');
+        let element = current.parentNode.querySelector(type);
+        for(let i in events)
+            element.addEventListener(events[i], inner);
+    }
+
+}
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
