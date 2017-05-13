@@ -3,6 +3,24 @@
   "name":"perex",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
+
+  "prototype": {
+
+    "perex_date": {
+      "type":"string",
+      "validate": {
+        "source":"validator",
+        "method":"isPastTimestamp"
+      }
+    },
+
+    "perex_location": {
+      "type":"string",
+      "length":"0,120"
+    }
+
+  },
 
   "template": [
 
@@ -17,19 +35,19 @@
           "element": "label",
           "attributes": {
             "class": "small-label",
-            "for": "perex-date",
-            "data-locale": "WRITE_PEREX_DATE_LABEL"
+            "for": "component_perex_date",
+            "data-locale": "COMPONENT_PEREX_DATE_LABEL"
           }
         },
 
         {
           "element": "input>",
-          "label": "perex-date",
+          "label": "component_perex_date",
           "attributes": {
             "type": "date",
             "class": "input date-picker-max",
-            "data-placeholder": "WRITE_PEREX_DATE_PLACEHOLDER",
-            "name": "write_perex_date"
+            "data-placeholder": "COMPONENT_PEREX_DATE_PLACEHOLDER",
+            "name": "component_perex_date"
           }
         }
 
@@ -47,8 +65,8 @@
           "element": "label",
           "attributes": {
             "class": "small-label",
-            "for": "perex-location",
-            "data-locale": "WRITE_PEREX_LOCATION_LABEL"
+            "for": "component_perex_location",
+            "data-locale": "COMPONENT_PEREX_LOCATION_LABEL"
           }
         },
 
@@ -63,12 +81,12 @@
 
         {
           "element": "input>",
-          "label": "perex-location",
+          "label": "component_perex_location",
           "attributes": {
             "type": "text",
             "class": "input",
-            "data-placeholder": "WRITE_PEREX_LOCATION_PLACEHOLDER",
-            "name": "write_perex_location"
+            "data-placeholder": "COMPONENT_PEREX_LOCATION_PLACEHOLDER",
+            "name": "component_perex_location"
           }
         }
 

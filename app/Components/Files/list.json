@@ -3,26 +3,40 @@
   "name":"list",
   "active":true,
   "defaultElements":true,
+  "header":"component_inline_header",
+
+  "prototype": {
+
+    "list": {
+      "type":"array",
+      "duplicates":"remove",
+
+      "each": {
+        "type":"string"
+      }
+    }
+
+  },
 
   "template": [
 
     {
       "element":"label",
       "attributes": {
-        "for":"list-name",
+        "for":"component_inline_list_name",
         "class":"small-label",
-        "data-locale":"WRITE_CONTENT_LIST_NAME_PLACEHOLDER"
+        "data-locale":"COMPONENT_CONTENT_LIST_NAME_PLACEHOLDER"
       }
     },
 
     {
       "element":"input>",
-      "label":"list-name",
+      "label":"component_inline_list_name-name",
       "attributes": {
         "class":"input",
         "type":"text",
-        "name":"write_content_list_name",
-        "data-placeholder":"WRITE_CONTENT_LIST_NAME_PLACEHOLDER"
+        "name":"component_inline_list_name",
+        "data-placeholder":"COMPONENT_CONTENT_LIST_NAME_PLACEHOLDER"
       }
     },
 
@@ -30,16 +44,16 @@
       "element":"input>",
       "attributes": {
         "class":"input add-item",
-        "name":"write_content_list_add",
+        "name":"component_inline_list_add",
         "type":"text",
-        "data-placeholder":"WRITE_CONTENT_LIST_ADD"
+        "data-placeholder":"COMPONENT_CONTENT_LIST_ADD"
       }
     },
 
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_content_list_item"
+        "id":"template_component_content_list_item"
       },
       "children": [
 
@@ -54,7 +68,7 @@
               "element":"input>",
               "attributes": {
                 "class":"input",
-                "name":"write_content_list_item",
+                "name":"component_inline_list_item",
                 "type":"checkbox",
                 "value":"list-item-checked"
               }

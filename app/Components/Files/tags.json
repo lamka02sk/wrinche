@@ -3,6 +3,22 @@
   "name":"tags",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
+
+  "prototype": {
+
+    "tags": {
+      "type":"array",
+      "each": {
+        "type":"string",
+        "validate": {
+          "source":"validator",
+          "method":"validateTagName"
+        }
+      }
+    }
+
+  },
 
   "template": [
 
@@ -15,11 +31,11 @@
 
     {
       "element":"input>",
-      "label":"tags",
+      "label":"component_tags",
       "attributes": {
         "class":"input add-item",
-        "name":"write_tags_add",
-        "data-placeholder":"WRITE_TAGS_ADD_PLACEHOLDER",
+        "name":"component_tags",
+        "data-placeholder":"COMPONENT_TAGS_ADD_PLACEHOLDER",
         "type":"text"
       }
     },
@@ -28,7 +44,7 @@
       "element":"span",
       "attributes": {
         "class":"info-text-outside",
-        "data-locale":"WRITE_TAGS_INPUT_INFO"
+        "data-locale":"COMPONENT_TAGS_INPUT_INFO"
       }
     },
 
@@ -38,14 +54,14 @@
         "class":"tags-manage",
         "data-link":"sorting/tags",
         "data-target":"content",
-        "data-locale":"WRITE_TAGS_MANAGE"
+        "data-locale":"COMPONENT_TAGS_MANAGE"
       }
     },
 
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_tags_item"
+        "id":"template_component_tags_item"
       },
       "children": [
 

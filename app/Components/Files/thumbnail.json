@@ -3,6 +3,20 @@
   "name":"thumbnail",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
+
+  "prototype": {
+
+    "thumbnail": {
+      "type":"string",
+
+      "validate": {
+        "source":"validator",
+        "method":"isImage"
+      }
+    }
+
+  },
 
   "template": [
 
@@ -17,7 +31,7 @@
           "element":"button",
           "attributes": {
             "class":"button image_manager",
-            "data-locale":"WRITE_THUMBNAIL_BUTTON",
+            "data-locale":"COMPONENT_THUMBNAIL_BUTTON",
             "data-manager":"images"
           }
         },
@@ -26,7 +40,7 @@
           "element":"span",
           "attributes": {
             "class":"or",
-            "data-locale":"WRITE_OR"
+            "data-locale":"OR"
           }
         },
 
@@ -34,9 +48,9 @@
           "element":"input>",
           "attributes": {
             "type":"url",
-            "data-placeholder":"WRITE_THUMBNAIL_INPUT",
+            "data-placeholder":"COMPONENT_THUMBNAIL_INPUT",
             "class":"input",
-            "name":"write_thumbnail"
+            "name":"component_thumbnail_input"
           }
         },
 
@@ -52,7 +66,7 @@
           "element":"span",
           "attributes": {
             "class":"info-text-outside",
-            "data-locale":"WRITE_THUMBNAIL_INPUT_INFO"
+            "data-locale":"COMPONENT_THUMBNAIL_INPUT_INFO"
           }
         }
 
@@ -62,7 +76,7 @@
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_thumbnail_image"
+        "id":"template_component_thumbnail_image"
       },
       "children": [
 

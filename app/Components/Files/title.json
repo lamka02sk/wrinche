@@ -5,6 +5,15 @@
   "defaultElements":true,
   "header":"component_header_big",
 
+  "prototype": {
+
+    "title": {
+      "type":"string",
+      "length":"1,100"
+    }
+
+  },
+
   "template": [
 
     {
@@ -18,12 +27,12 @@
 
     {
       "element":"input>",
-      "label":"title",
+      "label":"component_title",
       "attributes": {
         "class":"big-input",
         "type":"text",
-        "data-placeholder":"WRITE_TITLE_PLACEHOLDER",
-        "name":"write_title"
+        "data-placeholder":"COMPONENT_TITLE_PLACEHOLDER",
+        "name":"component_title"
       }
     }
 

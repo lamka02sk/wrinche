@@ -4,25 +4,33 @@
   "active":true,
   "defaultElements":false,
 
+  "prototype": {
+
+    "pin": {
+      "type":"boolean"
+    }
+
+  },
+
   "template": [
 
     {
       "element":"label",
       "attributes": {
         "class":"label checkbox-click",
-        "for":"pin",
-        "data-locale":"WRITE_PIN_LABEL"
+        "for":"component_pin",
+        "data-locale":"COMPONENT_PIN_LABEL"
       }
     },
 
     {
       "element":"input>",
-      "label":"pin",
+      "label":"component_pin",
       "attributes": {
         "class":"input",
         "type":"checkbox",
-        "value":"pin",
-        "name":"write_pin"
+        "value":"component_pin",
+        "name":"component_pin"
       }
     },
 
@@ -30,7 +38,7 @@
       "element":"span",
       "attributes": {
         "class":"info-text-outside",
-        "data-locale":"WRITE_PIN_INFO"
+        "data-locale":"COMPONENT_PIN_INFO"
       }
     }
 

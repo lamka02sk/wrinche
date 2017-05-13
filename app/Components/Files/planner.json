@@ -3,6 +3,57 @@
   "name":"planner",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
+
+  "prototype": {
+
+    "planner": {
+      "type":"boolean",
+
+      "if": [
+        {
+          "equals":false,
+          "prototype": {
+
+            "planner_date": {
+              "type":"string",
+              "validate": {
+                "source":"validate",
+                "method":"isFutureTimestamp"
+              }
+            },
+
+            "planner_expiry": {
+              "type":"string",
+              "validate": {
+                "source":"validate",
+                "method":"isFutureTimestamp"
+              }
+            },
+
+            "planner_notify": {
+              "type":"boolean",
+
+              "if": [
+                {
+                  "equals":true,
+                  "prototype": {
+
+                    "planner_notify_email": {
+                      "type":"boolean"
+                    }
+
+                  }
+                }
+              ]
+            }
+
+          }
+        }
+      ]
+    }
+
+  },
 
   "template": [
 
@@ -10,7 +61,7 @@
       "element":"label",
       "attributes": {
         "class":"small-label",
-        "data-locale":"WRITE_PLANNER_PUBLISH_LABEL"
+        "data-locale":"COMPONENT_PLANNER_PUBLISH_LABEL"
       }
     },
 
@@ -18,109 +69,129 @@
       "element":"label",
       "attributes": {
         "class":"label checkbox-click",
-        "data-locale":"WRITE_PLANNER_PUBLISH_AUTO_LABEL",
-        "for":"planner-publish-auto"
+        "data-locale":"COMPONENT_PLANNER_PUBLISH_AUTO_LABEL",
+        "for":"component_planner_publish"
       }
     },
 
     {
       "element":"input>",
-      "label":"planner-publish-auto",
+      "label":"component_planner_publish",
       "attributes": {
         "class":"input",
         "type":"checkbox",
-        "value":"planner-publish-auto",
-        "name":"write_planner_publish_auto",
+        "value":"component_planner_publish",
+        "name":"component_planner_publish",
         "checked":"true"
       }
     },
 
     {
-      "element":"input>",
+      "element":"div",
       "attributes": {
-        "class":"input hide",
-        "name":"write_planner_publish_date",
-        "type":"date",
-        "data-placeholder":"WRITE_PLANNER_PUBLISH_DATE_PLACEHOLDER"
-      }
-    },
+        "class":"component_planner_publish_custom"
+      },
+      "children": [
 
-    {
-      "element":"input>",
-      "attributes": {
-        "class":"input hide",
-        "name":"write_planner_publish_time",
-        "type":"time",
-        "data-placeholder":"WRITE_PLANNER_PUBLISH_TIME_PLACEHOLDER"
-      }
-    },
+        {
+          "element":"input>",
+          "attributes": {
+            "class":"input",
+            "name":"component_planner_publish_date",
+            "type":"date",
+            "data-placeholder":"COMPONENT_PLANNER_PUBLISH_DATE_PLACEHOLDER"
+          }
+        },
 
-    {
-      "element":"label",
-      "attributes": {
-        "class":"small-label",
-        "data-locale":"WRITE_PLANNER_EXPIRY_LABEL"
-      }
-    },
+        {
+          "element":"input>",
+          "attributes": {
+            "class":"input",
+            "name":"component_planner_publish_date",
+            "type":"time",
+            "data-placeholder":"COMPONENT_PLANNER_PUBLISH_TIME_PLACEHOLDER"
+          }
+        },
 
-    {
-      "element":"input>",
-      "attributes": {
-        "class":"input",
-        "name":"write_planner_expiry_date",
-        "type":"date",
-        "data-placeholder":"WRITE_PLANNER_EXPIRY_DATE_PLACEHOLDER"
-      }
-    },
+        {
+          "element":"label",
+          "attributes": {
+            "class":"small-label",
+            "data-locale":"COMPONENT_PLANNER_EXPIRY_LABEL"
+          }
+        },
 
-    {
-      "element":"input>",
-      "attributes": {
-        "class":"input",
-        "name":"write_planner_expiry_time",
-        "type":"time",
-        "data-placeholder":"WRITE_PLANNER_EXPIRY_TIME_PLACEHOLDER"
-      }
-    },
+        {
+          "element":"input>",
+          "attributes": {
+            "class":"input",
+            "name":"component_planner_publish_expiry",
+            "type":"date",
+            "data-placeholder":"COMPONENT_PLANNER_EXPIRY_DATE_PLACEHOLDER"
+          }
+        },
 
-    {
-      "element":"label",
-      "attributes": {
-        "class":"label checkbox-click",
-        "for":"planner-notify",
-        "data-locale":"WRITE_PLANNER_NOTIFY_ENABLE"
-      }
-    },
+        {
+          "element":"input>",
+          "attributes": {
+            "class":"input",
+            "name":"component_planner_publish_expiry",
+            "type":"time",
+            "data-placeholder":"COMPONENT_PLANNER_EXPIRY_TIME_PLACEHOLDER"
+          }
+        },
 
-    {
-      "element":"input>",
-      "label":"planner-notify",
-      "attributes": {
-        "class":"input",
-        "type":"checkbox",
-        "name":"write_planner_notify",
-        "value":"planner-notify"
-      }
-    },
+        {
+          "element":"label",
+          "attributes": {
+            "class":"label checkbox-click",
+            "for":"component_planner_notify",
+            "data-locale":"COMPONENT_PLANNER_NOTIFY_ENABLE"
+          }
+        },
 
-    {
-      "element":"label",
-      "attributes": {
-        "class":"label checkbox-click hide",
-        "for":"planner-notify-e_mail",
-        "data-locale":"WRITE_PLANNER_NOTIFY_E-MAIL"
-      }
-    },
+        {
+          "element":"input>",
+          "label":"component_planner_notify",
+          "attributes": {
+            "class":"input",
+            "type":"checkbox",
+            "name":"component_planner_notify",
+            "value":"component_planner_notify"
+          }
+        },
 
-    {
-      "element":"input>",
-      "label":"planner-notify-e_mail",
-      "attributes": {
-        "class":"input hide",
-        "type":"checkbox",
-        "name":"write_planner_notify_e-mail",
-        "value":"planner-notify-e_mail"
-      }
+        {
+          "element":"div",
+          "attributes": {
+            "class":"component_planner_notify_email input-box hide"
+          },
+          "children": [
+
+            {
+              "element":"label",
+              "attributes": {
+                "class":"label checkbox-click hide",
+                "for":"component_planner_notify_email",
+                "data-locale":"COMPONENT_PLANNER_NOTIFY_E-MAIL"
+              }
+            },
+
+            {
+              "element":"input>",
+              "label":"component_planner_notify_email",
+              "attributes": {
+                "class":"input",
+                "type":"checkbox",
+                "name":"component_planner_notify_email",
+                "value":"component_planner_notify_email"
+              }
+            }
+
+          ]
+        }
+
+      ]
     }
 
   ]

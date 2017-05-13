@@ -3,15 +3,24 @@
   "name":"rich_text",
   "active":true,
   "defaultElements":true,
+  "header":"component_inline_header",
+
+  "prototype": {
+
+    "rich-text": {
+      "type":"string"
+    }
+
+  },
 
   "template": [
 
     {
       "element":"textarea",
-      "label":"content-rich_text",
+      "label":"component_inline_rich-text",
       "attributes": {
         "class":"textarea-editor",
-        "name":"write_content_rich-text"
+        "name":"component_inline_rich-text"
       }
     }
 

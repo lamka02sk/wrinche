@@ -3,6 +3,41 @@
   "name":"mistakes",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
+
+  "prototype": {
+
+    "mistakes": {
+      "type":"boolean",
+
+      "if": [
+        {
+          "equals":true,
+          "prototype": {
+
+            "mistakes_notify": {
+              "type":"boolean",
+
+              "if": [
+                {
+                  "equals":true,
+                  "prototype": {
+
+                    "mistakes_email": {
+                      "type":"boolean"
+                    }
+
+                  }
+                }
+              ]
+            }
+
+          }
+        }
+      ]
+    }
+
+  },
 
   "template": [
 
@@ -10,19 +45,19 @@
       "element":"label",
       "attributes": {
         "class":"label checkbox-click",
-        "for":"mistakes-enable",
-        "data-locale":"WRITE_MISTAKES_ENABLE_LABEL"
+        "for":"component_mistakes",
+        "data-locale":"COMPONENT_MISTAKES_ENABLE_LABEL"
       }
     },
 
     {
       "element":"input>",
-      "label":"mistakes-enable",
+      "label":"component_mistakes",
       "attributes": {
         "class":"input",
         "type":"checkbox",
-        "name":"write_mistakes_enable",
-        "value":"mistakes-enable"
+        "name":"component_mistakes",
+        "value":"component_mistakes"
       }
     },
 
@@ -30,19 +65,19 @@
       "element":"label",
       "attributes": {
         "class":"label checkbox-click",
-        "for":"mistakes-notify",
-        "data-locale":"WRITE_MISTAKES_NOTIFY_LABEL"
+        "for":"component_mistakes_notify",
+        "data-locale":"COMPONENT_MISTAKES_NOTIFY_LABEL"
       }
     },
 
     {
       "element":"input>",
-      "label":"mistakes-notify",
+      "label":"component_mistakes_notify",
       "attributes": {
         "class":"input",
         "type":"checkbox",
-        "name":"write_mistakes_notify",
-        "value":"mistakes-notify"
+        "name":"component_mistakes_notify",
+        "value":"component_mistakes_notify"
       }
     },
 
@@ -50,19 +85,19 @@
       "element":"label",
       "attributes": {
         "class":"label checkbox-click",
-        "for":"mistakes-e_mail",
-        "data-locale":"WRITE_MISTAKES_E-MAIL_LABEL"
+        "for":"component_mistakes_email",
+        "data-locale":"COMPONENT_MISTAKES_E-MAIL_LABEL"
       }
     },
 
     {
       "element":"input>",
-      "label":"mistakes-e_mail",
+      "label":"component_mistakes_email",
       "attributes": {
         "class":"input",
         "type":"checkbox",
-        "name":"write_mistakes_e-mail",
-        "value":"mistakes-e_mail"
+        "name":"component_mistakes_email",
+        "value":"component_mistakes_email"
       }
     }
 

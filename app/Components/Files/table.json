@@ -3,6 +3,35 @@
   "name":"table",
   "active":true,
   "defaultElements":true,
+  "header":"component_inline_header",
+
+  "prototype": {
+
+    "table": {
+      "type":"array",
+      "each": {
+        "type":"array",
+        "each": {
+          "type":"string"
+        }
+      }
+    },
+
+    "table_columns": {
+      "type":"array",
+      "each": {
+        "type":"string"
+      }
+    },
+
+    "table_rows": {
+      "type":"array",
+      "each": {
+        "type":"string"
+      }
+    }
+
+  },
 
   "template": [
 
@@ -133,7 +162,7 @@
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_content_table_add-row"
+        "id":"template_component_content_table_add-row"
       },
       "children": [
 
@@ -150,7 +179,7 @@
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_content_table_remove-row"
+        "id":"template_component_content_table_remove-row"
       },
       "children": [
 
@@ -167,7 +196,7 @@
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_content_table_remove-column"
+        "id":"template_component_content_table_remove-column"
       },
       "children": [
 
@@ -184,7 +213,7 @@
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_content_table_remove-row"
+        "id":"template_component_content_table_remove-row"
       },
       "children": [
 

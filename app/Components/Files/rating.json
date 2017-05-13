@@ -3,6 +3,15 @@
   "name":"rating",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
+
+  "prototype": {
+
+    "rating": {
+      "type":"boolean"
+    }
+
+  },
 
   "template": [
 
@@ -10,19 +19,19 @@
       "element":"label",
       "attributes": {
         "class":"label checkbox-click",
-        "for":"write-rating",
-        "data-locale":"WRITE_RATING_ENABLE_LABEL"
+        "for":"component_rating",
+        "data-locale":"COMPONENT_RATING_ENABLE_LABEL"
       }
     },
 
     {
       "element":"input>",
-      "label":"write-rating",
+      "label":"component_rating",
       "attributes": {
         "class":"input",
         "type":"checkbox",
-        "name":"write_rating_enable",
-        "value":"write-rating-enable"
+        "name":"component_rating",
+        "value":"component_rating"
       }
     }
 

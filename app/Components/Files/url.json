@@ -3,6 +3,20 @@
   "name":"url",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
+
+  "prototype": {
+
+    "url": {
+      "type":"string",
+      "length":"3,120",
+      "validate": {
+        "source":"validator",
+        "method":"validateSimpleUrl"
+      }
+    }
+
+  },
 
   "template": [
 
@@ -17,12 +31,12 @@
 
     {
       "element":"input>",
-      "label":"url",
+      "label":"component_url",
       "attributes": {
         "class":"input",
         "type":"text",
-        "data-placeholder":"WRITE_URL_PLACEHOLDER",
-        "name":"write_url"
+        "data-placeholder":"COMPONENT_URL_PLACEHOLDER",
+        "name":"component_url"
       }
     }
 

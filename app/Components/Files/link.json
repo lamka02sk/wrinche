@@ -3,26 +3,57 @@
   "name":"link",
   "active":true,
   "defaultElements":true,
+  "header":"component_inline_header",
+
+  "prototype": {
+
+    "link": {
+      "type":"array",
+
+      "children": {
+        "url": {
+          "type":"string",
+
+          "validate": {
+            "source":"validator",
+            "method":"validateUrl"
+          }
+        },
+        "name": {
+          "type":"string"
+        },
+        "position": {
+          "type":"integer",
+          "range":"0,3"
+        },
+        "target": {
+          "type":"integer",
+          "range":"0,3"
+        }
+      }
+    }
+
+  },
 
   "template": [
 
     {
       "element":"label",
       "attributes": {
-        "for":"link-url",
+        "for":"component_inline_link_url",
         "class":"small-label",
-        "data-locale":"WRITE_CONTENT_LINK_URL_LABEL"
+        "data-locale":"COMPONENT_CONTENT_LINK_URL_LABEL"
       }
     },
 
     {
       "element":"input>",
-      "label":"link-url",
+      "label":"component_inline_link_url",
       "attributes": {
         "class":"input",
         "type":"url",
-        "name":"write_content_link_url",
-        "data-placeholder":"WRITE_CONTENT_LINK_URL_PLACEHOLDER"
+        "name":"component_inline_link_url",
+        "data-placeholder":"COMPONENT_CONTENT_LINK_URL_PLACEHOLDER"
       }
     },
 
@@ -30,19 +61,19 @@
       "element":"label",
       "attributes": {
         "class":"small-label",
-        "for":"link-text",
-        "data-locale":"WRITE_CONTENT_LINK_TEXT_LABEL"
+        "for":"component_inline_link_name",
+        "data-locale":"COMPONENT_CONTENT_LINK_TEXT_LABEL"
       }
     },
 
     {
       "element":"input>",
-      "label":"link-text",
+      "label":"component_inline_link_name",
       "attributes": {
         "class":"input",
         "type":"text",
-        "name":"write_content_link_text",
-        "data-placeholder":"WRITE_CONTENT_LINK_TEXT_PLACEHOLDER"
+        "name":"component_inline_link_name",
+        "data-placeholder":"COMPONENT_CONTENT_LINK_TEXT_PLACEHOLDER"
       }
     },
 
@@ -58,7 +89,7 @@
           "attributes": {
             "class":"position-item left-position",
             "data-position":"0",
-            "data-locale":"WRITE_CONTENT_POSITION_LEFT"
+            "data-locale":"COMPONENT_CONTENT_POSITION_LEFT"
           }
         },
 
@@ -67,7 +98,7 @@
           "attributes": {
             "class":"position-item right-position",
             "data-position":"1",
-            "data-locale":"WRITE_CONTENT_POSITION_RIGHT"
+            "data-locale":"COMPONENT_CONTENT_POSITION_RIGHT"
           }
         },
 
@@ -76,7 +107,7 @@
           "attributes": {
             "class":"position-item full-position",
             "data-position":"2",
-            "data-locale":"WRITE_CONTENT_POSITION_FULL"
+            "data-locale":"COMPONENT_CONTENT_POSITION_FULL"
           }
         }
 
@@ -87,16 +118,16 @@
       "element":"label",
       "attributes": {
         "class":"small-label",
-        "for":"link-select",
-        "data-locale":"WRITE_CONTENT_LINK_TARGET_LABEL"
+        "for":"component_inline_link_target",
+        "data-locale":"COMPONENT_CONTENT_LINK_TARGET_LABEL"
       }
     },
 
     {
       "element":"select",
-      "label":"link-select",
+      "label":"component_inline_link_target",
       "attributes": {
-        "name":"write_content_link_target",
+        "name":"component_inline_link_target",
         "class":"selector-instance"
       },
       "children": [
@@ -106,7 +137,7 @@
           "attributes": {
             "selected":"true",
             "value":"0",
-            "data-locale":"WRITE_CONTENT_LINK_TARGET_CURRENT"
+            "data-locale":"COMPONENT_CONTENT_LINK_TARGET_CURRENT"
           }
         },
 
@@ -114,7 +145,7 @@
           "element":"option",
           "attributes": {
             "value":"1",
-            "data-locale":"WRITE_CONTENT_LINK_TARGET_NEW-TAB"
+            "data-locale":"COMPONENT_CONTENT_LINK_TARGET_NEW-TAB"
           }
         },
 
@@ -122,7 +153,7 @@
           "element":"option",
           "attributes": {
             "value":"2",
-            "data-locale":"WRITE_CONTENT_LINK_TARGET_NEW-WINDOW"
+            "data-locale":"COMPONENT_CONTENT_LINK_TARGET_NEW-WINDOW"
           }
         }
 

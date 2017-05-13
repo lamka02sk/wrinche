@@ -3,16 +3,30 @@
   "name":"note",
   "active":true,
   "defaultElements":true,
+  "header":"component_inline_header",
+
+  "prototype": {
+
+    "note": {
+      "type":"string"
+    },
+
+    "note_position": {
+      "type":"integer",
+      "range":"0,3"
+    }
+
+  },
 
   "template": [
 
     {
       "element":"textarea",
-      "label":"content-note",
+      "label":"component_inline_note",
       "attributes": {
         "class":"small-textarea",
-        "name":"write_content_note",
-        "data-placeholder":"WRITE_CONTENT_NOTE_PLACEHOLDER"
+        "name":"component_inline_note",
+        "data-placeholder":"COMPONENT_CONTENT_NOTE_PLACEHOLDER"
       }
     },
 
@@ -28,7 +42,7 @@
           "attributes": {
             "class":"position-item left-position",
             "data-position":"0",
-            "data-locale":"WRITE_CONTENT_POSITION_LEFT"
+            "data-locale":"COMPONENT_CONTENT_POSITION_LEFT"
           }
         },
 
@@ -37,7 +51,7 @@
           "attributes": {
             "class":"position-item right-position",
             "data-position":"1",
-            "data-locale":"WRITE_CONTENT_POSITION_RIGHT"
+            "data-locale":"COMPONENT_CONTENT_POSITION_RIGHT"
           }
         },
 
@@ -46,7 +60,7 @@
           "attributes": {
             "class":"position-item full-position",
             "data-position":"2",
-            "data-locale":"WRITE_CONTENT_POSITION_FULL"
+            "data-locale":"COMPONENT_CONTENT_POSITION_FULL"
           }
         }
 

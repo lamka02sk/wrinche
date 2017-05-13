@@ -3,6 +3,19 @@
   "name":"video",
   "active":true,
   "defaultElements":true,
+  "header":"component_inline_header",
+
+  "prototype": {
+
+    "video": {
+      "type":"string",
+      "validate": {
+        "source":"validator",
+        "method":"isVideo"
+      }
+    }
+
+  },
 
   "template": [
 
@@ -11,14 +24,14 @@
       "attributes": {
         "class":"button add-attachment icon-video",
         "data-content":"video",
-        "data-locale":"WRITE_CONTENT_VIDEO_ADD"
+        "data-locale":"COMPONENT_CONTENT_VIDEO_ADD"
       }
     },
 
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_content_video_item"
+        "id":"template_component_content_video_item"
       },
       "children": [
 

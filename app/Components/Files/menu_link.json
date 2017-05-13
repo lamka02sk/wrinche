@@ -3,6 +3,7 @@
   "name":"menu_link",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
 
   "template": [
 

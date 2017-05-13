@@ -3,23 +3,32 @@
   "name":"revisions",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
+
+  "prototype": {
+
+    "revision": {
+      "type":"string"
+    }
+
+  },
 
   "template": [
 
     {
       "element":"textarea",
-      "label":"revisions",
+      "label":"component_revisions",
       "attributes": {
         "class":"small-textarea",
-        "name":"write_revisions_new",
-        "data-placeholder":"WRITE_REVISIONS_NEW_PLACEHOLDER"
+        "name":"component_revisions",
+        "data-placeholder":"COMPONENT_REVISIONS_NEW_PLACEHOLDER"
       }
     },
 
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_revisions_item"
+        "id":"template_component_revisions_item"
       },
       "children": [
 

@@ -3,15 +3,25 @@
   "name":"status",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
+
+  "prototype": {
+
+    "status": {
+      "type":"integer",
+      "range":"0,*"
+    }
+
+  },
 
   "template": [
 
     {
       "element":"select",
-      "label":"status",
+      "label":"component_status",
       "attributes": {
         "class":"selector-instance",
-        "name":"write_status"
+        "name":"component_status"
       },
       "children_template": [
 
@@ -19,7 +29,7 @@
           "element":"option",
           "attributes": {
             "value":"",
-            "data-locale":"WRITE_STATUS_"
+            "data-locale":"COMPONENT_STATUS_"
           }
         }
 

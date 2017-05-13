@@ -3,6 +3,21 @@
   "name":"sources",
   "active":true,
   "defaultElements":true,
+  "header":"component_header",
+
+  "prototype": {
+
+    "sources": {
+      "type":"array",
+      "each": {
+        "type":"array",
+        "each": {
+          "type":"string"
+        }
+      }
+    }
+
+  },
 
   "template": [
 
@@ -10,7 +25,7 @@
       "element":"label",
       "attributes": {
         "class":"small-label",
-        "data-locale":"WRITE_SOURCES_ADD_LABEL"
+        "data-locale":"COMPONENT_SOURCES_ADD_LABEL"
       }
     },
 
@@ -18,8 +33,8 @@
       "element":"input>",
       "attributes": {
         "class":"input",
-        "name":"write_sources_add_name",
-        "data-placeholder":"WRITE_SOURCES_ADD_NAME_PLACEHOLDER",
+        "name":"component_sources_add_name",
+        "data-placeholder":"COMPONENT_SOURCES_ADD_NAME_PLACEHOLDER",
         "type":"text"
       }
     },
@@ -28,8 +43,8 @@
       "element":"input>",
       "attributes": {
         "class":"input",
-        "name":"write_sources_add_source",
-        "data-placeholder":"WRITE_SOURCES_ADD_SOURCE_PLACEHOLDER",
+        "name":"component_sources_add_source",
+        "data-placeholder":"COMPONENT_SOURCES_ADD_SOURCE_PLACEHOLDER",
         "type":"text"
       }
     },
@@ -38,14 +53,14 @@
       "element":"span",
       "attributes": {
         "class":"sources-add",
-        "data-locale":"WRITE_SOURCES_ADD_BUTTON"
+        "data-locale":"COMPONENT_SOURCES_ADD_BUTTON"
       }
     },
 
     {
       "element":"template",
       "attributes": {
-        "id":"template_write_sources_item"
+        "id":"template_component_sources_item"
       },
       "children": [
 
