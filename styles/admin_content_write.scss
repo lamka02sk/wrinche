@@ -2,8 +2,37 @@ component-template {
   display: none;
 }
 
+div.input-box {
+  position: relative;
+}
+
 div.input-box.hide {
   display: none;
+}
+
+span.field-validation {
+  position: relative;
+  margin: -7px auto 0 auto;
+  float: left;
+  width: 100%;
+  height: auto;
+  background: $errorRed;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: $white;
+  font-size: .82em;
+  line-height: 0;
+  padding: 0 11px;
+  transform: rotateX(-90deg);
+  transform-origin: top;
+  transition: .15s ease-in-out;
+  overflow: hidden;
+  &.show {
+    transform: rotateX(0deg);
+    line-height: 2;
+    padding: 0 11px;
+  }
 }
 
 div.content-content {
@@ -21,6 +50,7 @@ div.content-content {
     float: left;
     width: calc(50% - 12px);
     height: auto;
+    perspective: 1000px;
     @media(max-width: 1000px) {
       width: 100% !important;
     }
@@ -98,10 +128,11 @@ div.content-content label {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0 0 4px 0;
-  font-size: 1em;
+  font-size: 1.05em;
   font-weight: 500;
   &.big-label {
-    font-size: 1.5em;
+    font-size: 1.6em;
+    font-weight: 400;
   }
   &.small-label {
     font-size: .82em;
@@ -126,12 +157,12 @@ div.content-content div.info-box {
   position: relative;
   float: left;
   overflow: hidden;
-  margin: -1px 0 0 2px;
+  margin: 0 0 0 2px;
   cursor: pointer;
   z-index: 2;
   opacity: .7;
   &.tall-info {
-    margin: 4px 0 0 2px;
+    margin: 6px 0 0 2px;
   }
   &:hover {
     overflow: visible;
@@ -218,7 +249,7 @@ div.content-content input {
     display: inline-block;
     position: absolute;
     right: 0;
-    top: 3px;
+    top: 0;
     width: auto;
     height: auto;
     z-index: 0;
@@ -329,7 +360,7 @@ div.content-content span.or {
 div.counter {
   position: absolute;
   bottom: 11px;
-  right: 5px;
+  right: 10px;
   z-index: 1;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -341,21 +372,22 @@ div.counter {
   transition: .2s ease-in-out;
   cursor: pointer;
   text-align: center;
-  width: 48px;
+  width: 42px;
   height: 26px;
   line-height: 28px;
+  border-radius: 13px;
   &:hover {
     opacity: 1;
   }
   &.minus {
     background-color: $errorRed !important;
+    color: $white !important;
   }
   &.fuck-chrome {
     -webkit-margin-after: 4px;
   }
   &.big-counter {
-    height: 36px;
-    line-height: 38px;
+    bottom: 16px;
   }
 }
 

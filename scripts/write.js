@@ -714,7 +714,17 @@ componentList = [];
 selectors  = document.querySelectorAll('div.component-element');
 for(let i = 0; i < selectors.length; ++i)
     componentList.push(selectors[i].getAttribute('data-component'));
-componentsModule.start(componentList);
+
+if(typeof componentsModule === 'undefined') {
+    let element = document.createElement('script');
+    element.setAttribute('type', 'text/javascript');
+    element.setAttribute('src', 'app/Components/Components.min.js');
+    element.onready = function() {
+        componentsModule.start(componentList);
+    };
+    body.appendChild(element);
+} else
+    componentsModule.start(componentList);
 
 // Add current script
 previousScripts.push('write');
@@ -727,6 +737,10 @@ packery = $('div.content-settings').packery({
     itemSelector: 'div.component-element',
     gutter: 22
 });
+
+/*document.querySelector('div.content-settings').addEventListener('change', function() {
+    packery.packery().reloadItems();
+});*/
 
 /* Init CKEditor
 ckedit = CKEDITOR.replace('content-rich_text', {

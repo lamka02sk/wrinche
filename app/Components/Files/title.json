@@ -19,21 +19,31 @@
     {
       "element":"div",
       "attributes": {
-        "class":"counter title-counter big-counter",
-        "data-input":"input",
-        "data-length":"100"
-      }
-    },
+        "class":"input-box"
+      },
+      "children": [
 
-    {
-      "element":"input>",
-      "label":"component_title",
-      "attributes": {
-        "class":"big-input",
-        "type":"text",
-        "data-placeholder":"COMPONENT_TITLE_PLACEHOLDER",
-        "name":"component_title"
-      }
+        {
+          "element":"div",
+          "attributes": {
+            "class":"counter title-counter big-counter",
+            "data-input":"input",
+            "data-length":"100"
+          }
+        },
+
+        {
+          "element":"input>",
+          "label":"component_title",
+          "attributes": {
+            "class":"big-input",
+            "type":"text",
+            "data-placeholder":"COMPONENT_TITLE_PLACEHOLDER",
+            "name":"component_title"
+          }
+        }
+
+      ]
     }
 
   ]

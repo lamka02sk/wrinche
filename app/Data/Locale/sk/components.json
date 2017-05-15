@@ -13,6 +13,7 @@
   "COMPONENT_URL_LABEL":"URL",
   "COMPONENT_URL_INFO":"URL (Uniform Resource Locator) sa používa ako odkaz na stránku obsahu a zobrazuje sa v adresovom paneli prehliadača",
   "COMPONENT_URL_PLACEHOLDER":"Zadajte URL",
+  "COMPONENT_URL_INVALID":"Neplatná adresa",
 
   "COMPONENT_PIN_LABEL":"Pripnúť na vrch",
   "COMPONENT_PIN_INFO":"Ak je pripnutie zapnuté, Váš obsah sa zobrazí vždy na vrchu stránky",

@@ -19,24 +19,38 @@
   },
 
   "template": [
-
     {
-      "element":"div",
+      "element": "div",
       "attributes": {
-        "class":"counter url-counter",
-        "data-input":"input",
-        "data-length":"120"
-      }
+        "class": "input-box"
+      },
+      "children": [
+        {
+          "element": "div",
+          "attributes": {
+            "class": "counter url-counter",
+            "data-input": "input",
+            "data-length": "120"
+          }
+        },
+        {
+          "element": "input>",
+          "label": "component_url",
+          "attributes": {
+            "class": "input",
+            "type": "text",
+            "data-placeholder": "COMPONENT_URL_PLACEHOLDER",
+            "name": "component_url"
+          }
+        }
+      ]
     },
 
     {
-      "element":"input>",
-      "label":"component_url",
+      "element":"span",
       "attributes": {
-        "class":"input",
-        "type":"text",
-        "data-placeholder":"COMPONENT_URL_PLACEHOLDER",
-        "name":"component_url"
+        "class":"field-validation",
+        "data-locale":""
       }
     }
 

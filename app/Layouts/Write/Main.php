@@ -11,8 +11,6 @@ if(!App\Requests\Request::$ajax) {
 
 <div class="content-wrapper" data-locales="system admin_write admin_write/<?= strtolower($controller->subcategory) ?> components">
 
-    <script type="text/javascript" src="app/Components/Components.min.js"></script>
-
     <div class="content-header">
 
         <div class="header-mainline">
@@ -51,6 +49,8 @@ if(!App\Requests\Request::$ajax) {
             endforeach;
 
             ?>
+
+            <script type="text/javascript" src="app/Components/Components.min.js"></script>
 
             <div class="collapse-bar">
 
