@@ -1554,8 +1554,8 @@ span.field-validation {
   overflow: hidden; }
   span.field-validation.show {
     transform: rotateX(0deg);
-    line-height: 2;
-    padding: 0 11px; }
+    line-height: 1;
+    padding: 6px 11px; }
 
 div.content-content {
   display: inline-block;

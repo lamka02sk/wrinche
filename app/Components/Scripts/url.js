@@ -1,13 +1,25 @@
 componentsModule.modules.url = {
 
     messageElement: document.querySelector('input[name=component_url]').parentNode.parentNode.querySelector('span.field-validation'),
+    regexUrl: /^[a-z]{1}[a-z0-9\-]*[^\-]$/,
 
     data: {
         value: ''
     },
 
+    isFree: function() {
+        // Check if slug is in use
+        return true;
+    },
+
     validate: function() {
-        return false;
+        if(!componentsModule.modules.url.regexUrl.test(componentsModule.modules.url.data.value))
+            return false;
+        if(componentsModule.modules.url.data.value.length < 3 || componentsModule.modules.url.data.value.length > 120)
+            return false;
+        if(!componentsModule.modules.url.isFree())
+            return false;
+        return true;
     },
 
     serialize: function() {
