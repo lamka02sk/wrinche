@@ -127,7 +127,7 @@
                 }.bind(this)
             },
 
-            {
+            {~~
                 // Validate
                 event: "change click keyup",
                 element: document.querySelector('input[name=write_thumbnail]'),
