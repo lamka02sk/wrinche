@@ -49,6 +49,13 @@
             "data-placeholder": "COMPONENT_PEREX_DATE_PLACEHOLDER",
             "name": "component_perex_date"
           }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"clear-input clear-perex-date"
+          }
         }
 
       ]

@@ -35,6 +35,16 @@ componentsModule.modules.perex = {
             content: function(event) {
                 componentsModule.modules.perex.data.place = event.target.value.trim();
             }
+        },
+
+        {
+            // Clear date input
+            event: 'click',
+            element: document.querySelector('span.clear-input.clear-perex-date'),
+            content: function(event) {
+                event.target.parentNode.querySelector('input[name=component_perex_date]').value = '';
+                componentsModule.modules.perex.data.date = '';
+            }
         }
 
     ]

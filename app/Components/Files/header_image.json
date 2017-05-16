@@ -19,12 +19,14 @@
   },
 
   "template": [
+
     {
       "element": "div",
       "attributes": {
         "class": "input-box"
       },
       "children": [
+
         {
           "element": "button",
           "attributes": {
@@ -33,6 +35,7 @@
             "data-manager": "images"
           }
         },
+
         {
           "element": "span",
           "attributes": {
@@ -40,6 +43,7 @@
             "data-locale": "OR"
           }
         },
+
         {
           "element": "input>",
           "attributes": {
@@ -49,10 +53,11 @@
             "name": "component_header-image"
           }
         },
+
         {
           "element":"span",
           "attributes": {
-            "class":"validate-message",
+            "class":"field-validation margin-bottom",
             "data-locale":""
           }
         },
@@ -61,7 +66,7 @@
           "element":"span",
           "attributes": {
             "class":"info-text-outside",
-            "data-locale":"COMPONENT_HEADER-IMAGE_INPUT_INFO"
+            "data-locale":"COMPONENT_THUMBNAIL_INPUT_INFO"
           }
         }
       ]

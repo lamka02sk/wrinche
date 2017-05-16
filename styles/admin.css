@@ -1531,6 +1531,20 @@ component-template {
 div.input-box {
   position: relative; }
 
+div.input-box span.clear-input {
+  position: absolute;
+  right: 10px;
+  bottom: 12px;
+  height: 24px;
+  width: 24px;
+  background: url("../assets/icons/close.svg") center no-repeat;
+  background-size: 13px;
+  opacity: .7;
+  z-index: 1;
+  cursor: pointer; }
+  div.input-box span.clear-input:hover {
+    opacity: 1; }
+
 div.input-box.hide {
   display: none; }
 
