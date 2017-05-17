@@ -35,8 +35,6 @@ if(!App\Requests\Request::$ajax) {
 
         <div class="content-settings">
 
-            <script type="text/javascript" src="app/Components/Components.min.js"></script>
-
             <?php
 
             $layoutsList = App\Models\TemplateModel::$template['layouts'][$controller->subcategory];

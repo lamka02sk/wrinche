@@ -18,3 +18,18 @@ function getJson(url) {
         }).responseText);
 
 }
+
+function getFile(url) {
+
+    return $.ajax({
+                type: 'GET',
+                url: url,
+                global: false,
+                async: false,
+                cache: true,
+                success: function(data) {
+                    return data;
+                }
+            }).responseText;
+
+}

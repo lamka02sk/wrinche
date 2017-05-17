@@ -11,8 +11,6 @@ class ComponentsModel extends MainModel {
     public static $componentsList = [];
     public static $components = [];
     public static $renders = [];
-    public static $scripts = [];
-    public static $scriptsRenders = [];
 
     public $currentComponent;
 
@@ -74,28 +72,6 @@ class ComponentsModel extends MainModel {
 
     }
 
-    public function preloadScript() {
-
-        $file = file_get_contents(ROOT . '/app/Components/Scripts/' . $this->currentComponent . '.min.js');
-        self::$scripts[$this->currentComponent] = $file;
-
-    }
-
-    public function renderScript() {
-
-        if(isset(self::$scripts[$this->currentComponent]) && isset(self::$scriptsRenders[$this->currentComponent]))
-            return false;
-
-        if(!isset(self::$scripts[$this->currentComponent]))
-            $this->preloadScript();
-
-        if(!isset(self::$scriptsRenders[$this->currentComponent]))
-            self::$scriptsRenders[$this->currentComponent] = '<script type="text/javascript">' . self::$scripts[$this->currentComponent] . '</script>';
-
-        return true;
-
-    }
-
     public function setCurrentComponent(string $component) {
 
         if(empty(self::$componentsList))
@@ -123,7 +99,6 @@ class ComponentsModel extends MainModel {
         if(in_array($this->currentComponent, self::$componentsList['default']))
             $this->renderDefaultComponent();
 
-        $this->renderScript();
         return true;
 
     }
@@ -163,7 +138,7 @@ class ComponentsModel extends MainModel {
 
         if(!isset($component['defaultElements']) || !$component['defaultElements']) {
             if(!isset($component['header']) || !isset(self::$templates[$component['header']])) {
-                self::$templatesRenders[$this->currentComponent] = $firstElement . '%content%%script%' . $lastElement;
+                self::$templatesRenders[$this->currentComponent] = $firstElement . '%content%' . $lastElement;
                 return true;
             }
         }
@@ -175,7 +150,7 @@ class ComponentsModel extends MainModel {
         ]);
 
         $headerElement = $render->output;
-        self::$templatesRenders[$this->currentComponent] = $firstElement . $headerElement . '%content%%script%' . $lastElement;
+        self::$templatesRenders[$this->currentComponent] = $firstElement . $headerElement . '%content%' . $lastElement;
         return true;
 
     }
@@ -184,9 +159,7 @@ class ComponentsModel extends MainModel {
 
         $wrapper = self::$templatesRenders[$this->currentComponent];
         $content = self::$renders[$this->currentComponent];
-        $script = self::$scriptsRenders[$this->currentComponent];
-        $html = str_replace('%content%', $content, $wrapper);
-        return str_replace('%script%', $script, $html);
+        return str_replace('%content%', $content, $wrapper);
 
     }
 

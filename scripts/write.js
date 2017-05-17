@@ -719,12 +719,13 @@ if(typeof componentsModule === 'undefined') {
     let element = document.createElement('script');
     element.setAttribute('type', 'text/javascript');
     element.setAttribute('src', 'app/Components/Components.min.js');
-    element.onready = function() {
+    element.onload = function() {
         componentsModule.start(componentList);
     };
     body.appendChild(element);
-} else
+} else {
     componentsModule.start(componentList);
+}
 
 // Add current script
 previousScripts.push('write');

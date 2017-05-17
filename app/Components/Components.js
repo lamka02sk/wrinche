@@ -1,5 +1,7 @@
 function ComponentsModule() {
 
+    this.modulesCache = {};
+
     this.components = [];
     this.modules = {};
 
@@ -16,8 +18,15 @@ function ComponentsModule() {
         }
     }.bind(this);
 
+    this.loadComponent = function(component) {
+        if(!(component in componentsModule.modulesCache))
+            componentsModule.modulesCache[component] = getFile('app/Components/Scripts/' + component + '.min.js');
+        eval(componentsModule.modulesCache[component]);
+    };
+
     this.initializeComponent = function(component) {
-        if(!(component in this.modules)) return false;
+        componentsModule.modules[component] = {};
+        this.loadComponent(component);
         component = this.modules[component];
         if(component.start) component.start();
         if(!component.events) return false;

@@ -131,7 +131,7 @@ let adminRoute = document.querySelector('meta[name=route]').getAttribute('conten
 let baseURI = '?route='; // While pretty URL does not work
 let route = $('meta[name=route]').attr('content');
 let URI = baseURI + route + '/';
-let locale, packery, selector, languages, type, typeName, componentList, components, selectors;
+let locale, packery, selector, languages, type, typeName, componentList, components = [], selectors;
 let previousScripts = [];
 let responseBox = document.querySelector('div.response-message');
 let body = document.querySelector('body');
