@@ -1358,6 +1358,8 @@ div.header-mainline div.mainline-search input {
   @media (max-width: 1120px) {
     div.header-mainline div.mainline-search input {
       opacity: 0; } }
+  div.header-mainline div.mainline-search input:focus {
+    box-shadow: inset 0 -4px 4px rgba(0, 0, 0, 0.01); }
 
 div.header-mainline button.mainline-button {
   display: inline-block;
@@ -1592,7 +1594,7 @@ div.content-content {
     width: calc(50% - 12px);
     height: auto;
     perspective: 1000px; }
-    @media (max-width: 1000px) {
+    @media (max-width: 1300px) {
       div.content-content div.component-element, div.content-content div.settings-component {
         width: 100% !important; } }
     div.content-content div.component-element[data-component=title], div.content-content div.settings-component[data-component=title] {
@@ -1644,10 +1646,12 @@ div.content-settings {
         display: none; }
       div.content-settings div.collapse-bar span.collapse-trigger span.text-open {
         display: inline-block; }
-  div.content-settings.open div.collapse-bar span.collapse-trigger span.text-close {
-    display: inline-block; }
-  div.content-settings.open div.collapse-bar span.collapse-trigger span.text-open {
-    display: none; }
+  div.content-settings.open {
+    max-height: none; }
+    div.content-settings.open div.collapse-bar span.collapse-trigger span.text-close {
+      display: inline-block; }
+    div.content-settings.open div.collapse-bar span.collapse-trigger span.text-open {
+      display: none; }
 
 div.content-content label {
   display: inline;
@@ -1758,6 +1762,11 @@ div.content-content input {
   box-sizing: border-box;
   margin: 2px 0 6px 0;
   padding: 0 72px 0 10px; }
+  div.content-content input.input-icon-enter {
+    background-image: url("../assets/icons/enter_opaque.svg") !important;
+    background-position: right 10px center !important;
+    background-size: 14px !important;
+    background-repeat: no-repeat !important; }
   div.content-content input.big-input {
     height: 46px;
     font-size: 1.3em;
@@ -1969,7 +1978,7 @@ div.builder-tools button {
   div.builder-tools button:last-of-type {
     margin-right: 0; }
   div.builder-tools button:hover {
-    background-color: #f8f8f8; }
+    background-color: #fbfbfb; }
   div.builder-tools button.icon-heading {
     background-image: url("../assets/icons/header.svg"); }
   div.builder-tools button.icon-rich_text {

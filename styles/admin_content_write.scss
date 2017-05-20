@@ -73,7 +73,7 @@ div.content-content {
     width: calc(50% - 12px);
     height: auto;
     perspective: 1000px;
-    @media(max-width: 1000px) {
+    @media(max-width: 1300px) {
       width: 100% !important;
     }
     &[data-component=title] {
@@ -134,6 +134,7 @@ div.content-settings {
     }
   }
   &.open {
+    max-height: none;
     div.collapse-bar span.collapse-trigger span.text-close {
       display: inline-block;
     }
@@ -264,6 +265,12 @@ div.content-content input {
   box-sizing: border-box;
   margin: 2px 0 6px 0;
   padding: 0 72px 0 10px;
+  &.input-icon-enter {
+    background-image: url('../assets/icons/enter_opaque.svg') !important;
+    background-position: right 10px center !important;
+    background-size: 14px !important;
+    background-repeat: no-repeat !important;
+  }
   &.big-input {
     height: 46px;
     font-size: 1.3em;
@@ -475,7 +482,6 @@ div.builder-tools {
   width: 100%;
   float: left;
   padding-top: 4px;
-  //border: 1px solid silver;
   background: $text-lightGrey;
   text-align: center;
   -webkit-box-sizing: border-box;
@@ -497,7 +503,6 @@ div.builder-tools button {
   background: $white left 14px center no-repeat;
   background-size: 12px;
   padding: 0 12px 0 34px;
-  //border: 1px solid silver;
   border: none;
   box-shadow: 0 0 4px rgba(0,0,0,.1);
   cursor: pointer;
@@ -509,7 +514,7 @@ div.builder-tools button {
     margin-right: 0;
   }
   &:hover {
-    background-color: #f8f8f8;
+    background-color: #fbfbfb;
   }
   &.icon-heading {
     background-image: url('../assets/icons/header.svg');

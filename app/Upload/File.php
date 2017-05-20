@@ -160,6 +160,7 @@ class File {
         'xml',
         'tmp',
         'md',
+        'sql',
 
         // E-book files
         'azw',
@@ -601,7 +602,8 @@ class File {
             'application/vnd.openxmlformats'
         ],
         'docx' => [
-            'application/vnd.openxmlformats'
+            'application/vnd.openxmlformats',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
         ],
         'dot' => [
             'application/msword',
@@ -1166,6 +1168,10 @@ class File {
         ],
         'ref' => [
             'application/octet-stream'
+        ],
+
+        'sql' => [
+            'text/plain'
         ]
 
     ];
@@ -1191,14 +1197,20 @@ class File {
         // Get file extension
         $this->extension = pathinfo($this->data['name'])['extension'];
 
+        echo $this->extension;
+        echo 'extension error';
+
         // Check file extension
         if(!in_array($this->extension, $this->supportedExtensions))
             new UserEvents(50);  // Unsupported file format
+
+        echo 'format error';
 
         // Get file MIME type
         $formatType = mime_content_type($this->data['tmp_name']);
 
         // Check format type
+        echo $formatType;
         if(!in_array($formatType, $this->supportedFormats[$this->extension]))
             new UserEvents(50);  // Unsupported file format
 

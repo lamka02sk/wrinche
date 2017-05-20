@@ -20,7 +20,7 @@ div.header-mainline div.mainline-search div.input-box {
 }
 
 div.header-mainline div.mainline-search input {
-  background: $text-lightGrey !important;
+  background: lighten($text-lightGrey, 1%) !important;
   color: $text-lightBlack !important;
 }
 

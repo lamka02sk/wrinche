@@ -235,7 +235,7 @@ div.header-mainline div.mainline-search div.input-box:before {
   background: url("../../../assets/icons/search.svg") !important; }
 
 div.header-mainline div.mainline-search input {
-  background: #f7f7f7 !important;
+  background: #fafafa !important;
   color: #323232 !important; }
 
 div.menu-tabs {
@@ -279,8 +279,6 @@ div.content-content input {
   background: #ffffff !important; }
   div.content-content input.add-item {
     background-image: url("../../../assets/icons/add.svg") !important; }
-    div.content-content input.add-item:hover, div.content-content input.add-item:focus {
-      border-bottom-color: #404040 !important; }
 
 div.content-content h3 {
   color: #404040 !important; }

@@ -16,13 +16,32 @@
   "template": [
 
     {
-      "element":"textarea",
-      "label":"component_revisions",
+      "element":"div",
       "attributes": {
-        "class":"small-textarea",
-        "name":"component_revisions",
-        "data-placeholder":"COMPONENT_REVISIONS_NEW_PLACEHOLDER"
-      }
+        "class":"input-box"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"counter fuck-chrome revision-counter",
+            "data-input":"textarea",
+            "data-length":"250"
+          }
+        },
+
+        {
+          "element":"textarea",
+          "label":"component_revisions",
+          "attributes": {
+            "class":"small-textarea",
+            "name":"component_revisions",
+            "data-placeholder":"COMPONENT_REVISIONS_NEW_PLACEHOLDER"
+          }
+        }
+
+      ]
     },
 
     {

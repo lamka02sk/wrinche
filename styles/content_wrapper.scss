@@ -196,6 +196,9 @@ div.header-mainline div.mainline-search input {
   @media(max-width: 1120px) {
     opacity: 0;
   }
+  &:focus {
+    box-shadow: inset 0 -4px 4px rgba(0,0,0,.01);
+  }
 }
 
 div.header-mainline button.mainline-button {

@@ -70,7 +70,7 @@
           "element": "input>",
           "label": "component_custom-fields_add_value",
           "attributes": {
-            "class": "input-custom_fields",
+            "class": "input-custom_fields input-icon-enter",
             "data-placeholder": "COMPONENT_CUSTOM-FIELDS_VALUE",
             "name": "component_custom-fields_value"
           }

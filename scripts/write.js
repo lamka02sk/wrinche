@@ -619,7 +619,7 @@
                 content: function(event) {
 
                     if(event.keyCode && event.keyCode === 13)
-                        document.querySelector('span.add-custom_field').click();
+                            document.querySelector('span.add-custom_field').click();
 
                 }
             }
@@ -739,10 +739,6 @@ packery = $('div.content-settings').packery({
     gutter: 22
 });
 
-/*document.querySelector('div.content-settings').addEventListener('change', function() {
-    packery.packery().reloadItems();
-});*/
-
 /* Init CKEditor
 ckedit = CKEDITOR.replace('content-rich_text', {
     language: html.attr('lang'),
@@ -756,22 +752,9 @@ ckedit.on('instanceReady', function() {
 */
 
 // Collapse / Show All Settings
-$('span.collapse-trigger').click(function() {
-    let element = $(this).parent().parent();
-    if(element.hasClass('open')) {
-        element.animate({ 'max-height': '260px' }, 200).removeClass('open');
-    } else {
-        element.css({ 'max-height': 'none' });
-        let newHeight = element.height();
-        element.css({ 'max-height': '260px' });
-        element.animate({ 'max-height': newHeight }, 200).addClass('open');
-        setTimeout(function() {
-            element.css({ 'max-height': 'none' });
-        }, 200);
-    }
-    setTimeout(function() {
-        packery.packery().reloadItems();
-    }, 200);
+$('span.collapse-trigger').click(function(event) {
+    event.target.parentNode.parentNode.parentNode.classList.toggle('open');
+    packery.packery().reloadItems();
 });
 
 // Init Selector

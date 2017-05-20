@@ -39,9 +39,6 @@ div.content-content input {
   background: $white !important;
   &.add-item {
     background-image: url('../../../assets/icons/add.svg') !important;
-    &:hover, &:focus {
-      border-bottom-color: $darkGrey !important;
-    }
   }
 }
 
