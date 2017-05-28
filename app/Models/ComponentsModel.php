@@ -143,15 +143,30 @@ class ComponentsModel extends MainModel {
             }
         }
 
+        $data = [];
+        if(isset($component['data']))
+            $data = $this->retrieveData($component['data']);
+
         $headerName = self::$components[$this->currentComponent]['header'];
         $headerTemplate = self::$templates[$headerName];
         $render = new Html($headerTemplate, [
-            "component" => $this->currentComponent
+            "component" => $this->currentComponent,
+            "children_template" => $data
         ]);
 
         $headerElement = $render->output;
         self::$templatesRenders[$this->currentComponent] = $firstElement . $headerElement . '%content%' . $lastElement;
         return true;
+
+    }
+
+    public function retrieveData($data) {
+
+        if(!isset($data['source']) || !isset($data['method']))
+            return [];
+
+        $source = new $data['source'];
+        return $source->{$data['method']}();
 
     }
 

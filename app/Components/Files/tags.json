@@ -53,7 +53,7 @@
       "attributes": {
         "class":"tags-manage",
         "data-link":"sorting/tags",
-        "data-target":"content",
+        "data-target":"blank",
         "data-locale":"COMPONENT_TAGS_MANAGE"
       }
     },

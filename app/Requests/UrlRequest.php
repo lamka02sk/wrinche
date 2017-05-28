@@ -17,12 +17,16 @@ use App\Routers\Router;
 class UrlRequest {
 
     public $router;
+    public static $category;
+    public static $subcategory;
 
     public static function init() {
 
         $data = $_GET['route'] ?? '';
         $data = strtolower($data);
         $data = explode('/', rtrim(trim($data), '/'));
+        self::$category = $data[0] ?? null;
+        self::$subcategory = $data[1] ?? null;
         Request::$url = $data;
 
     }

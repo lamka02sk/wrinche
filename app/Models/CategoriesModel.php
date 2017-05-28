@@ -107,6 +107,15 @@ class CategoriesModel extends MainModel {
 
     }
 
+    public function getAllCategories() {
+
+        if(empty(self::$categories))
+            $this->prepareAllCategories();
+
+        return self::$categories;
+
+    }
+
     public function saveCategory() {
 
         $builder = new QueryBuilder;
@@ -242,6 +251,22 @@ class CategoriesModel extends MainModel {
             ->exec();
 
         return true;
+
+    }
+
+    public function componentCategories() {
+
+        $this->start(true);
+
+        $result = [];
+        foreach(self::$categories as $id => $category) {
+            $result[] = [
+                "category_id" => $id,
+                "category_name" => $category['name']
+            ];
+        }
+
+        return $result;
 
     }
 

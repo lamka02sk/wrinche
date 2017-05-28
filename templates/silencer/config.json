@@ -20,7 +20,7 @@
         "tags",
         "revisions",
         "*menu_link",
-        "*categories",
+        "categories",
         "*planner",
         "*meta",
         "*status",

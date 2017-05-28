@@ -77,9 +77,18 @@ Loader.prototype.createEvents = function() {
         links[i].onclick = function() {
             if("onStart" in this.config)
                 this.config.onStart();
-            let link = links[i].getAttribute('data-link');
+            let link   = links[i].getAttribute('data-link');
             let target = links[i].getAttribute('data-target');
             this.executeEvent(link, target);
+        }.bind(this);
+        links[i].onmouseup = function(event) {
+            if(event.which === 2) {
+                if("onStart" in this.config)
+                    this.config.onStart();
+                let link   = links[i].getAttribute('data-link');
+                this.executeEvent(link, 'blank');
+                event.preventDefault();
+            }
         }.bind(this);
     }
 
@@ -101,8 +110,25 @@ Loader.prototype.executeEvent = function(link, target) {
     this.link = link;
     this.target = target;
 
+    if(this.target === 'blank') {
+        this.openNewTab();
+        this.config.onDone(false, this.link);
+        return true;
+    }
+
     // Load new content
     this.getContent();
+
+};
+
+/**
+ * Loader openNewTab Function
+ * Open link in the new tab
+ */
+Loader.prototype.openNewTab = function() {
+
+    let newTab = window.open(this.config.root + this.link, '_blank');
+    newTab.location;
 
 };
 

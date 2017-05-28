@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\ApiController;
 use App\Requests\UrlRequest;
 use App\Routers\AdminRouter;
 
@@ -111,7 +112,13 @@ if($urlRequest->isAdmin()) {
 
 } else {
 
-    // Show website
-    echo 'this is my website!';
+    if(UrlRequest::$category === 'api')
+        new ApiController(UrlRequest::$subcategory);
+
+    else {
+
+        echo 'Welcome to my website.';
+
+    }
 
 }
