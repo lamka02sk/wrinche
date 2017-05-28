@@ -33,3 +33,17 @@ function getFile(url) {
             }).responseText;
 
 }
+
+function ajax(url, method, data, contentType, onDone, onError) {
+
+    $.ajax({
+        url: url,
+        type: method,
+        data: data,
+        dataType: contentType,
+        async: true,
+        success: onDone,
+        error: onError
+    });
+
+}

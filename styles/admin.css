@@ -2372,7 +2372,7 @@ div.tags-list p.tags-item {
     background-size: 10px;
     cursor: pointer; }
 
-div.languages-list {
+div.languages-list, div.categories-list {
   display: inline-block;
   position: relative;
   float: left;
@@ -2386,7 +2386,7 @@ div.languages-list {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-div.languages-list div.language-item {
+div.languages-list div.language-item, div.categories-list div.category-item {
   display: inline-block;
   position: relative;
   float: left;
@@ -2400,12 +2400,12 @@ div.languages-list div.language-item {
   padding: 0 10px;
   font-size: .82em;
   line-height: 32px; }
-  div.languages-list div.language-item:last-of-type {
+  div.languages-list div.language-item:last-of-type, div.categories-list div.category-item:last-of-type {
     border-bottom: none; }
-  div.languages-list div.language-item.hide {
+  div.languages-list div.language-item.hide, div.categories-list div.category-item.hide {
     display: none; }
 
-div.languages-list div.language-item p.language-name {
+div.languages-list div.language-item p.language-name, div.categories-list div.category-item p.category-name {
   display: inline-block;
   position: relative;
   float: left;
@@ -2417,7 +2417,7 @@ div.languages-list div.language-item p.language-name {
   color: #323232;
   margin: 0; }
 
-div.languages-list div.language-item span.add-language {
+div.languages-list div.language-item span.add-language, div.categories-list div.category-item span.add-category {
   display: inline-block;
   position: absolute;
   width: auto;
@@ -2435,12 +2435,12 @@ div.languages-list div.language-item span.add-language {
   padding: 0 6px 0 24px;
   cursor: pointer;
   transition: .2s ease-in-out; }
-  div.languages-list div.language-item span.add-language:hover {
+  div.languages-list div.language-item span.add-language:hover, div.categories-list div.category-item span.add-category:hover {
     background-color: rgba(0, 0, 0, 0.05); }
-  div.languages-list div.language-item span.add-language.hide {
+  div.languages-list div.language-item span.add-language.hide, div.categories-list div.category-item span.add-category.hide {
     display: none; }
 
-div.languages-list div.language-item span.remove-language {
+div.languages-list div.language-item span.remove-language, div.categories-list div.category-item span.remove-category {
   display: inline-block;
   position: absolute;
   width: auto;
@@ -2458,9 +2458,9 @@ div.languages-list div.language-item span.remove-language {
   padding: 0 6px 0 24px;
   cursor: pointer;
   transition: .2s ease-in-out; }
-  div.languages-list div.language-item span.remove-language:hover {
+  div.languages-list div.language-item span.remove-language:hover, div.categories-list div.category-item span.remove-category:hover {
     background-color: #28945e; }
-  div.languages-list div.language-item span.remove-language.hide {
+  div.languages-list div.language-item span.remove-language.hide, div.categories-list div.category-item span.remove-category.hide {
     display: none; }
 
 div.subcontent-box.input-box {

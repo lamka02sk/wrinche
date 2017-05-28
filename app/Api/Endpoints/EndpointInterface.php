@@ -19,7 +19,12 @@ abstract class EndpointInterface {
             $this->{$method}();
         else
             Redirect::response(404);
-        $this->outputJson = json_encode($this->output);
+        $output = [
+            'success' => ($this->output === false) ? false : true,
+            'code' => 200,
+            'data' => $this->output
+        ];
+        $this->outputJson = json_encode($output);
     }
 
 }

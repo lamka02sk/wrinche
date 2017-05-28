@@ -31,6 +31,8 @@ componentsModule.modules.languages = {
                 });
                 template.childNodes[1].classList.add('hide');
                 template.childNodes[2].classList.remove('hide');
+                if(componentsModule.modules.languages.data.languages.indexOf(abbr) === -1)
+                    componentsModule.modules.languages.data.languages.push(abbr);
                 // ...
             });
 
@@ -51,6 +53,8 @@ componentsModule.modules.languages = {
                     });
                     template.childNodes[2].classList.add('hide');
                     template.childNodes[1].classList.remove('hide');
+                    if(componentsModule.modules.languages.data.languages.indexOf(abbr) !== -1)
+                        componentsModule.modules.languages.data.languages.splice(componentsModule.modules.languages.data.languages.indexOf(abbr), 1);
                     // ...
                 });
             });
@@ -104,7 +108,6 @@ componentsModule.modules.languages = {
                         listElements[i].classList.add('hide');
                 }
                 packery.packery().reloadItems();
-
             }
         }
         

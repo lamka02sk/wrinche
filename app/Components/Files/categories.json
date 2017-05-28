@@ -5,7 +5,7 @@
   "defaultElements":true,
   "header":"component_header",
 
-  "data": {
+  "*data": {
     "source":"App\\Models\\CategoriesModel",
     "method":"componentCategories"
   },
@@ -45,7 +45,7 @@
       "attributes": {
         "class":"categories-list"
       },
-      "children_template": [
+      "*children_template": [
 
         {
           "element":"div",
@@ -93,6 +93,50 @@
         "data-target":"blank",
         "class":"categories-manage"
       }
+    },
+
+    {
+      "element":"template",
+      "attributes": {
+        "id":"template_component_categories_item"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"category-item",
+            "data-category":""
+          },
+          "children": [
+
+            {
+              "element":"p",
+              "attributes": {
+                "class":"category-name"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"add-category",
+                "data-locale":"BUTTON_ADD"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"remove-category hide",
+                "data-locale":"BUTTON_ADDED"
+              }
+            }
+
+          ]
+        }
+
+      ]
     }
 
   ]

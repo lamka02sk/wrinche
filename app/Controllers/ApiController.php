@@ -69,9 +69,6 @@ class ApiController extends MainController {
 
     public function __construct($endpoint) {
 
-        if(Request::$ajax)
-            Redirect::response(404);
-
         $this->endpoint = $endpoint;
         $this->handleRequest();
         return true;

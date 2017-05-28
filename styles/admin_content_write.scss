@@ -958,7 +958,7 @@ div.tags-list p.tags-item {
   }
 }
 
-div.languages-list {
+div.languages-list, div.categories-list {
   display: inline-block;
   position: relative;
   float: left;
@@ -973,7 +973,7 @@ div.languages-list {
   box-sizing: border-box;
 }
 
-div.languages-list div.language-item {
+div.languages-list div.language-item, div.categories-list div.category-item {
   display: inline-block;
   position: relative;
   float: left;
@@ -995,7 +995,7 @@ div.languages-list div.language-item {
   }
 }
 
-div.languages-list div.language-item p.language-name {
+div.languages-list div.language-item p.language-name, div.categories-list div.category-item p.category-name {
   display: inline-block;
   position: relative;
   float: left;
@@ -1008,7 +1008,7 @@ div.languages-list div.language-item p.language-name {
   margin: 0;
 }
 
-div.languages-list div.language-item span.add-language {
+div.languages-list div.language-item span.add-language, div.categories-list div.category-item span.add-category {
   display: inline-block;
   position: absolute;
   width: auto;
@@ -1034,7 +1034,7 @@ div.languages-list div.language-item span.add-language {
   }
 }
 
-div.languages-list div.language-item span.remove-language {
+div.languages-list div.language-item span.remove-language, div.categories-list div.category-item span.remove-category {
   display: inline-block;
   position: absolute;
   width: auto;

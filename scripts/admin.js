@@ -130,6 +130,7 @@ function postData(link, data, callback) {
 let adminRoute = document.querySelector('meta[name=route]').getAttribute('content');
 let baseURI = '?route='; // While pretty URL does not work
 let route = $('meta[name=route]').attr('content');
+let csrf_token = $('meta[name=csrf_token]').attr('content');
 let URI = baseURI + route + '/';
 let locale, packery, selector, languages, type, typeName, componentList, components = [], selectors;
 let previousScripts = [];
@@ -227,6 +228,8 @@ function LoaderDone(content, link) {
         responseBox.classList.remove('open');
         responseBox.querySelector('span.message-content').innerText = '';
     }, 400);
+
+    $('div.anchor-hover').removeClass('show').text('');
 
 }
 
