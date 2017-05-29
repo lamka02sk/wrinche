@@ -137,6 +137,27 @@ let previousScripts = [];
 let responseBox = document.querySelector('div.response-message');
 let body = document.querySelector('body');
 
+// Update CSRF token every 19 minutes
+setInterval(function() {
+    ajax(
+        baseURI + 'api/system.auth.refresh.token&csrf_token=' + csrf_token,
+        'GET',
+        false,
+        '*',
+        function(response) {
+            csrf_token = response.data;
+            document.querySelector('meta[name=csrf_token').setAttribute('content', response.data);
+        },
+        function() {
+            window.addEventListener('focus', function() {
+                confirmAction(translate.locale.response['ACTION_CONFIRM_RELOAD_PAGE'], function() {
+                    window.location.reload();
+                });
+            });
+        }
+    );
+}, 1140000);
+
 // Root URL
 let root = window.location.href;
 root = root.split(adminRoute)[0] + adminRoute;
@@ -325,11 +346,11 @@ window.onpopstate = function(event) {
 function initDatePicker() {
 
     flatpickr(".datetime-picker", {
-        altFormat    : true,
-        dateFormat   : 'd.m.Y H:i:s',
-        enableTime   : true,
-        enableSeconds: true,
-        locale      : translate.language
+        altFormat     : true,
+        dateFormat    : 'd.m.Y H:i:s',
+        enableTime    : true,
+        enableSeconds : true,
+        locale        : translate.language
     });
 
     flatpickr(".date-picker", {
@@ -344,5 +365,12 @@ function initDatePicker() {
         maxDate    : 'today',
         locale     : translate.language
     });
+
+}
+
+// Time picker
+function initTimePicker() {
+
+
 
 }

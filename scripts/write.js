@@ -765,5 +765,8 @@ selector = new Selector({
 // Init date picker
 initDatePicker();
 
+// Init time picker
+initTimePicker();
+
 // Remove Splash screen
 $('div.splash').addClass('done');

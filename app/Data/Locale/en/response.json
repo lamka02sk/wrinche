@@ -24,6 +24,7 @@
 
   "ACTION_CONFIRM":"Confirm action",
   "ACTION_CONFIRM_REMOVE_LANGUAGE":"Are you sure you want to delete translation in %language% language? This action can not be undone.",
+  "ACTION_CONFIRM_RELOAD_PAGE":"You need to reload page in order to use wrinche administration.",
   "ACTION_CONFIRM_DISMISS":"Go back",
   "ACTION_CONFIRM_PROCEED":"Continue"
 

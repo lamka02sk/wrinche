@@ -9,6 +9,14 @@ div.input-box {
   width: 100%;
 }
 
+div.input-box.low-top {
+  margin-top: -6px;
+}
+
+div.input-box.margin-bottom {
+  margin-bottom: 6px;
+}
+
 div.input-box span.clear-input {
   position: absolute;
   right: 10px;
@@ -173,6 +181,11 @@ div.content-content label {
     width: 100%;
     height: auto;
     z-index: 1;
+    &.second-level {
+      padding-left: 18px;
+      background: url('../assets/icons/level.svg') left 2px top 4px no-repeat;
+      background-size: 12px;
+    }
   }
 }
 
