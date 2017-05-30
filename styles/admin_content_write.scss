@@ -143,6 +143,7 @@ div.content-settings {
   }
   &.open {
     max-height: none;
+    overflow: visible;
     div.collapse-bar span.collapse-trigger span.text-close {
       display: inline-block;
     }
@@ -1070,5 +1071,17 @@ div.languages-list div.language-item span.remove-language, div.categories-list d
   }
   &.hide {
     display: none;
+  }
+}
+
+div.selector-element#select-relative {
+  height: auto !important;
+  .selector-selected {
+    height: 32px !important;
+    float: left;
+  }
+  .selector-options {
+    position: relative !important;
+    float: left;
   }
 }

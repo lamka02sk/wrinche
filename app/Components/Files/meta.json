@@ -38,69 +38,108 @@
   "template": [
 
     {
-      "element":"label",
-      "attributes": {
-        "for":"component_meta_manually",
-        "class":"label checkbox-click",
-        "data-locale":"COMPONENT_META_MANUALLY"
-      }
-    },
-
-    {
-      "element":"input>",
-      "label":"component_meta_manually",
-      "attributes": {
-        "class":"input",
-        "type":"checkbox",
-        "value":"component_meta_manually"
-      }
-    },
-
-    {
       "element":"div",
       "attributes": {
-        "class":"input-box hide"
+        "class":"input-box"
       },
       "children": [
 
         {
           "element":"label",
           "attributes": {
-            "class":"small-label",
-            "for":"component_meta_keywords",
-            "data-locale":"COMPONENT_META_KEYWORDS_LABEL"
+            "for":"component_meta_manually",
+            "class":"label checkbox-click",
+            "data-locale":"COMPONENT_META_MANUALLY"
           }
         },
 
         {
           "element":"input>",
-          "label":"component_meta_keywords",
+          "label":"component_meta_manually",
           "attributes": {
             "class":"input",
-            "type":"text",
-            "name":"component_meta_keywords",
-            "data-placeholder":"COMPONENT_META_KEYWORDS_PLACEHOLDER"
+            "type":"checkbox",
+            "value":"component_meta_manually",
+            "name":"component_meta_manually"
           }
+        }
+
+      ]
+    },
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"input-box component_meta_custom hide"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"component_meta_keywords input-box margin-bottom"
+          },
+          "children": [
+
+            {
+              "element":"label",
+              "attributes": {
+                "class":"small-label",
+                "for":"component_meta_keywords",
+                "data-locale":"COMPONENT_META_KEYWORDS_LABEL"
+              }
+            },
+
+            {
+              "element":"input>",
+              "label":"component_meta_keywords",
+              "attributes": {
+                "class":"input",
+                "type":"text",
+                "name":"component_meta_keywords",
+                "data-placeholder":"COMPONENT_META_KEYWORDS_PLACEHOLDER"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"info-text-outside",
+                "data-locale":"COMPONENT_META_KEYWORDS_INFO"
+              }
+            }
+
+          ]
         },
 
         {
-          "element":"label",
+          "element":"div",
           "attributes": {
-            "class":"small-label",
-            "for":"component_meta_description",
-            "data-locale":"COMPONENT_META_DESCRIPTION_LABEL"
-          }
-        },
+            "class":"component_meta_description input-box margin-bottom"
+          },
+          "children": [
 
-        {
-          "element":"input>",
-          "label":"component_meta_description",
-          "attributes": {
-            "class":"input",
-            "type":"text",
-            "name":"component_meta_description",
-            "data-placeholder":"COMPONENT_META_DESCRIPTION_PLACEHOLDER"
-          }
+            {
+              "element":"label",
+              "attributes": {
+                "class":"small-label",
+                "for":"component_meta_description",
+                "data-locale":"COMPONENT_META_DESCRIPTION_LABEL"
+              }
+            },
+
+            {
+              "element":"input>",
+              "label":"component_meta_description",
+              "attributes": {
+                "class":"input",
+                "type":"text",
+                "name":"component_meta_description",
+                "data-placeholder":"COMPONENT_META_DESCRIPTION_PLACEHOLDER"
+              }
+            }
+
+          ]
         },
 
         {
@@ -116,8 +155,8 @@
           "element":"select",
           "label":"component_meta_robots",
           "attributes": {
-            "class":"selector-instance",
-            "name":"component_meta_robots"
+            "name":"component_meta_robots",
+            "id":"select-relative"
           },
           "children": [
 

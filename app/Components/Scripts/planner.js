@@ -41,7 +41,7 @@ componentsModule.modules.planner = {
             event: 'change',
             element: document.querySelector('label[for=component_planner]').parentNode.querySelector('input[name=component_planner_publish_datetime]'),
             content: function(event) {
-                componentsModule.modules.planner.data.planner_date = event.target.value;
+                componentsModule.modules.planner.data.planner_date = event.target.value.trim();
             }
         },
 
@@ -60,7 +60,7 @@ componentsModule.modules.planner = {
             event: 'change',
             element: document.querySelector('label[for=component_planner]').parentNode.querySelector('input[name=component_planner_publish_expiry]'),
             content: function(event) {
-                componentsModule.modules.planner.data.planner_expiry = event.target.value;
+                componentsModule.modules.planner.data.planner_expiry = event.target.value.trim();
             }
         },
 

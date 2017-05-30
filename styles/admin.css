@@ -1653,7 +1653,8 @@ div.content-settings {
       div.content-settings div.collapse-bar span.collapse-trigger span.text-open {
         display: inline-block; }
   div.content-settings.open {
-    max-height: none; }
+    max-height: none;
+    overflow: visible; }
     div.content-settings.open div.collapse-bar span.collapse-trigger span.text-close {
       display: inline-block; }
     div.content-settings.open div.collapse-bar span.collapse-trigger span.text-open {
@@ -2472,6 +2473,15 @@ div.languages-list div.language-item span.remove-language, div.categories-list d
     background-color: #28945e; }
   div.languages-list div.language-item span.remove-language.hide, div.categories-list div.category-item span.remove-category.hide {
     display: none; }
+
+div.selector-element#select-relative {
+  height: auto !important; }
+  div.selector-element#select-relative .selector-selected {
+    height: 32px !important;
+    float: left; }
+  div.selector-element#select-relative .selector-options {
+    position: relative !important;
+    float: left; }
 
 div.subcontent-box.input-box {
   border-bottom: 1px dotted #bdd9bf;

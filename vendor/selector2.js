@@ -127,6 +127,7 @@ Selector.prototype.renderParent = function() {
     if(this.currentElement.getAttribute('data-type'))
         parent.dataset.type = this.currentElement.getAttribute('data-type');
     parent.dataset.reference = this.currentElement.name;
+    parent.setAttribute('id', this.currentElement.getAttribute('id'));
     return parent;
 
 };

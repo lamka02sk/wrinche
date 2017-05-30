@@ -128,6 +128,12 @@
   "COMPONENT_META_LABEL":"Meta informácie",
   "COMPONENT_META_INFO":"Umožňuje pridať doplňujúce informácie k článku na optimalizáciu SEO",
   "COMPONENT_META_MANUALLY":"Vlastné informácie",
+  "COMPONENT_META_KEYWORDS_LABEL":"Kľúčové slová",
+  "COMPONENT_META_KEYWORDS_PLACEHOLDER":"Zadajte kľúčové slová",
+  "COMPONENT_META_KEYWORDS_INFO":"Viacero kľúčových slov oddeľte čiarkou",
+  "COMPONENT_META_DESCRIPTION_LABEL":"Popis",
+  "COMPONENT_META_DESCRIPTION_PLACEHOLDER":"Zadajte popis",
+  "COMPONENT_META_ROBOTS_LABEL":"Prístupnosť pre vyhľadávače",
 
   "COMPONENT_PLANNER_LABEL":"Plánovač",
   "COMPONENT_PLANNER_INFO":"Slúži na zautomatizovanie procesu publikácie",

@@ -22,7 +22,7 @@
         "*menu_link",
         "categories",
         "planner",
-        "*meta",
+        "meta",
         "*status",
         "*author",
         "*created_at",
