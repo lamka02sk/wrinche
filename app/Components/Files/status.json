@@ -20,16 +20,41 @@
       "element":"select",
       "label":"component_status",
       "attributes": {
-        "class":"selector-instance",
-        "name":"component_status"
+        "name":"component_status",
+        "id":"select-relative"
       },
-      "children_template": [
+      "children": [
 
         {
           "element":"option",
           "attributes": {
-            "value":"",
-            "data-locale":"COMPONENT_STATUS_"
+            "value":"0",
+            "data-locale":"COMPONENT_STATUS_DRAFT",
+            "selected":"true"
+          }
+        },
+
+        {
+          "element":"option",
+          "attributes": {
+            "value":"1",
+            "data-locale":"COMPONENT_STATUS_PUBLISHED"
+          }
+        },
+
+        {
+          "element":"option",
+          "attributes": {
+            "value":"2",
+            "data-locale":"COMPONENT_STATUS_HIDDEN"
+          }
+        },
+
+        {
+          "element":"option",
+          "attributes": {
+            "value":"3",
+            "data-locale":"COMPONENT_STATUS_TRASHED"
           }
         }
 

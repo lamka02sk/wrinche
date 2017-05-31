@@ -21,48 +21,55 @@
   "template": [
 
     {
-      "element":"label",
+      "element":"div",
       "attributes": {
-        "class":"label checkbox-click",
-        "for":"component_last-update",
-        "data-locale":"COMPONENT_LAST-UPDATE_CUSTOM_LABEL"
-      }
-    },
-
-    {
-      "element":"input>",
-      "label":"component_last-update",
-      "attributes": {
-        "type":"checkbox",
-        "class":"input",
-        "value":"last_update",
-        "name":"component_last-update"
-      }
-    },
-
-    {
-      "element":"template",
-      "attributes": {
-        "id":"template_component_last-update_custom"
+        "class":"input-box"
       },
       "children": [
 
         {
           "element":"label",
           "attributes": {
-            "class":"small-label",
-            "for":"component_last-update_custom",
+            "class":"label checkbox-click",
+            "for":"component_last-update",
             "data-locale":"COMPONENT_LAST-UPDATE_CUSTOM_LABEL"
           }
         },
 
         {
           "element":"input>",
-          "label":"component_last-update_custom",
+          "label":"component_last-update",
           "attributes": {
-            "class":"input date-picker",
+            "type":"checkbox",
+            "class":"input",
+            "value":"last_update",
+            "name":"component_last-update"
+          }
+        }
+
+      ]
+    },
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"component_last_custom input-box hide"
+      },
+      "children": [
+
+        {
+          "element":"input>",
+          "attributes": {
+            "class":"input datetime-picker-max",
             "name":"component_last-update_custom",
-            "data-placeholder":"COMPONENT_LAST-UPDATE_CUSTOM_PLACEHOLDER"
+            "data-placeholder":"COMPONENT_PLANNER_EXPIRY_DATE_PLACEHOLDER"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"clear-input clear-last_update-date"
           }
         }
 

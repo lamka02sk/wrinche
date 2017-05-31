@@ -350,20 +350,51 @@ function initDatePicker() {
         dateFormat    : 'd.m.Y H:i:s',
         enableTime    : true,
         enableSeconds : true,
-        locale        : translate.language
+        locale        : translate.language,
+        disableMobile : true
+    });
+
+    flatpickr(".datetime-picker-min", {
+        altFormat     : true,
+        dateFormat    : 'd.m.Y H:i:s',
+        enableTime    : true,
+        enableSeconds : true,
+        minDate       : 'today',
+        locale        : translate.language,
+        disableMobile : true
+    });
+
+    flatpickr(".datetime-picker-max", {
+        altFormat     : true,
+        dateFormat    : 'd.m.Y H:i:s',
+        enableTime    : true,
+        enableSeconds : true,
+        maxDate       : 'today',
+        locale        : translate.language,
+        disableMobile : true
     });
 
     flatpickr(".date-picker", {
-        altFormat  : true,
-        dateFormat : 'd.m.Y',
-        locale     : translate.language
+        altFormat     : true,
+        dateFormat    : 'd.m.Y',
+        locale        : translate.language,
+        disableMobile : true
     });
 
     flatpickr(".date-picker-max", {
-        altFormat  : true,
-        dateFormat : 'd.m.Y',
-        maxDate    : 'today',
-        locale     : translate.language
+        altFormat     : true,
+        dateFormat    : 'd.m.Y',
+        maxDate       : 'today',
+        locale        : translate.language,
+        disableMobile : true
+    });
+
+    flatpickr(".date-picker-min", {
+        altFormat     : true,
+        dateFormat    : 'd.m.Y',
+        minDate       : 'today',
+        locale        : translate.language,
+        disableMobile : true
     });
 
 }

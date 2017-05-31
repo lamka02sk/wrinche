@@ -150,6 +150,10 @@
 
   "COMPONENT_STATUS_LABEL":"Stav",
   "COMPONENT_STATUS_INFO":"Súčasný stav obsahu",
+  "COMPONENT_STATUS_DRAFT":"Koncept",
+  "COMPONENT_STATUS_PUBLISHED":"Publikovaný",
+  "COMPONENT_STATUS_HIDDEN":"Skrytý",
+  "COMPONENT_STATUS_TRASHED":"Zmazaný",
 
   "COMPONENT_AUTHOR_LABEL":"Autori",
   "COMPONENT_AUTHOR_INFO":"Umožňuje pridávať a spravovať autorov obsahu",

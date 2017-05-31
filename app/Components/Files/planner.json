@@ -106,7 +106,7 @@
         {
           "element":"input>",
           "attributes": {
-            "class":"input datetime-picker",
+            "class":"input datetime-picker-min",
             "name":"component_planner_publish_datetime",
             "type":"date",
             "data-placeholder":"COMPONENT_PLANNER_PUBLISH_DATE_PLACEHOLDER"
@@ -141,7 +141,7 @@
         {
           "element":"input>",
           "attributes": {
-            "class":"input datetime-picker",
+            "class":"input datetime-picker-min",
             "name":"component_planner_publish_expiry",
             "type":"date",
             "data-placeholder":"COMPONENT_PLANNER_EXPIRY_DATE_PLACEHOLDER"
