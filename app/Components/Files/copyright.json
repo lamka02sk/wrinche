@@ -20,17 +20,58 @@
       "element":"select",
       "label":"component_copyright",
       "attributes": {
-        "class":"selector-instance",
+        "id":"select-relative",
         "name":"component_copyright_selector"
       },
-      "children_template": [
+      "children": [
 
         {
           "element":"option",
           "attributes": {
-            "value":"",
-            "data-locale":"COMPONENT_COPYRIGHT_OPTION_"
-          }
+            "value":"0",
+            "selected":"true"
+          },
+          "text":"CC BY"
+        },
+
+        {
+          "element":"option",
+          "attributes": {
+            "value":"1"
+          },
+          "text":"CC BY-SA"
+        },
+
+        {
+          "element":"option",
+          "attributes": {
+            "value":"2"
+          },
+          "text":"CC BY-ND"
+        },
+
+        {
+          "element":"option",
+          "attributes": {
+            "value":"3"
+          },
+          "text":"CC BY-NC"
+        },
+
+        {
+          "element":"option",
+          "attributes": {
+            "value":"4"
+          },
+          "text":"CC BY-NC-SA"
+        },
+
+        {
+          "element":"option",
+          "attributes": {
+            "value":"5"
+          },
+          "text":"CC BY-NC-ND"
         }
 
       ]

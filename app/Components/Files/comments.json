@@ -29,43 +29,63 @@
   "template": [
 
     {
-      "element":"label",
+      "element":"div",
       "attributes": {
-        "class":"label checkbox-click",
-        "for":"component_comments",
-        "data-locale":"COMPONENT_COMMENTS_ENABLE_LABEL"
-      }
+        "class":"input-box"
+      },
+      "children": [
+
+        {
+          "element":"label",
+          "attributes": {
+            "class":"label checkbox-click",
+            "for":"component_comments_enable",
+            "data-locale":"COMPONENT_COMMENTS_ENABLE_LABEL"
+          }
+        },
+
+        {
+          "element":"input>",
+          "label":"component_comments_enable",
+          "attributes": {
+            "type":"checkbox",
+            "class":"input",
+            "value":"comments",
+            "name":"component_comments"
+          }
+        }
+
+      ]
     },
 
     {
-      "element":"input>",
-      "label":"component_comments",
+      "element":"div",
       "attributes": {
-        "type":"checkbox",
-        "class":"input",
-        "value":"comments",
-        "name":"component_comments"
-      }
-    },
+        "class":"input-box component_comments_approve hide"
+      },
+      "children": [
 
-    {
-      "element":"label",
-      "attributes": {
-        "class":"label checkbox-click",
-        "for":"component_comments_approve",
-        "data-locale":"COMPONENT_COMMENTS_APPROVE_LABEL"
-      }
-    },
+        {
+          "element":"label",
+          "attributes": {
+            "class":"label checkbox-click second-level",
+            "for":"component_comments_approve",
+            "data-locale":"COMPONENT_COMMENTS_APPROVE_LABEL"
+          }
+        },
 
-    {
-      "element":"input>",
-      "label":"component_comments_approve",
-      "attributes": {
-        "type":"checkbox",
-        "class":"input",
-        "value":"component_comments_approve",
-        "name":"component_comments_approve"
-      }
+        {
+          "element":"input>",
+          "label":"component_comments_approve",
+          "attributes": {
+            "type":"checkbox",
+            "class":"input",
+            "value":"component_comments_approve",
+            "name":"component_comments_approve"
+          }
+        }
+
+      ]
     }
 
   ]

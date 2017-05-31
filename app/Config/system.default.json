@@ -64,6 +64,9 @@
     "operations": true
   },
   "support": {
+    "copyright": [
+      "CC BY", "CC BY-SA", "CC BY-ND", "CC BY-NC", "CC BY-NC-SA", "CC BY-NC-ND"
+    ],
     "languages": {
       "en": "ENGLISH",
       "sk": "SLOVAK"
