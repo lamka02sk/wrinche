@@ -29,8 +29,8 @@
         "last_update",
         "copyright",
         "comments",
-        "*accessibility",
-        "*sources",
+        "accessibility",
+        "sources",
         "*mistakes",
         "*analytics"
       ],

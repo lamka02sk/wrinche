@@ -1,31 +1,31 @@
 /*function reloadStylesheets() {
-    let queryString = '?reload=' + new Date().getTime();
-    $('link[rel="stylesheet"]').each(function () {
-        this.href = this.href.replace(/\?.*|$/, queryString);
-    });
-}
+ let queryString = '?reload=' + new Date().getTime();
+ $('link[rel="stylesheet"]').each(function () {
+ this.href = this.href.replace(/\?.*|$/, queryString);
+ });
+ }
 
-setInterval(reloadStylesheets, 4000);*/
+ setInterval(reloadStylesheets, 4000);*/
 
 // ---------------------------------------------------------------------------------------------------------------------
 
 function initializeCounters() {
 
-    let events = ['change', 'keydown', 'keyup'];
+    let events   = ['change', 'keydown', 'keyup'];
     let elements = document.querySelectorAll('div.counter');
     for(let i = 0; i < elements.length; ++i) {
         function inner() {
-            let left = length - element.value.trim().length;
+            let left          = length - element.value.trim().length;
             current.innerText = left;
             if(left < 0) current.classList.add('minus');
             else current.classList.remove('minus');
         }
 
-        let current = elements[i];
-        let length = current.getAttribute('data-length');
+        let current       = elements[i];
+        let length        = current.getAttribute('data-length');
         current.innerText = length;
-        let type = current.getAttribute('data-input');
-        let element = current.parentNode.querySelector(type);
+        let type          = current.getAttribute('data-input');
+        let element       = current.parentNode.querySelector(type);
         for(let i in events)
             element.addEventListener(events[i], inner);
     }
@@ -56,7 +56,7 @@ function showValidationResult(element, locale, hide, callback) {
         for(let j in translate.locale[i]) {
             if(j == locale) {
                 messageBox.innerText = translate.locale[i][j];
-                loopBreak = true;
+                loopBreak            = true;
                 break;
             }
         }
@@ -72,26 +72,26 @@ function confirmAction(action, callback) {
 
     // Show popup
     let confirmationElement = $('div.confirmation-menu');
-    confirmationElement.css({ display: 'table' }).animate({ opacity: 1 }, 150).addClass('open');
+    confirmationElement.css({display: 'table'}).animate({opacity: 1}, 150).addClass('open');
     confirmationElement.find('p.confirmation-action-message').text(action);
 
     // Proceed
     confirmationElement.find('span.confirmation-action-proceed').click(function() {
         callback();
         clearEvents();
-        confirmationElement.animate({ opacity: 0 }, 150).removeClass('open')
+        confirmationElement.animate({opacity: 0}, 150).removeClass('open')
             .delay(100).queue(function() {
-                $(this).css({ display: 'none' }).dequeue();
-            });
+            $(this).css({display: 'none'}).dequeue();
+        });
     });
 
     // Dismiss
     confirmationElement.find('span.confirmation-action-dismiss').click(function() {
         clearEvents();
-        confirmationElement.animate({ opacity: 0 }, 150).removeClass('open')
+        confirmationElement.animate({opacity: 0}, 150).removeClass('open')
             .delay(100).queue(function() {
-                $(this).css({ display: 'none' }).dequeue();
-            });
+            $(this).css({display: 'none'}).dequeue();
+        });
     });
 
     function clearEvents() {
@@ -112,14 +112,14 @@ function postData(link, data, callback) {
     // Send post
     data['csrf_token'] = document.querySelector('meta[name=csrf_token]').getAttribute('content');
     $.ajax({
-        url: link,
-        method: 'POST',
-        data: data,
-        async: false,
+        url    : link,
+        method : 'POST',
+        data   : data,
+        async  : false,
         success: function(response) {
             callback(response, 'success');
         },
-        error: function(response) {
+        error  : function(response) {
             callback(response, 'error');
         }
     });
@@ -127,15 +127,15 @@ function postData(link, data, callback) {
 }
 
 // Routes while pretty URLs does not work
-let adminRoute = document.querySelector('meta[name=route]').getAttribute('content');
-let baseURI = '?route='; // While pretty URL does not work
-let route = $('meta[name=route]').attr('content');
-let csrf_token = $('meta[name=csrf_token]').attr('content');
-let URI = baseURI + route + '/';
+let adminRoute                                                                      = document.querySelector('meta[name=route]').getAttribute('content');
+let baseURI                                                                         = '?route='; // While pretty URL does not work
+let route                                                                           = $('meta[name=route]').attr('content');
+let csrf_token                                                                      = $('meta[name=csrf_token]').attr('content');
+let URI                                                                             = baseURI + route + '/';
 let locale, packery, selector, languages, type, typeName, componentList, components = [], selectors;
-let previousScripts = [];
-let responseBox = document.querySelector('div.response-message');
-let body = document.querySelector('body');
+let previousScripts                                                                 = [];
+let responseBox                                                                     = document.querySelector('div.response-message');
+let body                                                                            = document.querySelector('body');
 
 // Update CSRF token every 19 minutes
 setInterval(function() {
@@ -160,12 +160,12 @@ setInterval(function() {
 
 // Root URL
 let root = window.location.href;
-root = root.split(adminRoute)[0] + adminRoute;
+root     = root.split(adminRoute)[0] + adminRoute;
 
 // Translations list
-let translations = ['system', 'response', 'admin_header', 'admin_menu'];
+let translations    = ['system', 'response', 'admin_header', 'admin_menu'];
 let addTranslations = document.querySelector('div.content-wrapper').getAttribute('data-locales');
-addTranslations = addTranslations.split(' ');
+addTranslations     = addTranslations.split(' ');
 for(let i = 0; i < addTranslations.length; ++i) {
     if(translations.indexOf(addTranslations[i]) !== -1) continue;
     translations.push(addTranslations[i]);
@@ -191,7 +191,7 @@ function showMessage(content, type) {
     else
         content = locale['response'][content];
 
-    let messageBox = $('div.response-message span.message-content');
+    let messageBox  = $('div.response-message span.message-content');
     let responseBox = $('div.response-message');
     responseBox.dequeue();
     messageBox.attr('data-locale', code).html(content);
@@ -223,7 +223,7 @@ function LoaderDone(content, link) {
 
     // Get translations
     let addTranslations = document.querySelector('div.content-wrapper').getAttribute('data-locales');
-    addTranslations = addTranslations.split(' ');
+    addTranslations     = addTranslations.split(' ');
     for(let i = 0; i < addTranslations.length; ++i) {
         if(translations.indexOf(addTranslations[i]) !== -1) continue;
         translations.push(addTranslations[i]);
@@ -241,7 +241,7 @@ function LoaderDone(content, link) {
     // Change menu selected item
     let menuLink = link.split('/')[0];
     $('nav li').removeClass('active');
-        $('li[data-link="' + menuLink + '"]').addClass('active');
+    $('li[data-link="' + menuLink + '"]').addClass('active');
 
     // Remove loading message
     setTimeout(function() {
@@ -256,22 +256,28 @@ function LoaderDone(content, link) {
 
 // Initialize Loader
 new Loader({
-    domain: 'admin',
-    csrf: 'csrf_token',
-    root: root,
+    domain : 'admin',
+    csrf   : 'csrf_token',
+    root   : root,
     targets: {
-        content: 'div.content-wrapper',
+        content   : 'div.content-wrapper',
         subcontent: 'div.content-subcontent',
-        full: 'html'
+        full      : 'html'
     },
-    onStart: function() { LoaderStart() },
-    onError: function(code) { LoaderError(code) },
-    onDone: function(content, link) { LoaderDone(content, link) }
+    onStart: function() {
+        LoaderStart()
+    },
+    onError: function(code) {
+        LoaderError(code)
+    },
+    onDone : function(content, link) {
+        LoaderDone(content, link)
+    }
 });
 
 // Close opened elements on click outside
 let closer = new Closer;
-let doc = $(document);
+let doc    = $(document);
 doc.click(function(e) {
     closer.closeElements(e.target);
 });
@@ -303,8 +309,8 @@ $('div.header-account').click(function() {
 // Open write menu
 $('div.header-write').click(function() {
 
-    $('div.fullscreen-wrapper.write-menu').css({ display: 'table' })
-        .animate({ opacity: 1 }, 150).addClass('open');
+    $('div.fullscreen-wrapper.write-menu').css({display: 'table'})
+        .animate({opacity: 1}, 150).addClass('open');
 
 });
 
@@ -315,9 +321,9 @@ $('div.write-menu div.tails-tail').click(function() {
 
 $('div.write-menu span.header-close').click(function() {
 
-    $('div.fullscreen-wrapper.write-menu').animate({ opacity: 0 }, 150).removeClass('open')
+    $('div.fullscreen-wrapper.write-menu').animate({opacity: 0}, 150).removeClass('open')
         .delay(100).queue(function() {
-            $(this).css({ display: 'none' }).dequeue();
+        $(this).css({display: 'none'}).dequeue();
     });
 
 });
@@ -346,62 +352,74 @@ window.onpopstate = function(event) {
 function initDatePicker() {
 
     flatpickr(".datetime-picker", {
-        altFormat     : true,
-        dateFormat    : 'd.m.Y H:i:s',
-        enableTime    : true,
-        enableSeconds : true,
-        locale        : translate.language,
-        disableMobile : true
+        altFormat    : true,
+        dateFormat   : 'd.m.Y H:i:s',
+        enableTime   : true,
+        enableSeconds: true,
+        locale       : translate.language,
+        disableMobile: true
     });
 
     flatpickr(".datetime-picker-min", {
-        altFormat     : true,
-        dateFormat    : 'd.m.Y H:i:s',
-        enableTime    : true,
-        enableSeconds : true,
-        minDate       : 'today',
-        locale        : translate.language,
-        disableMobile : true
+        altFormat    : true,
+        dateFormat   : 'd.m.Y H:i:s',
+        enableTime   : true,
+        enableSeconds: true,
+        minDate      : 'today',
+        locale       : translate.language,
+        disableMobile: true
     });
 
     flatpickr(".datetime-picker-max", {
-        altFormat     : true,
-        dateFormat    : 'd.m.Y H:i:s',
-        enableTime    : true,
-        enableSeconds : true,
-        maxDate       : 'today',
-        locale        : translate.language,
-        disableMobile : true
+        altFormat    : true,
+        dateFormat   : 'd.m.Y H:i:s',
+        enableTime   : true,
+        enableSeconds: true,
+        maxDate      : 'today',
+        locale       : translate.language,
+        disableMobile: true
     });
 
     flatpickr(".date-picker", {
-        altFormat     : true,
-        dateFormat    : 'd.m.Y',
-        locale        : translate.language,
-        disableMobile : true
+        altFormat    : true,
+        dateFormat   : 'd.m.Y',
+        locale       : translate.language,
+        disableMobile: true
     });
 
     flatpickr(".date-picker-max", {
-        altFormat     : true,
-        dateFormat    : 'd.m.Y',
-        maxDate       : 'today',
-        locale        : translate.language,
-        disableMobile : true
+        altFormat    : true,
+        dateFormat   : 'd.m.Y',
+        maxDate      : 'today',
+        locale       : translate.language,
+        disableMobile: true
     });
 
     flatpickr(".date-picker-min", {
-        altFormat     : true,
-        dateFormat    : 'd.m.Y',
-        minDate       : 'today',
-        locale        : translate.language,
-        disableMobile : true
+        altFormat    : true,
+        dateFormat   : 'd.m.Y',
+        minDate      : 'today',
+        locale       : translate.language,
+        disableMobile: true
     });
 
 }
 
-// Time picker
-function initTimePicker() {
+// Show / Hide password fields
+function initializePasswordToggle() {
 
-
+    document.querySelectorAll('span.password-show').forEach(function(item) {
+        item.addEventListener('click', function(event) {
+            let target       = event.target.getAttribute('data-action');
+            let inputElement = document.querySelector('input[name=' + target + ']');
+            if(inputElement.getAttribute('type') === 'password') {
+                inputElement.setAttribute('type', 'text');
+                item.classList.add('visible');
+            } else {
+                inputElement.setAttribute('type', 'password');
+                item.classList.remove('visible');
+            }
+        });
+    });
 
 }

@@ -733,6 +733,9 @@ previousScripts.push('write');
 // Init counters
 initializeCounters();
 
+// Init password toggles
+initializePasswordToggle();
+
 // Init packery
 packery = $('div.content-settings').packery({
     itemSelector: 'div.component-element',
@@ -764,9 +767,6 @@ selector = new Selector({
 
 // Init date picker
 initDatePicker();
-
-// Init time picker
-initTimePicker();
 
 // Remove Splash screen
 $('div.splash').addClass('done');

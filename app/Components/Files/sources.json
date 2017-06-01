@@ -22,39 +22,69 @@
   "template": [
 
     {
-      "element":"label",
+      "element":"div",
       "attributes": {
-        "class":"small-label",
-        "data-locale":"COMPONENT_SOURCES_ADD_LABEL"
-      }
-    },
+        "class":"sources-add-box"
+      },
+      "children": [
 
-    {
-      "element":"input>",
-      "attributes": {
-        "class":"input",
-        "name":"component_sources_add_name",
-        "data-placeholder":"COMPONENT_SOURCES_ADD_NAME_PLACEHOLDER",
-        "type":"text"
-      }
-    },
+        {
+          "element": "p",
+          "attributes": {
+            "class":"custom_fields-add-heading",
+            "data-locale":"COMPONENT_SOURCES_ADD_LABEL"
+          }
+        },
 
-    {
-      "element":"input>",
-      "attributes": {
-        "class":"input",
-        "name":"component_sources_add_source",
-        "data-placeholder":"COMPONENT_SOURCES_ADD_SOURCE_PLACEHOLDER",
-        "type":"text"
-      }
-    },
+        {
+          "element":"label",
+          "attributes": {
+            "class":"small-label",
+            "for":"sources_add_name",
+            "data-locale":"COMPONENT_SOURCES_ADD_NAME_PLACEHOLDER"
+          }
+        },
 
-    {
-      "element":"span",
-      "attributes": {
-        "class":"sources-add",
-        "data-locale":"COMPONENT_SOURCES_ADD_BUTTON"
-      }
+        {
+          "element":"label",
+          "attributes": {
+            "class":"small-label",
+            "for":"sources_add_source",
+            "data-locale":"COMPONENT_SOURCES_ADD_SOURCE_PLACEHOLDER"
+          }
+        },
+
+        {
+          "element":"input>",
+          "label":"sources_add_name",
+          "attributes": {
+            "class":"input",
+            "name":"component_sources_add_name",
+            "data-placeholder":"COMPONENT_SOURCES_ADD_NAME_PLACEHOLDER",
+            "type":"text"
+          }
+        },
+
+        {
+          "element":"input>",
+          "label":"sources_add_source",
+          "attributes": {
+            "class":"input",
+            "name":"component_sources_add_source",
+            "data-placeholder":"COMPONENT_SOURCES_ADD_SOURCE_PLACEHOLDER",
+            "type":"text"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"sources-add",
+            "data-locale":"BUTTON_ADD"
+          }
+        }
+
+      ]
     },
 
     {

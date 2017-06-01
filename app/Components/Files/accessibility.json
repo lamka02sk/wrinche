@@ -35,18 +35,19 @@
       "element":"select",
       "label":"component_accessibility",
       "attributes": {
-        "class":"selector-instance",
-        "name":"component_accessibility_selector"
+        "name":"component_accessibility_selector",
+        "id":"select-relative"
       },
       "children": [
 
-          {
-            "element":"option",
-            "attributes": {
-              "value":"0",
-              "data-locale":"COMPONENT_ACCESSIBILITY_OPTION_PUBLIC"
-            }
-          },
+        {
+          "element":"option",
+          "attributes": {
+            "value":"0",
+            "data-locale":"COMPONENT_ACCESSIBILITY_OPTION_PUBLIC",
+            "selected":"true"
+          }
+        },
 
         {
           "element":"option",
@@ -68,9 +69,9 @@
     },
 
     {
-      "element":"template",
+      "element":"div",
       "attributes": {
-        "id":"template_component_accessibility_password"
+        "class":"component_accessibility_password input-box hide margin-top"
       },
       "children": [
 
@@ -84,22 +85,32 @@
         },
 
         {
-          "element":"input>",
-          "label":"component_accessibility_password",
+          "element":"div",
           "attributes": {
-            "class":"input",
-            "type":"password",
-            "name":"component_accessibility_password",
-            "data-placeholder":"COMPONENT_ACCESSIBILITY_PASSWORD_PLACEHOLDER"
-          }
-        },
+            "class":"input-box"
+          },
+          "children": [
 
-        {
-          "element":"span",
-          "attributes": {
-            "class":"password-show",
-            "data-action":"component_accessibility_password_show"
-          }
+            {
+              "element":"input>",
+              "label":"component_accessibility_password",
+              "attributes": {
+                "class":"input",
+                "type":"password",
+                "name":"component_accessibility_password",
+                "data-placeholder":"COMPONENT_ACCESSIBILITY_PASSWORD_PLACEHOLDER"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"password-show",
+                "data-action":"component_accessibility_password"
+              }
+            }
+
+          ]
         }
 
       ]
