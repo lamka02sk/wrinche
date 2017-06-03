@@ -113,7 +113,7 @@ if(!App\Requests\Request::$ajax) {
 
             </div>
 
-            <compofnent-template id="component_inline_templates">
+            <q-component-template id="component_inline_templates">
 
                 <?php
 
@@ -121,11 +121,11 @@ if(!App\Requests\Request::$ajax) {
 
                     ?>
 
-                    <compofnent-template id="component_<?= $component ?>_template">
+                    <q-component-template id="component_<?= $component ?>_template">
 
                         <?= $controller->componentsModel->displayComponent($component) ?>
 
-                    </compofnent-template>
+                    </q-component-template>
 
                     <?php
 
@@ -133,7 +133,7 @@ if(!App\Requests\Request::$ajax) {
 
                 ?>
 
-            </compofnent-template>
+            </q-component-template>
 
         </div>
         <?php endif; ?>

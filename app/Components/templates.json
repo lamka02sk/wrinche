@@ -79,39 +79,56 @@
   "component_inline_header": [
 
     {
-      "element":"span",
+      "element":"div",
       "attributes": {
-        "class":"component-inline-icon icon-%component%"
-      }
-    },
+        "class":"component-element-header"
+      },
+      "children": [
 
-    {
-      "element":"label",
-      "attributes": {
-        "class":"component-inline-label",
-        "data-locale":"ADD_%COMPONENT%"
-      }
-    },
+        {
+          "element":"span",
+          "attributes": {
+            "class":"component-inline-icon icon-%component%"
+          }
+        },
 
-    {
-      "element":"span",
-      "attributes": {
-        "class":"component-inline-disable icon-disable"
-      }
-    },
+        {
+          "element":"label",
+          "attributes": {
+            "class":"component-inline-label",
+            "data-locale":"ADD_%COMPONENT%"
+          }
+        },
 
-    {
-      "element":"span",
-      "attributes": {
-        "class":"component-inline-remove icon-remove"
-      }
-    },
+        {
+          "element":"span",
+          "attributes": {
+            "class":"component-control component-inline-drag icon-drag"
+          }
+        },
 
-    {
-      "element":"span",
-      "attributes": {
-        "class":"component-inline-drag icon-drag"
-      }
+        {
+          "element":"span",
+          "attributes": {
+            "class":"component-control component-inline-remove icon-trash"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"component-control component-inline-disable icon-on"
+          }
+        },
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"component-control component-inline-collapse icon-collapse"
+          }
+        }
+
+      ]
     }
 
   ]

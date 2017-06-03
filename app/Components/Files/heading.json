@@ -26,86 +26,106 @@
   "template": [
 
     {
-      "element":"label",
-      "attributes": {
-        "for":"component_inline_heading",
-        "class":"small-label",
-        "data-locale":"COMPONENT_CONTENT_HEADING_TYPE"
-      }
-    },
-
-    {
       "element":"div",
       "attributes": {
-        "class":"heading-types"
+        "class":"component-element-content"
       },
       "children": [
 
         {
-          "element":"span",
+          "element":"div",
           "attributes": {
-            "class":"heading-type type-selected",
-            "data-heading":"h1"
+            "class":"input-box"
           },
-          "text":"H1"
+          "children": [
+
+            {
+              "element":"label",
+              "attributes": {
+                "for":"component_inline_heading",
+                "class":"small-label",
+                "data-locale":"COMPONENT_CONTENT_HEADING_TYPE"
+              }
+            },
+
+            {
+              "element":"div",
+              "attributes": {
+                "class":"heading-types"
+              },
+              "children": [
+
+                {
+                  "element":"span",
+                  "attributes": {
+                    "class":"heading-type type-selected",
+                    "data-heading":"h1"
+                  },
+                  "text":"H1"
+                },
+
+                {
+                  "element":"span",
+                  "attributes": {
+                    "class":"heading-type",
+                    "data-heading":"h2"
+                  },
+                  "text":"H2"
+                },
+
+                {
+                  "element":"span",
+                  "attributes": {
+                    "class":"heading-type",
+                    "data-heading":"h3"
+                  },
+                  "text":"H3"
+                },
+
+                {
+                  "element":"span",
+                  "attributes": {
+                    "class":"heading-type",
+                    "data-heading":"h4"
+                  },
+                  "text":"H4"
+                },
+
+                {
+                  "element":"span",
+                  "attributes": {
+                    "class":"heading-type",
+                    "data-heading":"h5"
+                  },
+                  "text":"H5"
+                },
+
+                {
+                  "element":"span",
+                  "attributes": {
+                    "class":"heading-type",
+                    "data-heading":"h6"
+                  },
+                  "text":"H6"
+                }
+
+              ]
+            }
+
+          ]
         },
 
         {
-          "element":"span",
+          "element":"input>",
+          "label":"component_inline_heading",
           "attributes": {
-            "class":"heading-type",
-            "data-heading":"h2"
-          },
-          "text":"H2"
-        },
-
-        {
-          "element":"span",
-          "attributes": {
-            "class":"heading-type",
-            "data-heading":"h3"
-          },
-          "text":"H3"
-        },
-
-        {
-          "element":"span",
-          "attributes": {
-            "class":"heading-type",
-            "data-heading":"h4"
-          },
-          "text":"H4"
-        },
-
-        {
-          "element":"span",
-          "attributes": {
-            "class":"heading-type",
-            "data-heading":"h5"
-          },
-          "text":"H5"
-        },
-
-        {
-          "element":"span",
-          "attributes": {
-            "class":"heading-type",
-            "data-heading":"h6"
-          },
-          "text":"H6"
+            "class":"big-input full h1 no-margin",
+            "name":"component_inline_heading",
+            "data-placeholder":"COMPONENT_CONTENT_HEADING_PLACEHOLDER"
+          }
         }
 
       ]
-    },
-
-    {
-      "element":"input>",
-      "label":"component_inline_heading",
-      "attributes": {
-        "class":"input h1",
-        "name":"component_inline_heading",
-        "data-placeholder":"COMPONENT_CONTENT_HEADING_PLACEHOLDER"
-      }
     }
 
   ]

@@ -78,7 +78,7 @@ div.content-content {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0 0 0 2px;
-  div.component-element, div.settings-component {
+  div.settings-component {
     display: inline-block;
     position: relative;
     float: left;
@@ -104,6 +104,20 @@ div.content-settings {
   overflow: hidden;
   padding-bottom: 64px;
   margin-bottom: 12px;
+  div.component-element, div.settings-component {
+    display: inline-block;
+    position: relative;
+    float: left;
+    width: calc(50% - 12px);
+    height: auto;
+    perspective: 1000px;
+    @media(max-width: 1300px) {
+      width: 100% !important;
+    }
+    &[data-component=title] {
+      width: 100%;
+    }
+  }
   div.collapse-bar {
     display: inline-block;
     position: absolute;
@@ -334,6 +348,9 @@ div.content-content input {
   &:focus {
     box-shadow: 0 2px 3px rgba(0,0,0,.05);
   }
+  &.no-margin {
+    margin: 0;
+  }
 }
 
 div.content-content div.selector-element {
@@ -477,6 +494,120 @@ div.content-builder {
   margin-top: 12px;
 }
 
+div.content-builder div.component-element {
+  display: inline-block;
+  position: relative;
+  float: left;
+  width: 100%;
+  height: auto;
+  background: #fbfbfb;
+  margin: 6px auto;
+}
+
+div.content-builder div.component-element div.component-element-header {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 42px;
+  background: #f8f8f8;
+  overflow: hidden;
+  float: left;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+div.content-builder div.component-element div.component-element-header span.component-inline-icon {
+  display: block;
+  width: 42px;
+  height: 42px;
+  position: relative;
+  float: left;
+  background-size: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+div.content-builder div.component-element div.component-element-header label.component-inline-label {
+  display: inline-block;
+  position: relative;
+  float: left;
+  height: 42px;
+  line-height: 43px;
+  font-size: .92em;
+  color: $text-lightBlack;
+}
+
+div.content-builder div.component-element div.component-element-header span.component-control {
+  display: inline-block;
+  position: relative;
+  float: right;
+  margin: 3px 0;
+  width: 36px;
+  height: 36px;
+  background-size: 14px;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: .7;
+  transition: background .1s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+  &.icon-drag {
+    &:active {
+      background-size: 23px;
+    }
+  }
+}
+
+div.content-builder div.component-element div.component-element-content {
+  display: inline-block;
+  position: relative;
+  float: left;
+  width: 100%;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 12px;
+}
+
+div.heading-types {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  position: relative;
+  float: left;
+  margin: 2px 0 8px 0;
+  text-align: justify;
+  span {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: 32px;
+    line-height: 33px;
+    color: $text-lightBlack;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: white;
+    margin-right: 4px;
+    box-shadow: 0 0 4px rgba(0,0,0,.07);
+    padding: 0 10px;
+    font-size: .92em;
+    text-align: center;
+    transition: .15s ease-in-out;
+    cursor: pointer;
+    &.type-selected {
+      color: black;
+      font-weight: 600;
+      box-shadow: 0 0 8px rgba(0,0,0,.1);
+    }
+    &:hover {
+      background: #f8f8f8;
+    }
+  }
+}
+
 div.content-builder div.selector-element {
   display: inline-block;
   width: 300px;
@@ -538,42 +669,6 @@ div.builder-tools button {
   }
   &:hover {
     background-color: #fbfbfb;
-  }
-  &.icon-heading {
-    background-image: url('../assets/icons/header.svg');
-  }
-  &.icon-rich_text {
-    background-image: url('../assets/icons/paragraph.svg');
-  }
-  &.icon-picture {
-    background-image: url('../assets/icons/image.svg');
-  }
-  &.icon-video {
-    background-image: url('../assets/icons/video.svg');
-  }
-  &.icon-audio {
-    background-image: url('../assets/icons/audio.svg');
-  }
-  &.icon-code {
-    background-image: url('../assets/icons/code.svg');
-  }
-  &.icon-link {
-    background-image: url('../assets/icons/link.svg');
-  }
-  &.icon-quote {
-    background-image: url('../assets/icons/quote.svg');
-  }
-  &.icon-gallery {
-    background-image: url('../assets/icons/gallery.svg');
-  }
-  &.icon-note {
-    background-image: url('../assets/icons/note.svg');
-  }
-  &.icon-table {
-    background-image: url('../assets/icons/table.svg');
-  }
-  &.icon-list {
-    background-image: url('../assets/icons/list.svg');
   }
 }
 

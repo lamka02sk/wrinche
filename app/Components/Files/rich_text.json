@@ -16,12 +16,22 @@
   "template": [
 
     {
-      "element":"textarea",
-      "label":"component_inline_rich-text",
+      "element": "div",
       "attributes": {
-        "class":"textarea-editor",
-        "name":"component_inline_rich-text"
-      }
+        "class": "component-element-content"
+      },
+      "children": [
+
+        {
+          "element": "textarea",
+          "label": "component_inline_rich-text",
+          "attributes": {
+            "class": "textarea-editor",
+            "name": "component_inline_rich-text"
+          }
+        }
+
+      ]
     }
 
   ]

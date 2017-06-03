@@ -25,12 +25,8 @@
   "COMPONENT_PEREX_LOCATION_LABEL":"Miesto",
   "COMPONENT_PEREX_LOCATION_PLACEHOLDER":"Mesto, štát alebo adresa",
 
-  "COMPONENT_CONTENT_HEADING_LABEL":"Nadpis",
-  "COMPONENT_CONTENT_HEADING_INFO":"Nadpis slúži na rozdelenie obsahu na kratšie časti",
-  "COMPONENT_CONTENT_HEADING_PLACEHOLDER":"Zadajte nadpis",
-
-  "COMPONENT_CONTENT_RICH-TEXT_LABEL":"Odstavec",
-  "COMPONENT_CONTENT_RICH-TEXT_INFO":"Odstavec obsahuje časť Vášho obsahu",
+  "COMPONENT_CONTENT_HEADING_TYPE":"Typ nadpisu",
+  "COMPONENT_CONTENT_HEADING_PLACEHOLDER":"Text nadpisu",
 
   "COMPONENT_CONTENT_PICTURE_LABEL":"Obrázok",
   "COMPONENT_CONTENT_PICTURE_INFO":"Pridá obrázok medzi obsah",
