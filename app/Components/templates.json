@@ -74,6 +74,46 @@
       ]
     }
 
+  ],
+
+  "component_inline_header": [
+
+    {
+      "element":"span",
+      "attributes": {
+        "class":"component-inline-icon icon-%component%"
+      }
+    },
+
+    {
+      "element":"label",
+      "attributes": {
+        "class":"component-inline-label",
+        "data-locale":"ADD_%COMPONENT%"
+      }
+    },
+
+    {
+      "element":"span",
+      "attributes": {
+        "class":"component-inline-disable icon-disable"
+      }
+    },
+
+    {
+      "element":"span",
+      "attributes": {
+        "class":"component-inline-remove icon-remove"
+      }
+    },
+
+    {
+      "element":"span",
+      "attributes": {
+        "class":"component-inline-drag icon-drag"
+      }
+    }
+
   ]
 
 }

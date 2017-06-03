@@ -3,6 +3,7 @@
 namespace App\Api\Endpoints;
 
 use App\Logs\LogManager;
+use ReflectionClass;
 
 class System extends EndpointInterface {
 
@@ -26,6 +27,13 @@ class System extends EndpointInterface {
 
     public function log_retrieve_events() {
         $this->log_retrieve('events');
+    }
+
+    public function auth_refresh_token() {
+        $class = new ReflectionClass("App\Auth\Csrf");
+        $csrf = $class->newInstanceWithoutConstructor();
+        $csrf->updateToken();
+        $this->output = $_SESSION['auth']['csrf_token'];
     }
 
 }

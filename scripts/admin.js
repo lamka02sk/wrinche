@@ -127,15 +127,23 @@ function postData(link, data, callback) {
 }
 
 // Routes while pretty URLs does not work
-let adminRoute                                                                      = document.querySelector('meta[name=route]').getAttribute('content');
-let baseURI                                                                         = '?route='; // While pretty URL does not work
-let route                                                                           = $('meta[name=route]').attr('content');
-let csrf_token                                                                      = $('meta[name=csrf_token]').attr('content');
-let URI                                                                             = baseURI + route + '/';
-let locale, packery, selector, languages, type, typeName, componentList, components = [], selectors;
-let previousScripts                                                                 = [];
-let responseBox                                                                     = document.querySelector('div.response-message');
-let body                                                                            = document.querySelector('body');
+let adminRoute      = document.querySelector('meta[name=route]').getAttribute('content');
+let baseURI         = '?route='; // While pretty URL does not work
+let route           = $('meta[name=route]').attr('content');
+let csrf_token      = $('meta[name=csrf_token]').attr('content');
+let URI             = baseURI + route + '/';
+let locale,
+    packery,
+    selector,
+    languages,
+    type,
+    typeName,
+    componentList,
+    components      = [],
+    selectors;
+let previousScripts = [];
+let responseBox     = document.querySelector('div.response-message');
+let body            = document.querySelector('body');
 
 // Update CSRF token every 19 minutes
 setInterval(function() {
@@ -146,6 +154,7 @@ setInterval(function() {
         '*',
         function(response) {
             csrf_token = response.data;
+            console.log(csrf_token);
             document.querySelector('meta[name=csrf_token').setAttribute('content', response.data);
         },
         function() {
@@ -156,7 +165,7 @@ setInterval(function() {
             });
         }
     );
-}, 1140000);
+}, 3555555);
 
 // Root URL
 let root = window.location.href;
@@ -357,7 +366,8 @@ function initDatePicker() {
         enableTime   : true,
         enableSeconds: true,
         locale       : translate.language,
-        disableMobile: true
+        disableMobile: true,
+        time_24hr    : true
     });
 
     flatpickr(".datetime-picker-min", {
@@ -367,7 +377,8 @@ function initDatePicker() {
         enableSeconds: true,
         minDate      : 'today',
         locale       : translate.language,
-        disableMobile: true
+        disableMobile: true,
+        time_24hr    : true
     });
 
     flatpickr(".datetime-picker-max", {
@@ -377,7 +388,8 @@ function initDatePicker() {
         enableSeconds: true,
         maxDate      : 'today',
         locale       : translate.language,
-        disableMobile: true
+        disableMobile: true,
+        time_24hr    : true
     });
 
     flatpickr(".date-picker", {

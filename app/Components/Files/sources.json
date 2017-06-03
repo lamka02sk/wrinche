@@ -11,6 +11,7 @@
       "type":"array",
       "each": {
         "type":"array",
+        "length":"2",
         "each": {
           "type":"string"
         }
@@ -69,7 +70,7 @@
           "element":"input>",
           "label":"sources_add_source",
           "attributes": {
-            "class":"input",
+            "class":"input input-icon-enter",
             "name":"component_sources_add_source",
             "data-placeholder":"COMPONENT_SOURCES_ADD_SOURCE_PLACEHOLDER",
             "type":"text"
@@ -85,6 +86,13 @@
         }
 
       ]
+    },
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"sources-list"
+      }
     },
 
     {

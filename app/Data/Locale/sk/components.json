@@ -190,8 +190,13 @@
   "COMPONENT_SOURCES_ADD_SOURCE_PLACEHOLDER":"Adresa zdroja",
 
   "COMPONENT_MISTAKES_LABEL":"Správa chýb",
+  "COMPONENT_MISTAKES_INFO":"Spravuje možnosti nahlasovania chýb v článkoch",
   "COMPONENT_MISTAKES_ENABLE_LABEL":"Povoliť nahlasovanie",
   "COMPONENT_MISTAKES_NOTIFY_LABEL":"Zapnúť oznámenia",
-  "COMPONENT_MISTAKES_E-MAIL_LABEL":"Zasielať oznámenia"
+  "COMPONENT_MISTAKES_E-MAIL_LABEL":"Zasielať oznámenia",
+
+  "COMPONENT_ANALYTICS_LABEL":"Štatistiky",
+  "COMPONENT_ANALYTICS_INFO":"Štatistiky slúžia na vytvorenie prehľadu informácií o čitateľoch, ktoré môžete použiť pre lepšie zacielenie obsahu",
+  "COMPONENT_ANALYTICS_DETAILS_LABEL":"Rozšírené štatistiky"
 
 }

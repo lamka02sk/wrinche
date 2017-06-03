@@ -67,9 +67,9 @@ if(!App\Requests\Request::$ajax) {
         <div class="content-builder">
 
             <p class="builder-heading" data-locale="CONTENT_BUILDER_HEADING"></p>
-            <select class="selector-search-select" name="write_current_language">
+            <!--<select class="selector-search-select" name="write_current_language">
                 <option value="-1" selected data-locale="LANGUAGES_ALL"></option>
-            </select>
+            </select>-->
 
             <div class="builder-tools">
 
@@ -112,6 +112,28 @@ if(!App\Requests\Request::$ajax) {
                 ?>
 
             </div>
+
+            <compofnent-template id="component_inline_templates">
+
+                <?php
+
+                foreach($layoutsList['_content_'] as $component):
+
+                    ?>
+
+                    <compofnent-template id="component_<?= $component ?>_template">
+
+                        <?= $controller->componentsModel->displayComponent($component) ?>
+
+                    </compofnent-template>
+
+                    <?php
+
+                endforeach;
+
+                ?>
+
+            </compofnent-template>
 
         </div>
         <?php endif; ?>

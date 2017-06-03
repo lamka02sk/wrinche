@@ -191,6 +191,11 @@ div.content-content label {
       background: url('../assets/icons/level.svg') left 2px top 4px no-repeat;
       background-size: 12px;
     }
+    &.third-level {
+      padding-left: 36px;
+      background: url('../assets/icons/level.svg') left 20px top 4px no-repeat;
+      background-size: 12px;
+    }
   }
 }
 
@@ -230,7 +235,7 @@ div.content-content span.info-text-outside {
   position: relative;
   float: left;
   clear: both;
-  padding: 0 2px;
+  padding: 0 1px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -796,7 +801,7 @@ div.custom_fields-add-box span.add-custom_field, div.sources-add-box span.source
   }
 }
 
-div.custom_fields-list {
+div.custom_fields-list, div.sources-list {
   display: inline-block;
   position: relative;
   float: left;
@@ -805,7 +810,7 @@ div.custom_fields-list {
   height: auto;
 }
 
-div.custom_fields-list div.custom_fields-list-item {
+div.custom_fields-list div.custom_fields-list-item, div.sources-list div.sources-source {
   display: inline-block;
   position: relative;
   float: left;
@@ -823,7 +828,7 @@ div.custom_fields-list div.custom_fields-list-item {
   background: lighten($text-lightGrey, 2%);
 }
 
-div.custom_fields-list div.custom_fields-list-item p.field-item-name {
+div.custom_fields-list div.custom_fields-list-item p.field-item-name, div.sources-list div.sources-source p.source-name {
   display: inline-block;
   position: relative;
   margin: 0 1% 0 0;
@@ -843,7 +848,7 @@ div.custom_fields-list div.custom_fields-list-item p.field-item-name {
   white-space: nowrap;
 }
 
-div.custom_fields-list div.custom_fields-list-item p.field-item-value {
+div.custom_fields-list div.custom_fields-list-item p.field-item-value, div.sources-list div.sources-source p.source-reference {
   display: inline-block;
   position: relative;
   margin: 0;
@@ -863,7 +868,7 @@ div.custom_fields-list div.custom_fields-list-item p.field-item-value {
   white-space: nowrap;
 }
 
-div.custom_fields-list div.custom_fields-list-item span.edit-custom_field {
+div.custom_fields-list div.custom_fields-list-item span.edit-custom_field, div.sources-list div.sources-source span.source-edit {
   display: block;
   position: absolute;
   width: 28px;
@@ -880,7 +885,7 @@ div.custom_fields-list div.custom_fields-list-item span.edit-custom_field {
   }
 }
 
-div.custom_fields-list div.custom_fields-list-item span.remove-custom_field {
+div.custom_fields-list div.custom_fields-list-item span.remove-custom_field, div.sources-list div.sources-source span.source-remove {
   display: block;
   position: absolute;
   width: 28px;

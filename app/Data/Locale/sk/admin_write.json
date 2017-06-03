@@ -204,6 +204,7 @@
   "ADD_NOTE":"Poznámka",
   "ADD_TABLE":"Tabuľka",
   "ADD_LIST":"Zoznam",
+  "ADD_POLL":"Anketa",
 
   "CONTENT_BUILDER_HEADING":"Editor obsahu",
   "EMPTY_CONTENT":"Pridajte komponentu"

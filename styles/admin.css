@@ -1694,6 +1694,10 @@ div.content-content label {
       padding-left: 18px;
       background: url("../assets/icons/level.svg") left 2px top 4px no-repeat;
       background-size: 12px; }
+    div.content-content label.checkbox-click.third-level {
+      padding-left: 36px;
+      background: url("../assets/icons/level.svg") left 20px top 4px no-repeat;
+      background-size: 12px; }
 
 div.content-content div.info-box {
   display: block;
@@ -1726,7 +1730,7 @@ div.content-content span.info-text-outside {
   position: relative;
   float: left;
   clear: both;
-  padding: 0 2px;
+  padding: 0 1px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -2219,7 +2223,7 @@ div.custom_fields-add-box span.add-custom_field, div.sources-add-box span.source
   div.custom_fields-add-box span.add-custom_field:hover, div.sources-add-box span.sources-add:hover {
     background-color: #374d62; }
 
-div.custom_fields-list {
+div.custom_fields-list, div.sources-list {
   display: inline-block;
   position: relative;
   float: left;
@@ -2227,7 +2231,7 @@ div.custom_fields-list {
   width: 100%;
   height: auto; }
 
-div.custom_fields-list div.custom_fields-list-item {
+div.custom_fields-list div.custom_fields-list-item, div.sources-list div.sources-source {
   display: inline-block;
   position: relative;
   float: left;
@@ -2244,7 +2248,7 @@ div.custom_fields-list div.custom_fields-list-item {
   padding: 0 12px;
   background: #fcfcfc; }
 
-div.custom_fields-list div.custom_fields-list-item p.field-item-name {
+div.custom_fields-list div.custom_fields-list-item p.field-item-name, div.sources-list div.sources-source p.source-name {
   display: inline-block;
   position: relative;
   margin: 0 1% 0 0;
@@ -2263,7 +2267,7 @@ div.custom_fields-list div.custom_fields-list-item p.field-item-name {
   text-overflow: ellipsis;
   white-space: nowrap; }
 
-div.custom_fields-list div.custom_fields-list-item p.field-item-value {
+div.custom_fields-list div.custom_fields-list-item p.field-item-value, div.sources-list div.sources-source p.source-reference {
   display: inline-block;
   position: relative;
   margin: 0;
@@ -2282,7 +2286,7 @@ div.custom_fields-list div.custom_fields-list-item p.field-item-value {
   text-overflow: ellipsis;
   white-space: nowrap; }
 
-div.custom_fields-list div.custom_fields-list-item span.edit-custom_field {
+div.custom_fields-list div.custom_fields-list-item span.edit-custom_field, div.sources-list div.sources-source span.source-edit {
   display: block;
   position: absolute;
   width: 28px;
@@ -2294,10 +2298,10 @@ div.custom_fields-list div.custom_fields-list-item span.edit-custom_field {
   background-size: 12px;
   opacity: .7;
   cursor: pointer; }
-  div.custom_fields-list div.custom_fields-list-item span.edit-custom_field:hover {
+  div.custom_fields-list div.custom_fields-list-item span.edit-custom_field:hover, div.sources-list div.sources-source span.source-edit:hover {
     opacity: 1; }
 
-div.custom_fields-list div.custom_fields-list-item span.remove-custom_field {
+div.custom_fields-list div.custom_fields-list-item span.remove-custom_field, div.sources-list div.sources-source span.source-remove {
   display: block;
   position: absolute;
   width: 28px;
@@ -2309,7 +2313,7 @@ div.custom_fields-list div.custom_fields-list-item span.remove-custom_field {
   background-size: 12px;
   opacity: .7;
   cursor: pointer; }
-  div.custom_fields-list div.custom_fields-list-item span.remove-custom_field:hover {
+  div.custom_fields-list div.custom_fields-list-item span.remove-custom_field:hover, div.sources-list div.sources-source span.source-remove:hover {
     opacity: 1; }
 
 span.tags-manage, span.categories-manage {
@@ -3280,6 +3284,9 @@ div.manager-queue.loading span.loading {
 
 .icon-upload_white {
   background-image: url("../assets/icons/update_white.svg") !important; }
+
+.icon-poll {
+  background-image: url("../assets/icons/poll.svg") !important; }
 
 *::-moz-focus-inner {
   border: 0; }

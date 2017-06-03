@@ -1,5 +1,20 @@
 {
 
+  "name":"poll",
+  "active":true,
+  "defaultElements":true,
+  "header":"component_inline_header",
 
+  "prototype": {
+
+
+
+  },
+
+  "template": [
+
+
+
+  ]
 
 }

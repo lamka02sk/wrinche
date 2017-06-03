@@ -42,63 +42,93 @@
   "template": [
 
     {
-      "element":"label",
+      "element":"div",
       "attributes": {
-        "class":"label checkbox-click",
-        "for":"component_mistakes",
-        "data-locale":"COMPONENT_MISTAKES_ENABLE_LABEL"
-      }
-    },
+        "class":"input-box"
+      },
+      "children": [
 
-    {
-      "element":"input>",
-      "label":"component_mistakes",
-      "attributes": {
-        "class":"input",
-        "type":"checkbox",
-        "name":"component_mistakes",
-        "value":"component_mistakes"
-      }
-    },
+        {
+          "element":"label",
+          "attributes": {
+            "class":"label checkbox-click",
+            "for":"component_mistakes",
+            "data-locale":"COMPONENT_MISTAKES_ENABLE_LABEL"
+          }
+        },
 
-    {
-      "element":"label",
-      "attributes": {
-        "class":"label checkbox-click",
-        "for":"component_mistakes_notify",
-        "data-locale":"COMPONENT_MISTAKES_NOTIFY_LABEL"
-      }
-    },
+        {
+          "element":"input>",
+          "label":"component_mistakes",
+          "attributes": {
+            "class":"input",
+            "type":"checkbox",
+            "name":"component_mistakes",
+            "value":"component_mistakes"
+          }
+        },
 
-    {
-      "element":"input>",
-      "label":"component_mistakes_notify",
-      "attributes": {
-        "class":"input",
-        "type":"checkbox",
-        "name":"component_mistakes_notify",
-        "value":"component_mistakes_notify"
-      }
-    },
+        {
+          "element": "div",
+          "attributes": {
+            "class": "input-box hide component_mistakes_notify"
+          },
+          "children": [
 
-    {
-      "element":"label",
-      "attributes": {
-        "class":"label checkbox-click",
-        "for":"component_mistakes_email",
-        "data-locale":"COMPONENT_MISTAKES_E-MAIL_LABEL"
-      }
-    },
+            {
+              "element": "label",
+              "attributes": {
+                "class": "label checkbox-click second-level",
+                "for": "component_mistakes_notify",
+                "data-locale": "COMPONENT_MISTAKES_NOTIFY_LABEL"
+              }
+            },
 
-    {
-      "element":"input>",
-      "label":"component_mistakes_email",
-      "attributes": {
-        "class":"input",
-        "type":"checkbox",
-        "name":"component_mistakes_email",
-        "value":"component_mistakes_email"
-      }
+            {
+              "element": "input>",
+              "label": "component_mistakes_notify",
+              "attributes": {
+                "class": "input",
+                "type": "checkbox",
+                "name": "component_mistakes_notify",
+                "value": "component_mistakes_notify"
+              }
+            },
+
+            {
+              "element": "div",
+              "attributes": {
+                "class": "input-box hide component_mistakes_email"
+              },
+              "children": [
+
+                {
+                  "element": "label",
+                  "attributes": {
+                    "class": "label checkbox-click third-level",
+                    "for": "component_mistakes_email",
+                    "data-locale": "COMPONENT_MISTAKES_E-MAIL_LABEL"
+                  }
+                },
+
+                {
+                  "element": "input>",
+                  "label": "component_mistakes_email",
+                  "attributes": {
+                    "class": "input",
+                    "type": "checkbox",
+                    "name": "component_mistakes_email",
+                    "value": "component_mistakes_email"
+                  }
+                }
+
+              ]
+            }
+
+          ]
+        }
+
+      ]
     }
 
   ]

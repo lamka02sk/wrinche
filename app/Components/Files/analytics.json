@@ -29,29 +29,9 @@
   "template": [
 
     {
-      "element":"label",
-      "attributes": {
-        "class":"label checkbox-click",
-        "for":"component_analytics",
-        "data-locale":"COMPONENT_ANALYTICS_LABEL"
-      }
-    },
-
-    {
-      "element":"input>",
-      "label":"component_analytics",
-      "attributes": {
-        "type":"checkbox",
-        "class":"input",
-        "value":"component_analytics",
-        "name":"component_analytics"
-      }
-    },
-
-    {
       "element":"div",
       "attributes": {
-        "class":"input-box hide"
+        "class":"input-box"
       },
       "children": [
 
@@ -59,6 +39,36 @@
           "element":"label",
           "attributes": {
             "class":"label checkbox-click",
+            "for":"component_analytics",
+            "data-locale":"COMPONENT_ANALYTICS_LABEL"
+          }
+        },
+
+        {
+          "element":"input>",
+          "label":"component_analytics",
+          "attributes": {
+            "type":"checkbox",
+            "class":"input",
+            "value":"component_analytics",
+            "name":"component_analytics"
+          }
+        }
+
+      ]
+    },
+
+    {
+      "element":"div",
+      "attributes": {
+        "class":"component_analytics_details input-box hide margin-bottom"
+      },
+      "children": [
+
+        {
+          "element":"label",
+          "attributes": {
+            "class":"label checkbox-click second-level",
             "for":"component_analytics_details",
             "data-locale":"COMPONENT_ANALYTICS_DETAILS_LABEL"
           }
@@ -76,6 +86,14 @@
         }
 
       ]
+    },
+
+    {
+      "element":"span",
+      "attributes": {
+        "class":"info-text-outside",
+        "data-locale":"COMPONENT_ANALYTICS_INFO"
+      }
     }
 
   ]
