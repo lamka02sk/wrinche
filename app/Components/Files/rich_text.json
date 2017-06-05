@@ -24,7 +24,6 @@
 
         {
           "element": "textarea",
-          "label": "component_inline_rich-text",
           "attributes": {
             "class": "textarea-editor",
             "name": "component_inline_rich-text"

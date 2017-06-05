@@ -40,15 +40,6 @@
           "children": [
 
             {
-              "element":"label",
-              "attributes": {
-                "for":"component_inline_heading",
-                "class":"small-label",
-                "data-locale":"COMPONENT_CONTENT_HEADING_TYPE"
-              }
-            },
-
-            {
               "element":"div",
               "attributes": {
                 "class":"heading-types"

@@ -134,6 +134,7 @@ let csrf_token      = $('meta[name=csrf_token]').attr('content');
 let URI             = baseURI + route + '/';
 let locale,
     packery,
+    sortable,
     selector,
     languages,
     type,

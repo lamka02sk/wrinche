@@ -1955,6 +1955,14 @@ div.content-builder {
   clear: both;
   margin-top: 12px; }
 
+div.content-builder-content {
+  width: 100%;
+  position: relative;
+  float: left;
+  clear: both;
+  display: inline-block;
+  height: auto !important; }
+
 div.content-builder div.component-element {
   display: inline-block;
   position: relative;
@@ -1963,6 +1971,8 @@ div.content-builder div.component-element {
   height: auto;
   background: #fbfbfb;
   margin: 6px auto; }
+  div.content-builder div.component-element.disabled {
+    opacity: .6; }
 
 div.content-builder div.component-element div.component-element-header {
   display: inline-block;
@@ -1990,7 +2000,7 @@ div.content-builder div.component-element div.component-element-header label.com
   float: left;
   height: 42px;
   line-height: 43px;
-  font-size: .92em;
+  font-size: 1em;
   color: #323232; }
 
 div.content-builder div.component-element div.component-element-header span.component-control {
@@ -2021,6 +2031,8 @@ div.content-builder div.component-element div.component-element-content {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 12px; }
+  div.content-builder div.component-element div.component-element-content.hide {
+    display: none; }
 
 div.heading-types {
   display: inline-block;
@@ -2035,14 +2047,14 @@ div.heading-types {
     display: inline-block;
     width: auto;
     height: 32px;
-    line-height: 33px;
+    line-height: 31px;
     color: #323232;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    border: 1px solid silver;
     background: white;
     margin-right: 4px;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.07);
     padding: 0 10px;
     font-size: .92em;
     text-align: center;

@@ -30,7 +30,8 @@ class Admin extends MainView {
                 'packery',
                 'ckeditor',
                 'mediaManager',
-                'flatpickr'
+                'flatpickr',
+                'sortable'
             ]);
             $this->setAssets('admin');
             $this->setScripts(strtolower($layout));

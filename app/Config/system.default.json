@@ -51,7 +51,8 @@
       "draggabilly": "draggabilly.min.js",
       "ckeditor": "ckeditor\/ckeditor.js",
       "mediaManager": "mediaManager.min.js",
-      "flatpickr": "flatpickr.min.js"
+      "flatpickr": "flatpickr.min.js",
+      "sortable": "sortable.min.js"
     }
   },
   "tracking": {
