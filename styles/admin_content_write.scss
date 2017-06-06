@@ -512,6 +512,7 @@ div.content-builder div.component-element {
   background: #fbfbfb;
   margin: 6px auto;
   transition: .2s ease-in-out;
+  overflow: hidden;
   &.disabled {
     opacity: .5;
     &:hover, &:target, &:active, &:focus {
@@ -570,6 +571,7 @@ div.content-builder div.component-element div.component-element-header span.comp
     opacity: 1;
   }
   &.icon-drag {
+    z-index: 100;
     &:active {
       background-size: 23px;
     }
@@ -1256,5 +1258,37 @@ div.select-image button.image_manager {
     left: 0;
     background: center no-repeat;
     background-size: 16px;
+  }
+}
+
+div.component-placeholder {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #eeeeee;
+  z-index: 99;
+  text-align: center;
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+  transition: .15s ease-in-out;
+  span {
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 56px;
+    width: 56px;
+    background: center no-repeat;
+    background-size: 56px;
+    opacity: .8;
+  }
+  &.hide {
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(2);
   }
 }

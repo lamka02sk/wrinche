@@ -1971,7 +1971,8 @@ div.content-builder div.component-element {
   height: auto;
   background: #fbfbfb;
   margin: 6px auto;
-  transition: .2s ease-in-out; }
+  transition: .2s ease-in-out;
+  overflow: hidden; }
   div.content-builder div.component-element.disabled {
     opacity: .5; }
     div.content-builder div.component-element.disabled:hover, div.content-builder div.component-element.disabled:target, div.content-builder div.component-element.disabled:active, div.content-builder div.component-element.disabled:focus {
@@ -2022,8 +2023,10 @@ div.content-builder div.component-element div.component-element-header span.comp
   cursor: pointer; }
   div.content-builder div.component-element div.component-element-header span.component-control:hover {
     opacity: 1; }
-  div.content-builder div.component-element div.component-element-header span.component-control.icon-drag:active {
-    background-size: 23px; }
+  div.content-builder div.component-element div.component-element-header span.component-control.icon-drag {
+    z-index: 100; }
+    div.content-builder div.component-element div.component-element-header span.component-control.icon-drag:active {
+      background-size: 23px; }
 
 div.content-builder div.component-element div.component-element-content {
   display: inline-block;
@@ -2638,6 +2641,35 @@ div.select-image button.image_manager {
     left: 0;
     background: center no-repeat;
     background-size: 16px; }
+
+div.component-placeholder {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #eeeeee;
+  z-index: 99;
+  text-align: center;
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+  transition: .15s ease-in-out; }
+  div.component-placeholder span {
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 56px;
+    width: 56px;
+    background: center no-repeat;
+    background-size: 56px;
+    opacity: .8; }
+  div.component-placeholder.hide {
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(2); }
 
 div.subcontent-box.input-box {
   border-bottom: 1px dotted #bdd9bf;

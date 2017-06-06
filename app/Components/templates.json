@@ -81,6 +81,23 @@
     {
       "element":"div",
       "attributes": {
+        "class":"component-placeholder hide"
+      },
+      "children": [
+
+        {
+          "element":"span",
+          "attributes": {
+            "class":"component-placeholder-icon icon-%component%"
+          }
+        }
+
+      ]
+    },
+
+    {
+      "element":"div",
+      "attributes": {
         "class":"component-element-header"
       },
       "children": [

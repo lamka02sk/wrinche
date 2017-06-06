@@ -38,6 +38,12 @@ sortable = Sortable.create(document.querySelector('div.content-builder-content')
     scroll: true,
     draggable: '.component-element',
     handle: '.component-inline-drag',
+    onChoose: function() {
+        let elements = document.querySelectorAll('div.component-placeholder');
+        elements.forEach(function(element) {
+            element.classList.remove('hide');
+        });
+    },
     onStart: function(event) {
         let identifier = event.item.attributes['data-id'].value;
         if(CKEDITOR.instances['editor_' + identifier])
@@ -51,6 +57,10 @@ sortable = Sortable.create(document.querySelector('div.content-builder-content')
             if('reload' in componentsModule.modules[component])
                 componentsModule.modules[component].reload(identifier);
         }
+        let elements = document.querySelectorAll('div.component-placeholder');
+        elements.forEach(function(element) {
+            element.classList.add('hide');
+        });
     }
 });
 
