@@ -37,7 +37,21 @@ sortable = Sortable.create(document.querySelector('div.content-builder-content')
     animation: 200,
     scroll: true,
     draggable: '.component-element',
-    handle: '.component-inline-drag'
+    handle: '.component-inline-drag',
+    onStart: function(event) {
+        let identifier = event.item.attributes['data-id'].value;
+        if(CKEDITOR.instances['editor_' + identifier])
+            CKEDITOR.instances['editor_' + identifier].destroy();
+    },
+    onEnd: function(event) {
+        let element = event.item;
+        let identifier = element.attributes['data-id'].value;
+        let component = element.attributes['data-component'].value;
+        if(component in componentsModule.modules) {
+            if('reload' in componentsModule.modules[component])
+                componentsModule.modules[component].reload(identifier);
+        }
+    }
 });
 
 /* Init CKEditor*/
