@@ -9,6 +9,7 @@ componentsModule.modules.rich_text = {
 
     create: function(identifier, element) {
         componentsModule.modules.rich_text.data[identifier] = {
+            title: '',
             value: '',
             disabled: 0
         };
@@ -16,10 +17,7 @@ componentsModule.modules.rich_text = {
     },
 
     onCreate: function(identifier) {
-        CKEDITOR.replace('editor_' + identifier, {
-            language: html.attr('lang'),
-            uiColor: '#ffffff'
-        });
+        CKEDITOR.replace('editor_' + identifier, ckconfig);
         CKEDITOR.instances['editor_' + identifier].on('change', function() {
             componentsModule.modules.rich_text.data[identifier].value = CKEDITOR.instances['editor_' + identifier].getData().trim();
         });

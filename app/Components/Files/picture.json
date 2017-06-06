@@ -24,77 +24,90 @@
   "template": [
 
     {
-      "element":"button",
+      "element":"div",
       "attributes": {
-        "class":"button image_manager",
-        "data-locale":"COMPONENT_CONTENT_PICTURE_BUTTON",
-        "data-manager":"images"
-      }
-    },
-
-    {
-      "element":"span",
-      "attributes": {
-        "class":"or",
-        "data-locale":"OR"
-      }
-    },
-
-    {
-      "element":"input>",
-      "attributes": {
-        "type":"url",
-        "data-placeholder":"COMPONENT_CONTENT_PICTURE_INPUT",
-        "class":"input",
-        "name":"component_inline_picture_input"
-      }
-    },
-
-    {
-      "element":"template",
-      "attributes": {
-        "id":"template_component_content_picture_image"
+        "class":"component-element-content"
       },
       "children": [
 
         {
           "element":"div",
           "attributes": {
-            "class":"picture-image",
-            "data-path":""
+            "class":"input-box select-image"
           },
           "children": [
 
             {
-              "element":"img",
+              "element":"button",
               "attributes": {
-                "class":"picture-image-content",
-                "src":"",
-                "alt":""
-              }
-            },
-
-            {
-              "element":"span",
-              "attributes": {
-                "class":"picture-remove"
+                "class":"button image_manager",
+                "data-locale":"COMPONENT_CONTENT_PICTURE_BUTTON",
+                "data-manager":"images"
               }
             },
 
             {
               "element":"input>",
               "attributes": {
-                "class":"input no-border-top",
-                "name":"component_inline_picture_description",
-                "data-placeholder":"COMPONENT_CONTENT_PICTURE_DESCRIPTION",
-                "type":"text"
+                "type":"url",
+                "data-placeholder":"COMPONENT_CONTENT_PICTURE_INPUT",
+                "class":"input no-margin",
+                "name":"component_inline_picture_input"
               }
+            }
+
+          ]
+        },
+
+        {
+          "element":"template",
+          "attributes": {
+            "id":"template_component_content_picture_image"
+          },
+          "children": [
+
+            {
+              "element":"div",
+              "attributes": {
+                "class":"picture-image",
+                "data-path":""
+              },
+              "children": [
+
+                {
+                  "element":"img",
+                  "attributes": {
+                    "class":"picture-image-content",
+                    "src":"",
+                    "alt":""
+                  }
+                },
+
+                {
+                  "element":"span",
+                  "attributes": {
+                    "class":"picture-remove"
+                  }
+                },
+
+                {
+                  "element":"input>",
+                  "attributes": {
+                    "class":"input no-border-top",
+                    "name":"component_inline_picture_description",
+                    "data-placeholder":"COMPONENT_CONTENT_PICTURE_DESCRIPTION",
+                    "type":"text"
+                  }
+                }
+
+              ]
             }
 
           ]
         }
 
       ]
+
     }
 
   ]

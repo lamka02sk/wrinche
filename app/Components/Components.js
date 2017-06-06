@@ -77,9 +77,35 @@ function ComponentsModule() {
     this.registerEvents = function(name, identifier, element) {
         let headerElement = element.querySelector('div.component-element-header');
         let contentElement = element.querySelector('div.component-element-content');
+        let titleElement = headerElement.children[1];
+        let titleDefault = titleElement.innerText;
         let removeElement = headerElement.children[3];
         let disableElement = headerElement.children[4];
         let collapseElement = headerElement.children[5];
+        titleElement.addEventListener('click', function() {
+            titleElement.focus();
+            document.execCommand('selectAll', false, null);
+        });
+        titleElement.addEventListener('blur', function() {
+            if(titleElement.innerText.trim() === '')
+                titleElement.innerText = titleDefault;
+        });
+        titleElement.addEventListener('keypress', function(event) {
+            if(event.keyCode === 13) {
+                titleElement.blur();
+                window.getSelection().removeAllRanges();
+                event.preventDefault();
+            }
+        });
+        titleElement.addEventListener('keyup', function(event) {
+            this.modules[name].data[identifier].title = event.target.innerText.trim();
+        }.bind(this));
+        titleElement.addEventListener('change', function(event) {
+            this.modules[name].data[identifier].title = event.target.innerText.trim();
+        }.bind(this));
+        titleElement.addEventListener('paste', function() {
+            $('br, p', this).replaceWith(' ');
+        });
         collapseElement.addEventListener('click', function() {
             contentElement.classList.toggle('hide');
         });

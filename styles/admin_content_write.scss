@@ -511,8 +511,12 @@ div.content-builder div.component-element {
   height: auto;
   background: #fbfbfb;
   margin: 6px auto;
+  transition: .2s ease-in-out;
   &.disabled {
-    opacity: .6;
+    opacity: .5;
+    &:hover, &:target, &:active, &:focus {
+      opacity: .8;
+    }
   }
 }
 
@@ -546,6 +550,7 @@ div.content-builder div.component-element div.component-element-header label.com
   line-height: 43px;
   font-size: 1em;
   color: $text-lightBlack;
+  outline: none !important;
 }
 
 div.content-builder div.component-element div.component-element-header span.component-control {
@@ -597,7 +602,7 @@ div.heading-types {
   span {
     position: relative;
     display: inline-block;
-    width: auto;
+    width: 40px;
     height: 32px;
     line-height: 31px;
     color: $text-lightBlack;
@@ -607,8 +612,6 @@ div.heading-types {
     border: 1px solid silver;
     background: white;
     margin-right: 4px;
-    //box-shadow: 0 0 4px rgba(0,0,0,.07);
-    padding: 0 10px;
     font-size: .92em;
     text-align: center;
     transition: .15s ease-in-out;
@@ -1223,5 +1226,35 @@ div.selector-element#select-relative {
   .selector-options {
     position: relative !important;
     float: left;
+  }
+}
+
+div.select-image button.image_manager {
+  display: inline-block;
+  box-sizing: border-box;
+  width: auto;
+  padding: 0 14px 0 44px;
+  font-weight: 400;
+  float: left;
+  position: relative;
+  clear: both;
+  height: 36px;
+  border: 1px solid;
+  border-radius: 0;
+  font-family: $font-default;
+  font-size: .92em;
+  outline: none;
+  margin: 2px 0 4px 0;
+  cursor: pointer;
+  transition: .2s ease-in-out;
+  &:before {
+    content: '';
+    position: absolute;
+    height: 33px;
+    width: 44px;
+    top: 0;
+    left: 0;
+    background: center no-repeat;
+    background-size: 16px;
   }
 }

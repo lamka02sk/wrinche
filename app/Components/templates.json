@@ -96,7 +96,8 @@
           "element":"label",
           "attributes": {
             "class":"component-inline-label",
-            "data-locale":"ADD_%COMPONENT%"
+            "data-locale":"ADD_%COMPONENT%",
+            "contenteditable":"true"
           }
         },
 

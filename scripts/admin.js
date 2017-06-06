@@ -145,6 +145,15 @@ let locale,
 let previousScripts = [];
 let responseBox     = document.querySelector('div.response-message');
 let body            = document.querySelector('body');
+let html            = $('html');
+let ckconfig        = {
+    language: html.attr('lang'),
+    uiColor: '#ffffff',
+    extraPlugins: 'autogrow',
+    autoGrow_minHeight: 150,
+    autoGrow_maxHeight: 700,
+    autoGrow_onStartup: true
+};
 
 // Update CSRF token every 19 minutes
 setInterval(function() {
@@ -183,7 +192,6 @@ for(let i = 0; i < addTranslations.length; ++i) {
 let translate = new Translate(translations, false);
 
 // Show anchor-tooltip
-let html = $('html');
 html.on('mouseover', '[data-link]', function() {
     let link = URI + this.getAttribute('data-link');
     $('div.anchor-hover').addClass('show').text(link);

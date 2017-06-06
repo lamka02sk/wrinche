@@ -8,6 +8,7 @@ componentsModule.modules.heading = {
 
     create: function(identifier, element) {
         componentsModule.modules.heading.data[identifier] = {
+            title: '',
             type: 'h1',
             value: '',
             disabled: 0
