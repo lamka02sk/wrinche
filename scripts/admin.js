@@ -1,11 +1,14 @@
-/*function reloadStylesheets() {
- let queryString = '?reload=' + new Date().getTime();
- $('link[rel="stylesheet"]').each(function () {
- this.href = this.href.replace(/\?.*|$/, queryString);
- });
- }
+function reloadStylesheets() {
+    let queryString = '?reload=' + +new Date();
+    $('link[rel="stylesheet"]').each(function() {
+        this.href = this.href.replace(/\?.*|$/, queryString);
+    });
+}
 
- setInterval(reloadStylesheets, 4000);*/
+document.addEventListener('keyup', function(event) {
+    if(event.keyCode === 82)
+        reloadStylesheets();
+});
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -152,7 +155,57 @@ let ckconfig        = {
     extraPlugins: 'autogrow',
     autoGrow_minHeight: 150,
     autoGrow_maxHeight: 700,
-    autoGrow_onStartup: true
+    autoGrow_onStartup: true,
+    toolbar: [
+        {
+            name: 'history',
+            items: [
+                'Undo', 'Redo'
+            ]
+        },
+        {
+            name: 'clipboard',
+            items: [
+                'Cut', 'Copy', 'Paste', 'PasteFromWord'
+            ]
+        },
+        {
+            name: 'basic',
+            items: [
+                'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'
+            ]
+        },
+        {
+            name: 'lists',
+            items: [
+                'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'
+            ]
+        },
+        {
+            name: 'justify',
+            items: [
+                'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'
+            ]
+        },
+        {
+            name: 'links',
+            items: [
+                'Link', 'Unlink'
+            ]
+        },
+        {
+            name: 'advanced',
+            items: [
+                'HorizontalRule', 'Symbol', 'EqnEditor'
+            ]
+        },
+        {
+            name: 'color',
+            items: [
+                'TextColor', 'BGColor'
+            ]
+        }
+    ]
 };
 
 // Update CSRF token every 19 minutes

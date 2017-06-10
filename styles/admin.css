@@ -1586,6 +1586,8 @@ span.field-validation {
     padding: 6px 11px; }
   span.field-validation.margin-bottom {
     margin-bottom: 6px; }
+  span.field-validation.no-margin {
+    margin: 0; }
 
 div.content-content {
   display: inline-block;
@@ -2040,6 +2042,90 @@ div.content-builder div.component-element div.component-element-content {
   padding: 12px; }
   div.content-builder div.component-element div.component-element-content.hide {
     display: none; }
+  div.content-builder div.component-element div.component-element-content.no-padding {
+    padding: 0; }
+
+div.component-element-content div.picture-image {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 250px;
+  min-width: 100%;
+  overflow: hidden; }
+  div.component-element-content div.picture-image img {
+    display: inline-block;
+    position: absolute;
+    max-width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%); }
+  div.component-element-content div.picture-image input {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    width: 360px;
+    height: 38px;
+    line-height: 38px;
+    border-radius: 19px;
+    border: none;
+    padding: 0 16px 0 40px;
+    background: white url("../assets/icons/edit.svg") left 16px center no-repeat !important;
+    background-size: 15px !important;
+    max-width: calc(100% - 24px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+    transition: .2s ease-in-out; }
+    div.component-element-content div.picture-image input:hover, div.component-element-content div.picture-image input:focus {
+      box-shadow: 0 0 16px rgba(0, 0, 0, 0.25); }
+  div.component-element-content div.picture-image span.picture-remove {
+    display: block;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: white url("../assets/icons/trash.svg") center no-repeat;
+    background-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+    transition: .2s ease-in-out; }
+    div.component-element-content div.picture-image span.picture-remove:hover {
+      box-shadow: 0 0 16px rgba(0, 0, 0, 0.25);
+      background-color: #f5f5f5; }
+  div.component-element-content div.picture-image div.picture-align {
+    display: inline-block;
+    left: 12px;
+    top: 12px;
+    height: 38px;
+    width: auto;
+    position: absolute;
+    background: white;
+    border-radius: 19px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+    transition: .2s ease-in-out; }
+    div.component-element-content div.picture-image div.picture-align span {
+      height: 38px;
+      width: 38px;
+      display: inline-block;
+      position: relative;
+      float: left;
+      background: white center no-repeat;
+      background-size: 16px;
+      border-right: 1px solid silver;
+      transition: .15s ease-in-out; }
+      div.component-element-content div.picture-image div.picture-align span:first-of-type {
+        padding-left: 6px; }
+      div.component-element-content div.picture-image div.picture-align span:last-of-type {
+        border-right: none;
+        padding-right: 6px; }
+      div.component-element-content div.picture-image div.picture-align span:hover {
+        background-color: #f5f5f5; }
+      div.component-element-content div.picture-image div.picture-align span.active {
+        background-color: #ebebeb; }
+    div.component-element-content div.picture-image div.picture-align:hover {
+      box-shadow: 0 0 16px rgba(0, 0, 0, 0.25); }
 
 div.heading-types {
   display: inline-block;
@@ -2614,33 +2700,43 @@ div.selector-element#select-relative {
     position: relative !important;
     float: left; }
 
-div.select-image button.image_manager {
-  display: inline-block;
+div.select-image {
+  border: 1px solid silver;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
-  width: auto;
-  padding: 0 14px 0 44px;
-  font-weight: 400;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  background: white; }
+
+div.select-image button.inline-image_manager {
+  display: block;
+  width: 36px;
+  height: 36px;
+  position: relative;
+  float: left;
+  outline: none;
+  border: none;
+  background: #f8f8f8 center no-repeat;
+  background-size: 22px;
+  cursor: pointer;
+  opacity: .7; }
+  div.select-image button.inline-image_manager:hover {
+    opacity: 1; }
+
+div.select-image input {
+  border: none;
+  border-left: 1px solid silver;
+  width: calc(100% - 36px);
+  height: 36px;
   float: left;
   position: relative;
-  clear: both;
-  height: 36px;
-  border: 1px solid;
-  border-radius: 0;
-  font-family: "Roboto", sans-serif;
-  font-size: .92em;
-  outline: none;
-  margin: 2px 0 4px 0;
-  cursor: pointer;
-  transition: .2s ease-in-out; }
-  div.select-image button.image_manager:before {
-    content: '';
-    position: absolute;
-    height: 33px;
-    width: 44px;
-    top: 0;
-    left: 0;
-    background: center no-repeat;
-    background-size: 16px; }
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  clear: none; }
 
 div.component-placeholder {
   display: inline-block;
@@ -2653,7 +2749,7 @@ div.component-placeholder {
   z-index: 99;
   text-align: center;
   visibility: visible;
-  opacity: 1;
+  opacity: .7;
   transform: scale(1);
   transition: .15s ease-in-out; }
   div.component-placeholder span {
@@ -3504,6 +3600,27 @@ div.manager-queue.loading span.loading {
 .icon-drag {
   background-image: url("../assets/icons/drag.svg") !important;
   cursor: move !important; }
+
+.icon-align_left {
+  background-image: url("../assets/icons/align-left.svg") !important; }
+
+.icon-align_right {
+  background-image: url("../assets/icons/align-right.svg") !important; }
+
+.icon-align_center {
+  background-image: url("../assets/icons/align-center.svg") !important; }
+
+.icon-align_justify {
+  background-image: url("../assets/icons/align-justify.svg") !important; }
+
+.icon-align_left-picture {
+  background-image: url("../assets/icons/align-left-picture.svg") !important; }
+
+.icon-align_right-picture {
+  background-image: url("../assets/icons/align-right-picture.svg") !important; }
+
+.icon-align_justify-picture {
+  background-image: url("../assets/icons/align-justify-picture.svg") !important; }
 
 *::-moz-focus-inner {
   border: 0; }

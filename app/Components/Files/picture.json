@@ -17,6 +17,11 @@
 
     "picture_description": {
       "type":"string"
+    },
+
+    "picture_align": {
+      "type":"integer",
+      "range":"0,3"
     }
 
   },
@@ -40,8 +45,7 @@
             {
               "element":"button",
               "attributes": {
-                "class":"button image_manager",
-                "data-locale":"COMPONENT_CONTENT_PICTURE_BUTTON",
+                "class":"button inline-image_manager icon-image",
                 "data-manager":"images"
               }
             },
@@ -53,6 +57,14 @@
                 "data-placeholder":"COMPONENT_CONTENT_PICTURE_INPUT",
                 "class":"input no-margin",
                 "name":"component_inline_picture_input"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"field-validation no-margin",
+                "data-locale":""
               }
             }
 
@@ -98,6 +110,40 @@
                     "data-placeholder":"COMPONENT_CONTENT_PICTURE_DESCRIPTION",
                     "type":"text"
                   }
+                },
+
+                {
+                  "element":"div",
+                  "attributes": {
+                    "class":"picture-align"
+                  },
+                  "children": [
+
+                    {
+                      "element":"span",
+                      "attributes": {
+                        "class":"picture-align-option icon-align_left-picture",
+                        "data-value":"0"
+                      }
+                    },
+
+                    {
+                      "element":"span",
+                      "attributes": {
+                        "class":"picture-align-option icon-align_justify-picture active",
+                        "data-value":"1"
+                      }
+                    },
+
+                    {
+                      "element":"span",
+                      "attributes": {
+                        "class":"picture-align-option icon-align_right-picture",
+                        "data-value":"2"
+                      }
+                    }
+
+                  ]
                 }
 
               ]

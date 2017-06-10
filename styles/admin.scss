@@ -129,6 +129,34 @@
   cursor: move !important;
 }
 
+.icon-align_left {
+  background-image: url('../assets/icons/align-left.svg') !important;
+}
+
+.icon-align_right {
+  background-image: url('../assets/icons/align-right.svg') !important;
+}
+
+.icon-align_center {
+  background-image: url('../assets/icons/align-center.svg') !important;
+}
+
+.icon-align_justify {
+  background-image: url('../assets/icons/align-justify.svg') !important;
+}
+
+.icon-align_left-picture {
+  background-image: url('../assets/icons/align-left-picture.svg') !important;
+}
+
+.icon-align_right-picture {
+  background-image: url('../assets/icons/align-right-picture.svg') !important;
+}
+
+.icon-align_justify-picture {
+  background-image: url('../assets/icons/align-justify-picture.svg') !important;
+}
+
 *::-moz-focus-inner {
   border: 0;
 }
