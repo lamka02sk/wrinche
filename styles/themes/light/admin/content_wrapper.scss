@@ -15,7 +15,8 @@ div.header-mainline div.mainline-search span.mainline-edit {
 
 div.header-mainline div.mainline-search div.input-box {
   &:before {
-    background: url("../../../assets/icons/search.svg") !important;
+    background: url("../../../assets/icons/search.svg") center no-repeat !important;
+    background-size: 18px !important;
   }
 }
 

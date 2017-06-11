@@ -232,7 +232,8 @@ div.header-mainline div.mainline-search span.mainline-edit {
     background-image: url("../../../assets/icons/settings.svg") !important; }
 
 div.header-mainline div.mainline-search div.input-box:before {
-  background: url("../../../assets/icons/search.svg") !important; }
+  background: url("../../../assets/icons/search.svg") center no-repeat !important;
+  background-size: 18px !important; }
 
 div.header-mainline div.mainline-search input {
   background: #fafafa !important;

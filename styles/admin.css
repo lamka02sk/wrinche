@@ -1171,8 +1171,6 @@ footer div.more-content span.content-item {
   @media (max-width: 920px) {
     footer div.more-content span.content-item.settings {
       display: none; } }
-  footer div.more-content span.content-item.pro {
-    background-size: 28px; }
 
 div.content-wrapper {
   display: block;
@@ -1317,8 +1315,8 @@ div.header-mainline div.mainline-search div.input-box {
     height: 14px;
     width: 14px;
     display: block;
-    background: center center no-repeat;
-    background-size: 14px;
+    background: center center no-repeat !important;
+    background-size: 18px !important;
     z-index: 1;
     opacity: .8;
     transition: .2s ease-in-out; }
@@ -1454,12 +1452,15 @@ div.subcontent-box div.half-box {
   position: relative;
   display: inline-block;
   float: left;
-  width: 50%;
+  width: calc(50% - 6px);
+  clear: none !important;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
   div.subcontent-box div.half-box:nth-of-type(2n+1) {
-    padding-right: 12px; }
+    margin-right: 6px; }
+  div.subcontent-box div.half-box:nth-of-type(2n) {
+    margin-left: 6px; }
 
 div.action-bar {
   display: inline-block;
@@ -1552,7 +1553,7 @@ div.input-box span.clear-input {
   height: 24px;
   width: 24px;
   background: url("../assets/icons/close.svg") center no-repeat;
-  background-size: 13px;
+  background-size: 19px;
   opacity: .7;
   z-index: 1;
   cursor: pointer; }
@@ -1760,7 +1761,7 @@ div.content-content div.info-box span.info-hover {
   width: 100%;
   position: relative;
   background: center center no-repeat;
-  background-size: 14px;
+  background-size: 17px;
   z-index: 100;
   opacity: .6; }
 
@@ -1816,13 +1817,13 @@ div.content-content input {
     z-index: 0;
     padding: 0 10px; }
   div.content-content input.add-item {
-    background: left 10px top 10px no-repeat !important;
-    background-size: 13px !important;
+    background: left 9px top 9px no-repeat !important;
+    background-size: 16px !important;
     padding-left: 32px;
     transition: .2s ease-in-out; }
   div.content-content input.search-input {
-    background: url("../assets/icons/search.svg") left 10px top 10px no-repeat !important;
-    background-size: 13px !important;
+    background: url("../assets/icons/search.svg") left 9px top 9px no-repeat !important;
+    background-size: 16px !important;
     padding-left: 32px;
     transition: .2s ease-in-out; }
   div.content-content input.full {
@@ -2184,6 +2185,7 @@ div.builder-tools {
   position: relative;
   width: 100%;
   float: left;
+  clear: both;
   padding-top: 4px;
   background: #f7f7f7;
   text-align: center;
@@ -2202,8 +2204,8 @@ div.builder-tools button {
   font-size: .92em;
   color: #323232;
   position: relative;
-  background: #ffffff left 14px center no-repeat;
-  background-size: 12px;
+  background: #ffffff left 10px center no-repeat;
+  background-size: 19px;
   padding: 0 12px 0 34px;
   border: none;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
@@ -2504,7 +2506,7 @@ div.custom_fields-list div.custom_fields-list-item span.remove-custom_field, div
   transform: translateY(-50%);
   right: 12px;
   background: url("../assets/icons/close.svg") center no-repeat;
-  background-size: 12px;
+  background-size: 19px;
   opacity: .7;
   cursor: pointer; }
   div.custom_fields-list div.custom_fields-list-item span.remove-custom_field:hover, div.sources-list div.sources-source span.source-remove:hover {
@@ -2637,7 +2639,7 @@ div.languages-list div.language-item span.add-language, div.categories-list div.
   top: 3px;
   right: 6px;
   background: url("../assets/icons/add.svg") transparent left 6px center no-repeat;
-  background-size: 13px;
+  background-size: 15px;
   line-height: 25px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -2660,7 +2662,7 @@ div.languages-list div.language-item span.remove-language, div.categories-list d
   top: 3px;
   right: 8px;
   background: #238051 url("../assets/icons/success_white.svg") left 6px center no-repeat;
-  background-size: 13px;
+  background-size: 15px;
   line-height: 25px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -3468,7 +3470,7 @@ div.manager-queue-list div.queue-item span.remove-item, div.manager-queue-list d
   position: relative;
   float: right;
   background: center no-repeat;
-  background-size: 13px;
+  background-size: 19px;
   margin: 10px 0 10px 10px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
