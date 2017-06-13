@@ -23,9 +23,10 @@
   "500":"Chyba 500. Vnútorná chyba serveru",
 
   "ACTION_CONFIRM":"Potvrdiť akciu",
-  "ACTION_CONFIRM_REMOVE_LANGUAGE":"Naozaj si prajete odstrániť obsah v jazyku %language%? Táto akcia sa nedá vrátiť.",
+  "ACTION_CONFIRM_REMOVE_LANGUAGE":"Naozaj si prajete odstrániť obsah v jazyku <mark>\"%language%\"</mark>? Táto akcia sa nedá vrátiť.",
   "ACTION_CONFIRM_RELOAD_PAGE":"Na správne fungovanie administrácie wrinche je potrebné obnoviť stránku.",
-  "ACTION_CONFIRM_DISMISS":"Vrátiť spať",
+  "ACTION_CONFIRM_REMOVE_COMPONENT":"Naozaj si prajete odstrániť <mark>\"%component%\"</mark>?<br>Táto akcia vymaže obsah komponenty a nedá sa vrátiť späť.",
+  "ACTION_CONFIRM_DISMISS":"Zrušiť",
   "ACTION_CONFIRM_PROCEED":"Pokračovať"
 
 }

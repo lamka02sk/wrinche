@@ -604,29 +604,35 @@ div.fullscreen-popup div.popup-content div.popup-content-actions {
   width: 100%;
   clear: both;
   height: 43px;
+  margin-bottom: 8px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 6px;
   span.confirmation-action-dismiss {
     display: inline-block;
-    margin: 3px 2px;
+    margin: 3px 4px;
     width: auto;
     height: 36px;
     line-height: 37px;
     position: relative;
-    float: right;
+    float: left;
     cursor: pointer;
     font-size: .92em;
     color: $text-darkGrey;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 0 10px;
+    padding: 0 12px;
     transition: .2s ease-in-out;
+    border-radius: 18px;
     &:hover {
       background: $text-lightGrey;
     }
   }
   span.confirmation-action-proceed {
     display: inline-block;
-    margin: 3px 4px 3px 2px;
+    margin: 3px 4px 3px 4px;
     width: auto;
     height: 36px;
     line-height: 37px;
@@ -639,8 +645,9 @@ div.fullscreen-popup div.popup-content div.popup-content-actions {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 0 10px;
+    padding: 0 12px;
     transition: .2s ease-in-out;
+    border-radius: 18px;
     &:hover {
       background: lighten($successGreen, 5%);
     }

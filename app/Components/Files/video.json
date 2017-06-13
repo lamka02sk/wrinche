@@ -13,6 +13,15 @@
         "source":"validator",
         "method":"isVideo"
       }
+    },
+
+    "video_description": {
+      "type":"string"
+    },
+
+    "video_align": {
+      "type":"integer",
+      "range":"0,3"
     }
 
   },
@@ -20,54 +29,122 @@
   "template": [
 
     {
-      "element":"button",
+      "element": "div",
       "attributes": {
-        "class":"button add-attachment icon-video",
-        "data-content":"video",
-        "data-locale":"COMPONENT_CONTENT_VIDEO_ADD"
-      }
-    },
-
-    {
-      "element":"template",
-      "attributes": {
-        "id":"template_component_content_video_item"
+        "class": "component-element-content"
       },
       "children": [
 
         {
           "element":"div",
           "attributes": {
-            "class":"video-item",
-            "data-path":""
+            "class":"input-box select-image"
           },
           "children": [
 
             {
-              "element":"p",
+              "element":"button",
               "attributes": {
-                "class":"item-name"
+                "class":"button inline-image_manager icon-video",
+                "data-manager":"videos"
+              }
+            },
+
+            {
+              "element":"input>",
+              "attributes": {
+                "type":"url",
+                "data-placeholder":"COMPONENT_CONTENT_VIDEO_INPUT",
+                "class":"input no-margin",
+                "name":"component_inline_picture_input"
               }
             },
 
             {
               "element":"span",
               "attributes": {
-                "class":"item-remove"
-              }
-            },
-
-            {
-              "element":"video",
-              "attributes": {
-                "class":"item-player",
-                "src":""
+                "class":"field-validation no-margin",
+                "data-locale":""
               }
             }
 
           ]
-        }
+        },
 
+        {
+          "element": "template",
+          "attributes": {
+            "id": "template_component_content_video_item"
+          },
+          "children": [
+            {
+              "element": "div",
+              "attributes": {
+                "class": "video-item",
+                "data-path": ""
+              },
+              "children": [
+                {
+                  "element": "p",
+                  "attributes": {
+                    "class": "item-name"
+                  }
+                },
+
+                {
+                  "element":"span",
+                  "attributes": {
+                    "class":"video-duration"
+                  }
+                },
+
+                {
+                  "element":"span",
+                  "attributes": {
+                    "class":"video-dimensions"
+                  }
+                },
+
+                {
+                  "element":"div",
+                  "attributes": {
+                    "class":"input-box component_inline_video_description-box"
+                  },
+                  "children": [
+
+                    {
+                      "element":"label",
+                      "attributes": {
+                        "class":"small-label",
+                        "for":"component_inline_video_description",
+                        "data-locale":"COMPONENT_CONTENT_VIDEO_DESCRIPTION"
+                      }
+                    },
+
+                    {
+                      "element":"input",
+                      "label":"component_inline_video_description",
+                      "attributes": {
+                        "class":"input no-border-top",
+                        "name":"component_inline_video_description",
+                        "data-placeholder":"COMPONENT_CONTENT_VIDEO_DESCRIPTION",
+                        "type":"text"
+                      }
+                    }
+
+                  ]
+                },
+
+                {
+                  "element": "span",
+                  "attributes": {
+                    "class": "item-remove"
+                  }
+                }
+              ]
+            }
+          ]
+        }
       ]
     }
 

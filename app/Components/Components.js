@@ -115,8 +115,12 @@ function ComponentsModule() {
             this.modules[name].data[identifier].disabled ^= true;
         }.bind(this));
         removeElement.addEventListener('click', function() {
-            element.parentNode.removeChild(element);
-            delete this.modules[name].data[identifier];
+            let componentName = element.querySelector('div.component-element-header label').innerText.trim();
+            let actionText = translate.locale.response['ACTION_CONFIRM_REMOVE_COMPONENT'].replace('%component%', componentName);
+            confirmAction(actionText, function() {
+                element.parentNode.removeChild(element);
+                delete this.modules[name].data[identifier];
+            }.bind(this));
         }.bind(this));
     }.bind(this);
 

@@ -69,9 +69,10 @@ componentsModule.modules.picture = {
 
         // Save image path
         componentsModule.modules.picture.data[identifier] = {
-            path: path,
-            description: '',
-            align: 1,
+            title: '',
+            picture: path,
+            picture_description: '',
+            picture_align: 1,
             valid: true,
             disabled: 0
         };
@@ -98,7 +99,7 @@ componentsModule.modules.picture = {
                 event: 'change keyup',
                 element: template.children[2],
                 content: function(event) {
-                    componentsModule.modules.picture.data[identifier].description = event.target.value.trim();
+                    componentsModule.modules.picture.data[identifier].picture_description = event.target.value.trim();
                 }
             },
 
@@ -107,7 +108,7 @@ componentsModule.modules.picture = {
                 event: 'click',
                 element: alignOptions,
                 content: function(event) {
-                    componentsModule.modules.picture.data[identifier].align = +event.target.getAttribute('data-value');
+                    componentsModule.modules.picture.data[identifier].picture_align = +event.target.getAttribute('data-value');
                     alignOptions.forEach(function(item) {
                         item.classList.remove('active');
                     });
@@ -128,12 +129,6 @@ componentsModule.modules.picture = {
     },
 
     create: function(identifier, element) {
-        componentsModule.modules.picture.data[identifier] = {
-            title: '',
-            picture: false,
-            picture_description: false,
-            disabled: false
-        };
         componentsModule.initializeEvents([
 
             {

@@ -12,6 +12,11 @@ document.addEventListener('keyup', function(event) {
 
 // ---------------------------------------------------------------------------------------------------------------------
 
+function pad(number, positions) {
+    number = '' + number;
+    return number.length < positions ? pad("0" + number, positions) : number;
+}
+
 function initializeCounters() {
 
     let events   = ['change', 'keydown', 'keyup'];
@@ -76,7 +81,7 @@ function confirmAction(action, callback) {
     // Show popup
     let confirmationElement = $('div.confirmation-menu');
     confirmationElement.css({display: 'table'}).animate({opacity: 1}, 150).addClass('open');
-    confirmationElement.find('p.confirmation-action-message').text(action);
+    confirmationElement.find('p.confirmation-action-message').html(action);
 
     // Proceed
     confirmationElement.find('span.confirmation-action-proceed').click(function() {
