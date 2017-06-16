@@ -141,6 +141,7 @@ let route           = $('meta[name=route]').attr('content');
 let csrf_token      = $('meta[name=csrf_token]').attr('content');
 let URI             = baseURI + route + '/';
 let locale,
+    tmp,
     packery,
     sortable,
     selector,

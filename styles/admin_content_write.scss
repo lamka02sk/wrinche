@@ -701,7 +701,7 @@ div.component-element-content div.video-item {
   float: left;
   width: 100%;
   height: auto;
-  video {
+  video, div.iframe-container {
     float: left;
     position: relative;
     width: 480px;
@@ -712,6 +712,22 @@ div.component-element-content div.video-item {
     @media(max-width: 1220px) {
       width: 100%;
     }
+  }
+  div.iframe-container {
+    height: calc(480px / 1.777);
+    @media(max-width: 1440px) {
+      height: calc(400px / 1.777);
+    }
+    @media(max-width: 1220px) {
+      height: calc(320px / 1.777) !important;
+    }
+  }
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
   p.item-name {
     display: inline-block;
@@ -752,6 +768,13 @@ div.component-element-content div.video-item {
     @media(max-width: 1220px) {
       width: 100%;
     }
+    a {
+      color: $infoBlue;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
   div.input-box {
     width: calc(100% - 480px);
@@ -786,6 +809,47 @@ div.component-element-content div.video-item {
     &:hover {
       box-shadow: 0 0 16px rgba(0,0,0,.25);
       background-color: #f5f5f5;
+    }
+  }
+  div.video-align {
+    display: inline-block;
+    left: 62px;
+    top: 12px;
+    height: 38px;
+    width: auto;
+    position: absolute;
+    background: white;
+    border-radius: 19px;
+    overflow: hidden;
+    cursor: pointer;
+    span {
+      height: 38px;
+      width: 38px;
+      display: inline-block;
+      position: relative;
+      float: left;
+      background: white center no-repeat;
+      background-size: 16px;
+      border-right: 1px solid silver;
+      transition: .15s ease-in-out;
+      &:first-of-type {
+        padding-left: 6px;
+      }
+      &:last-of-type {
+        border-right: none;
+        padding-right: 6px;
+      }
+      &:hover {
+        background-color: #f5f5f5;
+      }
+      &.active {
+        background-color: #ebebeb;
+      }
+    }
+    box-shadow: 0 0 2px rgba(0,0,0,.15);
+    transition: .2s ease-in-out;
+    &:hover {
+      box-shadow: 0 0 16px rgba(0,0,0,.25);
     }
   }
 }

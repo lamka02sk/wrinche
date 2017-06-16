@@ -56,7 +56,7 @@
                 "type":"url",
                 "data-placeholder":"COMPONENT_CONTENT_VIDEO_INPUT",
                 "class":"input no-margin",
-                "name":"component_inline_picture_input"
+                "name":"component_inline_video_input"
               }
             },
 
@@ -84,6 +84,7 @@
                 "data-path": ""
               },
               "children": [
+
                 {
                   "element": "p",
                   "attributes": {
@@ -140,6 +141,40 @@
                   "attributes": {
                     "class": "item-remove"
                   }
+                },
+
+                {
+                  "element":"div",
+                  "attributes": {
+                    "class":"video-align"
+                  },
+                  "children": [
+
+                    {
+                      "element":"span",
+                      "attributes": {
+                        "class":"picture-align-option icon-align_left-picture",
+                        "data-value":"0"
+                      }
+                    },
+
+                    {
+                      "element":"span",
+                      "attributes": {
+                        "class":"picture-align-option icon-align_justify-picture active",
+                        "data-value":"1"
+                      }
+                    },
+
+                    {
+                      "element":"span",
+                      "attributes": {
+                        "class":"picture-align-option icon-align_right-picture",
+                        "data-value":"2"
+                      }
+                    }
+
+                  ]
                 }
               ]
             }
