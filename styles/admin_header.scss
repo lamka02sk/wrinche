@@ -522,6 +522,8 @@ div.fullscreen-popup.confirmation-box {
   width: 320px !important;
   height: auto;
   max-height: 100%;
+  border-radius: 25px;
+  overflow: hidden;
 }
 
 div.fullscreen-popup div.popup-header {

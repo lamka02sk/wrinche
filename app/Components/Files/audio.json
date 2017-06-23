@@ -19,66 +19,107 @@
   },
 
   "template": [
-
     {
-      "element":"button",
+      "element": "div",
       "attributes": {
-        "class":"button add-attachment icon-audio",
-        "data-content":"audio",
-        "data-locale":"COMPONENT_CONTENT_AUDIO_ADD"
-      }
-    },
-
-    {
-      "element":"template",
-      "attributes": {
-        "id":"template_component_content_audio_item"
+        "class": "component-element-content"
       },
       "children": [
 
         {
           "element":"div",
           "attributes": {
-            "class":"audio-item",
-            "data-path":""
+            "class":"input-box select-image"
           },
           "children": [
 
             {
-              "element":"p",
+              "element":"button",
               "attributes": {
-                "class":"item-name"
+                "class":"button inline-image_manager icon-audio",
+                "data-manager":"sounds"
+              }
+            },
+
+            {
+              "element":"input>",
+              "attributes": {
+                "type":"url",
+                "data-placeholder":"COMPONENT_CONTENT_AUDIO_INPUT",
+                "class":"input no-margin",
+                "name":"component_inline_audio_input"
               }
             },
 
             {
               "element":"span",
               "attributes": {
-                "class":"item-remove"
+                "class":"field-validation no-margin",
+                "data-locale":""
               }
-            },
+            }
+
+          ]
+        },
+
+        {
+          "element": "template",
+          "attributes": {
+            "id": "template_component_content_audio_item"
+          },
+          "children": [
 
             {
-              "element":"audio",
+              "element": "div",
               "attributes": {
-                "class":"item-player hidden",
-                "src":""
-              }
-            },
-
-            {
-              "element":"span",
-              "attributes": {
-                "class":"button button-play"
-              }
-            },
-
-            {
-              "element":"span",
-              "attributes": {
-                "class":"player-time"
+                "class": "audio-item",
+                "data-path": ""
               },
-              "text":""
+              "children": [
+
+                {
+                  "element":"audio",
+                  "attributes": {
+                    "src":""
+                  }
+                },
+
+                {
+                  "element": "span",
+                  "attributes": {
+                    "class": "button button-play icon-play"
+                  }
+                },
+
+                {
+                  "element": "span",
+                  "attributes": {
+                    "class": "button button-stop icon-stop"
+                  }
+                },
+
+                {
+                  "element": "p",
+                  "attributes": {
+                    "class": "item-name"
+                  }
+                },
+
+                {
+                  "element": "span",
+                  "attributes": {
+                    "class": "item-remove icon-trash"
+                  }
+                },
+
+                {
+                  "element": "span",
+                  "attributes": {
+                    "class": "player-time"
+                  }
+                }
+
+              ]
             }
 
           ]

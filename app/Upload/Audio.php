@@ -51,7 +51,8 @@ class Audio {
             'audio/x-flac'
         ],
         'm4a' => [
-            'audio/mp4'
+            'audio/mp4',
+            'audio/x-m4a'
         ],
         'm4b' => [
             'audio/x-m4b'

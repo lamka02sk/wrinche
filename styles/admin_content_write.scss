@@ -600,6 +600,76 @@ div.content-builder div.component-element div.component-element-content {
   }
 }
 
+div.component-element-content div.audio-item {
+  display: inline-block;
+  position: relative;
+  float: left;
+  text-align: left;
+  width: 100%;
+  height: auto;
+  audio {
+    display: none;
+  }
+  span.button-play, span.button-stop {
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin: 5px 0;
+    position: relative;
+    float: left;
+    background: center no-repeat;
+    background-size: 28px;
+    cursor: pointer;
+    &:hover {
+      background-color: #f5f5f5;
+    }
+    &:first-of-type {
+      margin-left: 5px;
+    }
+  }
+  p.item-name {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: 42px;
+    line-height: 42px;
+    float: left;
+    margin: 0 12px 0 0;
+    font-size: .92em;
+    color: $text-lightBlack;
+    padding-left: 6px;
+  }
+  span.item-remove {
+    display: block;
+    width: 42px;
+    height: 42px;
+    position: relative;
+    float: right;
+    background: center no-repeat;
+    background-size: 16px;
+    cursor: pointer;
+    opacity: .7;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  span.player-time {
+    display: inline-block;
+    width: auto;
+    height: 42px;
+    line-height: 43px;
+    font-size: .82em;
+    margin-right: 6px;
+    color: $text-lightBlack;
+    position: relative;
+    float: right;
+    opacity: .7;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
 div.component-element-content div.picture-image {
   position: relative;
   display: inline-block;
