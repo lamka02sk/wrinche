@@ -7,22 +7,37 @@
 
   "prototype": {
 
-      "code": {
-        "type":"string"
-      }
+    "code": {
+      "type":"string"
+    },
+
+    "code_language": {
+      "type":"integer",
+      "check":"programmingLanguages"
+    }
 
   },
 
   "template": [
 
     {
-      "element":"textarea",
-      "label":"component_inline_code",
+      "element": "div",
       "attributes": {
-        "class":"pre-textarea",
-        "name":"component_inline_code",
-        "data-placeholder":"COMPONENT_CONTENT_CODE_PLACEHOLDER"
-      }
+        "class": "component-element-content"
+      },
+      "children": [
+
+        {
+          "element": "textarea",
+          "label": "component_inline_code",
+          "attributes": {
+            "class": "pre-textarea",
+            "name": "component_inline_code",
+            "data-placeholder": "COMPONENT_CONTENT_CODE_PLACEHOLDER"
+          }
+        }
+
+      ]
     }
 
   ]

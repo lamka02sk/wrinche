@@ -306,11 +306,11 @@ div.subcontent-box {
   float: left;
 }
 
-div.subcontent-box div.half-box {
+div.half-box {
   position: relative;
   display: inline-block;
   float: left;
-  width: calc(50% - 6px);
+  width: calc(50% - 6px) !important;
   clear: none !important;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;

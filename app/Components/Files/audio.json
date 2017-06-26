@@ -7,7 +7,7 @@
 
   "prototype": {
 
-    "inline_audio": {
+    "audio": {
       "type":"string",
 
       "validate": {

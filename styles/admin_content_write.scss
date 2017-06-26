@@ -396,8 +396,10 @@ div.content-content textarea {
   padding: 8px 72px 6px 10px;
   resize: none;
   &.pre-textarea {
-    font-family: monospace;
-    font-size: 1.2em;
+    font-family: $font-monospace;
+    font-size: .88em;
+    line-height: 1.4;
+    min-height: 160px;
   }
   &.full {
      padding-right: 10px;
@@ -556,6 +558,7 @@ div.content-builder div.component-element div.component-element-header label.com
   color: $text-lightBlack;
   outline: none !important;
   text-align: center;
+  cursor: text;
 }
 
 div.content-builder div.component-element div.component-element-header span.component-control {
@@ -1483,6 +1486,14 @@ div.languages-list div.language-item, div.categories-list div.category-item {
   }
 }
 
+[data-component=code] #select-relative, [data-component=link] #select-relative {
+  display: block;
+  position: relative;
+  float: left;
+  width: 100%;
+  height: auto;
+}
+
 div.languages-list div.language-item p.language-name, div.categories-list div.category-item p.category-name {
   display: inline-block;
   position: relative;
@@ -1569,6 +1580,7 @@ span.password-show {
 
 div.selector-element#select-relative {
   height: auto !important;
+  position: relative !important;
   .selector-selected {
     height: 32px !important;
     float: left;
@@ -1650,5 +1662,43 @@ div.component-placeholder {
     visibility: hidden;
     opacity: 0;
     transform: scale(2);
+  }
+}
+
+div.component-align {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  clear: both;
+  float: left;
+  label {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 2px;
+  }
+  span {
+    display: block;
+    float: left;
+    height: 32px;
+    width: auto;
+    background: white no-repeat left 10px center;
+    background-size: 14px;
+    line-height: 32px;
+    border: 1px solid silver;
+    font-size: .92em;
+    color: $text-lightBlack;
+    border-right: none;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+    padding: 0 10px 0 32px;
+    &.active {
+      background-color: #f6f6f6;
+    }
+    &:hover {
+      background-color: #f0f0f0;
+    }
+    &:last-of-type {
+      border-right: 1px solid silver;
+    }
   }
 }
