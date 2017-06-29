@@ -59,8 +59,10 @@
   "COMPONENT_CONTENT_LINK_TARGET_NEW-WINDOW":"Nové okno",
 
   "COMPONENT_CONTENT_QUOTE_LABEL":"Citát",
-  "COMPONENT_CONTENT_QUOTE_INFO":"Vloží citát do obsahu",
-  "COMPONENT_CONTENT_QUOTE_PLACEHOLDER":"Napíšte citát",
+  "COMPONENT_CONTENT_QUOTE_TEXT_LABEL":"Text citátu",
+  "COMPONENT_CONTENT_QUOTE_TEXT_PLACEHOLDER":"\"Nechci byť človekom, ktorý je úspešný, ale človekom, ktorý za niečo stojí.\"",
+  "COMPONENT_CONTENT_QUOTE_AUTHOR_LABEL":"Autor",
+  "COMPONENT_CONTENT_QUOTE_AUTHOR_PLACEHOLDER":"\"Albert Einstein\"",
 
   "COMPONENT_CONTENT_GALLERY_LABEL":"Galéria",
   "COMPONENT_CONTENT_GALLERY_INFO":"Vloží galériu obrázkov do obsahu",

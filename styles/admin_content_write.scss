@@ -354,6 +354,12 @@ div.content-content input {
   &.no-margin {
     margin: 0;
   }
+  &.quote-author {
+    height: 34px !important;
+    background: white url('../assets/icons/minus.svg') left 8px center no-repeat !important;
+    background-size: 14px !important;
+    padding-left: 25px;
+  }
 }
 
 div.content-content div.selector-element {
@@ -1447,6 +1453,13 @@ div.tags-list p.tags-item {
     background-size: 10px;
     cursor: pointer;
   }
+}
+
+input[name=component_inline_quote_author] {
+  height: 34px !important;
+  margin: 0 !important;
+  background: white url('../assets/icons/minus.svg') left 10px center no-repeat !important;
+  background-size: 14px !important;
 }
 
 div.languages-list, div.categories-list {

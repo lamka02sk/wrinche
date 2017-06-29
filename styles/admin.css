@@ -1873,6 +1873,11 @@ div.content-content input {
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05); }
   div.content-content input.no-margin {
     margin: 0; }
+  div.content-content input.quote-author {
+    height: 34px !important;
+    background: white url("../assets/icons/minus.svg") left 8px center no-repeat !important;
+    background-size: 14px !important;
+    padding-left: 25px; }
 
 div.content-content div.selector-element {
   clear: both;
@@ -2843,6 +2848,12 @@ div.tags-list p.tags-item {
     background-size: 10px;
     cursor: pointer; }
 
+input[name=component_inline_quote_author] {
+  height: 34px !important;
+  margin: 0 !important;
+  background: white url("../assets/icons/minus.svg") left 10px center no-repeat !important;
+  background-size: 14px !important; }
+
 div.languages-list, div.categories-list {
   display: inline-block;
   position: relative;
@@ -3398,6 +3409,9 @@ div.content-tail {
       float: left;
       width: 100%;
       margin-right: 0; } }
+
+.italic {
+  font-style: italic !important; }
 
 div.media-manager {
   display: block;

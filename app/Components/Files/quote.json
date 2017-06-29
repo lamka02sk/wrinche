@@ -25,76 +25,78 @@
   "template": [
 
     {
-      "element":"label",
+      "element": "div",
       "attributes": {
-        "class":"small-label",
-        "for":"component_inline_quote_text",
-        "data-locale":"COMPONENT_CONTENT_QUOTE_TEXT_LABEL"
-      }
-    },
-
-    {
-      "element":"textarea",
-      "label":"component_inline_quote_text",
-      "attributes": {
-        "class":"small-textarea",
-        "name":"component_inline_quote_text",
-        "data-placeholder":"COMPONENT_CONTENT_QUOTE_TEXT_PLACEHOLDER"
-      }
-    },
-
-    {
-      "element":"label",
-      "attributes": {
-        "class":"small-label",
-        "for":"component_inline_quote_author",
-        "data-locale":"COMPONENT_CONTENT_QUOTE_AUTHOR_LABEL"
-      }
-    },
-
-    {
-      "element":"input>",
-      "label":"component_inline_quote_author",
-      "attributes": {
-        "class":"input",
-        "name":"component_inline_quote_author",
-        "data-placeholder":"COMPONENT_CONTENT_QUOTE_AUTHOR_PLACEHOLDER",
-        "type":"text"
-      }
-    },
-
-    {
-      "element":"div",
-      "attributes": {
-        "class":"quote-position"
+        "class": "component-element-content"
       },
       "children": [
 
         {
-          "element":"span",
+          "element":"textarea",
+          "label":"component_inline_quote_text",
           "attributes": {
-            "class":"position-item left-position",
-            "data-position":"0",
-            "data-locale":"COMPONENT_CONTENT_POSITION_LEFT"
+            "class":"small-textarea italic",
+            "name":"component_inline_quote_text",
+            "data-placeholder":"COMPONENT_CONTENT_QUOTE_TEXT_PLACEHOLDER"
           }
         },
 
         {
-          "element":"span",
+          "element": "div",
           "attributes": {
-            "class":"position-item right-position",
-            "data-position":"1",
-            "data-locale":"COMPONENT_CONTENT_POSITION_RIGHT"
-          }
+            "class": "component-align half-box"
+          },
+          "children": [
+
+            {
+              "element": "span",
+              "attributes": {
+                "class": "position-item icon-align_left-picture",
+                "data-position": "0",
+                "data-locale":"COMPONENT_POSITION_LEFT"
+              }
+            },
+
+            {
+              "element": "span",
+              "attributes": {
+                "class": "position-item icon-align_justify-picture active",
+                "data-position": "1",
+                "data-locale":"COMPONENT_POSITION_FULL"
+              }
+            },
+
+            {
+              "element": "span",
+              "attributes": {
+                "class": "position-item icon-align_right-picture",
+                "data-position": "2",
+                "data-locale":"COMPONENT_POSITION_RIGHT"
+              }
+            }
+
+          ]
         },
 
         {
-          "element":"span",
+          "element":"div",
           "attributes": {
-            "class":"position-item full-position",
-            "data-position":"2",
-            "data-locale":"COMPONENT_CONTENT_POSITION_FULL"
-          }
+            "class":"input-box half-box"
+          },
+          "children": [
+
+            {
+              "element":"input>",
+              "label":"component_inline_quote_author",
+              "attributes": {
+                "class":"input quote-author no-margin",
+                "name":"component_inline_quote_author",
+                "data-placeholder":"COMPONENT_CONTENT_QUOTE_AUTHOR_PLACEHOLDER",
+                "type":"text"
+              }
+            }
+
+          ]
         }
 
       ]

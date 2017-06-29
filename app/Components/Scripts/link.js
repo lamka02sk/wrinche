@@ -10,7 +10,8 @@ componentsModule.modules.link = {
             link: '',
             link_text: '',
             link_position: 1,
-            link_target: 0
+            link_target: 0,
+            disabled: 0
         };
 
         // Initialize target Selector
