@@ -25,10 +25,56 @@
   "template": [
 
     {
-      "element":"span",
+      "element":"div",
       "attributes": {
-        "class":"gallery-add-image"
-      }
+        "class":"component-element-content"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"input-box gallery-add-image"
+          },
+          "children": [
+
+            {
+              "element":"button",
+              "attributes": {
+                "class":"button inline-image_manager icon-image",
+                "data-manager":"images"
+              }
+            },
+
+            {
+              "element":"input>",
+              "attributes": {
+                "type":"url",
+                "data-placeholder":"COMPONENT_CONTENT_PICTURE_INPUT",
+                "class":"input no-margin",
+                "name":"component_inline_picture_input"
+              }
+            },
+
+            {
+              "element":"span",
+              "attributes": {
+                "class":"validate-message no-margin",
+                "data-locale":""
+              }
+            }
+
+          ]
+        },
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"gallery-items no-padding"
+          }
+        }
+
+      ]
     },
 
     {
@@ -66,16 +112,9 @@
             },
 
             {
-              "element":"p",
-              "attributes": {
-                "class":"gallery-item-name"
-              }
-            },
-
-            {
               "element":"span",
               "attributes": {
-                "class":"remove-gallery-item"
+                "class":"remove-gallery-item icon-trash"
               }
             }
 

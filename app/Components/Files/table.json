@@ -5,223 +5,226 @@
   "defaultElements":true,
   "header":"component_inline_header",
 
-  "prototype": {
-
-    "table": {
-      "type":"array",
-      "each": {
-        "type":"array",
-        "each": {
-          "type":"string"
-        }
-      }
-    },
-
-    "table_columns": {
-      "type":"array",
-      "each": {
-        "type":"string"
-      }
-    },
-
-    "table_rows": {
-      "type":"array",
-      "each": {
-        "type":"string"
-      }
-    }
-
-  },
+  "prototype": {},
 
   "template": [
 
     {
-      "element":"div",
+      "element": "div",
       "attributes": {
-        "class":"table-header"
+        "class": "component-element-content"
       },
       "children": [
 
         {
-          "element":"span",
+          "element":"div",
           "attributes": {
-            "class":"table-header-column"
-          }
+            "class":"input-box"
+          },
+          "children": [
+
+            {
+              "element":"input>",
+              "attributes": {
+                "class":"input full no-margin",
+                "type":"text",
+                "name":"component_inline_table_name",
+                "data-placeholder":"COMPONENT_CONTENT_TABLE_HEADING"
+              }
+            }
+
+          ]
         },
 
         {
-          "element":"span",
+          "element":"template",
           "attributes": {
-            "class":"table-header-column"
-          }
+            "id":"template_inline_table_components"
+          },
+          "children": [
+
+            {
+              "element":"table",
+              "children": [
+
+                {
+                  "element":"tr",
+                  "attributes": {
+                    "class":"table-header-row"
+                  }
+                },
+
+                {
+                  "element":"tr",
+                  "attributes": {
+                    "class":"table-action-row"
+                  }
+                },
+
+                {
+                  "element":"tr",
+                  "attributes": {
+                    "class":"table-row"
+                  }
+                },
+
+                {
+                  "element":"tr",
+                  "attributes": {
+                    "class":"rows"
+                  },
+                  "children": [
+
+                    {
+                      "element":"th",
+                      "attributes": {
+                        "contenteditable":"true"
+                      }
+                    },
+
+                    {
+                      "element":"td",
+                      "attributes": {
+                        "contenteditable":"true"
+                      }
+                    },
+
+                    {
+                      "element":"td",
+                      "attributes": {
+                        "class":"table-header-action-first"
+                      },
+                      "children": [
+
+                        {
+                          "element":"span",
+                          "attributes": {
+                            "class":"table-hide-column icon-hide",
+                            "data-column":""
+                          }
+                        },
+
+                        {
+                          "element":"span",
+                          "attributes": {
+                            "class":"table-new-column icon-add",
+                            "data-position":""
+                          }
+                        }
+
+                      ]
+                    },
+
+                    {
+                      "element":"td",
+                      "attributes": {
+                        "class":"table-header-action"
+                      },
+                      "children": [
+
+                        {
+                          "element":"span",
+                          "attributes": {
+                            "class":"table-hide-column icon-hide",
+                            "data-column":""
+                          }
+                        },
+
+                        {
+                          "element":"span",
+                          "attributes": {
+                            "class":"table-delete-column icon-trash",
+                            "data-column":""
+                          }
+                        },
+
+                        {
+                          "element":"span",
+                          "attributes": {
+                            "class":"table-new-column icon-add",
+                            "data-position":""
+                          }
+                        }
+
+                      ]
+                    },
+
+                    {
+                      "element":"td",
+                      "attributes": {
+                        "class":"table-aside-action-first"
+                      },
+                      "children": [
+
+                        {
+                          "element":"span",
+                          "attributes": {
+                            "class":"table-hide-row icon-hide",
+                            "data-row":""
+                          }
+                        }
+
+                      ]
+                    },
+
+                    {
+                      "element":"td",
+                      "attributes": {
+                        "class":"table-aside-action"
+                      },
+                      "children": [
+
+                        {
+                          "element":"span",
+                          "attributes": {
+                            "class":"table-hide-row icon-hide",
+                            "data-row":""
+                          }
+                        },
+
+                        {
+                          "element":"span",
+                          "attributes": {
+                            "class":"table-delete-row icon-trash",
+                            "data-row":""
+                          }
+                        },
+
+                        {
+                          "element":"span",
+                          "attributes": {
+                            "class":"table-new-row icon-add",
+                            "data-position":""
+                          }
+                        }
+
+                      ]
+                    }
+
+                  ]
+                }
+
+              ]
+            }
+
+          ]
         },
 
         {
-          "element":"span",
+          "element": "div",
           "attributes": {
-            "class":"table-header-add_column"
-          }
-        }
+            "class": "table-box"
+          },
+          "children": [
 
-      ]
-    },
+            {
+              "element":"span",
+              "attributes": {
+                "class":"table-add-button table-add-row icon-add"
+              }
+            }
 
-    {
-      "element":"div",
-      "attributes": {
-        "class":"table-row"
-      },
-      "children": [
-
-        {
-          "element":"span",
-          "attributes": {
-            "class":"table-column"
-          }
-        },
-
-        {
-          "element":"span",
-          "attributes": {
-            "class":"table-column"
-          }
-        },
-
-        {
-          "element":"span",
-          "attributes": {
-            "class":"table-remove_row"
-          }
-        }
-
-      ]
-    },
-
-    {
-      "element":"div",
-      "attributes": {
-        "class":"table-row"
-      },
-      "children": [
-
-        {
-          "element":"span",
-          "attributes": {
-            "class":"table-column"
-          }
-        },
-
-        {
-          "element":"span",
-          "attributes": {
-            "class":"table-column"
-          }
-        },
-
-        {
-          "element":"span",
-          "attributes": {
-            "class":"table-remove_row"
-          }
-        }
-
-      ]
-    },
-
-    {
-      "element":"div",
-      "attributes": {
-        "class":"table-footer"
-      },
-      "children": [
-
-        {
-          "element":"span",
-          "attributes": {
-            "class":"table-footer-remove_column"
-          }
-        },
-
-        {
-          "element":"span",
-          "attributes": {
-            "class":"table-footer-remove_column"
-          }
-        },
-
-        {
-          "element":"span",
-          "attributes": {
-            "class":"table-footer-add_row"
-          }
-        }
-
-      ]
-    },
-
-    {
-      "element":"template",
-      "attributes": {
-        "id":"template_component_content_table_add-row"
-      },
-      "children": [
-
-        {
-          "element":"span",
-          "attributes": {
-            "class":"table-footer-add_row"
-          }
-        }
-
-      ]
-    },
-
-    {
-      "element":"template",
-      "attributes": {
-        "id":"template_component_content_table_remove-row"
-      },
-      "children": [
-
-        {
-          "element":"span",
-          "attributes": {
-            "class":"table-remove_row"
-          }
-        }
-
-      ]
-    },
-
-    {
-      "element":"template",
-      "attributes": {
-        "id":"template_component_content_table_remove-column"
-      },
-      "children": [
-
-        {
-          "element":"span",
-          "attributes": {
-            "class":"table-footer-remove_column"
-          }
-        }
-
-      ]
-    },
-
-    {
-      "element":"template",
-      "attributes": {
-        "id":"template_component_content_table_remove-row"
-      },
-      "children": [
-
-        {
-          "element":"span",
-          "attributes": {
-            "class":"table-remove_row"
-          }
+          ]
         }
 
       ]

@@ -65,17 +65,15 @@
   "COMPONENT_CONTENT_QUOTE_AUTHOR_PLACEHOLDER":"\"Albert Einstein\"",
 
   "COMPONENT_CONTENT_GALLERY_LABEL":"Galéria",
-  "COMPONENT_CONTENT_GALLERY_INFO":"Vloží galériu obrázkov do obsahu",
-  "COMPONENT_CONTENT_GALLERY_BUTTON":"Pridať obrázok",
 
   "COMPONENT_CONTENT_NOTE_LABEL":"Poznámka",
   "COMPONENT_CONTENT_NOTE_INFO":"Vloží poznámku do obsahu",
   "COMPONENT_CONTENT_NOTE_PLACEHOLDER":"Napíšte poznámku",
 
   "COMPONENT_CONTENT_TABLE_LABEL":"Tabuľka",
-  "COMPONENT_CONTENT_TABLE_INFO":"Vloží tabuľku do obsahu",
-  "COMPONENT_CONTENT_TABLE_ADD_COLUMN":"Vložiť stĺpec",
-  "COMPONENT_CONTENT_TABLE_ADD_ROW":"Vložiť riadok",
+  "COMPONENT_CONTENT_TABLE_HEADING":"Názov tabuľky",
+  "COMPONENT_INLINE_TABLE_ROWS":"Zobraziť názvy riadkov",
+  "COMPONENT_INLINE_TABLE_COLUMNS":"Zobraziť názvy stĺpcov",
 
   "COMPONENT_CONTENT_LIST_LABEL":"Zoznam",
   "COMPONENT_CONTENT_LIST_INFO":"Vloží zoznam do obsahu",

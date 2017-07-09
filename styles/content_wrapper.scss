@@ -323,6 +323,18 @@ div.half-box {
   }
 }
 
+div.auto-box {
+  position: relative;
+  display: inline-block;
+  float: left;
+  width: auto !important;
+  clear: none !important;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-right: 24px;
+}
+
 // Action bar
 div.action-bar {
   display: inline-block;

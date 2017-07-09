@@ -21,50 +21,69 @@
   "template": [
 
     {
-      "element":"textarea",
-      "label":"component_inline_note",
-      "attributes": {
-        "class":"small-textarea",
-        "name":"component_inline_note",
-        "data-placeholder":"COMPONENT_CONTENT_NOTE_PLACEHOLDER"
-      }
-    },
-
-    {
       "element":"div",
       "attributes": {
-        "class":"note-position"
+        "class":"component-element-content"
       },
       "children": [
 
         {
-          "element":"span",
+          "element":"textarea",
+          "label":"component_inline_note",
           "attributes": {
-            "class":"position-item left-position",
-            "data-position":"0",
-            "data-locale":"COMPONENT_CONTENT_POSITION_LEFT"
+            "class":"small-textarea normal-padding",
+            "name":"component_inline_note",
+            "data-placeholder":"COMPONENT_CONTENT_NOTE_PLACEHOLDER"
           }
         },
 
         {
-          "element":"span",
+          "element": "div",
           "attributes": {
-            "class":"position-item right-position",
-            "data-position":"1",
-            "data-locale":"COMPONENT_CONTENT_POSITION_RIGHT"
-          }
-        },
+            "class": "component-align half-box"
+          },
+          "children": [
 
-        {
-          "element":"span",
-          "attributes": {
-            "class":"position-item full-position",
-            "data-position":"2",
-            "data-locale":"COMPONENT_CONTENT_POSITION_FULL"
-          }
+            {
+              "element": "label",
+              "attributes": {
+                "class": "small-label",
+                "data-locale": "COMPONENT_POSITION_LABEL"
+              }
+            },
+
+            {
+              "element": "span",
+              "attributes": {
+                "class": "position-item icon-align_left-picture",
+                "data-position": "0",
+                "data-locale":"COMPONENT_POSITION_LEFT"
+              }
+            },
+
+            {
+              "element": "span",
+              "attributes": {
+                "class": "position-item icon-align_justify-picture active",
+                "data-position": "1",
+                "data-locale":"COMPONENT_POSITION_FULL"
+              }
+            },
+
+            {
+              "element": "span",
+              "attributes": {
+                "class": "position-item icon-align_right-picture",
+                "data-position": "2",
+                "data-locale":"COMPONENT_POSITION_RIGHT"
+              }
+            }
+
+          ]
         }
 
       ]
+
     }
 
   ]
