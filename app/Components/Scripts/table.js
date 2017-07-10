@@ -132,28 +132,113 @@ componentsModule.modules.table = {
 
     },
 
-    addColumn: function(table, identifier, before) {
+    addColumn: function(table, identifier, afterID) {
+
+        let columnID = Math.random() * (999999 - 100000) + 100000;
+        if(afterID) {
+            let afterIndex = componentsModule.modules.table.data[identifier].table.order.columns.indexOf(parseFloat(afterID));
+            componentsModule.modules.table.data[identifier].table.order.columns.splice(afterIndex - 1, 0, columnID);
+        } else
+            componentsModule.modules.table.data[identifier].table.order.columns.push(columnID);
 
         let actionRow = table.querySelector('.table-action-row');
         let actionCell = componentsModule.modules.table.clones.headerActionCell.cloneNode(true);
+        actionCell.setAttribute('data-column', columnID.toString());
+
+        // Hide / Show column
+        actionCell.querySelector('.table-hide-column').addEventListener('click', function() {
+            this.parentNode.classList.toggle('hidden');
+            let status = componentsModule.modules.table.data[identifier].table.hidden.columns.indexOf(columnID);
+            if(status !== -1) componentsModule.modules.table.data[identifier].table.hidden.columns.splice(status, 1);
+            else componentsModule.modules.table.data[identifier].table.hidden.columns.push(columnID);
+            table.querySelectorAll('tr.table-row, tr.table-header-row').forEach(function(row) {
+                if(row.querySelector('[data-column="' + columnID + '"]'))
+                    row.querySelector('[data-column="' + columnID + '"]').classList.toggle('hidden');
+            });
+        });
+
+        // Delete column
+        actionCell.querySelector('.table-delete-column').addEventListener('click', function(event) {
+            event.target.parentNode.parentNode.parentNode.querySelectorAll('tr.table-row, tr.table-header-row').forEach(function(row) {
+                let cell = row.querySelector('td[data-column="' + columnID + '"], th[data-column="' + columnID + '"]');
+                row.removeChild(cell);
+            });
+            event.target.parentNode.parentNode.removeChild(event.target.parentNode);
+            --componentsModule.modules.table.data[identifier].dimensions[0];
+            delete componentsModule.modules.table.data[identifier].table.header[columnID];
+            let hiddenIndex = componentsModule.modules.table.data[identifier].table.hidden.columns.indexOf(columnID);
+            if(hiddenIndex !== -1) componentsModule.modules.table.data[identifier].table.hidden.columns.splice(hiddenIndex, 1);
+            let orderIndex = componentsModule.modules.table.data[identifier].table.order.columns.indexOf(columnID);
+            if(orderIndex !== -1) componentsModule.modules.table.data[identifier].table.order.columns.splice(orderIndex, 1);
+            for(let rowID in componentsModule.modules.table.data[identifier].table.rows)
+                delete componentsModule.modules.table.data[identifier].table.rows[rowID][columnID];
+        });
+
+        // New column after
+        actionCell.querySelector('.table-new-column').addEventListener('click', function() {
+             componentsModule.modules.table.addColumn(table, identifier, columnID);
+        });
 
         let headerRow = table.querySelector('.table-header-row');
         let headerCell = componentsModule.modules.table.clones.headerCell.cloneNode(true);
+        headerCell.setAttribute('data-column', columnID.toString());
 
         let contentRows = table.querySelectorAll('.table-row');
         let contentCell = componentsModule.modules.table.clones.contentCell.cloneNode(true);
+        contentCell.setAttribute('data-column', columnID.toString());
 
-        if(!before) {
+        componentsModule.initializeEvents([{
+            event: 'change keyup',
+            element: headerCell,
+            content: function(event) {
+                componentsModule.modules.table.data[identifier].table.header[columnID] = event.target.innerText.trim();
+            }
+        }]);
+
+        function serializeContent(identifier, rowID, clone) {
+
+            componentsModule.initializeEvents([{
+                event: 'change keyup',
+                element: clone,
+                content: function(event) {
+                    componentsModule.modules.table.data[identifier].table
+                        .rows[rowID][columnID] = event.target.innerText.trim();
+                }
+            }]);
+
+        }
+
+        if(!afterID) {
             actionRow.appendChild(actionCell);
             headerRow.appendChild(headerCell);
             contentRows.forEach(function(row) {
-                row.appendChild(contentCell.cloneNode(true));
+                let clone = contentCell.cloneNode(true);
+                let rowID = parseFloat(row.getAttribute('data-row'));
+                row.appendChild(clone);
+                serializeContent(identifier, rowID, clone);
             });
         } else {
-            actionRow.insertBefore(actionCell, before);
-            headerRow.insertBefore(headerCell, before);
+            let afterAction = actionRow.querySelector('[data-column="' + afterID + '"]');
+            let afterHeader = headerRow.querySelector('[data-column="' + afterID + '"]');
+            if(!afterAction || !afterHeader || !afterAction.nextSibling || !afterHeader.nextSibling) {
+                componentsModule.modules.table.addColumn(table, identifier);
+                return false;
+            }
+            actionRow.insertBefore(actionCell, afterAction.nextSibling);
+            headerRow.insertBefore(headerCell, afterHeader.nextSibling);
+            let done = false;
             contentRows.forEach(function(row) {
-                row.insertBefore(contentCell.cloneNode(true), before);
+                if(done) return false;
+                let afterCell = row.querySelector('[data-column="' + afterID + '"]');
+                if(!afterCell || !afterCell.nextSibling) {
+                    componentsModule.modules.table.addColumn(table, identifier);
+                    done = true;
+                    return false;
+                }
+                let clone = contentCell.cloneNode(true);
+                let rowID = parseFloat(row.getAttribute('data-row'));
+                row.insertBefore(clone, afterCell.nextSibling);
+                serializeContent(identifier, rowID, clone);
             });
         }
 
@@ -165,6 +250,14 @@ componentsModule.modules.table = {
     create: function(identifier, element) {
 
         let contentElement = element.querySelector('div.table-box');
+        componentsModule.initializeEvents([{
+            event: 'wheel',
+            element: contentElement,
+            content: function(event) {
+                this.scrollLeft -= -(event.deltaY * 20);
+                event.preventDefault();
+            }
+        }]);
 
         // Create table data
         componentsModule.modules.table.data[identifier] = {
@@ -227,6 +320,7 @@ componentsModule.modules.table = {
         // Create first column id
         let firstColumnID = Math.random() * (999999 - 100000) + 100000;
         componentsModule.modules.table.data[identifier].table.order.columns.push(firstColumnID);
+        actionRow.children[1].setAttribute('data-column', firstColumnID.toString());
 
         // Register hide event
         actionRow.children[1].children[0].addEventListener('click', function() {
@@ -241,7 +335,9 @@ componentsModule.modules.table = {
         });
 
         // Register add new column event
-        // ...
+        actionRow.querySelector('.table-new-column').addEventListener('click', function() {
+            componentsModule.modules.table.addColumn(table, identifier, firstColumnID);
+        });
 
         // ----------   **********
 
