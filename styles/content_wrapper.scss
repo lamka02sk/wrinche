@@ -321,6 +321,18 @@ div.half-box {
   &:nth-of-type(2n) {
     margin-left: 6px;
   }
+  &.no-margin-left {
+    margin-left: 0;
+  }
+  &.margin-right {
+    margin-right: 6px;
+  }
+  &.no-margin-right {
+    margin-right: 0;
+  }
+  &.margin-left {
+    margin-left: 6px;
+  }
 }
 
 div.auto-box {

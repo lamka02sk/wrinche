@@ -76,8 +76,13 @@
   "COMPONENT_INLINE_TABLE_COLUMNS":"Zobraziť názvy stĺpcov",
 
   "COMPONENT_CONTENT_LIST_LABEL":"Zoznam",
-  "COMPONENT_CONTENT_LIST_INFO":"Vloží zoznam do obsahu",
-  "COMPONENT_CONTENT_LIST_ADD":"Vložiť novú položku",
+  "COMPONENT_CONTENT_LIST_NAME_PLACEHOLDER":"Názov zoznamu",
+  "COMPONENT_LIST_TYPE_LABEL":"Typ zoznamu",
+  "COMPONENT_LIST_TYPE_BULLETS":"Odrážky",
+  "COMPONENT_LIST_TYPE_NUMBERS":"Číslovanie",
+  "COMPONENT_LIST_TYPE_CHECKLIST":"Kontrolný zoznam",
+  "COMPONENT_CONTENT_LIST_ADD":"Nová položka",
+  "COMPONENT_CONTENT_LIST_ITEM_PLACEHOLDER":"Nová položka",
 
   "COMPONENT_THUMBNAIL_LABEL":"Miniatúra",
   "COMPONENT_THUMBNAIL_INFO":"Miniatúra je malý obrázok, zobrazujúci sa vedľa odkazu na obsah",
