@@ -208,6 +208,11 @@
   "ADD_POLL":"Anketa",
 
   "CONTENT_BUILDER_HEADING":"Editor obsahu",
-  "EMPTY_CONTENT":"Pridajte komponentu"
+  "EMPTY_CONTENT":"Pridajte komponentu",
+
+  "WRITE_TOOLS":"Správa obsahu",
+  "WRITE_TOOLS_SAVE":"Uložiť",
+  "WRITE_TOOLS_PUBLISH":"Uložiť a publikovať",
+  "WRITE_TOOLS_PREVIEW":"Náhľad"
 
 }

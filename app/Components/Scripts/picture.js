@@ -176,7 +176,7 @@ componentsModule.modules.picture = {
     },
 
     serialize: function() {
-        return componentsModule.module.picture.data;
+        return componentsModule.modules.picture.data;
     }
 
 };

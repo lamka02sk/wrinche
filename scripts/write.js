@@ -68,18 +68,6 @@ if(tmp) {
 }
 tmp = undefined;
 
-/* Init CKEditor*/
-/*ckedit = CKEDITOR.replace('component_inline_rich-text', {
-    language: html.attr('lang'),
-    uiColor: '#ffffff'
-});*//*
-
-ckedit.on('instanceReady', function() {
-    packery.packery().reloadItems();
-});
-
-*/
-
 // Collapse / Show All Settings
 $('span.collapse-trigger').click(function(event) {
     event.target.parentNode.parentNode.parentNode.classList.toggle('open');

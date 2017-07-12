@@ -65,7 +65,15 @@ if(!App\Requests\Request::$ajax) {
 
         </div>
 
-        <div class="divider"></div>
+        <div class="content-tools">
+
+            <button class="publish-content tool-button button" data-locale="WRITE_TOOLS_PUBLISH"></button>
+            <button class="save-content tool-button button" data-locale="WRITE_TOOLS_SAVE"></button>
+            <button class="preview-content tool-button button" data-locale="WRITE_TOOLS_PREVIEW"></button>
+
+        </div>
+
+        <div class="sticky-shadow"></div>
 
         <?php if(isset($layoutsList['_content_'])): ?>
         <div class="content-builder">
