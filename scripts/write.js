@@ -32,37 +32,41 @@ packery = $('div.content-settings').packery({
 });
 
 // Init sortable
-sortable = Sortable.create(document.querySelector('div.content-builder-content'), {
-    sort: true,
-    animation: 200,
-    scroll: true,
-    draggable: '.component-element',
-    handle: '.component-inline-drag',
-    onChoose: function() {
-        let elements = document.querySelectorAll('div.component-placeholder');
-        elements.forEach(function(element) {
-            element.classList.remove('hide');
-        });
-    },
-    onStart: function(event) {
-        let identifier = event.item.attributes['data-id'].value;
-        if(CKEDITOR.instances['editor_' + identifier])
-            CKEDITOR.instances['editor_' + identifier].destroy();
-    },
-    onEnd: function(event) {
-        let element = event.item;
-        let identifier = element.attributes['data-id'].value;
-        let component = element.attributes['data-component'].value;
-        if(component in componentsModule.modules) {
-            if('reload' in componentsModule.modules[component])
-                componentsModule.modules[component].reload(identifier);
+tmp = document.querySelector('div.content-builder-content');
+if(tmp) {
+    sortable = Sortable.create(tmp, {
+        sort     : true,
+        animation: 200,
+        scroll   : true,
+        draggable: '.component-element',
+        handle   : '.component-inline-drag',
+        onChoose : function() {
+            let elements = document.querySelectorAll('div.component-placeholder');
+            elements.forEach(function(element) {
+                element.classList.remove('hide');
+            });
+        },
+        onStart  : function(event) {
+            let identifier = event.item.attributes['data-id'].value;
+            if(CKEDITOR.instances['editor_' + identifier])
+                CKEDITOR.instances['editor_' + identifier].destroy();
+        },
+        onEnd    : function(event) {
+            let element    = event.item;
+            let identifier = element.attributes['data-id'].value;
+            let component  = element.attributes['data-component'].value;
+            if(component in componentsModule.modules) {
+                if('reload' in componentsModule.modules[component])
+                    componentsModule.modules[component].reload(identifier);
+            }
+            let elements = document.querySelectorAll('div.component-placeholder');
+            elements.forEach(function(element) {
+                element.classList.add('hide');
+            });
         }
-        let elements = document.querySelectorAll('div.component-placeholder');
-        elements.forEach(function(element) {
-            element.classList.add('hide');
-        });
-    }
-});
+    });
+}
+tmp = undefined;
 
 /* Init CKEditor*/
 /*ckedit = CKEDITOR.replace('component_inline_rich-text', {
