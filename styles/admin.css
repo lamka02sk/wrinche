@@ -3356,15 +3356,15 @@ div.table-box {
     background: top 2px center no-repeat;
     background-size: 20px; }
 
-div.component-list_type span.position-item {
+div.component-list_type span.position-item, div.component-poll_type span.position-item {
   background-size: 19px;
   background-position: left 8px center; }
 
-div.component-inline-list-content {
+div.component-inline-list-content, div.component-inline-poll-content {
   margin-top: 12px;
   position: relative;
   border-top: 1px dotted #bdd9bf; }
-  div.component-inline-list-content div.list-item {
+  div.component-inline-list-content div.list-item, div.component-inline-list-content div.poll-item, div.component-inline-poll-content div.list-item, div.component-inline-poll-content div.poll-item {
     position: relative;
     float: left;
     display: inline-block;
@@ -3375,20 +3375,23 @@ div.component-inline-list-content {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     transition: .1s ease-in-out; }
-    div.component-inline-list-content div.list-item.chosen {
+    div.component-inline-list-content div.list-item.chosen, div.component-inline-list-content div.poll-item.chosen, div.component-inline-poll-content div.list-item.chosen, div.component-inline-poll-content div.poll-item.chosen {
       border: 2px solid #006ef0 !important;
       height: 40px; }
-    div.component-inline-list-content div.list-item:last-of-type {
+    div.component-inline-list-content div.list-item:last-of-type, div.component-inline-list-content div.poll-item:last-of-type, div.component-inline-poll-content div.list-item:last-of-type, div.component-inline-poll-content div.poll-item:last-of-type {
       border-bottom: none; }
-    div.component-inline-list-content div.list-item:nth-of-type(2n) {
+    div.component-inline-list-content div.list-item:nth-of-type(2n), div.component-inline-list-content div.poll-item:nth-of-type(2n), div.component-inline-poll-content div.list-item:nth-of-type(2n), div.component-inline-poll-content div.poll-item:nth-of-type(2n) {
       background: rgba(0, 0, 0, 0.02); }
-    div.component-inline-list-content div.list-item span.type-icon {
+    div.component-inline-list-content div.list-item span.type-icon, div.component-inline-list-content div.poll-item span.type-icon, div.component-inline-poll-content div.list-item span.type-icon, div.component-inline-poll-content div.poll-item span.type-icon {
       display: none;
       position: relative;
       float: left;
       width: 36px;
-      height: 100%; }
-      div.component-inline-list-content div.list-item span.type-icon.item-bullet:after {
+      height: 100%;
+      background: center no-repeat; }
+      div.component-inline-list-content div.list-item span.type-icon.item-radio, div.component-inline-list-content div.poll-item span.type-icon.item-radio, div.component-inline-poll-content div.list-item span.type-icon.item-radio, div.component-inline-poll-content div.poll-item span.type-icon.item-radio {
+        background-size: 20px; }
+      div.component-inline-list-content div.list-item span.type-icon.item-bullet:after, div.component-inline-list-content div.poll-item span.type-icon.item-bullet:after, div.component-inline-poll-content div.list-item span.type-icon.item-bullet:after, div.component-inline-poll-content div.poll-item span.type-icon.item-bullet:after {
         content: '';
         position: absolute;
         left: 50%;
@@ -3399,27 +3402,19 @@ div.component-inline-list-content {
         height: 7px;
         width: 7px;
         background: #323232; }
-      div.component-inline-list-content div.list-item span.type-icon.item-number {
+      div.component-inline-list-content div.list-item span.type-icon.item-number, div.component-inline-list-content div.poll-item span.type-icon.item-number, div.component-inline-poll-content div.list-item span.type-icon.item-number, div.component-inline-poll-content div.poll-item span.type-icon.item-number {
         font-size: 1em;
         font-weight: 500;
         line-height: 36px;
         text-align: center;
         color: #323232; }
-      div.component-inline-list-content div.list-item span.type-icon.item-check:before {
-        cursor: pointer;
-        content: '';
-        position: absolute;
-        display: block;
-        width: 12px;
-        height: 12px;
-        border: 2px solid #323232;
-        top: 50%;
-        left: 50%;
-        transform: translateY(-50%) translateX(-50%); }
-      div.component-inline-list-content div.list-item span.type-icon.item-check.checked:before {
-        background: url("../assets/icons/success_black.svg") center no-repeat;
-        background-size: 14px; }
-    div.component-inline-list-content div.list-item p.item-text {
+      div.component-inline-list-content div.list-item span.type-icon.item-check, div.component-inline-list-content div.list-item span.type-icon.item-checkbox, div.component-inline-list-content div.poll-item span.type-icon.item-check, div.component-inline-list-content div.poll-item span.type-icon.item-checkbox, div.component-inline-poll-content div.list-item span.type-icon.item-check, div.component-inline-poll-content div.list-item span.type-icon.item-checkbox, div.component-inline-poll-content div.poll-item span.type-icon.item-check, div.component-inline-poll-content div.poll-item span.type-icon.item-checkbox {
+        background: url("../assets/icons/checkbox_empty.svg") center no-repeat;
+        background-size: 22px; }
+        div.component-inline-list-content div.list-item span.type-icon.item-check.checked, div.component-inline-list-content div.list-item span.type-icon.item-checkbox.checked, div.component-inline-list-content div.poll-item span.type-icon.item-check.checked, div.component-inline-list-content div.poll-item span.type-icon.item-checkbox.checked, div.component-inline-poll-content div.list-item span.type-icon.item-check.checked, div.component-inline-poll-content div.list-item span.type-icon.item-checkbox.checked, div.component-inline-poll-content div.poll-item span.type-icon.item-check.checked, div.component-inline-poll-content div.poll-item span.type-icon.item-checkbox.checked {
+          background: url("../assets/icons/checkbox.svg") center no-repeat;
+          background-size: 22px; }
+    div.component-inline-list-content div.list-item p.item-text, div.component-inline-list-content div.poll-item p.item-text, div.component-inline-poll-content div.list-item p.item-text, div.component-inline-poll-content div.poll-item p.item-text {
       display: inline-block;
       position: relative;
       width: calc(100% - 108px);
@@ -3430,11 +3425,14 @@ div.component-inline-list-content {
       color: #323232;
       line-height: 37px;
       margin: 0;
-      padding: 0; }
-      div.component-inline-list-content div.list-item p.item-text.item-text-placeholder {
+      padding: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; }
+      div.component-inline-list-content div.list-item p.item-text.item-text-placeholder, div.component-inline-list-content div.poll-item p.item-text.item-text-placeholder, div.component-inline-poll-content div.list-item p.item-text.item-text-placeholder, div.component-inline-poll-content div.poll-item p.item-text.item-text-placeholder {
         color: #505050;
         font-style: italic; }
-    div.component-inline-list-content div.list-item span.item-action {
+    div.component-inline-list-content div.list-item span.item-action, div.component-inline-list-content div.poll-item span.item-action, div.component-inline-poll-content div.list-item span.item-action, div.component-inline-poll-content div.poll-item span.item-action {
       display: inline-block;
       position: relative;
       float: right;
@@ -3444,14 +3442,14 @@ div.component-inline-list-content {
       background-size: 19px;
       opacity: .7;
       cursor: pointer; }
-      div.component-inline-list-content div.list-item span.item-action:hover {
+      div.component-inline-list-content div.list-item span.item-action:hover, div.component-inline-list-content div.poll-item span.item-action:hover, div.component-inline-poll-content div.list-item span.item-action:hover, div.component-inline-poll-content div.poll-item span.item-action:hover {
         opacity: 1; }
-      div.component-inline-list-content div.list-item span.item-action.list-item-move {
+      div.component-inline-list-content div.list-item span.item-action.list-item-move, div.component-inline-list-content div.list-item span.item-action.poll-item-move, div.component-inline-list-content div.poll-item span.item-action.list-item-move, div.component-inline-list-content div.poll-item span.item-action.poll-item-move, div.component-inline-poll-content div.list-item span.item-action.list-item-move, div.component-inline-poll-content div.list-item span.item-action.poll-item-move, div.component-inline-poll-content div.poll-item span.item-action.list-item-move, div.component-inline-poll-content div.poll-item span.item-action.poll-item-move {
         background-size: 14px;
         transition: .1s ease-in-out; }
-        div.component-inline-list-content div.list-item span.item-action.list-item-move:active {
+        div.component-inline-list-content div.list-item span.item-action.list-item-move:active, div.component-inline-list-content div.list-item span.item-action.poll-item-move:active, div.component-inline-list-content div.poll-item span.item-action.list-item-move:active, div.component-inline-list-content div.poll-item span.item-action.poll-item-move:active, div.component-inline-poll-content div.list-item span.item-action.list-item-move:active, div.component-inline-poll-content div.list-item span.item-action.poll-item-move:active, div.component-inline-poll-content div.poll-item span.item-action.list-item-move:active, div.component-inline-poll-content div.poll-item span.item-action.poll-item-move:active {
           background-size: 23px; }
-  div.component-inline-list-content[data-type="0"] span.item-bullet, div.component-inline-list-content[data-type="1"] span.item-number, div.component-inline-list-content[data-type="2"] span.item-check {
+  div.component-inline-list-content[data-type="0"] span.item-bullet, div.component-inline-list-content[data-type="0"] span.item-radio, div.component-inline-list-content[data-type="1"] span.item-number, div.component-inline-list-content[data-type="1"] span.item-checkbox, div.component-inline-list-content[data-type="2"] span.item-check, div.component-inline-poll-content[data-type="0"] span.item-bullet, div.component-inline-poll-content[data-type="0"] span.item-radio, div.component-inline-poll-content[data-type="1"] span.item-number, div.component-inline-poll-content[data-type="1"] span.item-checkbox, div.component-inline-poll-content[data-type="2"] span.item-check {
     display: inline-block !important; }
 
 div.subcontent-box.input-box {
@@ -4286,6 +4284,15 @@ div.manager-queue.loading span.loading {
 
 .icon-checklist {
   background-image: url("../assets/icons/checklist.svg") !important; }
+
+.icon-checkbox {
+  background-image: url("../assets/icons/checkbox.svg") !important; }
+
+.icon-checkbox_empty {
+  background-image: url("../assets/icons/checkbox_empty.svg") !important; }
+
+.icon-radio {
+  background-image: url("../assets/icons/radio.svg") !important; }
 
 .icon-on {
   background-image: url("../assets/icons/on.svg") !important; }

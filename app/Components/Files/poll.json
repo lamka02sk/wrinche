@@ -14,12 +14,183 @@
   "template": [
 
     {
-      "element":"test",
+      "element": "div",
       "attributes": {
-        "for":"component_inline_heading",
-        "class":"small-label",
-        "data-locale":"COMPONENT_CONTENT_HEADING_TYPE"
-      }
+        "class": "component-element-content"
+      },
+      "children": [
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"input-box"
+          },
+          "children": [
+
+            {
+              "element":"label",
+              "attributes": {
+                "for":"component_inline_poll_name",
+                "class":"small-label",
+                "data-locale":"COMPONENT_CONTENT_POLL_NAME_PLACEHOLDER"
+              }
+            },
+
+            {
+              "element":"input>",
+              "label":"component_inline_poll_name",
+              "attributes": {
+                "class":"input full",
+                "type":"text",
+                "name":"component_inline_poll_name",
+                "data-placeholder":"COMPONENT_CONTENT_POLL_NAME_PLACEHOLDER"
+              }
+            }
+
+          ]
+        },
+
+        {
+          "element": "div",
+          "attributes": {
+            "class": "component-align component-poll_type half-box no-margin-left margin-right"
+          },
+          "children": [
+
+            {
+              "element": "label",
+              "attributes": {
+                "class": "small-label",
+                "data-locale": "COMPONENT_POLL_TYPE_LABEL"
+              }
+            },
+
+            {
+              "element": "span",
+              "attributes": {
+                "class": "position-item icon-radio active",
+                "data-position": "0",
+                "data-locale":"COMPONENT_POLL_TYPE_RADIO"
+              }
+            },
+
+            {
+              "element": "span",
+              "attributes": {
+                "class": "position-item icon-checkbox",
+                "data-position": "1",
+                "data-locale":"COMPONENT_POLL_TYPE_CHECK"
+              }
+            }
+
+          ]
+        },
+
+        {
+          "element": "div",
+          "attributes": {
+            "class": "component-align component-poll_align half-box no-margin-right margin-left"
+          },
+          "children": [
+
+            {
+              "element": "label",
+              "attributes": {
+                "class": "small-label",
+                "data-locale": "COMPONENT_POSITION_LABEL"
+              }
+            },
+
+            {
+              "element": "span",
+              "attributes": {
+                "class": "position-item icon-align_left-picture",
+                "data-position": "0",
+                "data-locale":"COMPONENT_POSITION_LEFT"
+              }
+            },
+
+            {
+              "element": "span",
+              "attributes": {
+                "class": "position-item icon-align_justify-picture active",
+                "data-position": "1",
+                "data-locale":"COMPONENT_POSITION_FULL"
+              }
+            },
+
+            {
+              "element": "span",
+              "attributes": {
+                "class": "position-item icon-align_right-picture",
+                "data-position": "2",
+                "data-locale":"COMPONENT_POSITION_RIGHT"
+              }
+            }
+
+          ]
+        },
+
+        {
+          "element":"div",
+          "attributes": {
+            "class":"input-box component-inline-poll-content",
+            "data-type":"0"
+          },
+          "children": [
+
+            {
+              "element":"div",
+              "attributes": {
+                "class":"poll-item",
+                "data-item":"0"
+              },
+              "children": [
+
+                {
+                  "element":"span",
+                  "attributes": {
+                    "class":"type-icon item-radio icon-radio"
+                  }
+                },
+
+                {
+                  "element":"span",
+                  "attributes": {
+                    "class":"item-checkbox type-icon icon-checkbox"
+                  }
+                },
+
+                {
+                  "element":"p",
+                  "attributes": {
+                    "contenteditable":"true",
+                    "class":"item-text item-text-placeholder",
+                    "data-locale":"COMPONENT_CONTENT_POLL_ITEM_PLACEHOLDER"
+                  }
+                },
+
+                {
+                  "element":"span",
+                  "attributes": {
+                    "class":"poll-item-move icon-drag item-action"
+                  }
+                },
+
+                {
+                  "element":"span",
+                  "attributes": {
+                    "class":"poll-item-delete icon-close item-action"
+                  }
+                }
+
+              ]
+            }
+
+          ]
+        }
+
+      ]
     }
 
   ]

@@ -205,6 +205,12 @@
 
   "COMPONENT_ANALYTICS_LABEL":"Štatistiky",
   "COMPONENT_ANALYTICS_INFO":"Štatistiky slúžia na vytvorenie prehľadu informácií o čitateľoch, ktoré môžete použiť pre lepšie zacielenie obsahu",
-  "COMPONENT_ANALYTICS_DETAILS_LABEL":"Rozšírené štatistiky"
+  "COMPONENT_ANALYTICS_DETAILS_LABEL":"Rozšírené štatistiky",
+
+  "COMPONENT_CONTENT_POLL_NAME_PLACEHOLDER":"Názov ankety",
+  "COMPONENT_POLL_TYPE_LABEL":"Typ ankety",
+  "COMPONENT_POLL_TYPE_RADIO":"Jediná možnosť",
+  "COMPONENT_POLL_TYPE_CHECK":"Viacero možností",
+  "COMPONENT_CONTENT_POLL_ITEM_PLACEHOLDER":"Nová odpoveď"
 
 }

@@ -2039,16 +2039,16 @@ div.table-box {
   }
 }
 
-div.component-list_type span.position-item {
+div.component-list_type span.position-item, div.component-poll_type span.position-item {
   background-size: 19px;
   background-position: left 8px center;
 }
 
-div.component-inline-list-content {
+div.component-inline-list-content, div.component-inline-poll-content {
   margin-top: 12px;
   position: relative;
   border-top: 1px dotted $themeGrey;
-  div.list-item {
+  div.list-item, div.poll-item {
     position: relative;
     float: left;
     display: inline-block;
@@ -2075,6 +2075,10 @@ div.component-inline-list-content {
       float: left;
       width: 36px;
       height: 100%;
+      background: center no-repeat;
+      &.item-radio {
+        background-size: 20px;
+      }
       &.item-bullet {
         &:after {
           content: '';
@@ -2096,24 +2100,12 @@ div.component-inline-list-content {
         text-align: center;
         color: $text-lightBlack;
       }
-      &.item-check {
-        &:before {
-          cursor: pointer;
-          content: '';
-          position: absolute;
-          display: block;
-          width: 12px;
-          height: 12px;
-          border: 2px solid $text-lightBlack;
-          top: 50%;
-          left: 50%;
-          transform: translateY(-50%) translateX(-50%); 
-        }
+      &.item-check, &.item-checkbox {
+        background: url('../assets/icons/checkbox_empty.svg') center no-repeat;
+        background-size: 22px;
         &.checked {
-          &:before {
-            background: url('../assets/icons/success_black.svg') center no-repeat;
-            background-size: 14px;
-          }
+          background: url('../assets/icons/checkbox.svg') center no-repeat;
+          background-size: 22px;
         }
       }
     }
@@ -2129,6 +2121,9 @@ div.component-inline-list-content {
       line-height: 37px;
       margin: 0;
       padding: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       &.item-text-placeholder {
         color: $text-darkGrey;
         font-style: italic;
@@ -2147,7 +2142,7 @@ div.component-inline-list-content {
       &:hover {
         opacity: 1;
       }
-      &.list-item-move {
+      &.list-item-move, &.poll-item-move {
         background-size: 14px;
         transition: .1s ease-in-out;
         &:active {
@@ -2156,7 +2151,7 @@ div.component-inline-list-content {
       }
     }
   }
-  &[data-type="0"] span.item-bullet, &[data-type="1"] span.item-number, &[data-type="2"] span.item-check {
+  &[data-type="0"] span.item-bullet, &[data-type="0"] span.item-radio, &[data-type="1"] span.item-number, &[data-type="1"] span.item-checkbox, &[data-type="2"] span.item-check {
     display: inline-block !important;
   }
 }
