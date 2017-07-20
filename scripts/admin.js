@@ -117,6 +117,15 @@ function postData(link, data, callback) {
     responseBox.classList.add('open');
     responseBox.querySelector('span.message-content').innerHTML = translate['locale']['admin_header']['HEADER_LOADING'];
 
+    // Hide loading message
+    function hideLoadingMessage() {
+        setTimeout(function() {
+            responseBox.classList.remove('loading');
+            responseBox.classList.remove('open');
+            responseBox.querySelector('span.message-content').innerHTML = '';
+        }, 400);
+    }
+
     // Send post
     data['csrf_token'] = document.querySelector('meta[name=csrf_token]').getAttribute('content');
     $.ajax({
@@ -126,9 +135,11 @@ function postData(link, data, callback) {
         async  : false,
         success: function(response) {
             callback(response, 'success');
+            hideLoadingMessage();
         },
         error  : function(response) {
             callback(response, 'error');
+            hideLoadingMessage();
         }
     });
 
@@ -223,7 +234,6 @@ setInterval(function() {
         '*',
         function(response) {
             csrf_token = response.data;
-            console.log(csrf_token);
             document.querySelector('meta[name=csrf_token').setAttribute('content', response.data);
         },
         function() {
@@ -234,7 +244,7 @@ setInterval(function() {
             });
         }
     );
-}, 3555555);
+}, 1200000);
 
 // Root URL
 let root = window.location.href;

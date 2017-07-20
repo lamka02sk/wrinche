@@ -11,6 +11,7 @@ class ComponentsModel extends MainModel {
     public static $componentsList = [];
     public static $components = [];
     public static $renders = [];
+    public static $globalPrototype = [];
 
     public $currentComponent;
 
@@ -37,6 +38,17 @@ class ComponentsModel extends MainModel {
 
     }
 
+    public function preloadGlobalPrototype() {
+
+        if(!empty(self::$globalPrototype))
+            return false;
+
+        $json = file_get_contents(ROOT. '/app/Components/_proto_.json');
+        self::$globalPrototype = json_decode($json, true);
+        return true;
+
+    }
+
     public function preloadComponentsList() {
 
         $json = file_get_contents(ROOT . '/app/Components/components.json');
@@ -52,6 +64,8 @@ class ComponentsModel extends MainModel {
     }
 
     public function preloadComponent(string $component) {
+
+        $this->preloadGlobalPrototype();
 
         if(isset(self::$components[$component]))
             return false;

@@ -46,7 +46,7 @@ componentsModule.modules.categories = {
     },
 
     serialize: function() {
-        return componentsModule.modules.categories.data.categories;
+        return componentsModule.modules.categories.data;
     },
 
     events: [

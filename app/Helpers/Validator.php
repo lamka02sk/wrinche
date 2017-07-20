@@ -9,6 +9,8 @@
 
 namespace App\Helpers;
 
+use \DateTime;
+
 class Validator {
 
     /**
@@ -18,12 +20,7 @@ class Validator {
      * Validate string with any built-in filter.
      */
     private function filterValidate($string, $filter) {
-
-        if(!filter_var($string, $filter))
-            return false;
-
-        return true;
-
+        return (filter_var($string, $filter));
     }
 
     /**
@@ -34,13 +31,8 @@ class Validator {
      * Validate custom string length.
      */
     public function validateStringLength($string, $min, $max) {
-
         $length = strlen(trim($string));
-        if($length < $min || $length > $max)
-            return false;
-
-        return true;
-
+        return (!($length < $min || $length > $max));
     }
 
     /*
@@ -58,10 +50,7 @@ class Validator {
             return false;
 
         $regex = '/^([a-zA-Z0-9]+)$/';
-        if(!preg_match($regex, $username))
-            return false;
-
-        return true;
+        return (preg_match($regex, $username));
 
     }
 
@@ -71,10 +60,7 @@ class Validator {
      * Validate email.
      */
     public function validateEmail($email) {
-
         return $this->filterValidate($email, FILTER_VALIDATE_EMAIL);
-
-
     }
 
     /**
@@ -83,12 +69,7 @@ class Validator {
      * Validate password.
      */
     public function validatePassword($password) {
-
-        if(!$this->validateStringLength($password, 8, 45) || !preg_match('/[0-9]/', $password))
-            return false;
-
-        return true;
-
+        return ($this->validateStringLength($password, 8, 45) || !preg_match('/[0-9]/', $password));
     }
 
     /**
@@ -302,7 +283,7 @@ class Validator {
      */
     public function validateTagName(string $tag) {
 
-        if(!preg_match('/^[a-zA-Z][a-zA-Z0-9_]+[a-zA-Z0-9]$/', $tag))
+        if(!preg_match('/^[a-zA-Z]([a-zA-Z0-9_\s,]+)?[a-zA-Z0-9]$/', $tag))
             return false;
 
         return true;
@@ -320,6 +301,81 @@ class Validator {
             return false;
 
         return true;
+
+    }
+
+    public function isPastDate(string $time) {
+
+        if($time === 'false') return true;
+        $timestamp = DateTime::createFromFormat('d.m.Y h:i', $time . ' 0:00')->getTimestamp();
+        $now = (new DateTime)->getTimestamp();
+        return ($now > $timestamp);
+
+    }
+
+    /**
+     * @param string $time
+     * Validate past time
+     * @return bool
+     */
+    public function isPastTimeStamp(string $time) {
+
+        if($time === 'false') return true;
+        $timestamp = DateTime::createFromFormat('d.m.Y h:i:s', $time)->getTimestamp();
+        $now = (new DateTime)->getTimestamp();
+        return ($now > $timestamp);
+
+    }
+
+    /**
+     * @param string $time
+     * Validate future time
+     * @return bool
+     */
+    public function isFutureTimeStamp(string $time) {
+
+        if($time === 'false') return true;
+        $timestamp = DateTime::createFromFormat('d.m.Y h:i:s', $time)->getTimestamp();
+        $now = (new DateTime)->getTimestamp();
+        return ($now <= $timestamp);
+
+    }
+
+    /**
+     * @param string $link
+     * Validate image URI
+     * @return bool
+     */
+    public function isImage(string $link) {
+
+        $size = getimagesize($link);
+        return (strtolower(substr($size['mime'], 0, 5)) == 'image' ? true : false);
+
+    }
+
+    /**
+     * @param string $path
+     * Validate YouTube video URI
+     * @return bool
+     */
+    public function validateYouTubeUrl(string $path) {
+
+        $url = $this->validateUrl($path);
+        $youtube = (preg_match('/(https?:\/\/.*?youtube\.com)\/watch\?v=(.*)/igm', $path));
+        return ($url && $youtube);
+
+    }
+
+    /**
+     * @param string $path
+     * Validate Vimeo video URI
+     * @return bool
+     */
+    public function validateVimeoUrl(string $path) {
+
+        $url = $this->validateUrl($path);
+        $vimeo = (preg_match('/^((?:https?:)?\/\/)?((?:www|m|player)\.)?((?:vimeo\.com))(?:$|\/|)(\S+)?$/gm', $path));
+        return ($url && $vimeo);
 
     }
 

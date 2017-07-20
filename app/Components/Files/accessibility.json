@@ -8,23 +8,13 @@
   "prototype": {
 
     "accessibility_selector": {
-      "type":"integer",
-      "range":"0,3",
+      "type":"string",
+      "range":"0,3"
+    },
 
-      "if": [
-        {
-          "equals":"1",
-          "prototype": {
-
-            "accessibility_password": {
-              "type":"string",
-              "length":"0,120"
-            }
-
-          }
-        }
-      ]
-
+    "accessibility_password": {
+      "type":"string",
+      "length":"0,120"
     }
 
   },

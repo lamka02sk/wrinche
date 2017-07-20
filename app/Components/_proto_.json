@@ -1,0 +1,13 @@
+{
+
+  "title": {
+    "type":"string",
+    "length":"0,120"
+  },
+
+  "disabled": {
+    "type":"string",
+    "range":"0,2"
+  }
+
+}

@@ -35,6 +35,7 @@ class UserEvents {
         11 => 'Function undefined',
         12 => 'Input with the same values already exists.',
         13 => 'Category does not exist',
+        14 => 'Post type does not exists',
 
         20 => 'Unsupported image format',
         21 => 'Invalid image',

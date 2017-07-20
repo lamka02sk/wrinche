@@ -8,49 +8,31 @@
   "prototype": {
 
     "planner": {
-      "type":"boolean",
+      "type":"boolean"
+    },
 
-      "if": [
-        {
-          "equals":false,
-          "prototype": {
+    "planner_date": {
+      "type":"string|boolean",
+      "validate": {
+        "source":"validator",
+        "method":"isFutureTimestamp"
+      }
+    },
 
-            "planner_date": {
-              "type":"string",
-              "validate": {
-                "source":"validate",
-                "method":"isFutureTimestamp"
-              }
-            },
+    "planner_expiry": {
+      "type":"string|boolean",
+      "validate": {
+        "source":"validator",
+        "method":"isFutureTimestamp"
+      }
+    },
 
-            "planner_expiry": {
-              "type":"string",
-              "validate": {
-                "source":"validate",
-                "method":"isFutureTimestamp"
-              }
-            },
+    "planner_notify": {
+      "type":"boolean"
+    },
 
-            "planner_notify": {
-              "type":"boolean",
-
-              "if": [
-                {
-                  "equals":true,
-                  "prototype": {
-
-                    "planner_notify_email": {
-                      "type":"boolean"
-                    }
-
-                  }
-                }
-              ]
-            }
-
-          }
-        }
-      ]
+    "planner_notify_email": {
+      "type":"boolean"
     }
 
   },

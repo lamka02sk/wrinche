@@ -1,15 +1,15 @@
 componentsModule.modules.excerpt = {
 
     data: {
-        value: ''
+        excerpt: ''
     },
 
     validate: function() {
-        return (componentsModule.modules.excerpt.data.value.length < 361);
+        return (componentsModule.modules.excerpt.data.excerpt.length < 361);
     },
 
     serialize: function() {
-        return componentsModule.modules.excerpt.data.value;
+        return componentsModule.modules.excerpt.data;
     },
 
     events: [
@@ -19,7 +19,7 @@ componentsModule.modules.excerpt = {
             event: 'change keyup',
             element: document.querySelector('textarea[name=component_excerpt]'),
             content: function(event) {
-                componentsModule.modules.excerpt.data.value = event.target.value.trim();
+                componentsModule.modules.excerpt.data.excerpt = event.target.value.trim();
             }
         }
 

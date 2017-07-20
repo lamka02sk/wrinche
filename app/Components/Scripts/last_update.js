@@ -12,7 +12,7 @@ componentsModule.modules.last_update = {
     },
 
     serialize: function() {
-        return componentsModule.modules.last_update.data.last_update;
+        return componentsModule.modules.last_update.data;
     },
     
     events: [

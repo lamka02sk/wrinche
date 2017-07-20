@@ -1,15 +1,15 @@
 componentsModule.modules.pin = {
 
     data: {
-        value: false
+        pin: false
     },
 
     validate: function() {
-        return (typeof componentsModule.modules.pin.data.value === 'boolean');
+        return (typeof componentsModule.modules.pin.data.pin === 'boolean');
     },
 
     serialize: function() {
-        return componentsModule.modules.pin.data.value;
+        return componentsModule.modules.pin.data;
     },
 
     events: [
@@ -19,7 +19,7 @@ componentsModule.modules.pin = {
             event: 'change',
             element: document.querySelector('input[name=component_pin]'),
             content: function(event) {
-                componentsModule.modules.pin.data.value = !!(event.target.checked);
+                componentsModule.modules.pin.data.pin = !!(event.target.checked);
             }
         }
 

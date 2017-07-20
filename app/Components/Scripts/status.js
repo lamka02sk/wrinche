@@ -25,7 +25,7 @@ componentsModule.modules.status = {
     },
 
     serialize: function() {
-        return componentsModule.modules.status.data.status;
+        return componentsModule.modules.status.data;
     }
 
 };

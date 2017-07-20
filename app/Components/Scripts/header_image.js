@@ -4,7 +4,7 @@ componentsModule.modules.header_image = {
     valid: false,
 
     data: {
-        path: ''
+        header_image: ''
     },
 
     removeThis: function(parentElement) {
@@ -27,7 +27,7 @@ componentsModule.modules.header_image = {
             path = 'app/Data/Files/Images/' + path;
 
         // Save thumbnail path to serialize
-        componentsModule.modules.header_image.data.path = path;
+        componentsModule.modules.header_image.data.header_image = path;
 
         // Create new template instance for thumbnail
         let template = parentElement.querySelector('#template_component_header-image_image').childNodes[0].cloneNode(true);
@@ -49,7 +49,7 @@ componentsModule.modules.header_image = {
         template.childNodes[2].addEventListener('click', function() {
             parentElement.querySelector('div.input-box').classList.remove('hide');
             parentElement.removeChild(parentElement.querySelector('div.component-instance'));
-            componentsModule.modules.header_image.data.path = '';
+            componentsModule.modules.header_image.data.header_image = '';
             packery.packery().reloadItems();
         });
 
@@ -102,7 +102,7 @@ componentsModule.modules.header_image = {
     },
 
     serialize: function() {
-        return componentsModule.modules.header_image.data.path;
+        return componentsModule.modules.header_image.data;
     },
 
     events: [

@@ -9,9 +9,10 @@
 
     "picture": {
       "type":"string",
-      "validate": {
-        "source":"validator",
-        "method":"isImage"
+
+      "checker": {
+        "source":"fileChecker",
+        "method":"isAnyImage"
       }
     },
 
@@ -20,7 +21,7 @@
     },
 
     "picture_align": {
-      "type":"integer",
+      "type":"string",
       "range":"0,3"
     }
 

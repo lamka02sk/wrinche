@@ -8,8 +8,8 @@
   "prototype": {
 
     "status": {
-      "type":"integer",
-      "range":"0,*"
+      "type":"string",
+      "range":"0,4"
     }
 
   },

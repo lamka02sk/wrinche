@@ -90,5 +90,40 @@ selector = new Selector({
 // Init date picker
 initDatePicker();
 
+// Create components order
+function componentsOrder() {
+    let components = document.querySelector('.content-builder-content'), order = [];
+    for(let i = 0; i < components.children.length; ++i) {
+        if(!components.children[i].getAttribute('data-id')) return false;
+        order.push(components.children[i].getAttribute('data-id'));
+    }
+    return order;
+}
+
+// Save article
+document.querySelector('.save-content').addEventListener('click', function() {
+
+    // Validate data first
+    let valid = componentsModule.validate();
+    if(!valid) {
+        return false;
+    }
+
+    let componentsData = componentsModule.serialize();
+    let order = componentsOrder();
+    postData(URI + 'write', {
+        action: 0,
+        type: document.querySelector('.content-wrapper').getAttribute('data-type'),
+        order: order,
+        components: componentsData
+    }, function(response, status) {
+        console.log(response + ': ' + status);
+
+    });
+});
+
+// Save and publish article
+
+
 // Remove Splash screen
 $('div.splash').addClass('done');

@@ -4,7 +4,7 @@ componentsModule.modules.thumbnail = {
     valid: false,
 
     data: {
-        path: ''
+        thumbnail: ''
     },
 
     removeThis: function(parentElement) {
@@ -27,7 +27,7 @@ componentsModule.modules.thumbnail = {
             path = 'app/Data/Files/Images/' + path;
 
         // Save thumbnail path to serialize
-        componentsModule.modules.thumbnail.data.path = path;
+        componentsModule.modules.thumbnail.data.thumbnail = path;
 
         // Create new template instance for thumbnail
         let template = parentElement.querySelector('#template_component_thumbnail_image').childNodes[0].cloneNode(true);
@@ -49,7 +49,7 @@ componentsModule.modules.thumbnail = {
         template.childNodes[2].addEventListener('click', function() {
             parentElement.querySelector('div.input-box').classList.remove('hide');
             parentElement.removeChild(parentElement.querySelector('div.component-instance'));
-            componentsModule.modules.thumbnail.data.path = '';
+            componentsModule.modules.thumbnail.data.thumbnail = '';
             packery.packery().reloadItems();
         });
 
@@ -102,7 +102,7 @@ componentsModule.modules.thumbnail = {
     },
 
     serialize: function() {
-        return componentsModule.modules.thumbnail.data.path;
+        return componentsModule.modules.thumbnail.data;
     },
 
     events: [

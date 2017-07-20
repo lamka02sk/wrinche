@@ -3455,7 +3455,7 @@ div.component-inline-list-content, div.component-inline-poll-content {
 div.content-tools {
   display: inline-block;
   position: sticky;
-  top: -1px;
+  top: 0;
   float: left;
   width: 100%;
   padding: 9px 0 7px 0;
@@ -3494,7 +3494,7 @@ div.content-tools {
     div.content-tools button.save-content {
       background-image: url("../assets/icons/save.svg"); }
       div.content-tools button.save-content:hover {
-        background-color: #f5f5f5; }
+        background-color: #e7e7e7; }
     div.content-tools button.preview-content {
       background-image: url("../assets/icons/visibility-visible_white.svg");
       background-color: #522b41;

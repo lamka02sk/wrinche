@@ -1,12 +1,12 @@
 componentsModule.modules.perex = {
 
     data: {
-        date: '',
-        place: ''
+        perex_date: '',
+        perex_location: ''
     },
 
     validatePlace: function() {
-        return (componentsModule.modules.perex.data.place.length < 121);
+        return (componentsModule.modules.perex.data.perex_location.length < 121);
     },
 
     validate: function() {
@@ -24,7 +24,7 @@ componentsModule.modules.perex = {
             event: 'change',
             element: document.querySelector('input[name=component_perex_date]'),
             content: function(event) {
-                componentsModule.modules.perex.data.date = event.target.value.trim();
+                componentsModule.modules.perex.data.perex_date = event.target.value.trim();
             }
         },
 
@@ -33,7 +33,7 @@ componentsModule.modules.perex = {
             event: 'change keyup',
             element: document.querySelector('input[name=component_perex_location]'),
             content: function(event) {
-                componentsModule.modules.perex.data.place = event.target.value.trim();
+                componentsModule.modules.perex.data.perex_location = event.target.value.trim();
             }
         },
 
@@ -43,7 +43,7 @@ componentsModule.modules.perex = {
             element: document.querySelector('span.clear-input.clear-perex-date'),
             content: function(event) {
                 event.target.parentNode.querySelector('input[name=component_perex_date]').value = '';
-                componentsModule.modules.perex.data.date = '';
+                componentsModule.modules.perex.data.perex_date = '';
             }
         }
 

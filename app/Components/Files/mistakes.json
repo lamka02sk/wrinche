@@ -8,33 +8,15 @@
   "prototype": {
 
     "mistakes": {
-      "type":"boolean",
+      "type":"boolean"
+    },
 
-      "if": [
-        {
-          "equals":true,
-          "prototype": {
+    "mistakes_notify": {
+      "type":"boolean"
+    },
 
-            "mistakes_notify": {
-              "type":"boolean",
-
-              "if": [
-                {
-                  "equals":true,
-                  "prototype": {
-
-                    "mistakes_email": {
-                      "type":"boolean"
-                    }
-
-                  }
-                }
-              ]
-            }
-
-          }
-        }
-      ]
+    "mistakes_email": {
+      "type":"boolean"
     }
 
   },

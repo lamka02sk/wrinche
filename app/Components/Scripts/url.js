@@ -4,7 +4,7 @@ componentsModule.modules.url = {
     regexUrl: /^[a-z]{1}[a-z0-9\-]*[^\-]$/,
 
     data: {
-        value: ''
+        url: ''
     },
 
     isFree: function() {
@@ -13,9 +13,9 @@ componentsModule.modules.url = {
     },
 
     validate: function() {
-        if(!componentsModule.modules.url.regexUrl.test(componentsModule.modules.url.data.value))
+        if(!componentsModule.modules.url.regexUrl.test(componentsModule.modules.url.data.url))
             return false;
-        if(componentsModule.modules.url.data.value.length < 3 || componentsModule.modules.url.data.value.length > 120)
+        if(componentsModule.modules.url.data.url.length < 3 || componentsModule.modules.url.data.url.length > 120)
             return false;
         if(!componentsModule.modules.url.isFree())
             return false;
@@ -23,7 +23,7 @@ componentsModule.modules.url = {
     },
 
     serialize: function() {
-        return componentsModule.modules.url.data.value;
+        return componentsModule.modules.url.data;
     },
 
     events: [
@@ -33,7 +33,7 @@ componentsModule.modules.url = {
             event: 'change keyup',
             element: document.querySelector('input[name=component_url]'),
             content: function(event) {
-                componentsModule.modules.url.data.value = event.target.value.trim();
+                componentsModule.modules.url.data.url = event.target.value.trim();
                 if(componentsModule.modules.url.validate()) {
                     componentsModule.modules.url.messageElement.classList.remove('show');
                     setTimeout(function() {

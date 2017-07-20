@@ -10,6 +10,7 @@
 namespace App\Helpers;
 
 use App\Database\Connection;
+use App\Models\ComponentsModel;
 use App\Models\TemplateModel;
 
 class Checker {
@@ -107,6 +108,17 @@ class Checker {
         }
 
         return false;
+
+    }
+
+    /**
+     * @param int $copyright
+     * @return bool
+     */
+    public function systemCopyright($copyright) {
+
+        $copyrights = count(Config::$file['system']['support']['copyright']);
+        return ((int)$copyright >= 0 && (int)$copyright < $copyrights);
 
     }
 

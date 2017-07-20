@@ -16,13 +16,13 @@
       "type":"array",
 
       "each": {
-        "type":"integer",
+        "type":"string",
 
-        "validate": {
+        "check": {
           "source":"database",
-          "method":"boolean",
           "table":"categories",
-          "column":"id"
+          "column":"id",
+          "method":"default"
         }
       }
     }

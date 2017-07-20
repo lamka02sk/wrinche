@@ -7,7 +7,7 @@
 
   "prototype": {
 
-    "rich-text": {
+    "value": {
       "type":"string"
     }
 

@@ -8,20 +8,11 @@
   "prototype": {
 
     "comments": {
-      "type":"boolean",
+      "type":"boolean"
+    },
 
-      "if": [
-        {
-          "equals":true,
-          "prototype": {
-
-            "comments_approve": {
-              "type":"boolean"
-            }
-
-          }
-        }
-      ]
+    "comments_approve": {
+      "type":"boolean"
     }
 
   },

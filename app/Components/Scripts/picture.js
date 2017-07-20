@@ -73,7 +73,6 @@ componentsModule.modules.picture = {
             picture: path,
             picture_description: '',
             picture_align: 1,
-            valid: true,
             disabled: 0
         };
 

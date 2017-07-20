@@ -8,8 +8,11 @@
   "prototype": {
 
     "copyright": {
-      "type":"integer",
-      "check":"systemCopyright"
+      "type":"string",
+      "checker": {
+        "source":"checker",
+        "method":"systemCopyright"
+      }
     }
 
   },

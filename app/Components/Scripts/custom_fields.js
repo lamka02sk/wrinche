@@ -10,7 +10,9 @@ componentsModule.modules.custom_fields = {
     },
 
     serialize: function() {
-        return componentsModule.modules.custom_fields.data;
+        return {
+            custom_fields: componentsModule.modules.custom_fields.data
+        };
     },
 
     events: [

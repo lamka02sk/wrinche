@@ -1,10 +1,13 @@
 function ComponentsModule() {
 
+    // Keep modules in cache to not reload all modules all the time
+    // TODO: Add localStorage cache
     this.modulesCache = {};
 
     this.components = [];
     this.modules = {};
 
+    // Initialize any event, simply makes handling event in pure JS simpler :D
     this.initializeEvent = function(event) {
         let events = event.event.trim().split(' ');
         if(event.element[0] !== undefined) {
@@ -18,17 +21,20 @@ function ComponentsModule() {
         }
     }.bind(this);
 
+    // Initialize any event or more events, simply makes handling events in pure JS simpler :D
     this.initializeEvents = function(events) {
         for(let i = 0; i < events.length; ++i)
             this.initializeEvent(events[i]);
     }.bind(this);
 
+    // If component does not exist on the client side, download it
     this.loadComponent = function(component) {
         if(!(component in componentsModule.modulesCache))
             componentsModule.modulesCache[component] = getFile('app/Components/Scripts/' + component + '.min.js');
         eval(componentsModule.modulesCache[component]);
     };
 
+    // Initialize component
     this.initializeComponent = function(component) {
         componentsModule.modules[component] = {};
         this.loadComponent(component);
@@ -39,16 +45,27 @@ function ComponentsModule() {
         this.initializeEvents(events);
     }.bind(this);
 
+    // Initializes more components at once
     this.initializeComponents = function() {
         for(let i = 0; i < this.components.length; ++i)
             this.initializeComponent(this.components[i]);
     }.bind(this);
 
+    // Starts the whole components system and makes it ready to use
     this.start = function(components) {
         this.components = components;
         this.initializeComponents();
     }.bind(this);
 
+    // Validate components data to make sure any errors will appear on the server
+    this.validate = function() {
+        for(let i = 0; i < this.components.length; ++i)
+            if(!this.modules[this.components[i]].validate())
+                return false;
+        return true;
+    }.bind(this);
+
+    // Serialize data from all components
     this.serialize = function() {
         let result = {};
         for(let i = 0; i < this.components.length; ++i)
@@ -56,6 +73,7 @@ function ComponentsModule() {
         return result;
     }.bind(this);
 
+    // Create new instance of component (if component supports multiple instances)
     this.createComponent = function(name) {
         let inlineElement = document.querySelector('div.content-builder div.content-builder-content');
         if(typeof inlineElement === 'undefined') return false;
@@ -74,6 +92,7 @@ function ComponentsModule() {
         if('onCreate' in this.modules[name]) this.modules[name].onCreate(identifier);
     }.bind(this);
 
+    // Register events for the "inline" components with multiple instances
     this.registerEvents = function(name, identifier, element) {
         let headerElement = element.querySelector('div.component-element-header');
         let contentElement = element.querySelector('div.component-element-content');
@@ -126,4 +145,5 @@ function ComponentsModule() {
 
 }
 
+// Create new instance of the ComponentsModule
 let componentsModule = new ComponentsModule();

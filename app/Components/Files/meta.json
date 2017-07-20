@@ -8,29 +8,20 @@
   "prototype": {
 
     "meta": {
-      "type":"boolean",
+      "type":"boolean"
+    },
 
-      "if": [
-        {
-          "equals":true,
-          "prototype": {
+    "meta_keywords": {
+      "type":"string"
+    },
 
-            "meta_keywords": {
-              "type":"string"
-            },
+    "meta_description": {
+      "type":"string"
+    },
 
-            "meta_description": {
-              "type":"string"
-            },
-
-            "meta_robots": {
-              "type":"integer",
-              "range":"0,4"
-            }
-
-          }
-        }
-      ]
+    "meta_robots": {
+      "type":"string",
+      "range":"0,4"
     }
 
   },

@@ -11,12 +11,7 @@
       "type":"array",
 
       "each": {
-        "type":"array",
-        "duplicate":"remove",
-
-        "each": {
-          "type": "string"
-        }
+        "type": "string"
       }
     }
 

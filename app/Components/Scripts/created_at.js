@@ -12,7 +12,7 @@ componentsModule.modules.created_at = {
     },
 
     serialize: function() {
-        return componentsModule.modules.created_at.data.created_at;
+        return componentsModule.modules.created_at.data;
     },
 
     events: [

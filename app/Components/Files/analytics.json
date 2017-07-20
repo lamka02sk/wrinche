@@ -7,21 +7,11 @@
   "prototype": {
 
     "analytics": {
-      "type":"boolean",
+      "type":"boolean"
+    },
 
-      "if": [
-        {
-          "equals":true,
-          "prototype": {
-
-            "analytics_details": {
-              "type":"boolean"
-            }
-
-          }
-        }
-      ]
-
+    "analytics_details": {
+      "type":"boolean"
     }
 
   },

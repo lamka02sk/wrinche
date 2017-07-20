@@ -9,9 +9,11 @@
 
     "sources": {
       "type":"array",
+
       "each": {
         "type":"array",
         "length":"2",
+
         "each": {
           "type":"string"
         }

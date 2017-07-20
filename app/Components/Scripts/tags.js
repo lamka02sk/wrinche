@@ -5,7 +5,7 @@ componentsModule.modules.tags = {
     },
 
     validateTags: function(tag) {
-        return (/^[a-zA-Z][a-zA-Z0-9_\s,]+[a-zA-Z0-9]$/g.test(tag) && tag !== '');
+        return (/^[a-zA-Z]([a-zA-Z0-9_\s,]+)?[a-zA-Z0-9]$/.test(tag) && tag !== '');
     },
 
     validate: function() {
@@ -13,7 +13,7 @@ componentsModule.modules.tags = {
     },
 
     serialize: function() {
-        return componentsModule.modules.tags.data.tags;
+        return componentsModule.modules.tags.data;
     },
 
     events: [

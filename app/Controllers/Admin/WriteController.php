@@ -10,9 +10,11 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\AdminController;
-use App\Controllers\ComponentsController;
+use App\Errors\UserEvents;
+use App\Helpers\Checker;
+use App\Models\Components\ValidatorModel;
 use App\Models\ComponentsModel;
-use App\Render\Html;
+use App\Models\TemplateModel;
 use App\Requests\Request;
 
 class WriteController extends AdminController {
@@ -36,8 +38,13 @@ class WriteController extends AdminController {
         // Execute the parent "constructor"
         $this->start();
 
+        // Preload component templates and save instance
+        $model = new ComponentsModel('');
+        $model->start(true);
+        $this->componentsModel = $model;
+
         // Detect get or post
-        if(Request::$method === 'post')
+        if(strtolower((string)Request::$method) === 'post')
             $this->post();
         else
             $this->get();
@@ -46,11 +53,6 @@ class WriteController extends AdminController {
 
     public function get() {
 
-        // Preload component templates and save instance
-        $model = new ComponentsModel('');
-        $model->start(true);
-        $this->componentsModel = $model;
-
         // Show Site
         $this->createView('Write');
 
@@ -58,7 +60,29 @@ class WriteController extends AdminController {
 
     public function post() {
 
-        // TODO
+        // Save data from components
+        $postType = Request::$forms['type'];
+        $componentsData = Request::$forms['components'];
+        $componentsOrder = Request::$forms['order'];
+        $postAction = Request::$forms['action'];
+
+        // Validate post type
+        $checker = new Checker;
+        if(!$checker->templateLayout($postType))
+            new UserEvents(14);  // Post type does not exist
+
+        // Validate data from components
+        $componentValidator = new ValidatorModel($postType);
+        $componentValidator->saveData($componentsData);
+        $componentValidator->validateData();
+
+        if(!$componentValidator->valid)
+            new UserEvents(4);  // Invalid input
+
+        echo $componentValidator->valid;
+
+        // Serialize components data
+
 
     }
 

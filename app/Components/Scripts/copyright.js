@@ -25,7 +25,7 @@ componentsModule.modules.copyright = {
     },
 
     serialize: function() {
-        return componentsModule.modules.copyright.data.copyright;
+        return componentsModule.modules.copyright.data;
     }
 
 };

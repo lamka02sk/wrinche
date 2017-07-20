@@ -1,15 +1,15 @@
 componentsModule.modules.revisions = {
 
     data: {
-        value: ''
+        revision: ''
     },
 
     validate: function() {
-        return (componentsModule.modules.revisions.data.value.length < 251);
+        return (componentsModule.modules.revisions.data.revision.length < 251);
     },
 
     serialize: function() {
-        return componentsModule.modules.revisions.data.value;
+        return componentsModule.modules.revisions.data;
     },
 
     events: [
@@ -18,7 +18,7 @@ componentsModule.modules.revisions = {
             event: 'change keyup',
             element: document.querySelector('textarea[name=component_revisions]'),
             content: function(event) {
-                componentsModule.modules.revisions.data.value = event.target.value.trim();
+                componentsModule.modules.revisions.data.revision = event.target.value.trim();
             }
         }
 

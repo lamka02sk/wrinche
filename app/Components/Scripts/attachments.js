@@ -49,7 +49,7 @@ componentsModule.modules.attachments = {
     },
     
     serialize: function() {
-        return componentsModule.modules.attachments.data.attachments;
+        return componentsModule.modules.attachments.data;
     },
 
     validate: function() {

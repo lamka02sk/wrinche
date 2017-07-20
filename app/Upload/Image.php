@@ -1,74 +1,10 @@
 <?php
 
-/*
- * wrinche. Modern, powerful and user friendly CMS.
- * Image Manager
- * Version: 0.2.4
- * Authors: lamka02sk
- */
-
-// NOTE: WebP support will be added as Firefox will support it.
-
 namespace App\Upload;
 
-use App\Database\QueryBuilder;
 use App\Errors\UserEvents;
-use App\Helpers\Config;
 
-class Image {
-
-    public $data;
-    public $extension;
-    public $destination = '';
-
-    public $supportedExtensions = [
-        'bmp',
-        'gif',
-        'jpeg',
-        'jpg',
-        'jif',
-        'jpe',
-        'png',
-        //'webp',
-        'svg'
-    ];
-
-    public $supportedFormats = [
-        'bmp' => [
-            'image/bmp',
-            'image/x-bmp',
-            'image/x-ms-bmp',
-            'image/x-windows-bmp'
-        ],
-        'gif' => [
-            'image/gif'
-        ],
-        'jpeg' => [
-            'image/jpeg',
-            'image/pjpeg'
-        ],
-        'jpg' => [
-            'image/jpeg',
-            'image/pjpeg'
-        ],
-        'jif' => [
-            'image/jpeg',
-            'image/pjpeg'
-        ],
-        'jpe' => [
-            'image/jpeg',
-            'image/pjpeg'
-        ],
-        'png' => [
-            'image/png'
-        ],
-        /*'webp' => [
-            'image/webp'
-        ],*/
-        'svg' => [
-            'image/svg+xml'
-        ]
-    ];
+class Image extends Main {
 
     const DEFAULT_QUALITY = 70; // %
 
@@ -100,14 +36,14 @@ class Image {
         $this->extension = pathinfo($this->data['name'])['extension'];
 
         // Check file extension
-        if(!in_array($this->extension, $this->supportedExtensions))
+        if(!in_array($this->extension, self::IMAGE_EXTENSIONS))
             new UserEvents(20);  // Unsupported image format
 
         // Get file MIME type
         $formatType = mime_content_type($this->data['tmp_name']);
 
         // Check format type
-        if(!in_array($formatType, $this->supportedFormats[$this->extension]))
+        if(!in_array($formatType, self::IMAGE_MIME[$this->extension]))
             new UserEvents(20);  // Unsupported image format
 
         // Last check if file is image
@@ -278,12 +214,6 @@ class Image {
         return true;
 
     }
-
-    /*public function applySettingsWEBP() {
-
-
-
-    }*/
 
     public function saveImage() {
 

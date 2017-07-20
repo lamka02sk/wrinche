@@ -17,7 +17,7 @@ componentsModule.modules.sources = {
     },
 
     serialize: function() {
-        return componentsModule.modules.sources.data.sources;
+        return componentsModule.modules.sources.data;
     },
 
     events: [
