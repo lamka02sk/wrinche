@@ -263,7 +263,7 @@ class FileChecker extends Main {
      * @return bool
      */
     public function isAnyMedium($path) {
-        return ($this->isMedium($path, true) || $this->isMedium($path);
+        return ($this->isMedium($path, true) || $this->isMedium($path));
     }
 
 }
