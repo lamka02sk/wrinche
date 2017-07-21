@@ -7,7 +7,36 @@
 
   "prototype": {
 
+    "poll": {
+      "type":"array",
 
+      "each": {
+        "type":"string"
+      }
+    },
+
+    "poll_position": {
+      "type":"string",
+      "range":"0,3"
+    },
+
+    "poll_title": {
+      "type":"string"
+    },
+
+    "poll_type": {
+      "type":"string",
+      "range":"0,2"
+    },
+
+    "order": {
+      "type":"array",
+      "optional":true,
+
+      "each": {
+        "type":"string"
+      }
+    }
 
   },
 

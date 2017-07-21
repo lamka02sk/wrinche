@@ -122,4 +122,19 @@ class Checker {
 
     }
 
+    /**
+     * @param $language
+     * @return bool
+     */
+    public function programmingLanguages($language) {
+
+        // Load languages
+        new Config('programming_languages');
+
+        // Get number of languages
+        $count = count(Config::$file['programming_languages']);
+        return ((int)$language > -1 && (int)$language < $count);
+
+    }
+
 }

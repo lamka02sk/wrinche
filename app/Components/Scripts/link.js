@@ -33,7 +33,7 @@ componentsModule.modules.link = {
                 event: 'change keyup',
                 element: element.querySelector('input[name=component_inline_link_url]'),
                 content: function(event) {
-                    componentsModule.modules.link.data[identifier].link = event.target.trim();
+                    componentsModule.modules.link.data[identifier].link = event.target.value.trim();
                 }
             },
 
@@ -42,7 +42,7 @@ componentsModule.modules.link = {
                 event: 'change keyup',
                 element: element.querySelector('input[name=component_inline_link_name]'),
                 content: function(event) {
-                    componentsModule.modules.link.data[identifier].link_text = event.target.trim();
+                    componentsModule.modules.link.data[identifier].link_text = event.target.value.trim();
                 }
             },
 

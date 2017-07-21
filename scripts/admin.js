@@ -306,7 +306,7 @@ function LoaderError(code) {
 
 }
 
-function LoaderDone(content, link) {
+function LoaderDone(content, link, menu) {
 
     // Get translations
     let addTranslations = document.querySelector('div.content-wrapper').getAttribute('data-locales');
@@ -326,9 +326,11 @@ function LoaderDone(content, link) {
     $('body').append('<script type="application/javascript" src="scripts/' + newScript + '.min.js"></script>');
 
     // Change menu selected item
-    let menuLink = link.split('/')[0];
-    $('nav li').removeClass('active');
-    $('li[data-link="' + menuLink + '"]').addClass('active');
+    if(!menu) {
+        let menuLink = link.split('/')[0];
+        $('nav li').removeClass('active');
+        $('li[data-link="' + menuLink + '"]').addClass('active');
+    }
 
     // Remove loading message
     setTimeout(function() {
@@ -357,8 +359,8 @@ new Loader({
     onError: function(code) {
         LoaderError(code)
     },
-    onDone : function(content, link) {
-        LoaderDone(content, link)
+    onDone : function(content, link, menu) {
+        LoaderDone(content, link, menu)
     }
 });
 

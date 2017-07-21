@@ -48,7 +48,12 @@ class FileChecker extends Main {
      * @return bool
      */
     public function isAnyImage($path) {
-        return ($this->isLocalImage($path) || $this->isExternalImage($path));
+
+        if($this->isLocalImage($path))
+            return true;
+
+        return $this->isExternalImage($path);
+
     }
 
     /**

@@ -111,10 +111,27 @@ class ValidatorModel extends ComponentsModel {
 
         foreach($prototype as $option => $value) {
 
-            if(!in_array($option, self::PROPERTY_OPTIONS) && !in_array($option, self::GLOBAL_OPTIONS)) {
-                // Recursion
+            // Validate children, use recursion
+            if($option === 'children') {
+
+                foreach($value as $name => $subprototype) {
+
+                    if(!isset($propertyData[$name])) {
+                        if($subprototype['optional']) continue;
+                        return false;
+                    }
+
+                    if(!$this->validateProperty($subprototype, $propertyData[$name]))
+                        return false;
+
+                }
+
                 continue;
+
             }
+
+            if(!in_array($option, self::PROPERTY_OPTIONS) && !in_array($option, self::GLOBAL_OPTIONS))
+                continue;
 
             if(!$this->{'property' . ucfirst($option)}($propertyData, $value))
                 return false;
@@ -229,9 +246,10 @@ class ValidatorModel extends ComponentsModel {
         if($source === 'fileChecker') {
             $checker = new FileChecker;
             return $checker->{$parameters['method']}($data);
-        }
-
-        else return true;
+        } else if($source === 'systemChecker') {
+            $checker = new Checker;
+            return $checker->{$parameters['method']}($data);
+        } else return false;
 
     }
 

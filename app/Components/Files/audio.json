@@ -10,9 +10,9 @@
     "audio": {
       "type":"string",
 
-      "validate": {
-        "source":"validator",
-        "method":"isAudio"
+      "checker": {
+        "source":"fileChecker",
+        "method":"isAnyAudio"
       }
     }
 

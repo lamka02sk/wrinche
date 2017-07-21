@@ -1,12 +1,5 @@
 <?php
 
-/*
- * wrinche. Modern, powerful and user friendly CMS.
- * System config loader helper.
- * Version: 0.7.5
- * Authors: lamka02sk
- */
-
 namespace App\Helpers;
 
 class Config {
@@ -43,6 +36,8 @@ class Config {
                 $this->loadConfig($file);
                 break;
         }
+
+        return true;
 
     }
 

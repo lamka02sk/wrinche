@@ -12,8 +12,12 @@
     },
 
     "code_language": {
-      "type":"integer",
-      "check":"programmingLanguages"
+      "type":"string",
+
+      "checker": {
+        "source":"systemChecker",
+        "method":"programmingLanguages"
+      }
     }
 
   },

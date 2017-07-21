@@ -20,12 +20,12 @@
     },
 
     "link_position": {
-      "type":"integer",
+      "type":"string",
       "range":"0,3"
     },
 
     "link_target": {
-      "type":"integer",
+      "type":"string",
       "range":"0,3"
     }
 

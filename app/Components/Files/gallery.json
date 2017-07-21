@@ -13,9 +13,9 @@
       "each": {
         "type":"string",
 
-        "validate": {
-          "source":"validator",
-          "method":"isImage"
+        "checker": {
+          "source":"fileChecker",
+          "method":"isAnyImage"
         }
       }
     }

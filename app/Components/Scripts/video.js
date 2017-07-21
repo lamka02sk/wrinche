@@ -204,8 +204,6 @@ componentsModule.modules.video = {
             video: path,
             video_description: false,
             video_align: 1,
-            type: -1,
-            valid: true,
             disabled: 0
         };
 

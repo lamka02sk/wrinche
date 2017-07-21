@@ -9,7 +9,37 @@
 
     "list": {
       "type":"array",
-      "duplicates":"remove",
+
+      "each": {
+        "type":"string"
+      }
+    },
+
+    "list_checked": {
+      "type":"array",
+
+      "each": {
+        "type":"boolean"
+      }
+    },
+
+    "list_position": {
+      "type":"string",
+      "range":"0,3"
+    },
+
+    "list_title": {
+      "type":"string"
+    },
+
+    "list_type": {
+      "type":"string",
+      "range":"0,3"
+    },
+
+    "order": {
+      "type":"array",
+      "optional":true,
 
       "each": {
         "type":"string"

@@ -361,7 +361,7 @@ class Validator {
     public function validateYouTubeUrl(string $path) {
 
         $url = $this->validateUrl($path);
-        $youtube = (preg_match('/(https?:\/\/.*?youtube\.com)\/watch\?v=(.*)/igm', $path));
+        $youtube = (preg_match_all('/(https?:\/\/.*?youtube\.com)\/watch\?v=(.*)/im', $path));
         return ($url && $youtube);
 
     }
@@ -374,7 +374,7 @@ class Validator {
     public function validateVimeoUrl(string $path) {
 
         $url = $this->validateUrl($path);
-        $vimeo = (preg_match('/^((?:https?:)?\/\/)?((?:www|m|player)\.)?((?:vimeo\.com))(?:$|\/|)(\S+)?$/gm', $path));
+        $vimeo = (preg_match_all('/^((?:https?:)?\/\/)?((?:www|m|player)\.)?((?:vimeo\.com))(?:$|\/|)(\S+)?$/m', $path));
         return ($url && $vimeo);
 
     }

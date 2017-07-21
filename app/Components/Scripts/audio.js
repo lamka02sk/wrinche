@@ -67,11 +67,11 @@ componentsModule.modules.audio = {
         if(!outside)
             path = 'app/Data/Files/Sounds/' + path;
 
+
         // Save audio path
         componentsModule.modules.audio.data[identifier] = {
             title: '',
             audio: path,
-            valid: true,
             disabled: 0
         };
 
@@ -157,7 +157,6 @@ componentsModule.modules.audio = {
                     if(event.keyCode && event.keyCode === 13) {
                         let path = event.target.value;
                         componentsModule.modules.audio.validateInput(element, identifier, path);
-                        console.log((componentsModule.modules.audio.valid[identifier].valid));
                         if(componentsModule.modules.audio.valid[identifier].valid)
                             componentsModule.modules.audio.onSelect(identifier, element, path, true);
                     }

@@ -5,7 +5,77 @@
   "defaultElements":true,
   "header":"component_inline_header",
 
-  "prototype": {},
+  "prototype": {
+
+    "table": {
+      "type":"array",
+
+      "children": {
+
+        "hidden": {
+          "type":"array",
+          "optional":true,
+
+          "each": {
+            "type":"array",
+
+            "each": {
+              "type":"string"
+            }
+          }
+        },
+
+        "header": {
+          "type":"array",
+          "optional":true,
+
+          "each": {
+            "type":"string"
+          }
+        },
+
+        "rows": {
+          "type":"array",
+          "optional":true,
+
+          "each": {
+            "type":"array",
+
+            "each": {
+              "type":"string"
+            }
+          }
+        },
+
+        "name": {
+          "type":"string"
+        },
+
+        "order": {
+          "type":"array",
+
+          "each": {
+            "type":"array",
+
+            "each": {
+              "type":"string"
+            }
+          }
+        }
+
+      }
+    },
+
+    "dimensions": {
+      "type":"array",
+      "length":"2",
+
+      "each": {
+        "type":"string"
+      }
+    }
+
+  },
 
   "template": [
 

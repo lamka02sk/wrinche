@@ -63,8 +63,8 @@ class WriteController extends AdminController {
         // Save data from components
         $postType = Request::$forms['type'];
         $componentsData = Request::$forms['components'];
-        $componentsOrder = Request::$forms['order'];
-        $postAction = Request::$forms['action'];
+        $componentsOrder = Request::$forms['order'] ?? [];
+        $postAction = Request::$forms['action'] ?? false;
 
         // Validate post type
         $checker = new Checker;

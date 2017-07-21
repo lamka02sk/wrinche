@@ -16,7 +16,7 @@
     },
 
     "quote_position": {
-      "type":"boolean",
+      "type":"string",
       "range":"0,3"
     }
 

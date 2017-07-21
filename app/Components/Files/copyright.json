@@ -9,8 +9,9 @@
 
     "copyright": {
       "type":"string",
+
       "checker": {
-        "source":"checker",
+        "source":"systemChecker",
         "method":"systemCopyright"
       }
     }

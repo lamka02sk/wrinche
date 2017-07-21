@@ -105,7 +105,7 @@ componentsModule.modules.table = {
                     this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
                     delete componentsModule.modules.table.data[identifier].table.rows[rowID];
                     --componentsModule.modules.table.data[identifier].dimensions[1];
-                    delete componentsModule.modules.table.data[identifier].table.aside[rowID];
+                    delete componentsModule.modules.table.data[identifier].table.header[rowID];
                     let hiddenIndex = componentsModule.modules.table.data[identifier].table.hidden.rows.indexOf(rowID);
                     if(hiddenIndex !== -1) componentsModule.modules.table.data[identifier].table.hidden.rows.splice(hiddenIndex, 1);
                 }
@@ -268,7 +268,7 @@ componentsModule.modules.table = {
                     rows: []
                 },
                 header: {},
-                aside: {},
+                //aside: {},
                 rows: {},
                 name: '',
                 order: {

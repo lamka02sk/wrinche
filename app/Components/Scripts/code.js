@@ -36,7 +36,7 @@ componentsModule.modules.code = {
         componentsModule.modules.code.data[identifier] = {
             title: '',
             code: '',
-            code_language: -1,
+            code_language: 299,
             disabled: 0
         };
 

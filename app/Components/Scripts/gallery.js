@@ -59,7 +59,6 @@ componentsModule.modules.gallery = {
             componentsModule.modules.gallery.data[identifier] = {
                 title: '',
                 gallery: [path],
-                valid: true,
                 disabled: 0
             };
 

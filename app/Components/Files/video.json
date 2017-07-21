@@ -9,9 +9,10 @@
 
     "video": {
       "type":"string",
-      "validate": {
-        "source":"validator",
-        "method":"isVideo"
+
+      "checker": {
+        "source":"fileChecker",
+        "method":"isAnyVideo"
       }
     },
 
@@ -20,7 +21,7 @@
     },
 
     "video_align": {
-      "type":"integer",
+      "type":"string",
       "range":"0,3"
     }
 

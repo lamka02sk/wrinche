@@ -112,7 +112,7 @@ Loader.prototype.executeEvent = function(link, target) {
 
     if(this.target === 'blank') {
         this.openNewTab();
-        this.config.onDone(false, this.link);
+        this.config.onDone(false, this.link, true);
         return true;
     }
 
