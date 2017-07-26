@@ -223,6 +223,6 @@ Loader.prototype.renderContent = function(content) {
 
     // onDone
     if("onDone" in this.config)
-        this.config.onDone(content, this.link, this.target);
+        this.config.onDone(content, this.link);
 
 };
