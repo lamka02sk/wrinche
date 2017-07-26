@@ -7,10 +7,10 @@
 
   "data": {
 
-    "group": ["code", "code_language"],
+    "group": ["title", "disabled", "code", "code_language"],
 
     "code":false,
-    "code_language":false
+    "code_language":"componentsHelper.parseInt"
 
   },
 

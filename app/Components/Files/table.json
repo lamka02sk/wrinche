@@ -7,7 +7,7 @@
 
   "data": {
 
-    "group": ["table", "dimensions"],
+    "group": ["title", "disabled", "table", "dimensions"],
 
     "table":false,
     "dimensions":false

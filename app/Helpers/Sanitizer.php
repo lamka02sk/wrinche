@@ -18,7 +18,15 @@ class Sanitizer {
      */
     public function sanitizeInput(array $array) {
 
-        return filter_var_array($array, FILTER_SANITIZE_STRING);
+        $result = [];
+        foreach($array as $key => $content) {
+            if(is_array($content))
+                $result[(string)$key] = $this->sanitizeInput($content);
+            else
+                $result[(string)$key] = (string)$content;
+        }
+
+        return $result;
 
     }
 

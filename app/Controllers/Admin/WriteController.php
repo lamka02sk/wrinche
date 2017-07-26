@@ -86,6 +86,9 @@ class WriteController extends AdminController {
         // Serialize components data
         $componentSerializer = new SerializerModel($componentsData, $componentsOrder);
 
+        // Save components data
+        // TODO ...
+
     }
 
 }

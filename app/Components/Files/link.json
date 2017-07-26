@@ -7,12 +7,12 @@
 
   "data": {
 
-    "group": ["link", "link_text", "link_position", "link_target"],
+    "group": ["title", "disabled", "link", "link_text", "link_position", "link_target"],
 
     "link":false,
     "link_text":false,
-    "link_position":false,
-    "link_target":false
+    "link_position":"componentsHelper.parseInt",
+    "link_target":"componentsHelper.parseInt"
 
   },
 

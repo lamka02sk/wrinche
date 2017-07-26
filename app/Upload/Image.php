@@ -6,10 +6,10 @@ use App\Errors\UserEvents;
 
 class Image extends Main {
 
-    const DEFAULT_QUALITY = 70; // %
+    const DEFAULT_QUALITY = 58; // %
 
     const MAX_HORIZONTAL_SIZE = 2000; // px
-    const MAX_VERTICAL_SIZE = 2000; // px
+    const MAX_VERTICAL_SIZE = 1500; // px
 
     public function __construct(array $metadata) {
 

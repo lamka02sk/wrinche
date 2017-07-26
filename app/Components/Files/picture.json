@@ -7,11 +7,11 @@
 
   "data": {
 
-    "group": ["picture", "picture_description", "picture_align"],
+    "group": ["title", "disabled", "picture", "picture_description", "picture_align"],
 
     "picture":false,
     "picture_description":false,
-    "picture_align":false
+    "picture_align":"componentsHelper.parseInt"
 
   },
 

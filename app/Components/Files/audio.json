@@ -7,7 +7,7 @@
 
   "data": {
 
-    "group":"audio",
+    "group": ["title", "disabled", "audio"],
 
     "audio":false
 

@@ -7,10 +7,10 @@
 
   "data": {
 
-    "group": ["note", "note_position"],
+    "group": ["title", "disabled", "note", "note_position"],
 
     "note":false,
-    "note_position":false
+    "note_position":"componentsHelper.parseInt"
 
   },
 

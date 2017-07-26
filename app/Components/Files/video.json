@@ -7,11 +7,11 @@
 
   "data": {
 
-    "group": ["video", "video_description", "video_align"],
+    "group": ["title", "disabled", "video", "video_description", "video_align"],
 
     "video":false,
     "video_description":false,
-    "video_align":false
+    "video_align":"componentsHelper.parseInt"
 
   },
 

@@ -7,11 +7,11 @@
 
   "data": {
 
-    "group": ["quote", "quote_author", "quote_position"],
+    "group": ["title", "disabled", "quote", "quote_author", "quote_position"],
 
     "quote":false,
     "quote_author":false,
-    "quote_position":false
+    "quote_position":"componentsHelper.parseInt"
 
   },
 

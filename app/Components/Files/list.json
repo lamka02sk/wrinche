@@ -7,14 +7,14 @@
 
   "data": {
 
-    "group": ["list", "list_checked", "list_position", "list_title", "list_type", "order"],
+    "group": ["title", "disabled", "list", "list_checked", "list_position", "list_title", "list_type"],
 
     "list":false,
-    "list_checked":false,
-    "list_position":false,
+    "list_checked":"componentsHelper.parseInt",
+    "list_position":"componentsHelper.parseInt",
     "list_title":false,
-    "list_type":false,
-    "order":false
+    "list_type":"componentsHelper.parseInt",
+    "order":"componentsHelper.parseInt"
 
   },
 

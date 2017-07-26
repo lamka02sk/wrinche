@@ -7,7 +7,7 @@
 
   "data": {
 
-    "group": "gallery",
+    "group": ["title", "disabled", "gallery"],
 
     "gallery":false
 

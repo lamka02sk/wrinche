@@ -63,7 +63,7 @@ if(!$prepare->checkInstall()) {
 $config->saveChanges('system');
 
 // Tracking
-$stats->start();
+//$stats->start();
 //$logs->start();
 
 // END.

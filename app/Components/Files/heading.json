@@ -7,9 +7,9 @@
 
   "data": {
 
-    "group": ["type", "value"],
+    "group": ["title", "disabled", "type", "value"],
 
-    "type":false,
+    "type":"componentsHelper.parseInt",
     "value":false
 
   },
