@@ -8,8 +8,8 @@
   "data": {
 
     "attachments": [
-      "attachments",
-      false
+      "articles.attachments",
+      "componentsHelper.createJSON|componentsHelper.decodeJSON"
     ]
 
   },
