@@ -5,6 +5,15 @@
   "defaultElements":true,
   "header":"component_header",
 
+  "data": {
+
+    "comments&comments_approve": [
+      "articles.comments",
+      "componentsHelper.mergeBooleans|componentsHelper.splitBooleans"
+    ]
+
+  },
+
   "prototype": {
 
     "comments": {

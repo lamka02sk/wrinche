@@ -5,6 +5,15 @@
   "defaultElements":true,
   "header":"component_header",
 
+  "data": {
+
+    "created_at": [
+      "articles.created_at",
+      "componentsHelper.createTimestamp|componentsHelper.createDatetime"
+    ]
+
+  },
+
   "prototype": {
 
     "created_at": {

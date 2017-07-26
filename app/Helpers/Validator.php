@@ -307,8 +307,8 @@ class Validator {
     public function isPastDate(string $time) {
 
         if($time === 'false') return true;
-        $timestamp = DateTime::createFromFormat('d.m.Y h:i', $time . ' 0:00')->getTimestamp();
-        $now = (new DateTime)->getTimestamp();
+        $timestamp = strtotime($time);
+        $now = strtotime('now');
         return ($now > $timestamp);
 
     }
@@ -321,8 +321,8 @@ class Validator {
     public function isPastTimeStamp(string $time) {
 
         if($time === 'false') return true;
-        $timestamp = DateTime::createFromFormat('d.m.Y h:i:s', $time)->getTimestamp();
-        $now = (new DateTime)->getTimestamp();
+        $timestamp = strtotime($time);
+        $now = strtotime('now');
         return ($now > $timestamp);
 
     }
@@ -335,8 +335,8 @@ class Validator {
     public function isFutureTimeStamp(string $time) {
 
         if($time === 'false') return true;
-        $timestamp = DateTime::createFromFormat('d.m.Y h:i:s', $time)->getTimestamp();
-        $now = (new DateTime)->getTimestamp();
+        $timestamp = strtotime($time);
+        $now = strtotime('now');
         return ($now <= $timestamp);
 
     }

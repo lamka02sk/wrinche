@@ -5,6 +5,30 @@
   "defaultElements":true,
   "header":"component_header",
 
+  "data": {
+
+    "meta": [
+      "articles.meta",
+      "componentsHelper.parseInt"
+    ],
+
+    "meta_keywords": [
+      "articles_content.meta_keywords",
+      false
+    ],
+
+    "meta_description": [
+      "articles_content.meta_description",
+      false
+    ],
+
+    "meta_robots": [
+      "articles.meta_index",
+      "componentsHelper.parseInt"
+    ]
+
+  },
+
   "prototype": {
 
     "meta": {

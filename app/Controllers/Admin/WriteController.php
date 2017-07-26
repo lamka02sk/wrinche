@@ -12,6 +12,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\AdminController;
 use App\Errors\UserEvents;
 use App\Helpers\Checker;
+use App\Models\Components\SerializerModel;
 use App\Models\Components\ValidatorModel;
 use App\Models\ComponentsModel;
 use App\Models\TemplateModel;
@@ -66,6 +67,9 @@ class WriteController extends AdminController {
         $componentsOrder = Request::$forms['order'] ?? [];
         $postAction = Request::$forms['action'] ?? false;
 
+        if($postAction === false || $postAction < 0 || $postAction > 2)
+            new UserEvents(4);  // Invalid input
+
         // Validate post type
         $checker = new Checker;
         if(!$checker->templateLayout($postType))
@@ -79,10 +83,8 @@ class WriteController extends AdminController {
         if(!$componentValidator->valid)
             new UserEvents(4);  // Invalid input
 
-        echo $componentValidator->valid;
-
         // Serialize components data
-
+        $componentSerializer = new SerializerModel($componentsData, $componentsOrder);
 
     }
 

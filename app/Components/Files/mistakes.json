@@ -5,6 +5,15 @@
   "defaultElements":true,
   "header":"component_header",
 
+  "data": {
+
+    "mistakes&mistakes_notify&mistakes_email": [
+      "articles.mistakes",
+      "componentsHelper.mergeBooleans|componentsHelper.splitBooleans"
+    ]
+
+  },
+
   "prototype": {
 
     "mistakes": {

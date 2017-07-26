@@ -5,6 +5,19 @@
   "defaultElements":true,
   "header":"component_inline_header",
 
+  "data": {
+
+    "group": ["list", "list_checked", "list_position", "list_title", "list_type", "order"],
+
+    "list":false,
+    "list_checked":false,
+    "list_position":false,
+    "list_title":false,
+    "list_type":false,
+    "order":false
+
+  },
+
   "prototype": {
 
     "list": {

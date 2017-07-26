@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS articles (
   thumbnail VARCHAR(512) NOT NULL,
   title_picture VARCHAR(512) NOT NULL,
   attachments JSON NOT NULL,
+  meta INT(1) DEFAULT 0 NOT NULL,
   meta_index INT(1) NOT NULL DEFAULT 0,
   status INT(1) NOT NULL DEFAULT 0,
   created_at TIMESTAMP DEFAULT current_timestamp,
@@ -21,6 +22,7 @@ CREATE TABLE IF NOT EXISTS articles (
   planner_publish DATETIME NULL DEFAULT NULL,
   planner_expiry DATETIME NULL DEFAULT NULL,
   planner_notify INT(1) NOT NULL,
+  preview VARCHAR(64) NOT NULL,
 
   FOREIGN KEY (author) REFERENCES users(id)
 

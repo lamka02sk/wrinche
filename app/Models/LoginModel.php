@@ -136,7 +136,7 @@ class LoginModel extends MainModel {
 
     public function updateLogin() {
 
-        // SUPER-SLOW!!! about 40 milliseconds, needs to be fixed!!
+        // SUPER-SLOW!!! about 50 milliseconds, needs to be fixed!!
 
         // Update login timestamp
         $builder = new QueryBuilder;
@@ -144,7 +144,7 @@ class LoginModel extends MainModel {
             ->table($this->table)
             ->update()
             ->updateRow([
-                'inc' => LoginModel::$login['inc'] + 1
+                'inc' => ++LoginModel::$login['inc']
             ])
             ->where(
                 ['id'],

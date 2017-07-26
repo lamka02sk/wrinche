@@ -5,15 +5,26 @@
   "defaultElements":true,
   "header":"component_header",
 
+  "data": {
+
+    "url": [
+      "articles_content.url",
+      false
+    ]
+
+  },
+
   "prototype": {
 
     "url": {
       "type":"string",
       "length":"3,120",
+
       "validate": {
         "source":"validator",
         "method":"validateSimpleUrl"
       },
+
       "check": {
         "source":"database",
         "table":"articles_content",

@@ -5,6 +5,15 @@
   "defaultElements":true,
   "header":"component_header_big",
 
+  "data": {
+
+    "title": [
+      "articles_content.title",
+      false
+    ]
+
+  },
+
   "prototype": {
 
     "title": {

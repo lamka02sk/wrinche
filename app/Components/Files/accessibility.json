@@ -5,6 +5,20 @@
   "defaultElements":true,
   "header":"component_header",
 
+  "data": {
+
+    "accessibility_selector": [
+      "articles.accessibility",
+      "componentsHelper.parseInt"
+    ],
+
+    "accessibility_password": [
+      "articles.password",
+      "componentsHelper.createPassword"
+    ]
+
+  },
+
   "prototype": {
 
     "accessibility_selector": {

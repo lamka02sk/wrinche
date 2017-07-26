@@ -5,9 +5,13 @@
   "defaultElements":true,
   "header":"component_header",
 
-  "*data": {
-    "source":"App\\Models\\CategoriesModel",
-    "method":"componentCategories"
+  "data": {
+
+    "categories": [
+      "articles_content.categories",
+      "componentsHelper.parseInt&componentsHelper.createJSON|componentsHelper.decodeJSON"
+    ]
+
   },
 
   "prototype": {

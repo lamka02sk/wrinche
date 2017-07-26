@@ -5,6 +5,14 @@
   "defaultElements":true,
   "header":"component_inline_header",
 
+  "data": {
+
+    "group":"audio",
+
+    "audio":false
+
+  },
+
   "prototype": {
 
     "audio": {

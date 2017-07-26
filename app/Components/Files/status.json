@@ -5,6 +5,15 @@
   "defaultElements":true,
   "header":"component_header",
 
+  "data": {
+
+    "status": [
+      "articles.status",
+      "componentsHelper.parseInt"
+    ]
+
+  },
+
   "prototype": {
 
     "status": {

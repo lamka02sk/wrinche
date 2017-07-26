@@ -5,6 +5,15 @@
   "defaultElements":true,
   "header":"component_inline_header",
 
+  "data": {
+
+    "group": ["table", "dimensions"],
+
+    "table":false,
+    "dimensions":false
+
+  },
+
   "prototype": {
 
     "table": {

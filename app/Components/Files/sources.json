@@ -5,6 +5,15 @@
   "defaultElements":true,
   "header":"component_header",
 
+  "data": {
+
+    "sources": [
+      "articles_content.sources",
+      "componentsHelper.createJSON|componentsHelper.decodeJSON"
+    ]
+
+  },
+
   "prototype": {
 
     "sources": {

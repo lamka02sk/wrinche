@@ -5,10 +5,22 @@
   "defaultElements":true,
   "header":"component_inline_header",
 
+  "data": {
+
+    "group": ["link", "link_text", "link_position", "link_target"],
+
+    "link":false,
+    "link_text":false,
+    "link_position":false,
+    "link_target":false
+
+  },
+
   "prototype": {
 
     "link": {
       "type":"string",
+
       "validate": {
         "source":"validator",
         "method":"validateUrl"

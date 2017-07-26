@@ -5,6 +5,16 @@
   "defaultElements":true,
   "header":"component_inline_header",
 
+  "data": {
+
+    "group": ["picture", "picture_description", "picture_align"],
+
+    "picture":false,
+    "picture_description":false,
+    "picture_align":false
+
+  },
+
   "prototype": {
 
     "picture": {

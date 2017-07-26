@@ -12,19 +12,28 @@ namespace App\Helpers;
 class Crypto {
 
     /**
-     * @param $password
+     * @param     $password
      * Encrypt password for DB storing
+     * @param int $cost
      * @return string
      */
-    public function encryptPassword($password) {
+    public function encryptPassword($password, int $cost = 12) {
 
         // Generate hash from given password
-        $cost = 12;
         $hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => $cost]);
 
         // Return created hash
         return $hash;
 
+    }
+
+    /**
+     * @param $password
+     * Low cost password encrypting function
+     * @return string
+     */
+    public function encryptWeakPassword($password) {
+        return $this->encryptPassword($password, 4);
     }
 
     /**

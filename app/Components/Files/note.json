@@ -5,6 +5,15 @@
   "defaultElements":true,
   "header":"component_inline_header",
 
+  "data": {
+
+    "group": ["note", "note_position"],
+
+    "note":false,
+    "note_position":false
+
+  },
+
   "prototype": {
 
     "note": {

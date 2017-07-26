@@ -5,6 +5,16 @@
   "defaultElements":true,
   "header":"component_inline_header",
 
+  "data": {
+
+    "group": ["quote", "quote_author", "quote_position"],
+
+    "quote":false,
+    "quote_author":false,
+    "quote_position":false
+
+  },
+
   "prototype": {
 
     "quote": {

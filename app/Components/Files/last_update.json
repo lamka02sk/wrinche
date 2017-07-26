@@ -5,6 +5,15 @@
   "defaultElements":true,
   "header":"component_header",
 
+  "data": {
+
+    "last_update": [
+      "articles.edited_at",
+      "componentsHelper.createTimestamp|componentsHelper.createDatetime"
+    ]
+
+  },
+
   "prototype": {
 
     "last_update": {

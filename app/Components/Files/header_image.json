@@ -5,6 +5,15 @@
   "defaultElements":true,
   "header":"component_header",
 
+  "data": {
+
+    "header_image": [
+      "articles.title_picture",
+      false
+    ]
+
+  },
+
   "prototype": {
 
     "header_image": {

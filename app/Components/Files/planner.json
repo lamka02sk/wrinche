@@ -5,6 +5,30 @@
   "defaultElements":true,
   "header":"component_header",
 
+  "data": {
+
+    "planner": [
+      "articles.planner_auto",
+      "componentsHelper.parseInt"
+    ],
+
+    "planner_date": [
+      "articles.planner_publish",
+      "componentsHelper.createTimestamp|componentsHelper.createDatetime"
+    ],
+
+    "planner_expiry": [
+      "articles.planner_expiry",
+      "componentsHelper.createTimestamp|componentsHelper.createDatetime"
+    ],
+
+    "planner_notify&planner_notify_email": [
+      "articles.planner_notify",
+      "componentsHelper.mergeBooleans|componentsHelper.splitBooleans"
+    ]
+
+  },
+
   "prototype": {
 
     "planner": {

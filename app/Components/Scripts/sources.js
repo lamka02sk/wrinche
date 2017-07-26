@@ -9,10 +9,6 @@ componentsModule.modules.sources = {
     },
 
     validate: function() {
-        for(let i = 0; i < componentsModule.modules.sources.data.sources.length; ++i) {
-            if(componentsModule.modules.sources.data.sources[i].length !== 2)
-                return false;
-        }
         return true;
     },
 
@@ -29,7 +25,7 @@ componentsModule.modules.sources = {
             content: function() {
                 let name = componentsModule.modules.sources.nameInput.value.trim();
                 for(let i = 0; i < componentsModule.modules.sources.data.sources.length; ++i) {
-                    if(name === componentsModule.modules.sources.data.sources[i].name) {
+                    if(name === componentsModule.modules.sources.data.sources[i][0]) {
                         componentsModule.modules.sources.nameInput.value = '';
                         componentsModule.modules.sources.nameInput.focus();
                         return false;
@@ -37,16 +33,13 @@ componentsModule.modules.sources = {
                 }
                 let source = componentsModule.modules.sources.sourceInput.value.trim();
                 if(name === '' || source === '') return false;
-                componentsModule.modules.sources.data.sources.push({
-                    name: name,
-                    source: source
-                });
+                componentsModule.modules.sources.data.sources.push([name, source]);
                 let template = document.querySelector('#template_component_sources_item').childNodes[0].cloneNode(true);
                 template.children[0].innerText = name;
                 template.children[1].innerText = source;
                 template.children[2].addEventListener('click', function() {
                     for(let i = 0; i < componentsModule.modules.sources.data.sources.length; ++i) {
-                        if(name === componentsModule.modules.sources.data.sources[i].name) {
+                        if(name === componentsModule.modules.sources.data.sources[i][0]) {
                             componentsModule.modules.sources.data.sources.splice(i, 1);
                             break;
                         }
@@ -55,16 +48,18 @@ componentsModule.modules.sources = {
                     componentsModule.modules.sources.nameInput.focus();
                     componentsModule.modules.sources.sourceInput.value = source;
                     componentsModule.modules.sources.sourcesList.removeChild(template);
+                    packery.packery().reloadItems();
                 });
                 template.children[3].addEventListener('click', function() {
                     for(let i = 0; i < componentsModule.modules.sources.data.sources.length; ++i) {
-                        if(name === componentsModule.modules.sources.data.sources[i].name) {
+                        if(name === componentsModule.modules.sources.data.sources[i][0]) {
                             componentsModule.modules.sources.data.sources.splice(i, 1);
                             componentsModule.modules.sources.nameInput.focus();
                             componentsModule.modules.sources.sourcesList.removeChild(template);
                             break;
                         }
                     }
+                    packery.packery().reloadItems();
                 });
                 componentsModule.modules.sources.nameInput.value = '';
                 componentsModule.modules.sources.nameInput.focus();

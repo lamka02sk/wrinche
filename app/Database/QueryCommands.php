@@ -9,6 +9,8 @@
 
 namespace App\Database;
 
+use App\Requests\Request;
+
 class QueryCommands {
 
     public $queryBuilder;

@@ -5,6 +5,15 @@
   "defaultElements":true,
   "header":"component_inline_header",
 
+  "data": {
+
+    "group": ["code", "code_language"],
+
+    "code":false,
+    "code_language":false
+
+  },
+
   "prototype": {
 
     "code": {

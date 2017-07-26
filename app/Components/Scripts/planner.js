@@ -93,7 +93,7 @@ componentsModule.modules.planner = {
             event: 'change',
             element: document.querySelector('label[for=component_planner]').parentNode.querySelector('input[name=component_planner_notify_email]'),
             content: function(event) {
-                componentsModule.modules.planner.data.planner_notify = !!(event.target.checked);
+                componentsModule.modules.planner.data.planner_notify_email = !!(event.target.checked);
             }
         }
 

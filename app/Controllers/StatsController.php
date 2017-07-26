@@ -10,6 +10,7 @@
 namespace App\Controllers;
 
 use App\Helpers\Config;
+use App\Logs\LogPerformance;
 use App\Requests\Request;
 
 class StatsController extends MainController {
@@ -29,12 +30,12 @@ class StatsController extends MainController {
      */
     public function start() {
 
-        // TEMP
-        echo '<br>';
-        echo "Execution time: " . round((microtime(true) - Request::$server['client']['time']) * 1000, 4) . ' ms';
+        new LogPerformance('------------------------------------------------------------------------------------------------------------
+Route: ' . implode('/', Request::$url) . '
+Execution time: ' . round((microtime(true) - Request::$server['client']['time']) * 1000, 4) . ' ms
+Memory (allocated / used): ' . round(((memory_get_usage(true) / 1024) / 1024), 4) . ' / ' . round(((memory_get_usage() / 1024) / 1024), 4) . ' MB
+');
 
-        echo '<br>';
-        echo 'Memory in use: ' . round(((memory_get_usage() / 1024) / 1024), 4) .'MB';
     }
 
 }

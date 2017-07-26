@@ -4,6 +4,15 @@
   "active":true,
   "defaultElements":false,
 
+  "data": {
+
+    "analytics&analytics_details": [
+      "articles.analytics",
+      "componentsHelper.mergeBooleans|componentsHelper.splitBooleans"
+    ]
+
+  },
+
   "prototype": {
 
     "analytics": {

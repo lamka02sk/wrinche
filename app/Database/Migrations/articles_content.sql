@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS articles_content (
   title VARCHAR(128) NOT NULL,
   excerpt VARCHAR(384) NOT NULL,
   url VARCHAR(128) NOT NULL,
-  perex_date DATETIME NOT NULL DEFAULT current_timestamp,
+  perex_date DATETIME DEFAULT CURRENT_TIMESTAMP NULL,
   perex_location VARCHAR(128) NOT NULL,
   tags JSON NOT NULL,
   categories JSON NOT NULL,

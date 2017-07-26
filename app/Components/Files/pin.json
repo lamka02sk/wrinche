@@ -4,6 +4,15 @@
   "active":true,
   "defaultElements":false,
 
+  "data": {
+
+    "pin": [
+      "articles.pin",
+      "componentsHelper.parseInt"
+    ]
+
+  },
+
   "prototype": {
 
     "pin": {

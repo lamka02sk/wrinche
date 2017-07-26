@@ -5,6 +5,18 @@
   "defaultElements":true,
   "header":"component_inline_header",
 
+  "data": {
+
+    "group": ["poll_title", "poll", "order", "poll_position", "poll_type"],
+
+    "poll":false,
+    "poll_position":false,
+    "poll_title":false,
+    "poll_type":false,
+    "order":false
+
+  },
+
   "prototype": {
 
     "poll": {
