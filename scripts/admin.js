@@ -308,8 +308,6 @@ function LoaderError(code) {
 
 function LoaderDone(content, link, menu) {
 
-    console.log(menu);
-
     // Get translations
     let addTranslations = document.querySelector('div.content-wrapper').getAttribute('data-locales');
     addTranslations     = addTranslations.split(' ');

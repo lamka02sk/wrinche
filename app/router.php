@@ -53,6 +53,7 @@ if($urlRequest->isAdmin()) {
 
            // Write
            ->get('write/{layout}')
+           ->get('write/{article}')
 
            // Media Manager
            ->get('mediamanager')

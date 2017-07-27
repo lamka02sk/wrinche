@@ -12,6 +12,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\AdminController;
 use App\Errors\UserEvents;
 use App\Helpers\Checker;
+use App\Models\ArticlesModel;
 use App\Models\Components\SerializerModel;
 use App\Models\Components\ValidatorModel;
 use App\Models\ComponentsModel;
@@ -25,6 +26,8 @@ class WriteController extends AdminController {
     public $headerTemplates;
     public $componentEnd;
     public $componentsModel;
+
+    public $editMode = false;
 
     /**
      * WriteController constructor.
@@ -53,6 +56,27 @@ class WriteController extends AdminController {
     }
 
     public function get() {
+
+        // Determine subcategory type
+        if(!is_numeric($this->subcategory)) {
+
+            // If article with given ID exists
+            $model = new ArticlesModel;
+            if($model->checkArticle($this->subcategory) > 0) {
+
+                // Change edit mode
+                $this->editMode = true;
+
+                // Prepare article data
+                $model = new ArticlesModel;
+                $model->setArticleID($this->subcategory);
+                $model->prepare();
+
+
+            } else
+                new UserEvents(15);  // Article does not exist
+
+        }
 
         // Show Site
         $this->createView('Write');
@@ -85,9 +109,17 @@ class WriteController extends AdminController {
 
         // Serialize components data
         $componentSerializer = new SerializerModel($componentsData, $componentsOrder);
+        $serializedData = $componentSerializer->result;
 
-        // Save components data
-        // TODO ...
+        // Convert post type to numeric value
+        $layoutNumber = 0;
+        foreach(TemplateModel::$template['layouts'] as $layoutName => $layoutContent) {
+            if(strtolower($layoutName) === strtolower($postType))
+                break;
+            ++$layoutNumber;
+        }
+
+        // Save data
 
     }
 

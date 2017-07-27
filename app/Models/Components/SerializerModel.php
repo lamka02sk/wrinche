@@ -18,7 +18,7 @@ class SerializerModel extends ComponentsModel {
      * @param array $componentsData
      * @param array $componentsOrder
      */
-    public function __construct(array $componentsData, array $componentsOrder) {
+    public function __construct(array $componentsData, $componentsOrder) {
 
         parent::__construct('');
         $this->input = $componentsData;
