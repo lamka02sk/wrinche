@@ -10,6 +10,7 @@
 namespace App\Database;
 
 use App\Controllers\StatsController;
+use App\Errors\UserEvents;
 
 class QueryBuilder extends Connection {
 
@@ -80,18 +81,19 @@ class QueryBuilder extends Connection {
      */
     public function execQuery() {
 
-        if(empty($this->queryType) || !in_array($this->queryType, $this->queryTypes)) {
-
-            // Create Error > Every query must have its queryType.
-
-        }
+        if(empty($this->queryType) || !in_array($this->queryType, $this->queryTypes))
+            new UserEvents(16);  // Invalid database query
 
         // Parse user input to the SQL Query
         $this->createQuery();
 
         // Execute
         $launcher = new QueryLauncher;
-        $this->output = $launcher->launch($this, $this->insertID);
+        $this->output = $launcher->launch($this, $this->queryCommands->getID);
+
+        // Save insert ID into its variable
+        if($this->queryCommands->getID)
+            $this->insertID = $this->output;
 
     }
 

@@ -37,6 +37,7 @@ class UserEvents {
         13 => 'Category does not exist',
         14 => 'Post type does not exists',
         15 => 'Article does not exist',
+        16 => 'Invalid database query',
 
         20 => 'Unsupported image format',
         21 => 'Invalid image',

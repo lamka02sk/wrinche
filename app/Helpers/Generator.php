@@ -16,7 +16,7 @@ class Generator {
      * Generate token of selected length
      * @return string
      */
-    private function generateToken($length) {
+    public function generateToken($length) {
 
         $token = bin2hex(random_bytes($length));
         return $token;

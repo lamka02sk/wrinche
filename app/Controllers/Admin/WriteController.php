@@ -12,6 +12,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\AdminController;
 use App\Errors\UserEvents;
 use App\Helpers\Checker;
+use App\Models\Articles\RevisionsModel;
 use App\Models\ArticlesModel;
 use App\Models\Components\SerializerModel;
 use App\Models\Components\ValidatorModel;
@@ -28,6 +29,7 @@ class WriteController extends AdminController {
     public $componentsModel;
 
     public $editMode = false;
+    public $subcategory;
 
     /**
      * WriteController constructor.
@@ -58,7 +60,7 @@ class WriteController extends AdminController {
     public function get() {
 
         // Determine subcategory type
-        if(!is_numeric($this->subcategory)) {
+        if(is_numeric($this->subcategory)) {
 
             // If article with given ID exists
             $model = new ArticlesModel;
@@ -70,7 +72,7 @@ class WriteController extends AdminController {
                 // Prepare article data
                 $model = new ArticlesModel;
                 $model->setArticleID($this->subcategory);
-                $model->prepare();
+                $model->prepareArticle();
 
 
             } else
@@ -90,6 +92,11 @@ class WriteController extends AdminController {
         $componentsData = Request::$forms['components'];
         $componentsOrder = Request::$forms['order'] ?? [];
         $postAction = Request::$forms['action'] ?? false;
+        $postID = Request::$forms['articleID'] ?? false;
+
+        // Check edit mode
+        if($postID !== false)
+            $this->editMode = true;
 
         if($postAction === false || $postAction < 0 || $postAction > 2)
             new UserEvents(4);  // Invalid input
@@ -120,6 +127,17 @@ class WriteController extends AdminController {
         }
 
         // Save data
+        $model = new ArticlesModel;
+        $model->setArticleData($serializedData);
+        $model->setArticleAction($postAction);
+        $model->setArticleType($layoutNumber);
+        $model->saveArticle();
+
+        // Success
+        echo json_encode([
+            'success' => true,
+            'code' => 200
+        ]);
 
     }
 

@@ -201,7 +201,7 @@ class Connection {
             case "update":
             case "delete":
             case "truncate":
-                $this->executeOtherQuery($getID);
+                return $this->executeOtherQuery($getID);
                 break;
         }
 
@@ -233,8 +233,9 @@ class Connection {
         $instance = $this->connection->prepare($this->query);
         $instance->execute($this->binds);
         $output = [];
+
         if($getID)
-            $output = $instance->lastInsertId();
+            $output = $this->connection->lastInsertId();
 
         return $output;
 

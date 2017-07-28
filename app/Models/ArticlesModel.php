@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use App\Database\QueryBuilder;
+use App\Helpers\Generator;
+use App\Models\Articles\ContentModel;
+use App\Models\Articles\RevisionsModel;
 
 class ArticlesModel extends MainModel {
 
@@ -22,8 +25,8 @@ class ArticlesModel extends MainModel {
         'sources', 'content', 'prerender'
     ];
 
+    public $articleID;
     public $articleData = [];
-
     public $articleType;
     public $articleAction;
 
@@ -37,6 +40,12 @@ class ArticlesModel extends MainModel {
 
     public function start() {}
 
+    /**
+     * @param        $value
+     * @param string $by
+     * Check if article exists
+     * @return null
+     */
     public function checkArticle($value, $by = 'id') {
 
         $builder = new QueryBuilder;
@@ -51,17 +60,79 @@ class ArticlesModel extends MainModel {
 
     }
 
+    /**
+     * @param $articleData
+     * Set article data
+     */
+    public function setArticleData($articleData) {
+        $this->articleData = $articleData;
+    }
+
+    /**
+     * @param $articleType
+     * Set article type
+     */
+    public function setArticleType($articleType) {
+        $this->articleType = $articleType;
+    }
+
+    /**
+     * @param $articleAction
+     * Set article action
+     */
+    public function setArticleAction($articleAction) {
+        $this->articleAction = $articleAction;
+    }
+
+    /**
+     * Save current loaded article
+     */
     public function saveArticle() {
 
-        // Check if article exists
+        // Prepare articles table data
+        $generator = new Generator;
+        $previewID = $generator->generateToken(16);
 
+        $data = $this->articleData['articles'];
+        $data['author'] = UserModel::$user['id'];
+        $data['layout'] = $this->articleType;
+        $data['preview'] = $previewID;
+
+        // Save data to DB
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table(self::TABLE)
+            ->insert()
+            ->insertRow([$data], true)
+            ->exec();
+        $this->articleID = $builder->insertID;
+
+        // Save article content
+        $model = new ContentModel($this);
+        $model->saveArticleContent();
+
+        // Save article revision
+        $model = new RevisionsModel($this);
+        $model->saveArticleRevision();
+
+        return $this->articleID;
 
     }
 
+    /**
+     * @param int $id
+     * Set article identifier
+     */
     public function setArticleID(int $id) {
         $this->preloadID = $id;
     }
 
+    /**
+     * @param bool $prepareContent
+     * @param bool $prepareRevisions
+     * Preload article by given identifier
+     * @return bool
+     */
     public function prepareArticle($prepareContent = true, $prepareRevisions = true) {
 
         $builder = new QueryBuilder;
@@ -76,12 +147,14 @@ class ArticlesModel extends MainModel {
 
         // Prepare article content
         if($prepareContent) {
-
+            $model = new ContentModel($this);
+            $model->prepareArticleContent();
         }
 
         // Prepare article revisions
         if($prepareRevisions) {
-
+            $model = new RevisionsModel($this);
+            $model->prepareArticleRevisions();
         }
 
         return true;

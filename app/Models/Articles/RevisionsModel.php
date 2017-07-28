@@ -9,9 +9,17 @@ class RevisionsModel extends ArticlesModel {
 
     const TABLE = 'revisions';
 
+    public $parent;
+
+    public function __construct($parent) {
+
+        $this->parent = $parent;
+
+    }
+
     public function prepareArticleRevisions() {
 
-        if(!isset($this->preloadID) || empty($this->preloadID))
+        if(!isset($this->parent->preloadID) || empty($this->parent->preloadID))
             return false;
 
         $builder = new QueryBuilder;
@@ -19,11 +27,29 @@ class RevisionsModel extends ArticlesModel {
             ->table(self::TABLE)
             ->select()
             ->selectValues()
-            ->where('article_id', $this->preloadID)
+            ->where('article_id', $this->parent->preloadID)
             ->exec();
 
         self::$article['revisions'] = $builder->output[0] ?? [];
         return true;
+
+    }
+
+    public function saveArticleRevision() {
+
+        // Create data
+        $data = $this->parent->articleData['revisions'];
+
+        // Save to DB
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table(self::TABLE)
+            ->insert()
+            ->insertRow([[
+                'article_id' => $this->parent->articleID,
+                'description' => $data
+            ]])
+            ->exec();
 
     }
 
