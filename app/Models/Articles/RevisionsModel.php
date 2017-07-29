@@ -11,7 +11,7 @@ class RevisionsModel extends ArticlesModel {
 
     public $parent;
 
-    public function __construct($parent) {
+    public function __construct(ArticlesModel $parent) {
 
         $this->parent = $parent;
 
@@ -39,6 +39,10 @@ class RevisionsModel extends ArticlesModel {
 
         // Create data
         $data = $this->parent->articleData['revisions'];
+        $articleID = $this->parent->articleID;
+        
+        if(empty($articleID) || $articleID === null)
+            $articleID = $this->parent->preloadID;
 
         // Save to DB
         $builder = new QueryBuilder;
@@ -46,7 +50,7 @@ class RevisionsModel extends ArticlesModel {
             ->table(self::TABLE)
             ->insert()
             ->insertRow([[
-                'article_id' => $this->parent->articleID,
+                'article_id' => $articleID,
                 'description' => $data
             ]])
             ->exec();

@@ -1,12 +1,5 @@
 <?php
 
-/*
- * wrinche. Modern, powerful and user friendly CMS.
- * Database query builder module.
- * Version: 0.3.9
- * Authors: lamka02sk
- */
-
 namespace App\Database;
 
 use App\Controllers\StatsController;

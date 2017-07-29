@@ -1,69 +1,56 @@
 <?php
 
-/*
- * wrinche. Modern, powerful and user friendly CMS.
- * Protects system against DDoS attacks.
- * Version: 1.0.2
- * Authors: lamka02sk
- */
-
 namespace App\Auth;
 
 use App\Helpers\Redirect;
 
 class DDoS {
-
-    /**
-     * @var array
-     * Past user requests
-     */
-    private $requests;
-
-    /**
-     * Maximum number of request per time
-     */
-    const MAX = 10; // Requests
-
-    /**
-     * Request expires in...
-     */
-    const TIME = 120; // Seconds
-
+    
+    private $_requests;
+    
+    const LIMIT = 10;   // request per TIME allowed
+    const TIME  = 120;  // seconds
+    
     /**
      * DDoS constructor.
      */
     public function __construct() {
-
-        $this->requests = $_SESSION['requests'] ?? [];
-        $this->checkUser();
-
+        
+        $this->_requests = $_SESSION['requests'] ?? [];
+        $this->_checkUser();
+        
     }
-
+    
     /**
      * Check user for DDoS activity
      */
-    private function checkUser() {
-
-        $i = 0;
+    private function _checkUser() {
+        
+        $i     = 0;
         $count = 0;
-        $ms = self::TIME;
-        $max = sizeof($this->requests);
-
+        $max   = sizeof($this->_requests);
+        
         // Count requests in time interval, unset old requests
         while($i < $max) {
-            if((microtime(true) - $this->requests[$i]) < $ms) ++$count;
-            else unset($this->requests[$i]);
+            
+            if((microtime(true) - $this->_requests[$i]) < self::TIME)
+                ++$count;
+            else
+                unset($this->_requests[$i]);
+            
             ++$i;
+            
         }
-
+        
         // Save requests
-        $this->requests[] = microtime(true);
-        $this->requests = array_values($this->requests);
-        $_SESSION['requests'] = $this->requests;
-
-        // Redirect is suspicious activity found
-        if($count > self::MAX) Redirect::response(429);
-
+        $this->_requests[]    = microtime(true);
+        $this->_requests      = array_values($this->_requests);
+        $_SESSION['requests'] = $this->_requests;
+        
+        // Redirect if suspicious activity was found
+        if($count > self::LIMIT)
+            Redirect::response(429);
+        
     }
-
+    
 }

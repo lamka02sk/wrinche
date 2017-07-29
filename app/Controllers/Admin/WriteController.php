@@ -12,6 +12,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\AdminController;
 use App\Errors\UserEvents;
 use App\Helpers\Checker;
+use App\Models\Articles\ContentModel;
 use App\Models\Articles\RevisionsModel;
 use App\Models\ArticlesModel;
 use App\Models\Components\SerializerModel;
@@ -95,8 +96,10 @@ class WriteController extends AdminController {
         $postID = Request::$forms['articleID'] ?? false;
 
         // Check edit mode
-        if($postID !== false)
+        if($postID !== false && !empty($postID)) {
             $this->editMode = true;
+            $postID = (int)$postID;
+        }
 
         if($postAction === false || $postAction < 0 || $postAction > 2)
             new UserEvents(4);  // Invalid input
@@ -126,17 +129,39 @@ class WriteController extends AdminController {
             ++$layoutNumber;
         }
 
+        // Check if article with current url exists and change edit mode
+        $model = new ContentModel(new ArticlesModel());
+        if($model->isArticleUrl($serializedData['articles_content']['url']))
+            $this->editMode = true;
+
         // Save data
         $model = new ArticlesModel;
         $model->setArticleData($serializedData);
         $model->setArticleAction($postAction);
         $model->setArticleType($layoutNumber);
-        $model->saveArticle();
+
+        // Update or save article
+        if($this->editMode === false)
+            $model->saveArticle();
+        else {
+
+            if($postID === false)
+                new UserEvents(4);  // Invalid input
+
+            $model->setArticleID($postID);
+            $model->updateArticle();
+
+        }
+        
+        $postID = $model->articleID;
+        if($postID === null || empty($postID))
+            $postID = $model->preloadID;
 
         // Success
         echo json_encode([
             'success' => true,
-            'code' => 200
+            'code' => 200,
+            'article_id' => (int)$postID
         ]);
 
     }

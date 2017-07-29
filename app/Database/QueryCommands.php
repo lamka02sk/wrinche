@@ -1,15 +1,6 @@
 <?php
 
-/*
- * wrinche. Modern, powerful and user friendly CMS.
- * Database query commands API module.
- * Version: 0.5
- * Authors: lamka02sk
- */
-
 namespace App\Database;
-
-use App\Requests\Request;
 
 class QueryCommands {
 

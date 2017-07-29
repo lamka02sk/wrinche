@@ -29,8 +29,7 @@ class ArticlesModel extends MainModel {
     public $articleData = [];
     public $articleType;
     public $articleAction;
-
-    protected $preloadID;
+    public $preloadID;
 
     public static $article = [
         'articles' => [],
@@ -98,6 +97,10 @@ class ArticlesModel extends MainModel {
         $data['layout'] = $this->articleType;
         $data['preview'] = $previewID;
 
+        // Publish if publish button was pressed
+        if($this->articleAction === 1)
+            $data['status'] = 1;
+
         // Save data to DB
         $builder = new QueryBuilder;
         $builder->queryCommands
@@ -116,6 +119,42 @@ class ArticlesModel extends MainModel {
         $model->saveArticleRevision();
 
         return $this->articleID;
+
+    }
+
+    /**
+     * Update current article
+     */
+    public function updateArticle() {
+
+        $data = $this->articleData['articles'];
+
+        // Publish if publish button was pressed
+        if($this->articleAction === 1)
+            $data['status'] = 1;
+        
+        // Remove created at
+        if($data['created_at'] === null)
+            unset($data['created_at']);
+
+        // Update article data
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table(self::TABLE)
+            ->update()
+            ->updateRow($data)
+            ->where('id', $this->preloadID)
+            ->exec();
+
+        // Update article content
+        $model = new ContentModel($this);
+        $model->updateArticleContent();
+
+        // Add new revision
+        $model = new RevisionsModel($this);
+        $model->saveArticleRevision();
+
+        return $this->preloadID;
 
     }
 

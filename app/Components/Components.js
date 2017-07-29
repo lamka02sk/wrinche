@@ -145,5 +145,4 @@ function ComponentsModule() {
 
 }
 
-// Create new instance of the ComponentsModule
 let componentsModule = new ComponentsModule();

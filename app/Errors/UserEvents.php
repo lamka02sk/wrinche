@@ -1,12 +1,5 @@
 <?php
 
-/*
- * wrinche. Modern, powerful and user friendly CMS.
- * Handles errors coming from users' actions
- * Version: 0.1
- * Authors: lamka02sk
- */
-
 namespace App\Errors;
 
 use App\Logs\LogEvents;
@@ -19,18 +12,19 @@ class UserEvents {
      * List of error/event codes
      */
     public $errCodes = [
-
+    
         // Errors
-        0 => 'Undefined',
-        1 => 'Invalid Login',
-        2 => 'Login Attempts',
-        3 => 'Invalid Login',
-        4 => 'Invalid Input',
-        5 => 'Empty data',
-        6 => 'User does not exist',
-        7 => 'User with given email or username already exists',
-        8 => 'Hash does not exists',
-        9 => 'New password equals to old password',
+        -1 => 'Could not connect to the database',
+        0  => 'Undefined',
+        1  => 'Invalid Login',
+        2  => 'Login Attempts',
+        3  => 'Invalid Login',
+        4  => 'Invalid Input',
+        5  => 'Empty data',
+        6  => 'User does not exist',
+        7  => 'User with given email or username already exists',
+        8  => 'Hash does not exists',
+        9  => 'New password equals to old password',
         10 => 'Inactive account',
         11 => 'Function undefined',
         12 => 'Input with the same values already exists.',
@@ -38,14 +32,14 @@ class UserEvents {
         14 => 'Post type does not exists',
         15 => 'Article does not exist',
         16 => 'Invalid database query',
-
+    
         20 => 'Unsupported image format',
         21 => 'Invalid image',
-
+    
         30 => 'Unsupported video format',
-
+    
         40 => 'Unsupported audio format',
-
+    
         50 => 'Unsupported file format'
 
     ];

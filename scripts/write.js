@@ -105,21 +105,38 @@ document.querySelector('.save-content').addEventListener('click', function() {
 
     // Validate data first
     let valid = componentsModule.validate();
-    if(!valid) {
+    if(!valid)
         return false;
-    }
 
+    let contentElement = document.querySelector('div.content-wrapper');
+    let articleID = contentElement.getAttribute('data-id');
     let componentsData = componentsModule.serialize();
     let order = componentsOrder();
-    postData(URI + 'write', {
+
+    let data = {
         action: 0,
         type: document.querySelector('.content-wrapper').getAttribute('data-type'),
         order: order,
         components: componentsData
-    }, function(response, status) {
-        console.log(response + ': ' + status);
+    };
 
-    });
+    if(articleID !== '')
+        data['articleID'] = articleID;
+
+    postData(
+        URI + 'write',
+        data,
+        function(response, status) {
+
+            response = JSON.parse(response);
+            if(response.article_id)
+                contentElement.setAttribute('data-id', response.article_id);
+
+            // TODO: Show status message
+
+        }
+    );
+
 });
 
 // Save and publish article

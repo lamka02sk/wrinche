@@ -52,13 +52,19 @@ class ValidatorModel extends ComponentsModel {
         $this->layoutContentComponents = $layout['_content_'];
 
         foreach($this->data as $componentName => $componentData) {
-            if(!in_array($componentName, $this->layoutComponents) && !in_array($componentName, $this->layoutContentComponents))
+            
+            if(
+                !in_array($componentName, $this->layoutComponents)
+                &&
+                !in_array($componentName, $this->layoutContentComponents)
+            )
                 continue;
-            echo $componentName . '---------------------------';
+            
             if(!$this->validateComponent($componentName, $componentData)) {
                 $this->valid = false;
                 return false;
             }
+            
         }
 
         return true;
@@ -68,11 +74,15 @@ class ValidatorModel extends ComponentsModel {
     private function validateComponent(string $component, $data) {
 
         if(in_array($component, $this->layoutComponents)) {
+            
             if(!$this->validateSingleInstanceComponent(self::$prototypes[$component], $data))
                 return false;
+            
         } else {
+            
             if(!$this->validateMultiInstanceComponent($component, $data))
                 return false;
+            
         }
 
         return true;

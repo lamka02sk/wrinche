@@ -1,11 +1,8 @@
 <?php
 
-/* wrinche. Modern, powerful and user friendly CMS. */
-
-// Document root
+// Set document root
 define('ROOT', __DIR__);
 
-// Start session
 session_start();
 
 // Boot wrinche system

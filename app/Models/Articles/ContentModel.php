@@ -11,7 +11,7 @@ class ContentModel extends ArticlesModel {
 
     public $parent;
 
-    public function __construct($parent) {
+    public function __construct(ArticlesModel $parent) {
 
         $this->parent = $parent;
 
@@ -48,6 +48,38 @@ class ContentModel extends ArticlesModel {
             ->insert()
             ->insertRow([$data])
             ->exec();
+
+    }
+
+    public function updateArticleContent() {
+
+        // Prepare articles_content table data
+        $data = $this->parent->articleData['articles_content'];
+        $articleID = $this->parent->preloadID;
+
+        // Save article content
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table(self::TABLE)
+            ->update()
+            ->updateRow($data)
+            ->where('article_id', $articleID)
+            ->exec();
+
+    }
+
+    public function isArticleUrl($url) {
+
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table(self::TABLE)
+            ->select()
+            ->count()
+            ->where('url', $url)
+            ->exec();
+
+        $output = (int)$builder->output[0]['count'] ?? 0;
+        return ($output > 0);
 
     }
 

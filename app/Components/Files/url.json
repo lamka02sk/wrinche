@@ -23,13 +23,6 @@
       "validate": {
         "source":"validator",
         "method":"validateSimpleUrl"
-      },
-
-      "check": {
-        "source":"database",
-        "table":"articles_content",
-        "column":"url",
-        "method":"unique"
       }
     }
 

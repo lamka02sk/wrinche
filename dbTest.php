@@ -1,24 +1,15 @@
 <?php
 
-// Define ROOT
-define('ROOT', __DIR__);
+use App\Auth\Csrf;
+use App\Database;
+use App\Helpers;
 
-// Initialize Autoloader
+define('ROOT', __DIR__);
+session_start();
 require_once ROOT . '/app/autoload.php';
 
-// Start session
-session_start();
-
-// Use...
-use App\Auth\Csrf;
-use App\Helpers;
-use App\Database;
-
-// Verify CSRF Token
-$csrf = new Csrf();
-
-// Sanitizer
-$sanitizer = new Helpers\Sanitizer();
+$csrf      = new Csrf;
+$sanitizer = new Helpers\Sanitizer;
 
 // Check $_POST data
 if(!isset($_POST['dbhost']) || empty(trim($_POST['dbhost']))) {
@@ -42,20 +33,17 @@ if(!isset($_POST['dbpass']) || empty(trim($_POST['dbpass']))) {
 }
 
 // Everything OK ... validate and sanitize data
-$dbhost = $sanitizer->sanitizeMagicQuotes($_POST['dbhost']);
-$dbname = $sanitizer->sanitizeMagicQuotes($_POST['dbname']);
-$dbuser = $sanitizer->sanitizeMagicQuotes($_POST['dbuser']);
-$dbpass = $sanitizer->sanitizeMagicQuotes($_POST['dbpass']);
+$databaseHost     = $sanitizer->sanitizeMagicQuotes($_POST['dbhost']);
+$databaseName     = $sanitizer->sanitizeMagicQuotes($_POST['dbname']);
+$databaseUser     = $sanitizer->sanitizeMagicQuotes($_POST['dbuser']);
+$databasePassword = $sanitizer->sanitizeMagicQuotes($_POST['dbpass']);
 
 // Check connection
 $connection = new Database\Connection;
-$connection = $connection->checkConnection($dbhost, $dbname, $dbuser, $dbpass);
+$connection = $connection->checkConnection($databaseHost, $databaseName, $databaseUser, $databasePassword);
 
 // Return result
-if($connection === null) {
+if($connection === null)
     echo 'false';
-} else {
+else
     echo 'true';
-}
-
-exit;

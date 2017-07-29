@@ -1,14 +1,8 @@
 <?php
 
-/*
- * wrinche. Modern, powerful and user friendly CMS.
- * Database connection module.
- * Version: 0.6.2
- * Authors: lamka02sk
- */
-
 namespace App\Database;
 
+use App\Errors\UserEvents;
 use App\Helpers\Config;
 use PDO;
 use PDOException;
@@ -16,46 +10,15 @@ use App\Models\ConnectionsModel;
 
 class Connection {
 
-    /**
-     * @var mixed
-     * Current DB connection
-     */
     public $connection;
 
-    /**
-     * @var array
-     * List of present connections
-     */
-    private $connections = [];
+    private $_allConnections = [];
+    private $_databaseHost;
+    private $_queryType      = "";
+    private $_queryString    = "";
+    private $_queryBinds     = [];
 
-    /**
-     * @var string
-     * DB host name
-     */
-    private $host;
-
-    /**
-     * @var string
-     * Query type
-     */
-    private $type = "";
-
-    /**
-     * @var string
-     * Query string
-     */
-    private $query = "";
-
-    /**
-     * @var array
-     * Value binds array
-     */
-    private $binds = [];
-
-    /**
-     * @var array Settings for new connection
-     */
-    private static $settings = array(
+    private static $_connectionSettings = array(
         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
         PDO::ATTR_ERRMODE => 1
     );
@@ -66,7 +29,7 @@ class Connection {
      */
     private function determineHost() {
 
-        if(strpos($this->host, '.sock') !== false)
+        if(strpos($this->_databaseHost, '.sock') !== false)
             return $this->createSocket();
         else
             return $this->createHost();
@@ -80,13 +43,13 @@ class Connection {
     private function createHost() {
 
         $host = 'host=';
-        $parsed = parse_url($this->host);
+        $parsed = parse_url($this->_databaseHost);
         if(isset($parsed['path']))
             return $host . $parsed['path'];
         else if(isset($parsed['host']) && isset($parsed['port']))
             return $host . $parsed['host'] . ';port=' . $parsed['port'];
         else
-            return $this->host;
+            return $this->_databaseHost;
 
     }
 
@@ -96,7 +59,7 @@ class Connection {
      */
     private function createSocket() {
 
-        return 'unix_socket=' . $this->host;
+        return 'unix_socket=' . $this->_databaseHost;
 
     }
 
@@ -107,19 +70,25 @@ class Connection {
     public function connect($connection = "default") {
 
         // Create connection information
-        $model = new ConnectionsModel;
-        $this->connections = $model->start()->connections;
-        $connection = $this->connections[$connection];
-        $this->host = $connection["host"];
-        $host = $this->determineHost();
-        $database = $connection["database"];
-        $user = $connection["user"];
-        $pass = $connection["pass"];
+        $model                 = new ConnectionsModel;
+        $this->_allConnections = $model->start()->connections;
+        $connection            = $this->_allConnections[$connection];
+        $this->_databaseHost   = $connection["host"];
+        $host                  = $this->determineHost();
+        $database              = $connection["database"];
+        $user                  = $connection["user"];
+        $pass                  = $connection["pass"];
 
         try {
-            $this->connection = new PDO("mysql:$host;dbname=$database", $user, $pass, self::$settings);
+            
+            $this->connection = new PDO(
+                "mysql:$host;dbname=$database",
+                $user,
+                $pass,
+                self::$_connectionSettings);
+            
         } catch(PDOException $e) {
-            // Create Error
+            new UserEvents(-1);  // Could not connect to the database
         }
 
     }
@@ -134,33 +103,39 @@ class Connection {
      */
     public function checkConnection($host, $database, $username, $password) {
 
-        $this->host = $host;
-        $host = $this->determineHost();
+        $this->_databaseHost = $host;
+        $host                = $this->determineHost();
 
-        // Try to connect to the DB with given parameters
+        // Try to connect to the DB
         try {
 
-            // Create PDO connection instance
-            $connection = new PDO("mysql:$host;dbname=$database", $username, $password);
+            $connection = new PDO(
+                "mysql:$host;dbname=$database",
+                $username,
+                $password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            // Load Configs
             new Config;
 
             // Check database version
             $version = substr($connection->query('select version()')->fetchColumn(), 0, 6);
-            if(!version_compare($version, Config::$file['system']['requirements']['mysql-version'], '<')
-                && !version_compare($version, Config::$file['system']['requirements']['mariadb-version'], '<'))
+            if(
+                !version_compare(
+                    $version,
+                    Config::$file['system']['requirements']['mysql-version'],
+                    '<')
+                &&
+                !version_compare(
+                    $version,
+                    Config::$file['system']['requirements']['mariadb-version'],
+                    '<')
+            )
                 return null;
 
-            // Return connection if successfully connected
             return $connection;
 
         } catch(PDOException $e) {
-
-            // Return null if connection failed
             return null;
-
         }
 
     }
@@ -184,25 +159,27 @@ class Connection {
      * @return mixed
      */
     public function executeQuery(string $queryType, string $query, array $binds = [], bool $getID = false) {
-
-        // Detect query type, save data and execute
+        
         if(empty($this->connection))
             $this->connect();
 
-        $this->type = $queryType;
-        $this->query = $query;
-        $this->binds = $binds;
+        $this->_queryType   = $queryType;
+        $this->_queryString = $query;
+        $this->_queryBinds  = $binds;
 
-        switch($this->type) {
+        switch($this->_queryType) {
+            
             case "select":
                 return $this->executeSelectQuery();
                 break;
+                
             case "insert":
             case "update":
             case "delete":
             case "truncate":
                 return $this->executeOtherQuery($getID);
                 break;
+                
         }
 
         return true;
@@ -215,8 +192,8 @@ class Connection {
      */
     private function executeSelectQuery() {
 
-        $instance = $this->connection->prepare($this->query);
-        $instance->execute($this->binds);
+        $instance = $this->connection->prepare($this->_queryString);
+        $instance->execute($this->_queryBinds);
         $output = $instance->fetchAll(PDO::FETCH_ASSOC);
 
         return $output;
@@ -230,20 +207,14 @@ class Connection {
      */
     private function executeOtherQuery(bool $getID = false) {
 
-        $instance = $this->connection->prepare($this->query);
-        $instance->execute($this->binds);
+        $instance = $this->connection->prepare($this->_queryString);
+        $instance->execute($this->_queryBinds);
         $output = [];
 
         if($getID)
             $output = $this->connection->lastInsertId();
 
         return $output;
-
-    }
-
-    public function checkVersion() {
-
-
 
     }
 
