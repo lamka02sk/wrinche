@@ -1,12 +1,23 @@
 <?php
 
 use App\Controllers\ApiController;
+use App\Requests\Request;
 use App\Requests\UrlRequest;
 use App\Routers\AdminRouter;
 
 $urlRequest = new UrlRequest();
 
 if($urlRequest->isAdmin()) {
+    
+    // Detect API call
+    if(UrlRequest::$subcategory === 'api') {
+        
+        $parameters = Request::$url[2] ?? '';
+        new ApiController($parameters);
+        
+        return true;
+        
+    }
 
     // Show administration
     $router = new AdminRouter;

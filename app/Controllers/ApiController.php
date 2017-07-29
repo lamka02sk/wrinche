@@ -58,6 +58,11 @@ class ApiController extends MainController {
                 'php' => true,
                 'database' => true,
                 'email' => true
+            ],
+            'check' => [
+                'integrity' => [
+                    'components' => true
+                ]
             ]
         ],
         'categories' => [

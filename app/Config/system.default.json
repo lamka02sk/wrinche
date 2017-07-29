@@ -52,7 +52,8 @@
       "ckeditor": "ckeditor\/ckeditor.js",
       "mediaManager": "mediaManager.min.js",
       "flatpickr": "flatpickr.min.js",
-      "sortable": "sortable.min.js"
+      "sortable": "sortable.min.js",
+      "sha256": "sha256.min.js"
     }
   },
   "tracking": {

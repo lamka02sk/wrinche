@@ -7,7 +7,7 @@ use ReflectionClass;
 
 class System extends EndpointInterface {
     
-    private $_endpoint;
+    protected $_endpoint;
     
     public function __construct($endpoint) {
         
@@ -49,6 +49,26 @@ class System extends EndpointInterface {
         $csrf->updateToken();
         $this->output = $_SESSION['auth']['csrf_token'];
         
+    }
+    
+    public function check_integrity_components() {
+    
+        $componentsList = json_decode(file_get_contents(ROOT . '/app/Components/components.json'), true);
+        $componentScripts = [];
+        
+        foreach($componentsList as $category => $categoryComponents) {
+            
+            foreach($categoryComponents as $categoryComponent) {
+                
+                $componentFile = ROOT . '/app/Components/Scripts/' . $categoryComponent . '.min.js';
+                $componentScripts[$categoryComponent] = hash_file('sha256', $componentFile);
+                
+            }
+            
+        }
+        
+        $this->output = $componentScripts;
+    
     }
     
 }

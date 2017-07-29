@@ -6,7 +6,7 @@ use App\Models\CategoriesModel;
 
 class Categories extends EndpointInterface {
     
-    private $_endpoint;
+    protected $_endpoint;
     
     public function __construct($endpoint) {
         

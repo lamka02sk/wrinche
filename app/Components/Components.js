@@ -1,147 +1,313 @@
 function ComponentsModule() {
 
-    // Keep modules in cache to not reload all modules all the time
-    // TODO: Add localStorage cache
     this.modulesCache = {};
+    this.components   = [];
+    this.modules      = {};
 
-    this.components = [];
-    this.modules = {};
+    /*
+     * EVENT HANDLING
+     */
 
-    // Initialize any event, simply makes handling event in pure JS simpler :D
-    this.initializeEvent = function(event) {
-        let events = event.event.trim().split(' ');
-        if(event.element[0] !== undefined) {
-            for(let i = 0; i < event.element.length; ++i) {
-                for(let j = 0; j < events.length; ++j)
-                    event.element[i].addEventListener(events[j], event.content);
-            }
-        } else {
-            for(let i = 0; i < events.length; ++i)
-                event.element.addEventListener(events[i], event.content);
-        }
-    }.bind(this);
+    /**
+     * Initialize event on defined elements
+     * @param eventData
+     */
+    this.initializeEvent = function(eventData) {
 
-    // Initialize any event or more events, simply makes handling events in pure JS simpler :D
-    this.initializeEvents = function(events) {
-        for(let i = 0; i < events.length; ++i)
-            this.initializeEvent(events[i]);
-    }.bind(this);
+        let eventList = eventData.event.trim().split(' ');
 
-    // If component does not exist on the client side, download it
-    this.loadComponent = function(component) {
-        if(!(component in componentsModule.modulesCache))
-            componentsModule.modulesCache[component] = getFile('app/Components/Scripts/' + component + '.min.js');
-        eval(componentsModule.modulesCache[component]);
+        // Multiple elements bound to event
+        if(eventData.element[0] !== undefined)
+
+            for(let element = 0; element < eventData.element.length; ++element)
+                for(let event = 0; event < eventList.length; ++event)
+                    eventData.element[element].addEventListener(eventList[event], eventData.content);
+
+        // Single element bound to event
+        else
+
+            for(let i = 0; i < eventList.length; ++i)
+                eventData.element.addEventListener(eventList[i], eventData.content);
+
     };
 
-    // Initialize component
+    /**
+     * Initialize multiple events on defined elements
+     * @type {function(this:ComponentsModule)}
+     */
+    this.initializeEvents = function(events) {
+
+        for(let eventData = 0; eventData < events.length; ++eventData)
+            componentsModule.initializeEvent(events[eventData]);
+
+    };
+
+    /*
+     * COMPONENT INITIALIZATION
+     */
+
+    /**
+     * Downloads and saves components to make them reusable
+     * @param component
+     */
+    this.loadComponent = function(component) {
+
+        let cache = componentsModule.modulesCache;
+        if(!(component in cache))
+            cache[component] = getFile('app/Components/Scripts/' + component + '.min.js');
+
+        eval(cache[component]);
+
+    };
+
+    /**
+     * Initialize single component with all events
+     * @type {function(this:ComponentsModule)}
+     */
     this.initializeComponent = function(component) {
-        componentsModule.modules[component] = {};
-        this.loadComponent(component);
-        component = this.modules[component];
-        if(component.start) component.start();
-        if(!component.events) return false;
-        let events = component.events;
-        this.initializeEvents(events);
-    }.bind(this);
 
-    // Initializes more components at once
+        let componentData = componentsModule.modules[component] = {};
+        componentsModule.loadComponent(component);
+
+        if(componentData.start)
+            component.start();
+
+        if(!componentData.events)
+            return false;
+
+        let eventsData = componentData.events;
+        componentsModule.initializeEvents(eventsData);
+
+    };
+
+    /**
+     * Initialize all components needed
+     * @type {function(this:ComponentsModule)}
+     */
     this.initializeComponents = function() {
-        for(let i = 0; i < this.components.length; ++i)
-            this.initializeComponent(this.components[i]);
-    }.bind(this);
 
-    // Starts the whole components system and makes it ready to use
+        let componentsList = componentsModule.components;
+        if(localStorage) {
+            componentsModule.modulesCache = JSON.parse(localStorage.getItem('wrinche.componentsCache')) || {};
+            componentsModule.checkComponentsIntegrity();
+        }
+
+        for(let component = 0; component < componentsList.length; ++component)
+            componentsModule.initializeComponent(componentsList[component]);
+
+        if(localStorage)
+            localStorage.setItem('wrinche.componentsCache', JSON.stringify(componentsModule.modulesCache));
+
+    };
+
+    /**
+     * Check integrity of the local components, remove invalid ones
+     */
+    this.checkComponentsIntegrity = function() {
+
+        // Retrieve list of component hashes
+        let componentHashes = getJson(URI + 'api/system.check.integrity.components&csrf_token=' + csrf_token).data;
+
+        // Check all components in cache
+        let generator, hash;
+        for(let componentName in componentsModule.modulesCache) {
+
+            generator = new jsSHA('SHA-256', 'TEXT');
+            generator.update(componentsModule.modulesCache[componentName]);
+            hash = generator.getHash('HEX');
+
+            if(hash !== componentHashes[componentName])
+                delete componentsModule.modulesCache[componentName];
+
+        }
+
+    };
+
+    /**
+     * Start the component system and prepare components for use
+     * @type {function(this:ComponentsModule)}
+     */
     this.start = function(components) {
-        this.components = components;
-        this.initializeComponents();
-    }.bind(this);
 
-    // Validate components data to make sure any errors will appear on the server
+        componentsModule.components = components;
+        componentsModule.initializeComponents();
+
+    };
+
+    /*
+     * DATA MANIPULATION
+     */
+
+    /**
+     * Validate data of all components
+     * @type {function(this:ComponentsModule)}
+     */
     this.validate = function() {
-        for(let i = 0; i < this.components.length; ++i)
-            if(!this.modules[this.components[i]].validate())
+
+        for(let component = 0; component < componentsModule.components.length; ++component)
+            if(!this.modules[componentsModule.components[component]].validate())
                 return false;
+
         return true;
-    }.bind(this);
 
-    // Serialize data from all components
+    };
+
+    /**
+     * Serialize data from all components
+     * @type {function(this:ComponentsModule)}
+     */
     this.serialize = function() {
-        let result = {};
-        for(let i = 0; i < this.components.length; ++i)
-            result[this.components[i]] = this.modules[this.components[i]].serialize();
-        return result;
-    }.bind(this);
 
-    // Create new instance of component (if component supports multiple instances)
-    this.createComponent = function(name) {
-        let inlineElement = document.querySelector('div.content-builder div.content-builder-content');
-        if(typeof inlineElement === 'undefined') return false;
-        if(!(name in this.modules)) return false;
-        if(!("create" in this.modules[name])) return false;
-        let emptyElement = inlineElement.querySelector('p.empty');
-        let templateElement = document.querySelector('component-template#component_' + name + '_template');
-        if(typeof templateElement === 'undefined') return false;
-        if(emptyElement !== null) inlineElement.removeChild(emptyElement);
-        let template = templateElement.children[0].cloneNode(true);
+        let result = {};
+        for(let component = 0; component < componentsModule.components.length; ++component) {
+
+            let componentName     = componentsModule.components[component];
+            result[componentName] = componentsModule.modules[componentName].serialize();
+
+        }
+
+        return result;
+
+    };
+
+    /*
+     * COMPONENT INSTANCES
+     */
+
+    /**
+     * Create new component instance
+     * @type {function(this:ComponentsModule)}
+     */
+    this.createComponent = function(componentName) {
+
+        let inlineElement = document.querySelector('div.content-builder-content');
+
+        if(typeof inlineElement === 'undefined')
+            return false;
+
+        if(!(componentName in componentsModule.modules))
+            return false;
+
+        if(!("create" in componentsModule.modules[componentName]))
+            return false;
+
+        let emptyElement    = inlineElement.querySelector('p.empty');
+        let templateElement = document.querySelector('#component_' + componentName + '_template');
+
+        if(typeof templateElement === 'undefined')
+            return false;
+
+        if(emptyElement !== null)
+            inlineElement.removeChild(emptyElement);
+
+        let template   = templateElement.children[0].cloneNode(true);
         let identifier = +new Date();
         template.setAttribute('data-id', identifier);
-        this.modules[name].create(identifier, template);
-        this.registerEvents(name, identifier, template);
-        inlineElement.appendChild(template);
-        if('onCreate' in this.modules[name]) this.modules[name].onCreate(identifier);
-    }.bind(this);
 
-    // Register events for the "inline" components with multiple instances
-    this.registerEvents = function(name, identifier, element) {
-        let headerElement = element.querySelector('div.component-element-header');
-        let contentElement = element.querySelector('div.component-element-content');
-        let titleElement = headerElement.children[1];
-        let titleDefault = titleElement.innerText;
-        let removeElement = headerElement.children[3];
-        let disableElement = headerElement.children[4];
-        let collapseElement = headerElement.children[5];
-        titleElement.addEventListener('click', function() {
-            titleElement.focus();
-            document.execCommand('selectAll', false, null);
-        });
-        titleElement.addEventListener('blur', function() {
-            if(titleElement.innerText.trim() === '')
-                titleElement.innerText = titleDefault;
-        });
-        titleElement.addEventListener('keypress', function(event) {
-            if(event.keyCode === 13) {
-                titleElement.blur();
-                window.getSelection().removeAllRanges();
-                event.preventDefault();
+        componentsModule.modules[componentName].create(identifier, template);
+        componentsModule.registerEvents(componentName, identifier, template);
+        inlineElement.appendChild(template);
+
+        if('onCreate' in componentsModule.modules[componentName])
+            componentsModule.modules[componentName].onCreate(identifier);
+
+    };
+
+    /**
+     * Register default events for new component instance
+     * @type {function(this:ComponentsModule)}
+     */
+    this.registerEvents = function(name, identifier, parentElement) {
+
+        let headerElement  = parentElement.querySelector('div.component-element-header');
+        let contentElement = parentElement.querySelector('div.component-element-content');
+        let titleElement   = headerElement.children[1];
+        let titleDefault   = titleElement.innerText;
+
+        // Delegate default events
+        componentsModule.initializeEvents([
+
+            {
+                event  : 'click',
+                element: headerElement,
+                content: function(event) {
+
+                    if(!event.target)
+                        return false;
+
+                    let element = event.target;
+
+                    // Select component title and focus
+                    if(element.matches('.component-inline-label')) {
+                        element.focus();
+                        document.execCommand('selectAll', false, null);
+                    }
+
+                    // Collapse / Show component content
+                    else if(element.matches('.component-inline-collapse'))
+                        contentElement.classList.toggle('hide');
+
+                    // Disable / Enable component
+                    else if(element.matches('.component-inline-disable')) {
+                        parentElement.classList.toggle('disabled');
+                        element.classList.toggle('icon-off');
+                        componentsModule.modules[name].data[identifier].disabled ^= true;
+                    }
+
+                    // Remove component instance
+                    else if(element.matches('.component-inline-remove')) {
+
+                        let componentName = headerElement.querySelector('.component-inline-label').innerText.trim();
+                        let actionText    = translate.locale.response['ACTION_CONFIRM_REMOVE_COMPONENT'].replace('%component%', componentName);
+
+                        confirmAction(actionText, function() {
+                            parentElement.parentNode.removeChild(parentElement);
+                            delete componentsModule.modules[name].data[identifier];
+                        });
+
+                    }
+
+                }
+            },
+
+            {
+                // Show placeholder when empty title
+                event  : 'blur',
+                element: titleElement,
+                content: function() {
+                    if(titleElement.innerText.trim() === '')
+                        titleElement.innerText = titleDefault;
+                }
+            },
+
+            {
+                // Submit title on enter
+                event  : 'keypress',
+                element: titleElement,
+                content: function(event) {
+
+                    if(!event.keyCode || event.keyCode !== 13)
+                        return false;
+
+                    titleElement.blur();
+                    window.getSelection().removeAllRanges();
+                    event.preventDefault();
+
+                }
+            },
+
+            {
+                // Serialize component title
+                event  : 'keyup change',
+                element: titleElement,
+                content: function(event) {
+                    componentsModule.modules[name].data[identifier].title = event.target.innerText.trim();
+                }
             }
-        });
-        titleElement.addEventListener('keyup', function(event) {
-            this.modules[name].data[identifier].title = event.target.innerText.trim();
-        }.bind(this));
-        titleElement.addEventListener('change', function(event) {
-            this.modules[name].data[identifier].title = event.target.innerText.trim();
-        }.bind(this));
-        titleElement.addEventListener('paste', function() {
-            $('br, p', this).replaceWith(' ');
-        });
-        collapseElement.addEventListener('click', function() {
-            contentElement.classList.toggle('hide');
-        });
-        disableElement.addEventListener('click', function() {
-            element.classList.toggle('disabled');
-            disableElement.classList.toggle('icon-off');
-            this.modules[name].data[identifier].disabled ^= true;
-        }.bind(this));
-        removeElement.addEventListener('click', function() {
-            let componentName = element.querySelector('div.component-element-header label').innerText.trim();
-            let actionText = translate.locale.response['ACTION_CONFIRM_REMOVE_COMPONENT'].replace('%component%', componentName);
-            confirmAction(actionText, function() {
-                element.parentNode.removeChild(element);
-                delete this.modules[name].data[identifier];
-            }.bind(this));
-        }.bind(this));
-    }.bind(this);
+
+        ]);
+
+    };
 
 }
 

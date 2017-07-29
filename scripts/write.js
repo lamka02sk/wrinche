@@ -100,6 +100,11 @@ function componentsOrder() {
     return order;
 }
 
+// Reload packery
+function reloadPackery() {
+    packery.packery().reloadItems();
+}
+
 // Save article
 document.querySelector('.save-content').addEventListener('click', function() {
 
