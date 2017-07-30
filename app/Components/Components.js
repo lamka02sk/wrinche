@@ -52,6 +52,8 @@ function ComponentsModule() {
      */
     this.loadComponent = function(component) {
 
+        componentsModule.modules[component] = {};
+
         let cache = componentsModule.modulesCache;
         if(!(component in cache))
             cache[component] = getFile('app/Components/Scripts/' + component + '.min.js');
@@ -66,11 +68,11 @@ function ComponentsModule() {
      */
     this.initializeComponent = function(component) {
 
-        let componentData = componentsModule.modules[component] = {};
         componentsModule.loadComponent(component);
+        let componentData = componentsModule.modules[component];
 
         if(componentData.start)
-            component.start();
+            componentData.start();
 
         if(!componentData.events)
             return false;
@@ -223,6 +225,8 @@ function ComponentsModule() {
         let contentElement = parentElement.querySelector('div.component-element-content');
         let titleElement   = headerElement.children[1];
         let titleDefault   = titleElement.innerText;
+        let removeElement  = headerElement.children[3];
+        let disableElement = headerElement.children[4];
 
         // Delegate default events
         componentsModule.initializeEvents([

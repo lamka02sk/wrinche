@@ -1,46 +1,54 @@
 componentsModule.modules.analytics = {
 
-    detailsElement: document.querySelector('div.component_analytics_details'),
+    start: function() {
 
-    data: {
-        analytics: false,
-        analytics_details: false
+        // Save elements
+        let current            = componentsModule.modules.analytics;
+        current.parentElement  = document.querySelector('[data-component=analytics]');
+        current.detailsElement = current.parentElement.querySelector('div.component_analytics_details');
+        current.analyticsCheck = current.parentElement.querySelector('[name=component_analytics]');
+        current.detailsCheck   = current.parentElement.querySelector('[name=component_analytics_details]');
+
+        // Show / Hide "detailed analytics" checkbox
+        componentsModule.initializeEvent({
+
+            event: 'change',
+            element: current.analyticsCheck,
+
+            content: function(event) {
+
+                let classList = componentsModule.modules.analytics.detailsElement.classList;
+
+                if(!!(event.target.checked))
+                    classList.remove('hide');
+                else
+                    classList.add('hide');
+
+                reloadPackery();
+
+            }
+
+        })
+
     },
 
     validate: function() {
-        return true;
+
+        let data = componentsModule.modules.analytics.serialize();
+
+        return (typeof data.analytics === 'boolean' && typeof data.analytics_details === 'boolean')
+
     },
 
     serialize: function() {
-        return componentsModule.modules.analytics.data;
-    },
 
-    events: [
+        let current = componentsModule.modules.analytics;
 
-        {
-            // Show / Hide analytics details
-            event: 'change',
-            element: document.querySelector('input[name=component_analytics]'),
-            content: function(event) {
-                let value = !!(event.target.checked);
-                if(value)
-                    componentsModule.modules.analytics.detailsElement.classList.remove('hide');
-                else
-                    componentsModule.modules.analytics.detailsElement.classList.add('hide');
-                componentsModule.modules.analytics.data.analytics = value;
-                packery.packery().reloadItems();
-            }
-        },
-
-        {
-            // Serialize analytics details
-            event: 'change',
-            element: document.querySelector('input[name=component_analytics_details]'),
-            content: function(event) {
-                componentsModule.modules.analytics.data.analytics_details = !!(event.target.checked);
-            }
+        return {
+            analytics: !!(current.analyticsCheck.checked),
+            analytics_details: !!(current.detailsCheck.checked)
         }
 
-    ]
+    }
 
 };
