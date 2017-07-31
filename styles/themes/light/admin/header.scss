@@ -65,18 +65,12 @@ header div.header-write span.write-text {
 
 header div.header-account {
   color: $text-lightBlack !important;
-  &:hover {
-    background-color: rgba(0,0,0,.02) !important;
-  }
-  &:before {
-    border-top-color: $text-grey !important;
-  }
 }
 
 header div.header-account div.account-dropdown {
   background: $white !important;
   color: $text-lightBlack !important;
-  box-shadow: 0 2px 3px rgba(0,0,0,.2) !important;
+  box-shadow: 0 4px 4px rgba(0,0,0,.06) !important;
   border-color: silver !important;
 }
 

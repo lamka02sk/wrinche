@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS users (
   username VARCHAR(25) NOT NULL,
   email VARCHAR(256) NOT NULL,
   password VARCHAR(512) NOT NULL,
+  picture VARCHAR(512) DEFAULT NULL,
   admin INT(1) NOT NULL DEFAULT 0,
   active BOOLEAN DEFAULT FALSE,
   created TIMESTAMP DEFAULT current_timestamp,

@@ -45,15 +45,11 @@ header div.header-write span.write-text {
 
 header div.header-account {
   color: #323232 !important; }
-  header div.header-account:hover {
-    background-color: rgba(0, 0, 0, 0.02) !important; }
-  header div.header-account:before {
-    border-top-color: #9b9b9b !important; }
 
 header div.header-account div.account-dropdown {
   background: #ffffff !important;
   color: #323232 !important;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06) !important;
   border-color: silver !important; }
 
 div.account-dropdown span.dropdown-item:hover {

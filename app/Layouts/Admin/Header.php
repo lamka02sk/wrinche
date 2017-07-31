@@ -133,12 +133,43 @@ require_once ROOT . '/app/Layouts/Admin/Splash.php';
     </div>
 
     <div class="header-account">
+        
+        <?php
+        
+        $profilePicture = App\Models\UserModel::$user['picture'];
+        $pictureUrl = '';
+        if($profilePicture !== null)
+            $pictureUrl = 'background-image: url(' . $profilePicture . ') !important';
+        
+        $privileges = (int)App\Models\UserModel::$user['admin'];
+        $privilegesText = '';
+        if($privileges === 1) {
+            $privileges = 'A';
+            $privilegesText = 'ADMIN';
+        } else if($privileges === 0) {
+            $privileges = 'B';
+            $privilegesText = 'PLEB';
+        } else if($privileges === 2) {
+            $privileges = 'C';
+            $privilegesText = 'CONTRIBUTOR';
+        } else if($privileges === 3) {
+            $privileges = 'D';
+            $privilegesText = 'MANAGER';
+        }
+        
+        ?>
 
-        <span class="write-text"><?= htmlspecialchars(App\Models\UserModel::$user['username']) ?></span>
+        <span class="write-icon_circle" style="<?= $pictureUrl ?>"></span>
         <span class="write-icon"></span>
 
         <div class="account-dropdown">
 
+            <p class="dropdown-user">
+                <?= htmlspecialchars(App\Models\UserModel::$user['username']) ?>
+                <span class="privileges-badge <?= $privileges ?>" title="<?= $privilegesText ?>">
+                    <?= $privileges ?>
+                </span>
+            </p>
             <span class="dropdown-item" data-locale="HEADER_PROFILE"></span>
             <span class="dropdown-item" data-locale="HEADER_SETTINGS" data-link="settings/account" data-target="content"></span>
             <span class="dropdown-item logout" data-locale="HEADER_LOGOUT"></span>
