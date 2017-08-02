@@ -202,7 +202,7 @@ class Validator {
      */
     public function validateSimpleUrl($url) {
 
-        if(preg_match('/^[a-z]{1}[a-z0-9\-]*[^\-]$/', $url))
+        if(preg_match('/^[a-z][a-z0-9\-]+[a-z]$/', $url))
             return true;
 
         return false;

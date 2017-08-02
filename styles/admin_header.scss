@@ -315,6 +315,7 @@ header div.header-account {
   font-size: .92em;
   font-weight: 500;
   max-width: 205px;
+  perspective: 1000px;
   &:before {
     content: '';
     position: absolute;
@@ -362,11 +363,13 @@ header div.header-account {
     text-transform: none;
     cursor: auto;
     color: $text-lightBlack;
+    transition: .2s ease-in-out;
   }
 }
 
 header div.header-account div.account-dropdown {
-  display: none;
+  display: block;
+  opacity: 0;
   height: auto;
   width: 180px;
   position: absolute;
@@ -379,8 +382,15 @@ header div.header-account div.account-dropdown {
   border: 1px solid;
   border-top: none;
   cursor: default;
+  transform: rotateX(-90deg);
+  transform-origin: top;
+  visibility: hidden;
+  transition: .2s ease-in-out;
   &.open {
-    display: block;
+    transition: .15s ease-in-out;
+    opacity: 1;
+    transform: rotateX(0deg);
+    visibility: visible;
   }
   span.privileges-badge {
     display: block;

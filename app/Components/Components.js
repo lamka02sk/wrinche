@@ -74,6 +74,9 @@ function ComponentsModule() {
         if(componentData.start)
             componentData.start();
 
+        if(componentData.resume)
+            componentData.resume();
+
         if(!componentData.events)
             return false;
 

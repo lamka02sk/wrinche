@@ -68,18 +68,22 @@ class ContentModel extends ArticlesModel {
 
     }
 
-    public function isArticleUrl($url) {
+    public function isArticleUrl($url, $ignore = false) {
 
         $builder = new QueryBuilder;
         $builder->queryCommands
             ->table(self::TABLE)
             ->select()
-            ->count()
+            ->selectValues('article_id')
             ->where('url', $url)
             ->exec();
 
-        $output = (int)$builder->output[0]['count'] ?? 0;
-        return ($output > 0);
+        $output = $builder->output[0] ?? false;
+        
+        if($output === false || (int)$output['article_id'] === (int)$ignore)
+            return false;
+        
+        return true;
 
     }
 

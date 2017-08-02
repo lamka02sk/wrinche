@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\ArticlesModel;
+
 if(!App\Requests\Request::$ajax) {
 
     require ROOT . '/app/Layouts/Admin/Header.php';
@@ -10,16 +12,27 @@ if(!App\Requests\Request::$ajax) {
 ?>
 
 <script type="text/javascript">
-    if (!window['YT']) {var YT = {loading: 0,loaded: 0};}if (!window['YTConfig']) {var YTConfig = {'host': 'http://www.youtube.com'};}if (!YT.loading) {YT.loading = 1;(function(){var l = [];YT.ready = function(f) {if (YT.loaded) {f();} else {l.push(f);}};window.onYTReady = function() {YT.loaded = 1;for (var i = 0; i < l.length; i++) {try {l[i]();} catch (e) {}}};YT.setConfig = function(c) {for (var k in c) {if (c.hasOwnProperty(k)) {YTConfig[k] = c[k];}}};var a = document.createElement('script');a.type = 'text/javascript';a.id = 'www-widgetapi-script';a.src = 'https://s.ytimg.com/yts/jsbin/www-widgetapi-vflWkV39n/www-widgetapi.js';a.async = true;var b = document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a, b);})();}
+    if(!window['YT']){var YT={loading:0,loaded:0}}if(!window['YTConfig']){var YTConfig={'host':'http://www.youtube.com'}}if(!YT.loading){YT.loading=1;(function(){var l=[];YT.ready=function(f){if(YT.loaded){f()}else{l.push(f)}};window.onYTReady=function(){YT.loaded=1;for(var i=0;i<l.length;i+=1){try{l[i]()}catch(e){}}};YT.setConfig=function(c){for(var k in c){if(c.hasOwnProperty(k)){YTConfig[k]=c[k]}}};var a=document.createElement('script');a.type='text/javascript';a.id='www-widgetapi-script';a.src='https://s.ytimg.com/yts/jsbin/www-widgetapi-vflWkV39n/www-widgetapi.js';a.async=true;var b=document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a,b)})()}
 </script>
 
-<div class="content-wrapper" data-locales="system admin_write admin_write/<?= strtolower($controller->subcategory) ?> components" data-type="<?= strtolower($controller->subcategory) ?>" data-id="">
+<div class="content-wrapper" data-locales="system admin_write admin_write/<?= strtolower($controller->subcategory) ?> components" data-type="<?= strtolower($controller->subcategory) ?>" data-id="<?= ArticlesModel::$article['articles']['id'] ?? '' ?>">
 
     <div class="content-header">
 
         <div class="header-mainline">
+            
+            <?php
+            
+            // Create title
+            $title = false;
+            if(isset(ArticlesModel::$article['articles_content']['title']))
+                $title = true;
+            
+            ?>
 
-            <h2 class="mainline-heading" data-locale="WRITE_TITLE"></h2>
+            <h2 class="mainline-heading"<?php if(!$title) : ?>  data-locale="WRITE_TITLE"<?php endif ?>>
+                <?= ArticlesModel::$article['articles_content']['title'] ?? '' ?>
+            </h2>
 
             <div class="mainline-search">
 
@@ -30,8 +43,28 @@ if(!App\Requests\Request::$ajax) {
             </div>
 
         </div>
+    
+        <?php
+    
+        // Create excerpt description
+        $excerpt = false;
+        if(isset(ArticlesModel::$article['articles_content']['excerpt']))
+            $excerpt = true;
+        
+        $excerptContent = ArticlesModel::$article['articles_content']['excerpt'] ?? '';
+        $excerptLength = strlen($excerptContent);
+        
+        $excerptResult = strip_tags($excerptContent);
+        if($excerptLength > 36) {
+            $excerptResult = substr($excerptResult, 0, 36);
+            $excerptResult .= '...';
+        }
+    
+        ?>
 
-        <p class="header-description" data-locale="WRITE_DESCRIPTION"></p>
+        <p class="header-description"<?php if(!$excerpt) : ?> data-locale="WRITE_DESCRIPTION"<?php endif ?>>
+            <?= $excerptResult ?>
+        </p>
 
     </div>
 
@@ -79,9 +112,6 @@ if(!App\Requests\Request::$ajax) {
         <div class="content-builder">
 
             <p class="builder-heading" data-locale="CONTENT_BUILDER_HEADING"></p>
-            <!--<select class="selector-search-select" name="write_current_language">
-                <option value="-1" selected data-locale="LANGUAGES_ALL"></option>
-            </select>-->
 
             <div class="builder-tools">
 

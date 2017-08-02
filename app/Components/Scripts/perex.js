@@ -1,52 +1,63 @@
 componentsModule.modules.perex = {
 
-    data: {
-        perex_date: '',
-        perex_location: ''
+    start: function() {
+
+        // Save elements
+        let current           = componentsModule.modules.perex;
+        current.parentElement = document.querySelector('[data-component=perex]');
+        current.dateInput     = current.parentElement.querySelector('[name=component_perex_date]');
+        current.locationInput = current.parentElement.querySelector('[name=component_perex_location]');
+
+        // Clear date input
+        componentsModule.initializeEvent({
+
+            event  : 'click',
+            element: current.parentElement.querySelector('.clear-perex-date'),
+            content: function() {
+
+                current.dateInput.value = '';
+
+            }
+
+        });
+
     },
 
-    validatePlace: function() {
-        return (componentsModule.modules.perex.data.perex_location.length < 121);
+    resume: function() {
+
+        // Save current instance
+        let current = componentsModule.modules.perex;
+        const data  = current.parentElement.getAttribute('data-resume');
+
+        if(data === '')
+            return true;
+
+        const object = JSON.parse(data);
+
+        current.dateInput.value     = object.perex_date;
+        current.locationInput.value = object.perex_location;
+
+        triggerEvent(current.locationInput, 'change');
+
     },
 
     validate: function() {
-        return componentsModule.modules.perex.validatePlace();
+
+        const data = componentsModule.modules.perex.serialize().perex_location;
+
+        return (data.length < 121);
+
     },
 
     serialize: function() {
-        return componentsModule.modules.perex.data;
-    },
 
-    events: [
+        let current = componentsModule.modules.perex;
 
-        {
-            // Update perex date data
-            event: 'change',
-            element: document.querySelector('input[name=component_perex_date]'),
-            content: function(event) {
-                componentsModule.modules.perex.data.perex_date = event.target.value.trim();
-            }
-        },
-
-        {
-            // Update perex place data
-            event: 'change keyup',
-            element: document.querySelector('input[name=component_perex_location]'),
-            content: function(event) {
-                componentsModule.modules.perex.data.perex_location = event.target.value.trim();
-            }
-        },
-
-        {
-            // Clear date input
-            event: 'click',
-            element: document.querySelector('span.clear-input.clear-perex-date'),
-            content: function(event) {
-                event.target.parentNode.querySelector('input[name=component_perex_date]').value = '';
-                componentsModule.modules.perex.data.perex_date = '';
-            }
+        return {
+            perex_date    : current.dateInput.value.trim(),
+            perex_location: current.locationInput.value.trim()
         }
 
-    ]
+    }
 
 };

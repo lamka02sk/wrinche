@@ -1,20 +1,13 @@
 <?php
 
-/*
- * wrinche. Modern, powerful and user friendly CMS.
- * Controller for writing new articles.
- * Version: 0.2.1
- * Authors: lamka02sk
- */
-
 namespace App\Controllers\Admin;
 
 use App\Controllers\AdminController;
 use App\Errors\UserEvents;
 use App\Helpers\Checker;
 use App\Models\Articles\ContentModel;
-use App\Models\Articles\RevisionsModel;
 use App\Models\ArticlesModel;
+use App\Models\Components\ResumeModel;
 use App\Models\Components\SerializerModel;
 use App\Models\Components\ValidatorModel;
 use App\Models\ComponentsModel;
@@ -74,7 +67,14 @@ class WriteController extends AdminController {
                 $model = new ArticlesModel;
                 $model->setArticleID($this->subcategory);
                 $model->prepareArticle();
-
+                
+                // Get article type
+                $type = ArticlesModel::$article['articles']['layout'];
+                $type = array_keys(TemplateModel::$template['layouts'])[$type];
+                $this->subcategory = $type;
+                
+                // Resume component data
+                new ResumeModel(ArticlesModel::$article);
 
             } else
                 new UserEvents(15);  // Article does not exist

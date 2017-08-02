@@ -566,7 +566,8 @@ header div.header-account {
   line-height: 54px;
   font-size: .92em;
   font-weight: 500;
-  max-width: 205px; }
+  max-width: 205px;
+  perspective: 1000px; }
   header div.header-account:before {
     content: '';
     position: absolute;
@@ -611,10 +612,12 @@ header div.header-account {
     border-bottom: 1px solid #f8f8f8;
     text-transform: none;
     cursor: auto;
-    color: #323232; }
+    color: #323232;
+    transition: .2s ease-in-out; }
 
 header div.header-account div.account-dropdown {
-  display: none;
+  display: block;
+  opacity: 0;
   height: auto;
   width: 180px;
   position: absolute;
@@ -626,9 +629,16 @@ header div.header-account div.account-dropdown {
   padding: 6px 0;
   border: 1px solid;
   border-top: none;
-  cursor: default; }
+  cursor: default;
+  transform: rotateX(-90deg);
+  transform-origin: top;
+  visibility: hidden;
+  transition: .2s ease-in-out; }
   header div.header-account div.account-dropdown.open {
-    display: block; }
+    transition: .15s ease-in-out;
+    opacity: 1;
+    transform: rotateX(0deg);
+    visibility: visible; }
   header div.header-account div.account-dropdown span.privileges-badge {
     display: block;
     position: absolute;

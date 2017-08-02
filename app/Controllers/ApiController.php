@@ -67,6 +67,11 @@ class ApiController extends MainController {
         ],
         'categories' => [
             'all' => true
+        ],
+        'articles' => [
+            'exists' => [
+                'url' => true
+            ]
         ]
     ];
 
@@ -79,23 +84,29 @@ class ApiController extends MainController {
         return true;
 
     }
-
-    public function handleRequest() {
-
-        $endpoint = explode('.', $this->endpoint);
-
+    
+    public function isEndpoint() {
+    
         $list = self::ENDPOINTS;
-        foreach($endpoint as $item) {
+        foreach($this->endpoint as $item) {
             if(isset($list[$item]))
                 $list = $list[$item];
             else
                 Redirect::response(404);
         }
+        
+        return ($list === true);
+    
+    }
 
-        if($list === true) {
+    public function handleRequest() {
 
-            $class = 'App\Api\Endpoints\\' . ucfirst($endpoint[0]);
-            $params = array_slice($endpoint, 1);
+        $this->endpoint = explode('.', $this->endpoint);
+
+        if($this->isEndpoint()) {
+
+            $class = 'App\Api\Endpoints\\' . ucfirst($this->endpoint[0]);
+            $params = array_slice($this->endpoint, 1);
             $params = implode('.', $params);
             $instance = new $class($params);
             header('HTTP/1.1 200 OK');

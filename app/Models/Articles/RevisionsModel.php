@@ -30,7 +30,7 @@ class RevisionsModel extends ArticlesModel {
             ->where('article_id', $this->parent->preloadID)
             ->exec();
 
-        self::$article['revisions'] = $builder->output[0] ?? [];
+        self::$article['revisions'] = $builder->output ?? [];
         return true;
 
     }

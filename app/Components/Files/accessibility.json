@@ -14,7 +14,7 @@
 
     "accessibility_password": [
       "articles.password",
-      "componentsHelper.createPassword"
+      false
     ]
 
   },

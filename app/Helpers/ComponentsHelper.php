@@ -83,11 +83,13 @@ class ComponentsHelper {
     }
 
     /**
-     * @param string $json
+     * @param mixed $json
      * Create array from JSON
      * @return mixed
      */
-    public function decodeJSON(string $json) {
+    public function decodeJSON($json) {
+        if($json === null)
+            return null;
         return json_decode($json, true);
     }
 
@@ -114,7 +116,7 @@ class ComponentsHelper {
      */
     public function createDatetime($timestamp) {
 
-        if((string)$timestamp === 'null')
+        if($timestamp === null)
             return null;
 
         return date('d.m.Y H:i:s', strtotime($timestamp));
@@ -129,7 +131,7 @@ class ComponentsHelper {
      */
     public function createDate($timestamp) {
 
-        if((string)$timestamp === 'null')
+        if($timestamp === null)
             return null;
 
         return date('d.m.Y', strtotime($timestamp));

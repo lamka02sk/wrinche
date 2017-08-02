@@ -1,28 +1,42 @@
 componentsModule.modules.pin = {
 
-    data: {
-        pin: false
+    start: function() {
+
+        // Save elements
+        let current = componentsModule.modules.pin;
+        current.parentElement = document.querySelector('[data-component=pin]');
+        current.checkElement = current.parentElement.querySelector('input');
+
+    },
+
+    resume: function() {
+
+        // Save current instance
+        let current = componentsModule.modules.pin;
+        const data  = current.parentElement.getAttribute('data-resume');
+
+        if(data === '')
+            return true;
+
+        const object               = JSON.parse(data);
+        current.checkElement.checked = !!(object.pin);
+
     },
 
     validate: function() {
-        return (typeof componentsModule.modules.pin.data.pin === 'boolean');
+
+        const data = componentsModule.modules.pin.serialize().pin;
+
+        return (typeof data === 'boolean');
+
     },
 
     serialize: function() {
-        return componentsModule.modules.pin.data;
-    },
 
-    events: [
-
-        {
-            // Update pin component data
-            event: 'change',
-            element: document.querySelector('input[name=component_pin]'),
-            content: function(event) {
-                componentsModule.modules.pin.data.pin = !!(event.target.checked);
-            }
+        return {
+            pin: !!(componentsModule.modules.pin.checkElement.checked)
         }
 
-    ]
+    }
 
 };

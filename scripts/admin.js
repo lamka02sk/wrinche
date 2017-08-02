@@ -17,25 +17,40 @@ function pad(number, positions) {
     return number.length < positions ? pad("0" + number, positions) : number;
 }
 
+function triggerEvent(element, event) {
+    element.dispatchEvent(new Event(event));
+}
+
 function initializeCounters() {
 
-    let events   = ['change', 'keydown', 'keyup'];
-    let elements = document.querySelectorAll('div.counter');
-    for(let i = 0; i < elements.length; ++i) {
-        function inner() {
-            let left          = length - element.value.trim().length;
-            current.innerText = left;
-            if(left < 0) current.classList.add('minus');
-            else current.classList.remove('minus');
-        }
+    let eventList   = ['change', 'keydown', 'keyup'];
+    let counterElements = document.querySelectorAll('div.counter');
+    let counterElementsCount = counterElements.length;
 
-        let current       = elements[i];
-        let length        = current.getAttribute('data-length');
-        current.innerText = length;
+    for(let counterElement = 0; counterElement < counterElementsCount; ++counterElement) {
+
+        let current       = counterElements[counterElement];
+        const maxLength   = current.getAttribute('data-length');
         let type          = current.getAttribute('data-input');
         let element       = current.parentNode.querySelector(type);
-        for(let i in events)
-            element.addEventListener(events[i], inner);
+
+        current.innerText = maxLength;
+
+        function inner() {
+
+            let left          = +maxLength - element.value.trim().length;
+            current.innerText = left;
+
+            if(left < 0)
+                current.classList.add('minus');
+            else
+                current.classList.remove('minus');
+
+        }
+
+        for(let event in eventList)
+            element.addEventListener(eventList[event], inner);
+
     }
 
 }
@@ -62,7 +77,7 @@ function showValidationResult(element, locale, hide, callback) {
     let loopBreak = false;
     for(let i in translate.locale) {
         for(let j in translate.locale[i]) {
-            if(j == locale) {
+            if(j === locale) {
                 messageBox.innerText = translate.locale[i][j];
                 loopBreak            = true;
                 break;
@@ -106,6 +121,18 @@ function confirmAction(action, callback) {
         $('span.confirmation-action-proceed').off('click');
         $('span.confirmation-action-dismiss').off('click');
     }
+
+}
+
+// Reload packery
+function reloadPackery(timeout) {
+
+    if(!timeout)
+        timeout = 0;
+
+    setTimeout(function() {
+        packery.packery().reloadItems();
+    }, timeout);
 
 }
 
@@ -161,7 +188,8 @@ let locale,
     typeName,
     componentList,
     components      = [],
-    selectors;
+    selectors,
+    contentElement;
 let previousScripts = [];
 let responseBox     = document.querySelector('div.response-message');
 let body            = document.querySelector('body');

@@ -1,4 +1,4 @@
-{
+  {
 
   "name":"url",
   "active":true,
@@ -59,7 +59,7 @@
     {
       "element":"span",
       "attributes": {
-        "class":"field-validation",
+        "class":"validate-message",
         "data-locale":""
       }
     }

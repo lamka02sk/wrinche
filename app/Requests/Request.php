@@ -13,7 +13,7 @@ class Request {
 
     public static $forms = [];
     public static $url = [];
-    public static $method = [];
+    public static $method;
     public static $server = [];
     public static $cookie = [];
     public static $files = [];

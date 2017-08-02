@@ -12,15 +12,11 @@ if(typeof componentsModule === 'undefined') {
         componentsModule.start(componentList);
     };
     body.appendChild(element);
-} else {
+} else
     componentsModule.start(componentList);
-}
 
 // Add current script
 previousScripts.push('write');
-
-// Init counters
-initializeCounters();
 
 // Init password toggles
 initializePasswordToggle();
@@ -66,7 +62,9 @@ if(tmp) {
         }
     });
 }
+
 tmp = undefined;
+contentElement = document.querySelector('div.content-wrapper');
 
 // Collapse / Show All Settings
 $('span.collapse-trigger').click(function(event) {
@@ -100,11 +98,6 @@ function componentsOrder() {
     return order;
 }
 
-// Reload packery
-function reloadPackery() {
-    packery.packery().reloadItems();
-}
-
 // Save article
 document.querySelector('.save-content').addEventListener('click', function() {
 
@@ -113,14 +106,13 @@ document.querySelector('.save-content').addEventListener('click', function() {
     if(!valid)
         return false;
 
-    let contentElement = document.querySelector('div.content-wrapper');
     let articleID = contentElement.getAttribute('data-id');
     let componentsData = componentsModule.serialize();
     let order = componentsOrder();
 
     let data = {
         action: 0,
-        type: document.querySelector('.content-wrapper').getAttribute('data-type'),
+        type: contentElement.getAttribute('data-type'),
         order: order,
         components: componentsData
     };
@@ -146,6 +138,10 @@ document.querySelector('.save-content').addEventListener('click', function() {
 
 // Save and publish article
 
+
+
+// Init counters
+initializeCounters();
 
 // Remove Splash screen
 $('div.splash').addClass('done');

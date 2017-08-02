@@ -1,55 +1,95 @@
 componentsModule.modules.url = {
 
-    messageElement: document.querySelector('input[name=component_url]').parentNode.parentNode.querySelector('span.field-validation'),
-    regexUrl: /^[a-z]{1}[a-z0-9\-]*[^\-]$/,
+    isFree: function() {
 
-    data: {
-        url: ''
+        let response = true;
+
+        // Check if slug is in use
+        postData(
+            URI + 'api/articles.exists.url',
+            {
+                api: {
+                    url   : componentsModule.modules.url.serialize().url,
+                    ignore: document.querySelector('div.content-wrapper').getAttribute('data-id')
+                }
+            },
+            function(data, status) {
+
+                if(status === 'success' && data.success === true)
+                    response = !(data.data.result);
+
+            }
+        );
+
+        return response;
+
     },
 
-    isFree: function() {
-        // Check if slug is in use
-        return true;
+    start: function() {
+
+        // Save elements
+        let current            = componentsModule.modules.url;
+        current.parentElement  = document.querySelector('[data-component=url]');
+        current.inputElement   = current.parentElement.querySelector('input');
+        current.messageElement = current.parentElement.querySelector('.validate-message');
+
+        // Real-time url validation
+        componentsModule.initializeEvent({
+
+            event  : 'keyup change',
+            element: current.inputElement,
+            content: function() {
+
+                showValidationResult(
+                    current.messageElement,
+                    'COMPONENT_URL_INVALID',
+                    current.validate(),
+                    reloadPackery
+                );
+
+            }
+
+        });
+
+    },
+
+    resume: function() {
+
+        // Save current instance
+        let current = componentsModule.modules.url;
+        const data  = current.parentElement.getAttribute('data-resume');
+
+        if(data === '')
+            return true;
+
+        const object               = JSON.parse(data);
+        current.inputElement.value = object.url;
+
+        triggerEvent(current.inputElement, 'change');
+
     },
 
     validate: function() {
-        if(!componentsModule.modules.url.regexUrl.test(componentsModule.modules.url.data.url))
+
+        let current = componentsModule.modules.url;
+        const data  = current.serialize().url;
+
+        if(!/^[a-z][a-z0-9\-]+[a-z]$/.test(data))
             return false;
-        if(componentsModule.modules.url.data.url.length < 3 || componentsModule.modules.url.data.url.length > 120)
+
+        if(data.length < 3 || data.length > 120)
             return false;
-        if(!componentsModule.modules.url.isFree())
-            return false;
-        return true;
+
+        return (current.isFree());
+
     },
 
     serialize: function() {
-        return componentsModule.modules.url.data;
-    },
 
-    events: [
-
-        {
-            // Update excerpt component data
-            event: 'change keyup',
-            element: document.querySelector('input[name=component_url]'),
-            content: function(event) {
-                componentsModule.modules.url.data.url = event.target.value.trim();
-                if(componentsModule.modules.url.validate()) {
-                    componentsModule.modules.url.messageElement.classList.remove('show');
-                    setTimeout(function() {
-                        packery.packery().reloadItems();
-                    }, 150);
-                } else {
-                    componentsModule.modules.url.messageElement.setAttribute('data-locale', 'COMPONENT_URL_INVALID');
-                    componentsModule.modules.url.messageElement.innerText = translate.locale.components.COMPONENT_URL_INVALID;
-                    componentsModule.modules.url.messageElement.classList.add('show');
-                    setTimeout(function() {
-                        packery.packery().reloadItems();
-                    }, 150);
-                }
-            }
+        return {
+            url: componentsModule.modules.url.inputElement.value.trim()
         }
 
-    ]
+    }
 
 };

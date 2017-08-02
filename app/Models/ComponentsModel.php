@@ -12,6 +12,7 @@ class ComponentsModel extends MainModel {
     public static $components = [];
     public static $renders = [];
     public static $globalPrototype = [];
+    public static $resumedData = [];
 
     public $currentComponent;
 
@@ -147,7 +148,14 @@ class ComponentsModel extends MainModel {
 
     public function renderComponentHeader($component) {
 
-        $firstElement = '<div class="component-element" data-component="' . $this->currentComponent . '">';
+        $firstElement = '<div class="component-element" data-component="' . $this->currentComponent . '" data-resume="';
+        
+        if(isset(self::$resumedData[$this->currentComponent]))
+            $firstElement .= htmlentities(self::$resumedData[$this->currentComponent]);
+        
+        $firstElement .= '"';
+        
+        $firstElement .= '>';
         $lastElement = '</div>';
 
         if(!isset($component['defaultElements']) || !$component['defaultElements']) {

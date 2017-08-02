@@ -12,7 +12,7 @@ componentsModule.modules.analytics = {
         // Show / Hide "detailed analytics" checkbox
         componentsModule.initializeEvent({
 
-            event: 'change',
+            event  : 'change',
             element: current.analyticsCheck,
 
             content: function(event) {
@@ -34,7 +34,7 @@ componentsModule.modules.analytics = {
 
     validate: function() {
 
-        let data = componentsModule.modules.analytics.serialize();
+        const data = componentsModule.modules.analytics.serialize();
 
         return (typeof data.analytics === 'boolean' && typeof data.analytics_details === 'boolean')
 
@@ -45,7 +45,7 @@ componentsModule.modules.analytics = {
         let current = componentsModule.modules.analytics;
 
         return {
-            analytics: !!(current.analyticsCheck.checked),
+            analytics        : !!(current.analyticsCheck.checked),
             analytics_details: !!(current.detailsCheck.checked)
         }
 
