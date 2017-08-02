@@ -43,7 +43,7 @@ require_once ROOT . '/app/Layouts/Admin/Splash.php';
 
             <div class="popup-header">
 
-                <span class="header-icon"></span>
+                <!--<span class="header-icon"></span>-->
                 <p class="header-text" data-locale="WRITE_NEW"></p>
                 <span class="header-close"></span>
 
@@ -123,7 +123,7 @@ require_once ROOT . '/app/Layouts/Admin/Splash.php';
 
     </div>
 
-    <div class="header-team"></div>
+    <!--<div class="header-team"></div>-->
 
     <div class="header-write">
 

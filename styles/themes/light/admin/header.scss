@@ -83,12 +83,8 @@ div.account-dropdown span.dropdown-item {
   }
 }
 
-div.fullscreen-wrapper {
-  background-color: rgba(0,0,0,.25) !important;
-}
-
 div.fullscreen-wrapper div.va-wrapper div.fullscreen-popup {
-  box-shadow: 0 4px 24px rgba(0,0,0,.2) !important;
+  box-shadow: 0 8px 64px rgba(0,0,0,.25) !important;
 }
 
 div.fullscreen-popup.write-actions, div.fullscreen-popup.confirmation-box {
@@ -106,9 +102,6 @@ div.fullscreen-popup div.popup-header p.header-text {
 
 div.fullscreen-popup div.popup-header span.header-close {
   background-image: url("../../../assets/icons/arrow-bottom.svg") !important;
-  &:hover {
-    background-color: $whiteSmoke !important;
-  }
 }
 
 div.write-actions div.popup-header span.header-icon {
@@ -166,5 +159,5 @@ div.tails-tail span.tail-icon {
 }
 
 div.tails-tail p.tail-text {
-  color: $text-lightBlack !important;
+  color: $text-darkGrey !important;
 }

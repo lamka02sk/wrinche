@@ -426,8 +426,7 @@ $('div.header-account').click(function() {
 // Open write menu
 $('div.header-write').click(function() {
 
-    $('div.fullscreen-wrapper.write-menu').css({display: 'table'})
-        .animate({opacity: 1}, 150).addClass('open');
+    $('div.fullscreen-wrapper.write-menu').addClass('open');
 
 });
 
@@ -438,10 +437,7 @@ $('div.write-menu div.tails-tail').click(function() {
 
 $('div.write-menu span.header-close').click(function() {
 
-    $('div.fullscreen-wrapper.write-menu').animate({opacity: 0}, 150).removeClass('open')
-        .delay(100).queue(function() {
-        $(this).css({display: 'none'}).dequeue();
-    });
+    $('div.fullscreen-wrapper.write-menu').removeClass('open');
 
 });
 
