@@ -9,7 +9,7 @@ div.media-manager {
   top: 0;
   left: 0;
   opacity: 0;
-  transform: rotateX(8deg);
+  transform: rotateX(-8deg);
   transform-origin: top;
   transition: .3s ease;
   &.show {

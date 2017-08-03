@@ -1,149 +1,213 @@
 componentsModule.modules.header_image = {
 
-    messageElement: document.querySelector('label[for=component_header_image]').parentNode.querySelector('span.field-validation'),
-    valid: false,
+    start: function() {
 
-    data: {
-        header_image: ''
+        // Save elements
+        let current             = componentsModule.modules.header_image;
+        current.parentElement   = document.querySelector('[data-component=header_image]');
+        current.inputBox        = current.parentElement.querySelector('.input-box');
+        current.mediaButton     = current.inputBox.querySelector('.image_manager');
+        current.mediaInput      = current.inputBox.querySelector('input');
+        current.messageElement  = current.inputBox.querySelector('.validate-message');
+        current.templateElement = current.parentElement.querySelector('#template_component_header-image_image').childNodes[0];
+
+        // Events
+        componentsModule.initializeEvents([
+
+            {
+                // Delegate click events
+                event  : 'click',
+                element: current.parentElement,
+                content: function(event) {
+
+                    // Open MediaManager
+                    if(event.target.matches('.image_manager')) {
+
+                        managerActiveInstance = new MediaManager({
+                            manager : 'images',
+                            onSelect: function(path) {
+
+                                current.addNew(path, false);
+
+                            }
+                        });
+
+                    }
+
+                    // Remove header image
+                    else if(event.target.matches('.header_image-remove')) {
+
+                        current.inputBox.classList.remove('hide');
+
+                        current.parentElement.removeChild(
+                            current.parentElement.querySelector('div.component-instance')
+                        );
+
+                        reloadPackery();
+
+                    }
+
+                }
+            },
+
+            {
+                // Enter custom URL to image
+                event  : 'keypress',
+                element: current.mediaInput,
+                content: function(event) {
+
+                    if(!event.keyCode || event.keyCode !== 13)
+                        return false;
+
+                    let path = event.target.value.trim();
+
+                    current.validateInput(path, function() {
+
+                        current.addNew(path, true);
+
+                    });
+
+                }
+            },
+
+            {
+                // Real-time URL validation
+                event  : 'change keyup',
+                element: current.mediaInput,
+                content: function(event) {
+
+                    current.validateInput(event.target.value.trim());
+
+                }
+            }
+
+        ]);
+
     },
 
-    removeThis: function(parentElement) {
+    resume: function() {
 
-        if(parentElement.querySelector('div.header_image-image.component-instance'))
-            parentElement.removeChild(parentElement.querySelector('div.header_image-image.component-instance'));
+        // Save current instance
+        let current = componentsModule.modules.header_image;
+        const data  = current.parentElement.getAttribute('data-resume');
+
+        if(data === '')
+            return true;
+
+        const headerImage = JSON.parse(data).header_image;
+
+        if(headerImage === '')
+            return true;
+
+        current.addNew(headerImage, !(~headerImage.indexOf('app/Data/Files/Images/')));
 
     },
+
+    removeCurrent: function(parent) {
+
+        if(parent.querySelector('div.header_image-image.component-instance'))
+            parent.removeChild(
+                parent.querySelector('div.header_image-image.component-instance')
+            );
+
+    },
+
+    // --------------------------------------------------------
 
     addNew: function(path, outside) {
 
-        // Parent element
-        let parentElement = document.querySelector('label[for=component_header_image]').parentNode;
+        path = path.replace('app/Data/Files/Images/', '');
 
-        // Remove current image
-        componentsModule.modules.header_image.removeThis(parentElement);
+        let current  = componentsModule.modules.header_image;
+        let text     = path;
+        let template = current.templateElement.cloneNode(true);
 
-        // Create source link
+        current.removeCurrent(current.parentElement);
+        current.inputBox.value = '';
+
         if(!outside)
             path = 'app/Data/Files/Images/' + path;
 
-        // Save thumbnail path to serialize
-        componentsModule.modules.header_image.data.header_image = path;
-
-        // Create new template instance for thumbnail
-        let template = parentElement.querySelector('#template_component_header-image_image').childNodes[0].cloneNode(true);
         template.setAttribute('data-path', path);
         template.classList.add('component-instance');
+
         template.childNodes[0].setAttribute('src', path);
         template.childNodes[0].setAttribute('alt', path);
-        template.childNodes[1].innerText = path;
-        parentElement.appendChild(template);
 
-        // Hide media manager
-        template.childNodes[0].addEventListener('load', function() {
-            parentElement.querySelector('div.input-box').classList.add('hide');
-            document.querySelector('div.media-manager span.close-manager').click();
-            packery.packery().reloadItems();
-        });
+        template.childNodes[1].innerText = text;
 
-        // Initialize remove thumbnail event
-        template.childNodes[2].addEventListener('click', function() {
-            parentElement.querySelector('div.input-box').classList.remove('hide');
-            parentElement.removeChild(parentElement.querySelector('div.component-instance'));
-            componentsModule.modules.header_image.data.header_image = '';
-            packery.packery().reloadItems();
-        });
+        current.parentElement.appendChild(template);
+
+        current.inputBox.classList.add('hide');
+        closeMediaManager();
+        reloadPackery();
 
     },
 
-    showError: function() {
-        componentsModule.modules.header_image.messageElement.setAttribute('data-locale', 'COMPONENT_URL_INVALID');
-        componentsModule.modules.header_image.messageElement.innerText = translate.locale.components.COMPONENT_URL_INVALID;
-        componentsModule.modules.header_image.messageElement.classList.add('show');
-        componentsModule.modules.header_image.valid = false;
-        setTimeout(function() {
-            packery.packery().reloadItems();
-        }, 150);
-    },
+    // ---------------------------------------
 
-    hideError: function() {
-        componentsModule.modules.header_image.messageElement.classList.remove('show');
-        componentsModule.modules.header_image.valid = true;
-        setTimeout(function() {
-            packery.packery().reloadItems();
-        }, 150);
-    },
+    validateInput: function(path, onSuccess, onError) {
 
-    validateInput: function(input) {
-        if(!/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(input)) {
-            componentsModule.modules.header_image.showError();
-            return false;
-        }
-        let promise = new Promise(function(resolve, reject) {
+        let current = componentsModule.modules.header_image;
+
+        if(!validateUrl(path))
+            return showValidationResult(
+                current.messageElement, 'COMPONENT_URL_INVALID', false, reloadPackery
+            );
+
+        new Promise(function(resolve) {
+
             let image = new Image;
-            image.onload = function() {
-                resolve(true);
-            };
-            image.onerror = function() {
-                resolve(false);
-            };
-            image.src = input;
-        });
-        promise.then(function(result) {
-            if(result)
-                componentsModule.modules.header_image.hideError();
-            else
-                componentsModule.modules.header_image.showError();
+
+            image.onload  = resolve(true);
+            image.onerror = resolve(false);
+            image.src     = path;
+
+        }).then(function(result) {
+
+            if(result) {
+
+                showValidationResult(
+                    current.messageElement, 'COMPONENT_URL_INVALID', true, reloadPackery
+                );
+
+                if(onSuccess)
+                    onSuccess();
+
+            } else {
+
+                showValidationResult(
+                    current.messageElement, 'COMPONENT_URL_INVALID', false, reloadPackery
+                );
+
+                if(onError)
+                    onError();
+
+            }
 
         });
+
     },
 
     validate: function() {
+
         return true;
+
     },
 
     serialize: function() {
-        return componentsModule.modules.header_image.data;
-    },
 
-    events: [
+        let current  = componentsModule.modules.header_image;
+        let instance = current.parentElement.querySelector('div.header_image-image.component-instance');
+        let data     = '';
 
-        {
-            // Open image manager on click
-            event: 'click',
-            element: document.querySelector('label[for=component_header_image]').parentNode.querySelector('button.image_manager'),
-            content: function() {
-                managerActiveInstance = new MediaManager({
-                    manager: 'images',
-                    onSelect: function(path) {
-                        componentsModule.modules.header_image.addNew(path, false);
-                    }
-                });
-            }
-        },
+        if(instance)
+            data = instance.getAttribute('data-path');
 
-        {
-            // Enter custom URL to image
-            event: 'keypress',
-            element: document.querySelector('input[name=component_header-image]'),
-            content: function(event) {
-                if(event.keyCode && event.keyCode === 13) {
-                    let path = event.target.value;
-                    componentsModule.modules.header_image.validateInput(path);
-                    if(componentsModule.modules.header_image.valid)
-                        componentsModule.modules.header_image.addNew(path, true);
-                }
-            }
-        },
+        return {
+            header_image: data
+        };
 
-        {
-            // Real-time URL validation
-            event: 'change keyup',
-            element: document.querySelector('input[name=component_header-image]'),
-            content: function(event) {
-                componentsModule.modules.header_image.validateInput(event.target.value);
-            }
-        }
-
-    ]
+    }
 
 };

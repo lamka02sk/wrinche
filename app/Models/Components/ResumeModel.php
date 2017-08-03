@@ -102,14 +102,14 @@ class ResumeModel extends ComponentsModel {
             
             }
             
-            if(!is_array($resultData[$propertyName]))
+            $propertyArray = explode('&', $propertyName);
+            if(count($propertyArray) < 2)
                 continue;
             
             $processedData = $resultData[$propertyName];
             unset($resultData[$propertyName]);
-            $propertyName = explode('&', $propertyName);
             
-            foreach($propertyName as $key => $property) {
+            foreach($propertyArray as $key => $property) {
             
                 if(!isset($processedData[$key]))
                     break;

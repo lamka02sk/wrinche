@@ -1,149 +1,209 @@
 componentsModule.modules.thumbnail = {
 
-    messageElement: document.querySelector('label[for=component_thumbnail]').parentNode.querySelector('span.field-validation'),
-    valid: false,
+    start: function() {
 
-    data: {
-        thumbnail: ''
+        // Save elements
+        let current             = componentsModule.modules.thumbnail;
+        current.parentElement   = document.querySelector('[data-component=thumbnail]');
+        current.inputBox        = current.parentElement.querySelector('.input-box');
+        current.mediaButton     = current.inputBox.querySelector('.image_manager');
+        current.mediaInput      = current.inputBox.querySelector('input');
+        current.messageElement  = current.inputBox.querySelector('.validate-message');
+        current.templateElement = current.parentElement.querySelector('#template_component_thumbnail_image').childNodes[0];
+
+        // Events
+        componentsModule.initializeEvents([
+
+            {
+                // Delegate click events
+                event  : 'click',
+                element: current.parentElement,
+                content: function(event) {
+
+                    // Open MediaManager
+                    if(event.target.matches('.image_manager')) {
+
+                        managerActiveInstance = new MediaManager({
+                            manager : 'images',
+                            onSelect: function(path) {
+
+                                current.addNew(path, false);
+
+                            }
+                        });
+
+                    }
+
+                    // Remove thumbnail
+                    else if(event.target.matches('.thumbnail-remove')) {
+
+                        current.inputBox.classList.remove('hide');
+
+                        current.parentElement.removeChild(
+                            current.parentElement.querySelector('div.component-instance')
+                        );
+
+                        reloadPackery();
+
+                    }
+
+                }
+            },
+
+            {
+                // Enter custom URL to image
+                event  : 'keypress',
+                element: current.mediaInput,
+                content: function(event) {
+
+                    if(!event.keyCode || event.keyCode !== 13)
+                        return false;
+
+                    let path = event.target.value.trim();
+
+                    current.validateInput(path, function() {
+
+                        current.addNew(path, true);
+
+                    });
+
+                }
+            },
+
+            {
+                // Real-time URL validation
+                event  : 'change keyup',
+                element: current.mediaInput,
+                content: function(event) {
+
+                    current.validateInput(event.target.value.trim());
+
+                }
+            }
+
+        ]);
+
     },
 
-    removeThis: function(parentElement) {
+    resume: function() {
 
-        if(parentElement.querySelector('div.thumbnail-image.component-instance'))
-            parentElement.removeChild(parentElement.querySelector('div.thumbnail-image.component-instance'));
+        // Save current instance
+        let current = componentsModule.modules.thumbnail;
+        const data  = current.parentElement.getAttribute('data-resume');
+
+        if(data === '')
+            return true;
+
+        const thumbnail = JSON.parse(data).thumbnail;
+
+        if(thumbnail === '')
+            return true;
+
+        current.addNew(thumbnail, !(~thumbnail.indexOf('app/Data/Files/Images/')));
+
+    },
+
+    removeCurrent: function(parent) {
+
+        if(parent.querySelector('div.thumbnail-image.component-instance'))
+            parent.removeChild(
+                parent.querySelector('div.thumbnail-image.component-instance')
+            );
 
     },
 
     addNew: function(path, outside) {
 
-        // Parent element
-        let parentElement = document.querySelector('label[for=component_thumbnail]').parentNode;
+        path = path.replace('app/Data/Files/Images/', '');
 
-        // Remove current image
-        componentsModule.modules.thumbnail.removeThis(parentElement);
+        let current  = componentsModule.modules.thumbnail;
+        let text     = path;
+        let template = current.templateElement.cloneNode(true);
 
-        // Create source link
+        current.removeCurrent(current.parentElement);
+        current.inputBox.value = '';
+
         if(!outside)
             path = 'app/Data/Files/Images/' + path;
 
-        // Save thumbnail path to serialize
-        componentsModule.modules.thumbnail.data.thumbnail = path;
-
-        // Create new template instance for thumbnail
-        let template = parentElement.querySelector('#template_component_thumbnail_image').childNodes[0].cloneNode(true);
         template.setAttribute('data-path', path);
         template.classList.add('component-instance');
+
         template.childNodes[0].setAttribute('src', path);
         template.childNodes[0].setAttribute('alt', path);
-        template.childNodes[1].innerText = path;
-        parentElement.appendChild(template);
 
-        // Hide media manager
-        template.childNodes[0].addEventListener('load', function() {
-            parentElement.querySelector('div.input-box').classList.add('hide');
-            document.querySelector('div.media-manager span.close-manager').click();
-            packery.packery().reloadItems();
-        });
+        template.childNodes[1].innerText = text;
 
-        // Initialize remove thumbnail event
-        template.childNodes[2].addEventListener('click', function() {
-            parentElement.querySelector('div.input-box').classList.remove('hide');
-            parentElement.removeChild(parentElement.querySelector('div.component-instance'));
-            componentsModule.modules.thumbnail.data.thumbnail = '';
-            packery.packery().reloadItems();
-        });
+        current.parentElement.appendChild(template);
+
+        current.inputBox.classList.add('hide');
+        closeMediaManager();
+        reloadPackery();
 
     },
 
-    showError: function() {
-        componentsModule.modules.thumbnail.messageElement.setAttribute('data-locale', 'COMPONENT_URL_INVALID');
-        componentsModule.modules.thumbnail.messageElement.innerText = translate.locale.components.COMPONENT_URL_INVALID;
-        componentsModule.modules.thumbnail.messageElement.classList.add('show');
-        componentsModule.modules.thumbnail.valid = false;
-        setTimeout(function() {
-            packery.packery().reloadItems();
-        }, 150);
-    },
+    validateInput: function(path, onSuccess, onError) {
 
-    hideError: function() {
-        componentsModule.modules.thumbnail.messageElement.classList.remove('show');
-        componentsModule.modules.thumbnail.valid = true;
-        setTimeout(function() {
-            packery.packery().reloadItems();
-        }, 150);
-    },
+        let current = componentsModule.modules.thumbnail;
 
-    validateInput: function(input) {
-        if(!/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(input)) {
-            componentsModule.modules.thumbnail.showError();
-            return false;
-        }
-        let promise = new Promise(function(resolve, reject) {
+        if(!validateUrl(path))
+            return showValidationResult(
+                current.messageElement, 'COMPONENT_URL_INVALID', false, reloadPackery
+            );
+
+        new Promise(function(resolve) {
+
             let image = new Image;
-            image.onload = function() {
-                resolve(true);
-            };
-            image.onerror = function() {
-                resolve(false);
-            };
-            image.src = input;
-        });
-        promise.then(function(result) {
-            if(result)
-                componentsModule.modules.thumbnail.hideError();
-            else
-                componentsModule.modules.thumbnail.showError();
+
+            image.onload  = resolve(true);
+            image.onerror = resolve(false);
+            image.src     = path;
+
+        }).then(function(result) {
+
+            if(result) {
+
+                showValidationResult(
+                    current.messageElement, 'COMPONENT_URL_INVALID', true, reloadPackery
+                );
+
+                if(onSuccess)
+                    onSuccess();
+
+            } else {
+
+                showValidationResult(
+                    current.messageElement, 'COMPONENT_URL_INVALID', false, reloadPackery
+                );
+
+                if(onError)
+                    onError();
+
+            }
 
         });
+
     },
 
     validate: function() {
+
         return true;
+
     },
 
     serialize: function() {
-        return componentsModule.modules.thumbnail.data;
-    },
 
-    events: [
+        let current  = componentsModule.modules.thumbnail;
+        let instance = current.parentElement.querySelector('div.thumbnail-image.component-instance');
+        let data     = '';
 
-        {
-            // Open image manager on click
-            event: 'click',
-            element: document.querySelector('label[for=component_thumbnail]').parentNode.querySelector('button.image_manager'),
-            content: function() {
-                managerActiveInstance = new MediaManager({
-                    manager: 'images',
-                    onSelect: function(path) {
-                        componentsModule.modules.thumbnail.addNew(path, false);
-                    }
-                });
-            }
-        },
+        if(instance)
+            data = instance.getAttribute('data-path');
 
-        {
-            // Enter custom URL to image
-            event: 'keypress',
-            element: document.querySelector('input[name=component_thumbnail_input]'),
-            content: function(event) {
-                if(event.keyCode && event.keyCode === 13) {
-                    let path = event.target.value;
-                    componentsModule.modules.thumbnail.validateInput(path);
-                    if(componentsModule.modules.thumbnail.valid)
-                        componentsModule.modules.thumbnail.addNew(path, true);
-                }
-            }
-        },
+        return {
+            thumbnail: data
+        };
 
-        {
-            // Real-time URL validation
-            event: 'change keyup',
-            element: document.querySelector('input[name=component_thumbnail_input]'),
-            content: function(event) {
-                componentsModule.modules.thumbnail.validateInput(event.target.value);
-            }
-        }
-
-    ]
+    }
 
 };

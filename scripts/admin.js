@@ -17,6 +17,15 @@ function pad(number, positions) {
     return number.length < positions ? pad("0" + number, positions) : number;
 }
 
+function validateUrl(url) {
+    return (/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(url));
+}
+
+let mediaManagerClose = document.querySelector('div.media-manager span.close-manager');
+function closeMediaManager() {
+    mediaManagerClose.click();
+}
+
 function triggerEvent(element, event) {
     element.dispatchEvent(new Event(event));
 }

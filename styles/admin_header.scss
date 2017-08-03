@@ -618,12 +618,11 @@ div.fullscreen-popup div.popup-header {
 div.popup-header span.header-icon {
   display: inline-block;
   height: 64px;
-  width: 64px;
+  width: 60px;
   position: relative;
   float: left;
   background: center no-repeat;
   background-size: 22px;
-  margin-left: 4px;
 }
 
 div.fullscreen-popup div.popup-header p.header-text {
@@ -635,9 +634,9 @@ div.fullscreen-popup div.popup-header p.header-text {
   width: auto;
   height: 64px;
   font-weight: 400;
-  margin: 0 0 0 4px;
+  margin: 0;
+  left: -4px;
   font-size: 1.4em;
-  padding-left: 16px;
 }
 
 div.fullscreen-popup div.popup-header span.header-close {
@@ -667,12 +666,12 @@ div.fullscreen-popup div.popup-content {
 div.fullscreen-popup div.popup-content p.confirmation-action-message {
   display: inline-block;
   position: relative;
-  margin: 10px 0 24px 0;
+  margin: 14px 0 24px 0;
   width: 100%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 0 12px;
+  padding: 0 16px;
   font-size: .92em;
   color: $text-lightBlack;
 }
@@ -688,7 +687,7 @@ div.fullscreen-popup div.popup-content div.popup-content-actions {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 0 6px;
+  padding: 0 8px;
   span.confirmation-action-dismiss {
     display: inline-block;
     margin: 3px 4px;
