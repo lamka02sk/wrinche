@@ -27,6 +27,13 @@
     {
       "element":"div",
       "attributes": {
+        "class":"revisions-list"
+      }
+    },
+
+    {
+      "element":"div",
+      "attributes": {
         "class":"input-box"
       },
       "children": [

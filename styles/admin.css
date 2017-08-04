@@ -3590,6 +3590,55 @@ div.content-tools {
   display: inline-block;
   z-index: 101; }
 
+[data-component=revisions] div.revisions-list {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  overflow: auto;
+  background: #fbfbfb; }
+  [data-component=revisions] div.revisions-list div.revisions-revision {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    float: left;
+    border-bottom: 1px solid silver;
+    padding: 0 12px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+    [data-component=revisions] div.revisions-list div.revisions-revision:last-of-type {
+      margin-bottom: 0;
+      border-bottom: none; }
+    [data-component=revisions] div.revisions-list div.revisions-revision span.revision-datetime {
+      position: sticky;
+      display: inline-block;
+      background-color: #fbfbfb;
+      padding-top: 10px;
+      top: 0;
+      width: 100%;
+      height: auto;
+      float: left;
+      font-size: .82em;
+      font-weight: 500;
+      color: #323232;
+      z-index: 1; }
+    [data-component=revisions] div.revisions-list div.revisions-revision p.revision-content {
+      position: relative;
+      display: inline-block;
+      float: left;
+      clear: both;
+      margin: 0;
+      height: auto;
+      width: 100%;
+      padding: 6px 0 10px 0;
+      font-size: .92em;
+      color: #323232; }
+      [data-component=revisions] div.revisions-list div.revisions-revision p.revision-content:empty {
+        padding-top: 0; }
+
 div.subcontent-box.input-box {
   border-bottom: 1px dotted #bdd9bf;
   -webkit-box-sizing: border-box;

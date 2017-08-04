@@ -1,54 +1,125 @@
 componentsModule.modules.tags = {
 
-    data: {
-        tags: []
+    start: function() {
+
+        // Save elements
+        let current = componentsModule.modules.tags;
+        current.parentElement = document.querySelector('[data-component=tags]');
+        current.inputElement = current.parentElement.querySelector('input');
+        current.listElement = current.parentElement.querySelector('.tags-list');
+        current.templateElement = current.parentElement.querySelector('#template_component_tags_item').childNodes[0];
+
+        // Events
+        componentsModule.initializeEvents([
+
+            {
+                // Delegate click event
+                event: 'click',
+                element: current.parentElement,
+                content: function(event) {
+
+                    // Remove tag
+                    if(event.target.matches('.tag-remove')) {
+
+                        current.listElement.removeChild(event.target.parentNode);
+
+                        reloadPackery();
+
+                    }
+
+                }
+            },
+
+            {
+                // Add tags
+                event: 'keyup',
+                element: current.inputElement,
+                content: function(event) {
+
+                    if(!event.keyCode || event.keyCode !== 13)
+                        return true;
+
+                    current.addTag();
+
+                }
+            }
+
+        ]);
+
     },
 
-    validateTags: function(tag) {
-        return (/^[a-zA-Z]([a-zA-Z0-9_\s,]+)?[a-zA-Z0-9]$/.test(tag) && tag !== '');
+    resume: function() {
+
+        // Save current instance
+        let current = componentsModule.modules.tags;
+        const data  = current.parentElement.getAttribute('data-resume');
+
+        if(data === '')
+            return true;
+
+        const tags = JSON.parse(data).tags;
+
+        if(tags === null)
+            return true;
+
+        current.addTag(tags.join(','));
+
+    },
+
+    addTag: function(list) {
+
+        let current = componentsModule.modules.tags;
+        const tags = list || current.inputElement.value.trim();
+
+        if(!validateTags(tags))
+            return true;
+
+        const tagList = tags.split(',');
+
+        tagList.map(function(tag) {
+
+            tag = tag.trim();
+            const currentTags = current.serialize().tags;
+
+            if(~currentTags.indexOf(tag))
+                return true;
+
+            let template = current.templateElement.cloneNode(true);
+            template.innerHTML = '#' + tag + template.innerHTML;
+
+            current.inputElement.value = '';
+            current.listElement.appendChild(template);
+
+            reloadPackery();
+
+        });
+
     },
 
     validate: function() {
-        return true;
+
+        const tags = componentsModule.modules.tags.serialize().tags;
+
+        return validateTags(tags);
+
     },
 
     serialize: function() {
-        return componentsModule.modules.tags.data;
-    },
 
-    events: [
+        const tagElements = componentsModule.modules.tags.listElement.childNodes;
 
-        {
-            // Add tags
-            event: 'keyup',
-            element: document.querySelector('input[name=component_tags]'),
-            content: function(event) {
-                if(event.keyCode !== 13) {
-                    // Dropdown tags through future API
-                } else {
-                    let value = event.target.value.trim();
-                    if(!componentsModule.modules.tags.validateTags(value))
-                        return false;
-                    let values = value.split(',');
-                    for(let i = 0; i < values.length; ++i) {
-                        value = values[i].trim();
-                        if(componentsModule.modules.tags.data.tags.indexOf(value) !== -1) continue;
-                        let template = event.target.parentNode.querySelector('#template_component_tags_item').childNodes[0].cloneNode(true);
-                        template.innerHTML = '#' + value + template.innerHTML;
-                        event.target.parentNode.querySelector('div.tags-list').appendChild(template);
-                        componentsModule.modules.tags.data.tags.push(value);
-                        template.childNodes[1].addEventListener('click', function() {
-                            componentsModule.modules.tags.data.tags.splice(componentsModule.modules.tags.data.tags.indexOf(value), 1);
-                            template.parentNode.removeChild(template);
-                            packery.packery().reloadItems();
-                        });
-                    }
-                    event.target.value = '';
-                    packery.packery().reloadItems();
-                }
-            }
+        let tagList = Array.from(tagElements).map(function(tagElement) {
+
+            return tagElement.innerText.trim().replace('#', '');
+
+        });
+
+        return {
+
+            tags: tagList
+
         }
 
-    ]
+    }
 
 };

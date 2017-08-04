@@ -2234,3 +2234,64 @@ div.content-tools {
   display: inline-block;
   z-index: 101;
 }
+
+[data-component=revisions] {
+
+  div.revisions-list {
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    overflow: auto;
+    background: #fbfbfb;
+    
+    div.revisions-revision {
+      display: inline-block;
+      width: 100%;
+      height: auto;
+      float: left;
+      border-bottom: 1px solid silver;
+      padding: 0 12px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      &:last-of-type {
+        margin-bottom: 0;
+        border-bottom: none;
+      }
+      
+      span.revision-datetime {
+        position: sticky;
+        display: inline-block;
+        background-color: #fbfbfb;
+        padding-top: 10px;
+        top: 0;
+        width: 100%;
+        height: auto;
+        float: left;
+        font-size: .82em;
+        font-weight: 500;
+        color: $text-lightBlack;
+        z-index: 1;
+      }
+      
+      p.revision-content {
+        position: relative;
+        display: inline-block;
+        float: left;
+        clear: both;
+        margin: 0;
+        height: auto;
+        width: 100%;
+        padding: 6px 0 10px 0;
+        font-size: .92em;
+        color: $text-lightBlack;
+        &:empty {
+          padding-top: 0;
+        }
+      }
+    }
+  }
+}

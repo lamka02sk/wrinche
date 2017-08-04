@@ -21,6 +21,10 @@ function validateUrl(url) {
     return (/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(url));
 }
 
+function validateTags(tags) {
+    return (/^[a-zA-Z]([a-zA-Z0-9_\s,]+)?[a-zA-Z0-9]$/.test(tags) && tags !== '');
+}
+
 let mediaManagerClose = document.querySelector('div.media-manager span.close-manager');
 function closeMediaManager() {
     mediaManagerClose.click();
