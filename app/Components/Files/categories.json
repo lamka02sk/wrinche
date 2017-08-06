@@ -38,7 +38,7 @@
     {
       "element":"input>",
       "attributes": {
-        "class":"input search-input",
+        "class":"input search-input full",
         "name":"component_categories_search",
         "data-placeholder":"COMPONENT_CATEGORIES_SEARCH"
       }
@@ -48,45 +48,7 @@
       "element":"div",
       "attributes": {
         "class":"categories-list"
-      },
-      "*children_template": [
-
-        {
-          "element":"div",
-          "attributes": {
-            "class":"category-item",
-            "data-category":"%category_id%"
-          },
-          "children": [
-
-            {
-              "element":"p",
-              "attributes": {
-                "class":"category-name"
-              },
-              "text":"%category_name%"
-            },
-
-            {
-              "element":"span",
-              "attributes": {
-                "class":"add-category",
-                "data-locale":"BUTTON_ADD"
-              }
-            },
-
-            {
-              "element":"span",
-              "attributes": {
-                "class":"remove-category hide",
-                "data-locale":"BUTTON_ADDED"
-              }
-            }
-
-          ]
-        }
-
-      ]
+      }
     },
 
     {

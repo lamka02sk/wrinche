@@ -1,102 +1,125 @@
 componentsModule.modules.planner = {
 
-    parentElement: document.querySelector('label[for=component_planner]').parentNode,
-    customPublishElement: document.querySelector('label[for=component_planner]').parentNode.querySelector('div.component_planner_publish_custom'),
-    notifyEmailElement: document.querySelector('label[for=component_planner]').parentNode.querySelector('div.component_planner_notify_email'),
+    start: function() {
 
-    data: {
-        planner: false,
-        planner_date: false,
-        planner_expiry: false,
-        planner_notify: false,
-        planner_notify_email: false
+        // Save elements
+        let current           = componentsModule.modules.planner;
+        current.parentElement = document.querySelector('[data-component=planner');
+        current.customPublish = current.parentElement.querySelector('.component_planner_publish_custom');
+        current.notifyBox     = current.parentElement.querySelector('.component_planner_notify_email');
+
+        current.publishAuto   = current.parentElement.querySelector('[name=component_planner_publish]');
+        current.publishInput  = current.parentElement.querySelector('[name=component_planner_publish_datetime]');
+        current.expiryInput   = current.parentElement.querySelector('[name=component_planner_publish_expiry]');
+        current.plannerNotify = current.parentElement.querySelector('[name=component_planner_notify]');
+        current.notifyEmail   = current.parentElement.querySelector('[name=component_planner_notify_email]');
+
+        // Events
+        componentsModule.initializeEvents([
+
+            {
+                // Delegate change events
+                event  : 'change',
+                element: current.parentElement,
+                content: function(event) {
+
+                    let target = event.target;
+
+                    // Auto-publication change
+                    if(target === current.publishAuto) {
+
+                        if(target.checked)
+                            current.notifyBox.classList.add('hide');
+                        else
+                            current.notifyBox.classList.remove('hide');
+
+
+                        reloadPackery();
+
+                    }
+
+                    // Notification change
+                    else if(target === current.plannerNotify) {
+
+                        if(target.checked)
+                            current.notifyBox.classList.remove('hide');
+                        else
+                            current.notifyBox.classList.add('hide');
+
+                        reloadPackery();
+
+                    }
+
+                }
+            },
+
+            {
+                // Delegate click events
+                event  : 'click',
+                element: current.parentElement,
+                content: function(event) {
+
+                    // Clear input
+                    if(event.target.matches('.clear-input')) {
+
+                        event.target.parentNode.querySelector('input').value = '';
+
+                    }
+
+                }
+            }
+
+        ]);
+
+    },
+
+    resume: function() {
+
+        // Save current instance
+        let current = componentsModule.modules.planner;
+        const data  = current.parentElement.getAttribute('data-resume');
+
+        if(data === '')
+            return true;
+
+        const planner = JSON.parse(data);
+
+        if(planner === null)
+            return true;
+
+        current.publishAuto.checked = !(planner.planner);
+        triggerEvent(current.publishAuto, 'change');
+
+        current.publishInput.value = planner.planner_date;
+        current.expiryInput.value  = planner.planner_expiry;
+
+        current.plannerNotify.checked = !!(planner.planner_notify);
+        triggerEvent(current.plannerNotify, 'change');
+
+        current.notifyEmail.checked = !!(planner.planner_notify_email);
+
     },
 
     validate: function() {
+
         return true;
+
     },
 
     serialize: function() {
-        return componentsModule.modules.planner.data;
-    },
 
-    events: [
+        let current = componentsModule.modules.planner;
 
-        {
-            // Show / Hide automatic publish box
-            event: 'change',
-            element: document.querySelector('label[for=component_planner]').parentNode.querySelector('input[name=component_planner_publish]'),
-            content: function(event) {
-                componentsModule.modules.planner.data.planner = !!(event.target.checked);
-                if(componentsModule.modules.planner.data.planner)
-                    componentsModule.modules.planner.customPublishElement.classList.add('hide');
-                else
-                    componentsModule.modules.planner.customPublishElement.classList.remove('hide');
-                packery.packery().reloadItems();
-            }
-        },
+        return {
 
-        {
-            // Serialize publish date input
-            event: 'change',
-            element: document.querySelector('label[for=component_planner]').parentNode.querySelector('input[name=component_planner_publish_datetime]'),
-            content: function(event) {
-                componentsModule.modules.planner.data.planner_date = event.target.value.trim();
-            }
-        },
+            planner             : !(current.publishAuto.checked),
+            planner_date        : current.publishInput.value.trim(),
+            planner_expiry      : current.expiryInput.value.trim(),
+            planner_notify      : !!(current.plannerNotify.checked),
+            planner_notify_email: !!(current.notifyEmail.checked)
 
-        {
-            // Remove publish date value
-            event: 'click',
-            element: document.querySelector('label[for=component_planner]').parentNode.querySelector('span.clear-planner_publish-date'),
-            content: function() {
-                componentsModule.modules.planner.parentElement.querySelector('input[name=component_planner_publish_datetime]').value = '';
-                componentsModule.modules.planner.data.planner_date = false;
-            }
-        },
-
-        {
-            // Serialize expiry date input
-            event: 'change',
-            element: document.querySelector('label[for=component_planner]').parentNode.querySelector('input[name=component_planner_publish_expiry]'),
-            content: function(event) {
-                componentsModule.modules.planner.data.planner_expiry = event.target.value.trim();
-            }
-        },
-
-        {
-            // Remove expiry date value
-            event: 'click',
-            element: document.querySelector('label[for=component_planner]').parentNode.querySelector('span.clear-planner_expiry-date'),
-            content: function() {
-                componentsModule.modules.planner.parentElement.querySelector('input[name=component_planner_publish_expiry]').value = '';
-                componentsModule.modules.planner.data.planner_expiry = false;
-            }
-        },
-
-        {
-            // Show / Hide email notification
-            event: 'change',
-            element: document.querySelector('label[for=component_planner]').parentNode.querySelector('input[name=component_planner_notify]'),
-            content: function(event) {
-                componentsModule.modules.planner.data.planner_notify = !!(event.target.checked);
-                if(componentsModule.modules.planner.data.planner_notify)
-                    componentsModule.modules.planner.notifyEmailElement.classList.remove('hide');
-                else
-                    componentsModule.modules.planner.notifyEmailElement.classList.add('hide');
-                packery.packery().reloadItems();
-            }
-        },
-
-        {
-            // Serialize email notification input
-            event: 'change',
-            element: document.querySelector('label[for=component_planner]').parentNode.querySelector('input[name=component_planner_notify_email]'),
-            content: function(event) {
-                componentsModule.modules.planner.data.planner_notify_email = !!(event.target.checked);
-            }
         }
 
-    ]
+    }
 
 };

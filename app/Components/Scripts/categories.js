@@ -1,76 +1,137 @@
 componentsModule.modules.categories = {
 
-    data: {
-        categories: []
-    },
-
     start: function() {
-        ajax(
-            baseURI + 'api/categories.all&csrf_token=' + csrf_token,
-            'GET',
-            false,
-            '*',
-            function (response) {
-                // Success
-                let categories = response.data;
-                let parentElement = document.querySelector('label[for=component_categories]').parentNode;
-                let categoriesListElement = parentElement.querySelector('div.categories-list');
-                for(let category in categories) {
-                    let data = categories[category];
-                    let template = document.querySelector('#template_component_categories_item').childNodes[0].cloneNode(true);
-                    template.setAttribute('data-category', data.id);
-                    template.children[0].innerText = data.name;
-                    template.children[1].addEventListener('click', function() {
-                        if(componentsModule.modules.categories.data.categories.indexOf(data.id) === -1)
-                            componentsModule.modules.categories.data.categories.push(data.id);
-                        template.childNodes[1].classList.add('hide');
-                        template.childNodes[2].classList.remove('hide');
-                    });
-                    template.children[2].addEventListener('click', function() {
-                        if(componentsModule.modules.categories.data.categories.indexOf(data.id) !== -1)
-                            componentsModule.modules.categories.data.categories.splice(componentsModule.modules.categories.data.categories.indexOf(data.id), 1);
-                        template.childNodes[1].classList.remove('hide');
-                        template.childNodes[2].classList.add('hide');
-                    });
-                    categoriesListElement.appendChild(template);
+
+        // Save elements
+        let current             = componentsModule.modules.categories;
+        current.parentElement   = document.querySelector('[data-component=categories]');
+        current.listElement     = current.parentElement.querySelector('.categories-list');
+        current.inputElement    = current.parentElement.querySelector('input');
+        current.templateElement = current.parentElement.querySelector('#template_component_categories_item').childNodes[0];
+
+        // Get and show categories
+        const categories = getJson(URI + 'api/categories.all&csrf_token=' + csrf_token);
+
+        if(!categories.success || categories.code !== 200)
+            return true;
+
+        Object.values(categories.data).forEach(function(category) {
+
+            let template = current.templateElement.cloneNode(true);
+            template.setAttribute('data-category', category.id);
+            template.setAttribute('data-active', 'false');
+            template.children[0].innerText = category.name;
+
+            current.listElement.appendChild(template);
+
+        });
+
+        // Events
+        componentsModule.initializeEvents([
+
+            {
+                // Delegate click events
+                event  : 'click',
+                element: current.parentElement,
+                content: function(event) {
+
+                    let target = event.target;
+
+                    // Add category
+                    if(target.matches('.add-category')) {
+
+                        target.parentNode.setAttribute('data-active', 'true');
+                        target.classList.add('hide');
+                        target.nextSibling.classList.remove('hide');
+
+                    }
+
+                    // Remove category
+                    else if(target.matches('.remove-category')) {
+
+                        target.parentNode.setAttribute('data-active', 'false');
+                        target.previousSibling.classList.remove('hide');
+                        target.classList.add('hide');
+
+                    }
+
                 }
             },
-            function() {
-                // Error
+
+            {
+                // Search in categories
+                event  : 'change keyup',
+                element: current.inputElement,
+                content: function() {
+
+                    const searchPhrase = current.inputElement.value.trim().toLowerCase();
+
+                    Array.from(current.listElement.childNodes).forEach(function(categoryElement) {
+
+                        let categoryName = categoryElement.childNodes[0].innerText.toLowerCase();
+
+                        if(~categoryName.indexOf(searchPhrase))
+                            categoryElement.classList.remove('hide');
+                        else
+                            categoryElement.classList.add('hide');
+
+                    });
+
+                    reloadPackery();
+
+                }
             }
-        )
+
+        ]);
+
+        reloadPackery();
+
+    },
+
+    resume: function() {
+
+        // Save current instance
+        let current = componentsModule.modules.categories;
+        const data  = current.parentElement.getAttribute('data-resume');
+
+        if(data === '')
+            return true;
+
+        const categories = JSON.parse(data).categories;
+
+        if(categories === null)
+            return true;
+
+        categories.forEach(function(category) {
+
+            current.listElement.querySelector('[data-category="' + category + '"]').childNodes[1].click();
+
+        });
+
     },
 
     validate: function() {
+
         return true;
+
     },
 
     serialize: function() {
-        return componentsModule.modules.categories.data;
-    },
 
-    events: [
+        let categoriesElements = componentsModule.modules.categories.listElement.querySelectorAll('[data-active=true]');
 
-        {
-            event: 'keyup change',
-            element: document.querySelector('label[for=component_categories]').parentNode.querySelector('input[name=component_categories_search]'),
-            content: function(event) {
-                console.log(event);
-                let searchPhrase = event.target.value.toLowerCase();
-                let searchPhraseLength = searchPhrase.length;
-                let listElements = event.target.parentNode.querySelector('div.categories-list').childNodes;
-                let listElementsLength = listElements.length;
-                for(let i = 0; i < listElementsLength; ++i) {
-                    let abbr = listElements[i].childNodes[0].innerText.substring(0, searchPhraseLength).toLowerCase();
-                    if(abbr === searchPhrase)
-                        listElements[i].classList.remove('hide');
-                    else
-                        listElements[i].classList.add('hide');
-                }
-                packery.packery().reloadItems();
-            }
+        let activeCategories = Object.values(categoriesElements).map(function(categoryElement) {
+
+            return categoryElement.getAttribute('data-category');
+
+        });
+
+        return {
+
+            categories: activeCategories
+
         }
 
-    ]
+    }
 
 };

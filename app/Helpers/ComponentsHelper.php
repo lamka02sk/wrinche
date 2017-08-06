@@ -69,7 +69,7 @@ class ComponentsHelper {
 
         $math = new Math;
         $booleans = $math->toBinary((int)$number);
-        return str_split($booleans);
+        return $this->parseInt(str_split($booleans));
 
     }
 

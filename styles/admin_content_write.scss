@@ -2263,11 +2263,10 @@ div.content-tools {
       }
       
       span.revision-datetime {
-        position: sticky;
+        position: relative;
         display: inline-block;
         background-color: #fbfbfb;
         padding-top: 10px;
-        top: 0;
         width: 100%;
         height: auto;
         float: left;

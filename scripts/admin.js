@@ -31,7 +31,9 @@ function closeMediaManager() {
 }
 
 function triggerEvent(element, event) {
-    element.dispatchEvent(new Event(event));
+    element.dispatchEvent(
+        new MouseEvent(event, { view: window, cancelable: true, bubbles: true })
+    );
 }
 
 function initializeCounters() {
