@@ -1,54 +1,85 @@
 componentsModule.modules.last_update = {
 
-    parentElement: document.querySelector('label[for=component_last_update').parentNode,
-    customDateElement: document.querySelector('label[for=component_last_update').parentNode.querySelector('div.component_last_custom'),
+    start: function() {
 
-    data: {
-        last_update: false
+        // Save elements
+        let current           = componentsModule.modules.last_update;
+        current.parentElement = document.querySelector('[data-component=last_update]');
+        current.customCheck   = current.parentElement.querySelector('[name=component_last-update]');
+        current.dateBox       = current.parentElement.querySelector('.component_last_custom');
+        current.dateInput     = current.dateBox.querySelector('input');
+        current.clearInput    = current.dateBox.querySelector('.clear-input');
+
+        current.customCheck.checked = false;
+
+        // Events
+        componentsModule.initializeEvents([
+
+            {
+                // Show / Hide custom input
+                event  : 'change',
+                element: current.customCheck,
+                content: function() {
+
+                    if(!!(current.customCheck.checked))
+                        current.dateBox.classList.remove('hide');
+                    else
+                        current.dateBox.classList.add('hide');
+
+                    reloadPackery();
+
+                }
+            },
+
+            {
+                // Clear input
+                event  : 'click',
+                element: current.clearInput,
+                content: function() {
+
+                    current.dateInput.value = '';
+
+                }
+            }
+
+        ]);
+
+    },
+
+    resume: function() {
+
+        // Save current instance
+        let current = componentsModule.modules.last_update;
+        const data  = current.parentElement.getAttribute('data-resume');
+
+        if(data === '')
+            return true;
+
+        current.dateInput.value = JSON.parse(data).last_update;
+
     },
 
     validate: function() {
+
         return true;
+
     },
 
     serialize: function() {
-        return componentsModule.modules.last_update.data;
-    },
-    
-    events: [
 
-        {
-            // Show / Hide custom date selection
-            event: 'change',
-            element: document.querySelector('label[for=component_last_update').parentNode.querySelector('input[name=component_last-update]'),
-            content: function(event) {
-                if(!!(event.target.checked))
-                    componentsModule.modules.last_update.customDateElement.classList.remove('hide');
-                else
-                    componentsModule.modules.last_update.customDateElement.classList.add('hide');
-                packery.packery().reloadItems();
-            }
-        },
+        let current    = componentsModule.modules.last_update;
+        const isCustom = !!(current.customCheck.checked);
+        let data       = false;
 
-        {
-            // Serialize custom date input
-            event: 'change keyup',
-            element: document.querySelector('label[for=component_last_update').parentNode.querySelector('input[name=component_last-update_custom]'),
-            content: function(event) {
-                componentsModule.modules.last_update.data.last_update = event.target.value.trim();
-            }
-        },
+        if(isCustom && current.dateInput.value !== '')
+            data = current.dateInput.value.trim();
 
-        {
-            // Clear custom date input
-            event: 'click',
-            element: document.querySelector('label[for=component_last_update]').parentNode.querySelector('span.clear-last_update-date'),
-            content: function() {
-                componentsModule.modules.last_update.parentElement.querySelector('input[name=component_last-update_custom]').value = '';
-                componentsModule.modules.last_update.data.last_update = false;
-            }
+        return {
+
+            last_update: data
+
         }
 
-    ]
+    }
 
 };

@@ -1,84 +1,168 @@
 componentsModule.modules.sources = {
 
-    nameInput: document.querySelector('label[for=component_sources]').parentNode.querySelector('input[name=component_sources_add_name'),
-    sourceInput: document.querySelector('label[for=component_sources]').parentNode.querySelector('input[name=component_sources_add_source'),
-    sourcesList: document.querySelector('label[for=component_sources]').parentNode.querySelector('div.sources-list'),
+    start: function() {
 
-    data: {
-        sources: []
+        // Save elements
+        let current             = componentsModule.modules.sources;
+        current.parentElement   = document.querySelector('[data-component=sources]');
+        current.nameInput       = current.parentElement.querySelector('[name=component_sources_add_name]');
+        current.valueInput      = current.parentElement.querySelector('[name=component_sources_add_source]');
+        current.addButton       = current.parentElement.querySelector('.sources-add');
+        current.itemsList       = current.parentElement.querySelector('.sources-list');
+        current.templateElement = current.parentElement.querySelector('#template_component_sources_item').childNodes[0];
+
+        // Events
+        componentsModule.initializeEvents([
+
+            {
+                // Enter to add source
+                event  : 'keyup',
+                element: current.valueInput,
+                content: function(event) {
+
+                    if(!event.keyCode || event.keyCode !== 13)
+                        return true;
+
+                    current.addButton.click();
+
+                }
+            },
+
+            {
+                // Delegate click events
+                event  : 'click',
+                element: current.parentElement,
+                content: function(event) {
+
+                    let target = event.target;
+
+                    // Add source
+                    if(target === current.addButton)
+                        current.addSource();
+
+                    // Edit source
+                    else if(target.matches('.source-edit')) {
+
+                        let parent = target.parentNode;
+
+                        current.nameInput.value  = parent.childNodes[0].innerText.trim();
+                        current.valueInput.value = parent.childNodes[1].innerText.trim();
+                        current.nameInput.focus();
+
+                        current.itemsList.removeChild(parent);
+
+                        reloadPackery();
+
+                    }
+
+                    // Remove source
+                    else if(target.matches('.source-remove')) {
+
+                        current.nameInput.value  = '';
+                        current.valueInput.value = '';
+                        current.nameInput.focus();
+
+                        current.itemsList.removeChild(target.parentNode);
+
+                        reloadPackery();
+
+                    }
+
+                }
+            }
+
+        ]);
+
+    },
+
+    addSource: function(source) {
+
+        // Save current
+        let current        = componentsModule.modules.sources;
+        let currentSources = current.itemsList.childNodes;
+
+        let sourceNames = Object.values(currentSources).map(function(sourceElement) {
+            return sourceElement.childNodes[0].innerText.trim();
+        });
+
+        const sourceName = source[0] || current.nameInput.value.trim();
+
+        if(~sourceNames.indexOf(sourceName)) {
+            current.nameInput.value = '';
+            if(!source)
+                current.nameInput.focus();
+            return true;
+        }
+
+        const sourceValue = source[1] || current.valueInput.value.trim();
+
+        if(sourceName === '' || sourceValue === '') {
+            if(!source)
+                current.nameInput.focus();
+            return true;
+        }
+
+        let template                   = current.templateElement.cloneNode(true);
+        template.children[0].innerText = sourceName;
+        template.children[1].innerText = sourceValue;
+
+        current.nameInput.value  = '';
+        current.valueInput.value = '';
+
+        if(!source)
+            current.nameInput.focus();
+
+        current.itemsList.insertBefore(template, current.itemsList.childNodes[0]);
+        reloadPackery();
+
+    },
+
+    resume: function() {
+
+        // Save current instance
+        let current = componentsModule.modules.sources;
+        const data  = current.parentElement.getAttribute('data-resume');
+
+        if(data === '')
+            return true;
+
+        const sources = JSON.parse(data).sources;
+
+        sources.forEach(function(source) {
+
+            current.addSource(source);
+
+        });
+
+        reloadPackery();
+
     },
 
     validate: function() {
+
         return true;
+
     },
 
     serialize: function() {
-        return componentsModule.modules.sources.data;
-    },
 
-    events: [
+        let sourceItems = componentsModule.modules.sources.itemsList.childNodes;
 
-        {
-            // Add new source
-            event: 'click',
-            element: document.querySelector('label[for=component_sources]').parentNode.querySelector('span.sources-add'),
-            content: function() {
-                let name = componentsModule.modules.sources.nameInput.value.trim();
-                for(let i = 0; i < componentsModule.modules.sources.data.sources.length; ++i) {
-                    if(name === componentsModule.modules.sources.data.sources[i][0]) {
-                        componentsModule.modules.sources.nameInput.value = '';
-                        componentsModule.modules.sources.nameInput.focus();
-                        return false;
-                    }
-                }
-                let source = componentsModule.modules.sources.sourceInput.value.trim();
-                if(name === '' || source === '') return false;
-                componentsModule.modules.sources.data.sources.push([name, source]);
-                let template = document.querySelector('#template_component_sources_item').childNodes[0].cloneNode(true);
-                template.children[0].innerText = name;
-                template.children[1].innerText = source;
-                template.children[2].addEventListener('click', function() {
-                    for(let i = 0; i < componentsModule.modules.sources.data.sources.length; ++i) {
-                        if(name === componentsModule.modules.sources.data.sources[i][0]) {
-                            componentsModule.modules.sources.data.sources.splice(i, 1);
-                            break;
-                        }
-                    }
-                    componentsModule.modules.sources.nameInput.value = name;
-                    componentsModule.modules.sources.nameInput.focus();
-                    componentsModule.modules.sources.sourceInput.value = source;
-                    componentsModule.modules.sources.sourcesList.removeChild(template);
-                    packery.packery().reloadItems();
-                });
-                template.children[3].addEventListener('click', function() {
-                    for(let i = 0; i < componentsModule.modules.sources.data.sources.length; ++i) {
-                        if(name === componentsModule.modules.sources.data.sources[i][0]) {
-                            componentsModule.modules.sources.data.sources.splice(i, 1);
-                            componentsModule.modules.sources.nameInput.focus();
-                            componentsModule.modules.sources.sourcesList.removeChild(template);
-                            break;
-                        }
-                    }
-                    packery.packery().reloadItems();
-                });
-                componentsModule.modules.sources.nameInput.value = '';
-                componentsModule.modules.sources.nameInput.focus();
-                componentsModule.modules.sources.sourceInput.value = '';
-                componentsModule.modules.sources.sourcesList.insertBefore(template, componentsModule.modules.sources.sourcesList.children[0]);
-                packery.packery().reloadItems();
-            }
-        },
+        let sources = Object.values(sourceItems).reverse().map(function(sourceItem) {
 
-        {
-            // Enter to submit
-            event: 'keyup',
-            element: document.querySelector('label[for=component_sources]').parentNode.querySelector('input[name=component_sources_add_source'),
-            content: function(event) {
-                if(event.keyCode !== 13) return false;
-                document.querySelector('label[for=component_sources]').parentNode.querySelector('span.sources-add').click();
-            }
+            return [
+                sourceItem.childNodes[0].innerText.trim(),
+                sourceItem.childNodes[1].innerText.trim()
+            ]
+
+        });
+
+        return {
+
+            sources: sources
+
         }
 
-    ]
+    }
 
 };

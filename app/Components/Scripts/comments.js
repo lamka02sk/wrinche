@@ -1,46 +1,69 @@
 componentsModule.modules.comments = {
 
-    parentElement: document.querySelector('label[for=component_comments]').parentNode,
+    start: function() {
 
-    data: {
-        comments: false,
-        comments_approve: false
+        // Save elements
+        let current           = componentsModule.modules.comments;
+        current.parentElement = document.querySelector('[data-component=comments]');
+        current.commentsCheck = current.parentElement.querySelector('[name=component_comments]');
+        current.approveBox    = current.parentElement.querySelector('.component_comments_approve');
+        current.approveCheck  = current.approveBox.querySelector('input');
+
+        // Events
+        componentsModule.initializeEvent({
+
+            event  : 'change',
+            element: current.commentsCheck,
+            content: function() {
+
+                if(!!(current.commentsCheck.checked))
+                    current.approveBox.classList.remove('hide');
+                else
+                    current.approveBox.classList.add('hide');
+
+                reloadPackery();
+
+            }
+
+        });
+
+    },
+
+    resume: function() {
+
+        // Save current instance
+        let current = componentsModule.modules.comments;
+        const data  = current.parentElement.getAttribute('data-resume');
+
+        if(data === '')
+            return true;
+
+        const comments = JSON.parse(data);
+
+        current.commentsCheck.checked = !!(comments.comments);
+        triggerEvent(current.commentsCheck, 'change');
+
+        current.approveCheck.checked = (comments.comments_approve);
+
     },
 
     validate: function() {
+
         return true;
+
     },
 
     serialize: function() {
-        return componentsModule.modules.comments.data;
-    },
 
-    events: [
+        let current = componentsModule.modules.comments;
 
-        {
-            // Show / Hide comments approve input
-            event: 'change',
-            element: document.querySelector('label[for=component_comments]').parentNode.querySelector('input[name=component_comments]'),
-            content: function(event) {
-                let value = !!(event.target.checked);
-                componentsModule.modules.comments.data.comments = value;
-                if(value)
-                    componentsModule.modules.comments.parentElement.querySelector('div.component_comments_approve').classList.remove('hide');
-                else
-                    componentsModule.modules.comments.parentElement.querySelector('div.component_comments_approve').classList.add('hide');
-                packery.packery().reloadItems();
-            }
-        },
+        return {
 
-        {
-            // Comments approval
-            event: 'change',
-            element: document.querySelector('label[for=component_comments]').parentNode.querySelector('div.component_comments_approve'),
-            content: function(event) {
-                componentsModule.modules.comments.data.comments_approve = !!(event.target.checked);
-            }
+            comments        : !!(current.commentsCheck.checked),
+            comments_approve: !!(current.approveCheck.checked)
+
         }
 
-    ]
+    }
 
 };

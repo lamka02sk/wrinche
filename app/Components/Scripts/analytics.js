@@ -32,11 +32,27 @@ componentsModule.modules.analytics = {
 
     },
 
+    resume: function() {
+
+        // Save current instance
+        let current = componentsModule.modules.analytics;
+        const data  = current.parentElement.getAttribute('data-resume');
+
+        if(data === '')
+            return true;
+
+        const analytics = JSON.parse(data);
+
+        current.analyticsCheck.checked = !!(analytics.analytics);
+        triggerEvent(current.analyticsCheck, 'change');
+
+        current.detailsCheck.checked = !!(analytics.analytics_details);
+
+    },
+
     validate: function() {
 
-        const data = componentsModule.modules.analytics.serialize();
-
-        return (typeof data.analytics === 'boolean' && typeof data.analytics_details === 'boolean')
+        return true;
 
     },
 
@@ -45,8 +61,10 @@ componentsModule.modules.analytics = {
         let current = componentsModule.modules.analytics;
 
         return {
+
             analytics        : !!(current.analyticsCheck.checked),
             analytics_details: !!(current.detailsCheck.checked)
+
         }
 
     }

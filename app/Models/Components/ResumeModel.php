@@ -103,10 +103,25 @@ class ResumeModel extends ComponentsModel {
             }
             
             $propertyArray = explode('&', $propertyName);
-            if(count($propertyArray) < 2)
+            $propertyArrayCount = count($propertyArray);
+            if($propertyArrayCount < 2)
                 continue;
-            
+    
             $processedData = $resultData[$propertyName];
+            $propertyDataCount = count($processedData);
+            
+            // 01 === 10 fix
+            if($propertyArrayCount > $propertyDataCount) {
+            
+                $difference = $propertyArrayCount - $propertyDataCount;
+                
+                for($i = 0; $i < $difference; ++$i)
+                    $processedData[] = 0;
+                
+                $processedData = array_reverse($processedData);
+            
+            }
+    
             unset($resultData[$propertyName]);
             
             foreach($propertyArray as $key => $property) {

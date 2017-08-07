@@ -1,54 +1,85 @@
 componentsModule.modules.created_at = {
 
-    parentElement: document.querySelector('label[for=component_created_at]').parentNode,
-    customDateElement: document.querySelector('label[for=component_created_at]').parentNode.querySelector('div.component_created_custom'),
+    start: function() {
 
-    data: {
-        created_at: false
+        // Save elements
+        let current           = componentsModule.modules.created_at;
+        current.parentElement = document.querySelector('[data-component=created_at]');
+        current.customCheck   = current.parentElement.querySelector('[name=component_created]');
+        current.dateBox       = current.parentElement.querySelector('.component_created_custom');
+        current.dateInput     = current.dateBox.querySelector('input');
+        current.clearInput    = current.dateBox.querySelector('.clear-input');
+
+        current.customCheck.checked = false;
+
+        // Events
+        componentsModule.initializeEvents([
+
+            {
+                // Show / Hide custom input
+                event  : 'change',
+                element: current.customCheck,
+                content: function() {
+
+                    if(!!(current.customCheck.checked))
+                        current.dateBox.classList.remove('hide');
+                    else
+                        current.dateBox.classList.add('hide');
+
+                    reloadPackery();
+
+                }
+            },
+
+            {
+                // Clear input
+                event  : 'click',
+                element: current.clearInput,
+                content: function() {
+
+                    current.dateInput.value = '';
+
+                }
+            }
+
+        ]);
+
+    },
+
+    resume: function() {
+
+        // Save current instance
+        let current = componentsModule.modules.created_at;
+        const data  = current.parentElement.getAttribute('data-resume');
+
+        if(data === '')
+            return true;
+
+        current.dateInput.value = JSON.parse(data).created_at;
+
     },
 
     validate: function() {
+
         return true;
+
     },
 
     serialize: function() {
-        return componentsModule.modules.created_at.data;
-    },
 
-    events: [
+        let current    = componentsModule.modules.created_at;
+        const isCustom = !!(current.customCheck.checked);
+        let data       = false;
 
-        {
-            // Show / Hide custom date selection
-            event: 'change',
-            element: document.querySelector('label[for=component_created_at]').parentNode.querySelector('input[name=component_created]'),
-            content: function(event) {
-                if(!!(event.target.checked))
-                    componentsModule.modules.created_at.customDateElement.classList.remove('hide');
-                else
-                    componentsModule.modules.created_at.customDateElement.classList.add('hide');
-                packery.packery().reloadItems();
-            }
-        },
+        if(isCustom && current.dateInput.value !== '')
+            data = current.dateInput.value.trim();
 
-        {
-            // Serialize custom date input
-            event: 'change',
-            element: document.querySelector('label[for=component_created_at]').parentNode.querySelector('input[name=component_created_custom]'),
-            content: function(event) {
-                componentsModule.modules.created_at.data.created_at = event.target.value.trim();
-            }
-        },
+        return {
 
-        {
-            // Clear custom date input
-            event: 'click',
-            element: document.querySelector('label[for=component_created_at]').parentNode.querySelector('span.clear-created-date'),
-            content: function() {
-                componentsModule.modules.created_at.parentElement.querySelector('input[name=component_created_custom]').value = '';
-                componentsModule.modules.created_at.data.created_at = false;
-            }
+            created_at: data
+
         }
 
-    ]
+    }
 
 };
