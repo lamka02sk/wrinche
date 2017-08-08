@@ -136,6 +136,7 @@ function ComponentsModule() {
 
         componentsModule.components = components;
         componentsModule.initializeComponents();
+        componentsModule.resumeComponents();
 
     };
 
@@ -228,8 +229,6 @@ function ComponentsModule() {
         let contentElement = parentElement.querySelector('div.component-element-content');
         let titleElement   = headerElement.children[1];
         let titleDefault   = titleElement.innerText;
-        let removeElement  = headerElement.children[3];
-        let disableElement = headerElement.children[4];
 
         // Delegate default events
         componentsModule.initializeEvents([
@@ -313,6 +312,51 @@ function ComponentsModule() {
             }
 
         ]);
+
+    };
+    
+    /*
+     * RESUME MULTI INSTANCE COMPONENTS
+     */
+
+    /**
+     * Resume multi instance components into content element
+     */
+    this.resumeComponents = function() {
+
+        let element = document.querySelector('[data-inline]');
+
+        if(!element)
+            return true;
+
+        const data = JSON.parse(element.getAttribute('data-inline'));
+
+        if(!data)
+            return true;
+
+        const order = data['_order_'];
+
+        order.forEach(function(componentID) {
+
+            let componentName;
+            let componentData;
+
+            componentsModule.components.every(function(component) {
+
+                if(!data[component] || !data[component][componentID])
+                    return true;
+
+                componentName = component;
+                componentData = data[component][componentID];
+
+            });
+
+            if(!componentName || !componentData)
+                return true;
+
+            // TODO ... Call component initializer
+
+        });
 
     };
 

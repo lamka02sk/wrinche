@@ -131,7 +131,9 @@ if(!App\Requests\Request::$ajax) {
 
             </div>
 
-            <div class="content-builder-content" data-language="-1">
+            <div class="content-builder-content"
+                 data-language="-1"
+                 data-order="<?= htmlentities(\App\Models\ComponentsModel::$resumedData['_order_']) ?>">
 
                 <p class="empty" data-locale="EMPTY_CONTENT"></p>
 
