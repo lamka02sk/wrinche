@@ -181,6 +181,22 @@ function ComponentsModule() {
      */
 
     /**
+     * Create component element from template
+     * @param componentName
+     * @return {*}
+     */
+    this.createFromTemplate = function(componentName) {
+
+        let templateElement = document.querySelector('#component_' + componentName + '_template');
+
+        if(!templateElement)
+            return false;
+
+        return templateElement.children[0].cloneNode(true);
+
+    };
+
+    /**
      * Create new component instance
      * @type {function(this:ComponentsModule)}
      */
@@ -198,15 +214,14 @@ function ComponentsModule() {
             return false;
 
         let emptyElement    = inlineElement.querySelector('p.empty');
-        let templateElement = document.querySelector('#component_' + componentName + '_template');
+        let template = componentsModule.createFromTemplate(componentName);
 
-        if(typeof templateElement === 'undefined')
+        if(!template)
             return false;
 
         if(emptyElement !== null)
             inlineElement.removeChild(emptyElement);
 
-        let template   = templateElement.children[0].cloneNode(true);
         let identifier = +new Date();
         template.setAttribute('data-id', identifier);
 
@@ -223,12 +238,15 @@ function ComponentsModule() {
      * Register default events for new component instance
      * @type {function(this:ComponentsModule)}
      */
-    this.registerEvents = function(name, identifier, parentElement) {
+    this.registerEvents = function(name, identifier, parentElement, data) {
 
         let headerElement  = parentElement.querySelector('div.component-element-header');
         let contentElement = parentElement.querySelector('div.component-element-content');
         let titleElement   = headerElement.children[1];
         let titleDefault   = titleElement.innerText;
+
+        if(data && data.title !== '')
+            titleElement.innerText = data.title.trim();
 
         // Delegate default events
         componentsModule.initializeEvents([
@@ -313,6 +331,9 @@ function ComponentsModule() {
 
         ]);
 
+        if(data && data.disabled !== 0)
+            triggerEvent(headerElement.querySelector('.component-inline-disable'), 'click');
+
     };
     
     /*
@@ -324,37 +345,75 @@ function ComponentsModule() {
      */
     this.resumeComponents = function() {
 
-        let element = document.querySelector('[data-inline]');
-
-        if(!element)
+        // Get components order
+        let contentElement = document.querySelector('[data-order]');
+        
+        if(!contentElement)
             return true;
 
-        const data = JSON.parse(element.getAttribute('data-inline'));
+        const order = JSON.parse(contentElement.getAttribute('data-order'));
 
-        if(!data)
+        if(!order || order === '')
             return true;
 
-        const order = data['_order_'];
+        // Save resume data
+        let componentsResumeData = {};
+        componentsModule.components.forEach(function(componentName) {
 
+            let template = componentsModule.createFromTemplate(componentName);
+
+            if(!template)
+                return false;
+
+            const resumeData = template.getAttribute('data-resume');
+
+            if(!resumeData)
+                return false;
+
+            componentsResumeData[componentName] = {
+                template: template,
+                resume: JSON.parse(resumeData)
+            }
+
+        });
+
+        let emptyElement = contentElement.querySelector('p.empty');
+
+        // Resume each component
         order.forEach(function(componentID) {
 
-            let componentName;
-            let componentData;
+            componentsModule.components.some(function(componentName) {
 
-            componentsModule.components.every(function(component) {
+                if(
+                    !componentsResumeData[componentName] ||
+                    !componentsResumeData[componentName].template ||
+                    !componentsResumeData[componentName].resume ||
+                    !componentsResumeData[componentName].resume[componentID]
+                )
+                    return false;
 
-                if(!data[component] || !data[component][componentID])
-                    return true;
+                const data = componentsResumeData[componentName];
+                let template = data.template.cloneNode(true);
+                const resumeData = data.resume[componentID];
 
-                componentName = component;
-                componentData = data[component][componentID];
+                if(emptyElement !== null)
+                    contentElement.removeChild(emptyElement);
 
-            });
+                template.setAttribute('data-id', componentID);
 
-            if(!componentName || !componentData)
+                if(!componentsModule.modules[componentName].resumeInline)
+                    return false;
+
+                componentsModule.modules[componentName].resumeInline(componentID, template, resumeData);
+                componentsModule.registerEvents(componentName, componentID, template, resumeData);
+                contentElement.appendChild(template);
+
+                if(componentsModule.modules[componentName].onCreate)
+                    componentsModule.modules[componentName].onCreate(componentID);
+
                 return true;
 
-            // TODO ... Call component initializer
+            });
 
         });
 

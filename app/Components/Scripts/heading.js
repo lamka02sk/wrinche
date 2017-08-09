@@ -1,53 +1,95 @@
 componentsModule.modules.heading = {
 
     data: {},
+    elements: {},
 
-    start: function(element) {
+    start: function() {
+
+        // Save elements
+        let current = componentsModule.modules.heading;
+        current.templateElement = document.querySelector('#component_heading_template').children[0];
+        current.resumeData = current.templateElement.getAttribute('data-resume');
 
     },
 
-    create: function(identifier, element) {
-        componentsModule.modules.heading.data[identifier] = {
+    resumeInline: function(identifier, element, resumeData) {
+
+        componentsModule.modules.heading.create(identifier, element, function(data, elements) {
+
+            elements.inputElement.value = resumeData.value.trim();
+            triggerEvent(elements.inputElement, 'change');
+
+            elements.typeOptions[+resumeData.type - 1].click();
+
+        });
+
+    },
+
+    create: function(identifier, element, callback) {
+
+        let current = componentsModule.modules.heading;
+
+        current.data[identifier] = {
             title: '',
             type: '1',
             value: '',
             disabled: 0
         };
-        let typeOptions = element.querySelectorAll('div.heading-types span');
-        let inputElement = element.querySelector('input[name=component_inline_heading]');
+
+        current.elements[identifier] = {
+            typeOptions: element.querySelectorAll('div.heading-types span'),
+            inputElement: element.querySelector('input[name=component_inline_heading]')
+        };
+
+        let data = current.data[identifier];
+        let elements = current.elements[identifier];
+
         componentsModule.initializeEvents([
 
             {
                 // Serialize input element
                 event: 'change keyup',
-                element: inputElement,
+                element: elements.inputElement,
                 content: function(event) {
-                    componentsModule.modules.heading.data[identifier].value = event.target.value.trim();
+
+                    data.value = event.target.value.trim();
+
                 }
             },
 
             {
                 // Heading type switcher
                 event: 'click',
-                element: typeOptions,
+                element: elements.typeOptions,
                 content: function(event) {
-                    typeOptions.forEach(function(item) {
+
+                    elements.typeOptions.forEach(function(item) {
                         item.classList.remove('type-selected');
                     });
+
                     event.target.classList.add('type-selected');
-                    componentsModule.modules.heading.data[identifier].type = event.target.getAttribute('data-heading').trim();
+                    data.type = event.target.getAttribute('data-heading').trim();
+
                 }
             }
 
         ]);
+
+        if(callback)
+            callback(data, elements);
+
     },
 
     validate: function() {
+
         return true;
+
     },
 
     serialize: function() {
+
         return componentsModule.modules.heading.data;
+
     }
 
 };
