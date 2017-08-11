@@ -62,7 +62,7 @@
             {
               "element":"span",
               "attributes": {
-                "class":"field-validation no-margin",
+                "class":"validate-message no-margin",
                 "data-locale":""
               }
             }

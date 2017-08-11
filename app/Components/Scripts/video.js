@@ -9,7 +9,30 @@ componentsModule.modules.video = {
         'large': '480p (HQ)',
         'hd720': '720p (HD)',
         'hd1080': '1080p (FullHD)',
-        'highres': '>= 1440p (>= QHD)'
+        'highres': '1440p+ (QHD+)'
+    },
+
+    resumeInline: function(identifier, element, resumeData) {
+
+        let current = componentsModule.modules.video;
+        let path = resumeData.video;
+
+        current.create(identifier, element);
+
+        current.onSelect(identifier, element, path, true, function(description, align) {
+
+            let descriptionText = resumeData.video_description.trim();
+
+            if(descriptionText === 'false')
+                descriptionText = '';
+
+            description.value = descriptionText;
+            triggerEvent(description, 'change');
+
+            align[resumeData.video_align].click();
+
+        });
+
     },
 
     videoType: function(path) {
@@ -17,16 +40,18 @@ componentsModule.modules.video = {
         // Vimeo
         if(/^((?:https?:)?\/\/)?((?:www|m|player)\.)?((?:vimeo\.com))(?:$|\/|)(\S+)?$/gm.test(path))
             return 1;
+
         // YouTube
         else if(/(https?:\/\/.*?youtube\.com)\/watch\?v=(.*)/igm.test(path))
             return 0;
+
         // External videos
         else
             return -1;
 
     },
 
-    registerEvents: function(template, identifier, contentElement) {
+    registerEvents: function(template, identifier, contentElement, callback) {
 
         let alignOptions = template.children[6].querySelectorAll('span');
         componentsModule.initializeEvents([
@@ -59,9 +84,12 @@ componentsModule.modules.video = {
             componentsModule.modules.video.removeInstance(identifier, contentElement, template);
         });
 
+        if(callback)
+            callback(template.children[4].children[1], alignOptions);
+
     },
 
-    loadExternalVideo: function(identifier, element, path, template) {
+    loadExternalVideo: function(identifier, element, path, template, callback) {
 
         // Close media manager
         document.querySelector('div.media-manager span.close-manager').click();
@@ -79,8 +107,9 @@ componentsModule.modules.video = {
         template.insertBefore(video, template.children[0]);
         contentElement.appendChild(template);
 
-        template.children[1].innerText = path;
+        template.children[1].innerText = path.replace('app/Data/Files/Videos/', '');
         video.addEventListener('loadedmetadata', function() {
+
             let duration = video.duration;
             let minutes = parseInt(duration / 60, 10);
             let seconds = duration % 60;
@@ -88,18 +117,21 @@ componentsModule.modules.video = {
             let width = video.videoWidth;
             let height = video.videoHeight;
             let dimensions = width + 'x' + height;
+
             template.children[2].innerText = time;
             template.children[3].innerText = dimensions;
+
         });
 
-        componentsModule.modules.video.registerEvents(template, identifier, contentElement);
+        componentsModule.modules.video.registerEvents(template, identifier, contentElement, callback);
 
     },
 
-    loadYouTubeVideo: function(identifier, element, path, template) {
+    loadYouTubeVideo: function(identifier, element, path, template, callback) {
 
         let video = document.createElement('div');
-        video.setAttribute('id', 'youtube-player-' + identifier);
+        const id = 'youtube-player-' + identifier;
+        video.setAttribute('id', id);
 
         let contentElement = element.querySelector('div.component-element-content');
         contentElement.classList.add('no-padding');
@@ -117,31 +149,39 @@ componentsModule.modules.video = {
         if(ampersandPosition !== -1)
             videoId = videoId.substring(0, ampersandPosition);
 
-        let player = new YT.Player('youtube-player-' + identifier, {
-            videoId: videoId,
-            events: {
-                onReady: function(event) {
-                    tmp = event.target.getPlaylist();
-                    template.children[1].innerText = event.target.getVideoData().title;
-                    let duration = event.target.getDuration();
-                    let minutes = parseInt(duration / 60, 10);
-                    let seconds = duration % 60;
-                    template.children[2].innerText = minutes + ':' + pad(Math.round(seconds), 2);
-                    event.target.setPlaybackQuality('medium');
-                },
-                onStateChange: function(event) {
-                    template.children[3].innerText = (event.target.getAvailableQualityLevels()[0] !== undefined)
-                    ? componentsModule.modules.video.YT_QUALITY[event.target.getAvailableQualityLevels()[0]]
-                    : '';
-                }
-            }
-        });
+        function createPlayer() {
 
-        componentsModule.modules.video.registerEvents(template, identifier, contentElement);
+            new YT.Player(id, {
+                videoId: videoId,
+                events: {
+                    onReady: function(event) {
+                        tmp = event.target.getPlaylist();
+                        template.children[1].innerText = event.target.getVideoData().title;
+                        let duration = event.target.getDuration();
+                        let minutes = parseInt(duration / 60, 10);
+                        let seconds = duration % 60;
+                        template.children[2].innerText = minutes + ':' + pad(Math.round(seconds), 2);
+                        event.target.setPlaybackQuality('medium');
+                    },
+                    onStateChange: function(event) {
+
+                        template.children[3].innerText = (event.target.getAvailableQualityLevels()[0] !== undefined)
+                            ? componentsModule.modules.video.YT_QUALITY[event.target.getAvailableQualityLevels()[0]]
+                            : '';
+
+                    }
+                }
+            });
+
+        }
+
+        setTimeout(createPlayer);
+
+        componentsModule.modules.video.registerEvents(template, identifier, contentElement, callback);
 
     },
 
-    loadVimeoVideo: function(identifier, element, path, template) {
+    loadVimeoVideo: function(identifier, element, path, template, callback) {
 
         let video = getJson('https://vimeo.com/api/oembed.json?url=' + path);
 
@@ -168,7 +208,7 @@ componentsModule.modules.video = {
         channelURL.innerText = video.author_name;
         template.children[3].appendChild(channelURL);
 
-        componentsModule.modules.video.registerEvents(template, identifier, contentElement);
+        componentsModule.modules.video.registerEvents(template, identifier, contentElement, callback);
 
     },
 
@@ -189,7 +229,7 @@ componentsModule.modules.video = {
 
     },
 
-    onSelect: function(identifier, element, path, outside) {
+    onSelect: function(identifier, element, path, outside, callback) {
 
         // Remove current video if any
         componentsModule.modules.video.remove(element);
@@ -217,13 +257,13 @@ componentsModule.modules.video = {
         // Load video by type
         switch(type) {
             case -1:
-                componentsModule.modules.video.loadExternalVideo(identifier, element, path, template);
+                componentsModule.modules.video.loadExternalVideo(identifier, element, path, template, callback);
                 break;
             case 0:
-                componentsModule.modules.video.loadYouTubeVideo(identifier, element, path, template);
+                componentsModule.modules.video.loadYouTubeVideo(identifier, element, path, template, callback);
                 break;
             case 1:
-                componentsModule.modules.video.loadVimeoVideo(identifier, element, path, template);
+                componentsModule.modules.video.loadVimeoVideo(identifier, element, path, template, callback);
                 break;
             default:
                 return false;

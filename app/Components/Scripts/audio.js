@@ -1,58 +1,72 @@
 componentsModule.modules.audio = {
 
     data: {},
-    valid: {},
 
-    showError: function(element, identifier) {
-        let messageElement = element.querySelector('span.field-validation');
-        messageElement.setAttribute('data-locale', 'COMPONENT_URL_INVALID');
-        messageElement.innerText = translate.locale.components.COMPONENT_URL_INVALID;
-        messageElement.classList.add('show');
-        componentsModule.modules.audio.valid[identifier] = {
-            valid: false
-        };
+    resumeInline: function(identifier, element, resumeData) {
+
+        let current = componentsModule.modules.audio;
+        let path = resumeData.audio;
+
+        current.create(identifier, element);
+        current.onSelect(identifier, element, path, true);
+
     },
 
-    hideError: function(element, identifier) {
-        let messageElement = element.querySelector('span.field-validation');
-        messageElement.classList.remove('show');
-        componentsModule.modules.audio.valid[identifier] = {
-            valid: true
-        };
-    },
+    validateInput: function(element, identifier, path, onSuccess) {
 
-    validateInput: function(element, identifier, path) {
+        let messageBox = element.querySelector('.validate-message');
 
         if(!/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(path)) {
-            componentsModule.modules.audio.showError(element, identifier);
+
+            showValidationResult(
+                messageBox, 'COMPONENT_URL_INVALID', false, reloadPackery
+            );
+
             return false;
+
         }
 
-        let promise = new Promise(function(resolve, reject) {
+        new Promise(function(resolve) {
+
             let audio = new Audio;
+
             audio.addEventListener('canplaythrough', function() {
                 resolve(true);
             });
+
             audio.addEventListener('error', function() {
                 resolve(false);
             });
+
             audio.src = path;
-        });
 
-        promise.then(function(result) {
+        })
+
+        .then(function(result) {
+
             if(result)
-                componentsModule.modules.audio.hideError(element, identifier);
+                showValidationResult(
+                    messageBox, 'COMPONENT_URL_INVALID', true, reloadPackery
+                );
+
             else
-                componentsModule.modules.audio.showError(element, identifier);
+                showValidationResult(
+                    messageBox, 'COMPONENT_URL_INVALID', false, reloadPackery
+                );
 
         });
+
+        if(onSuccess)
+            onSuccess();
 
     },
 
     remove: function(element) {
+
         element.querySelectorAll('div.component-instance').forEach(function(item) {
             item.querySelector('span.item-remove').click();
         });
+
     },
 
     onSelect: function(identifier, element, path, outside) {
@@ -156,9 +170,11 @@ componentsModule.modules.audio = {
                 content: function(event) {
                     if(event.keyCode && event.keyCode === 13) {
                         let path = event.target.value;
-                        componentsModule.modules.audio.validateInput(element, identifier, path);
-                        if(componentsModule.modules.audio.valid[identifier].valid)
+                        componentsModule.modules.audio.validateInput(element, identifier, path, function() {
+
                             componentsModule.modules.audio.onSelect(identifier, element, path, true);
+
+                        });
                     }
                 }
             },

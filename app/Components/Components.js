@@ -213,14 +213,10 @@ function ComponentsModule() {
         if(!("create" in componentsModule.modules[componentName]))
             return false;
 
-        let emptyElement    = inlineElement.querySelector('p.empty');
         let template = componentsModule.createFromTemplate(componentName);
 
         if(!template)
             return false;
-
-        if(emptyElement !== null)
-            inlineElement.removeChild(emptyElement);
 
         let identifier = +new Date();
         template.setAttribute('data-id', identifier);
@@ -351,6 +347,11 @@ function ComponentsModule() {
         if(!contentElement)
             return true;
 
+        const json = contentElement.getAttribute('data-order');
+
+        if(!json || json === '')
+            return false;
+
         const order = JSON.parse(contentElement.getAttribute('data-order'));
 
         if(!order || order === '')
@@ -377,8 +378,6 @@ function ComponentsModule() {
 
         });
 
-        let emptyElement = contentElement.querySelector('p.empty');
-
         // Resume each component
         order.forEach(function(componentID) {
 
@@ -392,24 +391,22 @@ function ComponentsModule() {
                 )
                     return false;
 
+                let current = componentsModule.modules[componentName];
                 const data = componentsResumeData[componentName];
                 let template = data.template.cloneNode(true);
                 const resumeData = data.resume[componentID];
 
-                if(emptyElement !== null)
-                    contentElement.removeChild(emptyElement);
-
                 template.setAttribute('data-id', componentID);
 
-                if(!componentsModule.modules[componentName].resumeInline)
+                if(!current.resumeInline)
                     return false;
 
-                componentsModule.modules[componentName].resumeInline(componentID, template, resumeData);
+                current.resumeInline(componentID, template, resumeData);
                 componentsModule.registerEvents(componentName, componentID, template, resumeData);
                 contentElement.appendChild(template);
 
-                if(componentsModule.modules[componentName].onCreate)
-                    componentsModule.modules[componentName].onCreate(componentID);
+                if(current.onCreate)
+                    current.onCreate(componentID);
 
                 return true;
 

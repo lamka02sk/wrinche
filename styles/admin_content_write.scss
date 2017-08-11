@@ -1078,7 +1078,7 @@ div.divider {
   clear: both;
 }
 
-p.empty {
+div.content-builder-content p.empty:only-child {
   display: inline-block;
   position: relative;
   width: 100%;
@@ -1088,6 +1088,10 @@ p.empty {
   font-size: 2em;
   font-weight: 400;
   color: lighten($text-grey, 10%);
+}
+
+div.content-builder-content p.empty:not(:only-child) {
+  display: none;
 }
 
 // Components

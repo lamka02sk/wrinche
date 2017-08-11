@@ -155,9 +155,15 @@ componentsModule.modules.thumbnail = {
 
             let image = new Image;
 
-            image.onload  = resolve(true);
-            image.onerror = resolve(false);
-            image.src     = path;
+            image.onload = function() {
+                resolve(true);
+            };
+
+            image.onerror = function() {
+                resolve(false);
+            };
+
+            image.src = path;
 
         }).then(function(result) {
 
