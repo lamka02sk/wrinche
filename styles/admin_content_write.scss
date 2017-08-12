@@ -619,8 +619,12 @@ div.content-builder div.component-element div.component-element-content {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 12px;
+  opacity: 1;
+  transition: .15s ease-in-out;
   &.hide {
-    display: none;
+    height: 0;
+    padding: 0 12px;
+    opacity: 0;
   }
   &.no-padding {
     padding: 0;
