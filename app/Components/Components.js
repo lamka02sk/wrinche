@@ -379,6 +379,9 @@ function ComponentsModule() {
         });
 
         // Resume each component
+        if(typeof order !== 'object')
+            return true;
+
         order.forEach(function(componentID) {
 
             componentsModule.components.some(function(componentName) {

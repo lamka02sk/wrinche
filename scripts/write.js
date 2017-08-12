@@ -92,7 +92,7 @@ initDatePicker();
 function componentsOrder() {
     let components = document.querySelector('.content-builder-content'), order = [];
     for(let i = 0; i < components.children.length; ++i) {
-        if(!components.children[i].getAttribute('data-id')) return false;
+        if(!components.children[i].getAttribute('data-id')) continue;
         order.push(components.children[i].getAttribute('data-id'));
     }
     return order;
