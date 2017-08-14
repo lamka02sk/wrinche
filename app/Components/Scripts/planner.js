@@ -29,9 +29,9 @@ componentsModule.modules.planner = {
                     if(target === current.publishAuto) {
 
                         if(target.checked)
-                            current.notifyBox.classList.add('hide');
+                            current.customPublish.classList.add('hide');
                         else
-                            current.notifyBox.classList.remove('hide');
+                            current.customPublish.classList.remove('hide');
 
 
                         reloadPackery();

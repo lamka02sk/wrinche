@@ -1,4 +1,4 @@
-function reloadStylesheets() {
+/*function reloadStylesheets() {
     let queryString = '?reload=' + +new Date();
     $('link[rel="stylesheet"]').each(function() {
         this.href = this.href.replace(/\?.*|$/, queryString);
@@ -8,7 +8,7 @@ function reloadStylesheets() {
 document.addEventListener('keyup', function(event) {
     if(event.keyCode === 82)
         reloadStylesheets();
-});
+});*/
 
 // ---------------------------------------------------------------------------------------------------------------------
 

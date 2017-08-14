@@ -22,6 +22,12 @@ componentsModule.modules.table = {
         return componentsModule.modules.table.data;
     },
 
+    resumeInline: function(identifier, element, resumeData) {
+
+        componentsModule.modules.table.create(identifier, element, resumeData);
+
+    },
+
     addRow: function(table, identifier, before) {
 
         let clone = componentsModule.modules.table.template;
@@ -135,6 +141,7 @@ componentsModule.modules.table = {
     addColumn: function(table, identifier, afterID) {
 
         let columnID = Math.random() * (999999 - 100000) + 100000;
+
         if(afterID) {
             let afterIndex = componentsModule.modules.table.data[identifier].table.order.columns.indexOf(parseFloat(afterID));
             componentsModule.modules.table.data[identifier].table.order.columns.splice(afterIndex - 1, 0, columnID);
@@ -247,9 +254,12 @@ componentsModule.modules.table = {
 
     },
 
-    create: function(identifier, element) {
+    create: function(identifier, element, resumeData) {
 
+        let current = componentsModule.modules.table;
         let contentElement = element.querySelector('div.table-box');
+        let nameInput = element.querySelector('input[name=component_inline_table_name]');
+
         componentsModule.initializeEvents([{
             event: 'wheel',
             element: contentElement,
@@ -260,7 +270,7 @@ componentsModule.modules.table = {
         }]);
 
         // Create table data
-        componentsModule.modules.table.data[identifier] = {
+        current.data[identifier] = {
             title: '',
             table: {
                 hidden: {
@@ -268,7 +278,6 @@ componentsModule.modules.table = {
                     rows: []
                 },
                 header: {},
-                //aside: {},
                 rows: {},
                 name: '',
                 order: {
@@ -283,18 +292,26 @@ componentsModule.modules.table = {
         // Table name serialize
         componentsModule.initializeEvents([
             {
-                event: 'change click',
-                element: element.querySelector('input[name=component_inline_table_name]'),
+                event: 'change keyup',
+                element: nameInput,
                 content: function(event) {
-                    componentsModule.modules.table.data[identifier].table.name = event.target.value.trim();
+                    current.data[identifier].table.name = event.target.value.trim();
                 }
             }
         ]);
 
+        // Resume table name value
+        if(resumeData && resumeData.table.name) {
+
+            nameInput.value = resumeData.table.name.trim();
+            triggerEvent(nameInput, 'change');
+
+        }
+
         // Clone template
-        let clone = componentsModule.modules.table.template;
+        let clone = current.template;
         if(!clone)
-            componentsModule.modules.table.template = clone = element.querySelector('#template_inline_table_components').cloneNode(true).children[0];
+            current.template = clone = element.querySelector('#template_inline_table_components').cloneNode(true).children[0];
 
         // Create basic table and register events
         let table = document.createElement('table');
@@ -304,30 +321,36 @@ componentsModule.modules.table = {
          */
         let actionRow = clone.querySelector('.table-action-row').cloneNode(true);
 
-        if(!componentsModule.modules.table.clones.headerActionCellFirst)
-            componentsModule.modules.table.clones.headerActionCellFirst = clone.querySelector('.table-header-action-first').cloneNode(true);
+        if(!current.clones.headerActionCellFirst)
+            current.clones.headerActionCellFirst = clone.querySelector('.table-header-action-first').cloneNode(true);
 
-        if(!componentsModule.modules.table.clones.headerActionCell)
-            componentsModule.modules.table.clones.headerActionCell = clone.querySelector('.table-header-action').cloneNode(true);
+        if(!current.clones.headerActionCell)
+            current.clones.headerActionCell = clone.querySelector('.table-header-action').cloneNode(true);
 
-        if(!componentsModule.modules.table.clones.emptyCell)
-            componentsModule.modules.table.clones.emptyCell = document.createElement('td');
+        if(!current.clones.emptyCell)
+            current.clones.emptyCell = document.createElement('td');
 
-        componentsModule.modules.table.clones.emptyCell.classList.add('table-aside-action');
-        actionRow.appendChild(componentsModule.modules.table.clones.emptyCell.cloneNode(true));
-        actionRow.appendChild(componentsModule.modules.table.clones.headerActionCellFirst.cloneNode(true));
+        current.clones.emptyCell.classList.add('table-aside-action');
+        actionRow.appendChild(current.clones.emptyCell.cloneNode(true));
+        actionRow.appendChild(current.clones.headerActionCellFirst.cloneNode(true));
 
         // Create first column id
-        let firstColumnID = Math.random() * (999999 - 100000) + 100000;
-        componentsModule.modules.table.data[identifier].table.order.columns.push(firstColumnID);
+        let firstColumnID;
+
+        if(resumeData && resumeData.table.order.columns)
+            firstColumnID = resumeData.table.order.columns[0];
+        else
+            firstColumnID = Math.random() * (999999 - 100000) + 100000;
+
+        current.data[identifier].table.order.columns.push(firstColumnID);
         actionRow.children[1].setAttribute('data-column', firstColumnID.toString());
 
         // Register hide event
         actionRow.children[1].children[0].addEventListener('click', function() {
             this.parentNode.classList.toggle('hidden');
-            let status = componentsModule.modules.table.data[identifier].table.hidden.columns.indexOf(firstColumnID);
-            if(status !== -1) componentsModule.modules.table.data[identifier].table.hidden.columns.splice(status, 1);
-            else componentsModule.modules.table.data[identifier].table.hidden.columns.push(firstColumnID);
+            let status = current.data[identifier].table.hidden.columns.indexOf(firstColumnID);
+            if(status !== -1) current.data[identifier].table.hidden.columns.splice(status, 1);
+            else current.data[identifier].table.hidden.columns.push(firstColumnID);
             table.querySelectorAll('tr.table-row, tr.table-header-row').forEach(function(row) {
                 if(row.querySelector('[data-column="' + firstColumnID + '"]'))
                     row.querySelector('[data-column="' + firstColumnID + '"]').classList.toggle('hidden');
@@ -336,7 +359,7 @@ componentsModule.modules.table = {
 
         // Register add new column event
         actionRow.querySelector('.table-new-column').addEventListener('click', function() {
-            componentsModule.modules.table.addColumn(table, identifier, firstColumnID);
+            current.addColumn(table, identifier, firstColumnID);
         });
 
         // ----------   **********
@@ -347,28 +370,34 @@ componentsModule.modules.table = {
 
         let headerRow = clone.querySelector('.table-header-row').cloneNode(true);
 
-        if(!componentsModule.modules.table.clones.asideActionCellFirst)
-            componentsModule.modules.table.clones.asideActionCellFirst = clone.querySelector('.table-aside-action-first').cloneNode(true);
+        if(!current.clones.asideActionCellFirst)
+            current.clones.asideActionCellFirst = clone.querySelector('.table-aside-action-first').cloneNode(true);
 
-        if(!componentsModule.modules.table.clones.headerCell)
-            componentsModule.modules.table.clones.headerCell = clone.querySelector('th[contenteditable=true]').cloneNode(true);
+        if(!current.clones.headerCell)
+            current.clones.headerCell = clone.querySelector('th[contenteditable=true]').cloneNode(true);
 
         // Create first row id
-        let firstRowID = Math.random() * (9999999 - 1000000) + 1000000;
-        componentsModule.modules.table.data[identifier].table.rows[firstRowID] = {};
-        componentsModule.modules.table.data[identifier].table.order.rows.push(firstRowID);
+        let firstRowID;
 
-        let headerCell = componentsModule.modules.table.clones.headerCell.cloneNode(true);
-        let actionCellFirst = componentsModule.modules.table.clones.asideActionCellFirst.cloneNode(true);
+        if(resumeData && resumeData.table.order.columns)
+            firstRowID = resumeData.table.order.rows[0];
+        else
+            firstRowID = Math.random() * (9999999 - 1000000) + 1000000;
+
+        current.data[identifier].table.rows[firstRowID] = {};
+        current.data[identifier].table.order.rows.push(firstRowID);
+
+        let headerCell = current.clones.headerCell.cloneNode(true);
+        let actionCellFirst = current.clones.asideActionCellFirst.cloneNode(true);
         let actionCellFirst_hide = actionCellFirst.querySelector('.table-hide-row');
         headerRow.appendChild(actionCellFirst);
         headerRow.appendChild(headerCell);
 
-        if(!componentsModule.modules.table.clones.asideActionCell)
-            componentsModule.modules.table.clones.asideActionCell = clone.querySelector('.table-aside-action').cloneNode(true);
+        if(!current.clones.asideActionCell)
+            current.clones.asideActionCell = clone.querySelector('.table-aside-action').cloneNode(true);
 
-        if(!componentsModule.modules.table.clones.contentCell)
-            componentsModule.modules.table.clones.contentCell = clone.querySelector('td[contenteditable=true]').cloneNode(true);
+        if(!current.clones.contentCell)
+            current.clones.contentCell = clone.querySelector('td[contenteditable=true]').cloneNode(true);
 
         headerRow.setAttribute('data-row', firstRowID);
 
@@ -383,7 +412,7 @@ componentsModule.modules.table = {
                 event: 'change keyup',
                 element: headerCell,
                 content: function(event) {
-                    componentsModule.modules.table.data[identifier].table.header[firstColumnID] = event.target.innerText.trim();
+                    current.data[identifier].table.header[firstColumnID] = event.target.innerText.trim();
                 }
             },
 
@@ -392,7 +421,7 @@ componentsModule.modules.table = {
                 event: 'click',
                 element: actionCellFirst_hide,
                 content: function() {
-                    let index = componentsModule.modules.table.data[identifier].table.hidden.rows.indexOf(firstRowID);
+                    let index = current.data[identifier].table.hidden.rows.indexOf(firstRowID);
                     let isHidden = (index !== -1);
                     let cells = this.parentNode.parentNode.children;
                     let length = cells.length;
@@ -400,12 +429,19 @@ componentsModule.modules.table = {
                         if(isHidden) cells[i].classList.remove('hidden');
                         else cells[i].classList.add('hidden');
                     }
-                    if(isHidden) componentsModule.modules.table.data[identifier].table.hidden.rows.splice(index, 1);
-                    else componentsModule.modules.table.data[identifier].table.hidden.rows.push(firstRowID);
+                    if(isHidden) current.data[identifier].table.hidden.rows.splice(index, 1);
+                    else current.data[identifier].table.hidden.rows.push(firstRowID);
                 }
             }
 
         ]);
+
+        if(resumeData && resumeData.table.header[firstColumnID]) {
+
+            headerCell.innerText = resumeData.table.header[firstColumnID].trim();
+            triggerEvent(headerCell, 'change');
+
+        }
 
         // ----------   **********
 
@@ -413,17 +449,30 @@ componentsModule.modules.table = {
         table.appendChild(actionRow);
         table.appendChild(headerRow);
 
-        // Create table rows
-        for(let i = 0; i < 4; ++i)
-            table = componentsModule.modules.table.addRow(table, identifier);
+        if(resumeData === undefined) {
 
-        // Create table columns
-        for(let i = 0; i < 3; ++i)
-            table = componentsModule.modules.table.addColumn(table, identifier);
+            // Create table rows
+            for(let i = 0; i < 4; ++i)
+                table = current.addRow(table, identifier);
+
+            // Create table columns
+            for(let i = 0; i < 3; ++i)
+                table = current.addColumn(table, identifier);
+
+        } else {
+
+            for(let i = 0; i < resumeData.dimensions[1]; ++i)
+                table = current.addRow(table, identifier);
+
+            // Create table columns
+            for(let i = 0; i < resumeData.dimensions[0]; ++i)
+                table = current.addColumn(table, identifier);
+
+        }
 
         // Register new row event
         contentElement.querySelector('.table-add-button').addEventListener('click', function() {
-            table = componentsModule.modules.table.addRow(table, identifier);
+            table = current.addRow(table, identifier);
         });
 
         contentElement.appendChild(table);

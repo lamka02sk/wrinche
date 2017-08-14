@@ -36,19 +36,11 @@
     },
 
     "planner_date": {
-      "type":"string|boolean",
-      "validate": {
-        "source":"validator",
-        "method":"isFutureTimestamp"
-      }
+      "type":"string|boolean"
     },
 
     "planner_expiry": {
-      "type":"string|boolean",
-      "validate": {
-        "source":"validator",
-        "method":"isFutureTimestamp"
-      }
+      "type":"string|boolean"
     },
 
     "planner_notify": {
