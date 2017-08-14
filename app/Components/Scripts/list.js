@@ -30,6 +30,9 @@ componentsModule.modules.list = {
 
         });
 
+        if(current.data[identifier].list.length < 1)
+            current.createItem(identifier, listElement);
+
     },
 
     reloadItems: function(identifier, listElement) {
@@ -115,9 +118,13 @@ componentsModule.modules.list = {
                 event  : 'focus',
                 element: itemText,
                 content: function(event) {
-                    if(event.target.innerText.trim() !== current.itemClone.querySelector('p').innerText) return false;
+
+                    if(event.target.innerText.trim() !== current.itemClone.querySelector('p').innerText)
+                        return false;
+
                     event.target.classList.remove('item-text-placeholder');
                     event.target.innerText = '';
+
                 }
             },
 
@@ -126,11 +133,18 @@ componentsModule.modules.list = {
                 event  : 'blur',
                 element: itemText,
                 content: function(event) {
-                    if(!current.data[identifier].order[index + 1] && event.target.innerText.trim() !== '')
-                        current.createItem(identifier, listElement, itemID);
-                    if(event.target.innerText.trim() !== '') return false;
+
+                    let nextItem = event.target.parentNode.nextSibling;
+
+                    if(event.target.innerText.trim() !== '' && nextItem === null)
+                        current.createItem(identifier, listElement, itemID, true);
+
+                    if(event.target.innerText.trim() !== '')
+                        return false;
+
                     event.target.classList.add('item-text-placeholder');
                     event.target.innerText = current.itemClone.querySelector('p').innerText;
+
                 }
             },
 
@@ -139,17 +153,20 @@ componentsModule.modules.list = {
                 event  : 'keydown',
                 element: itemText,
                 content: function(event) {
-                    if(event.keyCode !== 13) return false;
-                    if(!current.data[identifier].order[index + 1] && event.target.innerText.trim() !== '')
-                        current.createItem(identifier, listElement, itemID, true);
-                    else if(event.shiftKey) {
-                        if(!(!itemElement.previousSibling))
-                            itemElement.previousSibling.querySelector('p').focus();
-                    } else {
-                        if(!(!itemElement.nextSibling))
-                            itemElement.nextSibling.querySelector('p').focus();
-                    }
+
+                    if(event.keyCode !== 13)
+                        return false;
+
+                    let currentItem = event.target.parentNode;
+                    let nextItem    = currentItem.nextSibling;
+
+                    if(nextItem !== null)
+                        nextItem.querySelector('p').focus();
+                    else
+                        event.target.blur();
+
                     event.preventDefault();
+
                 }
             },
 
@@ -158,7 +175,9 @@ componentsModule.modules.list = {
                 event  : 'keyup change',
                 element: itemText,
                 content: function(event) {
+
                     current.data[identifier].list[index] = event.target.innerText.trim();
+
                 }
             },
 
@@ -166,15 +185,23 @@ componentsModule.modules.list = {
                 // Delete item
                 event  : 'click',
                 element: itemElement.querySelector('.list-item-delete'),
-                content: function() {
-                    if(listElement.children.length < 2) return false;
+                content: function(event) {
+
+                    if(listElement.children.length < 2)
+                        return false;
+
                     let index = current.data[identifier].order.indexOf(itemID);
-                    if(index === -1) return false;
+
+                    if(index === -1)
+                        return false;
+
                     current.data[identifier].list.splice(index, 1);
                     current.data[identifier].order.splice(index, 1);
                     current.data[identifier].list_checked.splice(index, 1);
+
                     listElement.removeChild(itemElement);
                     current.reloadItems(identifier, listElement);
+
                 }
             }
 
@@ -183,16 +210,19 @@ componentsModule.modules.list = {
         // Show item
         if(!after)
             listElement.appendChild(itemElement);
+
         else {
-            if(!current.data[identifier].order[index + 1]) listElement.appendChild(itemElement);
-            else listElement.insertBefore(itemElement, listElement.children[index + 1]);
+
+            if(!current.data[identifier].order[index + 1])
+                listElement.appendChild(itemElement);
+            else
+                listElement.insertBefore(itemElement, listElement.children[index + 1]);
+
         }
 
         // Resume data
-        itemText.innerText = data[0] || '';
-
-        if(itemText.innerText !== '')
-            itemText.classList.remove('item-text-placeholder');
+        itemText.innerText = data[0] || itemText.innerText;
+        itemText.classList.add('item-text-placeholder');
 
         if(data[1] === 1)
             itemCheck.click();

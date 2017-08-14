@@ -15,21 +15,24 @@ componentsModule.modules.poll = {
 
         let newOrder = [];
         let newContent = [];
+        let current = componentsModule.modules.poll;
 
         listElement.querySelectorAll('.poll-item').forEach(function(item) {
             newOrder.push(parseFloat(item.getAttribute('data-item')));
             let text = item.querySelector('p').innerText.trim();
-            if(text === componentsModule.modules.poll.itemClone.querySelector('p').innerText.trim())
+            if(text === current.itemClone.querySelector('p').innerText.trim())
                 text = '';
             newContent.push(text);
         });
 
-        componentsModule.modules.poll.data[identifier].poll = newContent;
-        componentsModule.modules.poll.data[identifier].order = newOrder;
+        current.data[identifier].poll = newContent;
+        current.data[identifier].order = newOrder;
 
     },
 
     createItem: function(identifier, listElement, after, focus) {
+
+        let current = componentsModule.modules.poll;
 
         // Create item ID
         let itemID = Math.random() * (99999 - 10000) + 10000;
@@ -37,19 +40,19 @@ componentsModule.modules.poll = {
         // Create item data
         let index;
         if(!after) {
-            componentsModule.modules.poll.data[identifier].poll.push('');
-            componentsModule.modules.poll.data[identifier].order.push(itemID);
-            index = +componentsModule.modules.poll.data[identifier].order.indexOf(itemID);
+            current.data[identifier].poll.push('');
+            current.data[identifier].order.push(itemID);
+            index = +current.data[identifier].order.indexOf(itemID);
         } else {
-            index = +componentsModule.modules.poll.data[identifier].order.indexOf(after);
+            index = +current.data[identifier].order.indexOf(after);
             if(index === -1) return false;
             index += 1;
-            componentsModule.modules.poll.data[identifier].poll.splice(index, 0, '');
-            componentsModule.modules.poll.data[identifier].order.splice(index, 0, itemID);
+            current.data[identifier].poll.splice(index, 0, '');
+            current.data[identifier].order.splice(index, 0, itemID);
         }
 
         // Create item clone
-        let itemElement = componentsModule.modules.poll.itemClone.cloneNode(true);
+        let itemElement = current.itemClone.cloneNode(true);
         itemElement.setAttribute('data-item', itemID.toString());
         let itemText = itemElement.querySelector('p');
 
@@ -61,7 +64,7 @@ componentsModule.modules.poll = {
                 event: 'focus',
                 element: itemText,
                 content: function(event) {
-                    if(event.target.innerText.trim() !== componentsModule.modules.poll.itemClone.querySelector('p').innerText) return false;
+                    if(event.target.innerText.trim() !== current.itemClone.querySelector('p').innerText) return false;
                     event.target.classList.remove('item-text-placeholder');
                     event.target.innerText = '';
                 }
@@ -72,11 +75,11 @@ componentsModule.modules.poll = {
                 event: 'blur',
                 element: itemText,
                 content: function(event) {
-                    if(!componentsModule.modules.poll.data[identifier].order[index + 1] && event.target.innerText.trim() !== '')
-                        componentsModule.modules.poll.createItem(identifier, listElement, itemID);
+                    if(!current.data[identifier].order[index + 1] && event.target.innerText.trim() !== '')
+                        current.createItem(identifier, listElement, itemID);
                     if(event.target.innerText.trim() !== '') return false;
                     event.target.classList.add('item-text-placeholder');
-                    event.target.innerText = componentsModule.modules.poll.itemClone.querySelector('p').innerText;
+                    event.target.innerText = current.itemClone.querySelector('p').innerText;
                 }
             },
 
@@ -86,8 +89,8 @@ componentsModule.modules.poll = {
                 element: itemText,
                 content: function(event) {
                     if(event.keyCode !== 13) return false;
-                    if(!componentsModule.modules.poll.data[identifier].order[index + 1] && event.target.innerText.trim() !== '')
-                        componentsModule.modules.poll.createItem(identifier, listElement, itemID, true);
+                    if(!current.data[identifier].order[index + 1] && event.target.innerText.trim() !== '')
+                        current.createItem(identifier, listElement, itemID, true);
                     else if(event.shiftKey) {
                         if(!(!itemElement.previousSibling))
                             itemElement.previousSibling.querySelector('p').focus();
@@ -104,7 +107,7 @@ componentsModule.modules.poll = {
                 event: 'keyup change',
                 element: itemText,
                 content: function(event) {
-                    componentsModule.modules.poll.data[identifier].poll[index] = event.target.innerText.trim();
+                    current.data[identifier].poll[index] = event.target.innerText.trim();
                 }
             },
 
@@ -114,12 +117,12 @@ componentsModule.modules.poll = {
                 element: itemElement.querySelector('.poll-item-delete'),
                 content: function() {
                     if(listElement.children.length < 2) return false;
-                    let index = componentsModule.modules.poll.data[identifier].order.indexOf(itemID);
+                    let index = current.data[identifier].order.indexOf(itemID);
                     if(index === -1) return false;
-                    componentsModule.modules.poll.data[identifier].poll.splice(index, 1);
-                    componentsModule.modules.poll.data[identifier].order.splice(index, 1);
+                    current.data[identifier].poll.splice(index, 1);
+                    current.data[identifier].order.splice(index, 1);
                     listElement.removeChild(itemElement);
-                    componentsModule.modules.poll.reloadItems(identifier, listElement);
+                    current.reloadItems(identifier, listElement);
                 }
             }
 
@@ -129,7 +132,7 @@ componentsModule.modules.poll = {
         if(!after)
             listElement.appendChild(itemElement);
         else {
-            if(!componentsModule.modules.poll.data[identifier].order[index + 1]) listElement.appendChild(itemElement);
+            if(!current.data[identifier].order[index + 1]) listElement.appendChild(itemElement);
             else listElement.insertBefore(itemElement, listElement.children[index + 1]);
         }
 
@@ -140,16 +143,17 @@ componentsModule.modules.poll = {
 
     create: function(identifier, element) {
 
+        let current = componentsModule.modules.poll;
         let contentElement = element.querySelector('.component-element-content');
         let listElement = contentElement.querySelector('.component-inline-poll-content');
         let listItem = listElement.querySelector('.poll-item');
 
-        if(!componentsModule.modules.poll.itemClone)
-            componentsModule.modules.poll.itemClone = listItem.cloneNode(true);
+        if(!current.itemClone)
+            current.itemClone = listItem.cloneNode(true);
         listElement.removeChild(listItem);
 
         // Data
-        componentsModule.modules.poll.data[identifier] = {
+        current.data[identifier] = {
             title: '',
             disabled: 0,
             poll: [],
@@ -171,7 +175,7 @@ componentsModule.modules.poll = {
             },
             onEnd: function(event) {
                 event.item.classList.remove('chosen');
-                componentsModule.modules.poll.reloadItems(identifier, listElement);
+                current.reloadItems(identifier, listElement);
             }
         });
 
@@ -185,7 +189,7 @@ componentsModule.modules.poll = {
                 event: 'change keyup',
                 element: contentElement.querySelector('input[name=component_inline_poll_name]'),
                 content: function(event) {
-                    componentsModule.modules.poll.data[identifier].poll_title = event.target.value.trim();
+                    current.data[identifier].poll_title = event.target.value.trim();
                 }
             },
 
@@ -196,7 +200,7 @@ componentsModule.modules.poll = {
                 content: function(event) {
                     listElement.setAttribute(
                         'data-type',
-                        componentsModule.modules.poll.data[identifier].poll_type = event.target.getAttribute('data-position')
+                        current.data[identifier].poll_type = event.target.getAttribute('data-position')
                     );
                     typeItems.forEach(function(item) {
                         item.classList.remove('active');
@@ -210,7 +214,7 @@ componentsModule.modules.poll = {
                 event: 'click',
                 element: positionItems,
                 content: function(event) {
-                    componentsModule.modules.poll.data[identifier].poll_position = event.target.getAttribute('data-position');
+                    current.data[identifier].poll_position = event.target.getAttribute('data-position');
                     positionItems.forEach(function(item) {
                         item.classList.remove('active');
                     });
@@ -221,7 +225,7 @@ componentsModule.modules.poll = {
         ]);
 
         // First item
-        componentsModule.modules.poll.createItem(identifier, listElement);
+        current.createItem(identifier, listElement);
 
     }
 
