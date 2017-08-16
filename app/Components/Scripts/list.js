@@ -83,8 +83,8 @@ componentsModule.modules.list = {
             index = +current.data[identifier].order.indexOf(after);
 
             if(index === -1)
-
                 return false;
+
             index += 1;
             current.data[identifier].list.splice(index, 0, value);
             current.data[identifier].list_checked.splice(index, 0, checked);
@@ -96,8 +96,9 @@ componentsModule.modules.list = {
         let itemElement = current.itemClone.cloneNode(true);
         itemElement.setAttribute('data-item', itemID.toString());
         itemElement.querySelector('.item-number').innerText = +index + 1 + '.';
-        let itemText                                        = itemElement.querySelector('p');
-        let itemCheck                                       = itemElement.querySelector('.item-check');
+
+        let itemText  = itemElement.querySelector('p');
+        let itemCheck = itemElement.querySelector('.item-check');
 
         // Create item events
         componentsModule.initializeEvents([
@@ -119,11 +120,13 @@ componentsModule.modules.list = {
                 element: itemText,
                 content: function(event) {
 
-                    if(event.target.innerText.trim() !== current.itemClone.querySelector('p').innerText)
+                    let target = event.target;
+
+                    if(target.innerText.trim() !== current.itemClone.querySelector('p').innerText)
                         return false;
 
-                    event.target.classList.remove('item-text-placeholder');
-                    event.target.innerText = '';
+                    target.classList.remove('item-text-placeholder');
+                    target.innerText = '';
 
                 }
             },
@@ -134,16 +137,17 @@ componentsModule.modules.list = {
                 element: itemText,
                 content: function(event) {
 
-                    let nextItem = event.target.parentNode.nextSibling;
+                    let target = event.target;
+                    let nextItem = target.parentNode.nextSibling;
 
-                    if(event.target.innerText.trim() !== '' && nextItem === null)
+                    if(target.innerText.trim() !== '' && nextItem === null)
                         current.createItem(identifier, listElement, itemID, true);
 
-                    if(event.target.innerText.trim() !== '')
+                    if(target.innerText.trim() !== '')
                         return false;
 
-                    event.target.classList.add('item-text-placeholder');
-                    event.target.innerText = current.itemClone.querySelector('p').innerText;
+                    target.classList.add('item-text-placeholder');
+                    target.innerText = current.itemClone.querySelector('p').innerText;
 
                 }
             },
@@ -185,7 +189,7 @@ componentsModule.modules.list = {
                 // Delete item
                 event  : 'click',
                 element: itemElement.querySelector('.list-item-delete'),
-                content: function(event) {
+                content: function() {
 
                     if(listElement.children.length < 2)
                         return false;
@@ -222,7 +226,9 @@ componentsModule.modules.list = {
 
         // Resume data
         itemText.innerText = data[0] || itemText.innerText;
-        itemText.classList.add('item-text-placeholder');
+
+        if(data[0] !== undefined)
+            itemText.classList.remove('item-text-placeholder');
 
         if(data[1] === 1)
             itemCheck.click();
