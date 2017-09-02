@@ -98,7 +98,7 @@ class ArticlesModel extends MainModel {
         $data['preview'] = $previewID;
 
         // Publish if publish button was pressed
-        if($this->articleAction === 1)
+        if((int)$this->articleAction === 1)
             $data['status'] = 1;
 
         // Save data to DB
@@ -130,7 +130,7 @@ class ArticlesModel extends MainModel {
         $data = $this->articleData['articles'];
 
         // Publish if publish button was pressed
-        if($this->articleAction === 1)
+        if((int)$this->articleAction === 1)
             $data['status'] = 1;
         
         // Remove created at

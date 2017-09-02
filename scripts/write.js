@@ -137,7 +137,42 @@ document.querySelector('.save-content').addEventListener('click', function() {
 });
 
 // Save and publish article
+document.querySelector('.publish-content').addEventListener('click', function() {
 
+    // Validate data first
+    let valid = componentsModule.validate();
+    if(!valid)
+        return false;
+
+    let articleID = contentElement.getAttribute('data-id');
+    let componentsData = componentsModule.serialize();
+    let order = componentsOrder();
+
+    let data = {
+        action: 1,
+        type: contentElement.getAttribute('data-type'),
+        order: order,
+        components: componentsData
+    };
+
+    if(articleID !== '')
+        data['articleID'] = articleID;
+
+    postData(
+        URI + 'write',
+        data,
+        function(response, status) {
+
+            response = JSON.parse(response);
+            if(response.article_id)
+                contentElement.setAttribute('data-id', response.article_id);
+
+            // TODO: Show status message
+
+        }
+    );
+
+});
 
 
 // Init counters
