@@ -1,7 +1,7 @@
 {
   "name": "wrinche",
   "description": "Modern, powerful and user friendly CMS.",
-  "version": "0.0.3 alpha",
+  "version": "0.0.4 alpha",
   "domain": "\/",
   "charset": "UTF-8",
   "requirements": {
