@@ -3,15 +3,25 @@ componentsModule.modules.table = {
     data: {},
 
     template: false,
-    clones: {
+    clones  : {
+
         clone: false,
-        headerActionCellFirst: false,
-        headerActionCell: false,
-        emptyCell: false,
-        asideActionCellFirst: false,
-        asideActionCell: false,
-        headerCell: false,
-        contentCell: false
+
+        actionRow: false,
+        headerRow: false,
+        tableRow : false,
+
+        headerActionFirst: false,
+        headerAction     : false,
+
+        asideActionFirst: false,
+        asideAction     : false,
+
+        headerCell : false,
+        contentCell: false,
+
+        emptyCell: false
+
     },
 
     validate: function() {
@@ -22,230 +32,122 @@ componentsModule.modules.table = {
         return componentsModule.modules.table.data;
     },
 
-    resumeInline: function(identifier, element, resumeData) {
-
-        componentsModule.modules.table.create(identifier, element, resumeData);
-
-    },
-
     addRow: function(table, identifier, before) {
 
-        let clone = componentsModule.modules.table.template;
-        let tableRow = clone.querySelector('.table-row').cloneNode(true);
+        let current    = componentsModule.modules.table;
+        let clones     = current.clones;
+        let data       = current.data[identifier];
+        let tableRow   = clones.tableRow.cloneNode(true);
+        let actionCell = clones.asideAction.cloneNode(true);
+        let columnID   = data.table.order.columns[0];
+        let headerCell = clones.headerCell.cloneNode(true);
 
-        let actionCell = componentsModule.modules.table.clones.asideActionCell.cloneNode(true);
+        let rowID = Math.floor(Math.random() * (9999999 - 1000000)) + 1000000;
+
         tableRow.appendChild(actionCell);
-
-        let columnID = componentsModule.modules.table.data[identifier].table.order.columns[0];
-        let headerCell = componentsModule.modules.table.clones.headerCell.cloneNode(true);
-        headerCell.setAttribute('data-column', componentsModule.modules.table.data[identifier].table.order.columns[0]);
+        headerCell.setAttribute('data-column', data.table.order.columns[0]);
         tableRow.appendChild(headerCell);
 
         // Serialize row header cell
-        let rowID = Math.random() * (9999999 - 1000000) + 1000000;
-        componentsModule.modules.table.data[identifier].table.rows[rowID] = {};
+        data.table.rows[rowID] = {};
         tableRow.setAttribute('data-row', rowID);
 
         if(before === undefined)
-            componentsModule.modules.table.data[identifier].table.order.rows.push(rowID);
+            data.table.order.rows.push(rowID);
+
         else {
-            let beforeID = parseFloat(before.getAttribute('data-row'));
-            let beforeIndex = componentsModule.modules.table.data[identifier].table.order.rows.indexOf(beforeID);
-            if(beforeIndex === -1) return false;
-            componentsModule.modules.table.data[identifier].table.order.rows.splice(beforeIndex, 0, rowID);
+
+            let beforeID    = parseFloat(before.getAttribute('data-row'));
+            let beforeIndex = data.table.order.rows.indexOf(beforeID);
+
+            if(beforeIndex === -1)
+                return false;
+
+            data.table.order.rows.splice(beforeIndex, 0, rowID);
+
         }
 
-        tableRow.setAttribute('data-row', rowID);
-        if(componentsModule.modules.table.data[identifier].table.hidden.columns.indexOf(columnID) !== -1)
+        if(data.table.hidden.columns.indexOf(columnID) !== -1)
             headerCell.classList.add('hidden');
 
-        for(let i = 0; i < componentsModule.modules.table.data[identifier].dimensions[0]; ++i) {
-            let contentCell = componentsModule.modules.table.clones.contentCell.cloneNode(true);
-            let columnID = componentsModule.modules.table.data[identifier].table.order.columns[+i + 1];
+        for(let i = 0; i < data.dimensions[0]; ++i) {
+
+            let contentCell = clones.contentCell.cloneNode(true);
+            let columnID    = data.table.order.columns[+i + 1];
+
             contentCell.setAttribute('data-column', columnID);
-            componentsModule.initializeEvents([{
-                event: 'change keyup',
-                element: contentCell,
-                content: function(event) {
-                    componentsModule.modules.table.data[identifier].table.rows[rowID][columnID] = event.target.innerText.trim();
-                }
-            }]);
             tableRow.appendChild(contentCell);
+
         }
-
-        // Events
-        componentsModule.initializeEvents([
-
-            {
-                // Serialize header cell
-                event: 'change keyup',
-                element: headerCell,
-                content: function(event) {
-                    componentsModule.modules.table.data[identifier].table.header[rowID] = event.target.innerText.trim();
-                }
-            },
-
-            {
-                // Hide / Show row
-                event: 'click',
-                element: actionCell.querySelector('.table-hide-row'),
-                content: function() {
-                    let index = componentsModule.modules.table.data[identifier].table.hidden.rows.indexOf(rowID);
-                    let isHidden = (index !== -1);
-                    let cells = this.parentNode.parentNode.children;
-                    let length = cells.length;
-                    for(let i = 0; i < length; ++i) {
-                        if(isHidden) cells[i].classList.remove('hidden');
-                        else cells[i].classList.add('hidden');
-                    }
-                    if(isHidden) componentsModule.modules.table.data[identifier].table.hidden.rows.splice(index, 1);
-                    else componentsModule.modules.table.data[identifier].table.hidden.rows.push(rowID);
-                }
-            },
-
-            {
-                // Delete row
-                event: 'click',
-                element: actionCell.querySelector('.table-delete-row'),
-                content: function() {
-                    this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
-                    delete componentsModule.modules.table.data[identifier].table.rows[rowID];
-                    --componentsModule.modules.table.data[identifier].dimensions[1];
-                    delete componentsModule.modules.table.data[identifier].table.header[rowID];
-                    let hiddenIndex = componentsModule.modules.table.data[identifier].table.hidden.rows.indexOf(rowID);
-                    if(hiddenIndex !== -1) componentsModule.modules.table.data[identifier].table.hidden.rows.splice(hiddenIndex, 1);
-                }
-            },
-
-            {
-                // Add row before
-                event: 'click',
-                element: actionCell.querySelector('.table-new-row'),
-                content: function() {
-                    componentsModule.modules.table.addRow(table, identifier, tableRow);
-                }
-            }
-
-        ]);
 
         if(!before)
             table.appendChild(tableRow);
         else
             table.insertBefore(tableRow, before);
 
-        ++componentsModule.modules.table.data[identifier].dimensions[1];
+        ++data.dimensions[1];
         return table;
 
     },
 
     addColumn: function(table, identifier, afterID) {
 
-        let columnID = Math.random() * (999999 - 100000) + 100000;
+        let current = componentsModule.modules.table;
+        let data = current.data[identifier];
+        let clones = current.clones;
 
-        if(afterID) {
-            let afterIndex = componentsModule.modules.table.data[identifier].table.order.columns.indexOf(parseFloat(afterID));
-            componentsModule.modules.table.data[identifier].table.order.columns.splice(afterIndex - 1, 0, columnID);
-        } else
-            componentsModule.modules.table.data[identifier].table.order.columns.push(columnID);
+        let columnID = Math.floor(Math.random() * (999999 - 100000)) + 100000;
+        let actionRow  = table.querySelector('.table-action-row');
+        let actionCell = clones.headerAction.cloneNode(true);
 
-        let actionRow = table.querySelector('.table-action-row');
-        let actionCell = componentsModule.modules.table.clones.headerActionCell.cloneNode(true);
-        actionCell.setAttribute('data-column', columnID.toString());
-
-        // Hide / Show column
-        actionCell.querySelector('.table-hide-column').addEventListener('click', function() {
-            this.parentNode.classList.toggle('hidden');
-            let status = componentsModule.modules.table.data[identifier].table.hidden.columns.indexOf(columnID);
-            if(status !== -1) componentsModule.modules.table.data[identifier].table.hidden.columns.splice(status, 1);
-            else componentsModule.modules.table.data[identifier].table.hidden.columns.push(columnID);
-            table.querySelectorAll('tr.table-row, tr.table-header-row').forEach(function(row) {
-                if(row.querySelector('[data-column="' + columnID + '"]'))
-                    row.querySelector('[data-column="' + columnID + '"]').classList.toggle('hidden');
-            });
-        });
-
-        // Delete column
-        actionCell.querySelector('.table-delete-column').addEventListener('click', function(event) {
-            event.target.parentNode.parentNode.parentNode.querySelectorAll('tr.table-row, tr.table-header-row').forEach(function(row) {
-                let cell = row.querySelector('td[data-column="' + columnID + '"], th[data-column="' + columnID + '"]');
-                row.removeChild(cell);
-            });
-            event.target.parentNode.parentNode.removeChild(event.target.parentNode);
-            --componentsModule.modules.table.data[identifier].dimensions[0];
-            delete componentsModule.modules.table.data[identifier].table.header[columnID];
-            let hiddenIndex = componentsModule.modules.table.data[identifier].table.hidden.columns.indexOf(columnID);
-            if(hiddenIndex !== -1) componentsModule.modules.table.data[identifier].table.hidden.columns.splice(hiddenIndex, 1);
-            let orderIndex = componentsModule.modules.table.data[identifier].table.order.columns.indexOf(columnID);
-            if(orderIndex !== -1) componentsModule.modules.table.data[identifier].table.order.columns.splice(orderIndex, 1);
-            for(let rowID in componentsModule.modules.table.data[identifier].table.rows)
-                delete componentsModule.modules.table.data[identifier].table.rows[rowID][columnID];
-        });
-
-        // New column after
-        actionCell.querySelector('.table-new-column').addEventListener('click', function() {
-             componentsModule.modules.table.addColumn(table, identifier, columnID);
-        });
-
-        let headerRow = table.querySelector('.table-header-row');
-        let headerCell = componentsModule.modules.table.clones.headerCell.cloneNode(true);
-        headerCell.setAttribute('data-column', columnID.toString());
+        let headerRow  = table.querySelector('.table-header-row');
+        let headerCell = clones.headerCell.cloneNode(true);
 
         let contentRows = table.querySelectorAll('.table-row');
-        let contentCell = componentsModule.modules.table.clones.contentCell.cloneNode(true);
+        let contentCell = clones.contentCell.cloneNode(true);
+
+        if(afterID !== undefined) {
+
+            let afterIndex = data.table.order.columns.indexOf(parseInt(afterID));
+            data.table.order.columns.splice(++afterIndex, 0, columnID);
+
+        } else
+            data.table.order.columns.push(columnID);
+
+        actionCell.setAttribute('data-column', columnID.toString());
+        headerCell.setAttribute('data-column', columnID.toString());
         contentCell.setAttribute('data-column', columnID.toString());
 
-        componentsModule.initializeEvents([{
-            event: 'change keyup',
-            element: headerCell,
-            content: function(event) {
-                componentsModule.modules.table.data[identifier].table.header[columnID] = event.target.innerText.trim();
-            }
-        }]);
+        if(afterID === undefined) {
 
-        function serializeContent(identifier, rowID, clone) {
-
-            componentsModule.initializeEvents([{
-                event: 'change keyup',
-                element: clone,
-                content: function(event) {
-                    componentsModule.modules.table.data[identifier].table
-                        .rows[rowID][columnID] = event.target.innerText.trim();
-                }
-            }]);
-
-        }
-
-        if(!afterID) {
             actionRow.appendChild(actionCell);
             headerRow.appendChild(headerCell);
+
             contentRows.forEach(function(row) {
-                let clone = contentCell.cloneNode(true);
-                let rowID = parseFloat(row.getAttribute('data-row'));
-                row.appendChild(clone);
-                serializeContent(identifier, rowID, clone);
+
+                row.appendChild(contentCell.cloneNode(true));
+
             });
+
         } else {
+
             let afterAction = actionRow.querySelector('[data-column="' + afterID + '"]');
             let afterHeader = headerRow.querySelector('[data-column="' + afterID + '"]');
-            if(!afterAction || !afterHeader || !afterAction.nextSibling || !afterHeader.nextSibling) {
-                componentsModule.modules.table.addColumn(table, identifier);
-                return false;
-            }
+            let done = false;
+
             actionRow.insertBefore(actionCell, afterAction.nextSibling);
             headerRow.insertBefore(headerCell, afterHeader.nextSibling);
-            let done = false;
+
             contentRows.forEach(function(row) {
-                if(done) return false;
-                let afterCell = row.querySelector('[data-column="' + afterID + '"]');
-                if(!afterCell || !afterCell.nextSibling) {
-                    componentsModule.modules.table.addColumn(table, identifier);
-                    done = true;
+
+                if(done)
                     return false;
-                }
+
+                let afterCell = row.querySelector('[data-column="' + afterID + '"]');
                 let clone = contentCell.cloneNode(true);
-                let rowID = parseFloat(row.getAttribute('data-row'));
+
                 row.insertBefore(clone, afterCell.nextSibling);
-                serializeContent(identifier, rowID, clone);
+
             });
         }
 
@@ -254,226 +156,383 @@ componentsModule.modules.table = {
 
     },
 
-    create: function(identifier, element, resumeData) {
+    allowHorizontalScrolling: function(contentElement) {
 
-        let current = componentsModule.modules.table;
-        let contentElement = element.querySelector('div.table-box');
-        let nameInput = element.querySelector('input[name=component_inline_table_name]');
+        componentsModule.initializeEvent({
 
-        componentsModule.initializeEvents([{
-            event: 'wheel',
+            event  : 'wheel',
             element: contentElement,
+
             content: function(event) {
+
                 this.scrollLeft -= -(event.deltaY * 20);
                 event.preventDefault();
+
             }
-        }]);
+
+        });
+
+    },
+
+    createTemplateClones: function(element) {
+
+        let current  = componentsModule.modules.table;
+        let template = current.template;
+        let clones   = current.clones;
+
+        // Save parent template
+        if(template === false)
+            current.template = template = element.querySelector('#template_inline_table_components').cloneNode(true).children[0];
+
+        // Other clones
+        if(clones.actionRow === false)
+            clones.actionRow = template.querySelector('.table-action-row').cloneNode(true);
+
+        if(clones.headerActionFirst === false)
+            clones.headerActionFirst = template.querySelector('.table-header-action-first').cloneNode(true);
+
+        if(clones.headerAction === false)
+            clones.headerAction = template.querySelector('.table-header-action').cloneNode(true);
+
+        if(clones.emptyCell === false)
+            clones.emptyCell = document.createElement('td');
+
+        if(clones.headerRow === false)
+            clones.headerRow = template.querySelector('.table-header-row').cloneNode(true);
+
+        if(clones.asideActionFirst === false)
+            clones.asideActionFirst = template.querySelector('.table-aside-action-first').cloneNode(true);
+
+        if(clones.headerCell === false)
+            clones.headerCell = template.querySelector('th[contenteditable=true]').cloneNode(true);
+
+        if(clones.asideAction === false)
+            clones.asideAction = template.querySelector('.table-aside-action').cloneNode(true);
+
+        if(clones.contentCell === false)
+            clones.contentCell = template.querySelector('td[contenteditable=true]').cloneNode(true);
+
+        if(clones.tableRow === false)
+            clones.tableRow = template.querySelector('.table-row').cloneNode(true);
+
+    },
+
+    create: function(identifier, element) {
+
+        let current        = componentsModule.modules.table;
+        let contentElement = element.querySelector('div.table-box');
+        let nameInput      = element.querySelector('input[name=component_inline_table_name]');
+        let clones         = current.clones;
+        let data           = current.data;
+
+        // Create template clones
+        current.createTemplateClones(element);
+
+        let table = document.createElement('table');
+        let actionRow = clones.actionRow.cloneNode(true);
+        let headerRow = clones.headerRow.cloneNode(true);
+        let firstColumnID = Math.floor(Math.random() * (999999 - 100000)) + 100000;
+        let firstRowID = Math.floor(Math.random() * (9999999 - 1000000)) + 1000000;
+        let addRowElement = contentElement.querySelector('.table-add-button');
+
+        current.allowHorizontalScrolling(contentElement);
 
         // Create table data
-        current.data[identifier] = {
+        data[identifier] = {
+
             title: '',
             table: {
+
                 hidden: {
                     columns: [],
-                    rows: []
+                    rows   : []
                 },
+
                 header: {},
-                rows: {},
-                name: '',
+                rows  : {},
+                name  : '',
+
                 order: {
-                    rows: [],
+                    rows   : [],
                     columns: []
                 }
+
             },
+
             dimensions: [0, 0],
-            disabled: 0
+            disabled  : 0
+
         };
 
-        // Table name serialize
+        // Create events
         componentsModule.initializeEvents([
+
             {
-                event: 'change keyup',
+                // Serialize table name
+                event  : 'input',
                 element: nameInput,
                 content: function(event) {
-                    current.data[identifier].table.name = event.target.value.trim();
-                }
-            }
-        ]);
-
-        // Resume table name value
-        if(resumeData && resumeData.table.name) {
-
-            nameInput.value = resumeData.table.name.trim();
-            triggerEvent(nameInput, 'change');
-
-        }
-
-        // Clone template
-        let clone = current.template;
-        if(!clone)
-            current.template = clone = element.querySelector('#template_inline_table_components').cloneNode(true).children[0];
-
-        // Create basic table and register events
-        let table = document.createElement('table');
-
-        /*
-         * ACTION ROW   **********
-         */
-        let actionRow = clone.querySelector('.table-action-row').cloneNode(true);
-
-        if(!current.clones.headerActionCellFirst)
-            current.clones.headerActionCellFirst = clone.querySelector('.table-header-action-first').cloneNode(true);
-
-        if(!current.clones.headerActionCell)
-            current.clones.headerActionCell = clone.querySelector('.table-header-action').cloneNode(true);
-
-        if(!current.clones.emptyCell)
-            current.clones.emptyCell = document.createElement('td');
-
-        current.clones.emptyCell.classList.add('table-aside-action');
-        actionRow.appendChild(current.clones.emptyCell.cloneNode(true));
-        actionRow.appendChild(current.clones.headerActionCellFirst.cloneNode(true));
-
-        // Create first column id
-        let firstColumnID;
-
-        if(resumeData && resumeData.table.order.columns)
-            firstColumnID = resumeData.table.order.columns[0];
-        else
-            firstColumnID = Math.random() * (999999 - 100000) + 100000;
-
-        current.data[identifier].table.order.columns.push(firstColumnID);
-        actionRow.children[1].setAttribute('data-column', firstColumnID.toString());
-
-        // Register hide event
-        actionRow.children[1].children[0].addEventListener('click', function() {
-            this.parentNode.classList.toggle('hidden');
-            let status = current.data[identifier].table.hidden.columns.indexOf(firstColumnID);
-            if(status !== -1) current.data[identifier].table.hidden.columns.splice(status, 1);
-            else current.data[identifier].table.hidden.columns.push(firstColumnID);
-            table.querySelectorAll('tr.table-row, tr.table-header-row').forEach(function(row) {
-                if(row.querySelector('[data-column="' + firstColumnID + '"]'))
-                    row.querySelector('[data-column="' + firstColumnID + '"]').classList.toggle('hidden');
-            });
-        });
-
-        // Register add new column event
-        actionRow.querySelector('.table-new-column').addEventListener('click', function() {
-            current.addColumn(table, identifier, firstColumnID);
-        });
-
-        // ----------   **********
-
-        /*
-         * HEADER ROW   **********
-         */
-
-        let headerRow = clone.querySelector('.table-header-row').cloneNode(true);
-
-        if(!current.clones.asideActionCellFirst)
-            current.clones.asideActionCellFirst = clone.querySelector('.table-aside-action-first').cloneNode(true);
-
-        if(!current.clones.headerCell)
-            current.clones.headerCell = clone.querySelector('th[contenteditable=true]').cloneNode(true);
-
-        // Create first row id
-        let firstRowID;
-
-        if(resumeData && resumeData.table.order.columns)
-            firstRowID = resumeData.table.order.rows[0];
-        else
-            firstRowID = Math.random() * (9999999 - 1000000) + 1000000;
-
-        current.data[identifier].table.rows[firstRowID] = {};
-        current.data[identifier].table.order.rows.push(firstRowID);
-
-        let headerCell = current.clones.headerCell.cloneNode(true);
-        let actionCellFirst = current.clones.asideActionCellFirst.cloneNode(true);
-        let actionCellFirst_hide = actionCellFirst.querySelector('.table-hide-row');
-        headerRow.appendChild(actionCellFirst);
-        headerRow.appendChild(headerCell);
-
-        if(!current.clones.asideActionCell)
-            current.clones.asideActionCell = clone.querySelector('.table-aside-action').cloneNode(true);
-
-        if(!current.clones.contentCell)
-            current.clones.contentCell = clone.querySelector('td[contenteditable=true]').cloneNode(true);
-
-        headerRow.setAttribute('data-row', firstRowID);
-
-        // Add column id
-        headerCell.setAttribute('data-column', firstColumnID);
-
-        // Serialize header name, hide row
-        componentsModule.initializeEvents([
-
-            {
-                // Serialize header name
-                event: 'change keyup',
-                element: headerCell,
-                content: function(event) {
-                    current.data[identifier].table.header[firstColumnID] = event.target.innerText.trim();
+                    data[identifier].table.name = event.target.value.trim();
                 }
             },
 
             {
-                // Hide / Show row
+                // Delegate click events
                 event: 'click',
-                element: actionCellFirst_hide,
-                content: function() {
-                    let index = current.data[identifier].table.hidden.rows.indexOf(firstRowID);
-                    let isHidden = (index !== -1);
-                    let cells = this.parentNode.parentNode.children;
-                    let length = cells.length;
-                    for(let i = 0; i < length; ++i) {
-                        if(isHidden) cells[i].classList.remove('hidden');
-                        else cells[i].classList.add('hidden');
+                element: table,
+                content: function(event) {
+
+                    let target = event.target;
+
+                    // Hide column
+                    if(target.matches('.table-hide-column')) {
+
+                        let columnID = target.parentNode.getAttribute('data-column');
+
+                        let hiddenIndex;
+                        let isHidden = ~(
+                            hiddenIndex = data[identifier].table.hidden.columns.indexOf(columnID)
+                        );
+
+                        let rowsList = table.querySelectorAll('tr');
+                        let rowSelector = '[data-column="' + columnID + '"]';
+
+                        if(isHidden) {
+
+                            rowsList.forEach(function(row) {
+
+                                let rowID = row.getAttribute('data-row');
+                                let rowColumn = row.querySelector(rowSelector);
+                                let isHiddenRow = ~data[identifier].table.hidden.rows.indexOf(rowID);
+
+                                if(isHiddenRow)
+                                    return true;
+
+                                if(rowColumn)
+                                    rowColumn.classList.remove('hidden');
+
+                            });
+
+                            data[identifier].table.hidden.columns.splice(hiddenIndex, 1);
+
+                        } else {
+
+                            rowsList.forEach(function(row) {
+
+                                let rowColumn = row.querySelector(rowSelector);
+
+                                if(rowColumn)
+                                    rowColumn.classList.add('hidden');
+
+                            });
+
+                            data[identifier].table.hidden.columns.push(columnID);
+
+                        }
+
                     }
-                    if(isHidden) current.data[identifier].table.hidden.rows.splice(index, 1);
-                    else current.data[identifier].table.hidden.rows.push(firstRowID);
+
+                    // Hide row
+                    else if(target.matches('.table-hide-row')) {
+
+                        let rowID = target.parentNode.parentNode.getAttribute('data-row');
+
+                        let hiddenIndex;
+                        let isHidden = ~(
+                            hiddenIndex = data[identifier].table.hidden.rows.indexOf(rowID)
+                        );
+
+                        let row = table.querySelector('[data-row="' + rowID + '"]');
+
+                        if(isHidden) {
+
+                            let columnsList = row.querySelectorAll('[data-column]');
+                            row.children[0].classList.remove('hidden');
+
+                            columnsList.forEach(function(column) {
+
+                                let columnID = column.getAttribute('data-column');
+                                let isHiddenColumn = ~data[identifier].table.hidden.columns.indexOf(columnID);
+
+                                if(isHiddenColumn)
+                                    return true;
+
+                                column.classList.remove('hidden');
+
+                            });
+
+                            data[identifier].table.hidden.rows.splice(hiddenIndex, 1);
+
+                        } else {
+
+                            Array.from(row.children).forEach(function(column) {
+
+                                column.classList.add('hidden');
+
+                            });
+
+                            data[identifier].table.hidden.rows.push(rowID);
+
+                        }
+
+                    }
+
+                    // Add column
+                    else if(target.matches('.table-new-column')) {
+
+                        let columnID = target.parentNode.getAttribute('data-column');
+                        current.addColumn(table, identifier, columnID);
+
+                    }
+
+                    // Delete column
+                    else if(target.matches('.table-delete-column')) {
+
+                        let columnID = target.parentNode.getAttribute('data-column');
+                        let rowsList = Array.from(table.querySelectorAll('tr'));
+                        let columnCells = table.querySelectorAll('[data-column="' + columnID + '"');
+                        let rowID = rowsList[1].getAttribute('data-row');
+                        let headerIdentifier = columnID + '.' + rowID;
+
+                        Array.from(columnCells).forEach(function(cell, index) {
+
+                            rowsList[index].removeChild(cell);
+
+                        });
+
+                        --data[identifier].dimensions[0];
+                        delete data[identifier].table.header[headerIdentifier];
+
+                        let hiddenIndex = data[identifier].table.hidden.columns.indexOf(columnID);
+                        if(~hiddenIndex)
+                            data[identifier].table.hidden.columns.splice(hiddenIndex, 1);
+
+                        let orderIndex = data[identifier].table.order.columns.indexOf(parseInt(columnID));
+                        if(~orderIndex)
+                            data[identifier].table.order.columns.splice(orderIndex, 1);
+
+                        Object.keys(data[identifier].table.rows).forEach(function(rowID) {
+
+                            delete data[identifier].table.rows[rowID][columnID];
+
+                        });
+
+                    }
+
+                    // Add row
+                    else if(target.matches('.table-new-row')) {
+
+                        let eventRow = target.parentNode.parentNode;
+                        current.addRow(table, identifier, eventRow);
+
+                    }
+
+                    // Delete row
+                    else if(target.matches('.table-delete-row')) {
+
+                        let parent = target.parentNode.parentNode;
+                        let rowID = parent.getAttribute('data-row');
+                        let columnID = parent.children[1].getAttribute('data-column');
+                        let headerIdentifier = columnID + '.' + rowID;
+                        let hiddenIndex = data[identifier].table.hidden.rows.indexOf(rowID.toString());
+                        let orderIndex = data[identifier].table.order.rows.indexOf(parseInt(rowID));
+
+                        if(~hiddenIndex)
+                            data[identifier].table.hidden.rows.splice(hiddenIndex, 1);
+
+                        if(~orderIndex)
+                            data[identifier].table.order.rows.splice(orderIndex, 1);
+
+                        delete data[identifier].table.rows[rowID];
+                        delete data[identifier].table.header[headerIdentifier];
+                        --data[identifier].dimensions[1];
+
+                        parent.parentNode.removeChild(parent);
+
+                    }
+
+                }
+            },
+
+            {
+                // Add new row at the end
+                event: 'click',
+                element: addRowElement,
+                content: function() {
+
+                    current.addRow(table, identifier);
+
+                }
+            },
+
+            {
+                // Delegate input events
+                event: 'input',
+                element: table,
+                content: function(event) {
+
+                    let target = event.target;
+
+                    // Serialize table headers
+                    if(target.matches('th[contenteditable]')) {
+
+                        let columnID = target.getAttribute('data-column');
+                        let rowID = target.parentNode.getAttribute('data-row');
+                        let headerIdentifier = columnID + '.' + rowID;
+
+                        data[identifier].table.header[headerIdentifier] = target.innerText.trim();
+
+                    }
+
+                    // Serialize table cells
+                    else if(target.matches('td[contenteditable]')) {
+
+                        let columnID = target.getAttribute('data-column');
+                        let rowID = target.parentNode.getAttribute('data-row');
+
+                        data[identifier].table.rows[rowID][columnID] = target.innerText.trim();
+
+                    }
+
                 }
             }
 
         ]);
 
-        if(resumeData && resumeData.table.header[firstColumnID]) {
+        // Render action row ___________________________________________________________________________________________
+        // ACTION ROW PROTOTYPE: | empty cell | header action cell first |
+        let emptyClone = clones.emptyCell.cloneNode(true);
+        emptyClone.classList.add('table-aside-action');
 
-            headerCell.innerText = resumeData.table.header[firstColumnID].trim();
-            triggerEvent(headerCell, 'change');
+        actionRow.appendChild(emptyClone);
+        actionRow.appendChild(clones.headerActionFirst.cloneNode(true));
 
-        }
+        // Save row identifier
+        data[identifier].table.order.columns.push(firstColumnID);
+        actionRow.children[1].setAttribute('data-column', firstColumnID.toString());
 
-        // ----------   **********
+        // Render header row ___________________________________________________________________________________________
+        // HEADER ROW PROTOTYPE: | aside action cell first | header cell |
+        headerRow.appendChild(clones.asideActionFirst.cloneNode(true));
+        headerRow.appendChild(clones.headerCell.cloneNode(true));
+
+        // Save row identifier and data
+        data[identifier].table.rows[firstRowID] = {};
+        data[identifier].table.order.rows.push(firstRowID);
+        headerRow.setAttribute('data-row', firstRowID.toString());
+        headerRow.children[1].setAttribute('data-column', firstColumnID.toString());
 
         // Show complete table
         table.appendChild(actionRow);
         table.appendChild(headerRow);
 
-        if(resumeData === undefined) {
+        // Create table rows
+        for(let i = 0; i < 4; ++i)
+            current.addRow(table, identifier);
 
-            // Create table rows
-            for(let i = 0; i < 4; ++i)
-                table = current.addRow(table, identifier);
-
-            // Create table columns
-            for(let i = 0; i < 3; ++i)
-                table = current.addColumn(table, identifier);
-
-        } else {
-
-            for(let i = 0; i < resumeData.dimensions[1]; ++i)
-                table = current.addRow(table, identifier);
-
-            // Create table columns
-            for(let i = 0; i < resumeData.dimensions[0]; ++i)
-                table = current.addColumn(table, identifier);
-
-        }
-
-        // Register new row event
-        contentElement.querySelector('.table-add-button').addEventListener('click', function() {
-            table = current.addRow(table, identifier);
-        });
+        // Create table columns
+        for(let i = 0; i < 3; ++i)
+            current.addColumn(table, identifier);
 
         contentElement.appendChild(table);
 

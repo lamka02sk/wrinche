@@ -4,14 +4,14 @@
 
   "HEADER_SEARCH":"Vyhľadať alebo vykonať príkaz",
   "HEADER_QUICK":"Skratky",
-  "HEADER_WRITE":"Písať",
+  "HEADER_WRITE":"Vytvoriť",
   "HEADER_ACCOUNT":"Môj účet",
 
   "HEADER_PROFILE":"Môj profil",
   "HEADER_SETTINGS":"Nastavenia účtu",
   "HEADER_LOGOUT":"Odhlásenie",
 
-  "WRITE_NEW":"Napísať nový článok",
+  "WRITE_NEW":"Vytvoriť nový...",
   "WRITE_ARTICLE":"Článok",
   "WRITE_NOTE":"Poznámka",
   "WRITE_QUICK":"Rýchla správa",

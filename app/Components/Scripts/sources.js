@@ -128,6 +128,9 @@ componentsModule.modules.sources = {
 
         const sources = JSON.parse(data).sources;
 
+        if(sources === null)
+            return true;
+
         sources.forEach(function(source) {
 
             current.addSource(source);

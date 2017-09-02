@@ -20,7 +20,7 @@ componentsModule.modules.url = {
 
             }
         );
-
+        
         return response;
 
     },

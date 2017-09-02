@@ -22,7 +22,13 @@ function validateUrl(url) {
 }
 
 function validateTags(tags) {
+
+    if(typeof tags === 'object')
+        if(tags.length === 0)
+            return true;
+
     return (/^[a-zA-Z]([a-zA-Z0-9_\s,]+)?[a-zA-Z0-9]$/.test(tags) && tags !== '');
+
 }
 
 let mediaManagerClose = document.querySelector('div.media-manager span.close-manager');
