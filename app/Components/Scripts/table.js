@@ -24,6 +24,13 @@ componentsModule.modules.table = {
 
     },
 
+    resumeInline: function(identifier, element, resumeData) {
+
+        let current = componentsModule.modules.table;
+        current.create(identifier, element, resumeData);
+
+    },
+
     validate: function() {
         return true;
     },
@@ -32,7 +39,7 @@ componentsModule.modules.table = {
         return componentsModule.modules.table.data;
     },
 
-    addRow: function(table, identifier, before) {
+    addRow: function(table, identifier, before, resumeData) {
 
         let current    = componentsModule.modules.table;
         let clones     = current.clones;
@@ -67,8 +74,9 @@ componentsModule.modules.table = {
 
         }
 
-        if(data.table.hidden.columns.indexOf(columnID) !== -1)
-            headerCell.classList.add('hidden');
+        if(data.table.hidden)
+            if(data.table.hidden.columns.indexOf(columnID) !== -1)
+                headerCell.classList.add('hidden');
 
         for(let i = 0; i < data.dimensions[0]; ++i) {
 
@@ -85,12 +93,24 @@ componentsModule.modules.table = {
         else
             table.insertBefore(tableRow, before);
 
+        if(resumeData !== undefined) {
+
+            if(resumeData.hidden)
+                triggerEvent(actionCell.children[0], 'click');
+
+            if(resumeData.header) {
+                headerCell.innerText = resumeData.header;
+                triggerEvent(headerCell, 'input');
+            }
+
+        }
+
         ++data.dimensions[1];
         return table;
 
     },
 
-    addColumn: function(table, identifier, afterID) {
+    addColumn: function(table, identifier, afterID, resumeData) {
 
         let current = componentsModule.modules.table;
         let data = current.data[identifier];
@@ -123,9 +143,34 @@ componentsModule.modules.table = {
             actionRow.appendChild(actionCell);
             headerRow.appendChild(headerCell);
 
-            contentRows.forEach(function(row) {
+            if(resumeData !== undefined) {
 
-                row.appendChild(contentCell.cloneNode(true));
+                if(resumeData.header) {
+                    headerCell.innerText = resumeData.header;
+                    triggerEvent(headerCell, 'input');
+                }
+
+            }
+
+            contentRows.forEach(function(row, index) {
+
+                let currentCell = contentCell.cloneNode(true);
+                row.appendChild(currentCell);
+                
+                if(resumeData !== undefined) {
+
+                    if(resumeData.data[index] !== undefined) {
+                        currentCell.innerText = resumeData.data[index];
+                        triggerEvent(currentCell, 'input');
+                    }
+
+                    // If hidden row
+                    let rowID = row.getAttribute('data-row');
+                    if(data.table.hidden)
+                        if(data.table.hidden.rows.indexOf(rowID) !== -1)
+                            currentCell.classList.add('hidden');
+
+                }
 
             });
 
@@ -149,6 +194,14 @@ componentsModule.modules.table = {
                 row.insertBefore(clone, afterCell.nextSibling);
 
             });
+        }
+
+        if(resumeData !== undefined) {
+
+            // If column is hidden
+            if(resumeData.hidden !== undefined)
+                triggerEvent(actionCell.children[0], 'click');
+
         }
 
         ++componentsModule.modules.table.data[identifier].dimensions[0];
@@ -217,7 +270,7 @@ componentsModule.modules.table = {
 
     },
 
-    create: function(identifier, element) {
+    create: function(identifier, element, resumeData) {
 
         let current        = componentsModule.modules.table;
         let contentElement = element.querySelector('div.table-box');
@@ -526,13 +579,104 @@ componentsModule.modules.table = {
         table.appendChild(actionRow);
         table.appendChild(headerRow);
 
-        // Create table rows
-        for(let i = 0; i < 4; ++i)
-            current.addRow(table, identifier);
+        // Resume data
+        if(resumeData !== undefined) {
 
-        // Create table columns
-        for(let i = 0; i < 3; ++i)
-            current.addColumn(table, identifier);
+            // Initialize table name
+            nameInput.value = resumeData.table.name.trim();
+            triggerEvent(nameInput, 'input');
+
+            // Change table global header
+            const firstRow         = resumeData.table.order.rows[0];
+            const firstColumn      = resumeData.table.order.columns[0];
+            const headerIdentifier = firstColumn + '.' + firstRow;
+
+            if(resumeData.table.header) {
+                headerRow.children[1].innerText = resumeData.table.header[headerIdentifier];
+                triggerEvent(headerRow.children[1], 'input');
+            }
+
+            // Show / Hide first row and column
+            if(resumeData.table.hidden) {
+
+                if(resumeData.table.hidden.columns) {
+
+                    if(resumeData.table.hidden.columns.indexOf(firstColumn) !== -1)
+                        triggerEvent(actionRow.children[1].children[0], 'click');
+
+                }
+
+                if(resumeData.table.hidden.rows) {
+
+                    if(resumeData.table.hidden.rows.indexOf(firstRow) !== -1)
+                        triggerEvent(headerRow.children[0].children[0], 'click');
+
+                }
+
+            }
+
+
+            // Render rest of the table
+            // Create table rows
+            for(let i = 0; i < resumeData.dimensions[1]; ++i) {
+
+                const rowID = resumeData.table.order.rows[i + 1];
+                let headerID = firstColumn + '.' + rowID;
+                let rowData = {};
+
+                if(resumeData.table.hidden)
+                    if(resumeData.table.hidden.rows)
+                        rowData.hidden = resumeData.table.hidden.rows.indexOf(rowID) !== -1;
+
+                if(resumeData.table.header)
+                    rowData.header = resumeData.table.header[headerID];
+
+                current.addRow(table, identifier, undefined, rowData);
+
+            }
+
+            // Create table columns
+            for(let i = 0; i < resumeData.dimensions[0]; ++i) {
+
+                const columnID = resumeData.table.order.columns[i + 1];
+                let headerID = columnID + '.' + firstRow;
+                let columnData = {};
+
+                if(resumeData.table.hidden)
+                    if(resumeData.table.hidden.columns)
+                        columnData.hidden = resumeData.table.hidden.columns.indexOf(columnID) !== -1;
+
+                if(resumeData.table.header)
+                    columnData.header = resumeData.table.header[headerID];
+
+                columnData.data = [];
+
+                if(resumeData.table.rows)
+                    resumeData.table.order.rows.forEach(function(row) {
+
+                        if(resumeData.table.rows[row] === undefined)
+                            return false;
+
+                        if(resumeData.table.rows[row][columnID])
+                            columnData.data.push(resumeData.table.rows[row][columnID]);
+
+                    });
+
+                current.addColumn(table, identifier, undefined, columnData);
+
+            }
+
+        } else {
+
+            // Create table rows
+            for(let i = 0; i < 4; ++i)
+                current.addRow(table, identifier);
+
+            // Create table columns
+            for(let i = 0; i < 3; ++i)
+                current.addColumn(table, identifier);
+
+        }
 
         contentElement.appendChild(table);
 
