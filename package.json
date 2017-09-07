@@ -1,0 +1,47 @@
+{
+  "name": "wrinche",
+  "version": "0.0.4",
+  "description": "Modern, powerful and user friendly CMS",
+  "main": "index.php",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lamka02sk/wrinche.git"
+  },
+  "keywords": [
+    "wrinche",
+    "content-management-system",
+    "cms",
+    "free",
+    "modern",
+    "simple",
+    "user-friendly",
+    "php7",
+    "mysql",
+    "component-based",
+    "powerful"
+  ],
+  "author": "Samuel Illo (lamka02sk)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lamka02sk/wrinche/issues"
+  },
+  "homepage": "https://github.com/lamka02sk/wrinche#readme",
+  "dependencies": {
+    "ckeditor": "^4.7.2",
+    "draggabilly": "^2.1.1",
+    "flatpickr": "^3.0.7",
+    "jquery": "^3.2.1",
+    "loaders.css": "^0.1.2",
+    "masonry-layout": "^4.2.0",
+    "noty": "^3.1.2",
+    "packery": "^2.1.1",
+    "sortablejs": "^1.6.1",
+    "webpack": "^3.5.5"
+  }
+}

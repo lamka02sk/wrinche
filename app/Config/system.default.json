@@ -7,7 +7,7 @@
   "requirements": {
     "php-version": 7,
     "mysql-version": 5.7,
-    "mariadb-version":10.2
+    "mariadb-version": 10.2
   },
   "default": {
     "theme": "light"

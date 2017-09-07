@@ -10,8 +10,6 @@ document.addEventListener('keyup', function(event) {
         reloadStylesheets();
 });*/
 
-// ---------------------------------------------------------------------------------------------------------------------
-
 function pad(number, positions) {
     number = '' + number;
     return number.length < positions ? pad("0" + number, positions) : number;
@@ -31,6 +29,7 @@ function validateTags(tags) {
 
 }
 
+// TODO: Implement in MediaManager
 let mediaManagerClose = document.querySelector('div.media-manager span.close-manager');
 function closeMediaManager() {
     mediaManagerClose.click();
