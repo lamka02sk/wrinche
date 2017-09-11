@@ -318,6 +318,7 @@ html.on('mouseleave', '[data-link]', function() {
 });
 
 // Show response message or action message
+// TODO: probably not used anymore idk...
 function showMessage(content, type) {
 
     let code = content;
@@ -454,7 +455,6 @@ $('div.header-write').click(function() {
 $('div.write-menu div.tails-tail').click(function() {
     $('div.write-menu span.header-close').click();
 });
-
 $('div.write-menu span.header-close').click(function() {
 
     $('div.fullscreen-wrapper.write-menu').removeClass('open');

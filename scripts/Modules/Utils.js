@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import Global from '../Modules/Global';
 
 export default {
 
@@ -177,13 +178,25 @@ export default {
 
     showLoading() {
 
-
+        this._loadingBox.classList.add('loading');
+        this._loadingBox.classList.add('open');
+        this._loadingBox
+            .querySelector('span.message-content')
+            .innerHTML = Global.translate['locale']['admin_header']['HEADER_LOADING'];
 
     },
 
     hideLoading() {
 
+        setTimeout(function() {
 
+            this._loadingBox.classList.remove('loading');
+            this._loadingBox.classList.remove('open');
+            this._loadingBox
+                .querySelector('span.message-content')
+                .innerHTML = '';
+
+        }, 200);
 
     }
 

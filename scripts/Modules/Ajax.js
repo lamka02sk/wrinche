@@ -13,11 +13,11 @@ export default {
             url    : url,
             method : 'POST',
             data   : data,
-            success: function(response) {
+            success: response => {
                 callback(response, 'success');
                 Utils.hideLoading();
             },
-            error  : function(response) {
+            error  : response => {
                 callback(response, 'error');
                 Utils.hideLoading();
             }
@@ -33,15 +33,36 @@ export default {
         $.ajax({
             url: url + '&csrf_token=' + csrf_token,
             method: 'GET',
-            success: function(response) {
+            success: response => {
                 success(response);
                 Utils.hideLoading();
             },
-            error: function(response) {
+            error: response => {
                 error(response);
                 Utils.hideLoading();
             }
         });
+
+    },
+
+    getJSON(url) {
+
+        Utils.showLoading();
+
+        return JSON.parse(
+            $.ajax({
+                type: 'GET',
+                url: url,
+                dataType: 'json',
+                global: false,
+                async: false,
+                cache: true,
+                success: data => {
+                    Utils.hideLoading();
+                    return data;
+                },
+                error: () => Utils.hideLoading()
+            }).responseText);
 
     }
 
