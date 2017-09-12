@@ -1,7 +1,5 @@
 <?php
 
-/* wrinche. Modern, powerful and user friendly CMS. */
-
 namespace App\Views;
 
 use App\Helpers\Config;
@@ -69,13 +67,13 @@ class Main {
 
     }
 
-    public function setScripts($styles) {
+    public function setScripts($styles, $path = false) {
 
         if(is_array($styles)) {
             foreach($styles as $style)
-                $this->setScript($style);
+                $this->setScript($style, $path);
         } else
-            $this->setScript($styles);
+            $this->setScript($styles, $path);
 
     }
 
@@ -94,9 +92,11 @@ class Main {
 
     }
 
-    private function setScript($script) {
+    private function setScript($script, $path) {
 
-        $path = Config::$file['system']['paths']['scripts'];
+        if($path === false)
+            $path = Config::$file['system']['paths']['scripts'];
+        
         $this->ASSETS['scripts'][] = '<script type="application/javascript" src="' . $path . $script . '.min.js"></script>';
 
     }

@@ -45,9 +45,9 @@ export default {
 
     },
 
-    getJSON(url) {
+    getJSON(url, translate = true) {
 
-        Utils.showLoading();
+        Utils.showLoading(translate);
 
         return JSON.parse(
             $.ajax({

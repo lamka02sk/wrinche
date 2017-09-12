@@ -1,9 +1,11 @@
 import Ajax from '../Modules/Ajax';
 import Global from '../Modules/Global';
 
+const tokenElement = document.querySelector('meta[name=csrf_token]')
+
 export default {
 
-    _tokenElement: document.querySelector('meta[name=csrf_token]'),
+    _tokenElement: tokenElement,
     _csrfToken: undefined,
 
     constructor() {

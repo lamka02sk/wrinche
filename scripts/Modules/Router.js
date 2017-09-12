@@ -1,4 +1,5 @@
 import Global from '../Modules/Global';
+import History from '../Modules/History';
 
 const routes = require('../Config/routes.yaml');
 
@@ -8,17 +9,31 @@ export default class {
 
         this.route = Global.route;
         this.parseLocation();
+        this.views = {};
 
-        this.prefix = Global.routePrefix;
-        this.action = Global.routeAction;
-
+        History.initialize(this);
         this.findRoute();
 
     }
 
-    changeLocation(link) {
+    saveActions(action) {
 
+        let actions = action.toString().split('/').filter((item) => {
+            if(item.trim() !== '')
+                return item.trim();
+        });
 
+        if(actions.length < 1)
+            actions.push('dashboard');
+
+        Global.routeAction = actions;
+
+    }
+
+    changeLocation(link, push = true) {
+
+        this.saveActions(link);
+        this.findRoute(push);
 
     }
 
@@ -41,32 +56,28 @@ export default class {
         Global.routePrefix = locationParts[0];
         const action = locationParts[1];
 
-        let actions = action.split('/').filter((item) => {
-            if(item.trim() !== '')
-                return item.trim();
-        });
-
-        if(actions.length < 1)
-            actions.push('dashboard');
-
-        Global.routeAction = actions;
+        this.saveActions(action);
 
     }
 
-    findRoute() {
+    findRoute(push = true) {
 
-        if(routes.indexOf(this.action[0]) === -1) {
+        if(!routes[Global.routeAction[0]]) {
             this.changeLocation(404);
             return false;
         }
 
+        if(push)
+            History.push(Global.routeAction);
 
+        this.executeRoute();
 
     }
 
     executeRoute() {
 
-
+        let View = require('../Views/' + routes[Global.routeAction[0]] + '.js').default;
+        View.initialize(this);
 
     }
 

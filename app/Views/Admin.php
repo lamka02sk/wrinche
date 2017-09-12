@@ -1,10 +1,7 @@
 <?php
 
-/* wrinche. Modern, powerful and user friendly CMS. */
-
 namespace App\Views;
 
-use App\Controllers\Admin\DashboardController;
 use App\Models\UserSettingsModel;
 use App\Requests\Request;
 use App\Views\Main as MainView;
@@ -16,26 +13,15 @@ class Admin extends MainView {
 
         if(!Request::$ajax) {
 
-            $this->theme = array_keys(Config::$file['system']['support']['themes'])[UserSettingsModel::$settings['theme']];
-            $LANG = array_keys(Config::$file['system']['support']['languages'])[UserSettingsModel::$settings['language']];
-
-            $this->setVendorAssets([
-                'jquery',
-                'jsonLoader',
-                'translate',
-                'theme',
-                'selector2',
-                'closer',
-                'loader2',
-                'packery',
-                'ckeditor',
-                'mediaManager',
-                'flatpickr',
-                'sortable',
-                'sha256'
-            ]);
-            $this->setAssets('admin');
-            $this->setScripts(strtolower($layout));
+            $support = Config::$file['system']['support'];
+            $this->theme = array_keys($support['themes'])[UserSettingsModel::$settings['theme']];
+            $LANG = array_keys($support['languages'])[UserSettingsModel::$settings['language']];
+            
+            $this->setStyles('admin');
+            $this->setScripts([
+                'vendor', 'admin'
+            ], 'dist/');
+            
             $this->setFavicon();
 
         }

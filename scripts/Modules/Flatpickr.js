@@ -1,6 +1,6 @@
 import flatpickr from 'flatpickr';
 import Global from '../Modules/Global';
-W
+
 export default {
 
     locale: Global.translate.language,

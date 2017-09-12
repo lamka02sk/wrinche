@@ -3,61 +3,30 @@ import Utils from '../scripts/Modules/Utils';
 import Global from '../scripts/Modules/Global';
 import Csrf from '../scripts/Modules/Csrf';
 import Translate from '../scripts/Modules/Translate';
-
-// Log out
-Utils.registerEvent([
-    'click',
-    document.querySelector('.logout'),
-    () => window.location.href = Global.URI + 'logout'
-]);
-
-// CSRF updater
-Csrf.constructor();
-
-// Anchor link box
-Utils.registerEvents([
-
-    [
-        'mouseover',
-        Global.html,
-        event => {
-
-            if(!event.matches('[data-link]'))
-                return false;
-
-            let link = Global.URI + event.target.dataset.link;
-            Global.anchorBox.addClass('show').text(link);
-
-        }
-    ],
-
-    [
-        'mouseleave',
-        Global.html,
-        event => {
-
-            if(event.matches('[data-link]'))
-                Global.anchorBox.removeClass('show').text('');
-
-        }
-    ]
-
-]);
+import Router from '../scripts/Modules/Router';
 
 // Translate page
 {
 
     let translations    = ['system', 'response', 'admin_header', 'admin_menu'];
-    let addTranslations = document.querySelector('.content-wrapper').getAttribute('data-locales');
-
-    if(addTranslations) {
-        addTranslations = addTranslations.split(' ');
-        translations = [...translations, ...addTranslations];
-    }
-
     Global.translate = new Translate(translations, false);
 
 }
+
+// CSRF updater
+Csrf.constructor();
+
+// Anchor link box
+Global.$html.on('mouseover', '[data-link]', function() {
+    const link = Global.routePrefix + Global.route + '/' + this.getAttribute('data-link');
+    Global.anchorBox.addClass('show').text(link);
+});
+Global.$html.on('mouseleave', '[data-link]', function() {
+    Global.anchorBox.removeClass('show').text('');
+});
+
+// Execute Router
+Global.router = new Router();
 
 // Delegate body click events
 Utils.registerEvent([
@@ -90,7 +59,31 @@ Utils.registerEvent([
 
         }
 
+        // Logout
+        else if(target.matches('.logout'))
+            window.location.href = Global.URI + 'logout'
 
+        // Link click event
+        else if(target.matches('[data-link]') || $(target).parents('[data-link]').length > 0) {
+
+            let link = target.dataset.link;
+
+            if(!link)
+                link = $(target).parents('[data-link]').data('link');
+
+            let linkAction = link.split('/')[0];
+            let menuLink = Global.nav.querySelector('[data-link="' + linkAction + '"]');
+            let activeLink = Global.nav.querySelector('.active[data-link]');
+
+            if(activeLink)
+                activeLink.classList.remove('active');
+
+            if(menuLink)
+                menuLink.classList.add('active');
+
+            Global.router.changeLocation(link);
+
+        }
 
     }
 ]);
@@ -163,4 +156,5 @@ Utils.registerEvent([
 
 }
 
-// Execute Router
+// Hide splash screen
+Utils.hideSplash();

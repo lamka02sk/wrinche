@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 export default class {
 
     constructor() {
@@ -21,11 +23,11 @@ export default class {
             return false;
         }
 
-        stack.forEach(element => {
+        this.stack.forEach(element => {
 
             if(!($(element).find(target).length > 0 || $(element).is($(target)))) {
                 $(element).removeClass('open');
-                this.stack.splice(item, 1);
+                this.stack.splice(element, 1);
             }
 
         });

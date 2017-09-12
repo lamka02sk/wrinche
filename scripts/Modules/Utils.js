@@ -1,6 +1,8 @@
 import $ from 'jquery';
 import Global from '../Modules/Global';
 
+const confirmationElement = $('div.confirmation-menu');
+
 export default {
 
     pad(number, positions) {
@@ -42,20 +44,25 @@ export default {
 
     registerEvent(event) {
 
-        // [element, events, function] || { element, events, content() }
+        // [events, elements, function] || { event, elements, content() }
 
-        event            = Object.values(event);
-        const eventsList = event[1].split(' ');
+        event = Object.values(event);
+        const eventsList = event[0].split(' ');
 
         eventsList.forEach(eventName => {
-            event[0].addEventListener(eventName, event[2]);
+            if(!event[1].length)
+                event[1].addEventListener(eventName, event[2]);
+            else
+                event[1].forEach(element => {
+                    element.addEventListener(eventName, event[2]);
+                });
         });
 
     },
 
     registerEvents(events) {
 
-        events.forEach(registerEvent);
+        events.forEach(this.registerEvent);
 
     },
 
@@ -117,10 +124,10 @@ export default {
 
     },
 
-    _confirmationElement: $('div.confirmation-menu'),
-    _confirmationMessage: this._confirmationElement.find('.confirmation-action-message'),
-    _confirmationProceed: this._confirmationElement.find('.confirmation-action-proceed'),
-    _confirmationDismiss: this._confirmationElement.find('.confirmation-action-dismiss'),
+    _confirmationElement: confirmationElement,
+    _confirmationMessage: confirmationElement.find('.confirmation-action-message'),
+    _confirmationProceed: confirmationElement.find('.confirmation-action-proceed'),
+    _confirmationDismiss: confirmationElement.find('.confirmation-action-dismiss'),
 
     confirmAction(action, callback) {
 
@@ -176,19 +183,21 @@ export default {
     _loadingBox: document.querySelector('.response-message'),
     _responseBox: document.querySelector('.response-result-message'),
 
-    showLoading() {
+    showLoading(translate = true) {
 
         this._loadingBox.classList.add('loading');
         this._loadingBox.classList.add('open');
-        this._loadingBox
-            .querySelector('span.message-content')
-            .innerHTML = Global.translate['locale']['admin_header']['HEADER_LOADING'];
+
+        if(translate)
+            this._loadingBox
+                .querySelector('span.message-content')
+                .innerHTML = Global.translate['locale']['admin_header']['HEADER_LOADING'];
 
     },
 
     hideLoading() {
 
-        setTimeout(function() {
+        setTimeout(() => {
 
             this._loadingBox.classList.remove('loading');
             this._loadingBox.classList.remove('open');
@@ -198,6 +207,10 @@ export default {
 
         }, 200);
 
+    },
+
+    hideSplash() {
+        document.querySelector('.splash').classList.add('done');
     }
 
 };

@@ -8,22 +8,21 @@ export default class {
 
         this.domains = domains;
         this.locale  = {};
+        let language;
 
         if(local !== false)
             this.local = local;
 
+        if(localStorage.getItem('locale_' + this.local) && local !== false)
+            language = localStorage.getItem('locale_' + this.local);
+        else
+            language = Global.html.getAttribute('lang');
+
+        this.language = language;
+
         domains.forEach(domain => {
 
-            let language;
-
-            if(localStorage.getItem('locale_' + this.local) && local !== false)
-                language = localStorage.getItem('locale_' + this.local);
-            else
-                language = Global.html.getAttribute('lang');
-
-            this.language = language;
-
-            this.locale[domain] = Ajax.getJSON("app/Data/Locale/" + language + "/" + domain + ".json");
+            this.locale[domain] = Ajax.getJSON("app/Data/Locale/" + language + "/" + domain + ".json", false);
             this.changeLanguage(language, this.locale[domain]);
 
         });
@@ -95,7 +94,7 @@ export default class {
             return true;
         }
 
-        this.locale[locale] = Ajax.getJSON("app/Data/Locale/" + this.language + "/" + locale + ".json");
+        this.locale[locale] = Ajax.getJSON("app/Data/Locale/" + this.language + "/" + locale + ".json", false);
         this.changeLanguage(this.language, this.locale[locale]);
 
     }

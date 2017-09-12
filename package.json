@@ -7,7 +7,9 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -p",
+    "watch": "webpack -w"
   },
   "repository": {
     "type": "git",
@@ -33,15 +35,20 @@
   },
   "homepage": "https://github.com/lamka02sk/wrinche#readme",
   "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
     "ckeditor": "^4.7.2",
     "draggabilly": "^2.1.1",
     "flatpickr": "^3.0.7",
     "jquery": "^3.2.1",
+    "json-loader": "^0.5.7",
     "loaders.css": "^0.1.2",
     "masonry-layout": "^4.2.0",
     "noty": "^3.1.2",
     "packery": "^2.1.1",
     "sortablejs": "^1.6.1",
-    "webpack": "^3.5.5"
+    "webpack": "^3.5.5",
+    "yaml-loader": "^0.5.0"
   }
 }
