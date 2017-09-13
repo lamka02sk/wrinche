@@ -18,8 +18,13 @@ Csrf.constructor();
 
 // Anchor link box
 Global.$html.on('mouseover', '[data-link]', function() {
+
+    if('ontouchstart' in document.documentElement)
+        return false;
+
     const link = Global.routePrefix + Global.route + '/' + this.getAttribute('data-link');
     Global.anchorBox.addClass('show').text(link);
+
 });
 Global.$html.on('mouseleave', '[data-link]', function() {
     Global.anchorBox.removeClass('show').text('');

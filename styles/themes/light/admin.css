@@ -11,11 +11,7 @@ header div.header-logo img.logo-light {
 header div.header-logo img.logo-dark {
   display: none !important; }
 
-header div.header-logo:hover {
-  background: rgba(0, 0, 0, 0.02) !important; }
-
 header div.header-search input[type=search] {
-  background: #f7f7f7 !important;
   color: #323232 !important; }
 
 header div.header-quick p.quick-heading {
@@ -35,22 +31,12 @@ header div.header-team {
     header div.header-team:hover {
       background-color: #ffffff !important; } }
 
-header div.header-write {
-  background: #02c75c !important; }
-  header div.header-write:hover {
-    background: #02ae50 !important; }
-
-header div.header-write span.write-text {
-  color: #ffffff !important; }
-
 header div.header-account {
   color: #323232 !important; }
 
 header div.header-account div.account-dropdown {
   background: #ffffff !important;
-  color: #323232 !important;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06) !important;
-  border-color: silver !important; }
+  color: #323232 !important; }
 
 div.account-dropdown span.dropdown-item:hover {
   background-color: #f7f7f7 !important; }

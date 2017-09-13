@@ -160,7 +160,6 @@ require_once ROOT . '/app/Layouts/Admin/Splash.php';
         ?>
 
         <span class="write-icon_circle" style="<?= $pictureUrl ?>"></span>
-        <span class="write-icon"></span>
 
         <div class="account-dropdown">
 

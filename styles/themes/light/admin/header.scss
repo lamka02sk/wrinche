@@ -15,14 +15,7 @@ header div.header-logo img.logo-dark {
   display: none !important;
 }
 
-header div.header-logo {
-  &:hover {
-    background: rgba(0,0,0,.02) !important;
-  }
-}
-
 header div.header-search input[type=search] {
-  background: $text-lightGrey !important;
   color: $text-lightBlack !important;
 }
 
@@ -52,17 +45,6 @@ header div.header-team {
   }
 }
 
-header div.header-write {
-  background: $green !important;
-  &:hover {
-    background: $darkGreen !important;
-  }
-}
-
-header div.header-write span.write-text {
-  color: $white !important;
-}
-
 header div.header-account {
   color: $text-lightBlack !important;
 }
@@ -70,8 +52,6 @@ header div.header-account {
 header div.header-account div.account-dropdown {
   background: $white !important;
   color: $text-lightBlack !important;
-  box-shadow: 0 4px 4px rgba(0,0,0,.06) !important;
-  border-color: silver !important;
 }
 
 div.account-dropdown span.dropdown-item {

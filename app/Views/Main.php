@@ -92,7 +92,7 @@ class Main {
 
     }
 
-    private function setScript($script, $path) {
+    private function setScript($script, $path = false) {
 
         if($path === false)
             $path = Config::$file['system']['paths']['scripts'];
