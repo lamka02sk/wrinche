@@ -50,7 +50,7 @@ export default class {
         $('[data-locale]').each(function() {
 
             let phrase = $(this).data('locale');
-            $('[data-locale="' + phrase + '"]').html(locale[phrase]);
+            $(this).html(locale[phrase]);
 
         });
 

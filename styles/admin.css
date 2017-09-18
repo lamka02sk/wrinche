@@ -320,8 +320,40 @@ div.splash div.splash-wrapper {
 div.splash div.splash-wrapper img {
   height: 36px;
   position: relative;
+  -webkit-margin-after: 36px;
   top: -4%; }
 
+.splash-loader {
+  font-size: 10px;
+  margin: 0 auto;
+  text-indent: -9999em;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #2e4052;
+  background: linear-gradient(to right, #2e4052 10%, rgba(46, 64, 82, 0) 42%);
+  position: relative;
+  animation: splash 1.4s infinite linear;
+  transform: translateZ(0); }
+
+.splash-loader:after {
+  background: white;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: '';
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; }
+
+@keyframes splash {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
 header {
   display: block;
   position: absolute;
@@ -691,81 +723,40 @@ div.account-dropdown span.dropdown-item {
   div.account-dropdown span.dropdown-item.logout {
     background-size: 17px; }
 
-div.response-message {
-  display: inline-block;
+div.loading-box {
   position: fixed;
-  bottom: 32px;
-  left: 352px;
-  width: 0;
-  height: 0;
-  transition: .25s ease-in-out;
-  font-weight: 500;
-  z-index: 998;
-  color: white;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 0;
-  overflow: hidden;
-  text-align: center;
-  transform: scale(0);
-  transform-origin: bottom left; }
-  div.response-message.open {
-    width: 260px;
-    height: 110px;
-    padding: 16px 18px;
-    transform: scale(1); }
-    @media (max-width: 540px) {
-      div.response-message.open {
-        width: 100%;
-        bottom: 0; } }
-  div.response-message.success {
-    background: #02c75c; }
-  div.response-message.error {
-    background: #f0002b; }
-  div.response-message.loading.open {
-    background: #02c75c;
-    width: 300px;
-    text-align: left;
-    height: 66px;
-    line-height: 34px; }
-    @media (max-width: 540px) {
-      div.response-message.loading.open {
-        width: 100%;
-        bottom: 0; } }
-  @media (max-width: 920px) {
-    div.response-message {
-      left: 96px; } }
-  @media (max-width: 540px) {
-    div.response-message {
-      left: 0;
-      width: 100%;
-      height: 80px;
-      bottom: -80px;
-      transform: scale(1); } }
-
-div.response-message span.loading-icon {
-  display: none; }
-
-div.response-message.loading span.loading-icon {
-  display: block;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%) !important;
-  height: 24px;
-  width: 24px;
-  background: url("../assets/icons/loading.svg") center no-repeat;
-  background-size: 24px; }
-
-div.response-message span.message-content {
+  background: #404040;
   display: inline-block;
-  position: relative;
-  width: 224px;
-  height: 78px;
-  overflow: hidden; }
-
-div.response-message.loading span.message-content {
-  margin-left: 36px; }
+  bottom: 36px;
+  right: 102px;
+  border-radius: 24px;
+  height: 48px;
+  width: auto;
+  max-width: 0;
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: .15s ease-in-out; }
+  div.loading-box.open {
+    visibility: visible;
+    padding: 0 18px;
+    opacity: 1;
+    max-width: 320px; }
+  div.loading-box .splash-loader {
+    position: relative;
+    float: left;
+    width: 28px;
+    height: 28px;
+    margin: 10px 14px 0 -6px;
+    background: #ffffff;
+    background: linear-gradient(to right, #ffffff 10%, #404040 42%); }
+    div.loading-box .splash-loader:after {
+      background: #404040; }
+  div.loading-box span.message-content {
+    position: relative;
+    line-height: 48px;
+    font-size: .92em;
+    color: #ffffff; }
 
 div.fullscreen-wrapper {
   display: table;

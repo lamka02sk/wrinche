@@ -180,12 +180,11 @@ export default {
 
     },
 
-    _loadingBox: document.querySelector('.response-message'),
-    _responseBox: document.querySelector('.response-result-message'),
+    _loadingBox: document.querySelector('.loading-box'),
+    _responseBox: document.querySelector('.response-box'),
 
     showLoading(translate = true) {
 
-        this._loadingBox.classList.add('loading');
         this._loadingBox.classList.add('open');
 
         if(translate)
@@ -199,13 +198,12 @@ export default {
 
         setTimeout(() => {
 
-            this._loadingBox.classList.remove('loading');
             this._loadingBox.classList.remove('open');
             this._loadingBox
                 .querySelector('span.message-content')
                 .innerHTML = '';
 
-        }, 200);
+        }, 400);
 
     },
 

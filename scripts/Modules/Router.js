@@ -37,13 +37,13 @@ export default class {
 
     }
 
-    getHash() {
+    static getHash() {
         return window.location.hash;
     }
 
-    createLink(action, route = false) {
+    static createLink(action, route = false) {
 
-        route = (route) ? '/' + route : this.route;
+        route = route ? '/' + route : Global.route;
         return Global.routePrefix + route + '/' + action;
 
     }

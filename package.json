@@ -43,10 +43,10 @@
     "flatpickr": "^3.0.7",
     "jquery": "^3.2.1",
     "json-loader": "^0.5.7",
-    "loaders.css": "^0.1.2",
     "masonry-layout": "^4.2.0",
     "noty": "^3.1.2",
     "packery": "^2.1.1",
+    "selector3": "^3.0.4",
     "sortablejs": "^1.6.1",
     "webpack": "^3.5.5",
     "yaml-loader": "^0.5.0"

@@ -179,9 +179,9 @@ require_once ROOT . '/app/Layouts/Admin/Splash.php';
 
 </header>
 
-<div class="response-message">
+<div class="loading-box">
 
-    <span class="loading-icon"></span>
+    <div class="splash-loader"></div>
     <span class="message-content"></span>
 
 </div>
