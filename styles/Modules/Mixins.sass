@@ -1,0 +1,19 @@
+=radius($topLeft, $topRight: $topLeft, $bottomLeft: $topLeft, $bottomRight: $topLeft)
+  border-radius: $topLeft $topRight $bottomRight $bottomLeft
+
+=transition($duration: .15s, $animation: ease-in-out)
+  transition: $duration $animation
+
+=shadow($x, $y, $blur, $color, $size: 0)
+  box-shadow: $x $y $blur $size $color
+
+=box()
+  box-sizing: border-box
+
+=border($thickness, $color, $style: solid)
+  border: $thickness $style $color
+
+=text-overflow()
+  white-space: nowrap
+  text-overflow: ellipsis
+  overflow: hidden

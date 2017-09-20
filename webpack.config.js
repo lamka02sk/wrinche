@@ -1,11 +1,24 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+const extractSass = new ExtractTextPlugin({
+    filename: "[name].min.css"
+});
 
 module.exports = {
 
     entry: {
+
+        // JS
         admin: './scripts/Admin.js',
-        vendor: './vendor/Vendor.js'
+        vendor: './vendor/Vendor.js',
+
+        // Styles
+        style_admin_light: './styles/Admin_Light.sass',
+        style_admin_dark: './styles/Admin_Dark.sass'
+
     },
 
     output: {
@@ -16,6 +29,25 @@ module.exports = {
     module: {
 
         rules: [
+
+            {
+                // Sass Loader
+                test: /(\.scss$)|(\.sass$)/,
+                use: extractSass.extract({
+                    use: [
+                        { loader: "css-loader?url=false" },
+                        { loader: "sass-loader" }
+                    ]
+                })
+            },
+
+            /*{
+                // ESLint
+                enforce: "pre",
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "eslint-loader",
+            },*/
 
             {
 
@@ -48,6 +80,13 @@ module.exports = {
     },
 
     plugins: [
+
+        extractSass,
+
+        new OptimizeCssAssetsPlugin({
+            assetNameRegExp: /\.css$/,
+            cssProcessorOptions: { discardComments: { removeAll: true } }
+        }),
 
         /*new webpack.optimize.UglifyJsPlugin({
 
