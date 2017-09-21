@@ -1,0 +1,171 @@
+@import ../Modules/Mixins
+@import ../Modules/Variables
+
+.category-tail
+  height: 200px
+
+  &:hover
+
+    img
+      opacity: .4
+
+  img
+    display: inline-block
+    position: absolute
+    z-index: -1
+    top: 50%
+    left: 50%
+    transform: translateY(-50%) translateX(-50%) !important
+    filter: blur(4px)
+    width: 105%
+    min-height: 100%
+    height: auto
+    opacity: .3
+
+    +transition(.2s)
+
+  .category-tail-parent
+    display: inline-block
+    position: relative
+    width: auto
+    max-width: 100%
+    height: auto
+    font-size: .88em
+    font-weight: 500
+    color: $text-lightBlack
+    text-align: left
+    text-transform: uppercase
+    padding: 0 32px 0 2px
+
+    +text-overflow
+    +box
+
+    &:after
+      content: ''
+      position: absolute
+      top: 1px
+      height: 12px
+      width: 12px
+      right: 18px
+      background: url('../../assets/icons/arrow-right.svg') center no-repeat
+      background-size: 9px
+
+
+.tag-tail
+  height: 170px
+
+  &:hover
+
+    .tag-tail-name
+      border: 1px solid $silver
+
+  .tag-tail-name
+    background: $whiteSmoke
+    width: auto
+    max-width: 90%
+    padding: 8px 10px 8px 10px
+    border-radius: 20px
+    border: 1px solid transparent
+
+    +transition(.2s)
+
+  .tag-tail-posts
+    padding: 8px 2px
+    position: relative
+    clear: both
+    float: left
+    bottom: 0
+
+
+.category-tail-name, .tag-tail-name
+  display: inline-block
+  position: relative
+  width: 100%
+  height: auto
+  font-size: 1.6em
+  font-weight: 400
+  color: $text-lightBlack
+  text-align: left
+  padding-right: 32px
+  margin: -4px 0 0 0
+
+  +text-overflow
+  +box
+
+  &.subcategory 
+    margin-top: 2px
+
+
+.category-tail-posts, .tag-tail-posts
+  display: inline-block
+  left: 0
+  bottom: 52px
+  font-weight: 500
+  color: $text-lightBlack
+  width: 100%
+  height: auto
+  text-transform: lowercase
+  position: absolute
+  padding: 0 13px
+  font-size: .92em
+
+  +box
+
+
+.category-tail-visibility, .tag-tail-visibility
+  display: inline-block
+  position: absolute
+  bottom: 13px
+  left: 0
+  padding: 0 13px
+  text-transform: uppercase
+  color: $text-darkGrey
+  text-align: left
+  font-size: .82em
+  font-weight: 500
+  line-height: 32px
+
+  +box
+
+
+.category-tail-remove, .tag-tail-remove
+  display: block
+  position: absolute
+  top: 14px
+  right: 13px
+  width: 18px
+  height: 18px
+  background: url('../../assets/icons/trash.svg') center no-repeat
+  background-size: 16px
+  opacity: .7
+  cursor: pointer
+
+  &:hover 
+    opacity: 1
+
+
+.category-tail-edit, .tag-tail-edit
+  display: inline-block
+  width: auto
+  position: absolute
+  bottom: 13px
+  right: 12px
+  height: 32px
+  line-height: 32px
+  background: $themeBlue
+  cursor: pointer
+  outline: none
+  border: none
+  padding: 0 12px
+  font-size: .92em
+  font-family: $font-default
+  color: $white
+
+  +radius(16px)
+  +transition(.2s)
+  +box
+
+  &:hover 
+    background: $themeBlueLight
+
+

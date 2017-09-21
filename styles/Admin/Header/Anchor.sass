@@ -1,0 +1,23 @@
+@import ../../Modules/Mixins
+@import ../../Modules/Variables
+
+// Anchor link highlighter
+.anchor-hover
+  display: none
+  position: fixed
+  z-index: 9999999
+  bottom: 0
+  left: 0
+  width: auto
+  height: 20px
+  font-size: .87em
+  padding: 0 8px
+  line-height: 20px
+  background: $white
+  color: $text-lightBlack
+
+  +shadow(2px, -2px, 6px, $shadow20, 2px)
+  +radius(0, 3px)
+
+  &.show
+    display: block

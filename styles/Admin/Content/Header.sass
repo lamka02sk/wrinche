@@ -1,0 +1,20 @@
+@import ../../Modules/Mixins
+@import ../../Modules/Variables
+
+.content-header
+  display: inline-block
+  position: relative
+  float: left
+  width: 100%
+  height: auto
+  margin-top: 48px
+  padding-bottom: 18px
+
+  +box
+
+  @media(max-width: 920px)
+    margin-top: 28px
+
+  @media(max-width: 540px)
+    margin-top: 20px
+    height: auto

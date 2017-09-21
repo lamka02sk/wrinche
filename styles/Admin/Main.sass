@@ -11,6 +11,7 @@ html
   font: $font-default
   overflow: hidden
   perspective: 1000px
+
   +transition(.25s)
 
 
@@ -19,7 +20,12 @@ html
 
 
 *
+
   @media(max-width: 540px)
     transform: none !important
 
+
 @import ../Admin/Header
+@import ../Admin/Menu
+@import ../Admin/Content
+@import ../Admin/Sorting

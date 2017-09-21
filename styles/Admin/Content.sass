@@ -1,0 +1,130 @@
+@import ../Modules/Mixins
+@import ../Modules/Variables
+
+.content-wrapper
+  display: block
+  position: absolute
+  left: 320px
+  top: 52px
+  bottom: 0
+  right: 0
+  overflow-y: auto
+  padding: 0 102px
+
+  +transition(.2s)
+  +box
+
+  @media(max-width: 920px) 
+    top: 84px
+    left: 64px
+    padding: 0 32px
+
+  @media(max-width: 540px) 
+    left: 0
+    padding: 0 18px
+
+  .header-description
+    display: inline-block
+    width: auto
+    height: auto
+    margin: 2px 0 0 2px
+    padding: 0
+    font-size: .92em
+    font-weight: 500
+    position: relative
+    float: left
+
+
+  .header-mainline
+    display: inline-block
+    position: relative
+    float: left
+    width: 100%
+    height: 43px
+
+    +transition(.2s)
+
+    @media(max-width: 640px)
+      height: auto
+
+    h2
+      display: inline-block
+      position: relative
+      float: left
+      width: auto
+      height: auto
+      font-size: 2.3em
+      font-weight: 400
+      margin: 0
+
+      +transition(.2s)
+
+      @media(max-width: 540px)
+        font-size: 1.6em
+        padding: 5px 0 0 0
+
+    .mainline-button
+      display: inline-block
+      position: relative
+      top: 4px
+      float: right
+      margin-right: 8px
+      height: 32px
+      width: auto
+      padding: 0 12px
+      background: $themeBlue
+      color: $white
+      line-height: 32px
+      font-family: $font-default
+      font-size: .92em
+      border: none
+      outline: none
+      border-radius: 16px
+      cursor: pointer
+
+      +transition(.2s)
+      +box
+
+      &:hover
+        background-color: $themeBlueLight
+
+      &:first-of-type
+        margin-right: 0
+
+  .content-content
+    display: inline-block
+    width: 100%
+    height: auto
+    position: relative
+    float: left
+    clear: both
+    margin-bottom: 48px
+
+    &.small-margin-bottom
+      margin-bottom: 24px
+
+    .content-subcontent
+      display: inline-block
+      width: 100%
+      position: relative
+      clear: both
+      margin-top: 12px
+
+
+.cke
+  clear: both
+  position: relative
+  margin-bottom: 6px
+
+
+.subcontent-box
+  height: auto
+  width: 100%
+  position: relative
+  display: inline-block
+  float: left
+
+
+@import ../Admin/Content/Menu
+@import ../Admin/Content/Boxes
+@import ../Admin/Content/Actions

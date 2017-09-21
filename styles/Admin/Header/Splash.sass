@@ -1,0 +1,61 @@
+@import ../../Modules/Mixins
+@import ../../Modules/Variables
+
+// Splash screen
+.splash
+  display: table
+  position: fixed
+  width: 100%
+  height: 100%
+  margin: 0
+  padding: 0
+  top: 0
+  left: 0
+  z-index: 9999
+
+  +transition(.8s, cubic-bezier(.59,0,.96,.3))
+
+  &.done
+    top: -100%
+
+  .splash-wrapper
+    display: table-cell
+    vertical-align: middle
+    position: relative
+    width: 100%
+    height: 100%
+    text-align: center
+
+    img
+      height: 36px
+      position: relative
+      -webkit-margin-after: 36px
+      top: -4%
+
+  .splash-loader
+    font-size: 10px
+    margin: 0 auto
+    text-indent: -9999em
+    width: 42px
+    height: 42px
+    background: $themeBlue
+    background: linear-gradient(to right, $themeBlue 10%, rgba(46,64,82, 0) 42%)
+    position: relative
+    animation: splash 1.4s infinite linear
+    transform: translateZ(0)
+
+    +radius(50%)
+
+    &:after
+      background: $white
+      width: 75%
+      height: 75%
+      content: ''
+      margin: auto
+      position: absolute
+      top: 0
+      left: 0
+      bottom: 0
+      right: 0
+
+      +radius(50%)

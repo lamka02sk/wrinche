@@ -1,0 +1,75 @@
+@import ../../Modules/Mixins
+@import ../../Modules/Variables
+
+.action-bar
+  display: inline-block
+  position: relative
+  float: left
+  width: 100%
+  padding: 12px
+  margin-top: 8px
+
+  +box
+
+  .result-message
+    display: inline-block
+    position: relative
+    float: left
+    width: auto
+    line-height: 32px
+    font-size: .92em
+    font-weight: 500
+    font-style: italic
+    &.error
+      color: $errorRed
+
+    &.success
+      color: $successGreen
+
+  .action-button
+    display: inline-block
+    width: auto
+    height: 32px
+    position: relative
+    float: right
+    margin-left: 12px
+    padding: 0 12px
+    border: none
+    outline: none
+    line-height: 27px
+    font-size: .88em
+    font-family: $font-default
+    cursor: pointer
+
+    +radius(16px)
+
+    &.save-button
+      background: $themeBlue
+      color: $white
+
+      +transition(.2s)
+
+      &:hover
+        background: $themeBlueLight
+
+    &.reset-button
+      background: $text-lightGrey
+      color: $text-darkGrey
+
+      +transition(.2s)
+
+      &:hover
+        color: $text-lightBlack
+        background: $themeYellow
+
+  .info-text
+    display: inline-block
+    width: auto
+    margin-left: 4px
+    line-height: 31px
+    font-size: .82em
+    font-style: italic
+    font-weight: 500
+    color: $text-darkGrey
+    float: left
+    position: relative
