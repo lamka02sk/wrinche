@@ -1,7 +1,5 @@
 <?php
 
-/* wrinche. Modern, powerful and user friendly CMS. */
-
 namespace App\Views;
 
 use App\Views\Main as MainView;

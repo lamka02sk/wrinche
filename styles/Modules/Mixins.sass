@@ -1,8 +1,8 @@
-=radius($topLeft, $topRight: $topLeft, $bottomLeft: $topLeft, $bottomRight: $topLeft)
+=radius($topLeft: 0, $topRight: $topLeft, $bottomLeft: $topLeft, $bottomRight: $topLeft)
   border-radius: $topLeft $topRight $bottomRight $bottomLeft
 
-=transition($duration: .15s, $animation: ease-in-out)
-  transition: $duration $animation
+=transition($duration: .15s, $animation: ease-in-out, $delay: 0s)
+  transition: $animation $duration $delay
 
 =shadow($x, $y, $blur, $color, $size: 0)
   box-shadow: $x $y $blur $size $color

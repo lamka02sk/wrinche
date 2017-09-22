@@ -1,0 +1,2231 @@
+@import ../Modules/Mixins
+@import ../Modules/Variables
+
+.content-content
+  display: inline-block
+  position: relative
+  width: 100%
+  height: auto
+  padding: 0 0 0 2px
+
+  +box
+
+  .settings-component
+    display: inline-block
+    position: relative
+    float: left
+    width: calc(50% - 12px)
+    height: auto
+    perspective: 1000px
+
+    @media(max-width: 1300px) 
+      width: 100% !important
+  
+    &[data-component=title] 
+      width: 100%
+  
+
+.content-settings
+  display: inline-block
+  width: 100%
+  float: left
+  position: relative
+  max-height: 260px
+  height: auto
+  overflow: hidden
+  padding-bottom: 64px
+  margin-bottom: 12px
+
+  .component-element, .settings-component
+    display: inline-block
+    position: relative
+    float: left
+    width: calc(50% - 12px)
+    height: auto
+    perspective: 1000px
+
+    @media(max-width: 1300px) 
+      width: 100% !important
+  
+    &[data-component=title] 
+      width: 100%
+  
+
+  .collapse-bar
+    display: inline-block
+    position: absolute
+    bottom: 0
+    left: 0
+    width: 100%
+    height: 64px
+    background: linear-gradient(to bottom, transparent 0%, $white 90%)
+    z-index: 12
+    padding: 24px 0 0 0
+    text-align: center
+
+    +box
+
+    .collapse-trigger
+      display: inline-block
+      width: auto
+      padding: 0 12px
+      line-height: 32px
+      background: $themeBlue
+      font-size: .92em
+      color: $white
+      cursor: pointer
+      position: relative
+      margin-right: 12px
+
+      +radius(16px)
+      +box
+      +transition(.2s)
+
+      &:hover 
+        background: $themeBlueLight
+    
+      span.text-close 
+        display: none
+    
+      span.text-open 
+        display: inline-block
+
+  &.open 
+    max-height: none
+    overflow: visible
+
+    .collapse-bar .collapse-trigger .text-close
+      display: inline-block
+  
+    .collapse-bar .collapse-trigger .text-open
+      display: none
+  
+
+.content-content label
+  display: inline
+  width: auto
+  height: auto
+  position: relative
+  float: left
+  padding: 0 0 4px 0
+  font-size: 1.05em
+  font-weight: 500
+  text-align: left
+
+  +box
+
+  &.big-label 
+    font-size: 1.6em
+    font-weight: 400
+
+  &.small-label 
+    font-size: .82em
+    text-transform: uppercase
+    clear: both
+    position: relative
+    font-weight: 500
+    padding: 2px 0
+
+  &.checkbox-click 
+    display: inline-block
+    width: 100%
+    height: auto
+    z-index: 1
+
+    &.second-level 
+      padding-left: 18px
+      background: url('../../assets/icons/level.svg') left 2px top 4px no-repeat
+      background-size: 12px
+  
+    &.third-level 
+      padding-left: 36px
+      background: url('../../assets/icons/level.svg') left 20px top 4px no-repeat
+      background-size: 12px
+
+  &.inline-label 
+    font-weight: 400
+    font-size: .92em
+    width: auto
+    padding: 2px 0
+
+
+.content-content .info-box
+  display: block
+  width: 20px
+  height: 20px
+  position: relative
+  float: left
+  overflow: hidden
+  margin: 0 0 0 2px
+  cursor: pointer
+  z-index: 2
+  opacity: .7
+
+  &.tall-info 
+    margin: 6px 0 0 2px
+
+  &:hover 
+    overflow: visible
+    opacity: 1
+
+    .info-hover
+      z-index: 1000
+      opacity: 1
+  
+    .info-text
+      opacity: 1
+      z-index: 999
+
+      +transition(.2s)
+
+
+.content-content .info-text-outside
+  font-style: italic
+  font-weight: 400
+  font-size: .82em
+  position: relative
+  float: left
+  clear: both
+  padding: 0 1px
+  margin-top: -1px
+  text-align: left
+  display: block
+  width: 100%
+  height: auto
+
+  +box
+
+
+.content-content .info-box .info-hover
+  display: block
+  height: 100%
+  width: 100%
+  position: relative
+  background: center center no-repeat
+  background-size: 17px
+  z-index: 100
+  opacity: .6
+
+
+.content-content .info-box .info-text
+  display: inline-block
+  position: absolute
+  left: -6px
+  top: -5px
+  padding: 8px 10px 8px 32px
+  width: 280px
+  opacity: 0
+  transition: none
+  z-index: 89
+  font-size: .88em
+  cursor: default
+
+  +box
+
+
+.content-content input
+  outline: none
+  height: 36px
+  width: 100%
+  position: relative
+  clear: both
+  font-family: $font-default
+  font-size: .92em
+  margin: 2px 0 6px 0
+  padding: 0 72px 0 10px
+
+  +box
+  +border(1px, $silver)
+
+  &.input-icon-enter 
+    background-image: url('../../assets/icons/enter_opaque.svg') !important
+    background-position: right 10px center !important
+    background-size: 14px !important
+    background-repeat: no-repeat !important
+
+  &.big-input 
+    height: 46px
+    font-size: 1.3em
+    padding: 0 72px 0 12px
+    font-weight: 500
+
+    &.full 
+      padding-right: 12px
+
+  &[type=checkbox] 
+    display: inline-block
+    position: absolute
+    right: 0
+    top: 0
+    width: auto
+    height: auto
+    z-index: 0
+    padding: 0 10px
+
+    &.left-checkbox 
+      float: left
+      position: relative
+      margin-right: 8px
+
+  &.add-item 
+    background: left 9px top 9px no-repeat !important
+    background-size: 16px !important
+    padding-left: 32px
+
+    +transition(.2s)
+
+  &.search-input 
+    background: url('../../assets/icons/search.svg') left 9px top 9px no-repeat !important
+    background-size: 16px !important
+    padding-left: 32px
+
+    +transition(.2s)
+
+  &.full 
+    padding-right: 10px
+
+  &:disabled 
+    opacity: .5
+
+  &:focus
+    +shadow(0, 2px, 3px, rgba(0,0,0,.05))
+
+  &.no-margin 
+    margin: 0
+
+  &.quote-author 
+    height: 34px !important
+    background: white url('../../assets/icons/minus.svg') left 8px center no-repeat !important
+    background-size: 14px !important
+    padding-left: 25px
+
+
+.content-content .selector-element
+  clear: both
+  float: left
+  position: relative
+  max-width: none
+
+  input 
+    margin: 0
+    background-position: left 13px center !important
+    background-size: 13px !important
+
+  .selector-options
+    z-index: 101
+
+
+.content-content h3
+  margin: 0 0 8px 0
+  display: inline-block
+  width: 100%
+  height: auto
+  font-size: 1.6em
+  font-weight: 500
+
+
+.content-content textarea
+  outline: none
+  height: 82px
+  width: 100%
+  position: relative
+  clear: both
+  font-family: $font-default
+  font-size: 1em
+  margin: 2px 0 6px 0
+  padding: 8px 72px 6px 10px
+  resize: none
+
+  +box
+  +border(1px, $silver)
+
+  &.pre-textarea 
+    font-family: $font-monospace
+    font-size: .88em
+    line-height: 1.4
+    min-height: 160px
+
+  &.full 
+    padding-right: 10px
+  
+  &:disabled 
+    opacity: .5
+
+  &:focus
+    +shadow(0, 2px, 3px, rgba(0,0,0,.05))
+
+  &.no-margin 
+    margin: 0
+
+  &.normal-padding 
+    padding: 10px
+
+
+.content-content .image_manager
+  display: inline-block
+  width: auto
+  padding: 0 14px 0 44px
+  font-weight: 400
+  float: left
+  position: relative
+  clear: both
+  height: 36px
+  font-family: $font-default
+  font-size: .92em
+  outline: none
+  margin: 2px 0 4px 0
+  cursor: pointer
+
+  +border(1px, $silver)
+  +radius
+  +box
+  +transition(.2s)
+
+  &:before 
+    content: ''
+    position: absolute
+    height: 33px
+    width: 44px
+    top: 0
+    left: 0
+    background: center no-repeat
+    background-size: 16px
+
+
+.content-content .or
+  display: inline-block
+  position: relative
+  float: left
+  clear: both
+  width: 100%
+  height: auto
+  margin: 2px 0
+  text-align: left
+  font-size: .82em
+  font-weight: 500
+
+
+.counter
+  position: absolute
+  bottom: 11px
+  right: 10px
+  z-index: 1
+  padding: 0
+  opacity: .7
+  font-size: .88em
+  font-weight: 500
+  cursor: pointer
+  text-align: center
+  width: 42px
+  height: 26px
+  line-height: 28px
+
+  +box
+  +transition(.2s)
+  +radius(13px)
+
+  &:hover 
+    opacity: 1
+
+  &.minus 
+    background-color: $errorRed !important
+    color: $white !important
+
+  &.fuck-chrome 
+    -webkit-margin-after: 4px
+
+  &.big-counter 
+    bottom: 16px
+
+
+.content-builder
+  display: inline-block
+  text-align: center
+  position: relative
+  width: 100%
+  float: left
+  clear: both
+  margin-top: 12px
+
+
+.content-builder-content
+  width: 100%
+  position: relative
+  float: left
+  clear: both
+  display: inline-block
+  height: auto !important
+
+
+.content-builder .component-element
+  display: inline-block
+  position: relative
+  float: left
+  width: 100%
+  height: auto
+  background: #fbfbfb
+  margin: 6px auto
+  overflow: hidden
+
+  +transition(.2s)
+
+  &.disabled 
+    opacity: .5
+
+    &:hover, &:target, &:active, &:focus 
+      opacity: .8
+  
+
+.content-builder .component-element .component-element-header
+  display: inline-block
+  position: relative
+  width: 100%
+  height: 42px
+  background: #f8f8f8
+  overflow: hidden
+  float: left
+  border-bottom: 1px solid #f5f5f5
+
+
+.content-builder .component-element .component-element-header .component-inline-icon
+  display: block
+  width: 42px
+  height: 42px
+  position: relative
+  float: left
+  background-size: 20px
+  background-position: center
+  background-repeat: no-repeat
+
+
+.content-builder .component-element .component-element-header .component-inline-label
+  display: inline-block
+  position: relative
+  float: left
+  height: 42px
+  line-height: 43px
+  font-size: 1em
+  color: $text-lightBlack
+  outline: none !important
+  text-align: center
+  cursor: text
+
+
+.content-builder .component-element .component-element-header .component-control
+  display: inline-block
+  position: relative
+  float: right
+  margin: 3px 0
+  width: 36px
+  height: 36px
+  background-size: 14px
+  background-position: center
+  background-repeat: no-repeat
+  opacity: .7
+  transition: background .1s ease-in-out
+  cursor: pointer
+
+  &:hover 
+    opacity: 1
+
+  &.icon-drag 
+    z-index: 100
+
+    &:active 
+      background-size: 23px
+  
+
+.content-builder .component-element .component-element-content
+  display: inline-block
+  position: relative
+  float: left
+  width: 100%
+  height: auto
+  padding: 12px
+  opacity: 1
+
+  +transition
+  +box
+
+  &.hide 
+    height: 0
+    padding: 0 12px
+    opacity: 0
+
+  &.no-padding 
+    padding: 0
+
+
+
+.component-element-content .audio-item
+  display: inline-block
+  position: relative
+  float: left
+  text-align: left
+  width: 100%
+  height: auto
+
+  audio 
+    display: none
+
+  .button-play, .button-stop
+    display: block
+    width: 32px
+    height: 32px
+    margin: 5px 0
+    position: relative
+    float: left
+    background: center no-repeat
+    background-size: 28px
+    cursor: pointer
+
+    &:hover 
+      background-color: #f5f5f5
+  
+    &:first-of-type 
+      margin-left: 5px
+
+  .item-name
+    position: relative
+    display: inline-block
+    width: auto
+    height: 42px
+    line-height: 42px
+    float: left
+    margin: 0 12px 0 0
+    font-size: .92em
+    color: $text-lightBlack
+    padding-left: 6px
+
+  .item-remove
+    display: block
+    width: 42px
+    height: 42px
+    position: relative
+    float: right
+    background: center no-repeat
+    background-size: 16px
+    cursor: pointer
+    opacity: .7
+
+    &:hover 
+      opacity: 1
+
+  .player-time
+    display: inline-block
+    width: auto
+    height: 42px
+    line-height: 43px
+    font-size: .82em
+    margin-right: 6px
+    color: $text-lightBlack
+    position: relative
+    float: right
+    opacity: .7
+
+    &:hover 
+      opacity: 1
+
+
+.component-element-content .picture-image
+  position: relative
+  display: inline-block
+  width: 100%
+  height: 250px
+  min-width: 100%
+  overflow: hidden
+
+  img 
+    display: inline-block
+    position: absolute
+    max-width: 100%
+    top: 50%
+    left: 50%
+    transform: translateY(-50%) translateX(-50%)
+
+  input 
+    position: absolute
+    bottom: 12px
+    left: 12px
+    width: 360px
+    height: 38px
+    line-height: 38px
+    border: none
+    padding: 0 16px 0 40px
+    background: white url('../../assets/icons/edit.svg') left 16px center no-repeat !important
+    background-size: 15px !important
+    max-width: calc(100% - 24px)
+
+    +radius(19px)
+    +transition(.2s)
+    +shadow(0, 0, 2px, rgba(0,0,0,.15))
+
+    &:hover, &:focus 
+      box-shadow: 0 0 16px rgba(0,0,0,.25)
+  
+
+  .picture-remove
+    display: block
+    position: absolute
+    top: 12px
+    right: 12px
+    width: 38px
+    height: 38px
+    background: white url('../../assets/icons/trash.svg') center no-repeat
+    background-size: 18px
+    cursor: pointer
+
+    +shadow(0, 0, 2px, rgba(0,0,0,.15))
+    +transition(.2s)
+    +radius(50%)
+
+    &:hover
+      background-color: #f5f5f5
+
+      +shadow(0, 0, 16px, rgba(0,0,0,.25))
+  
+
+  .picture-align
+    display: inline-block
+    left: 12px
+    top: 12px
+    height: 38px
+    width: auto
+    position: absolute
+    background: $white
+    overflow: hidden
+    cursor: pointer
+
+    +shadow(0, 0, 2px, rgba(0,0,0,.15))
+    +transition(.2s)
+    +radius(19px)
+
+    span 
+      height: 38px
+      width: 38px
+      display: inline-block
+      position: relative
+      float: left
+      background: white center no-repeat
+      background-size: 16px
+      border-right: 1px solid silver
+
+      +transition
+
+      &:first-of-type 
+        padding-left: 6px
+    
+      &:last-of-type 
+        border-right: none
+        padding-right: 6px
+    
+      &:hover 
+        background-color: #f5f5f5
+    
+      &.active 
+        background-color: #ebebeb
+
+    &:hover
+      +shadow(0, 0, 16px, rgba(0,0,0,.25))
+
+
+.component-element-content .video-item
+  display: inline-block
+  position: relative
+  float: left
+  width: 100%
+  height: auto
+
+  video, .iframe-container
+    float: left
+    position: relative
+    width: 480px
+    height: auto
+
+    @media(max-width: 1440px) 
+      width: 400px
+  
+    @media(max-width: 1220px) 
+      width: 100%
+
+  .iframe-container
+    height: calc(480px / 1.777)
+
+    @media(max-width: 1440px) 
+      height: calc(400px / 1.777)
+  
+    @media(max-width: 1220px) 
+      height: calc(320px / 1.777) !important
+
+  iframe 
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+
+  .item-name
+    display: inline-block
+    width: calc(100% - 480px)
+    float: left
+    padding: 16px 18px 8px 18px
+    height: auto
+    margin: 0
+    text-align: left
+    font-weight: 500
+    color: $text-lightBlack
+    font-size: 1em
+
+    +box
+
+    @media(max-width: 1440px) 
+      width: calc(100% - 400px)
+  
+    @media(max-width: 1220px) 
+      width: 100%
+
+  .video-duration, .video-dimensions
+    display: inline-block
+    position: relative
+    width: calc(100% - 480px)
+    float: left
+    text-align: left
+    color: $text-darkGrey
+    font-size: .92em
+    padding: 4px 18px 2px 18px
+
+    +box
+
+    @media(max-width: 1440px) 
+      width: calc(100% - 400px)
+  
+    @media(max-width: 1220px) 
+      width: 100%
+  
+    a 
+      color: $infoBlue
+      text-decoration: none
+
+      &:hover 
+        text-decoration: underline
+    
+  
+
+  .input-box
+    width: calc(100% - 480px)
+    position: relative
+    clear: none
+    margin: 8px 0
+    padding: 0 18px
+
+    +box
+
+    @media(max-width: 1440px) 
+      width: calc(100% - 400px)
+  
+    @media(max-width: 1220px) 
+      width: 100%
+  
+
+  .item-remove
+    display: block
+    position: absolute
+    top: 12px
+    left: 12px
+    width: 38px
+    height: 38px
+    background: white url('../../assets/icons/trash.svg') center no-repeat
+    background-size: 18px
+    cursor: pointer
+    z-index: 10
+
+    +transition(.2s)
+    +radius(50%)
+    +shadow(0, 0, 2px, rgba(0,0,0,.15))
+
+    &:hover
+      background-color: #f5f5f5
+
+      +shadow(0, 0, 16px, rgba(0,0,0,.25))
+
+  .video-align
+    display: inline-block
+    left: 62px
+    top: 12px
+    height: 38px
+    width: auto
+    position: absolute
+    background: white
+    overflow: hidden
+    cursor: pointer
+
+    +radius(19px)
+    +shadow(0, 0, 2px, rgba(0,0,0,.15))
+    +transition(.2s)
+
+    span 
+      height: 38px
+      width: 38px
+      display: inline-block
+      position: relative
+      float: left
+      background: white center no-repeat
+      background-size: 16px
+      border-right: 1px solid silver
+
+      +transition
+
+      &:first-of-type 
+        padding-left: 6px
+    
+      &:last-of-type 
+        border-right: none
+        padding-right: 6px
+    
+      &:hover 
+        background-color: #f5f5f5
+    
+      &.active 
+        background-color: #ebebeb
+
+    &:hover
+      +shadow(0, 0, 16px, rgba(0,0,0,.25))
+
+
+.heading-types
+  display: inline-block
+  width: auto
+  position: relative
+  float: left
+  margin: 2px 0 8px 0
+  text-align: justify
+  height: 36px
+  overflow: hidden
+
+  +border(1px, $silver)
+  +box
+  +radius(18px)
+
+  span 
+    position: relative
+    display: inline-block
+    float: left
+    height: 36px
+    width: 40px
+    line-height: 35px
+    color: $text-lightBlack
+    border-right: 1px solid silver
+    background: white
+    font-size: .92em
+    text-align: center
+    cursor: pointer
+
+    +box
+    +transition
+
+    &.type-selected 
+      color: black
+      font-weight: 600
+      background: #ebebeb
+  
+    &:hover 
+      background: #f5f5f5
+  
+    &:first-of-type 
+      padding-left: 2px
+      width: 44px
+  
+    &:last-of-type 
+      width: 44px
+      padding-right: 2px
+      border: none
+
+
+.content-builder .selector-element
+  display: inline-block
+  width: 300px
+  position: absolute
+  top: 4px
+  right: 0
+  text-align: left !important
+
+
+.content-builder .builder-heading
+  display: inline-block
+  text-align: left
+  margin: 6px 0 0 0
+  position: relative
+  width: 100%
+  height: auto
+  color: $text-lightBlack
+  font-weight: 400
+  font-size: 1.6em
+
+
+.builder-tools
+  display: inline-block
+  margin: 6px 0
+  position: relative
+  width: 100%
+  float: left
+  clear: both
+  padding-top: 4px
+  background: $text-lightGrey
+  text-align: center
+
+  +box
+  +shadow(0, 1px, 2px, rgba(0,0,0,.05))
+
+
+.builder-tools button
+  display: inline-block
+  width: auto
+  height: 32px
+  outline: none
+  font-family: $font-default
+  margin-bottom: 4px
+  font-size: .92em
+  color: $text-lightBlack
+  position: relative
+  background: $white left 10px center no-repeat
+  background-size: 19px
+  padding: 0 12px 0 34px
+  border: none
+  cursor: pointer
+
+  +transition
+  +shadow(0, 0, 4px, rgba(0,0,0,.1))
+
+  &.add-attachment 
+    margin-right: 4px
+
+  &:last-of-type 
+    margin-right: 0
+
+  &:hover 
+    background-color: #fbfbfb
+
+
+.divider
+  border-bottom: 1px dotted $themeGreyMedium
+  display: block
+  margin: 0 0 8px 0
+  width: 100%
+  position: relative
+  height: 0
+  float: left
+  clear: both
+
+
+.content-builder-content .empty:only-child
+  display: inline-block
+  position: relative
+  width: 100%
+  text-align: center
+  margin: 24px 0 26px 0
+  line-height: 1.3
+  font-size: 2em
+  font-weight: 400
+  color: lighten($text-grey, 10%)
+
+
+.content-builder-content .empty:not(:only-child)
+  display: none
+
+// ***************************************************************************************************************
+// **************************************** COMPONENTS ***********************************************************
+// ***************************************************************************************************************
+
+.thumbnail-image, .header_image-image
+  display: inline-block
+  height: 64px
+  width: 100%
+  position: relative
+  overflow: hidden
+  background: lighten($text-lightGrey, 2%)
+
+  +box
+  +border(1px, $silver)
+
+
+.thumbnail-image img, .header_image-image img
+  display: inline-block
+  height: auto
+  width: 25%
+  position: relative
+  float: left
+  top: 50%
+  transform: translateY(-50%)
+
+
+.thumbnail-image .thumbnail-name, .header_image-image .header_image-name
+  display: inline-block
+  margin: 0
+  position: relative
+  float: left
+  width: 75%
+  height: 100%
+  padding: 0 48px 0 14px
+  font-size: .92em
+  color: $text-lightBlack
+  line-height: 63px
+
+  +box
+  +text-overflow
+
+
+.thumbnail-image .thumbnail-remove, .header_image-image .header_image-remove
+  display: block
+  height: 36px
+  width: 36px
+  position: absolute
+  top: 50%
+  transform: translateY(-50%)
+  right: 12px
+  background: url("../../assets/icons/trash.svg") center no-repeat
+  background-size: 16px
+  cursor: pointer
+  opacity: .7
+
+  &:hover 
+    opacity: 1
+
+
+.attachments-list
+  display: inline-block
+  position: relative
+  float: left
+  clear: both
+  width: 100%
+
+
+.attachments-list .attachment-list-item
+  display: inline-block
+  position: relative
+  float: left
+  width: 100%
+  height: 48px
+  background: lighten($text-lightGrey, 2%) left 18px center no-repeat
+  background-size: 18px
+  margin-bottom: 4px
+  overflow: hidden
+
+  +box
+  +border(1px, $silver)
+
+  &:last-of-type 
+    margin-bottom: 0
+
+
+.attachment-list-item .attachment-image
+  display: none
+
+
+.attachment-list-item .attachment-name
+  display: inline-block
+  position: relative
+  float: left
+  width: 100%
+  line-height: 47px
+  padding: 0 48px 0 52px
+  margin: 0
+  font-size: .92em
+  color: $text-lightBlack
+
+  +box
+  +text-overflow
+
+
+.attachment-list-item .attachment-remove
+  display: block
+  height: 36px
+  width: 36px
+  position: absolute
+  top: 50%
+  transform: translateY(-50%)
+  right: 12px
+  background: url("../../assets/icons/trash.svg") center no-repeat
+  background-size: 16px
+  cursor: pointer
+  opacity: .7
+
+  &:hover 
+    opacity: 1
+
+
+.custom_fields-add-box, .sources-add-box
+  display: inline-block
+  position: relative
+  float: left
+  margin: 4px 0
+  width: 100%
+  height: auto
+  background: lighten($text-lightGrey, 2%)
+  padding: 8px 10px 4px 10px
+
+  +box
+  +border(1px, $silver)
+
+
+.custom_fields-add-box .custom_fields-add-heading, .sources-add-box .custom_fields-add-heading
+  display: inline-block
+  position: relative
+  float: left
+  margin: 0 0 4px 0
+  width: 100%
+  font-weight: 500
+  font-size: .92em
+  color: $text-lightBlack
+
+  +text-overflow
+
+
+.custom_fields-add-box .label-custom_fields, .sources-add-box label
+  width: 66%
+  float: left
+  clear: none !important
+
+  &:first-of-type 
+    width: 34%
+
+
+.custom_fields-add-box .input-custom_fields, .sources-add-box input
+  width: 66%
+  float: left
+  clear: none
+  padding: 0 10px !important
+
+  &:first-of-type 
+    width: 33%
+    margin-right: 1%
+
+
+.custom_fields-add-box .add-custom_field, .sources-add-box .sources-add
+  display: inline-block
+  position: absolute
+  top: 9px
+  right: 12px
+  margin: 0
+  width: auto
+  height: 32px
+  background-color: $themeBlue
+  color: $white
+  cursor: pointer
+  font-size: .92em
+  line-height: 32px
+  padding: 0 12px
+
+  +box
+  +transition(.2s)
+  +radius(16px)
+
+  &:hover 
+    background-color: $themeBlueLight
+
+
+.custom_fields-list, .sources-list
+  display: inline-block
+  position: relative
+  float: left
+  clear: both
+  width: 100%
+  height: auto
+
+
+.custom_fields-list .custom_fields-list-item, .sources-list .sources-source
+  display: inline-block
+  position: relative
+  float: left
+  clear: both
+  width: 100%
+  height: 38px
+  line-height: 37px
+  overflow: hidden
+  margin-top: 4px
+  padding: 0 12px
+  background: lighten($text-lightGrey, 2%)
+
+  +box
+  +border(1px, $silver)
+
+
+.custom_fields-list .custom_fields-list-item .field-item-name, .sources-list .sources-source .source-name
+  display: inline-block
+  position: relative
+  margin: 0 1% 0 0
+  width: 33%
+  float: left
+  height: 100%
+  line-height: 37px
+  padding: 0
+  font-size: .92em
+  color: $text-lightBlack
+  overflow: hidden
+
+  +box
+  +text-overflow
+
+
+.custom_fields-list .custom_fields-list-item .field-item-value, .sources-list .sources-source .source-reference
+  display: inline-block
+  position: relative
+  margin: 0
+  width: 66%
+  float: left
+  height: 100%
+  line-height: 36px
+  padding: 0 64px 0 0
+  font-size: .92em
+  color: $text-lightBlack
+  overflow: hidden
+
+  +box
+  +text-overflow
+
+
+.custom_fields-list .custom_fields-list-item .edit-custom_field, .sources-list .sources-source .source-edit
+  display: block
+  position: absolute
+  width: 28px
+  height: 28px
+  top: 50%
+  transform: translateY(-50%)
+  right: 40px
+  background: url('../../assets/icons/edit.svg') center no-repeat
+  background-size: 12px
+  opacity: .7
+  cursor: pointer
+
+  &:hover 
+    opacity: 1
+
+
+.custom_fields-list .custom_fields-list-item .remove-custom_field, .sources-list .sources-source .source-remove
+  display: block
+  position: absolute
+  width: 28px
+  height: 28px
+  top: 50%
+  transform: translateY(-50%)
+  right: 12px
+  background: url('../../assets/icons/close.svg') center no-repeat
+  background-size: 19px
+  opacity: .7
+  cursor: pointer
+
+  &:hover 
+    opacity: 1
+
+
+.tags-manage, .categories-manage
+  display: inline-block
+  position: absolute
+  top: 2px
+  right: 4px
+  width: auto
+  height: auto
+  opacity: .8
+  text-align: center
+  cursor: pointer
+  color: $text-lightBlack
+  font-size: .87em
+
+  &:hover 
+    opacity: 1
+
+  &:before 
+    content: ""
+    position: absolute
+    right: 100%
+    padding-right: 8px
+    margin-top: -1px
+    top: 50%
+    transform: translateY(-50%)
+    width: 14px
+    height: 14px
+    background: url('../../assets/icons/sorting.svg') center no-repeat
+    background-size: 14px
+
+
+.tags-list
+  display: inline-block
+  position: relative
+  float: left
+  clear: both
+  width: 100%
+  height: auto
+
+
+.tags-list .tags-item
+  display: inline-block
+  position: relative
+  float: left
+  margin: 4px 6px 4px 0
+  font-size: .88em
+  color: $white
+  background: $grey
+  padding: 0 26px 0 23px
+  height: 28px
+  line-height: 29px
+
+  +box
+  +radius(14px, 2px, 14px, 2px)
+
+  &:before 
+    content: ''
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    height: 6px
+    width: 6px
+    background: $white
+    left: 10px
+
+    +radius(50%)
+
+  .tag-remove
+    display: block
+    position: absolute
+    right: 6px
+    top: 50%
+    transform: translateY(-50%)
+    height: 16px
+    width: 16px
+    background: url('../../assets/icons/close_white-thick.svg') center no-repeat
+    background-size: 10px
+    cursor: pointer
+
+
+
+input[name=component_inline_quote_author] 
+  height: 34px !important
+  margin: 0 !important
+  background: white url('../../assets/icons/minus.svg') left 10px center no-repeat !important
+  background-size: 14px !important
+
+
+.languages-list, .categories-list
+  display: inline-block
+  position: relative
+  float: left
+  width: 100%
+  height: auto
+  max-height: 180px
+  overflow: auto
+  margin-top: -7px
+
+  +box
+  +border(1px, $silver)
+
+
+.languages-list .language-item, .categories-list .category-item
+  display: inline-block
+  position: relative
+  float: left
+  width: 100%
+  height: 32px
+  overflow: hidden
+  padding: 0 10px
+  font-size: .82em
+  line-height: 32px
+
+  +box
+  +border(1px, $silver)
+
+  &:last-of-type 
+    border-bottom: none
+
+  &.hide 
+    display: none
+
+
+[data-component=code] #select-relative, [data-component=link] #select-relative 
+  display: block
+  position: relative
+  float: left
+  width: 100%
+  height: auto
+
+
+.languages-list .language-item .language-name, .categories-list .category-item .category-name
+  display: inline-block
+  position: relative
+  float: left
+  width: 100%
+  height: 100%
+  color: $text-lightBlack
+  margin: 0
+
+  +box
+
+
+.languages-list .language-item .add-language, .categories-list .category-item .add-category
+  display: inline-block
+  position: absolute
+  width: auto
+  height: 25px
+  top: 3px
+  right: 6px
+  background: url('../../assets/icons/add.svg') transparent left 6px center no-repeat
+  background-size: 15px
+  line-height: 25px
+  font-size: 1em
+  color: $text-lightBlack
+  padding: 0 6px 0 24px
+  cursor: pointer
+
+  +box
+  +transition(.2s)
+
+  &:hover 
+    background-color: rgba(0,0,0,.05)
+
+  &.hide 
+    display: none
+
+
+.languages-list .language-item .remove-language, .categories-list .category-item .remove-category
+  display: inline-block
+  position: absolute
+  width: auto
+  height: 25px
+  top: 3px
+  right: 8px
+  background: $successGreen url('../../assets/icons/success_white.svg') left 6px center no-repeat
+  background-size: 15px
+  line-height: 25px
+  font-size: 1em
+  color: $white
+  padding: 0 6px 0 24px
+  cursor: pointer
+
+  +box
+  +transition(.2s)
+
+  &:hover 
+    background-color: lighten($successGreen, 5%)
+
+  &.hide 
+    display: none
+
+
+.password-show
+  display: inline-block
+  position: absolute
+  width: 25px
+  height: 25px
+  top: 7px
+  right: 8px
+  background: url('../../assets/icons/visible.svg') center no-repeat
+  background-size: 18px
+  cursor: pointer
+  opacity: .7
+
+  &:hover 
+    opacity: 1
+
+  &.visible 
+    background-image: url("../../assets/icons/hidden.svg")
+
+
+.selector-element#select-relative
+  height: auto !important
+  position: relative !important
+
+  .selector-selected 
+    height: 32px !important
+    float: left
+
+  .selector-options 
+    position: relative !important
+    float: left
+
+
+.select-image
+  position: relative
+  display: inline-block
+  width: 100%
+  height: auto
+  background: white
+
+  +box
+  +border(1px, $silver)
+
+
+.select-image .inline-image_manager
+  display: block
+  width: 36px
+  height: 36px
+  position: relative
+  float: left
+  outline: none
+  border: none
+  background: #f8f8f8 center no-repeat
+  background-size: 22px
+  cursor: pointer
+  opacity: .7
+
+  &:hover 
+    opacity: 1
+
+
+.select-image input
+  border: none
+  border-left: 1px solid silver
+  width: calc(100% - 36px)
+  height: 36px
+  float: left
+  position: relative
+  clear: none
+
+  +box
+
+
+.component-placeholder
+  display: inline-block
+  width: 100%
+  height: 100%
+  position: absolute
+  top: 0
+  left: 0
+  background: #eeeeee
+  z-index: 99
+  text-align: center
+  visibility: visible
+  opacity: .7
+  transform: scale(1)
+
+  +transition
+
+  span 
+    display: inline-block
+    position: relative
+    top: 50%
+    transform: translateY(-50%)
+    height: 56px
+    width: 56px
+    background: center no-repeat
+    background-size: 56px
+    opacity: .8
+
+  &.hide 
+    visibility: hidden
+    opacity: 0
+    transform: scale(2)
+
+
+
+.component-align
+  display: inline-block
+  width: 100%
+  height: auto
+  clear: both
+  float: left
+
+  label 
+    width: 100%
+    text-align: left
+    margin-bottom: 2px
+
+  span 
+    display: block
+    float: left
+    height: 32px
+    width: auto
+    background: white no-repeat left 10px center
+    background-size: 14px
+    line-height: 32px
+    font-size: .92em
+    color: $text-lightBlack
+    cursor: pointer
+    padding: 0 10px 0 32px
+
+    +border(1px, $silver)
+    +transition(.2s)
+    border-right: none
+
+    &.active 
+      background-color: #f6f6f6
+  
+    &:hover 
+      background-color: #f0f0f0
+  
+    &:last-of-type 
+      border-right: 1px solid silver
+
+
+.gallery-add-image
+
+  button 
+    width: 36px
+    height: 36px
+    background: white center no-repeat
+    outline: none
+    position: relative
+    float: left
+    cursor: pointer
+
+    +border(1px, $silver)
+    +transition(.2s)
+
+    &:hover 
+      background-color: #f5f5f5
+
+  input 
+    position: relative
+    float: left
+    border-left: none
+    width: calc(100% - 36px)
+    clear: none
+
+    +border(1px, $silver)
+
+  span 
+    text-align: left
+    margin-top: -1px
+    padding-left: 46px
+
+
+.gallery-items
+  padding-top: 6px
+  display: inline-block
+  float: left
+  position: relative
+  width: 100%
+
+  &.no-padding 
+    padding: 0
+
+
+.gallery-item
+  position: relative
+  display: inline-block
+  float: left
+  width: 25%
+  height: 280px
+  overflow: hidden
+  background: white
+
+  +transition(.2s)
+
+  &:hover
+    z-index: 1
+
+    +shadow(0, 2px, 10px, rgba(0,0,0,.4))
+
+    .remove-gallery-item
+      opacity: 1
+
+  .item-image
+    position: relative
+    display: inline-block
+    width: 100%
+    height: 100%
+    text-align: center
+
+    img 
+      position: relative
+      display: inline-block
+      width: auto
+      height: 100%
+
+  .remove-gallery-item
+    position: absolute
+    display: inline-block
+    width: 36px
+    height: 36px
+    background: white center no-repeat
+    background-size: 16px
+    top: 12px
+    right: 12px
+    opacity: 0
+    cursor: pointer
+
+    +transition(.2s)
+    +radius(50%)
+    +shadow(0, 0, 2px, rgba(0,0,0,.15))
+
+    &:hover
+      +shadow(0, 0, 16px, rgba(0,0,0,.25))
+
+
+.table-box
+  width: 100%
+  height: auto
+  margin-top: 12px
+  display: block
+  position: relative
+  float: left
+  overflow-x: auto
+  overflow-y: hidden
+
+  [contenteditable=true] 
+    outline: none !important
+
+  tr 
+    border-bottom: 1px solid #dadada
+
+    &.table-action-row .hidden .table-hide-column,
+    &.table-header-row .hidden .table-hide-row,
+    &.table-row .hidden .table-hide-row
+      background-image: url('../../assets/icons/visibility-hidden.svg') !important
+
+  th 
+    +border(1px, #dadada)
+
+  .table-header-row th:last-of-type
+    border-right: none
+
+  td 
+    border-right: 1px solid #dadada
+
+    &:last-of-type 
+      border-right: none
+  
+    &.table-aside-action, &.table-aside-action-first 
+      width: 80px
+
+  .table-header-action, .table-header-action-first
+    border-right: none !important
+
+  .table-add-button
+    display: block
+    position: absolute
+    width: 21px
+    height: 21px
+    background: white center no-repeat
+    background-size: 15px
+    border-radius: 50%
+    z-index: 1
+    cursor: pointer
+
+    +border(1px, $silver)
+    +transition(.2s)
+
+    &.table-add-row 
+      bottom: 0
+      left: 91px
+
+  table 
+    display: table
+    position: relative
+    float: left
+    min-width: 100%
+    height: auto
+    color: $text-lightBlack
+    border-collapse: collapse
+    margin-bottom: 11px
+
+    +box
+
+  th 
+    font-weight: 500
+    background: rgba(0,0,0,.04)
+
+  .table-header-row
+    height: 38px
+    font-size: 1em
+
+  tr 
+    position: relative
+    height: 34px
+    font-size: .92em
+
+    &:last-of-type
+
+      .table-new-row
+        bottom: 11px
+        right: -12px
+
+  th, td 
+    position: relative
+    min-width: 100px
+
+    &:last-of-type
+
+      .table-new-column
+        right: 4px
+
+    &.action-cell-left 
+      width: 80px
+      border: none
+  
+    &.hidden 
+      opacity: .5
+
+  .table-new-row
+    position: absolute
+    top: -12px
+    right: -11px
+    width: 21px
+    height: 21px
+    background: white center no-repeat
+    background-size: 15px
+    border-radius: 50%
+    z-index: 1
+    cursor: pointer
+    opacity: 1
+
+    +border(1px, $silver)
+    +transition(.2s)
+
+    &:hover
+
+      &:before 
+        opacity: 1
+
+    &:before 
+      content: ''
+      width: 12px
+      top: 50%
+      left: 100%
+      transform: translateY(-50%)
+      height: 4px
+      background: $infoBlue
+      display: block
+      position: absolute
+      z-index: -1
+      opacity: 0
+
+      +transition(.2s)
+
+  .table-new-column
+    position: absolute
+    top: 5px
+    right: -11px
+    width: 21px
+    height: 21px
+    background: white center no-repeat
+    background-size: 15px
+    z-index: 1
+    cursor: pointer
+    opacity: 1
+
+    +radius(50%)
+    +transition(.2s)
+    +border(1px, $silver)
+
+    &.add-before 
+      left: -12px
+  
+    &:hover 
+      top: 2px
+
+      &:before 
+        opacity: 1
+    
+      &:after 
+        opacity: 1 !important
+
+    &:before 
+      content: ''
+      width: 4px
+      top: 21px
+      left: 50%
+      transform: translateX(-50%)
+      height: 9px
+      background: $infoBlue
+      display: block
+      position: absolute
+      z-index: -1
+      opacity: 0
+
+      +transition(.2s)
+  
+    &.last-add
+
+      &:before 
+        right: -5px
+        left: auto
+        transform: none
+        height: 20px
+        top: 11px
+    
+      &:after 
+        content: ''
+        width: 5px
+        height: 4px
+        right: -5px
+        top: 9px
+        position: absolute
+        background: $infoBlue
+        opacity: 0
+
+        +transition(.2s)
+
+  .table-delete-column, .table-hide-column, .table-delete-row, .table-hide-row
+    position: relative
+    display: inline-block
+    height: 21px
+    width: 21px
+    background: center no-repeat
+    background-size: 14px
+    opacity: .5
+    cursor: pointer
+    margin: 0 6px
+
+    &:hover 
+      opacity: 1
+
+  .table-hide-column, .table-hide-row
+    background: top 2px center no-repeat
+    background-size: 20px
+
+
+.component-list_type .position-item, component-poll_type .position-item
+  background-size: 19px
+  background-position: left 8px center
+
+
+.component-inline-list-content, .component-inline-poll-content
+  margin-top: 12px
+  position: relative
+  border-top: 1px dotted $themeGrey
+
+  .list-item, .poll-item
+    position: relative
+    float: left
+    display: inline-block
+    width: 100%
+    height: 36px
+
+    +border(1px, #dadada)
+    +box
+    +transition(.1s)
+
+    &.chosen
+      height: 40px
+
+      +border(2px, $infoBlue !important)
+  
+    &:last-of-type 
+      border-bottom: none
+  
+    &:nth-of-type(2n) 
+      background: rgba(0,0,0,.02)
+  
+    .type-icon
+      display: none
+      position: relative
+      float: left
+      width: 36px
+      height: 100%
+      background: center no-repeat
+
+      &.item-radio 
+        background-size: 20px
+    
+      &.item-bullet
+
+        &:after 
+          content: ''
+          position: absolute
+          left: 50%
+          top: 50%
+          transform: translateY(-50%) translateX(-50%)
+          display: block
+          height: 7px
+          width: 7px
+          background: $text-lightBlack
+
+          +radius(50%)
+    
+      &.item-number 
+        font-size: 1em
+        font-weight: 500
+        line-height: 36px
+        text-align: center
+        color: $text-lightBlack
+    
+      &.item-check, &.item-checkbox 
+        background: url('../../assets/icons/checkbox_empty.svg') center no-repeat
+        background-size: 22px
+        &.checked 
+          background: url('../../assets/icons/checkbox.svg') center no-repeat
+          background-size: 22px
+  
+    .item-text
+      display: inline-block
+      position: relative
+      width: calc(100% - 108px)
+      text-align: left
+      float: left
+      outline: none
+      font-size: .92em
+      color: $text-lightBlack
+      line-height: 37px
+      margin: 0
+      padding: 0
+
+      +text-overflow
+
+      &.item-text-placeholder 
+        color: $text-darkGrey
+        font-style: italic
+  
+    .item-action
+      display: inline-block
+      position: relative
+      float: right
+      width: 36px
+      height: 100%
+      background: center no-repeat
+      background-size: 19px
+      opacity: .7
+      cursor: pointer
+
+      &:hover 
+        opacity: 1
+    
+      &.list-item-move, &.poll-item-move 
+        background-size: 14px
+
+        +transition(.1s)
+
+        &:active 
+          background-size: 23px
+
+  &[data-type="0"] .item-bullet,
+  &[data-type="0"] .item-radio,
+  &[data-type="1"] .item-number,
+  &[data-type="1"] .item-checkbox,
+  &[data-type="2"] .item-check
+    display: inline-block !important
+
+
+.content-tools
+  display: inline-block
+  position: sticky
+  top: 0
+  float: left
+  width: 100%
+  padding: 9px 0 7px 0
+  background: white
+  z-index: 102
+
+  +box
+
+  button 
+    display: inline-block
+    position: relative
+    float: right
+    margin-left: 12px
+    outline: none
+    border: none
+    height: 36px
+    width: auto
+    padding: 0 14px 0 36px
+    font-family: $font-default
+    font-size: .92em
+    color: $text-lightBlack
+    background: left 12px center no-repeat
+    background-size: 18px !important
+    cursor: pointer
+
+    +radius(18px)
+    +transition(.2s)
+
+    @media(max-width: 460px) 
+      margin-left: 8px
+
+    &.publish-content 
+      background-image: url("../../assets/icons/websites_white.svg")
+      background-color: $successGreen
+      color: white
+
+      &:hover 
+        background-color: lighten($successGreen, 5%)
+    
+  
+    &.save-content 
+      background-image: url("../../assets/icons/save.svg")
+
+      &:hover 
+        background-color: #e7e7e7
+    
+  
+    &.preview-content 
+      background-image: url("../../assets/icons/visibility-visible_white.svg")
+      background-color: $themeRedLight
+      color: white
+      float: left
+      margin-left: 0
+
+      &:hover 
+        background-color: lighten($themeRedLight, 8%)
+    
+      @media(max-width: 460px) 
+        width: 42px
+        padding-right: 0
+        padding-left: 0
+        text-indent: 99px
+        overflow: hidden
+
+
+.sticky-shadow 
+  position: sticky
+  top: 38px
+  width: 100%
+  height: 8px
+  margin-top: -12px
+  float: left
+  display: inline-block
+  z-index: 101
+
+  +shadow(0, 12px, 6px, rgba(0,0,0,.05), -2px)
+
+
+[data-component=revisions] 
+
+  .revisions-list
+    display: inline-block
+    position: relative
+    width: 100%
+    height: auto
+    max-height: 150px
+    overflow: auto
+    background: #fbfbfb
+
+    +box
+
+    .revisions-revision
+      display: inline-block
+      width: 100%
+      height: auto
+      float: left
+      border-bottom: 1px solid silver
+      padding: 0 12px
+
+      +box
+
+      &:last-of-type 
+        margin-bottom: 0
+        border-bottom: none
+
+      .revision-datetime
+        position: relative
+        display: inline-block
+        background-color: #fbfbfb
+        padding-top: 10px
+        width: 100%
+        height: auto
+        float: left
+        font-size: .82em
+        font-weight: 500
+        color: $text-lightBlack
+        z-index: 1
+
+      .revision-content
+        position: relative
+        display: inline-block
+        float: left
+        clear: both
+        margin: 0
+        height: auto
+        width: 100%
+        padding: 6px 0 10px 0
+        font-size: .92em
+        color: $text-lightBlack
+
+        &:empty 
+          padding-top: 0

@@ -1,0 +1,129 @@
+@import ../Modules/Mixins
+@import ../Modules/Variables
+
+.subcontent-box
+
+  &.input-box
+    border-bottom: 1px dotted $themeGrey
+    padding: 12px
+    height: auto
+
+    +box
+
+    &:first-of-type
+      border-top: 1px dotted $themeGrey
+
+    .selector-element
+      float: right
+      max-width: 320px
+      clear: none
+
+    label
+      display: inline-block
+      position: relative
+      line-height: 32px
+      font-size: .92em
+      font-weight: 400
+      padding-bottom: 0
+      margin: 0
+      color: $text-lightBlack
+
+      &.clear-label
+        width: 100%
+        clear: both
+
+      &.settings-label-small
+        font-size: .82em
+        font-weight: 500
+        text-transform: uppercase
+        line-height: 22px
+
+  .table-content
+    display: inline-block
+    height: auto
+    width: 100%
+    position: relative
+    float: left
+
+    .table-header
+      display: inline-block
+      position: relative
+      float: left
+      width: 100%
+      line-height: 32px
+      background-color: lighten($text-lightGrey, 2%)
+
+      +border(1px, darken($text-lightGrey, 2%))
+      +box
+
+      .header-column
+        display: inline-block
+        font-size: .92em
+        color: $text-lightBlack
+        padding: 0 10px
+        position: relative
+        float: left
+        text-align: center
+        font-weight: 500
+        border-right: 1px solid darken($text-lightGrey, 2%)
+
+        +box
+
+        &:last-of-type
+          border-right: none
+
+        &.platform-column
+          width: 20%
+
+        &.browser-column
+          width: 25%
+
+        &.ip-column
+          width: 15%
+
+        &.last-column
+          width: 25%
+
+        &.views-column
+          width: 15%
+
+    .table-row
+      position: relative
+      display: inline-block
+      float: left
+      width: 100%
+      height: auto
+
+      &:nth-of-type(2n+1)
+        background-color: lighten($text-lightGrey, 2%)
+
+      .row-column
+        display: inline-block
+        line-height: 32px
+        font-size: .92em
+        color: $text-lightBlack
+        padding: 0 10px
+        position: relative
+        float: left
+        border-right: 1px solid darken($text-lightGrey, 2%)
+        border-bottom: 1px solid darken($text-lightGrey, 2%)
+
+        +box
+
+        &.platform-column
+          width: 20%
+
+        &:first-of-type
+          border-left: 1px solid darken($text-lightGrey, 2%)
+
+        &.browser-column
+          width: 25%
+
+        &.ip-column
+          width: 15%
+
+        &.last-column
+          width: 25%
+
+        &.views-column
+          width: 15%

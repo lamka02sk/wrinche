@@ -1,0 +1,427 @@
+@import ../Modules/Mixins
+@import ../Modules/Variables
+
+.media-manager
+  display: block
+  visibility: hidden
+  position: fixed
+  width: 100%
+  height: 100%
+  background: $white
+  z-index: 10000
+  top: 0
+  left: 0
+  opacity: 0
+  transform: rotateX(-8deg)
+  transform-origin: top
+
+  +transition(.3s)
+
+  .manager-header
+    display: inline-block
+    position: relative
+    height: 48px
+    width: 100%
+    z-index: 999
+
+    +shadow(0, 0, 4px, $shadow10)
+
+    .system-logo
+      display: inline-block
+      height: 100%
+      width: auto
+      line-height: 48px
+      margin-left: 24px
+      float: left
+      position: relative
+
+      +box
+
+      img
+        display: inline-block
+        height: 16px
+        width: auto
+        position: relative
+        top: 3px
+
+    .title
+      display: inline-block
+      position: relative
+      float: left
+      margin: 0 0 0 12px
+      height: 100%
+      line-height: 48px
+      font-size: 1.3em
+      font-weight: 500
+      color: $themeBlueLight
+
+    .close-manager
+      position: relative
+      float: right
+      width: 48px
+      height: 100%
+      background: url('../../assets/icons/arrow-bottom.svg') center no-repeat
+      cursor: pointer
+      background-size: 16px
+
+      +transition(.2s)
+
+      &:hover
+        background-color: $whiteSmoke
+
+    button
+      display: inline-block
+      position: relative
+      float: right
+      height: 100%
+      width: auto
+      border: none
+      outline: none
+      background: $white left 16px center no-repeat
+      background-size: 15px
+      cursor: pointer
+      font-family: $font-default
+      font-size: .92em
+      line-height: 48px
+      padding: 0 12px 0 40px
+
+      +transition(.2s)
+
+      &:hover
+        background-color: $whiteSmoke
+
+      &:first-of-type
+        margin-right: 12px
+
+    input
+      display: inline-block
+      border: none
+      outline: none
+      left: 320px
+      width: 480px
+      height: 100%
+      top: 0
+      background-color: $text-lightGrey
+      font-family: $font-default
+      font-size: .92em
+      padding: 0 16px
+      color: $text-lightBlack
+      position: absolute
+
+  .manager-tree
+    display: block
+    position: absolute
+    top: 48px
+    left: 0
+    width: 320px
+    bottom: 0
+    background: rgba(0,0,0,.01)
+
+    .tree-branch
+      display: inline-block
+      width: 100%
+      height: auto
+      padding: 6px 24px
+      border-bottom: 1px solid $whiteSmoke
+
+      +box
+      +transition
+
+      &:hover
+        background: rgba(0,0,0,.02)
+
+      .tree-title
+        display: inline-block
+        position: relative
+        width: 100%
+        height: auto
+        margin: 0
+        padding: 8px 0 8px 28px
+        color: $grey
+        font-weight: 500
+        cursor: pointer
+        background: left center no-repeat
+        background-size: 15px
+
+        +transition(.2s)
+        +box
+
+        &:after
+          content: ''
+          position: absolute
+          right: 0
+          height: 100%
+          top: 0
+          width: 24px
+          background: url('../../assets/icons/arrow-bottom.svg') center no-repeat
+          background-size: 12px
+          opacity: .6
+
+          +transition(.2s)
+
+        &:hover
+          color: $text-lightBlack
+
+          &:after
+            opacity: 1
+
+  .manager-content
+    display: block
+    position: absolute
+    top: 48px
+    left: 320px
+    right: 0
+    bottom: 0
+    padding: 0 102px
+    overflow-y: auto
+
+    +box
+
+    .content-header
+      padding-bottom: 6px
+
+    h2
+      display: inline-block
+      position: relative
+      float: left
+      width: auto
+      height: auto
+      font-size: 2.3em
+      font-weight: 400
+      color: $text-darkGrey
+      margin: 0
+
+      +transition(.2s)
+
+      @media(max-width: 540px)
+        font-size: 1.6em
+        padding: 5px 0 0 0
+
+    .breadcrumbs
+      display: inline-block
+      margin: 0 0 12px 0
+      height: 32px
+      width: 100%
+      position: relative
+      background: rgba(0,0,0,.02)
+      float: left
+
+      .item
+        display: inline-block
+        position: relative
+        float: left
+        width: auto
+        padding: 0 8px 0 32px
+        cursor: pointer
+        line-height: 32px
+        font-size: .92em
+        color: $text-lightBlack
+        background: linear-gradient(to right, $white 0%, $whiteSmoke 50%)
+
+        +transition(.2s)
+        +box
+
+        &:hover
+          font-weight: 500
+
+        &:after
+          content: ''
+          position: absolute
+          width: 0
+          height: 0
+          border-left: 16px solid $whiteSmoke
+          border-top: 16px solid transparent
+          border-bottom: 16px solid transparent
+          top: 0
+          border-right: none
+          left: 99.5%
+          z-index: 1
+
+        &:first-of-type
+          padding-left: 12px
+
+    button
+      display: inline-block
+      position: relative
+      float: left
+      height: 100%
+      width: auto
+      outline: none
+      background: $white left 16px center no-repeat
+      background-size: 15px
+      cursor: pointer
+      margin-right: 12px
+      font-family: $font-default
+      font-size: .92em
+      line-height: 48px
+      padding: 0 12px 0 40px
+
+      +border(1px, $silver)
+      +transition(.2s)
+
+      &:hover
+        background-color: $text-lightGrey
+
+    .quick-actions
+      margin-bottom: 6px
+      display: inline-block
+
+    h3
+      display: inline-block
+      position: relative
+      margin: 0
+      font-weight: 400
+      color: $text-lightBlack
+      padding: 8px 0 6px 0
+      font-size: 1.2em
+
+  .manager-queue
+    display: block
+    width: 480px
+    height: 560px
+    position: absolute
+    bottom: -100%
+    right: 32px
+    background: $themeBlueLight
+    transition: bottom .01s .4s ease-in-out, height .3s ease-in-out
+    overflow: hidden
+
+    &.minimize
+      height: 42px !important
+
+      +transition(.3s)
+
+    .loading
+      display: block
+      position: relative
+      float: right
+      width: 42px
+      margin-right: 12px
+      height: 0
+      overflow: hidden
+
+      +transition(.2s)
+
+    &.loading .loading
+      opacity: 1
+      height: 41px
+      background: url("../../assets/icons/loading.svg") center no-repeat
+      background-size: 18px
+
+    .manager-queue-header
+      display: inline-block
+      position: relative
+      float: left
+      width: 100%
+      height: 42px
+      border-bottom: 1px solid $themeGreyDark
+      padding: 0 18px
+      cursor: pointer
+
+      +box
+
+      .title
+        display: inline-block
+        position: relative
+        float: left
+        width: auto
+        height: auto
+        line-height: 42px
+        margin: 0
+        color: $white
+
+      .minimize-queue
+        display: block
+        height: 100%
+        width: 42px
+        right: 0
+        position: absolute
+        background: url('../../assets/icons/arrow-bottom_white.svg') center no-repeat
+        background-size: 15px
+
+        +transition
+
+        &:hover
+          background-color: rgba(255,255,255,.05)
+
+    .manager-queue-list
+      display: block
+      position: absolute
+      top: 42px
+      left: 0
+      right: 0
+      bottom: 0
+
+      .queue-item
+        display: inline-block
+        position: relative
+        width: 100%
+        height: 64px
+        padding: 6px 18px
+        border-bottom: 1px solid $themeGrey
+
+        +box
+
+        .type-icon
+          display: inline-block
+          float: left
+          position: relative
+          width: 30px
+          background: center no-repeat
+          background-size: 30px
+          height: 100%
+          margin-right: 12px
+
+        .item-name
+          display: inline-block
+          float: left
+          position: relative
+          line-height: 52px
+          color: $white
+          font-size: .92em
+          margin: 0
+          max-width: 250px
+          overflow: hidden
+          text-overflow: ellipsis
+          white-space: nowrap
+
+        .remove-item, .upload-item
+          display: block
+          min-width: 31px
+          height: 31px
+          position: relative
+          float: right
+          background: center no-repeat
+          background-size: 19px
+          margin: 10px 0 10px 10px
+          line-height: 32px
+          font-size: .92em
+          color: $white
+          cursor: pointer
+          opacity: .7
+
+          +transition(.2s)
+          +box
+
+          &:hover
+            opacity: 1
+
+        .upload-item
+          padding: 0 10px
+          background: rgba(255,255,255,.04)
+
+
+
+  &.show
+    transform: rotateX(0deg)
+    opacity: 1
+    visibility: visible
+
+    .manager-queue.show
+      bottom: 32px
+
+      +transition(.2s, ease-in-out, .3s)
+
+
+.hidden-content
+  display: none

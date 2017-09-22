@@ -57,13 +57,13 @@ class Main {
 
     }
 
-    public function setStyles($styles) {
+    public function setStyles($styles, $path = false) {
 
         if(is_array($styles)) {
             foreach($styles as $style)
-                $this->setStyle($style);
+                $this->setStyle($style, $path);
         } else
-            $this->setStyle($styles);
+            $this->setStyle($styles, $path);
 
     }
 
@@ -84,11 +84,27 @@ class Main {
 
     }
 
-    private function setStyle($style) {
 
-        $path = Config::$file['system']['paths']['styles'];
-        $this->ASSETS['styles'][] = '<link rel="stylesheet" type="text/css" href="' . $path . $style . '.min.css">';
-        $this->ASSETS['styles'][] = '<link id="theme" rel="stylesheet" type="text/css" href="' . $path . 'themes/' . $this->theme . '/' . $style . '.min.css">';
+    private function setStyle($style, $path = false) {
+
+        if($path === false) {
+            
+            $path = Config::$file['system']['paths']['styles'];
+            
+            $this->ASSETS['styles'][] =
+                '<link
+                    id="theme"
+                    rel="stylesheet"
+                    type="text/css"
+                    href="' . $path . 'themes/' . $this->theme . '/' . $style . '.min.css">';
+            
+        }
+        
+        $this->ASSETS['styles'][] =
+            '<link
+                rel="stylesheet"
+                type="text/css"
+                href="' . $path . $style . '.min.css">';
 
     }
 
@@ -97,7 +113,10 @@ class Main {
         if($path === false)
             $path = Config::$file['system']['paths']['scripts'];
         
-        $this->ASSETS['scripts'][] = '<script type="application/javascript" src="' . $path . $script . '.min.js"></script>';
+        $this->ASSETS['scripts'][] =
+            '<script
+                type="application/javascript"
+                src="' . $path . $script . '.min.js"></script>';
 
     }
 

@@ -125,6 +125,74 @@
   float: left
 
 
+component-template
+  display: none
+
+
+.input-box
+  position: relative
+  clear: both
+  float: left
+  width: 100%
+
+  &.hide
+    display: none
+
+  &.low-top
+    margin-top: -6px
+
+  &.margin-top
+    margin-top: 6px
+
+  &.margin-bottom
+    margin-bottom: 6px
+
+  .clear-input
+    position: absolute
+    right: 10px
+    bottom: 12px
+    height: 24px
+    width: 24px
+    background: url('../../assets/icons/close.svg') center no-repeat
+    background-size: 19px
+    opacity: .7
+    z-index: 1
+    cursor: pointer
+
+    &:hover
+      opacity: 1
+
+
+.field-validation
+  position: relative
+  margin: -7px auto 0 auto
+  float: left
+  width: 100%
+  height: auto
+  background: $errorRed
+  color: $white
+  font-size: .82em
+  line-height: 0
+  padding: 0 11px
+  transform: rotateX(-90deg)
+  transform-origin: top
+  overflow: hidden
+
+  +box
+  +transition
+
+  &.show
+    transform: rotateX(0deg)
+    line-height: 1
+    padding: 6px 11px
+
+  &.margin-bottom
+    margin-bottom: 6px
+
+  &.no-margin
+    margin: 0
+
+
 @import ../Admin/Content/Menu
 @import ../Admin/Content/Boxes
 @import ../Admin/Content/Actions
