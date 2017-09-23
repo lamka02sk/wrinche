@@ -17,19 +17,6 @@
 
   +transition(.2s)
 
-  &.open
-    visibility: visible
-    background: $shadow20
-
-    +transition(.6s)
-
-    .fullscreen-popup
-      transform: scale(1) rotateX(0deg)
-      opacity: 1
-
-    @media(max-width: 480px)
-      display: block !important
-
   @media(max-width: 480px)
     height: 100%
     overflow: auto
@@ -57,7 +44,9 @@
       opacity: 0
       transform-origin: top
       transform: scale(.8) rotateX(-30deg)
+      max-width: 480px
 
+      +shadow(0, 8px, 64px, $popupShadow)
       +transition(.2s)
 
   &.write-actions
@@ -75,12 +64,19 @@
     border-radius: 25px
     overflow: hidden
 
+    .header-icon
+      background-image: $popupConfirmIcon
+
+  &.write-actions, &.confirmation-box
+    background: $popupActionsBox
+
   .popup-header
     display: block
     position: relative
     width: 100%
     height: 64px
-    border-bottom: 1px solid $silver
+    border-bottom: 1px solid $popupHeaderBorder
+    background: $popupHeaderBackground
 
     +box
 
@@ -90,7 +86,7 @@
       width: 60px
       position: relative
       float: left
-      background: center no-repeat
+      background: $popupHeaderIcon center no-repeat
       background-size: 22px
 
     .header-text
@@ -105,6 +101,7 @@
       margin: 0
       left: -4px
       font-size: 1.4em
+      color: $popupHeaderText
 
     .header-close
       display: inline-block
@@ -112,7 +109,7 @@
       float: right
       width: 64px
       height: 100%
-      background: center no-repeat
+      background: $popupHeaderClose center no-repeat
       background-size: 16px
       opacity: .6
       cursor: pointer
@@ -204,12 +201,15 @@
         width: 50%
         position: relative
         float: left
-        border-bottom: 1px solid $silver
-        border-right: 1px solid $silver
+        border-bottom: 1px solid $popupTailBorder
+        border-right: 1px solid $popupTailBorder
         cursor: pointer
 
         +transition(.2s)
         +box
+
+        &:hover
+          background: $popupTailHover
 
         &:nth-of-type(2n)
           border-right: none
@@ -222,7 +222,7 @@
           border-right: none
 
           &.no-bottom
-            border-bottom: 1px solid $silver
+            border-bottom: 1px solid $popupTailBorder
 
         &:last-of-type
           border-bottom: none
@@ -230,6 +230,7 @@
       .tails-tail
         display: block
         position: relative
+        background: $popupTailsBackground
 
         .tail-icon
           display: block
@@ -251,5 +252,19 @@
           margin: 0
           font-size: 1.1em
           font-weight: 400
+          color: $popupTailText
 
           +box
+
+  &.open
+    visibility: visible
+    background: $shadow20
+
+    +transition(.6s)
+
+    .fullscreen-popup
+      transform: scale(1) rotateX(0deg)
+      opacity: 1
+
+    @media(max-width: 480px)
+      display: block !important

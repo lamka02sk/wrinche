@@ -17,9 +17,11 @@ header
   height: 52px
   width: 100%
   z-index: 999
+  background: $headerBackground
 
   +transition(.2s)
   +box
+  +shadow(0, 0, 6px, $headerShadow)
 
   @media(max-width: 920px) 
     height: 84px
@@ -51,6 +53,12 @@ header
       height: 23px
       padding: 16px
 
+      &.logo-light
+        display: $headerLogoLight
+
+      &.logo-dark
+        display: $headerLogoDark
+
       +transition
 
       @media(max-width: 920px)
@@ -66,7 +74,7 @@ header
     overflow: hidden
     margin: 7px 0
 
-    +border(1px, $silver)
+    +border(1px, $headerSearchBorder)
     +radius(19px)
     +transition(.2s)
     +box
@@ -78,7 +86,7 @@ header
       left: 12px
       height: 100%
       width: 18px
-      background: url('../../assets/icons/search.svg') center no-repeat
+      background: $headerSearchIcon center no-repeat
       background-size: 18px
       z-index: 1
       opacity: .7
@@ -110,11 +118,12 @@ header
       margin: 0
       outline: none
       border: none
-      font: $font-default
+      font-family: $font-default
       width: 100%
       height: 100%
       font-size: .87em
-      background: $white
+      background: $headerSearchInputBackground
+      color: $headerSearchInput
 
       +text-overflow
       +transition(.2s)
@@ -146,6 +155,7 @@ header
       font-weight: 500
       font-size: .82em
       text-transform: uppercase
+      color: $headerQuickHeading
 
     .quick-item
       display: inline-block
@@ -162,11 +172,16 @@ header
       +transition
 
       &.empty
+        background-image: $headerQuickItemEmpty
         background-size: 24px
         opacity: .4
+
         &:hover
           opacity: 1
           background-color: transparent
+
+      &:hover
+        background-color: $headerQuickItemHover
 
   .header-team
     display: block
@@ -174,11 +189,14 @@ header
     width: 52px
     float: right
     position: relative
-    background: center no-repeat
+    background: $headerTeamBackground center no-repeat
     background-size: 28px
     cursor: pointer
 
     +transition(.2s)
+
+    &:hover
+      background-color: $headerTeamHover
 
     @media(max-width: 920px)
       position: fixed
@@ -279,6 +297,7 @@ header
     padding: 0 6px 0 12px
     cursor: pointer
     font-size: .92em
+    color: $headerAccount
 
     +box
 
@@ -307,7 +326,7 @@ header
       border-bottom: 1px solid #f8f8f8
       text-transform: none
       cursor: auto
-      color: $text-lightBlack
+      color: $headerAccountUser
 
       +box
       +transition(.2s)
@@ -337,8 +356,10 @@ header
       transform: scale(.6)
       transform-origin: 85% 12%
       visibility: hidden
+      background: $headerAccountDropdownBackground
+      color: $headerAccountDropdown
 
-      +shadow(0, 4px, 18px, $shadow12)
+      +shadow(0, 4px, 18px, $headerAccountDropdownShadow)
       +radius(18px)
       +box
       +transition(.2s)
@@ -357,7 +378,7 @@ header
         top: 4px
         width: 22px
         height: 22px
-        background: #b8b8b8
+        background: $headerAccountDropdownPrivileges
         color: white
         font-size: .92em
         text-align: center
@@ -389,10 +410,14 @@ header
         background: center right 18px no-repeat
         cursor: pointer
 
+        &:hover
+          background-color: $headerAccountDropdownItemHover
+
         +transition
         +box
 
         &.logout
+          background-image: $headerAccountDropdownLogout
           background-size: 17px
 
 

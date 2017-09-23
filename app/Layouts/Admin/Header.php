@@ -77,8 +77,11 @@ require_once ROOT . '/app/Layouts/Admin/Splash.php';
                         <div class="tails-tail<?= $noBorderBottom ?>"
                              data-target="content"
                              data-link="write/<?= strtolower($item['name']) ?>">
-                            <span class="tail-icon <?= strtolower($item['name']) ?>"></span>
+                            
+                            <span class="tail-icon icon-<?= strtolower($item['name']) ?>"></span>
+                            
                             <p class="tail-text" data-locale="WRITE_<?= strtoupper($item['name']) ?>"></p>
+                            
                         </div>
 
                     <?php

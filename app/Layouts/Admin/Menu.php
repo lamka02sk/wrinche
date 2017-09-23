@@ -117,12 +117,12 @@
 
     <div class="more-content">
 
-        <span class="content-item help"></span>
-        <span class="content-item settings" data-link="settings" data-target="content"></span>
-        <span class="content-item eula"></span>
-        <span class="content-item pro"></span>
-        <span class="content-item update"></span>
-        <span class="content-item logout logout-action"></span>
+        <span class="content-item icon-help"></span>
+        <span class="content-item icon-settings" data-link="settings" data-target="content"></span>
+        <span class="content-item icon-eula"></span>
+        <span class="content-item icon-pro"></span>
+        <span class="content-item icon-update"></span>
+        <span class="content-item icon-logout logout logout-action"></span>
 
     </div>
 

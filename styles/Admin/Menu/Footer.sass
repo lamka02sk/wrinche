@@ -10,6 +10,7 @@ footer
   left: 0
   line-height: 36px
   padding: 0
+  background: $footerBackground
 
   +box
   +transition(.2s)
@@ -28,6 +29,8 @@ footer
     @media(max-width: 920px)
       bottom: 64 * 5px
 
+      +shadow(0, -2px, 24px, $footerOpenedShadow)
+
   @media(max-width: 920px)
     width: 64px
     bottom: 0
@@ -40,6 +43,7 @@ footer
     width: 100%
     text-align: left
     padding: 0 18px
+    color: $footerCreditsColor
 
     +box
 
@@ -50,6 +54,7 @@ footer
       width: auto
       height: 64px
       line-height: 64px
+      background: $footerCreditsBackground_920
 
       +transition(.2s)
 
@@ -60,7 +65,7 @@ footer
     position: absolute
     right: 8px
     bottom: 0
-    background: center center no-repeat
+    background: $footerMoreTriggerBackground center center no-repeat
     cursor: pointer
     background-size: 16px
     opacity: .7
@@ -83,6 +88,7 @@ footer
     display: block
     height: 50px
     width: 100%
+    background: $footerMoreBackground
 
     @media(max-width: 920px)
       width: 64px
@@ -95,13 +101,16 @@ footer
       height: 100%
       position: relative
       float: left
-      border-right: 1px solid $silver
+      border-right: 1px solid $footerMoreItemBorder
       cursor: pointer
       background: center center no-repeat
       background-size: 22px
 
       +transition
       +box
+
+      &:hover
+        background-color: $footerMoreItemBackgroundHover
 
       @media(max-width: 920px)
         width: 100%
@@ -111,7 +120,7 @@ footer
         border-right: none
 
         @media(max-width: 920px)
-          border-right: 1px solid $silver
+          border-right: 1px solid $footerMoreItemLastBorder_920
 
 
       &.settings
