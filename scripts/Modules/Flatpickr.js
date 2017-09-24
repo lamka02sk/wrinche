@@ -3,7 +3,7 @@ import Global from '../Modules/Global';
 
 export default {
 
-    locale: Global.translate.language,
+    locale: require('flatpickr/dist/l10n/' + Global.translate.language),
 
     initialize() {
 
@@ -23,7 +23,7 @@ export default {
             dateFormat   : 'd.m.Y H:i:s',
             enableTime   : true,
             enableSeconds: true,
-            locale       : locale,
+            locale       : this.locale,
             disableMobile: true,
             time_24hr    : true
         });
@@ -38,7 +38,7 @@ export default {
             enableTime   : true,
             enableSeconds: true,
             minDate      : 'today',
-            locale       : locale,
+            locale       : this.locale,
             disableMobile: true,
             time_24hr    : true
         });
@@ -53,7 +53,7 @@ export default {
             enableTime   : true,
             enableSeconds: true,
             maxDate      : 'today',
-            locale       : locale,
+            locale       : this.locale,
             disableMobile: true,
             time_24hr    : true
         });
@@ -65,7 +65,7 @@ export default {
         flatpickr(".date-picker", {
             altFormat    : true,
             dateFormat   : 'd.m.Y',
-            locale       : locale,
+            locale       : this.locale,
             disableMobile: true
         });
 
@@ -77,7 +77,7 @@ export default {
             altFormat    : true,
             dateFormat   : 'd.m.Y',
             maxDate      : 'today',
-            locale       : locale,
+            locale       : this.locale,
             disableMobile: true
         });
 
@@ -89,7 +89,7 @@ export default {
             altFormat    : true,
             dateFormat   : 'd.m.Y',
             minDate      : 'today',
-            locale       : locale,
+            locale       : this.locale,
             disableMobile: true
         });
 

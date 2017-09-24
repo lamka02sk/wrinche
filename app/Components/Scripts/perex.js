@@ -1,22 +1,21 @@
-componentsModule.modules.perex = {
+import Utils from "../../../scripts/Modules/Utils";
+
+let perex = {
 
     start: function() {
 
         // Save elements
-        let current           = componentsModule.modules.perex;
-        current.parentElement = document.querySelector('[data-component=perex]');
-        current.dateInput     = current.parentElement.querySelector('[name=component_perex_date]');
-        current.locationInput = current.parentElement.querySelector('[name=component_perex_location]');
+        perex.parentElement = document.querySelector('[data-component=perex]');
+        perex.dateInput     = perex.parentElement.querySelector('[name=component_perex_date]');
+        perex.locationInput = perex.parentElement.querySelector('[name=component_perex_location]');
 
         // Clear date input
-        componentsModule.initializeEvent({
+        Utils.registerEvent({
 
             event  : 'click',
-            element: current.parentElement.querySelector('.clear-perex-date'),
+            element: perex.parentElement.querySelector('.clear-perex-date'),
             content: function() {
-
-                current.dateInput.value = '';
-
+                perex.dateInput.value = '';
             }
 
         });
@@ -26,24 +25,23 @@ componentsModule.modules.perex = {
     resume: function() {
 
         // Save current instance
-        let current = componentsModule.modules.perex;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data  = perex.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
 
         const object = JSON.parse(data);
 
-        current.dateInput.value     = object.perex_date;
-        current.locationInput.value = object.perex_location;
+        perex.dateInput.value     = object.perex_date;
+        perex.locationInput.value = object.perex_location;
 
-        triggerEvent(current.locationInput, 'change');
+        Utils.triggerEvent(perex.locationInput, 'change');
 
     },
 
     validate: function() {
 
-        const data = componentsModule.modules.perex.serialize().perex_location;
+        const data = perex.serialize().perex_location;
 
         return (data.length < 121);
 
@@ -51,13 +49,13 @@ componentsModule.modules.perex = {
 
     serialize: function() {
 
-        let current = componentsModule.modules.perex;
-
         return {
-            perex_date    : current.dateInput.value.trim(),
-            perex_location: current.locationInput.value.trim()
+            perex_date    : perex.dateInput.value.trim(),
+            perex_location: perex.locationInput.value.trim()
         }
 
     }
 
 };
+
+module.exports = perex;

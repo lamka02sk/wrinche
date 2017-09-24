@@ -27,6 +27,8 @@ packery = $('div.content-settings').packery({
     gutter: 22
 });
 
+// ********************************************************************************************************
+
 // Init sortable
 tmp = document.querySelector('div.content-builder-content');
 if(tmp) {
@@ -71,6 +73,8 @@ $('span.collapse-trigger').click(function(event) {
     event.target.parentNode.parentNode.parentNode.classList.toggle('open');
     packery.packery().reloadItems();
 });
+
+// ****************************************************************************************
 
 // Add inline component
 document.querySelectorAll('div.builder-tools button.add-content').forEach(function(item) {

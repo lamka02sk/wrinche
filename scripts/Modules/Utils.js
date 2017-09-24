@@ -75,7 +75,7 @@ export default {
 
     showValidationResults(element, locale, hide, callback) {
 
-        callback       = callback || function() {};
+        callback = callback || function() {};
         let messageBox = element.parentNode.querySelector('.validate-message');
 
         if(hide === true) {
@@ -101,13 +101,13 @@ export default {
         messageBox.setAttribute('data-locale', locale);
         let loopBreak = false;
 
-        for(let i in translate.locale) {
+        for(let i in Global.translate.locale) {
 
-            for(let j in translate.locale[i]) {
+            for(let j in Global.translate.locale[i]) {
 
                 if(j === locale) {
 
-                    messageBox.innerText = translate.locale[i][j];
+                    messageBox.innerText = Global.translate.locale[i][j];
                     loopBreak            = true;
 
                     break;
@@ -167,16 +167,6 @@ export default {
             hidePopup();
 
         });
-
-    },
-
-    reloadPackery(timeout) {
-
-        timeout = timeout || 0;
-
-        setTimeout(() => {
-            packery.packery().reloadItems();
-        }, timeout);
 
     },
 

@@ -331,6 +331,25 @@ component-template
     margin: 0
 
 
+.validate-message
+  display: inline-block
+  float: left
+  position: relative
+  margin: -6px 0 6px 0
+  width: 100%
+  height: auto
+  line-height: 26px
+  background: $validateBackground
+  color: $validateColor
+  font-size: .82em
+  padding: 0 13px
+
+  +box
+
+  &.no-margin
+    margin: 0
+
+
 @import ../Admin/Content/Menu
 @import ../Admin/Content/Boxes
 @import ../Admin/Content/Actions

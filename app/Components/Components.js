@@ -1,75 +1,33 @@
-function ComponentsModule() {
+import Global from "../../scripts/Modules/Global";
+import Utils from "../../scripts/Modules/Utils";
 
-    this.modulesCache = {};
-    this.components   = [];
-    this.modules      = {};
-
-    /*
-     * EVENT HANDLING
-     */
-
-    /**
-     * Initialize event on defined elements
-     * @param eventData
-     */
-    this.initializeEvent = function(eventData) {
-
-        let eventList = eventData.event.trim().split(' ');
-
-        // Multiple elements bound to event
-        if(eventData.element[0] !== undefined)
-
-            for(let element = 0; element < eventData.element.length; ++element)
-                for(let event = 0; event < eventList.length; ++event)
-                    eventData.element[element].addEventListener(eventList[event], eventData.content);
-
-        // Single element bound to event
-        else
-
-            for(let i = 0; i < eventList.length; ++i)
-                eventData.element.addEventListener(eventList[i], eventData.content);
-
-    };
-
-    /**
-     * Initialize multiple events on defined elements
-     * @type {function(this:ComponentsModule)}
-     */
-    this.initializeEvents = function(events) {
-
-        for(let eventData = 0; eventData < events.length; ++eventData)
-            componentsModule.initializeEvent(events[eventData]);
-
-    };
+export default class {
 
     /*
      * COMPONENT INITIALIZATION
      */
 
     /**
-     * Downloads and saves components to make them reusable
-     * @param component
+     * Start the component system and prepare components for use
      */
-    this.loadComponent = function(component) {
+    constructor(components) {
 
-        componentsModule.modules[component] = {};
+        this.components   = [];
+        this.modules      = {};
 
-        let cache = componentsModule.modulesCache;
-        if(!(component in cache))
-            cache[component] = getFile('app/Components/Scripts/' + component + '.min.js');
+        this.components = components;
+        this.initializeComponents();
+        this.resumeComponents();
 
-        eval(cache[component]);
-
-    };
+    }
 
     /**
      * Initialize single component with all events
-     * @type {function(this:ComponentsModule)}
      */
-    this.initializeComponent = function(component) {
+    initializeComponent(component) {
 
-        componentsModule.loadComponent(component);
-        let componentData = componentsModule.modules[component];
+        // Select component
+        let componentData = require('./Scripts/' + component);
 
         if(componentData.start)
             componentData.start();
@@ -77,68 +35,24 @@ function ComponentsModule() {
         if(componentData.resume)
             componentData.resume();
 
+        this.modules[component] = componentData;
+
         if(!componentData.events)
             return false;
 
         let eventsData = componentData.events;
-        componentsModule.initializeEvents(eventsData);
+        Utils.registerEvents(eventsData);
 
-    };
+    }
 
     /**
      * Initialize all components needed
-     * @type {function(this:ComponentsModule)}
      */
-    this.initializeComponents = function() {
+    initializeComponents() {
 
-        let componentsList = componentsModule.components;
-        if(localStorage) {
-            componentsModule.modulesCache = JSON.parse(localStorage.getItem('wrinche.componentsCache')) || {};
-            componentsModule.checkComponentsIntegrity();
-        }
+        this.components.forEach(component => this.initializeComponent(component));
 
-        for(let component = 0; component < componentsList.length; ++component)
-            componentsModule.initializeComponent(componentsList[component]);
-
-        if(localStorage)
-            localStorage.setItem('wrinche.componentsCache', JSON.stringify(componentsModule.modulesCache));
-
-    };
-
-    /**
-     * Check integrity of the local components, remove invalid ones
-     */
-    this.checkComponentsIntegrity = function() {
-
-        // Retrieve list of component hashes
-        let componentHashes = getJson(URI + 'api/system.check.integrity.components&csrf_token=' + csrf_token).data;
-
-        // Check all components in cache
-        let generator, hash;
-        for(let componentName in componentsModule.modulesCache) {
-
-            generator = new jsSHA('SHA-256', 'TEXT');
-            generator.update(componentsModule.modulesCache[componentName]);
-            hash = generator.getHash('HEX');
-
-            if(hash !== componentHashes[componentName])
-                delete componentsModule.modulesCache[componentName];
-
-        }
-
-    };
-
-    /**
-     * Start the component system and prepare components for use
-     * @type {function(this:ComponentsModule)}
-     */
-    this.start = function(components) {
-
-        componentsModule.components = components;
-        componentsModule.initializeComponents();
-        componentsModule.resumeComponents();
-
-    };
+    }
 
     /*
      * DATA MANIPULATION
@@ -146,35 +60,31 @@ function ComponentsModule() {
 
     /**
      * Validate data of all components
-     * @type {function(this:ComponentsModule)}
      */
-    this.validate = function() {
+    validate() {
 
-        for(let component = 0; component < componentsModule.components.length; ++component)
-            if(!this.modules[componentsModule.components[component]].validate())
+        for(let component = 0; component < this.components.length; ++component)
+            if(!this.modules[this.components[component]].validate())
                 return false;
 
         return true;
 
-    };
+    }
 
     /**
      * Serialize data from all components
-     * @type {function(this:ComponentsModule)}
      */
-    this.serialize = function() {
+    serialize() {
 
         let result = {};
-        for(let component = 0; component < componentsModule.components.length; ++component) {
 
-            let componentName     = componentsModule.components[component];
-            result[componentName] = componentsModule.modules[componentName].serialize();
-
-        }
+        this.components.forEach(component => {
+            result[component] = this.modules[component].serialize();
+        });
 
         return result;
 
-    };
+    }
 
     /*
      * COMPONENT INSTANCES
@@ -185,7 +95,7 @@ function ComponentsModule() {
      * @param componentName
      * @return {*}
      */
-    this.createFromTemplate = function(componentName) {
+    createFromTemplate(componentName) {
 
         let templateElement = document.querySelector('#component_' + componentName + '_template');
 
@@ -194,26 +104,25 @@ function ComponentsModule() {
 
         return templateElement.children[0].cloneNode(true);
 
-    };
+    }
 
     /**
      * Create new component instance
-     * @type {function(this:ComponentsModule)}
      */
-    this.createComponent = function(componentName) {
+    createComponent(componentName) {
 
         let inlineElement = document.querySelector('div.content-builder-content');
 
         if(typeof inlineElement === 'undefined')
             return false;
 
-        if(!(componentName in componentsModule.modules))
+        if(!(componentName in this.modules))
             return false;
 
-        if(!("create" in componentsModule.modules[componentName]))
+        if(!("create" in this.modules[componentName]))
             return false;
 
-        let template = componentsModule.createFromTemplate(componentName);
+        let template = this.createFromTemplate(componentName);
 
         if(!template)
             return false;
@@ -221,20 +130,19 @@ function ComponentsModule() {
         let identifier = +new Date();
         template.setAttribute('data-id', identifier);
 
-        componentsModule.modules[componentName].create(identifier, template);
-        componentsModule.registerEvents(componentName, identifier, template);
+        this.modules[componentName].create(identifier, template);
+        this.registerEvents(componentName, identifier, template);
         inlineElement.appendChild(template);
 
-        if('onCreate' in componentsModule.modules[componentName])
-            componentsModule.modules[componentName].onCreate(identifier);
+        if('onCreate' in this.modules[componentName])
+            this.modules[componentName].onCreate(identifier);
 
-    };
+    }
 
     /**
      * Register default events for new component instance
-     * @type {function(this:ComponentsModule)}
      */
-    this.registerEvents = function(name, identifier, parentElement, data) {
+    registerEvents(name, identifier, parentElement, data) {
 
         let headerElement  = parentElement.querySelector('div.component-element-header');
         let contentElement = parentElement.querySelector('div.component-element-content');
@@ -245,7 +153,7 @@ function ComponentsModule() {
             titleElement.innerText = data.title.trim();
 
         // Delegate default events
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 event  : 'click',
@@ -271,18 +179,18 @@ function ComponentsModule() {
                     else if(element.matches('.component-inline-disable')) {
                         parentElement.classList.toggle('disabled');
                         element.classList.toggle('icon-off');
-                        componentsModule.modules[name].data[identifier].disabled ^= true;
+                        this.modules[name].data[identifier].disabled ^= true;
                     }
 
                     // Remove component instance
                     else if(element.matches('.component-inline-remove')) {
 
                         let componentName = headerElement.querySelector('.component-inline-label').innerText.trim();
-                        let actionText    = translate.locale.response['ACTION_CONFIRM_REMOVE_COMPONENT'].replace('%component%', componentName);
+                        let actionText    = Global.translate.locale.response['ACTION_CONFIRM_REMOVE_COMPONENT'].replace('%component%', componentName);
 
-                        confirmAction(actionText, function() {
+                        confirmAction(actionText, () => {
                             parentElement.parentNode.removeChild(parentElement);
-                            delete componentsModule.modules[name].data[identifier];
+                            delete this.modules[name].data[identifier];
                         });
 
                     }
@@ -321,7 +229,7 @@ function ComponentsModule() {
                 event  : 'keyup change',
                 element: titleElement,
                 content: function(event) {
-                    componentsModule.modules[name].data[identifier].title = event.target.innerText.trim();
+                    this.modules[name].data[identifier].title = event.target.innerText.trim();
                 }
             }
 
@@ -330,7 +238,7 @@ function ComponentsModule() {
         if(data && data.disabled !== 0)
             triggerEvent(headerElement.querySelector('.component-inline-disable'), 'click');
 
-    };
+    }
     
     /*
      * RESUME MULTI INSTANCE COMPONENTS
@@ -339,7 +247,7 @@ function ComponentsModule() {
     /**
      * Resume multi instance components into content element
      */
-    this.resumeComponents = function() {
+    resumeComponents() {
 
         // Get components order
         let contentElement = document.querySelector('[data-order]');
@@ -359,9 +267,9 @@ function ComponentsModule() {
 
         // Save resume data
         let componentsResumeData = {};
-        componentsModule.components.forEach(function(componentName) {
+        this.components.forEach(function(componentName) {
 
-            let template = componentsModule.createFromTemplate(componentName);
+            let template = this.createFromTemplate(componentName);
 
             if(!template)
                 return false;
@@ -384,7 +292,7 @@ function ComponentsModule() {
 
         order.forEach(function(componentID) {
 
-            componentsModule.components.some(function(componentName) {
+            this.components.some(function(componentName) {
 
                 if(
                     !componentsResumeData[componentName] ||
@@ -394,7 +302,7 @@ function ComponentsModule() {
                 )
                     return false;
 
-                let current = componentsModule.modules[componentName];
+                let current = this.modules[componentName];
                 const data = componentsResumeData[componentName];
                 let template = data.template.cloneNode(true);
                 const resumeData = data.resume[componentID];
@@ -405,7 +313,7 @@ function ComponentsModule() {
                     return false;
 
                 current.resumeInline(componentID, template, resumeData);
-                componentsModule.registerEvents(componentName, componentID, template, resumeData);
+                this.registerEvents(componentName, componentID, template, resumeData);
                 contentElement.appendChild(template);
 
                 if(current.onCreate)
@@ -417,8 +325,6 @@ function ComponentsModule() {
 
         });
 
-    };
+    }
 
-}
-
-let componentsModule = new ComponentsModule();
+};

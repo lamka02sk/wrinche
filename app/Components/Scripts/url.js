@@ -1,15 +1,20 @@
-componentsModule.modules.url = {
+import Utils from '../../../scripts/Modules/Utils';
+import Ajax from "../../../scripts/Modules/Ajax";
+import Router from "../../../scripts/Modules/Router";
+import Global from "../../../scripts/Modules/Global";
 
-    isFree: function() {
+let url = {
+
+    isFree() {
 
         let response = true;
 
         // Check if slug is in use
-        postData(
-            URI + 'api/articles.exists.url',
+        Ajax.post(
+            Router.createLink('api/articles.exists.url'),
             {
                 api: {
-                    url   : componentsModule.modules.url.serialize().url,
+                    url   : url.serialize().url,
                     ignore: document.querySelector('div.content-wrapper').getAttribute('data-id')
                 }
             },
@@ -25,26 +30,24 @@ componentsModule.modules.url = {
 
     },
 
-    start: function() {
+    start() {
 
         // Save elements
-        let current            = componentsModule.modules.url;
-        current.parentElement  = document.querySelector('[data-component=url]');
-        current.inputElement   = current.parentElement.querySelector('input');
-        current.messageElement = current.parentElement.querySelector('.validate-message');
+        url.parentElement  = document.querySelector('[data-component=url]');
+        url.inputElement   = url.parentElement.querySelector('input');
+        url.messageElement = url.parentElement.querySelector('.validate-message');
 
         // Real-time url validation
-        componentsModule.initializeEvent({
+        Utils.registerEvent({
 
             event  : 'keyup change',
-            element: current.inputElement,
+            element: url.inputElement,
             content: function() {
 
-                showValidationResult(
-                    current.messageElement,
+                Utils.showValidationResults(
+                    url.messageElement,
                     'COMPONENT_URL_INVALID',
-                    current.validate(),
-                    reloadPackery
+                    url.validate()
                 );
 
             }
@@ -53,26 +56,24 @@ componentsModule.modules.url = {
 
     },
 
-    resume: function() {
+    resume() {
 
         // Save current instance
-        let current = componentsModule.modules.url;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data = url.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
 
-        const object               = JSON.parse(data);
-        current.inputElement.value = object.url;
+        const object = JSON.parse(data);
+        url.inputElement.value = object.url;
 
-        triggerEvent(current.inputElement, 'change');
+        Utils.triggerEvent(url.inputElement, 'change');
 
     },
 
-    validate: function() {
+    validate() {
 
-        let current = componentsModule.modules.url;
-        const data  = current.serialize().url;
+        const data  = url.serialize().url;
 
         if(!/^[a-z][a-z0-9\-]+[a-z]$/.test(data))
             return false;
@@ -80,16 +81,18 @@ componentsModule.modules.url = {
         if(data.length < 3 || data.length > 120)
             return false;
 
-        return (current.isFree());
+        return (url.isFree());
 
     },
 
-    serialize: function() {
+    serialize() {
 
         return {
-            url: componentsModule.modules.url.inputElement.value.trim()
+            url: url.inputElement.value.trim()
         }
 
     }
 
 };
+
+module.exports = url;

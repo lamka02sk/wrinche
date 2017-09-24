@@ -1,20 +1,21 @@
-componentsModule.modules.title = {
+import Utils from '../../../scripts/Modules/Utils';
 
-    start: function() {
+let title = {
+
+    start() {
 
         // Save elements
-        let current           = componentsModule.modules.title;
-        current.parentElement = document.querySelector('[data-component=title]');
-        current.inputElement  = current.parentElement.querySelector('input');
-        current.titleElement  = document.querySelector('.mainline-heading');
+        title.parentElement = document.querySelector('[data-component=title]');
+        title.inputElement  = title.parentElement.querySelector('input');
+        title.titleElement  = document.querySelector('.mainline-heading');
 
-        componentsModule.initializeEvent({
+        Utils.registerEvent({
 
             event  : 'keydown keyup change',
-            element: current.inputElement,
-            content: function(event) {
+            element: title.inputElement,
+            content: event => {
 
-                current.titleElement.innerText = event.target.value.trim();
+                title.titleElement.innerText = event.target.value.trim();
 
             }
 
@@ -22,36 +23,37 @@ componentsModule.modules.title = {
 
     },
 
-    resume: function() {
+    resume() {
 
         // Save current instance
-        let current = componentsModule.modules.title;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data = title.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
 
-        const object               = JSON.parse(data);
-        current.inputElement.value = object.title;
+        const object = JSON.parse(data);
+        title.inputElement.value = object.title;
 
-        triggerEvent(current.inputElement, 'change');
+        Utils.triggerEvent(title.inputElement, 'change');
 
     },
 
-    validate: function() {
+    validate() {
 
-        const data = componentsModule.modules.title.serialize().title;
+        const data = title.serialize().title;
 
         return (data.length < 101 && data.length > 0);
 
     },
 
-    serialize: function() {
+    serialize() {
 
         return {
-            title: componentsModule.modules.title.inputElement.value.trim()
+            title: title.inputElement.value.trim()
         }
 
     }
 
 };
+
+module.exports = title;

@@ -9,23 +9,29 @@ export default {
 
     createView(locales = []) {
 
-        this.LOCALES = locales;
-        this.fetchViewHTML();
+        return new Promise(resolve => {
+
+            this.LOCALES = locales;
+            this.fetchViewHTML(resolve);
+
+        });
 
     },
 
-    fetchViewHTML() {
+    fetchViewHTML(resolve) {
 
-        const url = Router.createLink(Global.routeAction);
+        const url = Router.createLink(Global.routeAction.join('/'));
 
         Ajax.get(
             url,
             response => {
                 this.viewHTML = response;
                 this.replaceViewHTML(this);
+                resolve();
             },
             response => {
                 // Handle error event
+                resolve();
             }
         );
 

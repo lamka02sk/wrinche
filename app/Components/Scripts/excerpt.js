@@ -1,17 +1,18 @@
-componentsModule.modules.excerpt = {
+import Utils from '../../../scripts/Modules/Utils';
 
-    start: function() {
+let excerpt = {
+
+    start() {
 
         // Save elements
-        let current           = componentsModule.modules.excerpt;
-        current.parentElement = document.querySelector('[data-component=excerpt]');
-        current.inputElement  = current.parentElement.querySelector('textarea');
-        current.excerptBox    = document.querySelector('.header-description');
+        excerpt.parentElement = document.querySelector('[data-component=excerpt]');
+        excerpt.inputElement  = excerpt.parentElement.querySelector('textarea');
+        excerpt.excerptBox    = document.querySelector('.header-description');
 
-        componentsModule.initializeEvent({
+        Utils.registerEvent({
 
             event  : 'keydown keyup change',
-            element: current.inputElement,
+            element: excerpt.inputElement,
             content: function(event) {
 
                 let value    = event.target.value.trim();
@@ -20,7 +21,7 @@ componentsModule.modules.excerpt = {
                 if(length > 36)
                     value = value.substr(0, 36) + '...';
 
-                current.excerptBox.innerText = value;
+                excerpt.excerptBox.innerText = value;
 
             }
 
@@ -28,36 +29,37 @@ componentsModule.modules.excerpt = {
 
     },
 
-    resume: function() {
+    resume() {
 
         // Save current instance
-        let current = componentsModule.modules.excerpt;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data  = excerpt.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
 
-        const object               = JSON.parse(data);
-        current.inputElement.value = object.excerpt;
+        const object = JSON.parse(data);
+        excerpt.inputElement.value = object.excerpt;
 
-        triggerEvent(current.inputElement, 'change');
+        Utils.triggerEvent(excerpt.inputElement, 'change');
 
     },
 
-    validate: function() {
+    validate() {
 
-        const data = componentsModule.modules.excerpt.serialize().excerpt;
+        const data = excerpt.serialize().excerpt;
 
         return (data.length < 361);
 
     },
 
-    serialize: function() {
+    serialize() {
 
         return {
-            excerpt: componentsModule.modules.excerpt.inputElement.value.trim()
+            excerpt: excerpt.inputElement.value.trim()
         }
 
     }
 
 };
+
+module.exports = excerpt;

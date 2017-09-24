@@ -22,5 +22,7 @@ export default {
     translate: null,
     closer: new Closer,
     router: null,
+    packery: null,
+    componentsModule: null,
 
 };

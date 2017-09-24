@@ -45,6 +45,25 @@ export default {
 
     },
 
+    getFile(url, translate = true) {
+
+        Utils.showLoading(translate);
+
+        return $.ajax({
+            type: 'GET',
+            url: url,
+            global: false,
+            async: false,
+            cache: true,
+            success: data => {
+                Utils.hideLoading();
+                return data;
+            },
+            error: () => Utils.hideLoading()
+        }).responseText;
+
+    },
+
     getJSON(url, translate = true) {
 
         Utils.showLoading(translate);
