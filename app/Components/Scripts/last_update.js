@@ -1,32 +1,34 @@
-componentsModule.modules.last_update = {
+import Global from "../../../scripts/Modules/Global";
+import Utils from "../../../scripts/Modules/Utils";
 
-    start: function() {
+let updated = {
+
+    start() {
 
         // Save elements
-        let current           = componentsModule.modules.last_update;
-        current.parentElement = document.querySelector('[data-component=last_update]');
-        current.customCheck   = current.parentElement.querySelector('[name=component_last-update]');
-        current.dateBox       = current.parentElement.querySelector('.component_last_custom');
-        current.dateInput     = current.dateBox.querySelector('input');
-        current.clearInput    = current.dateBox.querySelector('.clear-input');
+        updated.parentElement = document.querySelector('[data-component=last_update]');
+        updated.customCheck   = updated.parentElement.querySelector('[name=component_last-update]');
+        updated.dateBox       = updated.parentElement.querySelector('.component_last_custom');
+        updated.dateInput     = updated.dateBox.querySelector('input');
+        updated.clearInput    = updated.dateBox.querySelector('.clear-input');
 
-        current.customCheck.checked = false;
+        updated.customCheck.checked = false;
 
         // Events
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Show / Hide custom input
                 event  : 'change',
-                element: current.customCheck,
-                content: function() {
+                element: updated.customCheck,
+                content() {
 
-                    if(!!(current.customCheck.checked))
-                        current.dateBox.classList.remove('hide');
+                    if(updated.customCheck.checked)
+                        updated.dateBox.classList.remove('hide');
                     else
-                        current.dateBox.classList.add('hide');
+                        updated.dateBox.classList.add('hide');
 
-                    reloadPackery();
+                    Global.packery.reloadItems();
 
                 }
             },
@@ -34,10 +36,10 @@ componentsModule.modules.last_update = {
             {
                 // Clear input
                 event  : 'click',
-                element: current.clearInput,
-                content: function() {
+                element: updated.clearInput,
+                content() {
 
-                    current.dateInput.value = '';
+                    updated.dateInput.value = '';
 
                 }
             }
@@ -46,33 +48,31 @@ componentsModule.modules.last_update = {
 
     },
 
-    resume: function() {
+    resume() {
 
         // Save current instance
-        let current = componentsModule.modules.last_update;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data  = this.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
 
-        current.dateInput.value = JSON.parse(data).last_update;
+        this.dateInput.value = JSON.parse(data).last_update;
 
     },
 
-    validate: function() {
+    validate() {
 
         return true;
 
     },
 
-    serialize: function() {
+    serialize() {
 
-        let current    = componentsModule.modules.last_update;
-        const isCustom = !!(current.customCheck.checked);
+        const isCustom = updated.customCheck.checked;
         let data       = false;
 
-        if(isCustom && current.dateInput.value !== '')
-            data = current.dateInput.value.trim();
+        if(isCustom && updated.dateInput.value !== '')
+            data = updated.dateInput.value.trim();
 
         return {
 
@@ -83,3 +83,5 @@ componentsModule.modules.last_update = {
     }
 
 };
+
+module.exports = updated;

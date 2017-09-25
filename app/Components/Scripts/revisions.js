@@ -1,21 +1,21 @@
-componentsModule.modules.revisions = {
+import Global from "../../../scripts/Modules/Global";
 
-    start: function() {
+let revisions = {
+
+    start() {
 
         // Save elements
-        let current = componentsModule.modules.revisions;
-        current.parentElement = document.querySelector('[data-component=revisions]');
-        current.textInput = current.parentElement.querySelector('textarea');
-        current.listElement = current.parentElement.querySelector('.revisions-list');
-        current.templateElement = current.parentElement.querySelector('#template_component_revisions_item').childNodes[0];
+        revisions.parentElement = document.querySelector('[data-component=revisions]');
+        revisions.textInput = revisions.parentElement.querySelector('textarea');
+        revisions.listElement = revisions.parentElement.querySelector('.revisions-list');
+        revisions.templateElement = revisions.parentElement.querySelector('#template_component_revisions_item').childNodes[0];
 
     },
 
-    resume: function() {
+    resume() {
 
         // Save current instance
-        let current = componentsModule.modules.revisions;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data = this.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
@@ -25,38 +25,40 @@ componentsModule.modules.revisions = {
         if(revisions === null)
             return true;
 
-        revisions.forEach(function(revision) {
+        revisions.forEach(revision => {
 
-            let template = current.templateElement.cloneNode(true);
+            let template = this.templateElement.cloneNode(true);
             template.childNodes[0].innerText = revision.created_at;
             template.childNodes[1].innerText = revision.description;
 
-            current.listElement.appendChild(template);
+            this.listElement.appendChild(template);
 
         });
 
-        current.listElement.scrollTop = current.listElement.scrollHeight;
+        this.listElement.scrollTop = this.listElement.scrollHeight;
 
-        reloadPackery();
+        Global.packery.reloadItems();
 
     },
 
-    validate: function() {
+    validate() {
 
-        const data = componentsModule.modules.revisions.serialize().revision;
+        const data = revisions.serialize().revision;
 
         return (data.length < 251);
 
     },
 
-    serialize: function() {
+    serialize() {
 
         return {
 
-            revision: componentsModule.modules.revisions.textInput.value.trim()
+            revision: revisions.textInput.value.trim()
 
         }
 
     }
 
 };
+
+module.exports = revisions;

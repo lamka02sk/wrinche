@@ -4,10 +4,12 @@ import Global from '../scripts/Modules/Global';
 import Csrf from '../scripts/Modules/Csrf';
 import Translate from '../scripts/Modules/Translate';
 import Router from '../scripts/Modules/Router';
+
 import 'selector3/dist/theme';
-import 'selector3/dist/selector'
+import Selector from 'selector3/src/app';
 import { MediaManager } from "../vendor/mediaManager";
 
+Global.Selector = Selector;
 Global.MediaManager = MediaManager;
 
 // Translate page
@@ -54,13 +56,13 @@ Utils.registerEvent([
             $(target).find('input').focus();
 
         // Show / Hide Password Fields
-        else if(target.matches('span.show-password')) {
+        else if(target.matches('.show-password, .password-show')) {
 
             let action = target.getAttribute('data-action');
             let input = document.querySelector('input[name=' + action + ']');
 
             if(input.getAttribute('type') === 'password') {
-                inputElement.setAttribute('type', 'text');
+                input.setAttribute('type', 'text');
                 target.classList.add('visible');
             } else {
                 input.setAttribute('type', 'password');

@@ -1,34 +1,36 @@
-componentsModule.modules.meta = {
+import Utils from "../../../scripts/Modules/Utils";
+import Global from "../../../scripts/Modules/Global";
 
-    start: function() {
+let meta = {
+
+    start() {
 
         // Save elements
-        let current           = componentsModule.modules.meta;
-        current.parentElement = document.querySelector('[data-component=meta]');
-        current.customCheck   = current.parentElement.querySelector('[name=component_meta_manually]');
-        current.customBox     = current.parentElement.querySelector('.component_meta_custom');
-        current.keyInput      = current.parentElement.querySelector('[name=component_meta_keywords]');
-        current.descInput     = current.parentElement.querySelector('[name=component_meta_description]');
-        current.robotsSelect  = current.parentElement.querySelector('[name=component_meta_robots]');
+        meta.parentElement = document.querySelector('[data-component=meta]');
+        meta.customCheck   = meta.parentElement.querySelector('[name=component_meta_manually]');
+        meta.customBox     = meta.parentElement.querySelector('.component_meta_custom');
+        meta.keyInput      = meta.parentElement.querySelector('[name=component_meta_keywords]');
+        meta.descInput     = meta.parentElement.querySelector('[name=component_meta_description]');
+        meta.robotsSelect  = meta.parentElement.querySelector('[name=component_meta_robots]');
 
-        current.customCheck.checked = false;
+        meta.customCheck.checked = false;
 
         // Selector
-        current.selector = current.createSelector();
+        meta.selector = meta.createSelector();
 
         // Events
-        componentsModule.initializeEvent({
+        Utils.registerEvent({
 
             event  : 'change',
-            element: current.customCheck,
-            content: function() {
+            element: meta.customCheck,
+            content() {
 
-                if(current.customCheck.checked)
-                    current.customBox.classList.remove('hide');
+                if(meta.customCheck.checked)
+                    meta.customBox.classList.remove('hide');
                 else
-                    current.customBox.classList.add('hide');
+                    meta.customBox.classList.add('hide');
 
-                reloadPackery();
+                Global.packery.reloadItems();
 
             }
 
@@ -36,34 +38,33 @@ componentsModule.modules.meta = {
 
     },
 
-    createSelector: function() {
+    createSelector() {
 
-        return new Selector({
-            selector: '[name=component_meta_robots]',
-            onOpen  : reloadPackery,
-            onClose : reloadPackery
+        return Global.Selector({
+            element: '[name=component_meta_robots]',
+            opened  : Global.packery.reloadItems,
+            closed : Global.packery.reloadItems
         });
 
     },
 
-    resume: function() {
+    resume() {
 
         // Save current instance
-        let current = componentsModule.modules.meta;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data  = this.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
 
         const meta = JSON.parse(data);
 
-        current.customCheck.checked = !!(meta.meta);
-        triggerEvent(current.customCheck, 'change');
+        this.customCheck.checked = !!(meta.meta);
+        Utils.triggerEvent(this.customCheck, 'change');
 
-        current.keyInput.value  = meta.meta_keywords.trim();
-        current.descInput.value = meta.meta_description.trim();
+        this.keyInput.value  = meta.meta_keywords.trim();
+        this.descInput.value = meta.meta_description.trim();
 
-        let selectOptions = current.robotsSelect.querySelectorAll('option');
+        let selectOptions = this.robotsSelect.querySelectorAll('option');
 
         Object.values(selectOptions).forEach(function(selectOption, index) {
 
@@ -74,30 +75,30 @@ componentsModule.modules.meta = {
 
         });
 
-        current.selector.destroy();
-        current.selector = current.createSelector();
+        this.selector.destroy();
+        this.selector = this.createSelector();
 
     },
 
-    validate: function() {
+    validate() {
 
         return true;
 
     },
 
-    serialize: function() {
-
-        let current = componentsModule.modules.meta;
+    serialize() {
 
         return {
 
-            meta            : !!(current.customCheck.checked),
-            meta_keywords   : current.keyInput.value.trim(),
-            meta_description: current.descInput.value.trim(),
-            meta_robots     : parseInt(current.robotsSelect.querySelector('[selected=true]').getAttribute('value'))
+            meta            : meta.customCheck.checked,
+            meta_keywords   : meta.keyInput.value.trim(),
+            meta_description: meta.descInput.value.trim(),
+            meta_robots     : parseInt(meta.robotsSelect.querySelector('[selected=true]').getAttribute('value'))
 
         }
 
     }
 
 };
+
+module.exports = meta;

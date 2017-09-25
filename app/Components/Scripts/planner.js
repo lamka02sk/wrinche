@@ -1,52 +1,53 @@
-componentsModule.modules.planner = {
+import Utils from "../../../scripts/Modules/Utils";
+import Global from "../../../scripts/Modules/Global";
 
-    start: function() {
+let planner = {
+
+    start() {
 
         // Save elements
-        let current           = componentsModule.modules.planner;
-        current.parentElement = document.querySelector('[data-component=planner');
-        current.customPublish = current.parentElement.querySelector('.component_planner_publish_custom');
-        current.notifyBox     = current.parentElement.querySelector('.component_planner_notify_email');
+        planner.parentElement = document.querySelector('[data-component=planner');
+        planner.customPublish = planner.parentElement.querySelector('.component_planner_publish_custom');
+        planner.notifyBox     = planner.parentElement.querySelector('.component_planner_notify_email');
 
-        current.publishAuto   = current.parentElement.querySelector('[name=component_planner_publish]');
-        current.publishInput  = current.parentElement.querySelector('[name=component_planner_publish_datetime]');
-        current.expiryInput   = current.parentElement.querySelector('[name=component_planner_publish_expiry]');
-        current.plannerNotify = current.parentElement.querySelector('[name=component_planner_notify]');
-        current.notifyEmail   = current.parentElement.querySelector('[name=component_planner_notify_email]');
+        planner.publishAuto   = planner.parentElement.querySelector('[name=component_planner_publish]');
+        planner.publishInput  = planner.parentElement.querySelector('[name=component_planner_publish_datetime]');
+        planner.expiryInput   = planner.parentElement.querySelector('[name=component_planner_publish_expiry]');
+        planner.plannerNotify = planner.parentElement.querySelector('[name=component_planner_notify]');
+        planner.notifyEmail   = planner.parentElement.querySelector('[name=component_planner_notify_email]');
 
         // Events
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Delegate change events
                 event  : 'change',
-                element: current.parentElement,
-                content: function(event) {
+                element: planner.parentElement,
+                content(event) {
 
                     let target = event.target;
 
                     // Auto-publication change
-                    if(target === current.publishAuto) {
+                    if(target === planner.publishAuto) {
 
                         if(target.checked)
-                            current.customPublish.classList.add('hide');
+                            planner.customPublish.classList.add('hide');
                         else
-                            current.customPublish.classList.remove('hide');
+                            planner.customPublish.classList.remove('hide');
 
-
-                        reloadPackery();
+                        Global.packery.reloadItems();
 
                     }
 
                     // Notification change
-                    else if(target === current.plannerNotify) {
+                    else if(target === planner.plannerNotify) {
 
                         if(target.checked)
-                            current.notifyBox.classList.remove('hide');
+                            planner.notifyBox.classList.remove('hide');
                         else
-                            current.notifyBox.classList.add('hide');
+                            planner.notifyBox.classList.add('hide');
 
-                        reloadPackery();
+                        Global.packery.reloadItems();
 
                     }
 
@@ -56,8 +57,8 @@ componentsModule.modules.planner = {
             {
                 // Delegate click events
                 event  : 'click',
-                element: current.parentElement,
-                content: function(event) {
+                element: planner.parentElement,
+                content(event) {
 
                     // Clear input
                     if(event.target.matches('.clear-input')) {
@@ -73,11 +74,10 @@ componentsModule.modules.planner = {
 
     },
 
-    resume: function() {
+    resume() {
 
         // Save current instance
-        let current = componentsModule.modules.planner;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data = this.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
@@ -87,39 +87,39 @@ componentsModule.modules.planner = {
         if(planner === null)
             return true;
 
-        current.publishAuto.checked = !(planner.planner);
-        triggerEvent(current.publishAuto, 'change');
+        this.publishAuto.checked = !(planner.planner);
+        Utils.triggerEvent(this.publishAuto, 'change');
 
-        current.publishInput.value = planner.planner_date;
-        current.expiryInput.value  = planner.planner_expiry;
+        this.publishInput.value = planner.planner_date;
+        this.expiryInput.value  = planner.planner_expiry;
 
-        current.plannerNotify.checked = !!(planner.planner_notify);
-        triggerEvent(current.plannerNotify, 'change');
+        this.plannerNotify.checked = !!(planner.planner_notify);
+        Utils.triggerEvent(this.plannerNotify, 'change');
 
-        current.notifyEmail.checked = !!(planner.planner_notify_email);
+        this.notifyEmail.checked = !!(planner.planner_notify_email);
 
     },
 
-    validate: function() {
+    validate() {
 
         return true;
 
     },
 
-    serialize: function() {
-
-        let current = componentsModule.modules.planner;
+    serialize() {
 
         return {
 
-            planner             : !(current.publishAuto.checked),
-            planner_date        : current.publishInput.value.trim(),
-            planner_expiry      : current.expiryInput.value.trim(),
-            planner_notify      : !!(current.plannerNotify.checked),
-            planner_notify_email: !!(current.notifyEmail.checked)
+            planner             : !(planner.publishAuto.checked),
+            planner_date        : planner.publishInput.value.trim(),
+            planner_expiry      : planner.expiryInput.value.trim(),
+            planner_notify      : !!(planner.plannerNotify.checked),
+            planner_notify_email: !!(planner.notifyEmail.checked)
 
         }
 
     }
 
 };
+
+module.exports = planner;

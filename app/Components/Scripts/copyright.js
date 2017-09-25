@@ -1,38 +1,38 @@
-componentsModule.modules.copyright = {
+import Global from "../../../scripts/Modules/Global";
 
-    start: function() {
+let copy = {
+
+    start() {
 
         // Save elements
-        let current           = componentsModule.modules.copyright;
-        current.parentElement = document.querySelector('[data-component=copyright]');
-        current.selectElement = current.parentElement.querySelector('select');
+        copy.parentElement = document.querySelector('[data-component=copyright]');
+        copy.selectElement = copy.parentElement.querySelector('select');
 
-        current.selector = current.createSelector();
+        copy.selector = copy.createSelector();
 
     },
 
-    createSelector: function() {
+    createSelector() {
 
-        return new Selector({
-            selector: '[name=component_copyright_selector]',
-            onOpen  : reloadPackery,
-            onClose : reloadPackery
+        return Global.Selector({
+            element: '[name=component_copyright_selector]',
+            opened : Global.packery.reloadItems,
+            closed : Global.packery.reloadItems
         });
 
     },
 
-    resume: function() {
+    resume() {
 
         // Save current instance
-        let current = componentsModule.modules.copyright;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data  = this.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
 
         const copyright = JSON.parse(data).copyright;
 
-        let selectOptions = current.selectElement.querySelectorAll('option');
+        let selectOptions = this.selectElement.querySelectorAll('option');
 
         Object.values(selectOptions).forEach(function(selectOption, index) {
 
@@ -43,27 +43,29 @@ componentsModule.modules.copyright = {
 
         });
 
-        current.selector.destroy();
-        current.selector = current.createSelector();
+        this.selector.destroy();
+        this.selector = this.createSelector();
 
     },
 
-    validate: function() {
+    validate() {
 
-        const data = componentsModule.modules.copyright.serialize().copyright;
+        const data = copy.serialize().copyright;
 
         return (data > -1 && data < 6);
 
     },
 
-    serialize: function() {
+    serialize() {
 
         return {
 
-            copyright: parseInt(componentsModule.modules.copyright.selectElement.querySelector('[selected=true]').getAttribute('value'))
+            copyright: parseInt(copy.selectElement.querySelector('[selected=true]').getAttribute('value'))
 
         }
 
     }
 
 };
+
+module.exports = copy;

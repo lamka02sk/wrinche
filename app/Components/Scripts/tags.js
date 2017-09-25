@@ -1,29 +1,30 @@
-componentsModule.modules.tags = {
+import Utils from "../../../scripts/Modules/Utils";
+import Global from "../../../scripts/Modules/Global";
 
-    start: function() {
+let tags = {
+
+    start() {
 
         // Save elements
-        let current = componentsModule.modules.tags;
-        current.parentElement = document.querySelector('[data-component=tags]');
-        current.inputElement = current.parentElement.querySelector('input');
-        current.listElement = current.parentElement.querySelector('.tags-list');
-        current.templateElement = current.parentElement.querySelector('#template_component_tags_item').childNodes[0];
+        tags.parentElement = document.querySelector('[data-component=tags]');
+        tags.inputElement = tags.parentElement.querySelector('input');
+        tags.listElement = tags.parentElement.querySelector('.tags-list');
+        tags.templateElement = tags.parentElement.querySelector('#template_component_tags_item').childNodes[0];
 
         // Events
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Delegate click event
                 event: 'click',
-                element: current.parentElement,
-                content: function(event) {
+                element: tags.parentElement,
+                content(event) {
 
                     // Remove tag
                     if(event.target.matches('.tag-remove')) {
 
-                        current.listElement.removeChild(event.target.parentNode);
-
-                        reloadPackery();
+                        tags.listElement.removeChild(event.target.parentNode);
+                        Global.packery.reloadItems();
 
                     }
 
@@ -33,13 +34,13 @@ componentsModule.modules.tags = {
             {
                 // Add tags
                 event: 'keyup',
-                element: current.inputElement,
-                content: function(event) {
+                element: tags.inputElement,
+                content(event) {
 
                     if(!event.keyCode || event.keyCode !== 13)
                         return true;
 
-                    current.addTag();
+                    tags.addTag();
 
                 }
             }
@@ -48,11 +49,10 @@ componentsModule.modules.tags = {
 
     },
 
-    resume: function() {
+    resume() {
 
         // Save current instance
-        let current = componentsModule.modules.tags;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data  = this.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
@@ -62,51 +62,50 @@ componentsModule.modules.tags = {
         if(tags === null)
             return true;
 
-        current.addTag(tags.join(','));
+        this.addTag(tags.join(','));
 
     },
 
-    addTag: function(list) {
+    addTag(list) {
 
-        let current = componentsModule.modules.tags;
-        const tags = list || current.inputElement.value.trim();
+        const tags = list || this.inputElement.value.trim();
 
-        if(!validateTags(tags))
+        if(!Utils.validateTags(tags))
             return true;
 
         const tagList = tags.split(',');
 
-        tagList.map(function(tag) {
+        tagList.map(tag => {
 
             tag = tag.trim();
-            const currentTags = current.serialize().tags;
+            const currentTags = this.serialize().tags;
 
             if(~currentTags.indexOf(tag))
                 return true;
 
-            let template = current.templateElement.cloneNode(true);
+            let template = this.templateElement.cloneNode(true);
             template.innerHTML = '#' + tag + template.innerHTML;
 
-            current.inputElement.value = '';
-            current.listElement.appendChild(template);
+            this.inputElement.value = '';
+            this.listElement.appendChild(template);
 
-            reloadPackery();
+            Global.packery.reloadItems();
 
         });
 
     },
 
-    validate: function() {
+    validate() {
 
-        const tags = componentsModule.modules.tags.serialize().tags;
+        const tags = tags.serialize().tags;
 
-        return validateTags(tags);
+        return Utils.validateTags(tags);
 
     },
 
-    serialize: function() {
+    serialize() {
 
-        const tagElements = componentsModule.modules.tags.listElement.childNodes;
+        const tagElements = tags.listElement.childNodes;
 
         let tagList = Array.from(tagElements).map(function(tagElement) {
 
@@ -123,3 +122,5 @@ componentsModule.modules.tags = {
     }
 
 };
+
+module.exports = tags;

@@ -1,46 +1,48 @@
-componentsModule.modules.mistakes = {
+import Utils from "../../../scripts/Modules/Utils";
+import Global from "../../../scripts/Modules/Global";
+
+let mistakes = {
 
     start: function() {
 
         // Save elements
-        let current           = componentsModule.modules.mistakes;
-        current.parentElement = document.querySelector('[data-component=mistakes]');
-        current.enableCheck   = current.parentElement.querySelector('[name=component_mistakes]');
-        current.notifyBox     = current.parentElement.querySelector('.component_mistakes_notify');
-        current.notifyCheck   = current.notifyBox.querySelector('[name=component_mistakes_notify]');
-        current.emailBox      = current.notifyBox.querySelector('div');
-        current.emailCheck    = current.emailBox.querySelector('input');
+        mistakes.parentElement = document.querySelector('[data-component=mistakes]');
+        mistakes.enableCheck   = mistakes.parentElement.querySelector('[name=component_mistakes]');
+        mistakes.notifyBox     = mistakes.parentElement.querySelector('.component_mistakes_notify');
+        mistakes.notifyCheck   = mistakes.notifyBox.querySelector('[name=component_mistakes_notify]');
+        mistakes.emailBox      = mistakes.notifyBox.querySelector('div');
+        mistakes.emailCheck    = mistakes.emailBox.querySelector('input');
 
         // Delegate change event
-        componentsModule.initializeEvent({
+        Utils.registerEvent({
 
             event  : 'change',
-            element: current.parentElement,
+            element: mistakes.parentElement,
             content: function(event) {
 
                 let target = event.target;
 
                 // Show notifications settings
-                if(target === current.enableCheck) {
+                if(target === mistakes.enableCheck) {
 
                     if(!!(target.checked))
-                        current.notifyBox.classList.remove('hide');
+                        mistakes.notifyBox.classList.remove('hide');
                     else
-                        current.notifyBox.classList.add('hide');
+                        mistakes.notifyBox.classList.add('hide');
 
-                    reloadPackery();
+                    Global.packery.reloadItems();
 
                 }
 
                 // Show email notifications settings
-                else if(target === current.notifyCheck) {
+                else if(target === mistakes.notifyCheck) {
 
                     if(!!(target.checked))
-                        current.emailBox.classList.remove('hide');
+                        mistakes.emailBox.classList.remove('hide');
                     else
-                        current.emailBox.classList.add('hide');
+                        mistakes.emailBox.classList.add('hide');
 
-                    reloadPackery();
+                    Global.packery.reloadItems();
 
                 }
 
@@ -53,21 +55,20 @@ componentsModule.modules.mistakes = {
     resume: function() {
 
         // Save current instance
-        let current = componentsModule.modules.mistakes;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data  = this.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
 
         const mistakes = JSON.parse(data);
 
-        current.enableCheck.checked = !!(mistakes.mistakes);
-        triggerEvent(current.enableCheck, 'change');
+        this.enableCheck.checked = !!(mistakes.mistakes);
+        Utils.triggerEvent(this.enableCheck, 'change');
 
-        current.emailCheck.checked = !!(mistakes.mistakes_email);
+        this.emailCheck.checked = !!(mistakes.mistakes_email);
 
-        current.notifyCheck.checked = !!(mistakes.mistakes_notify);
-        triggerEvent(current.notifyCheck, 'change');
+        this.notifyCheck.checked = !!(mistakes.mistakes_notify);
+        Utils.triggerEvent(this.notifyCheck, 'change');
 
     },
 
@@ -79,16 +80,16 @@ componentsModule.modules.mistakes = {
 
     serialize: function() {
 
-        let current = componentsModule.modules.mistakes;
-
         return {
 
-            mistakes       : !!(current.enableCheck.checked),
-            mistakes_notify: !!(current.notifyCheck.checked),
-            mistakes_email : !!(current.emailCheck.checked)
+            mistakes       : !!(mistakes.enableCheck.checked),
+            mistakes_notify: !!(mistakes.notifyCheck.checked),
+            mistakes_email : !!(mistakes.emailCheck.checked)
 
         }
 
     }
 
 };
+
+module.exports = mistakes;

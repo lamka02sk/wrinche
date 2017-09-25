@@ -1,29 +1,31 @@
-componentsModule.modules.sources = {
+import Utils from "../../../scripts/Modules/Utils";
+import Global from "../../../scripts/Modules/Global";
 
-    start: function() {
+let sources = {
+
+    start() {
 
         // Save elements
-        let current             = componentsModule.modules.sources;
-        current.parentElement   = document.querySelector('[data-component=sources]');
-        current.nameInput       = current.parentElement.querySelector('[name=component_sources_add_name]');
-        current.valueInput      = current.parentElement.querySelector('[name=component_sources_add_source]');
-        current.addButton       = current.parentElement.querySelector('.sources-add');
-        current.itemsList       = current.parentElement.querySelector('.sources-list');
-        current.templateElement = current.parentElement.querySelector('#template_component_sources_item').childNodes[0];
+        sources.parentElement   = document.querySelector('[data-component=sources]');
+        sources.nameInput       = sources.parentElement.querySelector('[name=component_sources_add_name]');
+        sources.valueInput      = sources.parentElement.querySelector('[name=component_sources_add_source]');
+        sources.addButton       = sources.parentElement.querySelector('.sources-add');
+        sources.itemsList       = sources.parentElement.querySelector('.sources-list');
+        sources.templateElement = sources.parentElement.querySelector('#template_component_sources_item').childNodes[0];
 
         // Events
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Enter to add source
                 event  : 'keyup',
-                element: current.valueInput,
-                content: function(event) {
+                element: sources.valueInput,
+                content(event) {
 
                     if(!event.keyCode || event.keyCode !== 13)
                         return true;
 
-                    current.addButton.click();
+                    sources.addButton.click();
 
                 }
             },
@@ -31,40 +33,40 @@ componentsModule.modules.sources = {
             {
                 // Delegate click events
                 event  : 'click',
-                element: current.parentElement,
-                content: function(event) {
+                element: sources.parentElement,
+                content(event) {
 
                     let target = event.target;
 
                     // Add source
-                    if(target === current.addButton)
-                        current.addSource();
+                    if(target === sources.addButton)
+                        sources.addSource();
 
                     // Edit source
                     else if(target.matches('.source-edit')) {
 
                         let parent = target.parentNode;
 
-                        current.nameInput.value  = parent.childNodes[0].innerText.trim();
-                        current.valueInput.value = parent.childNodes[1].innerText.trim();
-                        current.nameInput.focus();
+                        sources.nameInput.value  = parent.childNodes[0].innerText.trim();
+                        sources.valueInput.value = parent.childNodes[1].innerText.trim();
+                        sources.nameInput.focus();
 
-                        current.itemsList.removeChild(parent);
+                        sources.itemsList.removeChild(parent);
 
-                        reloadPackery();
+                        Global.packery.reloadItems();
 
                     }
 
                     // Remove source
                     else if(target.matches('.source-remove')) {
 
-                        current.nameInput.value  = '';
-                        current.valueInput.value = '';
-                        current.nameInput.focus();
+                        sources.nameInput.value  = '';
+                        sources.valueInput.value = '';
+                        sources.nameInput.focus();
 
-                        current.itemsList.removeChild(target.parentNode);
+                        sources.itemsList.removeChild(target.parentNode);
 
-                        reloadPackery();
+                        Global.packery.reloadItems();
 
                     }
 
@@ -75,53 +77,51 @@ componentsModule.modules.sources = {
 
     },
 
-    addSource: function(source) {
+    addSource(source) {
 
         // Save current
-        let current        = componentsModule.modules.sources;
-        let currentSources = current.itemsList.childNodes;
+        let currentSources = sources.itemsList.childNodes;
 
         let sourceNames = Object.values(currentSources).map(function(sourceElement) {
             return sourceElement.childNodes[0].innerText.trim();
         });
 
-        const sourceName = source[0] || current.nameInput.value.trim();
+        const sourceName = source ? source[0] : sources.nameInput.value.trim();
 
         if(~sourceNames.indexOf(sourceName)) {
-            current.nameInput.value = '';
+            sources.nameInput.value = '';
             if(!source)
-                current.nameInput.focus();
+                sources.nameInput.focus();
             return true;
         }
 
-        const sourceValue = source[1] || current.valueInput.value.trim();
+        const sourceValue = source ? source[1] : sources.valueInput.value.trim();
 
         if(sourceName === '' || sourceValue === '') {
             if(!source)
-                current.nameInput.focus();
+                sources.nameInput.focus();
             return true;
         }
 
-        let template                   = current.templateElement.cloneNode(true);
+        let template                   = sources.templateElement.cloneNode(true);
         template.children[0].innerText = sourceName;
         template.children[1].innerText = sourceValue;
 
-        current.nameInput.value  = '';
-        current.valueInput.value = '';
+        sources.nameInput.value  = '';
+        sources.valueInput.value = '';
 
         if(!source)
-            current.nameInput.focus();
+            sources.nameInput.focus();
 
-        current.itemsList.insertBefore(template, current.itemsList.childNodes[0]);
-        reloadPackery();
+        sources.itemsList.insertBefore(template, sources.itemsList.childNodes[0]);
+        Global.packery.reloadItems();
 
     },
 
-    resume: function() {
+    resume() {
 
         // Save current instance
-        let current = componentsModule.modules.sources;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data  = this.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
@@ -133,23 +133,23 @@ componentsModule.modules.sources = {
 
         sources.forEach(function(source) {
 
-            current.addSource(source);
+            this.addSource(source);
 
         });
 
-        reloadPackery();
+        Global.packery.reloadItems();
 
     },
 
-    validate: function() {
+    validate() {
 
         return true;
 
     },
 
-    serialize: function() {
+    serialize() {
 
-        let sourceItems = componentsModule.modules.sources.itemsList.childNodes;
+        let sourceItems = sources.itemsList.childNodes;
 
         let sources = Object.values(sourceItems).reverse().map(function(sourceItem) {
 
@@ -169,3 +169,5 @@ componentsModule.modules.sources = {
     }
 
 };
+
+module.exports = sources;

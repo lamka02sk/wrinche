@@ -26,5 +26,6 @@ export default {
     componentsModule: null,
     MediaManager: null,
     managerActiveInstance: null,
+    Selector: null,
 
 };

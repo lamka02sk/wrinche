@@ -1,30 +1,32 @@
-componentsModule.modules.analytics = {
+import Utils from "../../../scripts/Modules/Utils";
+import Global from "../../../scripts/Modules/Global";
+
+let analytics = {
 
     start: function() {
 
         // Save elements
-        let current            = componentsModule.modules.analytics;
-        current.parentElement  = document.querySelector('[data-component=analytics]');
-        current.detailsElement = current.parentElement.querySelector('div.component_analytics_details');
-        current.analyticsCheck = current.parentElement.querySelector('[name=component_analytics]');
-        current.detailsCheck   = current.parentElement.querySelector('[name=component_analytics_details]');
+        analytics.parentElement  = document.querySelector('[data-component=analytics]');
+        analytics.detailsElement = analytics.parentElement.querySelector('div.component_analytics_details');
+        analytics.analyticsCheck = analytics.parentElement.querySelector('[name=component_analytics]');
+        analytics.detailsCheck   = analytics.parentElement.querySelector('[name=component_analytics_details]');
 
         // Show / Hide "detailed analytics" checkbox
-        componentsModule.initializeEvent({
+        Utils.registerEvent({
 
             event  : 'change',
-            element: current.analyticsCheck,
+            element: analytics.analyticsCheck,
 
             content: function(event) {
 
-                let classList = componentsModule.modules.analytics.detailsElement.classList;
+                let classList = analytics.detailsElement.classList;
 
                 if(!!(event.target.checked))
                     classList.remove('hide');
                 else
                     classList.add('hide');
 
-                reloadPackery();
+                Global.packery.reloadItems();
 
             }
 
@@ -35,18 +37,17 @@ componentsModule.modules.analytics = {
     resume: function() {
 
         // Save current instance
-        let current = componentsModule.modules.analytics;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data  = this.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
 
         const analytics = JSON.parse(data);
 
-        current.analyticsCheck.checked = !!(analytics.analytics);
-        triggerEvent(current.analyticsCheck, 'change');
+        this.analyticsCheck.checked = !!(analytics.analytics);
+        Utils.triggerEvent(this.analyticsCheck, 'change');
 
-        current.detailsCheck.checked = !!(analytics.analytics_details);
+        this.detailsCheck.checked = !!(analytics.analytics_details);
 
     },
 
@@ -58,15 +59,15 @@ componentsModule.modules.analytics = {
 
     serialize: function() {
 
-        let current = componentsModule.modules.analytics;
-
         return {
 
-            analytics        : !!(current.analyticsCheck.checked),
-            analytics_details: !!(current.detailsCheck.checked)
+            analytics        : !!(analytics.analyticsCheck.checked),
+            analytics_details: !!(analytics.detailsCheck.checked)
 
         }
 
     }
 
 };
+
+module.exports = analytics;

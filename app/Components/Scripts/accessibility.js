@@ -1,63 +1,61 @@
-componentsModule.modules.accessibility = {
+import Global from "../../../scripts/Modules/Global";
+
+let accessibility = {
 
     accessibility_selector: 0,
 
-    start: function() {
+    start() {
 
         // Save elements
-        let current             = componentsModule.modules.accessibility;
-        current.parentElement   = document.querySelector('[data-component=accessibility]');
-        current.passwordElement = current.parentElement.querySelector('.component_accessibility_password');
-        current.passwordInput   = current.passwordElement.querySelector('input');
-        current.selectElement   = current.parentElement.querySelector('select');
+        accessibility.parentElement   = document.querySelector('[data-component=accessibility]');
+        accessibility.passwordElement = accessibility.parentElement.querySelector('.component_accessibility_password');
+        accessibility.passwordInput   = accessibility.passwordElement.querySelector('input');
+        accessibility.selectElement   = accessibility.parentElement.querySelector('select');
 
-        current.selector = current.createSelector();
+        accessibility.selector = accessibility.createSelector();
 
     },
 
-    createSelector: function() {
+    createSelector() {
 
-        let current = componentsModule.modules.accessibility;
+        return Global.Selector({
 
-        return new Selector({
+            element: 'select[name=component_accessibility_selector]',
+            selected(instance, option) {
 
-            selector: '[name=component_accessibility_selector]',
-            onSelect: function(instance, option) {
+                accessibility.accessibility_selector = option;
 
-                current.accessibility_selector = option.getAttribute('data-item').trim();
-
-                if(parseInt(current.accessibility_selector) === 1)
-                    current.passwordElement.classList.remove('hide');
+                if(parseInt(accessibility.accessibility_selector) === 1)
+                    accessibility.passwordElement.classList.remove('hide');
                 else
-                    current.passwordElement.classList.add('hide');
+                    accessibility.passwordElement.classList.add('hide');
 
-                reloadPackery();
+                Global.packery.reloadItems();
 
             },
 
-            onOpen : reloadPackery,
-            onClose: reloadPackery
+            opened: Global.packery.reloadItems,
+            closed: Global.packery.reloadItems
 
         });
 
     },
 
-    resume: function() {
+    resume() {
 
         // Save current instance
-        let current = componentsModule.modules.accessibility;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data = this.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
 
         const accessibility = JSON.parse(data);
 
-        let selectOptions              = current.selectElement.querySelectorAll('option');
-        current.accessibility_selector = accessibility.accessibility_selector;
+        let selectOptions           = this.selectElement.querySelectorAll('option');
+        this.accessibility_selector = accessibility.accessibility_selector;
 
         if(accessibility.accessibility_selector === 1)
-            current.passwordElement.classList.remove('hide');
+            this.passwordElement.classList.remove('hide');
 
         Object.values(selectOptions).forEach(function(selectOption, index) {
 
@@ -68,14 +66,14 @@ componentsModule.modules.accessibility = {
 
         });
 
-        current.selector.destroy();
-        current.selector = current.createSelector();
+        this.selector.destroy();
+        this.selector = this.createSelector();
 
     },
 
-    validate: function() {
+    validate() {
 
-        const data             = componentsModule.modules.accessibility.serialize();
+        const data             = accessibility.serialize();
         const validateSelector = (data.accessibility_selector > -1 && data.accessibility_selector < 3);
         const validatePassword = (data.accessibility_password.length < 121);
 
@@ -83,17 +81,17 @@ componentsModule.modules.accessibility = {
 
     },
 
-    serialize: function() {
-
-        let current = componentsModule.modules.accessibility;
+    serialize() {
 
         return {
 
-            accessibility_selector: current.accessibility_selector,
-            accessibility_password: current.passwordInput.value.trim()
+            accessibility_selector: accessibility.accessibility_selector,
+            accessibility_password: accessibility.passwordInput.value.trim()
 
         }
 
     },
 
 };
+
+module.exports = accessibility;

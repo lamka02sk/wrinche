@@ -1,38 +1,38 @@
-componentsModule.modules.status = {
+import Global from "../../../scripts/Modules/Global";
 
-    start: function() {
+let status = {
+
+    start() {
 
         // Save elements
-        let current           = componentsModule.modules.status;
-        current.parentElement = document.querySelector('[data-component=status]');
-        current.selectElement = current.parentElement.querySelector('select');
+        status.parentElement = document.querySelector('[data-component=status]');
+        status.selectElement = status.parentElement.querySelector('select');
 
-        current.selector = current.createSelector();
+        status.selector = status.createSelector();
 
     },
 
-    createSelector: function() {
+    createSelector() {
 
-        return new Selector({
-            selector: 'select[name=component_status]',
-            onOpen  : reloadPackery,
-            onClose : reloadPackery
+        return Global.Selector({
+            element: 'select[name=component_status]',
+            opened : Global.packery.reloadItems,
+            closed : Global.packery.reloadItems
         });
 
     },
 
-    resume: function() {
+    resume() {
 
         // Save current instance
-        let current = componentsModule.modules.status;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data  = this.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
 
         const status = JSON.parse(data).status;
 
-        let selectOptions = current.selectElement.querySelectorAll('option');
+        let selectOptions = this.selectElement.querySelectorAll('option');
 
         Object.values(selectOptions).forEach(function(selectOption, index) {
 
@@ -43,27 +43,29 @@ componentsModule.modules.status = {
 
         });
 
-        current.selector.destroy();
-        current.selector = current.createSelector();
+        this.selector.destroy();
+        this.selector = this.createSelector();
 
     },
 
-    validate: function() {
+    validate() {
 
-        const data = componentsModule.modules.status.serialize().status;
+        const data = status.serialize().status;
 
         return (data > -1 && data < 4);
 
     },
 
-    serialize: function() {
+    serialize() {
 
         return {
 
-            status: parseInt(componentsModule.modules.status.selectElement.querySelector('[selected=true]').getAttribute('value'))
+            status: parseInt(status.selectElement.querySelector('[selected=true]').getAttribute('value'))
 
         }
 
     }
 
 };
+
+module.exports = status;

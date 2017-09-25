@@ -1,39 +1,45 @@
-componentsModule.modules.categories = {
+import Utils from "../../../scripts/Modules/Utils";
+import Global from "../../../scripts/Modules/Global";
+import Ajax from "../../../scripts/Modules/Ajax";
+import Router from "../../../scripts/Modules/Router";
+import Csrf from "../../../scripts/Modules/Csrf";
 
-    start: function() {
+let categories = {
+
+    start() {
 
         // Save elements
-        let current             = componentsModule.modules.categories;
+        let current = this;
         current.parentElement   = document.querySelector('[data-component=categories]');
         current.listElement     = current.parentElement.querySelector('.categories-list');
         current.inputElement    = current.parentElement.querySelector('input');
         current.templateElement = current.parentElement.querySelector('#template_component_categories_item').childNodes[0];
 
         // Get and show categories
-        const categories = getJson(URI + 'api/categories.all&csrf_token=' + csrf_token);
+        const categories = Ajax.getJSON(Router.createLink('api/categories.all&csrf_token=' + Csrf.getToken()));
 
         if(!categories.success || categories.code !== 200)
             return true;
 
-        Object.values(categories.data).forEach(function(category) {
+        Object.values(categories.data).forEach(category => {
 
             let template = current.templateElement.cloneNode(true);
             template.setAttribute('data-category', category.id);
             template.setAttribute('data-active', 'false');
             template.children[0].innerText = category.name;
 
-            current.listElement.appendChild(template);
+            this.listElement.appendChild(template);
 
         });
 
         // Events
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Delegate click events
                 event  : 'click',
                 element: current.parentElement,
-                content: function(event) {
+                content(event) {
 
                     let target = event.target;
 
@@ -62,7 +68,7 @@ componentsModule.modules.categories = {
                 // Search in categories
                 event  : 'change keyup',
                 element: current.inputElement,
-                content: function() {
+                content() {
 
                     const searchPhrase = current.inputElement.value.trim().toLowerCase();
 
@@ -77,22 +83,21 @@ componentsModule.modules.categories = {
 
                     });
 
-                    reloadPackery();
+                    Global.packery.reloadItems();
 
                 }
             }
 
         ]);
 
-        reloadPackery();
+        Global.packery.reloadItems();
 
     },
 
-    resume: function() {
+    resume() {
 
         // Save current instance
-        let current = componentsModule.modules.categories;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data  = this.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
@@ -102,28 +107,26 @@ componentsModule.modules.categories = {
         if(categories === null)
             return true;
 
-        categories.forEach(function(category) {
+        categories.forEach(category => {
 
-            current.listElement.querySelector('[data-category="' + category + '"]').childNodes[1].click();
+            this.listElement.querySelector('[data-category="' + category + '"]').childNodes[1].click();
 
         });
 
     },
 
-    validate: function() {
+    validate() {
 
         return true;
 
     },
 
-    serialize: function() {
+    serialize() {
 
-        let categoriesElements = componentsModule.modules.categories.listElement.querySelectorAll('[data-active=true]');
+        let categoriesElements = categories.listElement.querySelectorAll('[data-active=true]');
 
         let activeCategories = Object.values(categoriesElements).map(function(categoryElement) {
-
             return categoryElement.getAttribute('data-category');
-
         });
 
         return {
@@ -135,3 +138,5 @@ componentsModule.modules.categories = {
     }
 
 };
+
+module.exports = categories;
