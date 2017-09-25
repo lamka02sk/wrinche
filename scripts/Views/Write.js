@@ -72,6 +72,9 @@ export default {
 
         }
 
+        const Selector = require('selector3');
+        console.log(Selector);
+
         // Flatpickr
         Flatpickr.initialize();
 

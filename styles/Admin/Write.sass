@@ -111,12 +111,14 @@
   font-size: 1.05em
   font-weight: 500
   text-align: left
+  color: $contentLabel
 
   +box
 
   &.big-label 
     font-size: 1.6em
     font-weight: 400
+    color: $contentLabelBig
 
   &.small-label 
     font-size: .82em
@@ -171,6 +173,7 @@
     .info-hover
       z-index: 1000
       opacity: 1
+      background-image: $contentInfoIconHover
   
     .info-text
       opacity: 1
@@ -192,6 +195,7 @@
   display: block
   width: 100%
   height: auto
+  color: $contentInfoOutside
 
   +box
 
@@ -201,7 +205,7 @@
   height: 100%
   width: 100%
   position: relative
-  background: center center no-repeat
+  background: $contentInfoIcon center center no-repeat
   background-size: 17px
   z-index: 100
   opacity: .6
@@ -219,6 +223,8 @@
   z-index: 89
   font-size: .88em
   cursor: default
+  background: $contentInfoBackground
+  color: $contentInfoColor
 
   +box
 
@@ -233,9 +239,10 @@
   font-size: .92em
   margin: 2px 0 6px 0
   padding: 0 72px 0 10px
+  background: $contentInputBackground
 
   +box
-  +border(1px, $silver)
+  +border(1px, $contentInputBorder)
 
   &.input-icon-enter 
     background-image: url('../../assets/icons/enter_opaque.svg') !important
@@ -268,7 +275,7 @@
       margin-right: 8px
 
   &.add-item 
-    background: left 9px top 9px no-repeat !important
+    background: $contentInputAddBackground left 9px top 9px no-repeat !important
     background-size: 16px !important
     padding-left: 32px
 
@@ -322,6 +329,7 @@
   height: auto
   font-size: 1.6em
   font-weight: 500
+  color: $contentH3
 
 
 .content-content textarea
@@ -335,9 +343,10 @@
   margin: 2px 0 6px 0
   padding: 8px 72px 6px 10px
   resize: none
+  background: $contentTextareaBackground
 
   +box
-  +border(1px, $silver)
+  +border(1px, $contentTextareaBorder)
 
   &.pre-textarea 
     font-family: $font-monospace
@@ -375,11 +384,15 @@
   outline: none
   margin: 2px 0 4px 0
   cursor: pointer
+  background: $buttonManagerBackground
 
-  +border(1px, $silver)
+  +border(1px, $buttonManagerBorder)
   +radius
   +box
   +transition(.2s)
+
+  &:hover
+    background: $buttonManagerHover
 
   &:before 
     content: ''
@@ -388,7 +401,7 @@
     width: 44px
     top: 0
     left: 0
-    background: center no-repeat
+    background: $buttonManagerBefore center no-repeat
     background-size: 16px
 
 
@@ -403,6 +416,7 @@
   text-align: left
   font-size: .82em
   font-weight: 500
+  color: $or
 
 
 .counter
