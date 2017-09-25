@@ -47,7 +47,8 @@ let url = {
                 Utils.showValidationResults(
                     url.messageElement,
                     'COMPONENT_URL_INVALID',
-                    url.validate()
+                    url.validate(),
+                    Global.packery.reloadItems
                 );
 
             }
