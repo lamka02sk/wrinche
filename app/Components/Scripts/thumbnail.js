@@ -1,33 +1,35 @@
-componentsModule.modules.thumbnail = {
+import Utils from "../../../scripts/Modules/Utils";
+import Global from '../../../scripts/Modules/Global';
 
-    start: function() {
+let thumbnail = {
+
+    start() {
 
         // Save elements
-        let current             = componentsModule.modules.thumbnail;
-        current.parentElement   = document.querySelector('[data-component=thumbnail]');
-        current.inputBox        = current.parentElement.querySelector('.input-box');
-        current.mediaButton     = current.inputBox.querySelector('.image_manager');
-        current.mediaInput      = current.inputBox.querySelector('input');
-        current.messageElement  = current.inputBox.querySelector('.validate-message');
-        current.templateElement = current.parentElement.querySelector('#template_component_thumbnail_image').childNodes[0];
+        thumbnail.parentElement   = document.querySelector('[data-component=thumbnail]');
+        thumbnail.inputBox        = thumbnail.parentElement.querySelector('.input-box');
+        thumbnail.mediaButton     = thumbnail.inputBox.querySelector('.image_manager');
+        thumbnail.mediaInput      = thumbnail.inputBox.querySelector('input');
+        thumbnail.messageElement  = thumbnail.inputBox.querySelector('.validate-message');
+        thumbnail.templateElement = thumbnail.parentElement.querySelector('#template_component_thumbnail_image').childNodes[0];
 
         // Events
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Delegate click events
                 event  : 'click',
-                element: current.parentElement,
-                content: function(event) {
+                element: thumbnail.parentElement,
+                content(event) {
 
                     // Open MediaManager
                     if(event.target.matches('.image_manager')) {
 
-                        managerActiveInstance = new MediaManager({
+                        Global.managerActiveInstance = new Global.MediaManager({
                             manager : 'images',
-                            onSelect: function(path) {
+                            onSelect(path) {
 
-                                current.addNew(path, false);
+                                thumbnail.addNew(path, false);
 
                             }
                         });
@@ -37,13 +39,13 @@ componentsModule.modules.thumbnail = {
                     // Remove thumbnail
                     else if(event.target.matches('.thumbnail-remove')) {
 
-                        current.inputBox.classList.remove('hide');
+                        thumbnail.inputBox.classList.remove('hide');
 
-                        current.parentElement.removeChild(
-                            current.parentElement.querySelector('div.component-instance')
+                        thumbnail.parentElement.removeChild(
+                            thumbnail.parentElement.querySelector('div.component-instance')
                         );
 
-                        reloadPackery();
+                        Global.packery.reloadItems();
 
                     }
 
@@ -53,17 +55,17 @@ componentsModule.modules.thumbnail = {
             {
                 // Enter custom URL to image
                 event  : 'keypress',
-                element: current.mediaInput,
-                content: function(event) {
+                element: thumbnail.mediaInput,
+                content(event) {
 
                     if(!event.keyCode || event.keyCode !== 13)
                         return false;
 
                     let path = event.target.value.trim();
 
-                    current.validateInput(path, function() {
+                    thumbnail.validateInput(path, function() {
 
-                        current.addNew(path, true);
+                        thumbnail.addNew(path, true);
 
                     });
 
@@ -73,10 +75,10 @@ componentsModule.modules.thumbnail = {
             {
                 // Real-time URL validation
                 event  : 'change keyup',
-                element: current.mediaInput,
-                content: function(event) {
+                element: thumbnail.mediaInput,
+                content(event) {
 
-                    current.validateInput(event.target.value.trim());
+                    thumbnail.validateInput(event.target.value.trim());
 
                 }
             }
@@ -85,25 +87,24 @@ componentsModule.modules.thumbnail = {
 
     },
 
-    resume: function() {
+    resume() {
 
         // Save current instance
-        let current = componentsModule.modules.thumbnail;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data  = thumbnail.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
 
-        const thumbnail = JSON.parse(data).thumbnail;
+        const thumb = JSON.parse(data).thumbnail;
 
-        if(thumbnail === '')
+        if(thumb === '')
             return true;
 
-        current.addNew(thumbnail, !(~thumbnail.indexOf('app/Data/Files/Images/')));
+        thumbnail.addNew(thumb, !(~thumb.indexOf('app/Data/Files/Images/')));
 
     },
 
-    removeCurrent: function(parent) {
+    removeCurrent(parent) {
 
         if(parent.querySelector('div.thumbnail-image.component-instance'))
             parent.removeChild(
@@ -112,16 +113,15 @@ componentsModule.modules.thumbnail = {
 
     },
 
-    addNew: function(path, outside) {
+    addNew(path, outside) {
 
         path = path.replace('app/Data/Files/Images/', '');
 
-        let current  = componentsModule.modules.thumbnail;
         let text     = path;
-        let template = current.templateElement.cloneNode(true);
+        let template = thumbnail.templateElement.cloneNode(true);
 
-        current.removeCurrent(current.parentElement);
-        current.inputBox.value = '';
+        thumbnail.removeCurrent(thumbnail.parentElement);
+        thumbnail.inputBox.value = '';
 
         if(!outside)
             path = 'app/Data/Files/Images/' + path;
@@ -134,21 +134,20 @@ componentsModule.modules.thumbnail = {
 
         template.childNodes[1].innerText = text;
 
-        current.parentElement.appendChild(template);
+        thumbnail.parentElement.appendChild(template);
 
-        current.inputBox.classList.add('hide');
-        closeMediaManager();
-        reloadPackery();
+        thumbnail.inputBox.classList.add('hide');
+
+        Utils.closeMediaManager();
+        Global.packery.reloadItems();
 
     },
 
-    validateInput: function(path, onSuccess, onError) {
+    validateInput(path, onSuccess, onError) {
 
-        let current = componentsModule.modules.thumbnail;
-
-        if(!validateUrl(path))
-            return showValidationResult(
-                current.messageElement, 'COMPONENT_URL_INVALID', false, reloadPackery
+        if(!Utils.validateUrl(path))
+            return Utils.showValidationResults(
+                thumbnail.messageElement, 'COMPONENT_URL_INVALID', false, Global.packery.reloadItems
             );
 
         new Promise(function(resolve) {
@@ -169,8 +168,8 @@ componentsModule.modules.thumbnail = {
 
             if(result) {
 
-                showValidationResult(
-                    current.messageElement, 'COMPONENT_URL_INVALID', true, reloadPackery
+                Utils.showValidationResults(
+                    thumbnail.messageElement, 'COMPONENT_URL_INVALID', true, Global.packery.reloadItems
                 );
 
                 if(onSuccess)
@@ -178,8 +177,8 @@ componentsModule.modules.thumbnail = {
 
             } else {
 
-                showValidationResult(
-                    current.messageElement, 'COMPONENT_URL_INVALID', false, reloadPackery
+                Utils.showValidationResults(
+                    thumbnail.messageElement, 'COMPONENT_URL_INVALID', false, Global.packery.reloadItems
                 );
 
                 if(onError)
@@ -191,16 +190,15 @@ componentsModule.modules.thumbnail = {
 
     },
 
-    validate: function() {
+    validate() {
 
         return true;
 
     },
 
-    serialize: function() {
+    serialize() {
 
-        let current  = componentsModule.modules.thumbnail;
-        let instance = current.parentElement.querySelector('div.thumbnail-image.component-instance');
+        let instance = thumbnail.parentElement.querySelector('div.thumbnail-image.component-instance');
         let data     = '';
 
         if(instance)
@@ -213,3 +211,5 @@ componentsModule.modules.thumbnail = {
     }
 
 };
+
+module.exports = thumbnail;

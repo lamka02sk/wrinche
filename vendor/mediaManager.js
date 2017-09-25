@@ -1,3 +1,8 @@
+import $ from 'jquery';
+import Global from "../scripts/Modules/Global";
+import Router from "../scripts/Modules/Router";
+import Csrf from "../scripts/Modules/Csrf";
+
 function MediaManager(parameters) {
 
     // Files
@@ -81,7 +86,7 @@ MediaManager.prototype.addFile = function(file) {
     let uploadElement = document.createElement('span');
     uploadElement.classList.add('upload-item');
     uploadElement.setAttribute('data-locale', 'UPLOAD');
-    uploadElement.innerText = translate.locale.admin_header.UPLOAD;
+    uploadElement.innerText = Global.translate.locale.admin_header.UPLOAD;
 
     itemElement.appendChild(iconElement);
     itemElement.appendChild(nameElement);
@@ -115,28 +120,27 @@ MediaManager.prototype.uploadFile = function(file) {
     }
 
     let fileData = this.files[pos];
-    fileData.data.append('csrf_token', document.querySelector('meta[name=csrf_token]').getAttribute('content'));
-
     let result = false;
+
     $.ajax({
         method: "POST",
-        url: "?route=" + $('meta[name=route]').attr('content') + '/mediaManager/upload',
+        url: Router.createLink('mediaManager/upload&csrf_token=' + Csrf.getToken()),
         async: false,
         data: fileData.data,
         cache: false,
         processData: false,
         contentType: false,
-        success: function(response) {
+        success: () => {
             this.files.splice(pos, 1);
             result = true;
-        }.bind(this),
-        error: function(response) {
+        },
+        error: () => {
             result = false;
-        }.bind(this)
+        }
     });
 
     setTimeout(function() {
-        managerActiveInstance.updateFiles();
+        Global.managerActiveInstance.updateFiles();
     }, 500);
 
     return result;
@@ -158,8 +162,6 @@ MediaManager.prototype.updateFiles = function() {
     });
 
 };
-
-let managerActiveInstance;
 
 // Load media manager GUI
 $.ajax({
@@ -188,19 +190,19 @@ $.ajax({
         });
     
         $('input[name=media_manager_input_image]').change(function(event) {
-            managerActiveInstance.addFile(event.target.files[0]);
+            Global.managerActiveInstance.addFile(event.target.files[0]);
         });
     
         $('input[name=media_manager_input_video]').change(function(event) {
-            managerActiveInstance.addFile(event.target.files[0]);
+            Global.managerActiveInstance.addFile(event.target.files[0]);
         });
     
         $('input[name=media_manager_input_audio]').change(function(event) {
-            managerActiveInstance.addFile(event.target.files[0]);
+            Global.managerActiveInstance.addFile(event.target.files[0]);
         });
     
         $('input[name=media_manager_input_file]').change(function(event) {
-            managerActiveInstance.addFile(event.target.files[0]);
+            Global.managerActiveInstance.addFile(event.target.files[0]);
         });
     
         // Close manager with button
@@ -219,23 +221,29 @@ $.ajax({
         let html = $('html');
         html.on('click', 'div.queue-item span.remove-item', function(event) {
             let fileName = event.target.parentNode.querySelector('p').innerText;
-            managerActiveInstance.removeFile(fileName);
+            Global.managerActiveInstance.removeFile(fileName);
             let element = event.target.parentNode;
             element.parentNode.removeChild(element);
         });
 
         // Upload item on click
         html.on('click', 'div.queue-item span.upload-item', function(event) {
+
             document.querySelector('div.manager-queue').classList.add('loading');
             let fileName = event.target.parentNode.querySelector('p').innerText;
-            if(managerActiveInstance.uploadFile(fileName)) {
+
+            if(Global.managerActiveInstance.uploadFile(fileName)) {
                 let element = event.target.parentNode;
                 element.parentNode.removeChild(element);
             }
+
             setTimeout(function() {
                 document.querySelector('div.manager-queue').classList.remove('loading');
             }, 600);
+
         });
 
     }
 });
+
+export { MediaManager };

@@ -4,6 +4,11 @@ import Global from '../scripts/Modules/Global';
 import Csrf from '../scripts/Modules/Csrf';
 import Translate from '../scripts/Modules/Translate';
 import Router from '../scripts/Modules/Router';
+import 'selector3/dist/theme';
+import 'selector3/dist/selector'
+import { MediaManager } from "../vendor/mediaManager";
+
+Global.MediaManager = MediaManager;
 
 // Translate page
 {

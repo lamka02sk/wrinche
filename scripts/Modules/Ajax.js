@@ -4,15 +4,18 @@ import Csrf from '../Modules/Csrf';
 
 export default {
 
-    post(url, data, callback) {
+    post(url, data, callback, async = true) {
 
         Utils.showLoading();
-        data['csrf_token'] = Csrf.getToken();
+
+        if(!data['csrf_token'])
+            data['csrf_token'] = Csrf.getToken();
 
         $.ajax({
             url    : url,
             method : 'POST',
             data   : data,
+            async  : async,
             success: response => {
                 callback(response, 'success');
                 Utils.hideLoading();

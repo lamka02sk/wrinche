@@ -1,55 +1,54 @@
-componentsModule.modules.custom_fields = {
+import Utils from "../../../scripts/Modules/Utils";
+import Global from "../../../scripts/Modules/Global";
 
-    start: function() {
+let fields = {
+
+    start() {
 
         // Save elements
-        let current             = componentsModule.modules.custom_fields;
-        current.parentElement   = document.querySelector('[data-component=custom_fields]');
-        current.listElement     = current.parentElement.querySelector('.custom_fields-list');
-        current.identifierInput = current.parentElement.querySelector('#component_custom-fields_add_name');
-        current.valueInput      = current.parentElement.querySelector('#component_custom-fields_add_value');
-        current.addButton       = current.parentElement.querySelector('.add-custom_field');
-        current.templateElement = current.parentElement.querySelector('#template_component_custom-fields_field').childNodes[0];
+        fields.parentElement   = document.querySelector('[data-component=custom_fields]');
+        fields.listElement     = fields.parentElement.querySelector('.custom_fields-list');
+        fields.identifierInput = fields.parentElement.querySelector('#component_custom-fields_add_name');
+        fields.valueInput      = fields.parentElement.querySelector('#component_custom-fields_add_value');
+        fields.addButton       = fields.parentElement.querySelector('.add-custom_field');
+        fields.templateElement = fields.parentElement.querySelector('#template_component_custom-fields_field').childNodes[0];
 
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Delegate click events
                 event  : 'click',
-                element: current.parentElement,
-                content: function(event) {
+                element: fields.parentElement,
+                content(event) {
 
                     let target = event.target;
 
                     // Add custom field
-                    if(target.matches('.add-custom_field')) {
-
-                        current.addField();
-
-                    }
+                    if(target.matches('.add-custom_field'))
+                        fields.addField();
 
                     // Edit custom field
                     else if(target.matches('.edit-custom_field')) {
 
                         let item = target.parentNode;
 
-                        current.identifierInput.value = item.childNodes[0].innerText.trim();
-                        current.valueInput.value      = item.childNodes[1].innerText.trim();
+                        fields.identifierInput.value = item.childNodes[0].innerText.trim();
+                        fields.valueInput.value      = item.childNodes[1].innerText.trim();
 
-                        current.listElement.removeChild(item);
-                        current.identifierInput.focus();
+                        fields.listElement.removeChild(item);
+                        fields.identifierInput.focus();
 
-                        reloadPackery();
+                        Global.packery.reloadItems();
 
                     }
 
                     // Remove custom field
                     else if(target.matches('.remove-custom_field')) {
 
-                        current.listElement.removeChild(target.parentNode);
-                        current.identifierInput.focus();
+                        fields.listElement.removeChild(target.parentNode);
+                        fields.identifierInput.focus();
 
-                        reloadPackery();
+                        Global.packery.reloadItems();
 
                     }
 
@@ -59,11 +58,11 @@ componentsModule.modules.custom_fields = {
             {
                 // Allow submit with Enter key
                 event  : 'keydown',
-                element: current.valueInput,
-                content: function(event) {
+                element: fields.valueInput,
+                content(event) {
 
                     if(event.keyCode && event.keyCode === 13)
-                        current.addButton.click();
+                        fields.addButton.click();
 
                 }
 
@@ -73,11 +72,10 @@ componentsModule.modules.custom_fields = {
 
     },
 
-    resume: function() {
+    resume() {
 
         // Save current instance
-        let current = componentsModule.modules.custom_fields;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data  = this.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
@@ -87,56 +85,55 @@ componentsModule.modules.custom_fields = {
         if(fields === null)
             return true;
 
-        Object.keys(fields).map(function(key) {
+        Object.keys(fields).map(key => {
 
-            current.addField(key, fields[key]);
+            this.addField(key, fields[key]);
 
         });
 
     },
 
-    addField: function(id, val) {
+    addField(id, val) {
 
-        let current      = componentsModule.modules.custom_fields;
-        const identifier = id || current.identifierInput.value.trim();
-        const value      = val || current.valueInput.value.trim();
+        const identifier = id || fields.identifierInput.value.trim();
+        const value      = val || fields.valueInput.value.trim();
 
         if(identifier === '' || value === '')
             return true;
 
-        if(current.serialize().custom_fields[identifier]) {
+        if(fields.serialize().custom_fields[identifier]) {
 
-            current.identifierInput.value = '';
-            current.identifierInput.focus();
-            current.valueInput.value = '';
+            fields.identifierInput.value = '';
+            fields.identifierInput.focus();
+            fields.valueInput.value = '';
 
             return true;
 
         }
 
-        let template                     = current.templateElement.cloneNode(true);
+        let template                     = fields.templateElement.cloneNode(true);
         template.childNodes[0].innerText = identifier;
         template.childNodes[1].innerText = value;
 
-        current.listElement.insertBefore(template, current.listElement.childNodes[0]);
+        fields.listElement.insertBefore(template, fields.listElement.childNodes[0]);
 
-        id || current.identifierInput.focus();
-        current.identifierInput.value = '';
-        current.valueInput.value      = '';
+        id || fields.identifierInput.focus();
+        fields.identifierInput.value = '';
+        fields.valueInput.value      = '';
 
-        reloadPackery();
+        Global.packery.reloadItems();
 
     },
 
-    validate: function() {
+    validate() {
 
         return true;
 
     },
 
-    serialize: function() {
+    serialize() {
 
-        let fieldElements = componentsModule.modules.custom_fields.listElement.childNodes;
+        let fieldElements = fields.listElement.childNodes;
         let data          = {};
 
         Array.from(fieldElements).map(function(fieldElement) {
@@ -154,3 +151,5 @@ componentsModule.modules.custom_fields = {
     }
 
 };
+
+module.exports = fields;

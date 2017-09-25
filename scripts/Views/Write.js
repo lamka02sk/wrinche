@@ -3,6 +3,7 @@ import Main from '../Views/Main';
 import Counters from '../Modules/Counters';
 import ComponentsModule from '../../app/Components/Components';
 import Flatpickr from "../Modules/Flatpickr";
+import Utils from "../Modules/Utils";
 
 export default {
 
@@ -46,7 +47,7 @@ export default {
 
     initializeComponents() {
 
-        Global.componentsModule = new ComponentsModule(this.components.slice(0, 5));
+        Global.componentsModule = new ComponentsModule(this.components.slice(0, 9));
 
     },
 
@@ -56,7 +57,7 @@ export default {
         Counters.initialize();
 
         // Packery
-        const Packery = require('packery');
+        const Packery = require('../../vendor/packery');
 
         Global.packery = new Packery('.content-settings', {
             itemSelector: '.component-element',
@@ -72,8 +73,7 @@ export default {
 
         }
 
-        const Selector = require('selector3');
-        console.log(Selector);
+        Utils.triggerEvent(document, 'resize');
 
         // Flatpickr
         Flatpickr.initialize();

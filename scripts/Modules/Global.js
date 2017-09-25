@@ -24,5 +24,7 @@ export default {
     router: null,
     packery: null,
     componentsModule: null,
+    MediaManager: null,
+    managerActiveInstance: null,
 
 };

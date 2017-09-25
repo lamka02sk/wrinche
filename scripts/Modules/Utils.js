@@ -199,6 +199,13 @@ export default {
 
     hideSplash() {
         document.querySelector('.splash').classList.add('done');
+    },
+
+    closeMediaManager() {
+
+        let closeElement = document.querySelector('div.media-manager span.close-manager');
+        closeElement.click();
+
     }
 
 };

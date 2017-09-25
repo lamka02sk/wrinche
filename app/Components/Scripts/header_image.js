@@ -1,33 +1,35 @@
-componentsModule.modules.header_image = {
+import Utils from "../../../scripts/Modules/Utils";
+import Global from "../../../scripts/Modules/Global";
 
-    start: function() {
+let header = {
+
+    start() {
 
         // Save elements
-        let current             = componentsModule.modules.header_image;
-        current.parentElement   = document.querySelector('[data-component=header_image]');
-        current.inputBox        = current.parentElement.querySelector('.input-box');
-        current.mediaButton     = current.inputBox.querySelector('.image_manager');
-        current.mediaInput      = current.inputBox.querySelector('input');
-        current.messageElement  = current.inputBox.querySelector('.validate-message');
-        current.templateElement = current.parentElement.querySelector('#template_component_header-image_image').childNodes[0];
+        header.parentElement   = document.querySelector('[data-component=header_image]');
+        header.inputBox        = header.parentElement.querySelector('.input-box');
+        header.mediaButton     = header.inputBox.querySelector('.image_manager');
+        header.mediaInput      = header.inputBox.querySelector('input');
+        header.messageElement  = header.inputBox.querySelector('.validate-message');
+        header.templateElement = header.parentElement.querySelector('#template_component_header-image_image').childNodes[0];
 
         // Events
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Delegate click events
                 event  : 'click',
-                element: current.parentElement,
-                content: function(event) {
+                element: header.parentElement,
+                content(event) {
 
                     // Open MediaManager
                     if(event.target.matches('.image_manager')) {
 
-                        managerActiveInstance = new MediaManager({
+                        Global.managerActiveInstance = new Global.MediaManager({
                             manager : 'images',
-                            onSelect: function(path) {
+                            onSelect(path) {
 
-                                current.addNew(path, false);
+                                header.addNew(path, false);
 
                             }
                         });
@@ -37,13 +39,13 @@ componentsModule.modules.header_image = {
                     // Remove header image
                     else if(event.target.matches('.header_image-remove')) {
 
-                        current.inputBox.classList.remove('hide');
+                        header.inputBox.classList.remove('hide');
 
-                        current.parentElement.removeChild(
-                            current.parentElement.querySelector('div.component-instance')
+                        header.parentElement.removeChild(
+                            header.parentElement.querySelector('div.component-instance')
                         );
 
-                        reloadPackery();
+                        Global.packery.reloadItems();
 
                     }
 
@@ -53,17 +55,17 @@ componentsModule.modules.header_image = {
             {
                 // Enter custom URL to image
                 event  : 'keypress',
-                element: current.mediaInput,
-                content: function(event) {
+                element: header.mediaInput,
+                content(event) {
 
                     if(!event.keyCode || event.keyCode !== 13)
                         return false;
 
                     let path = event.target.value.trim();
 
-                    current.validateInput(path, function() {
+                    header.validateInput(path, function() {
 
-                        current.addNew(path, true);
+                        header.addNew(path, true);
 
                     });
 
@@ -73,10 +75,10 @@ componentsModule.modules.header_image = {
             {
                 // Real-time URL validation
                 event  : 'change keyup',
-                element: current.mediaInput,
-                content: function(event) {
+                element: header.mediaInput,
+                content(event) {
 
-                    current.validateInput(event.target.value.trim());
+                    header.validateInput(event.target.value.trim());
 
                 }
             }
@@ -85,11 +87,10 @@ componentsModule.modules.header_image = {
 
     },
 
-    resume: function() {
+    resume() {
 
         // Save current instance
-        let current = componentsModule.modules.header_image;
-        const data  = current.parentElement.getAttribute('data-resume');
+        const data  = header.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
@@ -99,11 +100,11 @@ componentsModule.modules.header_image = {
         if(headerImage === '')
             return true;
 
-        current.addNew(headerImage, !(~headerImage.indexOf('app/Data/Files/Images/')));
+        header.addNew(headerImage, !(~headerImage.indexOf('app/Data/Files/Images/')));
 
     },
 
-    removeCurrent: function(parent) {
+    removeCurrent(parent) {
 
         if(parent.querySelector('div.header_image-image.component-instance'))
             parent.removeChild(
@@ -114,16 +115,15 @@ componentsModule.modules.header_image = {
 
     // --------------------------------------------------------
 
-    addNew: function(path, outside) {
+    addNew(path, outside) {
 
         path = path.replace('app/Data/Files/Images/', '');
 
-        let current  = componentsModule.modules.header_image;
         let text     = path;
-        let template = current.templateElement.cloneNode(true);
+        let template = header.templateElement.cloneNode(true);
 
-        current.removeCurrent(current.parentElement);
-        current.inputBox.value = '';
+        header.removeCurrent(header.parentElement);
+        header.inputBox.value = '';
 
         if(!outside)
             path = 'app/Data/Files/Images/' + path;
@@ -136,23 +136,22 @@ componentsModule.modules.header_image = {
 
         template.childNodes[1].innerText = text;
 
-        current.parentElement.appendChild(template);
+        header.parentElement.appendChild(template);
 
-        current.inputBox.classList.add('hide');
-        closeMediaManager();
-        reloadPackery();
+        header.inputBox.classList.add('hide');
+
+        Utils.closeMediaManager();
+        Global.packery.reloadItems();
 
     },
 
     // ---------------------------------------
 
-    validateInput: function(path, onSuccess, onError) {
+    validateInput(path, onSuccess, onError) {
 
-        let current = componentsModule.modules.header_image;
-
-        if(!validateUrl(path))
-            return showValidationResult(
-                current.messageElement, 'COMPONENT_URL_INVALID', false, reloadPackery
+        if(!Utils.validateUrl(path))
+            return Utils.showValidationResults(
+                header.messageElement, 'COMPONENT_URL_INVALID', false, Global.packery.reloadItems
             );
 
         new Promise(function(resolve) {
@@ -173,8 +172,8 @@ componentsModule.modules.header_image = {
 
             if(result) {
 
-                showValidationResult(
-                    current.messageElement, 'COMPONENT_URL_INVALID', true, reloadPackery
+                Utils.showValidationResults(
+                    header.messageElement, 'COMPONENT_URL_INVALID', true, Global.packery.reloadItems
                 );
 
                 if(onSuccess)
@@ -182,8 +181,8 @@ componentsModule.modules.header_image = {
 
             } else {
 
-                showValidationResult(
-                    current.messageElement, 'COMPONENT_URL_INVALID', false, reloadPackery
+                Utils.showValidationResults(
+                    header.messageElement, 'COMPONENT_URL_INVALID', false, Global.packery.reloadItems
                 );
 
                 if(onError)
@@ -195,16 +194,15 @@ componentsModule.modules.header_image = {
 
     },
 
-    validate: function() {
+    validate() {
 
         return true;
 
     },
 
-    serialize: function() {
+    serialize() {
 
-        let current  = componentsModule.modules.header_image;
-        let instance = current.parentElement.querySelector('div.header_image-image.component-instance');
+        let instance = header.parentElement.querySelector('div.header_image-image.component-instance');
         let data     = '';
 
         if(instance)
@@ -217,3 +215,5 @@ componentsModule.modules.header_image = {
     }
 
 };
+
+module.exports = header;

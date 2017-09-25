@@ -1,18 +1,20 @@
-componentsModule.modules.attachments = {
+import Utils from "../../../scripts/Modules/Utils";
+import Global from "../../../scripts/Modules/Global";
 
-    start: function() {
+let attachments = {
+
+    start() {
 
         // Save elements
-        let current             = componentsModule.modules.attachments;
-        current.parentElement   = document.querySelector('[data-component=attachments]');
-        current.listElement     = current.parentElement.querySelector('.attachments-list');
-        current.templateElement = current.parentElement.querySelector('#template_component_attachments_added').childNodes[0];
+        attachments.parentElement   = document.querySelector('[data-component=attachments]');
+        attachments.listElement     = attachments.parentElement.querySelector('.attachments-list');
+        attachments.templateElement = attachments.parentElement.querySelector('#template_component_attachments_added').childNodes[0];
 
         // Delegate events
-        componentsModule.initializeEvent({
+        Utils.registerEvent({
 
             event  : 'click',
-            element: current.parentElement,
+            element: attachments.parentElement,
             content: function(event) {
 
                 // Open MediaManager
@@ -20,11 +22,11 @@ componentsModule.modules.attachments = {
 
                     let type = event.target.getAttribute('data-content');
 
-                    managerActiveInstance = new MediaManager({
+                    Global.managerActiveInstance = new Global.MediaManager({
                         manager : type,
                         onSelect: function(path) {
 
-                            current.addNew(path, type);
+                            attachments.addNew(path, type);
 
                         }
                     });
@@ -34,9 +36,8 @@ componentsModule.modules.attachments = {
                 // Remove attachment
                 else if(event.target.matches('.attachment-remove')) {
 
-                    current.listElement.removeChild(event.target.parentNode);
-
-                    reloadPackery();
+                    attachments.listElement.removeChild(event.target.parentNode);
+                    Global.packery.reloadItems();
 
                 }
 
@@ -46,11 +47,10 @@ componentsModule.modules.attachments = {
 
     },
 
-    resume: function() {
+    resume() {
 
-        // Save current instance
-        let current = componentsModule.modules.attachments;
-        const data  = current.parentElement.getAttribute('data-resume');
+        // Save attachments instance
+        const data = this.parentElement.getAttribute('data-resume');
 
         if(data === '')
             return true;
@@ -65,7 +65,7 @@ componentsModule.modules.attachments = {
             'app/Data/Files/Images/', 'app/Data/Files/Videos/', 'app/Data/Files/Sounds/', 'app/Data/Files/Files/'
         ];
 
-        Array.from(attachments).forEach(function(attachment) {
+        Array.from(attachments).forEach(attachment => {
 
             const typeNumber = attachmentDefinitions.findIndex(function(definition) {
                 return ~attachment.indexOf(definition);
@@ -73,19 +73,19 @@ componentsModule.modules.attachments = {
 
             attachment = attachment.replace(attachmentDefinitions[typeNumber], '');
 
-            current.addNew(attachment, attachmentTypes[typeNumber]);
+            this.addNew(attachment, attachmentTypes[typeNumber]);
 
         });
 
     },
 
-    isDuplicate: function(path) {
+    isDuplicate(path) {
 
-        return ~componentsModule.modules.attachments.serialize().attachments.indexOf(path);
+        return ~attachments.serialize().attachments.indexOf(path);
 
     },
 
-    addNew: function(path, type) {
+    addNew(path, type) {
 
         const types = {
             images: [
@@ -106,39 +106,38 @@ componentsModule.modules.attachments = {
             ]
         };
 
-        let current    = componentsModule.modules.attachments;
         let pathPrefix = 'app/Data/Files/';
         let fileType   = types[type][1];
         let text       = path;
 
         path = pathPrefix + types[type][0] + '/' + path;
 
-        if(current.isDuplicate(path))
-            return closeMediaManager();
+        if(attachments.isDuplicate(path))
+            return Utils.closeMediaManager();
 
-        let template = current.templateElement.cloneNode(true);
+        let template = attachments.templateElement.cloneNode(true);
 
         template.classList.add('component-instance');
         template.setAttribute('data-path', path);
         template.classList.add('icon-' + fileType);
         template.childNodes[1].innerText = text;
 
-        current.listElement.insertBefore(template, current.listElement.childNodes[0]);
+        attachments.listElement.insertBefore(template, attachments.listElement.childNodes[0]);
 
-        closeMediaManager();
-        reloadPackery();
+        Utils.closeMediaManager();
+        Global.packery.reloadItems();
 
     },
 
-    validate: function() {
+    validate() {
 
         return true;
 
     },
 
-    serialize: function() {
+    serialize() {
 
-        let attachmentsElements = componentsModule.modules.attachments.listElement.childNodes;
+        let attachmentsElements = attachments.listElement.childNodes;
         let attachmentsList     = Array.from(attachmentsElements).reverse()
             .map(function(element) {
                 return element.getAttribute('data-path');
@@ -153,3 +152,5 @@ componentsModule.modules.attachments = {
     }
 
 };
+
+module.exports = attachments;
