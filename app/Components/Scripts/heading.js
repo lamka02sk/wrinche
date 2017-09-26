@@ -1,20 +1,21 @@
-componentsModule.modules.heading = {
+import Utils from "../../../scripts/Modules/Utils";
+
+let heading = {
 
     data: {},
     elements: {},
 
-    start: function() {
+    start() {
 
         // Save elements
-        let current = componentsModule.modules.heading;
-        current.templateElement = document.querySelector('#component_heading_template').children[0];
-        current.resumeData = current.templateElement.getAttribute('data-resume');
+        heading.templateElement = document.querySelector('#component_heading_template').children[0];
+        heading.resumeData = heading.templateElement.getAttribute('data-resume');
 
     },
 
-    resumeInline: function(identifier, element, resumeData) {
+    resumeInline(identifier, element, resumeData) {
 
-        componentsModule.modules.heading.create(identifier, element, function(data, elements) {
+        heading.create(identifier, element, function(data, elements) {
 
             elements.inputElement.value = resumeData.value.trim();
             triggerEvent(elements.inputElement, 'change');
@@ -25,32 +26,30 @@ componentsModule.modules.heading = {
 
     },
 
-    create: function(identifier, element, callback) {
+    create(identifier, element, callback) {
 
-        let current = componentsModule.modules.heading;
-
-        current.data[identifier] = {
+        heading.data[identifier] = {
             title: '',
             type: '1',
             value: '',
             disabled: 0
         };
 
-        current.elements[identifier] = {
+        heading.elements[identifier] = {
             typeOptions: element.querySelectorAll('div.heading-types span'),
             inputElement: element.querySelector('input[name=component_inline_heading]')
         };
 
-        let data = current.data[identifier];
-        let elements = current.elements[identifier];
+        let data = heading.data[identifier];
+        let elements = heading.elements[identifier];
 
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Serialize input element
                 event: 'change keyup',
                 element: elements.inputElement,
-                content: function(event) {
+                content(event) {
 
                     data.value = event.target.value.trim();
 
@@ -61,7 +60,7 @@ componentsModule.modules.heading = {
                 // Heading type switcher
                 event: 'click',
                 element: elements.typeOptions,
-                content: function(event) {
+                content(event) {
 
                     elements.typeOptions.forEach(function(item) {
                         item.classList.remove('type-selected');
@@ -80,16 +79,18 @@ componentsModule.modules.heading = {
 
     },
 
-    validate: function() {
+    validate() {
 
         return true;
 
     },
 
-    serialize: function() {
+    serialize() {
 
-        return componentsModule.modules.heading.data;
+        return heading.data;
 
     }
 
 };
+
+module.exports = heading;

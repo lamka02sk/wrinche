@@ -14,7 +14,7 @@ let status = {
 
     createSelector() {
 
-        return Global.Selector({
+        return new Global.Selector({
             element: 'select[name=component_status]',
             opened : Global.packery.reloadItems,
             closed : Global.packery.reloadItems

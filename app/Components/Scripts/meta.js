@@ -40,7 +40,7 @@ let meta = {
 
     createSelector() {
 
-        return Global.Selector({
+        return new Global.Selector({
             element: '[name=component_meta_robots]',
             opened  : Global.packery.reloadItems,
             closed : Global.packery.reloadItems

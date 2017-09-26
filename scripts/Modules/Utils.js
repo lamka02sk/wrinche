@@ -125,7 +125,7 @@ export default {
     },
 
     _confirmationElement: confirmationElement,
-    _confirmationMessage: confirmationElement.find('.confirmation-action-message'),
+    _confirmationMessage: confirmationElement.find('.confirmation-action-message')[0],
     _confirmationProceed: confirmationElement.find('.confirmation-action-proceed'),
     _confirmationDismiss: confirmationElement.find('.confirmation-action-dismiss'),
 
@@ -135,16 +135,18 @@ export default {
         this._confirmationElement.css({ display: 'table' }).animate({ opacity: 1 }, 150).addClass('open');
         this._confirmationMessage.innerHTML = action;
 
+        let current = this;
+
         function clearEvents() {
 
-            this._confirmationProceed.off('click');
-            this._confirmationDismiss.off('click');
+            current._confirmationProceed.off('click');
+            current._confirmationDismiss.off('click');
 
         }
 
         function hidePopup() {
 
-            this._confirmationElement.animate({opacity: 0}, 150).removeClass('open')
+            current._confirmationElement.animate({opacity: 0}, 150).removeClass('open')
                 .delay(100).queue(function() {
                 $(this).css({display: 'none'}).dequeue();
             });

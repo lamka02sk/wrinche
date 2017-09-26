@@ -158,7 +158,7 @@ export default class {
             {
                 event  : 'click',
                 element: headerElement,
-                content: function(event) {
+                content: event => {
 
                     if(!event.target)
                         return false;
@@ -188,7 +188,7 @@ export default class {
                         let componentName = headerElement.querySelector('.component-inline-label').innerText.trim();
                         let actionText    = Global.translate.locale.response['ACTION_CONFIRM_REMOVE_COMPONENT'].replace('%component%', componentName);
 
-                        confirmAction(actionText, () => {
+                        Utils.confirmAction(actionText, () => {
                             parentElement.parentNode.removeChild(parentElement);
                             delete this.modules[name].data[identifier];
                         });
@@ -228,7 +228,7 @@ export default class {
                 // Serialize component title
                 event  : 'keyup change',
                 element: titleElement,
-                content: function(event) {
+                content: event => {
                     this.modules[name].data[identifier].title = event.target.innerText.trim();
                 }
             }
@@ -236,7 +236,7 @@ export default class {
         ]);
 
         if(data && data.disabled !== 0)
-            triggerEvent(headerElement.querySelector('.component-inline-disable'), 'click');
+            Utils.triggerEvent(headerElement.querySelector('.component-inline-disable'), 'click');
 
     }
     

@@ -4,18 +4,15 @@ import Global from '../scripts/Modules/Global';
 import Csrf from '../scripts/Modules/Csrf';
 import Translate from '../scripts/Modules/Translate';
 import Router from '../scripts/Modules/Router';
-
-import 'selector3/dist/theme';
-import Selector from 'selector3/src/app';
 import { MediaManager } from "../vendor/mediaManager";
 
-Global.Selector = Selector;
+Global.Selector = require('selector3');
 Global.MediaManager = MediaManager;
 
 // Translate page
 {
 
-    let translations    = ['system', 'response', 'admin_header', 'admin_menu'];
+    let translations = ['system', 'response', 'admin_header', 'admin_menu'];
     Global.translate = new Translate(translations, false);
 
 }

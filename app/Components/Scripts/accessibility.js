@@ -18,7 +18,7 @@ let accessibility = {
 
     createSelector() {
 
-        return Global.Selector({
+        return new Global.Selector({
 
             element: 'select[name=component_accessibility_selector]',
             selected(instance, option) {

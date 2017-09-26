@@ -15,7 +15,8 @@ let title = {
             element: title.inputElement,
             content: event => {
 
-                title.titleElement.innerText = event.target.value.trim();
+                const substring = event.target.value.trim().substr(0, 16);
+                title.titleElement.innerText = substring.length === 16 ? substring + '...' : substring;
 
             }
 

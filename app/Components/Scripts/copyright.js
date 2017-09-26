@@ -14,7 +14,7 @@ let copy = {
 
     createSelector() {
 
-        return Global.Selector({
+        return new Global.Selector({
             element: '[name=component_copyright_selector]',
             opened : Global.packery.reloadItems,
             closed : Global.packery.reloadItems
