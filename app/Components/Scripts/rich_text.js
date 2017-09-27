@@ -1,30 +1,31 @@
-componentsModule.modules.rich_text = {
+import Global from '../../../scripts/Modules/Global';
+import Config from '../../../scripts/Modules/Config';
+
+let editor = {
 
     data: {},
     elements: {},
 
-    resumeInline: function(identifier, element, resumeData) {
+    resumeInline(identifier, element, resumeData) {
 
-        let current = componentsModule.modules.rich_text;
+        editor.create(identifier, element, function() {
 
-        current.create(identifier, element, function() {
-
-            current.data[identifier].value = resumeData.value.trim();
+            editor.data[identifier].value = resumeData.value.trim();
 
         });
 
     },
 
-    reload: function(identifier) {
+    reload(identifier) {
 
-        componentsModule.modules.rich_text.onCreate(identifier);
-        CKEDITOR.instances['editor_' + identifier].setData(componentsModule.modules.rich_text.data[identifier].value);
+        editor.onCreate(identifier);
+        CKEDITOR.instances['editor_' + identifier].setData(editor.data[identifier].value);
 
     },
 
-    create: function(identifier, element, callback) {
+    create(identifier, element, callback) {
 
-        componentsModule.modules.rich_text.data[identifier] = {
+        editor.data[identifier] = {
             title: '',
             value: '',
             disabled: 0
@@ -37,31 +38,32 @@ componentsModule.modules.rich_text = {
 
     },
 
-    onCreate: function(identifier) {
+    onCreate(identifier) {
 
-        let current = componentsModule.modules.rich_text;
 
-        CKEDITOR.replace('editor_' + identifier, ckconfig);
+        CKEDITOR.replace('editor_' + identifier, Config.editor);
 
         CKEDITOR.instances['editor_' + identifier].on('change', function() {
-            current.data[identifier].value = CKEDITOR.instances['editor_' + identifier].getData().trim();
+            editor.data[identifier].value = CKEDITOR.instances['editor_' + identifier].getData().trim();
         });
 
-        if(current.data[identifier].value !== '')
-            CKEDITOR.instances['editor_' + identifier].setData(current.data[identifier].value);
+        if(editor.data[identifier].value !== '')
+           CKEDITOR.instances['editor_' + identifier].setData(editor.data[identifier].value);
 
     },
 
-    validate: function() {
+    validate() {
 
         return true;
 
     },
 
-    serialize: function() {
+    serialize() {
 
-        return componentsModule.modules.rich_text.data;
+        return editor.data;
 
     }
 
 };
+
+module.exports = editor;

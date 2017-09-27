@@ -4,7 +4,7 @@ export default {
 
     // CKEditor config
     editor: {
-        language: Global.html.attr('lang'),
+        language: Global.$html.attr('lang'),
         uiColor: '#ffffff',
         extraPlugins: 'autogrow',
         autoGrow_minHeight: 150,

@@ -48,7 +48,7 @@ export default {
 
     initializeComponents() {
 
-        Global.componentsModule = new ComponentsModule(this.components.slice(0, 24));
+        Global.componentsModule = new ComponentsModule(this.components.slice(0, 26));
 
     },
 
@@ -86,9 +86,9 @@ export default {
                     });
                 },
                 onStart  : function(event) {
-                    /*let identifier = event.item.attributes['data-id'].value;
+                    let identifier = event.item.attributes['data-id'].value;
                     if(CKEDITOR.instances['editor_' + identifier])
-                        CKEDITOR.instances['editor_' + identifier].destroy();*/
+                        CKEDITOR.instances['editor_' + identifier].destroy();
                 },
                 onEnd    : function(event) {
                     let element    = event.item;

@@ -17,6 +17,7 @@ class Admin extends MainView {
             $this->theme = array_keys($support['themes'])[UserSettingsModel::$settings['theme']];
             $LANG = array_keys($support['languages'])[UserSettingsModel::$settings['language']];
             
+            $this->setVendorAssets('ckeditor');
             $this->setStyles('style_admin_' . $this->theme, 'dist/');
             $this->setScripts([
                 'vendor', 'admin'

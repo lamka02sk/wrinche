@@ -1,27 +1,28 @@
-componentsModule.modules.picture = {
+import Utils from "../../../scripts/Modules/Utils";
+import Global from "../../../scripts/Modules/Global";
+
+let picture = {
 
     data    : {},
     elements: {},
 
-    start: function() {
+    start() {
 
         // Save elements
-        let current             = componentsModule.modules.picture;
-        current.templateElement = contentElement.querySelector('#template_component_content_picture_image').children[0];
+        picture.contentElement = document.querySelector('.content-wrapper');
+        picture.templateElement = picture.contentElement.querySelector('#template_component_content_picture_image').children[0];
 
     },
 
-    resumeInline: function(identifier, element, resumeData) {
+    resumeInline(identifier, element, resumeData) {
 
-        let current = componentsModule.modules.picture;
-        let path    = resumeData.picture;
+        let path = resumeData.picture;
+        picture.create(identifier, element);
 
-        current.create(identifier, element);
-
-        current.onSelect(identifier, element, path, true, function(description, align) {
+        picture.onSelect(identifier, element, path, true, function(description, align) {
 
             description.value = resumeData.picture_description.trim();
-            triggerEvent(description, 'change');
+            Utils.triggerEvent(description, 'change');
 
             align[resumeData.picture_align].click();
 
@@ -29,16 +30,13 @@ componentsModule.modules.picture = {
 
     },
 
-    validateInput: function(path, identifier, onSuccess, onError) {
+    validateInput(path, identifier, onSuccess, onError) {
 
-        console.log('validation');
+        let elements = picture.elements[identifier];
 
-        let current  = componentsModule.modules.picture;
-        let elements = current.elements[identifier];
-
-        if(!validateUrl(path))
-            return showValidationResult(
-                elements.messageBox, 'COMPONENT_URL_INVALID', false, reloadPackery
+        if(!Utils.validateUrl(path))
+            return Utils.showValidationResults(
+                elements.messageBox, 'COMPONENT_URL_INVALID', false
             );
 
         new Promise(function(resolve) {
@@ -59,8 +57,8 @@ componentsModule.modules.picture = {
 
             if(result) {
 
-                showValidationResult(
-                    elements.messageBox, 'COMPONENT_URL_INVALID', true, reloadPackery
+                Utils.showValidationResults(
+                    elements.messageBox, 'COMPONENT_URL_INVALID', true
                 );
 
                 if(onSuccess)
@@ -68,8 +66,8 @@ componentsModule.modules.picture = {
 
             } else {
 
-                showValidationResult(
-                    elements.messageBox, 'COMPONENT_URL_INVALID', false, reloadPackery
+                Utils.showValidationResults(
+                    elements.messageBox, 'COMPONENT_URL_INVALID', false
                 );
 
                 if(onError)
@@ -81,7 +79,7 @@ componentsModule.modules.picture = {
 
     },
 
-    removeCurrent: function(element) {
+    removeCurrent(element) {
 
         let instance = element.querySelector('div.component-instance span.picture-remove');
 
@@ -90,22 +88,20 @@ componentsModule.modules.picture = {
 
     },
 
-    onSelect: function(identifier, element, path, outside, callback) {
+    onSelect(identifier, element, path, outside, callback) {
 
-        let current  = componentsModule.modules.picture;
-        let elements = current.elements[identifier];
-
+        let elements = picture.elements[identifier];
         elements.contentElement.classList.add('no-padding');
 
         // Remove current image
-        current.removeCurrent(element);
+        picture.removeCurrent(element);
 
         // Create source link
         if(!outside)
             path = 'app/Data/Files/Images/' + path;
 
         // Save image path
-        current.data[identifier] = {
+        picture.data[identifier] = {
             title              : '',
             picture            : path,
             picture_description: '',
@@ -114,7 +110,7 @@ componentsModule.modules.picture = {
         };
 
         // Create template
-        let template = current.templateElement.cloneNode(true);
+        let template = picture.templateElement.cloneNode(true);
 
         template.setAttribute('data-path', path);
         template.classList.add('component-instance');
@@ -127,21 +123,22 @@ componentsModule.modules.picture = {
         // Hide media manager
         template.children[0].addEventListener('load', function() {
 
-            closeMediaManager();
+            Utils.closeMediaManager();
             elements.inputBox.classList.add('hide');
 
         });
 
-        let alignOptions = template.children[3].children;
-        componentsModule.initializeEvents([
+        let alignOptions = Array.from(template.children[3].children);
+
+        Utils.registerEvents([
 
             {
                 // Serialize description
                 event  : 'change keyup',
                 element: template.children[2],
-                content: function(event) {
+                content(event) {
 
-                    current.data[identifier].picture_description = event.target.value.trim();
+                    picture.data[identifier].picture_description = event.target.value.trim();
 
                 }
             },
@@ -150,9 +147,9 @@ componentsModule.modules.picture = {
                 // Align picture
                 event  : 'click',
                 element: alignOptions,
-                content: function(event) {
+                content(event) {
 
-                    current.data[identifier].picture_align = +event.target.getAttribute('data-value');
+                    picture.data[identifier].picture_align = +event.target.getAttribute('data-value');
 
                     Object.values(alignOptions).forEach(function(item) {
 
@@ -174,7 +171,7 @@ componentsModule.modules.picture = {
             elements.contentElement.removeChild(template);
             elements.contentElement.classList.remove('no-padding');
 
-            delete current.data[identifier];
+            delete picture.data[identifier];
 
         });
 
@@ -183,30 +180,35 @@ componentsModule.modules.picture = {
 
     },
 
-    create: function(identifier, element) {
+    create(identifier, element) {
 
-        let current                  = componentsModule.modules.picture;
-        current.elements[identifier] = {};
+        picture.elements[identifier] = {};
 
-        let elements            = current.elements[identifier];
+        // Prepare basic data
+        picture.data[identifier] = {
+            title   : '',
+            disabled: 0
+        };
+
+        let elements            = picture.elements[identifier];
         elements.parentElement  = element;
         elements.contentElement = element.querySelector('div.component-element-content');
         elements.inputBox       = elements.contentElement.querySelector('div.input-box.select-image');
         elements.messageBox     = elements.inputBox.querySelector('.validate-message');
 
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Open Media Manager
                 event  : 'click',
                 element: element.querySelector('button.inline-image_manager'),
-                content: function() {
+                content() {
 
-                    managerActiveInstance = new MediaManager({
+                    Global.managerActiveInstance = new Global.MediaManager({
                         manager : 'images',
-                        onSelect: function(path) {
+                        onSelect(path) {
 
-                            current.onSelect(identifier, element, path, false);
+                            picture.onSelect(identifier, element, path, false);
 
                         }
                     });
@@ -218,16 +220,16 @@ componentsModule.modules.picture = {
                 // Enter custom URL to image
                 event  : 'keypress',
                 element: element.querySelector('input[name=component_inline_picture_input]'),
-                content: function(event) {
+                content(event) {
 
                     if(!event.keyCode || event.keyCode !== 13)
                         return false;
 
                     let path = event.target.value.trim();
 
-                    current.validateInput(path, identifier, function() {
+                    picture.validateInput(path, identifier, function() {
 
-                        current.onSelect(identifier, element, path, true);
+                        picture.onSelect(identifier, element, path, true);
 
                     });
 
@@ -238,9 +240,9 @@ componentsModule.modules.picture = {
                 // Real-time URL validation
                 event  : 'change keyup',
                 element: element.querySelector('input[name=component_inline_picture_input]'),
-                content: function(event) {
+                content(event) {
 
-                    current.validateInput(event.target.value.trim(), identifier);
+                    picture.validateInput(event.target.value.trim(), identifier);
 
                 }
             }
@@ -248,16 +250,18 @@ componentsModule.modules.picture = {
         ]);
     },
 
-    validate: function() {
+    validate() {
 
         return true;
 
     },
 
-    serialize: function() {
+    serialize() {
 
-        return componentsModule.modules.picture.data;
+        return picture.data;
 
     }
 
 };
+
+module.exports = picture;
