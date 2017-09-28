@@ -1,4 +1,6 @@
-componentsModule.modules.table = {
+import Utils from "../../../scripts/Modules/Utils";
+
+let table = {
 
     data: {},
 
@@ -24,26 +26,24 @@ componentsModule.modules.table = {
 
     },
 
-    resumeInline: function(identifier, element, resumeData) {
+    resumeInline(identifier, element, resumeData) {
 
-        let current = componentsModule.modules.table;
-        current.create(identifier, element, resumeData);
+        table.create(identifier, element, resumeData);
 
     },
 
-    validate: function() {
+    validate() {
         return true;
     },
 
-    serialize: function() {
-        return componentsModule.modules.table.data;
+    serialize() {
+        return table.data;
     },
 
-    addRow: function(table, identifier, before, resumeData) {
+    addRow(table, identifier, before, resumeData) {
 
-        let current    = componentsModule.modules.table;
-        let clones     = current.clones;
-        let data       = current.data[identifier];
+        let clones     = this.clones;
+        let data       = this.data[identifier];
         let tableRow   = clones.tableRow.cloneNode(true);
         let actionCell = clones.asideAction.cloneNode(true);
         let columnID   = data.table.order.columns[0];
@@ -96,11 +96,11 @@ componentsModule.modules.table = {
         if(resumeData !== undefined) {
 
             if(resumeData.hidden)
-                triggerEvent(actionCell.children[0], 'click');
+                Utils.triggerEvent(actionCell.children[0], 'click');
 
             if(resumeData.header) {
                 headerCell.innerText = resumeData.header;
-                triggerEvent(headerCell, 'input');
+                Utils.triggerEvent(headerCell, 'input');
             }
 
         }
@@ -110,11 +110,10 @@ componentsModule.modules.table = {
 
     },
 
-    addColumn: function(table, identifier, afterID, resumeData) {
+    addColumn(table, identifier, afterID, resumeData) {
 
-        let current = componentsModule.modules.table;
-        let data = current.data[identifier];
-        let clones = current.clones;
+        let data = this.data[identifier];
+        let clones = this.clones;
 
         let columnID = Math.floor(Math.random() * (999999 - 100000)) + 100000;
         let actionRow  = table.querySelector('.table-action-row');
@@ -147,7 +146,7 @@ componentsModule.modules.table = {
 
                 if(resumeData.header) {
                     headerCell.innerText = resumeData.header;
-                    triggerEvent(headerCell, 'input');
+                    Utils.triggerEvent(headerCell, 'input');
                 }
 
             }
@@ -161,7 +160,7 @@ componentsModule.modules.table = {
 
                     if(resumeData.data[index] !== undefined) {
                         currentCell.innerText = resumeData.data[index];
-                        triggerEvent(currentCell, 'input');
+                        Utils.triggerEvent(currentCell, 'input');
                     }
 
                     // If hidden row
@@ -200,18 +199,18 @@ componentsModule.modules.table = {
 
             // If column is hidden
             if(resumeData.hidden !== undefined)
-                triggerEvent(actionCell.children[0], 'click');
+                Utils.triggerEvent(actionCell.children[0], 'click');
 
         }
 
-        ++componentsModule.modules.table.data[identifier].dimensions[0];
+        ++this.data[identifier].dimensions[0];
         return table;
 
     },
 
-    allowHorizontalScrolling: function(contentElement) {
+    allowHorizontalScrolling(contentElement) {
 
-        componentsModule.initializeEvent({
+        Utils.registerEvent({
 
             event  : 'wheel',
             element: contentElement,
@@ -227,15 +226,14 @@ componentsModule.modules.table = {
 
     },
 
-    createTemplateClones: function(element) {
+    createTemplateClones(element) {
 
-        let current  = componentsModule.modules.table;
-        let template = current.template;
-        let clones   = current.clones;
+        let template = table.template;
+        let clones   = table.clones;
 
         // Save parent template
         if(template === false)
-            current.template = template = element.querySelector('#template_inline_table_components').cloneNode(true).children[0];
+            table.template = template = element.querySelector('#template_inline_table_components').cloneNode(true).children[0];
 
         // Other clones
         if(clones.actionRow === false)
@@ -270,9 +268,9 @@ componentsModule.modules.table = {
 
     },
 
-    create: function(identifier, element, resumeData) {
+    create(identifier, element, resumeData) {
 
-        let current        = componentsModule.modules.table;
+        let current        = this;
         let contentElement = element.querySelector('div.table-box');
         let nameInput      = element.querySelector('input[name=component_inline_table_name]');
         let clones         = current.clones;
@@ -318,7 +316,7 @@ componentsModule.modules.table = {
         };
 
         // Create events
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Serialize table name
@@ -584,7 +582,7 @@ componentsModule.modules.table = {
 
             // Initialize table name
             nameInput.value = resumeData.table.name.trim();
-            triggerEvent(nameInput, 'input');
+            Utils.triggerEvent(nameInput, 'input');
 
             // Change table global header
             const firstRow         = resumeData.table.order.rows[0];
@@ -593,7 +591,7 @@ componentsModule.modules.table = {
 
             if(resumeData.table.header) {
                 headerRow.children[1].innerText = resumeData.table.header[headerIdentifier];
-                triggerEvent(headerRow.children[1], 'input');
+                Utils.triggerEvent(headerRow.children[1], 'input');
             }
 
             // Show / Hide first row and column
@@ -602,14 +600,14 @@ componentsModule.modules.table = {
                 if(resumeData.table.hidden.columns) {
 
                     if(resumeData.table.hidden.columns.indexOf(firstColumn) !== -1)
-                        triggerEvent(actionRow.children[1].children[0], 'click');
+                        Utils.triggerEvent(actionRow.children[1].children[0], 'click');
 
                 }
 
                 if(resumeData.table.hidden.rows) {
 
                     if(resumeData.table.hidden.rows.indexOf(firstRow) !== -1)
-                        triggerEvent(headerRow.children[0].children[0], 'click');
+                        Utils.triggerEvent(headerRow.children[0].children[0], 'click');
 
                 }
 
@@ -683,3 +681,5 @@ componentsModule.modules.table = {
     }
 
 };
+
+module.exports = table;

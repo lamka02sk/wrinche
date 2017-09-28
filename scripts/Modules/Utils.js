@@ -8,7 +8,7 @@ export default {
     pad(number, positions) {
 
         number = '' + number;
-        return number.length < positions ? pad("0" + number, positions) : number;
+        return number.length < positions ? this.pad("0" + number, positions) : number;
 
     },
 

@@ -1,32 +1,32 @@
-componentsModule.modules.gallery = {
+import Utils from "../../../scripts/Modules/Utils";
+import Global from "../../../scripts/Modules/Global";
+
+let gallery = {
 
     data: {},
 
-    validate: function() {
+    validate() {
         return true;
     },
 
-    serialize: function() {
-        return componentsModule.modules.gallery.data;
+    serialize() {
+        return gallery.data;
     },
 
-    resumeInline: function(identifier, element, resumeData) {
+    resumeInline(identifier, element, resumeData) {
 
-        let current = componentsModule.modules.gallery;
-        current.create(identifier, element);
+        gallery.create(identifier, element);
 
         resumeData.gallery.forEach(function(image) {
-
-            current.onSelect(identifier, element, image, true);
-
+            gallery.onSelect(identifier, element, image, true);
         });
 
     },
 
-    validateInput: function(identifier, element, path, onSuccess) {
+    validateInput(identifier, element, path, onSuccess) {
 
         if(!/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(path)) {
-            showValidationResult(element, 'COMPONENT_URL_INVALID', false, $.noop);
+            Utils.showValidationResults(element, 'COMPONENT_URL_INVALID', false);
             return false;
         }
 
@@ -44,20 +44,19 @@ componentsModule.modules.gallery = {
         promise.then(function(result) {
 
             if(result) {
-                showValidationResult(element, '', true, $.noop);
+                Utils.showValidationResults(element, '', true);
                 if(onSuccess) onSuccess(identifier, element, path, true);
                 return true;
             }
 
-            showValidationResult(element, 'COMPONENT_URL_INVALID', false, $.noop);
+            Utils.showValidationResults(element, 'COMPONENT_URL_INVALID', false);
 
         });
 
     },
 
-    onSelect: function(identifier, element, path, outside) {
+    onSelect(identifier, element, path, outside) {
 
-        let current        = componentsModule.modules.gallery;
         let contentElement = element.querySelector('div.gallery-items');
         contentElement.classList.remove('no-padding');
 
@@ -66,29 +65,29 @@ componentsModule.modules.gallery = {
             path = 'app/Data/Files/Images/' + path;
 
         // Check gallery data
-        if(current.data[identifier]) {
+        if(gallery.data[identifier]) {
 
-            if(~current.data[identifier].gallery.indexOf(path)) {
+            if(~gallery.data[identifier].gallery.indexOf(path)) {
 
-                closeMediaManager();
+                Global.closeMediaManager();
                 return false;
 
             }
 
-            current.data[identifier].gallery.push(path);
+            gallery.data[identifier].gallery.push(path);
 
         } else
-            current.data[identifier] = {
+            gallery.data[identifier] = {
                 title   : '',
                 gallery : [path],
                 disabled: 0
             };
 
         // Create template
-        if(!current.templateElement)
-            current.templateElement = element.querySelector('#template_component_gallery_item').children[0].cloneNode(true);
+        if(!gallery.templateElement)
+            gallery.templateElement = element.querySelector('#template_component_gallery_item').children[0].cloneNode(true);
 
-        let template = current.templateElement.cloneNode(true);
+        let template = gallery.templateElement.cloneNode(true);
 
         template.setAttribute('data-path', path);
         template.classList.add('component-instance');
@@ -101,10 +100,10 @@ componentsModule.modules.gallery = {
 
             contentElement.removeChild(template);
 
-            for(let i = 0; i < current.data[identifier].gallery.length; ++i) {
+            for(let i = 0; i < gallery.data[identifier].gallery.length; ++i) {
 
-                if(current.data[identifier].gallery[i] === path)
-                    current.data[identifier].gallery.splice(i, 1);
+                if(gallery.data[identifier].gallery[i] === path)
+                    gallery.data[identifier].gallery.splice(i, 1);
 
             }
 
@@ -119,27 +118,21 @@ componentsModule.modules.gallery = {
 
     },
 
-    create: function(identifier, element) {
+    create(identifier, element) {
 
-        let current = componentsModule.modules.gallery;
-
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Open Media Manager
                 event  : 'click',
                 element: element.querySelector('button.inline-image_manager'),
-                content: function() {
+                content() {
 
-                    managerActiveInstance = new MediaManager({
+                    Global.managerActiveInstance = new Global.MediaManager({
                         manager: 'images',
-
-                        onSelect: function(path) {
-
-                            current.onSelect(identifier, element, path, false);
-
+                        onSelect(path) {
+                            gallery.onSelect(identifier, element, path, false);
                         }
-
                     });
 
                 }
@@ -149,15 +142,15 @@ componentsModule.modules.gallery = {
                 // Enter custom URL to image
                 event  : 'keypress',
                 element: element.querySelector('input[name=component_inline_picture_input]'),
-                content: function(event) {
+                content(event) {
 
                     if(event.keyCode && event.keyCode === 13) {
 
                         let path = event.target.value.trim();
 
-                        current.validateInput(
+                        gallery.validateInput(
                             identifier, element, path,
-                            current.onSelect
+                            gallery.onSelect
                         );
 
                     }
@@ -169,9 +162,9 @@ componentsModule.modules.gallery = {
                 // Validate image URL
                 event  : 'change keyup',
                 element: element.querySelector('input[name=component_inline_picture_input]'),
-                content: function(event) {
+                content(event) {
 
-                    current.validateInput(
+                    gallery.validateInput(
                         identifier, element, event.target.value.trim()
                     );
 
@@ -183,3 +176,5 @@ componentsModule.modules.gallery = {
     }
 
 };
+
+module.exports = gallery;

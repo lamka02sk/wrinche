@@ -9,12 +9,24 @@ export default {
 
     createView(locales = []) {
 
+        // Clear previous events
+        this.clearEvents();
+
         return new Promise(resolve => {
 
             this.LOCALES = locales;
             this.fetchViewHTML(resolve);
 
         });
+
+    },
+
+    clearEvents() {
+
+        let contentWrapper = document.querySelector('.content-wrapper');
+
+        if(contentWrapper)
+            contentWrapper.outerHTML = contentWrapper.outerHTML;
 
     },
 

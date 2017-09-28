@@ -48,7 +48,7 @@ export default {
 
     initializeComponents() {
 
-        Global.componentsModule = new ComponentsModule(this.components.slice(0, 26));
+        Global.componentsModule = new ComponentsModule(this.components);
 
     },
 

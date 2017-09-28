@@ -1,27 +1,28 @@
-componentsModule.modules.code = {
+import Ajax from "../../../scripts/Modules/Ajax";
+import Utils from "../../../scripts/Modules/Utils";
+import Global from "../../../scripts/Modules/Global";
+
+let code = {
 
     programmingLanguages: [],
     select              : false,
     data                : {},
 
-    resumeInline: function(identifier, element, resumeData) {
+    resumeInline(identifier, element, resumeData) {
 
-        componentsModule.modules.code.create(identifier, element, resumeData);
+        code.create(identifier, element, resumeData);
 
     },
 
-    createSelector: function(identifier, current) {
+    createSelector(identifier) {
 
-        setTimeout(function() {
+        setTimeout(() => {
 
-            new Selector({
+            new Global.Selector({
 
-                selector: 'select[name=component-inline-code-programming_languages-select_' + identifier + ']',
-
-                onSelect: function(instance, option) {
-
-                    current.data[identifier].code_language = +option.getAttribute('data-item').trim();
-
+                element: 'select[name=component-inline-code-programming_languages-select_' + identifier + ']',
+                selected(instance, option) {
+                    code.data[identifier].code_language = +option.trim();
                 }
 
             });
@@ -30,23 +31,21 @@ componentsModule.modules.code = {
 
     },
 
-    create: function(identifier, element, resumeData) {
-
-        let current = componentsModule.modules.code;
+    create(identifier, element, resumeData) {
 
         // Load programming languages
-        if(current.programmingLanguages.length === 0)
-            current.programmingLanguages = getJson('app/Config/programming_languages.json');
+        if(code.programmingLanguages.length === 0)
+            code.programmingLanguages = Ajax.getJSON('app/Config/programming_languages.json');
 
         // Create language selector
-        if(current.select === false) {
+        if(code.select === false) {
 
             let select = document.createElement('select');
 
             select.setAttribute('id', 'select-relative');
             select.setAttribute('data-type', 'search-selector');
 
-            current.programmingLanguages.forEach(function(language, key) {
+            code.programmingLanguages.forEach(function(language, key) {
 
                 let option = document.createElement('option');
                 option.setAttribute('value', key.toString());
@@ -59,16 +58,16 @@ componentsModule.modules.code = {
 
             });
 
-            current.select = select;
+            code.select = select;
 
         }
 
         let contentElement = element.querySelector('div.component-element-content');
         let textarea       = contentElement.querySelector('textarea');
-        let select         = current.select.cloneNode(true);
+        let select         = code.select.cloneNode(true);
 
         // Initialize data object
-        current.data[identifier] = {
+        code.data[identifier] = {
             title        : '',
             code         : '',
             code_language: 299,
@@ -78,12 +77,12 @@ componentsModule.modules.code = {
         if(resumeData) {
 
             if(resumeData.code)
-                current.data[identifier].code = textarea.value = resumeData.code.trim();
+                code.data[identifier].code = textarea.value = resumeData.code.trim();
 
             if(resumeData.code_language) {
 
-                let selected                           = select.querySelector('[selected]');
-                current.data[identifier].code_language = resumeData.code_language;
+                let selected                        = select.querySelector('[selected]');
+                code.data[identifier].code_language = resumeData.code_language;
 
                 selected.removeAttribute('selected');
                 select.children[resumeData.code_language].setAttribute('selected', 'true');
@@ -95,17 +94,17 @@ componentsModule.modules.code = {
         select.setAttribute('name', 'component-inline-code-programming_languages-select_' + identifier);
         contentElement.appendChild(select);
 
-        current.createSelector(identifier, current);
+        code.createSelector(identifier);
 
         // Initialize events
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Serialize textarea
                 event  : 'change keyup',
                 element: textarea,
-                content: function(event) {
-                    current.data[identifier].code = event.target.value.trim();
+                content(event) {
+                    code.data[identifier].code = event.target.value.trim();
                 }
             },
 
@@ -113,7 +112,7 @@ componentsModule.modules.code = {
                 // Tab in textarea
                 event  : 'keydown',
                 element: textarea,
-                content: function(event) {
+                content(event) {
 
                     let keyCode = event.keyCode || event.which;
 
@@ -146,12 +145,14 @@ componentsModule.modules.code = {
 
     },
 
-    validate: function() {
+    validate() {
         return true;
     },
 
-    serialize: function() {
-        return componentsModule.modules.code.data;
+    serialize() {
+        return code.data;
     }
 
 };
+
+module.exports = code;

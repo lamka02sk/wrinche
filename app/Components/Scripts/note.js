@@ -1,42 +1,43 @@
-componentsModule.modules.note = {
+import Utils from "../../../scripts/Modules/Utils";
+
+let note = {
 
     data: {},
 
-    resumeInline: function(identifier, element, resumeData) {
+    resumeInline(identifier, element, resumeData) {
 
-        componentsModule.modules.note.create(identifier, element, resumeData);
+        note.create(identifier, element, resumeData);
 
     },
 
-    validate: function() {
+    validate() {
         return true;
     },
 
-    serialize: function() {
-        return componentsModule.modules.note.data;
+    serialize() {
+        return note.data;
     },
 
-    create: function(identifier, element, resumeData) {
+    create(identifier, element, resumeData) {
 
-        let current       = componentsModule.modules.note;
         let positionItems = element.querySelectorAll('span.position-item');
         let textarea      = element.querySelector('textarea[name=component_inline_note]');
 
-        current.data[identifier] = {
+        note.data[identifier] = {
             title        : '',
             note         : '',
             note_position: 1,
             disabled     : 0
         };
 
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Serialize textarea
                 event  : 'change keyup',
                 element: textarea,
-                content: function(event) {
-                    current.data[identifier].note = event.target.value.trim();
+                content(event) {
+                    note.data[identifier].note = event.target.value.trim();
                 }
             },
 
@@ -44,8 +45,8 @@ componentsModule.modules.note = {
                 // Serialize position
                 event  : 'click',
                 element: positionItems,
-                content: function(event) {
-                    current.data[identifier].note_position = event.target.getAttribute('data-position');
+                content(event) {
+                    note.data[identifier].note_position = event.target.getAttribute('data-position');
                     positionItems.forEach(function(item) {
                         item.classList.remove('active');
                     });
@@ -60,7 +61,7 @@ componentsModule.modules.note = {
             if(resumeData.note) {
 
                 textarea.value = resumeData.note.trim();
-                triggerEvent(textarea, 'change');
+                Utils.triggerEvent(textarea, 'change');
 
             }
 
@@ -72,3 +73,5 @@ componentsModule.modules.note = {
     }
 
 };
+
+module.exports = note;

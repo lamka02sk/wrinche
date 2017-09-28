@@ -139,7 +139,7 @@ require_once ROOT . '/app/Layouts/Admin/Splash.php';
         
         <?php
         
-        $profilePicture = App\Models\UserModel::$user['picture'];
+        $profilePicture = App\Models\UserModel::$user['picture'] ?? null;
         $pictureUrl = '';
         if($profilePicture !== null)
             $pictureUrl = 'background-image: url(' . $profilePicture . ') !important';

@@ -1,14 +1,16 @@
-componentsModule.modules.audio = {
+import Utils from "../../../scripts/Modules/Utils";
+import Global from "../../../scripts/Modules/Global";
+
+let audio = {
 
     data: {},
 
     resumeInline: function(identifier, element, resumeData) {
 
-        let current = componentsModule.modules.audio;
         let path = resumeData.audio;
 
-        current.create(identifier, element);
-        current.onSelect(identifier, element, path, true);
+        audio.create(identifier, element);
+        audio.onSelect(identifier, element, path, true);
 
     },
 
@@ -18,8 +20,8 @@ componentsModule.modules.audio = {
 
         if(!/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(path)) {
 
-            showValidationResult(
-                messageBox, 'COMPONENT_URL_INVALID', false, reloadPackery
+            Utils.showValidationResults(
+                messageBox, 'COMPONENT_URL_INVALID', false
             );
 
             return false;
@@ -45,13 +47,13 @@ componentsModule.modules.audio = {
         .then(function(result) {
 
             if(result)
-                showValidationResult(
-                    messageBox, 'COMPONENT_URL_INVALID', true, reloadPackery
+                Utils.showValidationResults(
+                    messageBox, 'COMPONENT_URL_INVALID', true
                 );
 
             else
-                showValidationResult(
-                    messageBox, 'COMPONENT_URL_INVALID', false, reloadPackery
+                Utils.showValidationResults(
+                    messageBox, 'COMPONENT_URL_INVALID', false
                 );
 
         });
@@ -75,7 +77,7 @@ componentsModule.modules.audio = {
         contentElement.classList.add('no-padding');
 
         // Remove current audio
-        componentsModule.modules.audio.remove(element);
+        audio.remove(element);
 
         // Create source link
         if(!outside)
@@ -83,10 +85,8 @@ componentsModule.modules.audio = {
 
 
         // Save audio path
-        componentsModule.modules.audio.data[identifier] = {
-            title: '',
-            audio: path,
-            disabled: 0
+        audio.data[identifier] = {
+            audio: path
         };
 
         // Create template
@@ -122,11 +122,11 @@ componentsModule.modules.audio = {
 
         function showPlayerTime() {
             let position = template.children[0].currentTime;
-            position = parseInt(position / 60, 10) + ':' + pad(Math.round(position % 60), 2);
+            position = parseInt(position / 60, 10) + ':' + Utils.pad(Math.round(position % 60), 2);
             let duration = template.children[0].duration;
             let minutes = parseInt(duration / 60, 10);
             let seconds = duration % 60;
-            template.children[5].innerText = position + '/' + minutes + ':' + pad(Math.round(seconds), 2);
+            template.children[5].innerText = position + '/' + minutes + ':' + Utils.pad(Math.round(seconds), 2);
         }
 
         // Hide media manager
@@ -141,23 +141,29 @@ componentsModule.modules.audio = {
             contentElement.querySelector('div.input-box.select-image').classList.remove('hide');
             contentElement.removeChild(template);
             contentElement.classList.remove('no-padding');
-            delete componentsModule.modules.audio.data[identifier];
+            delete audio.data[identifier];
         });
 
     },
 
     create: function(identifier, element) {
-        componentsModule.initializeEvents([
+
+        audio.data[identifier] = {
+            title: '',
+            disabled: 0
+        };
+
+        Utils.registerEvents([
 
             {
                 // Open Media manager
                 event: 'click',
                 element: element.querySelector('button.inline-image_manager'),
                 content: function() {
-                    managerActiveInstance = new MediaManager({
+                    Global.managerActiveInstance = new Global.MediaManager({
                         manager: 'sounds',
                         onSelect: function(path) {
-                            componentsModule.modules.audio.onSelect(identifier, element, path, false);
+                            audio.onSelect(identifier, element, path, false);
                         }
                     });
                 }
@@ -170,10 +176,8 @@ componentsModule.modules.audio = {
                 content: function(event) {
                     if(event.keyCode && event.keyCode === 13) {
                         let path = event.target.value;
-                        componentsModule.modules.audio.validateInput(element, identifier, path, function() {
-
-                            componentsModule.modules.audio.onSelect(identifier, element, path, true);
-
+                        audio.validateInput(element, identifier, path, function() {
+                            audio.onSelect(identifier, element, path, true);
                         });
                     }
                 }
@@ -184,7 +188,7 @@ componentsModule.modules.audio = {
                 event: 'change keyup',
                 element: element.querySelector('input[name=component_inline_audio_input]'),
                 content: function(event) {
-                    componentsModule.modules.audio.validateInput(element, identifier, event.target.value);
+                    audio.validateInput(element, identifier, event.target.value);
                 }
             }
 
@@ -196,7 +200,9 @@ componentsModule.modules.audio = {
     },
 
     serialize: function() {
-        return componentsModule.modules.audio.data;
+        return audio.data;
     }
 
 };
+
+module.exports = audio;

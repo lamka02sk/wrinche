@@ -1,4 +1,7 @@
-componentsModule.modules.poll = {
+import Utils from "../../../scripts/Modules/Utils";
+import Sortable from 'sortablejs';
+
+let poll = {
 
     data: {},
     itemClone: false,
@@ -8,25 +11,24 @@ componentsModule.modules.poll = {
     },
 
     serialize: function() {
-        return componentsModule.modules.poll.data;
+        return poll.data;
     },
 
     resumeInline: function(identifier, element, resumeData) {
 
-        let current     = componentsModule.modules.poll;
-        let listElement = current.create(identifier, element, resumeData);
+        let listElement = poll.create(identifier, element, resumeData);
 
         resumeData.poll.forEach(function(pollItem) {
 
             if(pollItem === '')
                 return true;
 
-            current.createItem(identifier, listElement, undefined, false, pollItem);
+            poll.createItem(identifier, listElement, undefined, false, pollItem);
 
         });
 
-        if(current.data[identifier].poll.length < 1)
-            current.createItem(identifier, listElement);
+        if(poll.data[identifier].poll.length < 1)
+            poll.createItem(identifier, listElement);
 
     },
 
@@ -34,18 +36,17 @@ componentsModule.modules.poll = {
 
         let newOrder = [];
         let newContent = [];
-        let current = componentsModule.modules.poll;
 
         listElement.querySelectorAll('.poll-item').forEach(function(item) {
             newOrder.push(parseFloat(item.getAttribute('data-item')));
             let text = item.querySelector('p').innerText.trim();
-            if(text === current.itemClone.querySelector('p').innerText.trim())
+            if(text === poll.itemClone.querySelector('p').innerText.trim())
                 text = '';
             newContent.push(text);
         });
 
-        current.data[identifier].poll = newContent;
-        current.data[identifier].order = newOrder;
+        poll.data[identifier].poll = newContent;
+        poll.data[identifier].order = newOrder;
 
     },
 
@@ -54,38 +55,37 @@ componentsModule.modules.poll = {
         if(!pollItem)
             pollItem = '';
 
-        let current = componentsModule.modules.poll;
         let itemID = Math.random() * (99999 - 10000) + 10000;
         let index;
 
         // Create item data
         if(!after) {
 
-            current.data[identifier].poll.push(pollItem);
-            current.data[identifier].order.push(itemID);
-            index = +current.data[identifier].order.indexOf(itemID);
+            poll.data[identifier].poll.push(pollItem);
+            poll.data[identifier].order.push(itemID);
+            index = +poll.data[identifier].order.indexOf(itemID);
 
         } else {
 
-            index = +current.data[identifier].order.indexOf(after);
+            index = +poll.data[identifier].order.indexOf(after);
 
             if(index === -1)
                 return false;
 
             index += 1;
-            current.data[identifier].poll.splice(index, 0, pollItem);
-            current.data[identifier].order.splice(index, 0, itemID);
+            poll.data[identifier].poll.splice(index, 0, pollItem);
+            poll.data[identifier].order.splice(index, 0, itemID);
 
         }
 
         // Create item clone
-        let itemElement = current.itemClone.cloneNode(true);
+        let itemElement = poll.itemClone.cloneNode(true);
         let itemText = itemElement.querySelector('p');
 
         itemElement.setAttribute('data-item', itemID.toString());
 
         // Create item events
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Focus hide placeholder
@@ -95,7 +95,7 @@ componentsModule.modules.poll = {
 
                     let target = event.target;
 
-                    if(target.innerText.trim() !== current.itemClone.querySelector('p').innerText)
+                    if(target.innerText.trim() !== poll.itemClone.querySelector('p').innerText)
                         return false;
 
                     target.classList.remove('item-text-placeholder');
@@ -114,13 +114,13 @@ componentsModule.modules.poll = {
                     let nextItem = target.parentNode.nextSibling;
 
                     if(target.innerText.trim() !== '' && nextItem === null)
-                        current.createItem(identifier, listElement, itemID, true);
+                        poll.createItem(identifier, listElement, itemID, true);
 
                     if(target.innerText.trim() !== '')
                         return false;
 
                     target.classList.add('item-text-placeholder');
-                    target.innerText = current.itemClone.querySelector('p').innerText;
+                    target.innerText = poll.itemClone.querySelector('p').innerText;
 
                 }
             },
@@ -153,7 +153,7 @@ componentsModule.modules.poll = {
                 element: itemText,
                 content: function(event) {
 
-                    current.data[identifier].poll[index] = event.target.innerText.trim();
+                    poll.data[identifier].poll[index] = event.target.innerText.trim();
 
                 }
             },
@@ -167,16 +167,16 @@ componentsModule.modules.poll = {
                     if(listElement.children.length < 2)
                         return false;
 
-                    let index = current.data[identifier].order.indexOf(itemID);
+                    let index = poll.data[identifier].order.indexOf(itemID);
 
                     if(index === -1)
                         return false;
 
-                    current.data[identifier].poll.splice(index, 1);
-                    current.data[identifier].order.splice(index, 1);
+                    poll.data[identifier].poll.splice(index, 1);
+                    poll.data[identifier].order.splice(index, 1);
 
                     listElement.removeChild(itemElement);
-                    current.reloadItems(identifier, listElement);
+                    poll.reloadItems(identifier, listElement);
 
                 }
             }
@@ -189,7 +189,7 @@ componentsModule.modules.poll = {
 
         else {
 
-            if(!current.data[identifier].order[index + 1])
+            if(!poll.data[identifier].order[index + 1])
                 listElement.appendChild(itemElement);
             else
                 listElement.insertBefore(itemElement, listElement.children[index + 1]);
@@ -209,17 +209,16 @@ componentsModule.modules.poll = {
 
     create: function(identifier, element, resumeData) {
 
-        let current = componentsModule.modules.poll;
         let contentElement = element.querySelector('.component-element-content');
         let listElement = contentElement.querySelector('.component-inline-poll-content');
         let listItem = listElement.querySelector('.poll-item');
 
-        if(!current.itemClone)
-            current.itemClone = listItem.cloneNode(true);
+        if(!poll.itemClone)
+            poll.itemClone = listItem.cloneNode(true);
         listElement.removeChild(listItem);
 
         // Data
-        current.data[identifier] = {
+        poll.data[identifier] = {
             title: '',
             disabled: 0,
             poll: [],
@@ -241,7 +240,7 @@ componentsModule.modules.poll = {
             },
             onEnd: function(event) {
                 event.item.classList.remove('chosen');
-                current.reloadItems(identifier, listElement);
+                poll.reloadItems(identifier, listElement);
             }
         });
 
@@ -250,14 +249,14 @@ componentsModule.modules.poll = {
         let positionItems = contentElement.querySelectorAll('.component-poll_align .position-item');
         let nameInput = contentElement.querySelector('input[name=component_inline_poll_name]');
 
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Serialize poll title
                 event: 'change keyup',
                 element: nameInput,
                 content: function(event) {
-                    current.data[identifier].poll_title = event.target.value.trim();
+                    poll.data[identifier].poll_title = event.target.value.trim();
                 }
             },
 
@@ -268,7 +267,7 @@ componentsModule.modules.poll = {
                 content: function(event) {
                     listElement.setAttribute(
                         'data-type',
-                        current.data[identifier].poll_type = event.target.getAttribute('data-position')
+                        poll.data[identifier].poll_type = event.target.getAttribute('data-position')
                     );
                     typeItems.forEach(function(item) {
                         item.classList.remove('active');
@@ -282,7 +281,7 @@ componentsModule.modules.poll = {
                 event: 'click',
                 element: positionItems,
                 content: function(event) {
-                    current.data[identifier].poll_position = event.target.getAttribute('data-position');
+                    poll.data[identifier].poll_position = event.target.getAttribute('data-position');
                     positionItems.forEach(function(item) {
                         item.classList.remove('active');
                     });
@@ -295,7 +294,7 @@ componentsModule.modules.poll = {
         if(resumeData !== undefined) {
 
             nameInput.value = resumeData.poll_title.trim();
-            triggerEvent(nameInput, 'change');
+            Utils.triggerEvent(nameInput, 'change');
 
             typeItems[+resumeData.poll_type].click();
             positionItems[+resumeData.poll_position].click();
@@ -304,10 +303,12 @@ componentsModule.modules.poll = {
 
         // First item
         if(!resumeData)
-            current.createItem(identifier, listElement);
+            poll.createItem(identifier, listElement);
 
         return listElement;
 
     }
 
 };
+
+module.exports = poll;

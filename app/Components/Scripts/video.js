@@ -1,4 +1,8 @@
-componentsModule.modules.video = {
+import Utils from "../../../scripts/Modules/Utils";
+import Ajax from "../../../scripts/Modules/Ajax";
+import Global from "../../../scripts/Modules/Global";
+
+let video = {
 
     data: {},
     valid: {},
@@ -12,14 +16,12 @@ componentsModule.modules.video = {
         'highres': '1440p+ (QHD+)'
     },
 
-    resumeInline: function(identifier, element, resumeData) {
+    resumeInline(identifier, element, resumeData) {
 
-        let current = componentsModule.modules.video;
         let path = resumeData.video;
+        video.create(identifier, element);
 
-        current.create(identifier, element);
-
-        current.onSelect(identifier, element, path, true, function(description, align) {
+        video.onSelect(identifier, element, path, true, function(description, align) {
 
             let descriptionText = resumeData.video_description.trim();
 
@@ -27,7 +29,7 @@ componentsModule.modules.video = {
                 descriptionText = '';
 
             description.value = descriptionText;
-            triggerEvent(description, 'change');
+            Utils.triggerEvent(description, 'change');
 
             align[resumeData.video_align].click();
 
@@ -35,7 +37,7 @@ componentsModule.modules.video = {
 
     },
 
-    videoType: function(path) {
+    videoType(path) {
 
         // Vimeo
         if(/^((?:https?:)?\/\/)?((?:www|m|player)\.)?((?:vimeo\.com))(?:$|\/|)(\S+)?$/gm.test(path))
@@ -51,17 +53,18 @@ componentsModule.modules.video = {
 
     },
 
-    registerEvents: function(template, identifier, contentElement, callback) {
+    registerEvents(template, identifier, contentElement, callback) {
 
         let alignOptions = template.children[6].querySelectorAll('span');
-        componentsModule.initializeEvents([
+
+        Utils.registerEvents([
 
             {
                 // Serialize description
                 event: 'change keyup',
                 element: template.children[4].children[1],
-                content: function(event) {
-                    componentsModule.modules.video.data[identifier].video_description = event.target.value.trim();
+                content(event) {
+                    video.data[identifier].video_description = event.target.value.trim();
                 }
             },
 
@@ -69,8 +72,8 @@ componentsModule.modules.video = {
                 // Serialize video position
                 event: 'click',
                 element: alignOptions,
-                content: function(event) {
-                    componentsModule.modules.video.data[identifier].video_align = +event.target.getAttribute('data-value');
+                content(event) {
+                    video.data[identifier].video_align = +event.target.getAttribute('data-value');
                     alignOptions.forEach(function(item) {
                         item.classList.remove('active');
                     });
@@ -81,7 +84,7 @@ componentsModule.modules.video = {
         ]);
 
         template.children[5].addEventListener('click', function() {
-            componentsModule.modules.video.removeInstance(identifier, contentElement, template);
+            video.removeInstance(identifier, contentElement, template);
         });
 
         if(callback)
@@ -89,11 +92,12 @@ componentsModule.modules.video = {
 
     },
 
-    loadExternalVideo: function(identifier, element, path, template, callback) {
+    loadExternalVideo(identifier, element, path, template, callback) {
 
         // Close media manager
         document.querySelector('div.media-manager span.close-manager').click();
 
+        let current = this;
         let video = document.createElement('video');
         video.setAttribute('src', path);
         video.classList.add('item-player');
@@ -113,7 +117,7 @@ componentsModule.modules.video = {
             let duration = video.duration;
             let minutes = parseInt(duration / 60, 10);
             let seconds = duration % 60;
-            let time = minutes + ':' + pad(Math.round(seconds), 2);
+            let time = minutes + ':' + Utils.pad(Math.round(seconds), 2);
             let width = video.videoWidth;
             let height = video.videoHeight;
             let dimensions = width + 'x' + height;
@@ -123,12 +127,14 @@ componentsModule.modules.video = {
 
         });
 
-        componentsModule.modules.video.registerEvents(template, identifier, contentElement, callback);
+        current.registerEvents(template, identifier, contentElement, callback);
 
     },
 
-    loadYouTubeVideo: function(identifier, element, path, template, callback) {
+    loadYouTubeVideo(identifier, element, path, template, callback) {
 
+        let tmp;
+        let current = this;
         let video = document.createElement('div');
         const id = 'youtube-player-' + identifier;
         video.setAttribute('id', id);
@@ -154,19 +160,19 @@ componentsModule.modules.video = {
             new YT.Player(id, {
                 videoId: videoId,
                 events: {
-                    onReady: function(event) {
+                    onReady(event) {
                         tmp = event.target.getPlaylist();
                         template.children[1].innerText = event.target.getVideoData().title;
                         let duration = event.target.getDuration();
                         let minutes = parseInt(duration / 60, 10);
                         let seconds = duration % 60;
-                        template.children[2].innerText = minutes + ':' + pad(Math.round(seconds), 2);
+                        template.children[2].innerText = minutes + ':' + Utils.pad(Math.round(seconds), 2);
                         event.target.setPlaybackQuality('medium');
                     },
-                    onStateChange: function(event) {
+                    onStateChange(event) {
 
                         template.children[3].innerText = (event.target.getAvailableQualityLevels()[0] !== undefined)
-                            ? componentsModule.modules.video.YT_QUALITY[event.target.getAvailableQualityLevels()[0]]
+                            ? current.YT_QUALITY[event.target.getAvailableQualityLevels()[0]]
                             : '';
 
                     }
@@ -177,13 +183,13 @@ componentsModule.modules.video = {
 
         setTimeout(createPlayer);
 
-        componentsModule.modules.video.registerEvents(template, identifier, contentElement, callback);
+        current.registerEvents(template, identifier, contentElement, callback);
 
     },
 
-    loadVimeoVideo: function(identifier, element, path, template, callback) {
+    loadVimeoVideo(identifier, element, path, template, callback) {
 
-        let video = getJson('https://vimeo.com/api/oembed.json?url=' + path);
+        let video = Ajax.getJSON('https://vimeo.com/api/oembed.json?url=' + path);
 
         let contentElement = element.querySelector('div.component-element-content');
         contentElement.classList.add('no-padding');
@@ -200,7 +206,7 @@ componentsModule.modules.video = {
         let duration = video.duration;
         let minutes = parseInt(duration / 60, 10);
         let seconds = duration % 60;
-        template.children[2].innerText = minutes + ':' + pad(Math.round(seconds), 2);
+        template.children[2].innerText = minutes + ':' + Utils.pad(Math.round(seconds), 2);
 
         let channelURL = document.createElement('a');
         channelURL.setAttribute('href', video.author_url);
@@ -208,20 +214,20 @@ componentsModule.modules.video = {
         channelURL.innerText = video.author_name;
         template.children[3].appendChild(channelURL);
 
-        componentsModule.modules.video.registerEvents(template, identifier, contentElement, callback);
+        this.registerEvents(template, identifier, contentElement, callback);
 
     },
 
-    removeInstance: function(identifier, contentElement, template) {
+    removeInstance(identifier, contentElement, template) {
 
         contentElement.querySelector('div.input-box.select-image').classList.remove('hide');
         contentElement.removeChild(template);
         contentElement.classList.remove('no-padding');
-        delete componentsModule.modules.video.data[identifier];
+        delete video.data[identifier];
 
     },
 
-    remove: function(element) {
+    remove(element) {
 
         element.querySelectorAll('div.component-instance').forEach(function(item) {
             item.querySelector('span.item-remove').click();
@@ -229,26 +235,24 @@ componentsModule.modules.video = {
 
     },
 
-    onSelect: function(identifier, element, path, outside, callback) {
+    onSelect(identifier, element, path, outside, callback) {
 
         // Remove current video if any
-        componentsModule.modules.video.remove(element);
+        video.remove(element);
 
         // Create path
         if(!outside)
             path = 'app/Data/Files/Videos/' + path;
 
         // Save image path and create instance data
-        componentsModule.modules.video.data[identifier] = {
-            title: '',
+        video.data[identifier] = {
             video: path,
             video_description: false,
-            video_align: 1,
-            disabled: 0
+            video_align: 1
         };
 
         // Get video type
-        let type = componentsModule.modules.video.videoType(path);
+        let type = video.videoType(path);
 
         // Create template
         let template = element.querySelector('#template_component_content_video_item').children[0].cloneNode(true);
@@ -257,13 +261,13 @@ componentsModule.modules.video = {
         // Load video by type
         switch(type) {
             case -1:
-                componentsModule.modules.video.loadExternalVideo(identifier, element, path, template, callback);
+                video.loadExternalVideo(identifier, element, path, template, callback);
                 break;
             case 0:
-                componentsModule.modules.video.loadYouTubeVideo(identifier, element, path, template, callback);
+                video.loadYouTubeVideo(identifier, element, path, template, callback);
                 break;
             case 1:
-                componentsModule.modules.video.loadVimeoVideo(identifier, element, path, template, callback);
+                video.loadVimeoVideo(identifier, element, path, template, callback);
                 break;
             default:
                 return false;
@@ -272,18 +276,24 @@ componentsModule.modules.video = {
 
     },
 
-    create: function(identifier, element) {
-        componentsModule.initializeEvents([
+    create(identifier, element) {
+
+        video.data[identifier] = {
+            title: '',
+            disabled: 0
+        };
+
+        Utils.registerEvents([
 
             {
                 // Open media manager
                 event: 'click',
                 element: element.querySelector('button.inline-image_manager'),
-                content: function() {
-                    managerActiveInstance = new MediaManager({
+                content() {
+                    Global.managerActiveInstance = new Global.MediaManager({
                         manager: 'videos',
-                        onSelect: function(path) {
-                            componentsModule.modules.video.onSelect(identifier, element, path, false);
+                        onSelect(path) {
+                            video.onSelect(identifier, element, path, false);
                         }
                     });
                 }
@@ -293,21 +303,23 @@ componentsModule.modules.video = {
                 // Add external video with URL
                 event: 'keyup',
                 element: element.querySelector('input[name=component_inline_video_input]'),
-                content: function(event) {
+                content(event) {
                     if(event.keyCode !== 13 || event.target.value.trim().length < 4) return false;
-                    componentsModule.modules.video.onSelect(identifier, element, event.target.value.trim(), true);
+                    video.onSelect(identifier, element, event.target.value.trim(), true);
                 }
             }
 
         ]);
     },
 
-    validate: function() {
+    validate() {
         return true;
     },
 
-    serialize: function() {
-        return componentsModule.modules.video.data;
+    serialize() {
+        return video.data;
     }
 
 };
+
+module.exports = video;

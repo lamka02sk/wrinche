@@ -3,9 +3,16 @@ import Global from '../Modules/Global';
 
 export default {
 
-    locale: require('flatpickr/dist/l10n/' + Global.translate.language),
+    locale: null,
 
     initialize() {
+
+        let lang = Global.translate.language;
+
+        if(lang === 'en')
+            lang = 'uk';
+
+        this.locale = require('flatpickr/dist/l10n/' + lang);
 
         this.dateTimePicker();
         this.dateTimePickerMin();

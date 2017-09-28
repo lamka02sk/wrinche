@@ -102,11 +102,9 @@ let picture = {
 
         // Save image path
         picture.data[identifier] = {
-            title              : '',
             picture            : path,
             picture_description: '',
-            picture_align      : 1,
-            disabled           : 0
+            picture_align      : 1
         };
 
         // Create template

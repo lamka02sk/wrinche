@@ -1,27 +1,27 @@
-componentsModule.modules.quote = {
+import Utils from "../../../scripts/Modules/Utils";
+
+let quote = {
 
     data: {},
 
-    validate: function() {
+    validate() {
         return true;
     },
 
-    serialize: function() {
-        return componentsModule.modules.quote.data;
+    serialize() {
+        return quote.data;
     },
 
-    resumeInline: function(identifier, element, resumeData) {
+    resumeInline(identifier, element, resumeData) {
 
-        componentsModule.modules.quote.create(identifier, element, resumeData);
+        quote.create(identifier, element, resumeData);
 
     },
 
-    create: function(identifier, element, resumeData) {
-
-        let current = componentsModule.modules.quote;
+    create(identifier, element, resumeData) {
 
         // Create instance data
-        current.data[identifier] = {
+        quote.data[identifier] = {
             title         : '',
             quote         : '',
             quote_author  : '',
@@ -33,14 +33,14 @@ componentsModule.modules.quote = {
         let quoteInput    = element.querySelector('textarea[name=component_inline_quote_text]');
         let authorInput   = element.querySelector('input[name=component_inline_quote_author]');
 
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Serialize quote body
                 event  : 'change keyup',
                 element: quoteInput,
-                content: function(event) {
-                    current.data[identifier].quote = event.target.value.trim();
+                content(event) {
+                    quote.data[identifier].quote = event.target.value.trim();
                 }
             },
 
@@ -48,8 +48,8 @@ componentsModule.modules.quote = {
                 // Serialize quote author
                 event  : 'change keyup',
                 element: authorInput,
-                content: function(event) {
-                    current.data[identifier].quote_author = event.target.value.trim();
+                content(event) {
+                    quote.data[identifier].quote_author = event.target.value.trim();
                 }
             },
 
@@ -57,8 +57,8 @@ componentsModule.modules.quote = {
                 // Serialize position component
                 event  : 'click',
                 element: positionItems,
-                content: function(event) {
-                    current.data[identifier].quote_position = event.target.getAttribute('data-position');
+                content(event) {
+                    quote.data[identifier].quote_position = event.target.getAttribute('data-position');
                     positionItems.forEach(function(item) {
                         item.classList.remove('active');
                     });
@@ -73,14 +73,14 @@ componentsModule.modules.quote = {
             if(resumeData.quote) {
 
                 quoteInput.value = resumeData.quote.trim();
-                triggerEvent(quoteInput, 'change');
+                Utils.triggerEvent(quoteInput, 'change');
 
             }
 
             if(resumeData.quote_author) {
 
                 authorInput.value = resumeData.quote_author.trim();
-                triggerEvent(authorInput, 'change');
+                Utils.triggerEvent(authorInput, 'change');
 
             }
 
@@ -92,3 +92,5 @@ componentsModule.modules.quote = {
     }
 
 };
+
+module.exports = quote;

@@ -1,25 +1,25 @@
-componentsModule.modules.link = {
+import Global from "../../../scripts/Modules/Global";
+import Utils from "../../../scripts/Modules/Utils";
+
+let link = {
 
     data: {},
 
-    resumeInline: function(identifier, element, resumeData) {
+    resumeInline(identifier, element, resumeData) {
 
-        componentsModule.modules.link.create(identifier, element, resumeData);
+        link.create(identifier, element, resumeData);
 
     },
 
-    createSelector: function(identifier, current) {
+    createSelector(identifier) {
 
-        setTimeout(function() {
+        setTimeout(() => {
 
-            new Selector({
+            new Global.Selector({
 
-                selector: 'select[name="' + identifier + '"]',
-
-                onSelect: function(instance, option) {
-
-                    current.data[identifier].link_target = +option.getAttribute('data-item').trim();
-
+                element: 'select[name="' + identifier + '"]',
+                selected(instance, option) {
+                    link.data[identifier].link_target = +option.trim();
                 }
 
             });
@@ -28,12 +28,10 @@ componentsModule.modules.link = {
 
     },
 
-    create: function(identifier, element, resumeData) {
-
-        let current = componentsModule.modules.link;
+    create(identifier, element, resumeData) {
 
         // Initialize Data
-        current.data[identifier] = {
+        link.data[identifier] = {
             title        : '',
             link         : '',
             link_text    : '',
@@ -50,14 +48,14 @@ componentsModule.modules.link = {
         if(resumeData) {
 
             if(resumeData.link)
-                current.data[identifier].link = linkInput.value = resumeData.link.trim();
+                link.data[identifier].link = linkInput.value = resumeData.link.trim();
 
             if(resumeData.link_text)
-                current.data[identifier].link_text = linkName.value = resumeData.link_text.trim();
+                link.data[identifier].link_text = linkName.value = resumeData.link_text.trim();
 
             if(resumeData.link_position !== undefined) {
 
-                current.data[identifier].link_position = resumeData.link_position;
+                link.data[identifier].link_position = resumeData.link_position;
 
                 positionItems.forEach(function(item) {
 
@@ -87,18 +85,16 @@ componentsModule.modules.link = {
 
         // Initialize target Selector
         select.setAttribute('name', identifier);
-        current.createSelector(identifier, current);
+        link.createSelector(identifier);
 
-        componentsModule.initializeEvents([
+        Utils.registerEvents([
 
             {
                 // Serialize link
                 event  : 'change keyup',
                 element: linkInput,
-                content: function(event) {
-
-                    current.data[identifier].link = event.target.value.trim();
-
+                content(event) {
+                    link.data[identifier].link = event.target.value.trim();
                 }
             },
 
@@ -106,10 +102,8 @@ componentsModule.modules.link = {
                 // Serialize link text
                 event  : 'change keyup',
                 element: linkName,
-                content: function(event) {
-
-                    current.data[identifier].link_text = event.target.value.trim();
-
+                content(event) {
+                    link.data[identifier].link_text = event.target.value.trim();
                 }
             },
 
@@ -117,9 +111,9 @@ componentsModule.modules.link = {
                 // Serialize position component
                 event  : 'click',
                 element: positionItems,
-                content: function(event) {
+                content(event) {
 
-                    current.data[identifier].link_position = event.target.getAttribute('data-position');
+                    link.data[identifier].link_position = event.target.getAttribute('data-position');
 
                     positionItems.forEach(function(item) {
                         item.classList.remove('active');
@@ -133,12 +127,14 @@ componentsModule.modules.link = {
         ]);
     },
 
-    validate: function() {
+    validate() {
         return true;
     },
 
-    serialize: function() {
-        return componentsModule.modules.link.data;
+    serialize() {
+        return link.data;
     }
 
 };
+
+module.exports = link;
