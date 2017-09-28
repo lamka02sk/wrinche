@@ -18,7 +18,7 @@ let heading = {
         heading.create(identifier, element, function(data, elements) {
 
             elements.inputElement.value = resumeData.value.trim();
-            triggerEvent(elements.inputElement, 'change');
+            Utils.triggerEvent(elements.inputElement, 'change');
 
             elements.typeOptions[+resumeData.type - 1].click();
 

@@ -149,7 +149,7 @@ let sources = {
 
     serialize() {
 
-        let sourceItems = sources.itemsList.childNodes;
+        let sourceItems = this.itemsList.childNodes;
 
         let sources = Object.values(sourceItems).reverse().map(function(sourceItem) {
 

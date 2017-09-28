@@ -5,16 +5,22 @@ import ComponentsModule from '../../app/Components/Components';
 import Flatpickr from "../Modules/Flatpickr";
 import Utils from "../Modules/Utils";
 import Sortable from 'sortablejs';
+import Ajax from "../Modules/Ajax";
+import Router from "../Modules/Router";
 
 export default {
 
-    LOCALES: ['system', 'response', 'admin_write', 'components', 'admin_write/' + Global.routeAction[1]],
+    LOCALES: ['system', 'response', 'admin_write', 'components'],
     components: [],
 
     initialize() {
 
         // Render content
         Main.createView(this.LOCALES).then(() => {
+
+            // Current route locale
+            const contentType = document.querySelector('.content-content').dataset.type;
+            Global.translate.addTranslation('admin_write/' + contentType);
 
             // Enable libraries
             this.enableLibraries();
@@ -134,8 +140,99 @@ export default {
                 Global.componentsModule.createComponent(component);
             }
 
+            // Save article
+            else if(target.matches('.save-content'))
+                this.processAction(0);
+
+            // Save and publish article
+            else if(target.matches('.publish-content'))
+                this.processAction(1);
 
         });
+
+    },
+
+    processAction(actionType) {
+
+        const componentsData = this.prepareComponentsData();
+
+        if(!componentsData)
+            return false;
+
+        componentsData.action = actionType;
+
+        Ajax.post(
+            Router.createLink('write'),
+            componentsData,
+            this.actionResponse
+        );
+
+    },
+
+    actionResponse(response, status) {
+
+        try {
+
+            response = JSON.parse(response);
+
+            if(response.article_id)
+                document.querySelector('.content-content').dataset.id = response.article_id;
+
+            // TODO: Show success message
+
+        } catch(e) {
+
+            // TODO: Show error message
+
+        }
+
+    },
+
+    createComponentsOrder() {
+
+        let componentsWrapper = document.querySelector('.content-builder-content');
+        let order = [];
+
+        Array.from(componentsWrapper.children).forEach(component => {
+
+            if(!component.dataset.id)
+                return false;
+
+            order.push(component.dataset.id);
+
+        });
+
+        return order;
+
+    },
+
+    prepareComponentsData() {
+
+        // Validate data
+        if(!Global.componentsModule.validate())
+            return false;
+
+        // Serialize data
+        let serializedData = Global.componentsModule.serialize();
+
+        // Create components order
+        let componentsOrder = this.createComponentsOrder();
+
+        // Prepare result data
+        let contentElement = document.querySelector('.content-content');
+        let resultData = {
+            type: contentElement.dataset.type,
+            order: componentsOrder,
+            components: serializedData
+        };
+
+        // Get current article ID if any
+        let articleID = contentElement.dataset.id;
+
+        if(articleID !== '')
+            resultData.articleID = articleID;
+
+        return resultData;
 
     }
 

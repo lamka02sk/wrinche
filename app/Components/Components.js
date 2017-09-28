@@ -149,7 +149,7 @@ export default class {
         let titleElement   = headerElement.children[1];
         let titleDefault   = titleElement.innerText;
 
-        if(data && data.title !== '')
+        if(data && data.title && data.title !== '')
             titleElement.innerText = data.title.trim();
 
         // Delegate default events
@@ -267,7 +267,7 @@ export default class {
 
         // Save resume data
         let componentsResumeData = {};
-        this.components.forEach(function(componentName) {
+        this.components.forEach(componentName => {
 
             let template = this.createFromTemplate(componentName);
 
@@ -290,9 +290,9 @@ export default class {
         if(typeof order !== 'object')
             return true;
 
-        order.forEach(function(componentID) {
+        order.forEach(componentID => {
 
-            this.components.some(function(componentName) {
+            this.components.some(componentName => {
 
                 if(
                     !componentsResumeData[componentName] ||

@@ -97,7 +97,7 @@ let tags = {
 
     validate() {
 
-        const tags = tags.serialize().tags;
+        const tags = this.serialize().tags;
 
         return Utils.validateTags(tags);
 
