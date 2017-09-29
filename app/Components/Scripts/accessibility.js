@@ -53,6 +53,7 @@ let accessibility = {
 
         let selectOptions           = this.selectElement.querySelectorAll('option');
         this.accessibility_selector = accessibility.accessibility_selector;
+        this.passwordInput.value    = accessibility.accessibility_password;
 
         if(accessibility.accessibility_selector === 1)
             this.passwordElement.classList.remove('hide');

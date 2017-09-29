@@ -57,6 +57,7 @@ let updated = {
             return true;
 
         this.dateInput.value = JSON.parse(data).last_update;
+        Utils.triggerEvent(this.customCheck, 'click');
 
     },
 

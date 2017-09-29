@@ -1,3 +1,5 @@
+import Utils from "./Utils";
+
 export default {
 
     initialize() {
@@ -22,6 +24,8 @@ export default {
                     counterElement.classList.remove('minus');
 
             });
+
+            Utils.triggerEvent(inputElement, 'input');
 
         });
 

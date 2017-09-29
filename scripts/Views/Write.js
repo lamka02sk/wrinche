@@ -22,15 +22,19 @@ export default {
             const contentType = document.querySelector('.content-content').dataset.type;
             Global.translate.addTranslation('admin_write/' + contentType);
 
+            // Until Packery is broken else initialize Packery
+            Global.packery = {};
+            Global.packery.reloadItems = () => {};
+
+            // Load and resume components
+            this.listComponents();
+            this.prepareComponents();
+
             // Enable libraries
             this.enableLibraries();
 
             // Register events
             this.registerEvents();
-
-            // Load and resume components
-            this.listComponents();
-            this.prepareComponents();
 
         });
 
@@ -69,10 +73,6 @@ export default {
             itemSelector: '.component-element',
             gutter: 22
         });*/
-
-        // Until Packery is broken
-        Global.packery = {};
-        Global.packery.reloadItems = () => {};
 
         // Sortable
         let sortableElement = document.querySelector('div.content-builder-content');

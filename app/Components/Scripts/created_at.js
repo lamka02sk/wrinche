@@ -57,6 +57,7 @@ let created = {
             return true;
 
         this.dateInput.value = JSON.parse(data).created_at;
+        Utils.triggerEvent(this.customCheck, 'click');
 
     },
 

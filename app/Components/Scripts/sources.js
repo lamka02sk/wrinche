@@ -131,10 +131,8 @@ let sources = {
         if(sources === null)
             return true;
 
-        sources.forEach(function(source) {
-
+        sources.forEach(source => {
             this.addSource(source);
-
         });
 
         Global.packery.reloadItems();
