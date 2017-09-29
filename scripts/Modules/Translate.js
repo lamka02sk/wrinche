@@ -94,8 +94,26 @@ export default class {
             return true;
         }
 
+        this.domains.push(locale);
         this.locale[locale] = Ajax.getJSON("app/Data/Locale/" + this.language + "/" + locale + ".json", false);
         this.changeLanguage(this.language, this.locale[locale]);
+
+    }
+
+    switchLanguage(language) {
+
+        if(language === this.language)
+            return false;
+
+        Global.html.setAttribute('lang', language);
+        this.language = language;
+
+        this.domains.forEach(domain => {
+
+            this.locale[domain] = Ajax.getJSON("app/Data/Locale/" + language + "/" + domain + ".json", false);
+            this.changeLanguage(language, this.locale[domain]);
+
+        });
 
     }
 

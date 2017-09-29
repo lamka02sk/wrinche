@@ -3,7 +3,7 @@ import History from '../Modules/History';
 
 const routes = require('../Config/routes.yaml');
 
-export default class {
+export default class Router {
 
     constructor() {
 
@@ -30,7 +30,16 @@ export default class {
 
     }
 
-    changeLocation(link, push = true) {
+    changeLocation(link, push = true, target = false) {
+
+        if(target === 'blank') {
+
+            const url = Router.createLink(link);
+            window.open(url, '_blank');
+
+            return true;
+
+        }
 
         this.saveActions(link);
         this.findRoute(push);

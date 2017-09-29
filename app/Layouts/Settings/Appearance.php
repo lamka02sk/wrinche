@@ -59,7 +59,7 @@
 <div class="subcontent-box input-box">
 
     <label for="timezone_selector" class="settings-label" data-locale="TIMEZONE"></label>
-    <select name="timezone" id="timezone_selector" class="selector-instance" data-type="search-selector">
+    <select name="timezone" id="timezone_selector" class="selector-instance" data-type="find">
 
         <?php
 

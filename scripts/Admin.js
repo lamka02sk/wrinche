@@ -83,9 +83,13 @@ Utils.registerEvent([
         else if(target.matches('[data-link]') || $(target).parents('[data-link]').length > 0) {
 
             let link = target.dataset.link;
+            let type = target.dataset.target;
 
             if(!link)
                 link = $(target).parents('[data-link]').data('link');
+
+            if(!type)
+                type = false;
 
             let linkAction = link.split('/')[0];
             let menuLink = Global.nav.querySelector('[data-link="' + linkAction + '"]');
@@ -97,7 +101,7 @@ Utils.registerEvent([
             if(menuLink)
                 menuLink.classList.add('active');
 
-            Global.router.changeLocation(link);
+            Global.router.changeLocation(link, true, type);
 
         }
 
