@@ -1,6 +1,228 @@
 @import ../Modules/Mixins
 @import ../Modules/Variables
 
+// Profile box
+.profile-box
+  display: inline-block
+  position: relative
+  float: left
+  width: 100%
+  height: 180px
+  background: $profileBoxBackground
+  overflow: hidden
+
+  +box
+
+  .profile-picture-box
+    display: block
+    float: left
+    position: relative
+    width: 180px
+    height: 100%
+    padding: 28px
+
+    +box
+
+    .profile-picture-wrapper
+      display: inline-block
+      position: relative
+      float: left
+      overflow: hidden
+      width: 100%
+      height: 100%
+      text-align: center
+
+      +radius(50%)
+      +box
+
+      img
+        position: relative
+        display: block
+        width: 100%
+        height: 100%
+
+      .profile-picture-edit
+        position: absolute
+        display: inline-block
+        width: 28px
+        height: 28px
+        background: $profileBoxEditBackground center no-repeat
+        background-size: 14px
+        opacity: 0
+        cursor: pointer
+        margin-left: -14px
+
+        +vertical-center
+        +transition
+        +shadow(0, 2px, 6px, $profileBoxEditShadow)
+        +radius(50%)
+
+      &:hover
+
+        .profile-picture-edit
+          opacity: 1
+
+  .profile-info-wrapper
+    display: inline-block
+    position: relative
+    float: left
+    width: calc(100% - 180px)
+    height: 100%
+    padding: 28px 28px 28px 6px
+
+    +box
+
+    .username
+      display: inline-block
+      position: relative
+      width: 100%
+      float: left
+
+      .username-value
+        display: inline-block
+        position: relative
+        float: left
+        width: auto
+        font-weight: 500
+        font-size: 1.6em
+        color: $profileBoxUsername
+
+        +text-overflow
+
+      .username-edit
+        position: absolute
+        display: block
+        width: 28px
+        height: 28px
+        background: $profileBoxEditBackground center no-repeat
+        background-size: 14px
+        right: 0
+        opacity: 0
+        cursor: pointer
+
+        +transition
+        +shadow(0, 2px, 6px, $profileBoxEditShadow)
+        +vertical-center
+        +radius(50%)
+
+      &:hover
+
+        .username-edit
+          opacity: 1
+
+    .privileges
+      display: inline-block
+      position: relative
+      float: left
+      width: 100%
+      height: 40px
+      color: $profileBoxPrivilegesColor
+
+      .privileges-label
+        display: inline-block
+        position: relative
+        float: left
+        line-height: 40px
+        text-transform: uppercase
+        font-size: .92em
+
+      .privilege-badge
+        display: inline-block
+        position: relative
+        float: left
+        margin-left: 12px
+        font-size: .92em
+        font-weight: 500
+        width: 24px
+        height: 24px
+        line-height: 24px
+        color: $profileBoxPrivilegesBadge
+        background: $headerAccountDropdownPrivileges
+        text-align: center
+        z-index: 1
+        cursor: pointer
+
+        +radius(50%)
+        +vertical-center
+
+        &.A
+          background: $errorRed
+
+        &.C
+          background: $successGreen
+
+        &.D
+          background: $infoBlue
+
+        &:hover + .privilege-name
+          opacity: 1
+
+      .privilege-name
+        display: inline-block
+        position: relative
+        float: left
+        height: 24px
+        line-height: 24px
+        margin-left: -12px
+        background: $profileBoxPrivilegesName
+        padding: 0 8px 0 20px
+        font-size: .88em
+        text-transform: capitalize
+        color: $profileBoxPrivilegesBadge
+        opacity: 0
+        border-top-right-radius: 5px
+        border-bottom-right-radius: 5px
+
+        +vertical-center
+        +transition
+
+    .email, .nickname
+      display: inline-block
+      position: relative
+      float: left
+      width: 100%
+      line-height: 32px
+      margin-top: -3px
+
+      +text-overflow
+
+      .email-label
+        display: inline-block
+        position: relative
+        font-weight: 500
+        float: left
+        color: $profileBoxEmailLabel
+
+      .email-value
+        display: inline-block
+        position: relative
+        color: $profileBoxEmailValue
+        float: left
+        margin-left: 12px
+
+      .email-edit
+        position: absolute
+        display: block
+        width: 28px
+        height: 28px
+        background: $profileBoxEditBackground center no-repeat
+        background-size: 14px
+        right: 0
+        opacity: 0
+        cursor: pointer
+
+        +transition
+        +shadow(0, 2px, 6px, $profileBoxEditShadow)
+        +vertical-center
+        +radius(50%)
+
+      &:hover
+
+        .email-edit
+          opacity: 1
+
+
+// Subcontent box
 .subcontent-box
 
   &.input-box
@@ -39,91 +261,48 @@
         line-height: 22px
 
   .table-content
-    display: inline-block
     height: auto
     width: 100%
-    position: relative
-    float: left
+    border-collapse: collapse
+
+    +border(1px, darken($text-lightGrey, 2%))
+
+    td, th
+      +border(1px, darken($text-lightGrey, 2%))
 
     .table-header
-      display: inline-block
-      position: relative
-      float: left
-      width: 100%
-      line-height: 32px
       background-color: lighten($text-lightGrey, 2%)
 
-      +border(1px, darken($text-lightGrey, 2%))
       +box
 
       .header-column
-        display: inline-block
         font-size: .92em
         color: $text-lightBlack
-        padding: 0 10px
-        position: relative
-        float: left
+        padding: 10px
         text-align: center
         font-weight: 500
-        border-right: 1px solid darken($text-lightGrey, 2%)
 
         +box
 
         &:last-of-type
           border-right: none
 
-        &.platform-column
-          width: 20%
-
-        &.browser-column
-          width: 25%
-
-        &.ip-column
-          width: 15%
-
-        &.last-column
-          width: 25%
-
-        &.views-column
-          width: 15%
-
     .table-row
-      position: relative
-      display: inline-block
-      float: left
-      width: 100%
       height: auto
 
-      &:nth-of-type(2n+1)
-        background-color: lighten($text-lightGrey, 2%)
-
       .row-column
-        display: inline-block
         line-height: 32px
         font-size: .92em
         color: $text-lightBlack
         padding: 0 10px
-        position: relative
-        float: left
-        border-right: 1px solid darken($text-lightGrey, 2%)
-        border-bottom: 1px solid darken($text-lightGrey, 2%)
 
         +box
 
-        &.platform-column
-          width: 20%
+    .checkbox-cell
+      padding: 0
+      text-align: center
+      width: 32px
 
-        &:first-of-type
-          border-left: 1px solid darken($text-lightGrey, 2%)
-
-        &.browser-column
-          width: 25%
-
-        &.ip-column
-          width: 15%
-
-        &.last-column
-          width: 25%
-
-        &.views-column
-          width: 15%
+      input
+        display: inline-block
+        position: relative

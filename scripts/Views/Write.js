@@ -7,6 +7,7 @@ import Utils from "../Modules/Utils";
 import Sortable from 'sortablejs';
 import Ajax from "../Modules/Ajax";
 import Router from "../Modules/Router";
+import Slee from '../Modules/Slee';
 
 export default {
 
@@ -175,15 +176,24 @@ export default {
 
             response = JSON.parse(response);
 
-            if(response.article_id)
-                document.querySelector('.content-content').dataset.id = response.article_id;
+            if(status !== 'success')
+                Slee.error('ERROR', 0);
 
-            // TODO: Show success message
+            else if(response.code !== 200)
+                Slee.error('ERROR', response.code);
+
+            else {
+
+                if(response.article_id) {
+                    document.querySelector('.content-content').dataset.id = response.article_id;
+                    Slee.success('SUCCESS', 'ARTICLE_SAVED');
+                } else
+                    Slee.error('ERROR', 0);
+
+            }
 
         } catch(e) {
-
-            // TODO: Show error message
-
+            Slee.error('ERROR', 0);
         }
 
     },
@@ -209,8 +219,10 @@ export default {
     prepareComponentsData() {
 
         // Validate data
-        if(!Global.componentsModule.validate())
+        if(!Global.componentsModule.validate()) {
+            Slee.error('ERROR', 'EMPTY_INPUT');
             return false;
+        }
 
         // Serialize data
         let serializedData = Global.componentsModule.serialize();

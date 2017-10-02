@@ -27,6 +27,12 @@
   "ACTION_CONFIRM_RELOAD_PAGE":"Na správne fungovanie administrácie wrinche je potrebné obnoviť stránku.",
   "ACTION_CONFIRM_REMOVE_COMPONENT":"Naozaj si prajete odstrániť <mark>\"%component%\"</mark>?<br>Táto akcia vymaže obsah komponenty a nedá sa vrátiť späť.",
   "ACTION_CONFIRM_DISMISS":"Zrušiť",
-  "ACTION_CONFIRM_PROCEED":"Pokračovať"
+  "ACTION_CONFIRM_PROCEED":"Pokračovať",
+
+  "ERROR":"Chyba",
+  "SUCCESS":"Výborne!",
+
+  "ARTICLE_SAVED": "Článok bol uložený",
+  "SETTINGS_SAVED": "Nastavenia boli uložené"
 
 }

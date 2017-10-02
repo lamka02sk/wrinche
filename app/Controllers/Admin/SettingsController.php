@@ -30,6 +30,9 @@ class SettingsController extends AdminController {
     const SETTINGS = [
         'appearance' => [
             'theme', 'language', 'first_day', 'date_format', 'time_format', 'number_format', 'timezone'
+        ],
+        'account' => [
+            'username', 'e-mail', 'nickname', 'full-name', 'website', 'public-name', 'bio', 'sessions'
         ]
     ];
 
@@ -84,6 +87,11 @@ class SettingsController extends AdminController {
 
         // Update settings
         $this->model->updateUserSettings();
+        
+        echo json_encode([
+            "success" => true,
+            "code" => 200
+        ]);
 
     }
 

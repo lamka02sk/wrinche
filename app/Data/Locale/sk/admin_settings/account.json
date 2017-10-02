@@ -7,6 +7,8 @@
   "SETTINGS_ACCOUNT_BROWSER":"Prehliadač",
   "SETTINGS_ACCOUNT_IP":"IP adresa",
   "SETTINGS_ACCOUNT_LAST":"Posledná operácia",
-  "SETTINGS_ACCOUNT_VIEWS":"Počet operácií"
+  "SETTINGS_ACCOUNT_VIEWS":"Počet operácií",
+
+  "SETTINGS_PRIVILEGES": "Oprávnenia"
 
 }

@@ -9,6 +9,12 @@ CREATE TABLE IF NOT EXISTS user_settings (
   time_format INT(2) DEFAULT 0 NULL,
   number_format INT(2) DEFAULT 0 NULL,
   timezone INT(6) DEFAULT 0 NOT NULL,
+  public_name INT(1) DEFAULT 0,
+  nickname VARCHAR(64) DEFAULT NULL,
+  first_name VARCHAR(128) DEFAULT NULL,
+  last_name VARCHAR(128) DEFAULT NULL,
+  website VARCHAR(512) DEFAULT NULL,
+  bio TEXT DEFAULT NULL,
   custom_settings JSON DEFAULT NULL,
 
   FOREIGN KEY (user_id) REFERENCES users(id)

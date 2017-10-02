@@ -5,7 +5,9 @@ import Csrf from '../scripts/Modules/Csrf';
 import Translate from '../scripts/Modules/Translate';
 import Router from '../scripts/Modules/Router';
 import { MediaManager } from "../vendor/mediaManager";
+import Slee from '../scripts/Modules/Slee';
 
+Slee.prepare();
 Global.Selector = require('selector3');
 Global.MediaManager = MediaManager;
 

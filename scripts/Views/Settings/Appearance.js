@@ -2,6 +2,7 @@ import Global from "../../Modules/Global";
 import Ajax from "../../Modules/Ajax";
 import Router from "../../Modules/Router";
 import Utils from "../../Modules/Utils";
+import Slee from "../../Modules/Slee";
 
 let appearance = {
 
@@ -72,7 +73,22 @@ let appearance = {
             data,
             (response, status) => {
 
-                // Error and success handling
+                try {
+
+                    response = JSON.parse(response);
+
+                    if(status !== 'success')
+                        Slee.error('ERROR', 0);
+
+                    else if(response.code !== 200)
+                        Slee.error('ERROR', response.code);
+
+                    else
+                        Slee.success('SUCCESS', 'SETTINGS_SAVED');
+
+                } catch(e) {
+                    Slee.error('ERROR', 0);
+                }
 
             }
         );
