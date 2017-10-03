@@ -1,12 +1,5 @@
 <?php
 
-/*
- * wrinche. Modern, powerful and user friendly CMS.
- * Settings controller.
- * Version: 0.1.0
- * Authors: lamka02sk
- */
-
 namespace App\Controllers\Admin;
 
 use App\Controllers\AdminController;
@@ -32,7 +25,7 @@ class SettingsController extends AdminController {
             'theme', 'language', 'first_day', 'date_format', 'time_format', 'number_format', 'timezone'
         ],
         'account' => [
-            'username', 'e-mail', 'nickname', 'full-name', 'website', 'public-name', 'bio', 'sessions'
+            'username', 'e-mail', 'nickname', 'fullname', 'website', 'public_name', 'bio', 'sessions', 'picture'
         ]
     ];
 
@@ -102,10 +95,17 @@ class SettingsController extends AdminController {
         unset($forms['csrf_token']);
 
         foreach($forms as $name => $value) {
-            if(!in_array($name, self::SETTINGS[$this->subcategory])) continue;
+            
+            if(!in_array($name, self::SETTINGS[$this->subcategory]))
+                continue;
+            
             $this->currentInput = $name;
-            if(method_exists($this, 'input' . ucfirst($name))) $this->{'input' . ucfirst($name)}($value);
-            else new UserEvents(11);  // Function undefined
+            
+            if(method_exists($this, 'input' . ucfirst($name)))
+                $this->{'input' . ucfirst($name)}($value);
+            else
+                new UserEvents(11);  // Function undefined
+            
         }
 
     }
@@ -172,6 +172,10 @@ class SettingsController extends AdminController {
 
     public function inputNumber_format(int $value) {
         $this->inputNumeric($value);
+    }
+    
+    public function inputPublic_name(int $value) {
+        UserSettingsModel::$settings[$this->currentInput] = $value;
     }
 
     public function inputNumeric(int $value) {

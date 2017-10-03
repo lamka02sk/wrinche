@@ -15,7 +15,7 @@ $firstName = $sanitize->sanitizeOutput(UserSettingsModel::$settings['first_name'
 $lastName = $sanitize->sanitizeOutput(UserSettingsModel::$settings['last_name']);
 $website = $sanitize->sanitizeOutput(UserSettingsModel::$settings['website']);
 $bio = $sanitize->sanitizeOutput(UserSettingsModel::$settings['bio']);
-$publicName = UserSettingsModel::$settings['public_name'];
+$publicName = (int)UserSettingsModel::$settings['public_name'];
 
 // Privileges
 $privilegesManager = new PrivilegesManager();
@@ -56,10 +56,6 @@ $profilePicture = UserModel::$user['picture'] ?? 'assets/icons/profile_picture.s
         </span>
     </div>
 </div>
-
-<!-----------------***************************************************************--------------------->
-<!-----------------***************************************************************--------------------->
-<!-----------------***************************************************************--------------------->
 
 <div class="subcontent-box input-box">
 

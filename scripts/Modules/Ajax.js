@@ -12,10 +12,12 @@ export default {
             data['csrf_token'] = Csrf.getToken();
 
         $.ajax({
-            url    : url,
-            method : 'POST',
-            data   : data,
-            async  : async,
+            url         : url,
+            method      : 'POST',
+            data        : data,
+            async       : async,
+            processData : false,
+            contentType : false,
             success: response => {
                 callback(response, 'success');
                 Utils.hideLoading();
