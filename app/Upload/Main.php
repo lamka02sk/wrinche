@@ -7,6 +7,7 @@ namespace App\Upload;
 abstract class Main {
 
     public $data;
+    public $preset;
     public $extension;
     public $destination = '';
 

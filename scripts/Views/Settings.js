@@ -29,7 +29,7 @@ export default {
         function execute(resolve) {
 
             Ajax.post(
-                Router.createLink('settings/' + (Global.routeAction[1] || 'appearance') + '&csrf_token=' + Csrf.getToken()),
+                Router.createLink('settings/' + (Global.routeAction[1] || 'appearance')),
                 data,
                 (response, status) => {
 

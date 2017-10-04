@@ -16,8 +16,6 @@ export default {
             method      : 'POST',
             data        : data,
             async       : async,
-            processData : false,
-            contentType : false,
             success: response => {
                 callback(response, 'success');
                 Utils.hideLoading();

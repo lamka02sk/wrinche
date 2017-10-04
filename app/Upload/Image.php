@@ -5,16 +5,32 @@ namespace App\Upload;
 use App\Errors\UserEvents;
 
 class Image extends Main {
+    
+    const PRESETS = [
+    
+        'default' => [
+            'quality' => 58,
+            'maxWidth' => 2000,
+            'maxHeight' => 1500,
+            'path' => 'app/Data/Files/Images/',
+            'response' => true
+        ],
+        
+        'profile' => [
+            'quality' => 58,
+            'maxWidth' => 124,
+            'maxHeight' => 124,
+            'path' => 'app/Data/Files/Users/',
+            'response' => false
+        ]
+    
+    ];
 
-    const DEFAULT_QUALITY = 58; // %
-
-    const MAX_HORIZONTAL_SIZE = 2000; // px
-    const MAX_VERTICAL_SIZE = 1500; // px
-
-    public function __construct(array $metadata) {
+    public function __construct(array $metadata, string $preset = 'default') {
 
         // Save image metadata
         $this->data = $metadata;
+        $this->preset = $preset;
 
         // Check if image format is supported
         $this->checkFormat();
@@ -70,19 +86,21 @@ class Image extends Main {
     }
 
     public function applySettingsJPEG() {
+        
+        $preset = self::PRESETS[$this->preset];
 
         // Resize if needed
         list($width, $height) = getimagesize($this->data['tmp_name']);
-        if($width > self::MAX_HORIZONTAL_SIZE || $height > self::MAX_VERTICAL_SIZE) {
+        if($width > $preset['maxWidth'] || $height > $preset['maxHeight']) {
 
             // Find new size
-            if($width > self::MAX_HORIZONTAL_SIZE) {
+            if($width > $preset['maxWidth']) {
                 $ratio = $width / $height;
-                $newWidth = self::MAX_HORIZONTAL_SIZE;
+                $newWidth = $preset['maxWidth'];
                 $newHeight = floor($newWidth / $ratio);
             } else {
                 $ratio = $width / $height;
-                $newHeight = self::MAX_VERTICAL_SIZE;
+                $newHeight = $preset['maxHeight'];
                 $newWidth = floor($newHeight * $ratio);
             }
 
@@ -101,25 +119,27 @@ class Image extends Main {
         // Apply quality settings
         $image = imagecreatefromjpeg($this->data['tmp_name']);
         imageinterlace($image,true);
-        imagejpeg($image,$this->data['tmp_name'],self::DEFAULT_QUALITY);
+        imagejpeg($image,$this->data['tmp_name'],$preset['quality']);
         imagedestroy($image);
 
     }
 
     public function applySettingsPNG() {
+        
+        $preset = self::PRESETS[$this->preset];
 
         // Resize if needed
         list($width, $height) = getimagesize($this->data['tmp_name']);
-        if($width > self::MAX_HORIZONTAL_SIZE || $height > self::MAX_VERTICAL_SIZE) {
+        if($width > $preset['maxWidth'] || $height > $preset['maxHeight']) {
 
             // Find new size
-            if($width > self::MAX_HORIZONTAL_SIZE) {
+            if($width > $preset['maxWidth']) {
                 $ratio = $width / $height;
-                $newWidth = self::MAX_HORIZONTAL_SIZE;
+                $newWidth = $preset['maxWidth'];
                 $newHeight = floor($newWidth / $ratio);
             } else {
                 $ratio = $width / $height;
-                $newHeight = self::MAX_VERTICAL_SIZE;
+                $newHeight = $preset['maxHeight'];
                 $newWidth = floor($newHeight * $ratio);
             }
 
@@ -143,19 +163,21 @@ class Image extends Main {
     }
 
     public function applySettingsGIF() {
+        
+        $preset = self::PRESETS[$this->preset];
 
         // Resize if needed
         list($width, $height) = getimagesize($this->data['tmp_name']);
-        if($width > self::MAX_HORIZONTAL_SIZE || $height > self::MAX_VERTICAL_SIZE) {
+        if($width > $preset['maxWidth'] || $height > $preset['maxHeight']) {
 
             // Find new size
-            if($width > self::MAX_HORIZONTAL_SIZE) {
+            if($width > $preset['maxWidth']) {
                 $ratio = $width / $height;
-                $newWidth = self::MAX_HORIZONTAL_SIZE;
+                $newWidth = $preset['maxWidth'];
                 $newHeight = floor($newWidth / $ratio);
             } else {
                 $ratio = $width / $height;
-                $newHeight = self::MAX_VERTICAL_SIZE;
+                $newHeight = $preset['maxHeight'];
                 $newWidth = floor($newHeight * $ratio);
             }
 
@@ -173,7 +195,7 @@ class Image extends Main {
 
     }
 
-    public function applySettingsBMP() {
+    /*public function applySettingsBMP() {
 
         // BMP is supported only by PHP >= 7.2.0, check version of PHP first
         if(version_compare(PHP_VERSION,'7.2.0', '<'))
@@ -213,9 +235,11 @@ class Image extends Main {
 
         return true;
 
-    }
+    }*/
 
     public function saveImage() {
+    
+        $preset = self::PRESETS[$this->preset];
 
         // Create new image path and name
         $additionPre = '(';
@@ -223,11 +247,11 @@ class Image extends Main {
         $additionContent = 1;
 
         $name = pathinfo($this->data['name'], PATHINFO_FILENAME);
-        $destination = 'app/Data/Files/Images/' . $name . '.' . $this->extension;
+        $destination = $preset['path'] . $name . '.' . $this->extension;
 
         while(file_exists($destination)) {
             $addition = $additionPre . $additionContent . $additionPost;
-            $destination = 'app/Data/Files/Images/' . $name . ' ' . $addition . '.' . $this->extension;
+            $destination =  $preset['path'] . $name . ' ' . $addition . '.' . $this->extension;
             ++$additionContent;
         }
 
@@ -238,6 +262,11 @@ class Image extends Main {
     }
 
     public function returnInformation() {
+        
+        $preset = self::PRESETS[$this->preset];
+        
+        if($preset['response'] === false)
+            return true;
 
         // Create result array
         $result = [

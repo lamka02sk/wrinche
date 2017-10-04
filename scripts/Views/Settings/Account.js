@@ -1,6 +1,10 @@
 import Global from "../../Modules/Global";
 import Settings from "../Settings";
 import Utils from "../../Modules/Utils";
+import $ from 'jquery';
+import Router from "../../Modules/Router";
+import Csrf from "../../Modules/Csrf";
+import Slee from "../../Modules/Slee";
 
 let account = {
 
@@ -74,11 +78,32 @@ let account = {
                     () => {
 
                         let file = new FormData();
-                        file.picture = input.files[0];
+                        file.append('picture', input.files[0]);
 
-                        Settings.postSettings(file).then(response => {
-                            if(response.picture)
-                                element.querySelector('img').src = picture;
+                        $.ajax({
+                            method: "POST",
+                            url: Router.createLink('settings/account&csrf_token=' + Csrf.getToken()),
+                            data: file,
+                            cache: false,
+                            processData: false,
+                            contentType: false,
+                            success: response => {
+
+                                try {
+
+                                    response = JSON.parse(response);
+
+                                    if(response.picture) {
+                                        element.querySelector('img').src = response.picture;
+                                        Slee.success('SUCCESS', 'SETTINGS_SAVED');
+                                    } else
+                                        Slee.error('ERROR', response.code);
+
+                                } catch(e) {
+                                    Slee.error('ERROR', 0);
+                                }
+
+                            }
                         });
 
                     }

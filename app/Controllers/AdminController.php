@@ -18,6 +18,8 @@ use App\Requests\Request;
 use App\Views\Admin;
 
 class AdminController extends MainController {
+    
+    public $results;
 
     /**
      * ... TODO

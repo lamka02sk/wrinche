@@ -7,6 +7,9 @@ use App\Errors\UserEvents;
 use App\Helpers\Browser;
 use App\Helpers\Checker;
 use App\Helpers\Config;
+use App\Helpers\Generator;
+use App\Models\UserModel;
+use App\Upload\Image;
 use DateTime;
 use App\Helpers\Redirect;
 use App\Helpers\Sanitizer;
@@ -81,10 +84,12 @@ class SettingsController extends AdminController {
         // Update settings
         $this->model->updateUserSettings();
         
-        echo json_encode([
+        $result = [
             "success" => true,
             "code" => 200
-        ]);
+        ];
+        
+        echo json_encode(array_merge($result, $this->results));
 
     }
 
@@ -93,6 +98,9 @@ class SettingsController extends AdminController {
         // Save forms data
         $forms = Request::$forms;
         unset($forms['csrf_token']);
+        
+        if(empty($forms) && !empty(Request::$files))
+            $forms = Request::$files;
 
         foreach($forms as $name => $value) {
             
@@ -176,6 +184,24 @@ class SettingsController extends AdminController {
     
     public function inputPublic_name(int $value) {
         UserSettingsModel::$settings[$this->currentInput] = $value;
+    }
+    
+    public function inputPicture($data) {
+    
+        $generator = new Generator;
+        $hash = '_' . $generator->generateToken(8) . '.';
+        $name = UserModel::$user['username'] . $hash . pathinfo($data['name'])['extension'];
+        $path = 'app/Data/Files/Users/' . $name;
+        $data['name'] = $name;
+        new Image($data, 'profile');
+        
+        $model = new UserModel;
+        $model->setPicture($path);
+        
+        $this->results = [
+            'picture' => $path
+        ];
+    
     }
 
     public function inputNumeric(int $value) {

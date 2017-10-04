@@ -103,6 +103,8 @@ $profilePicture = UserModel::$user['picture'] ?? 'assets/icons/profile_picture.s
 <div class="subcontent-box input-box">
 
     <label class="settings-label clear-label" data-locale="SETTINGS_SESSIONS"></label>
+    
+    <!-- TODO: Update and Logout actions -->
 
     <table class="table-content">
 

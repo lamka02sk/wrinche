@@ -256,5 +256,19 @@ class UserModel extends MainModel {
         return true;
 
     }
+    
+    public function setPicture($path) {
+    
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table($this->table)
+            ->update()
+            ->updateRow(['picture' => $path])
+            ->where('id', self::$user['id'])
+            ->exec();
+        
+        return true;
+    
+    }
 
 }
