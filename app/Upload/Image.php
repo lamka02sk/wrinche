@@ -17,9 +17,9 @@ class Image extends Main {
         ],
         
         'profile' => [
-            'quality' => 58,
-            'maxWidth' => 124,
-            'maxHeight' => 124,
+            'quality' => 68,
+            'maxWidth' => 196,
+            'maxHeight' => 196,
             'path' => 'app/Data/Files/Users/',
             'response' => false
         ]

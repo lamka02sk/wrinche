@@ -53,6 +53,16 @@ class Validator {
         return (preg_match($regex, $username));
 
     }
+    
+    public function validateNickname($nickname) {
+    
+        if(!$this->validateStringLength($nickname, 4, 60))
+            return false;
+    
+        $regex = '/^([a-zA-Z0-9]+)$/';
+        return (preg_match($regex, $nickname));
+    
+    }
 
     /**
      * @param $email

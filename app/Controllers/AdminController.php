@@ -19,7 +19,7 @@ use App\Views\Admin;
 
 class AdminController extends MainController {
     
-    public $results;
+    public $results = [];
 
     /**
      * ... TODO

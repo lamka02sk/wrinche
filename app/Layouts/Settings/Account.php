@@ -36,8 +36,8 @@ $profilePicture = UserModel::$user['picture'] ?? 'assets/icons/profile_picture.s
     </div>
     <div class="profile-info-wrapper">
         <span class="username">
-            <span class="username-value"><?= $username ?></span>
-            <span class="username-edit icon-edit"></span>
+            <span class="username-value value" data-edit="username" data-reset="<?= $username ?>"><?= $username ?></span>
+            <span class="username-edit edit-value icon-edit"></span>
         </span>
         <span class="privileges">
             <span class="privileges-label" data-locale="SETTINGS_PRIVILEGES"></span>
@@ -46,13 +46,13 @@ $profilePicture = UserModel::$user['picture'] ?? 'assets/icons/profile_picture.s
         </span>
         <span class="email">
             <span class="email-label" data-locale="SETTINGS_EMAIL"></span>
-            <span class="email-value"><?= $email ?></span>
-            <span class="email-edit icon-edit"></span>
+            <span class="email-value value" data-edit="email" data-reset="<?= $email ?>"><?= $email ?></span>
+            <span class="email-edit edit-value icon-edit"></span>
         </span>
         <span class="nickname">
             <span class="email-label" data-locale="SETTINGS_NICKNAME"></span>
-            <span class="email-value"><?= $nickname ?></span>
-            <span class="email-edit icon-edit"></span>
+            <span class="email-value value" data-edit="nickname" data-reset="<?= $nickname ?>"><?= $nickname ?></span>
+            <span class="email-edit edit-value icon-edit"></span>
         </span>
     </div>
 </div>

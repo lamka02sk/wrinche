@@ -8,6 +8,7 @@ use App\Helpers\Browser;
 use App\Helpers\Checker;
 use App\Helpers\Config;
 use App\Helpers\Generator;
+use App\Helpers\Validator;
 use App\Models\UserModel;
 use App\Upload\Image;
 use DateTime;
@@ -28,7 +29,7 @@ class SettingsController extends AdminController {
             'theme', 'language', 'first_day', 'date_format', 'time_format', 'number_format', 'timezone'
         ],
         'account' => [
-            'username', 'e-mail', 'nickname', 'fullname', 'website', 'public_name', 'bio', 'sessions', 'picture'
+            'username', 'email', 'nickname', 'fullname', 'website', 'public_name', 'bio', 'sessions', 'picture'
         ]
     ];
 
@@ -76,6 +77,7 @@ class SettingsController extends AdminController {
     public function post() {
 
         $this->model = new UserSettingsModel;
+        $userModel = new UserModel;
         $this->checker = new Checker;
 
         // Validate, sanitize and serialize input
@@ -83,6 +85,7 @@ class SettingsController extends AdminController {
 
         // Update settings
         $this->model->updateUserSettings();
+        $userModel->updateUser();
         
         $result = [
             "success" => true,
@@ -192,15 +195,65 @@ class SettingsController extends AdminController {
         $hash = '_' . $generator->generateToken(8) . '.';
         $name = UserModel::$user['username'] . $hash . pathinfo($data['name'])['extension'];
         $path = 'app/Data/Files/Users/' . $name;
+        
         $data['name'] = $name;
         new Image($data, 'profile');
-        
-        $model = new UserModel;
-        $model->setPicture($path);
+        UserModel::$user['picture'] = $path;
         
         $this->results = [
             'picture' => $path
         ];
+    
+    }
+    
+    public function inputEmail($value) {
+    
+        if($value === UserModel::$user['email'])
+            return true;
+        
+        $validator = new Validator;
+        if(!$validator->validateEmail($value))
+            new UserEvents(4);  // Invalid input
+        
+        $model = new UserModel;
+        if(!$model->isEmail($value))
+            new UserEvents(7);  // User with given e-mail already exists
+        
+        UserModel::$user['email'] = $value;
+    
+    }
+    
+    public function inputUsername($value) {
+    
+        if($value === UserModel::$user['username'])
+            return true;
+    
+        $validator = new Validator;
+        if(!$validator->validateUsername($value))
+            new UserEvents(4);  // Invalid input
+    
+        $model = new UserModel;
+        if(!$model->isUsername($value))
+            new UserEvents(7);  // User with given username already exists
+    
+        UserModel::$user['username'] = $value;
+        
+    }
+    
+    public function inputNickname($value) {
+    
+        if($value === UserSettingsModel::$settings['nickname'])
+            return true;
+    
+        $validator = new Validator;
+        if(!$validator->validateNickname($value))
+            new UserEvents(4);  // Invalid input
+    
+        $model = new UserSettingsModel;
+        if(!$model->isNickname($value))
+            new UserEvents(7);  // User with given username already exists
+        
+        UserSettingsModel::$settings['nickname'] = $value;
     
     }
 

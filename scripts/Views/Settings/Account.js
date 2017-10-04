@@ -59,6 +59,9 @@ let account = {
         // Change profile picture
         this.changeProfilePicture(pictureBox);
 
+        // Change username and e-mail
+        this.changeProfileBoxValues(profileBox);
+
     },
 
     changeProfilePicture(element) {
@@ -95,6 +98,8 @@ let account = {
 
                                     if(response.picture) {
                                         element.querySelector('img').src = response.picture;
+                                        document.querySelector('.header-account .write-icon_circle')
+                                            .style.backgroundImage = 'url(' + response.picture + ')';
                                         Slee.success('SUCCESS', 'SETTINGS_SAVED');
                                     } else
                                         Slee.error('ERROR', response.code);
@@ -112,6 +117,88 @@ let account = {
                 input.click();
 
             }
+        ]);
+
+    },
+
+    blurEvent() {
+
+        let input = document.querySelector('.profile-box [contenteditable]');
+
+        input.removeAttribute('contenteditable');
+        input.parentNode.querySelector('.edit-value').classList.remove('hide');
+
+        // Save data
+        const value = input.innerText.trim();
+        let data = {};
+
+        data[input.dataset.edit] = value;
+        Settings.postSettings(data).then(results => {
+
+            if(!results)
+                input.innerText = input.dataset.reset;
+
+        });
+
+    },
+
+    closeProfileBoxEditor(target) {
+
+        target.blur();
+
+        let input = target;
+        input.removeEventListener('blur', this.blurEvent);
+
+    },
+
+    changeProfileBoxValues(profileBox) {
+
+        Utils.registerEvents([
+            [
+                'click',
+                profileBox,
+                event => {
+
+                    let target = event.target;
+
+                    // Edit
+                    if(target.matches('.edit-value')) {
+
+                        let input = target.parentNode.querySelector('[data-edit]');
+
+                        target.classList.add('hide');
+                        input.setAttribute('contenteditable', '');
+                        input.focus();
+
+                        // Register blur event
+                        input.addEventListener('blur', this.blurEvent);
+
+                    }
+
+                }
+            ],
+            [
+                'keyup keypress',
+                profileBox,
+                event => {
+
+                    let target = event.target;
+
+                    // Edit
+                    if(target.matches('[data-edit]')) {
+
+                        if(event.type === 'keypress' && event.keyCode === 13) {
+                            event.preventDefault();
+                            return false;
+                        }
+
+                        if(event.type === 'keyup' && event.keyCode === 13)
+                            this.closeProfileBoxEditor(target);
+
+                    }
+
+                }
+            ]
         ]);
 
     }

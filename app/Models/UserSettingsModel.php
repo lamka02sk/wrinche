@@ -97,5 +97,25 @@ class UserSettingsModel extends MainModel {
             ->exec();
 
     }
-
+    
+    public function isNickname(string $nickname) {
+        
+        // Query DB
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table($this->table)
+            ->select()
+            ->count()
+            ->where('nickname', $nickname)
+            ->exec();
+        
+        $num = $builder->output[0]['count'] ?? 0;
+        
+        if($num > 0)
+            return false;
+        
+        return true;
+        
+    }
+    
 }

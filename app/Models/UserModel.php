@@ -104,12 +104,7 @@ class UserModel extends MainModel {
         $builder->queryCommands
             ->table($this->table)
             ->update()
-            ->updateRow([
-                'username' => UserModel::$user['username'],
-                'email' => UserModel::$user['email'],
-                'password' => UserModel::$user['password'],
-                'admin' => UserModel::$user['admin'],
-            ])
+            ->updateRow(UserModel::$user)
             ->where('id', UserModel::$user['id'])
             ->exec();
 
