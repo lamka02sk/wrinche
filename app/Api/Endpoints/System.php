@@ -2,7 +2,14 @@
 
 namespace App\Api\Endpoints;
 
+use App\Auth\Login;
+use App\Auth\Logout;
+use App\Controllers\Admin\AuthController;
+use App\Helpers\Redirect;
 use App\Logs\LogManager;
+use App\Models\LoginModel;
+use App\Models\UserModel;
+use App\Requests\Request;
 use ReflectionClass;
 
 class System extends EndpointInterface {
@@ -49,6 +56,55 @@ class System extends EndpointInterface {
         $csrf->updateToken();
         $this->output = $_SESSION['auth']['csrf_token'];
         
+    }
+    
+    public function auth_logout() {
+    
+        if(strtolower(Request::$method) !== 'post')
+            return new Logout('admin');
+    
+        $model = new LoginModel;
+        $data = Request::$forms['api'] ?? [];
+        
+        foreach($data as $sessionID)
+            $model->deactivateLogin($sessionID);
+        
+        $this->output = true;
+        return true;
+    
+    }
+    
+    public function auth_refresh_login() {
+    
+        if(strtolower(Request::$method) !== 'post')
+            return $this->output = false;
+        
+        $login = new Login('admin');
+        $login->checkLogin();
+    
+        $model = new LoginModel;
+        $data = Request::$forms['api'] ?? [];
+        
+        foreach($data as $sessionID) {
+            
+            $session = $model->getSessionByID($sessionID);
+            
+            if(empty($session))
+                continue;
+            
+            if($session['user_id'] !== UserModel::$user['id'])
+                continue;
+            
+            if($sessionID === LoginModel::$login['id'])
+                continue;
+            
+            $model->updateLogin($sessionID, $session['inc']);
+        
+        }
+        
+        $this->output = true;
+        return true;
+    
     }
     
     public function check_integrity_components() {

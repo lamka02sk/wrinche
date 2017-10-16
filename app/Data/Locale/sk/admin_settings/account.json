@@ -9,6 +9,13 @@
   "SETTINGS_ACCOUNT_LAST":"Posledná operácia",
   "SETTINGS_ACCOUNT_VIEWS":"Počet operácií",
 
-  "SETTINGS_PRIVILEGES": "Oprávnenia"
+  "SETTINGS_PRIVILEGES": "Oprávnenia",
+
+  "SETTINGS_SESSION_ACTIONS": "Akcie",
+  "SETTINGS_SESSION_LOGOUT": "Odhlásiť",
+  "SETTINGS_SESSION_REFRESH": "Obnoviť",
+
+  "SETTINGS_SESSION_REFRESH_DONE": "Relácia bola obnovená",
+  "SETTINGS_SESSION_REFRESH_FAIL": "Nastala chyba pri obnovovaní"
 
 }

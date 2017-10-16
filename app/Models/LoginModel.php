@@ -1,12 +1,5 @@
 <?php
 
-/*
- * wrinche. Modern, powerful and user friendly CMS.
- * Logins Model. Holds and Manages User Sessions.
- * Version: 0.2.1
- * Authors: lamka02sk
- */
-
 namespace App\Models;
 
 use App\Database\Connection;
@@ -25,9 +18,7 @@ class LoginModel extends MainModel {
     public static $inc = 0;
 
     public function start() {
-
         // TODO: ??? Nothing to do ... maybe
-
     }
 
     public function loginData() {
@@ -39,6 +30,27 @@ class LoginModel extends MainModel {
 
         return $result;
 
+    }
+    
+    public function getSessionByID($id) {
+    
+        $dateTime = new DateTime;
+        $maxTime = $dateTime->sub($this->max);
+    
+        $builder = new QueryBuilder;
+        $builder->queryCommands
+            ->table($this->table)
+            ->select()
+            ->selectValues()
+            ->where(
+                ['id', 'active', 'updated'],
+                ['=', '=', '>='],
+                [$id, 1, $maxTime]
+            )
+            ->exec();
+        
+        return $builder->output[0] ?? [];
+    
     }
 
     public function returnSessions() {
@@ -134,9 +146,17 @@ class LoginModel extends MainModel {
 
     }
 
-    public function updateLogin() {
+    public function updateLogin($id = null, $inc = null) {
 
         // SUPER-SLOW!!! about 50 milliseconds, needs to be fixed!!
+        
+        if($id === null)
+            $id = LoginModel::$login['id'];
+        
+        if($inc === null)
+            $inc = ++LoginModel::$login['inc'];
+        else
+            ++$inc;
 
         // Update login timestamp
         $builder = new QueryBuilder;
@@ -144,17 +164,20 @@ class LoginModel extends MainModel {
             ->table($this->table)
             ->update()
             ->updateRow([
-                'inc' => ++LoginModel::$login['inc']
+                'inc' => $inc
             ])
             ->where(
                 ['id'],
-                [LoginModel::$login['id']]
+                [$id]
             )
             ->exec();
 
     }
 
-    public function deactivateLogin() {
+    public function deactivateLogin($id = null) {
+        
+        if($id === null)
+            $id = LoginModel::$login['id'];
 
         // Update login token row to active FALSE
         $builder = new QueryBuilder;
@@ -164,11 +187,7 @@ class LoginModel extends MainModel {
             ->updateRow([
                 'active' => 0
             ])
-            ->where(
-                ['hash', 'key'],
-                ['=', '='],
-                [LoginModel::$login['hash'], LoginModel::$login['key']]
-            )
+            ->where('id', $id)
             ->exec();
 
     }

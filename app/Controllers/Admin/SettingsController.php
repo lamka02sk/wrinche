@@ -10,6 +10,7 @@ use App\Helpers\Config;
 use App\Helpers\Generator;
 use App\Helpers\Validator;
 use App\Models\UserModel;
+use App\Upload\Main as FileUploader;
 use App\Upload\Image;
 use DateTime;
 use App\Helpers\Redirect;
@@ -29,7 +30,7 @@ class SettingsController extends AdminController {
             'theme', 'language', 'first_day', 'date_format', 'time_format', 'number_format', 'timezone'
         ],
         'account' => [
-            'username', 'email', 'nickname', 'fullname', 'website', 'public_name', 'bio', 'sessions', 'picture'
+            'username', 'email', 'nickname', 'first_name', 'last_name', 'website', 'public_name', 'bio', 'sessions', 'picture'
         ]
     ];
 
@@ -198,6 +199,7 @@ class SettingsController extends AdminController {
         
         $data['name'] = $name;
         new Image($data, 'profile');
+        FileUploader::deleteFile(UserModel::$user['picture']);
         UserModel::$user['picture'] = $path;
         
         $this->results = [
@@ -256,6 +258,22 @@ class SettingsController extends AdminController {
         UserSettingsModel::$settings['nickname'] = $value;
     
     }
+    
+    public function inputFirst_name($value) {
+        UserSettingsModel::$settings['first_name'] = $value;
+    }
+    
+    public function inputLast_name($value) {
+        UserSettingsModel::$settings['last_name'] = $value;
+    }
+    
+    public function inputWebsite($value) {
+        UserSettingsModel::$settings['website'] = $value;
+    }
+    
+    public function inputBio($value) {
+        UserSettingsModel::$settings['bio'] = $value;
+    }
 
     public function inputNumeric(int $value) {
 
@@ -283,6 +301,7 @@ class SettingsController extends AdminController {
             $browserInfo = $browser->getBrowser($session['ua']);
             $time = strtotime($session['updated']);
             $resultData[] = [
+                'id' => $session['id'],
                 'userID' =>  $session['user_id'],
                 'IP' => $session['ip'],
                 'browser' => $browserInfo['browser'] . ' ' . $browserInfo['version'],

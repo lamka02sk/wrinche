@@ -4,6 +4,8 @@
 
 namespace App\Upload;
 
+use App\Errors\UserEvents;
+
 abstract class Main {
 
     public $data;
@@ -31,6 +33,26 @@ abstract class Main {
      * Return information about upload completion
      */
     abstract public function returnInformation();
+    
+    /**
+     * @param string $path
+     * Delete given file
+     * @return bool
+     */
+    public static function deleteFile(string $path) {
+    
+        $realpath = realpath($path);
+        
+        if(!is_file($realpath))
+            return false;
+        
+        if(!is_writeable($realpath))
+            new UserEvents(51);  // Cannot delete file
+        
+        unlink($realpath);
+        return true;
+    
+    }
 
     /*
      * FILE EXTENSIONS AND MIME TYPES

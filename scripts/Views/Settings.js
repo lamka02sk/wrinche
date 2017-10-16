@@ -4,7 +4,6 @@ import Utils from "../Modules/Utils";
 import Ajax from "../Modules/Ajax";
 import Router from "../Modules/Router";
 import Slee from "../Modules/Slee";
-import Csrf from "../Modules/Csrf";
 
 export default {
 

@@ -96,7 +96,7 @@ $profilePicture = UserModel::$user['picture'] ?? 'assets/icons/profile_picture.s
 <div class="subcontent-box input-box">
 
     <label for=bio_textarea" class="settings-label" data-locale="SETTINGS_BIO"></label>
-    <textarea name="bio" id="bio_textarea" data-placeholder="SETTINGS_BIO" value="<?= $bio ?>"></textarea>
+    <textarea name="bio" id="bio_textarea" data-placeholder="SETTINGS_BIO"><?= $bio ?></textarea>
 
 </div>
 
@@ -104,7 +104,11 @@ $profilePicture = UserModel::$user['picture'] ?? 'assets/icons/profile_picture.s
 
     <label class="settings-label clear-label" data-locale="SETTINGS_SESSIONS"></label>
     
-    <!-- TODO: Update and Logout actions -->
+    <div class="sessions-actions">
+        <span data-locale="SETTINGS_SESSION_ACTIONS"></span>
+        <button class="selected-logout icon-logout" data-locale="SETTINGS_SESSION_LOGOUT"></button>
+        <button class="selected-refresh icon-refresh" data-locale="SETTINGS_SESSION_REFRESH"></button>
+    </div>
 
     <table class="table-content">
 
@@ -122,10 +126,10 @@ $profilePicture = UserModel::$user['picture'] ?? 'assets/icons/profile_picture.s
         <?php
 
         foreach($controller->returnSessions() as $session):
-
+            
         ?>
 
-            <tr class="table-row">
+            <tr class="table-row" data-id="<?= $session['id'] ?>">
 
                 <td class="row-column checkbox-cell select-row"><input type="checkbox"></td>
                 <td class="row-column platform-column"><?= $session['OS'] ?></td>

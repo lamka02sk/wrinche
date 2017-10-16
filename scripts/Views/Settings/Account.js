@@ -5,6 +5,8 @@ import $ from 'jquery';
 import Router from "../../Modules/Router";
 import Csrf from "../../Modules/Csrf";
 import Slee from "../../Modules/Slee";
+import Debounce from 'lodash.debounce';
+import Ajax from "../../Modules/Ajax";
 
 let account = {
 
@@ -53,7 +55,8 @@ let account = {
 
     createProfileBoxEvents() {
 
-        let profileBox = document.querySelector('.profile-box');
+        this.subcontent = document.querySelector('.content-subcontent');
+        let profileBox = this.subcontent.querySelector('.profile-box');
         let pictureBox = profileBox.querySelector('.profile-picture-wrapper');
 
         // Change profile picture
@@ -61,6 +64,12 @@ let account = {
 
         // Change username and e-mail
         this.changeProfileBoxValues(profileBox);
+
+        // Change other inputs and textarea
+        this.changeOtherInputs();
+
+        // Edit sessions
+        this.sessionsEditor();
 
     },
 
@@ -145,9 +154,7 @@ let account = {
     closeProfileBoxEditor(target) {
 
         target.blur();
-
-        let input = target;
-        input.removeEventListener('blur', this.blurEvent);
+        target.removeEventListener('blur', this.blurEvent);
 
     },
 
@@ -196,6 +203,117 @@ let account = {
                             this.closeProfileBoxEditor(target);
 
                     }
+
+                }
+            ]
+        ]);
+
+    },
+
+    changeOtherInputs() {
+
+        function onInput(event) {
+
+            let target = event.target;
+            const identifier = target.name;
+            const value = target.value.trim();
+
+            let data = {};
+            data[identifier] = value;
+
+            Settings.postSettings(data);
+
+        }
+
+        let inputs = this.subcontent.querySelectorAll('input:not([type=checkbox]), textarea');
+
+        Utils.registerEvent([
+            'input blur',
+            inputs,
+            Debounce(onInput, 750)
+        ]);
+
+    },
+
+    getSelectedSessions(rows) {
+
+        let data = [];
+
+        rows.forEach(row => {
+            if(!!row.checked)
+                data.push(row.parentNode.parentNode.dataset.id);
+        });
+
+        return data;
+
+    },
+
+    sessionsEditor() {
+
+        let rows = this.subcontent.querySelectorAll('.select-row input');
+        let selectAll = this.subcontent.querySelector('.select-all input');
+        let sessionsActions = this.subcontent.querySelector('.sessions-actions');
+
+        Utils.registerEvents([
+            [
+                'change',
+                selectAll,
+                () => {
+
+                    const status = selectAll.checked;
+
+                    rows.forEach(row => {
+                        row.checked = status;
+                    });
+
+                    if(status)
+                        sessionsActions.classList.add('active');
+                    else
+                        sessionsActions.classList.remove('active');
+
+                }
+            ],
+            [
+                'change',
+                rows,
+                event => {
+
+                    const status = !!event.target.checked;
+
+                    if(!status)
+                        selectAll.checked = false;
+
+                    if(status)
+                        sessionsActions.classList.add('active');
+                    else
+                        if(!Array.from(rows).some(row => !!row.checked))
+                            sessionsActions.classList.remove('active');
+
+                }
+            ],
+            [
+                'click',
+                this.subcontent.querySelector('.sessions-actions'),
+                event => {
+
+                    let target = event.target;
+
+                    // Logout
+                    if(target.matches('.selected-logout')) {
+
+                        const selectedSessions = this.getSelectedSessions(rows);
+                        Ajax.api('system.auth.logout', 'post', selectedSessions);
+
+                        selectedSessions.forEach(session => {
+                            let row = this.subcontent.querySelector('[data-id=' + session + ']');
+                            row.parentNode.removeChild(row);
+                        });
+
+                    }
+
+                    // Refresh
+                    else if(target.matches('.selected-refresh'))
+                        Ajax.api('system.auth.refresh.login', 'post', this.getSelectedSessions(rows));
 
                 }
             ]

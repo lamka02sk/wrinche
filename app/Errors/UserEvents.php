@@ -40,7 +40,8 @@ class UserEvents {
     
         40 => 'Unsupported audio format',
     
-        50 => 'Unsupported file format'
+        50 => 'Unsupported file format',
+        51 => 'Cannot delete file'
 
     ];
 

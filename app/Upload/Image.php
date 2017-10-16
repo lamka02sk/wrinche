@@ -21,7 +21,8 @@ class Image extends Main {
             'maxWidth' => 196,
             'maxHeight' => 196,
             'path' => 'app/Data/Files/Users/',
-            'response' => false
+            'response' => false,
+            'crop' => 'center'
         ]
     
     ];

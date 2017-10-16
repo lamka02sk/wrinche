@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import Utils from '../Modules/Utils';
 import Csrf from '../Modules/Csrf';
+import Router from "./Router";
 
 export default {
 
@@ -85,6 +86,49 @@ export default {
                 },
                 error: () => Utils.hideLoading()
             }).responseText);
+
+    },
+
+    api(endpoint, method, data = {}) {
+
+        if(method.toLowerCase() === 'post')
+            return this.apiPost(endpoint, data);
+        else
+            return this.apiGet(endpoint);
+
+    },
+
+    apiGet(endpoint) {
+
+        const url = Router.createLink('api/' + endpoint);
+        return new Promise(resolve => {
+            this.get(
+                url,
+                response => {
+                    resolve(response, 'success');
+                },
+                error => {
+                    resolve(error, 'error');
+                }
+            )
+        });
+
+    },
+
+    apiPost(endpoint, data) {
+
+        data = { api: data };
+        const url = Router.createLink('api/' + endpoint);
+
+        return new Promise(resolve => {
+            this.post(
+                url,
+                data,
+                (response, status) => {
+                    resolve(response, status);
+                }
+            )
+        });
 
     }
 
