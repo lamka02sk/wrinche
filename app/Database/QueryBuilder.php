@@ -232,7 +232,7 @@ class QueryBuilder extends Connection {
             $query .= "LIMIT " . $limit . " ";
 
         if($offset > 0)
-            $query .= "OFFSET(" . $offset . ") ";
+            $query .= "OFFSET " . $offset . " ";
 
         // SELECT QUERY PREPARED
         $this->resultQuery = trim($query);

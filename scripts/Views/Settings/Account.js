@@ -305,7 +305,7 @@ let account = {
                         Ajax.api('system.auth.logout', 'post', selectedSessions);
 
                         selectedSessions.forEach(session => {
-                            let row = this.subcontent.querySelector('[data-id=' + session + ']');
+                            let row = this.subcontent.querySelector('[data-id="' + session + '"]');
                             row.parentNode.removeChild(row);
                         });
 
